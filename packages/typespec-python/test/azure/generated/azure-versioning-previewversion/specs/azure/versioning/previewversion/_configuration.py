@@ -10,28 +10,23 @@ from typing import Any
 
 from azure.core.pipeline import policies
 
-from .._version import VERSION
+from ._version import VERSION
 
 
-class ClientLocationClientConfiguration:  # pylint: disable=too-many-instance-attributes
-    """Configuration for ClientLocationClient.
+class PreviewVersionClientConfiguration:  # pylint: disable=too-many-instance-attributes
+    """Configuration for PreviewVersionClient.
 
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :param storage_account: Required.
-    :type storage_account: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
     """
 
-    def __init__(self, storage_account: str, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
-        if storage_account is None:
-            raise ValueError("Parameter 'storage_account' must not be None.")
+    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
 
-        self.storage_account = storage_account
         self.endpoint = endpoint
-        kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-clientlocation/{}".format(VERSION))
+        kwargs.setdefault("sdk_moniker", "specs-azure-versioning-previewversion/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
 
@@ -42,6 +37,6 @@ class ClientLocationClientConfiguration:  # pylint: disable=too-many-instance-at
         self.logging_policy = kwargs.get("logging_policy") or policies.NetworkTraceLoggingPolicy(**kwargs)
         self.http_logging_policy = kwargs.get("http_logging_policy") or policies.HttpLoggingPolicy(**kwargs)
         self.custom_hook_policy = kwargs.get("custom_hook_policy") or policies.CustomHookPolicy(**kwargs)
-        self.redirect_policy = kwargs.get("redirect_policy") or policies.AsyncRedirectPolicy(**kwargs)
-        self.retry_policy = kwargs.get("retry_policy") or policies.AsyncRetryPolicy(**kwargs)
+        self.redirect_policy = kwargs.get("redirect_policy") or policies.RedirectPolicy(**kwargs)
+        self.retry_policy = kwargs.get("retry_policy") or policies.RetryPolicy(**kwargs)
         self.authentication_policy = kwargs.get("authentication_policy")

@@ -18,7 +18,6 @@ class TestLocationMoveMethodParameterToClientOperationsAsync(ClientLocationClien
     async def test_move_method_parameter_to_client_blob_operations_get_blob(self, location_endpoint):
         client = self.create_async_client(endpoint=location_endpoint)
         response = await client.move_method_parameter_to_client.blob_operations.get_blob(
-            storage_account="str",
             container="str",
             blob="str",
         )

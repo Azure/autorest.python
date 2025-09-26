@@ -97,7 +97,7 @@ def build_move_to_root_client_resource_operations_get_resource_request(  # pylin
 
 
 def build_move_method_parameter_to_client_blob_operations_get_blob_request(  # pylint: disable=name-too-long
-    *, storage_account: str, container: str, blob: str, **kwargs: Any
+    *, container: str, blob: str, storage_account: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -630,11 +630,9 @@ class MoveMethodParameterToClientBlobOperationsOperations:  # pylint: disable=na
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace
-    def get_blob(self, *, storage_account: str, container: str, blob: str, **kwargs: Any) -> _models.Blob:
+    def get_blob(self, *, container: str, blob: str, **kwargs: Any) -> _models.Blob:
         """get_blob.
 
-        :keyword storage_account: Required.
-        :paramtype storage_account: str
         :keyword container: Required.
         :paramtype container: str
         :keyword blob: Required.
@@ -657,9 +655,9 @@ class MoveMethodParameterToClientBlobOperationsOperations:  # pylint: disable=na
         cls: ClsType[_models.Blob] = kwargs.pop("cls", None)
 
         _request = build_move_method_parameter_to_client_blob_operations_get_blob_request(
-            storage_account=storage_account,
             container=container,
             blob=blob,
+            storage_account=self._config.storage_account,
             headers=_headers,
             params=_params,
         )

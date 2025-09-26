@@ -431,15 +431,18 @@ class ParentClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar child_client: ChildClientOperations operations
     :vartype child_client:
      specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations
+    :param blob_name: The name of the blob. This parameter is used as a path parameter in all
+     operations. Required.
+    :type blob_name: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, blob_name: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = ParentClientConfiguration(endpoint=endpoint, **kwargs)
+        self._config = ParentClientConfiguration(blob_name=blob_name, endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
