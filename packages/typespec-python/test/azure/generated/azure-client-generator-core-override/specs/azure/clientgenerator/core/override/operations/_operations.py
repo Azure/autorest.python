@@ -58,6 +58,41 @@ def build_group_parameters_group_request(*, param1: str, param2: str, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
+def build_require_optional_parameter_require_optional_request(  # pylint: disable=name-too-long
+    param1: str, param2: str, **kwargs: Any
+) -> HttpRequest:
+    # Construct URL
+    _url = "/azure/client-generator-core/override/require-optional/{param1}/{param2}"
+    path_format_arguments = {
+        "param1": _SERIALIZER.url("param1", param1, "str"),
+        "param2": _SERIALIZER.url("param2", param2, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    return HttpRequest(method="GET", url=_url, **kwargs)
+
+
+def build_remove_optional_parameter_remove_optional_request(  # pylint: disable=name-too-long
+    param1: str, *, param2: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
+    _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
+
+    # Construct URL
+    _url = "/azure/client-generator-core/override/remove-optional/{param1}"
+    path_format_arguments = {
+        "param1": _SERIALIZER.url("param1", param1, "str"),
+    }
+
+    _url: str = _url.format(**path_format_arguments)  # type: ignore
+
+    # Construct parameters
+    if param2 is not None:
+        _params["param2"] = _SERIALIZER.query("param2", param2, "str")
+
+    return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
+
+
 class ReorderParametersOperations:
     """
     .. warning::
@@ -173,6 +208,146 @@ class GroupParametersOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_group_parameters_group_request(
+            param1=param1,
+            param2=param2,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class RequireOptionalParameterOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
+        :attr:`require_optional_parameter` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: OverrideClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def require_optional(  # pylint: disable=inconsistent-return-statements
+        self, param1: str, param2: str, **kwargs: Any
+    ) -> None:
+        """require_optional.
+
+        :param param1: Required.
+        :type param1: str
+        :param param2: Required.
+        :type param2: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_require_optional_parameter_require_optional_request(
+            param1=param1,
+            param2=param2,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+
+class RemoveOptionalParameterOperations:
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
+        :attr:`remove_optional_parameter` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: OverrideClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+    @distributed_trace
+    def remove_optional(  # pylint: disable=inconsistent-return-statements
+        self, param1: str, *, param2: Optional[str] = None, **kwargs: Any
+    ) -> None:
+        """remove_optional.
+
+        :param param1: Required.
+        :type param1: str
+        :keyword param2: Default value is None.
+        :paramtype param2: str
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_remove_optional_parameter_remove_optional_request(
             param1=param1,
             param2=param2,
             headers=_headers,
