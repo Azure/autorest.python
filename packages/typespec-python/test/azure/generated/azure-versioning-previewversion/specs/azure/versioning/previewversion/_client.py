@@ -14,47 +14,23 @@ from azure.core import PipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import HttpRequest, HttpResponse
 
-from ._configuration import ClientLocationClientConfiguration
+from ._configuration import PreviewVersionClientConfiguration
+from ._operations import _PreviewVersionClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
-from .operations import (
-    ArchiveOperationsOperations,
-    MoveMethodParameterToClientOperations,
-    MoveToExistingSubClientOperations,
-    MoveToNewSubClientOperations,
-    MoveToRootClientOperations,
-    _ClientLocationClientOperationsMixin,
-)
 
 
-class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
-    """Test for @clientLocation decorator - moving operations between clients.
+class PreviewVersionClient(_PreviewVersionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+    """PreviewVersionClient.
 
-    :ivar move_to_existing_sub_client: MoveToExistingSubClientOperations operations
-    :vartype move_to_existing_sub_client:
-     specs.azure.clientgenerator.core.clientlocation.operations.MoveToExistingSubClientOperations
-    :ivar move_to_new_sub_client: MoveToNewSubClientOperations operations
-    :vartype move_to_new_sub_client:
-     specs.azure.clientgenerator.core.clientlocation.operations.MoveToNewSubClientOperations
-    :ivar move_to_root_client: MoveToRootClientOperations operations
-    :vartype move_to_root_client:
-     specs.azure.clientgenerator.core.clientlocation.operations.MoveToRootClientOperations
-    :ivar move_method_parameter_to_client: MoveMethodParameterToClientOperations operations
-    :vartype move_method_parameter_to_client:
-     specs.azure.clientgenerator.core.clientlocation.operations.MoveMethodParameterToClientOperations
-    :ivar archive_operations: ArchiveOperationsOperations operations
-    :vartype archive_operations:
-     specs.azure.clientgenerator.core.clientlocation.operations.ArchiveOperationsOperations
-    :param storage_account: Required.
-    :type storage_account: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, storage_account: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = ClientLocationClientConfiguration(storage_account=storage_account, endpoint=endpoint, **kwargs)
+        self._config = PreviewVersionClientConfiguration(endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -78,21 +54,6 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.move_to_existing_sub_client = MoveToExistingSubClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.move_to_new_sub_client = MoveToNewSubClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.move_to_root_client = MoveToRootClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.move_method_parameter_to_client = MoveMethodParameterToClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.archive_operations = ArchiveOperationsOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.
