@@ -16,7 +16,12 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import OverrideClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import GroupParametersOperations, ReorderParametersOperations
+from .operations import (
+    GroupParametersOperations,
+    RemoveOptionalParameterOperations,
+    ReorderParametersOperations,
+    RequireOptionalParameterOperations,
+)
 
 
 class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -28,6 +33,12 @@ class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar group_parameters: GroupParametersOperations operations
     :vartype group_parameters:
      specs.azure.clientgenerator.core.override.operations.GroupParametersOperations
+    :ivar require_optional_parameter: RequireOptionalParameterOperations operations
+    :vartype require_optional_parameter:
+     specs.azure.clientgenerator.core.override.operations.RequireOptionalParameterOperations
+    :ivar remove_optional_parameter: RemoveOptionalParameterOperations operations
+    :vartype remove_optional_parameter:
+     specs.azure.clientgenerator.core.override.operations.RemoveOptionalParameterOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -64,6 +75,12 @@ class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.group_parameters = GroupParametersOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.require_optional_parameter = RequireOptionalParameterOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.remove_optional_parameter = RemoveOptionalParameterOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
