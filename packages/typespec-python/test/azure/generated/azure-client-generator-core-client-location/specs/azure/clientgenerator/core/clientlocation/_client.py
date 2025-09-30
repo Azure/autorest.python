@@ -44,15 +44,17 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
     :ivar archive_operations: ArchiveOperationsOperations operations
     :vartype archive_operations:
      specs.azure.clientgenerator.core.clientlocation.operations.ArchiveOperationsOperations
+    :param storage_account: Required.
+    :type storage_account: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, storage_account: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = ClientLocationClientConfiguration(endpoint=endpoint, **kwargs)
+        self._config = ClientLocationClientConfiguration(storage_account=storage_account, endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:

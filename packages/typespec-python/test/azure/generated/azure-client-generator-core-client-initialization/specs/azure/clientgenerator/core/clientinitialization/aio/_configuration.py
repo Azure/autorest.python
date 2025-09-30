@@ -199,12 +199,18 @@ class ParentClientConfiguration:  # pylint: disable=too-many-instance-attributes
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
+    :param blob_name: The name of the blob. This parameter is used as a path parameter in all
+     operations. Required.
+    :type blob_name: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
     """
 
-    def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+    def __init__(self, blob_name: str, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        if blob_name is None:
+            raise ValueError("Parameter 'blob_name' must not be None.")
 
+        self.blob_name = blob_name
         self.endpoint = endpoint
         kwargs.setdefault("sdk_moniker", "specs-azure-clientgenerator-core-clientinitialization/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
