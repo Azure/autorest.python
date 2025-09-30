@@ -252,7 +252,7 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     },
     "client/structure/client-operation-group": {
         "package-name": "client-structure-clientoperationgroup",
-        namespace: "client.structure.clientoperationgroup",
+        "namespace": "client.structure.clientoperationgroup",
     },
     "client/structure/multi-client": {
         "package-name": "client-structure-multiclient",
