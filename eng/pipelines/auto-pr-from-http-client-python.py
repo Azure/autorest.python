@@ -49,6 +49,7 @@ def install_and_build():
     log_call("git add .")
     try:
         log_call(f'git commit -m "Update dependencies ({get_current_time()})"')
+        git_push()
     except CalledProcessError:
         logger.info("No changes to commit.")
 
