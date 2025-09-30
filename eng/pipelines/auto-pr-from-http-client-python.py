@@ -44,7 +44,7 @@ def install_and_build():
     log_call("pnpm run build")
     log_call("pnpm format")
     log_call("black packages/typespec-python/test/azure/mock_api_tests -l 120")
-    log_call("black packages/typespec-python/test/mock_api_tests -l 120")
+    log_call("black packages/typespec-python/test/generic_mock_api_tests -l 120")
     log_call("black packages/typespec-python/test/unbranded/mock_api_tests -l 120")
     log_call("git add .")
     try:
