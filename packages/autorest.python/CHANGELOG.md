@@ -1,5 +1,16 @@
 # Release
 
+## 6.41.2
+
+### Bump dependencies
+
+- [7da55dc](https://github.com/Azure/autorest.python/commit/7da55dc5be74c0887e4196a76680fd19725cb1e7) Bump `@typespec/http-client-python` dep to `0.19.0`
+
+### Bug Fixes
+
+- [#3226](https://github.com/Azure/autorest.python/pull/3226) [python] ensure first line in param description wrap around is a space
+
+
 ## 6.41.1
 
 ### Bug Fixes
