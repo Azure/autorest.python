@@ -42,6 +42,10 @@ def get_current_time():
 def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
+    log_call("pnpm format")
+    log_call("black packages/typespec-python/test/azure/mock_api_tests -l 120")
+    log_call("black packages/typespec-python/test/mock_api_tests -l 120")
+    log_call("black packages/typespec-python/test/unbranded/mock_api_tests -l 120")
     log_call("git add .")
     try:
         log_call(f'git commit -m "Update dependencies ({get_current_time()})"')
