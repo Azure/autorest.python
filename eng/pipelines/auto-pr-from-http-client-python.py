@@ -204,6 +204,7 @@ class Repo:
             )
 
     def add_changelog(self):
+        logger.info("Adding changelog...")
         try:
             branch_name_in_typespec_log = self.source_branch_name.split(":")[-1].replace("/", "-")
             branch_name_in_azure_log = self.new_branch_name.replace("/", "-")
@@ -229,6 +230,7 @@ class Repo:
                         f.write(new_file_content)
                     log_call(f"git add {azure_log_path}")
                     log_call(f'git commit -m "Add changelog {azure_log_path}"')
+                    git_push()
                     break
         except Exception as e:
             logger.warning(f"Failed to add changelog: {e}")
