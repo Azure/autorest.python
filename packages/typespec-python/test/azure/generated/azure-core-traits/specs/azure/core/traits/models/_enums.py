@@ -19,5 +19,5 @@ class RepeatabilityResult(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     REJECTED = "rejected"
     """If the request was rejected because the combination of Repeatability-First-Sent and
     Repeatability-Request-ID were invalid
-    or because the Repeatability-First-Sent value was outside the range of values held by the
+or because the Repeatability-First-Sent value was outside the range of values held by the
     server."""
