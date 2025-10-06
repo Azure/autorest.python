@@ -139,7 +139,16 @@ steps:
   - script: |
       pnpm pack
       AbsolutePkgPath=$(find "$(pwd)" -name "autorest-python-*" -maxdepth 1)
+      echo "##vso[task.setvariable variable=PackagePath]$AbsolutePkgPath"
       cd ../..
       pnpm install $AbsolutePkgPath -w --verbose
     displayName: Test tarball
     workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
+
+  - task: PublishBuildArtifacts@1
+    displayName: Publish ${{ parameters.folderName }} package
+    inputs:
+      pathToPublish: '$(PackagePath)'
+      artifactName: ${{ eq(parameters.folderName, 'typespec-python') && '@azure-tools/typespec-python' || '@autorest/python' }}
+      publishLocation: 'Container'
+    
