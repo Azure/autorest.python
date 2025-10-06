@@ -152,5 +152,4 @@ steps:
     displayName: Publish ${{ parameters.folderName }} package
     inputs:
       targetPath: "$(PackagePath)"
-      artifactName: "$(TarballName)"
       publishLocation: "pipeline"
