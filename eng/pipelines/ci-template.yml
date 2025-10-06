@@ -155,3 +155,4 @@ steps:
       publishLocation: "pipeline"
       artifactName: "$(TarballName)"
     condition: and(succeeded(), not(variables['System.ArtifactExists']))
+    continueOnError: true
