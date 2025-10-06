@@ -153,5 +153,5 @@ steps:
     inputs:
       pathToPublish: '$(PackagePath)'
       artifactName: '$(TarballName)'
-      publishLocation: 'Container'
+      publishLocation: 'pipeline'
     
