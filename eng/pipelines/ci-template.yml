@@ -148,10 +148,9 @@ steps:
     displayName: Test tarball
     workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.folderName}}/
 
-  - task: PublishBuildArtifacts@1
+  - task: PublishPipelineArtifact@1
     displayName: Publish ${{ parameters.folderName }} package
     inputs:
-      pathToPublish: '$(PackagePath)'
-      artifactName: '$(TarballName)'
-      publishLocation: 'pipeline'
-    
+      targetPath: "$(PackagePath)"
+      artifactName: "$(TarballName)"
+      publishLocation: "pipeline"
