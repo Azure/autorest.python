@@ -153,3 +153,5 @@ steps:
     inputs:
       targetPath: "$(PackagePath)"
       publishLocation: "pipeline"
+      artifactName: "$(TarballName)"
+    condition: and(succeeded(), not(variables['System.ArtifactExists']))
