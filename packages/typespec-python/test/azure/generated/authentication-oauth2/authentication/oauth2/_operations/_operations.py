@@ -137,7 +137,10 @@ class _OAuth2ClientOperationsMixin(
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 403:
-                error = _failsafe_deserialize(_models.InvalidAuth, response)
+                error = _failsafe_deserialize(
+                    _models.InvalidAuth,
+                    response,
+                )
             raise HttpResponseError(response=response, model=error)
 
         if cls:
