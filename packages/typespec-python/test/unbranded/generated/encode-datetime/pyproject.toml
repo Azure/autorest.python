@@ -22,6 +22,7 @@ classifiers = [
     "Programming Language :: Python :: 3.13",
 ]
 requires-python = ">=3.9"
+keywords = ["azure", "azure sdk"]
 
 dependencies = [
     "isodate>=0.6.1",
@@ -31,6 +32,8 @@ dependencies = [
 dynamic = [
 "version", "readme"
 ]
+
+[project.urls]
 
 [tool.setuptools.dynamic]
 version = {attr = "encode.datetime._version.VERSION"}
