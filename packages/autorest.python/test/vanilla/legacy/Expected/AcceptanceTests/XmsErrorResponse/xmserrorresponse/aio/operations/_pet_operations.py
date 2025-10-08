@@ -95,7 +95,10 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 404:
-                error = self._deserialize.failsafe_deserialize(_models.NotFoundErrorBase, pipeline_response)
+                error = self._deserialize.failsafe_deserialize(
+                    _models.NotFoundErrorBase,
+                    pipeline_response,
+                )
                 raise ResourceNotFoundError(response=response, model=error)
             raise HttpResponseError(response=response, model=error)
 
@@ -149,9 +152,15 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 500:
-                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+                error = self._deserialize.failsafe_deserialize(
+                    _models.PetActionError,
+                    pipeline_response,
+                )
             else:
-                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+                error = self._deserialize.failsafe_deserialize(
+                    _models.PetActionError,
+                    pipeline_response,
+                )
             raise HttpResponseError(response=response, model=error)
 
         deserialized = self._deserialize("PetAction", pipeline_response.http_response)
@@ -204,9 +213,15 @@ class PetOperations:
             map_error(status_code=response.status_code, response=response, error_map=error_map)
             error = None
             if response.status_code == 500:
-                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+                error = self._deserialize.failsafe_deserialize(
+                    _models.PetActionError,
+                    pipeline_response,
+                )
             else:
-                error = self._deserialize.failsafe_deserialize(_models.PetActionError, pipeline_response)
+                error = self._deserialize.failsafe_deserialize(
+                    _models.PetActionError,
+                    pipeline_response,
+                )
             raise HttpResponseError(response=response, model=error)
 
         if cls:
