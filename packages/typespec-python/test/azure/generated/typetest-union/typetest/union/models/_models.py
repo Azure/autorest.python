@@ -84,10 +84,11 @@ class EnumsOnlyCases(_Model):
 
     lr: Literal["left", "right", "up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the left variant. Required. Is one of the following types:
-     Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
+      Literal[\"left\"], Literal[\"right\"], Literal[\"up\"], Literal[\"down\"]"""
+
     ud: Literal["up", "down"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the up variant. Required. Is either a Literal[\"up\"] type or a
-     Literal[\"down\"] type."""
+      Literal[\"down\"] type."""
 
     @overload
     def __init__(
@@ -413,22 +414,25 @@ class MixedLiteralsCases(_Model):
         name="stringLiteral", visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the \"a\" variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
+
     int_literal: Literal["a", 2, True] = rest_field(
         name="intLiteral", visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the 2 variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
+
     float_literal: Literal["a", 2, True] = rest_field(
         name="floatLiteral", visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the 3.3 variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
+
     boolean_literal: Literal["a", 2, True] = rest_field(
         name="booleanLiteral", visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the true variant. Required. Is one of the following types:
-     Literal[\"a\"], Literal[2], float, Literal[True]"""
+      Literal[\"a\"], Literal[2], float, Literal[True]"""
 
     @overload
     def __init__(
@@ -474,22 +478,26 @@ class MixedTypesCases(_Model):
         visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the Cat variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+      Literal[\"a\"], int, bool"""
+
     literal: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the \"a\" variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+      Literal[\"a\"], int, bool"""
+
     int_property: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         name="int", visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the int variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+      Literal[\"a\"], int, bool"""
+
     boolean: Union["_models.Cat", Literal["a"], int, bool] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """This should be receive/send the boolean variant. Required. Is one of the following types: Cat,
-     Literal[\"a\"], int, bool"""
+      Literal[\"a\"], int, bool"""
+
     array: list[Union["_models.Cat", Literal["a"], int, bool]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
@@ -530,6 +538,7 @@ class StringAndArrayCases(_Model):
 
     string: Union[str, list[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the string variant. Required. Is either a str type or a [str] type."""
+
     array: Union[str, list[str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """This should be receive/send the array variant. Required. Is either a str type or a [str] type."""
 

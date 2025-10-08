@@ -30,6 +30,7 @@ class ActionRequest(_Model):
         name="actionType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The action type to perform."""
+
     parameters: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Additional action parameters."""
 
@@ -93,6 +94,7 @@ class ChangeAllowanceRequest(_Model):
         name="totalAllowed", visibility=["read", "create", "update", "delete", "query"]
     )
     """The new total allowed widgets."""
+
     reason: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The reason for the change."""
 
@@ -126,6 +128,7 @@ class ChangeAllowanceResult(_Model):
 
     total_allowed: int = rest_field(name="totalAllowed", visibility=["read", "create", "update", "delete", "query"])
     """The new total allowed widgets. Required."""
+
     status: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The status of the change. Required."""
 
@@ -159,6 +162,7 @@ class CheckNameAvailabilityRequest(_Model):
 
     name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name of the resource for which availability needs to be checked."""
+
     type: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The resource type."""
 
@@ -198,11 +202,13 @@ class CheckNameAvailabilityResponse(_Model):
         name="nameAvailable", visibility=["read", "create", "update", "delete", "query"]
     )
     """Indicates if the resource name is available."""
+
     reason: Optional[Union[str, "_models.CheckNameAvailabilityReason"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The reason why the given name is not available. Known values are: \"Invalid\" and
-     \"AlreadyExists\"."""
+      \"AlreadyExists\"."""
+
     message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Detailed reason why the given name is not available."""
 
@@ -237,6 +243,7 @@ class ErrorAdditionalInfo(_Model):
 
     type: Optional[str] = rest_field(visibility=["read"])
     """The additional info type."""
+
     info: Optional[Any] = rest_field(visibility=["read"])
     """The additional info."""
 
@@ -259,12 +266,16 @@ class ErrorDetail(_Model):
 
     code: Optional[str] = rest_field(visibility=["read"])
     """The error code."""
+
     message: Optional[str] = rest_field(visibility=["read"])
     """The error message."""
+
     target: Optional[str] = rest_field(visibility=["read"])
     """The error target."""
+
     details: Optional[list["_models.ErrorDetail"]] = rest_field(visibility=["read"])
     """The error details."""
+
     additional_info: Optional[list["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )
@@ -377,22 +388,26 @@ class Operation(_Model):
 
     name: Optional[str] = rest_field(visibility=["read"])
     """The name of the operation, as per Resource-Based Access Control (RBAC). Examples:
-     \"Microsoft.Compute/virtualMachines/write\",
-     \"Microsoft.Compute/virtualMachines/capture/action\"."""
+      \"Microsoft.Compute/virtualMachines/write\",
+      \"Microsoft.Compute/virtualMachines/capture/action\"."""
+
     is_data_action: Optional[bool] = rest_field(name="isDataAction", visibility=["read"])
     """Whether the operation applies to data-plane. This is \"true\" for data-plane operations and
-     \"false\" for Azure Resource Manager/control-plane operations."""
+      \"false\" for Azure Resource Manager/control-plane operations."""
+
     display: Optional["_models.OperationDisplay"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """Localized display information for this particular operation."""
+
     origin: Optional[Union[str, "_models.Origin"]] = rest_field(visibility=["read"])
     """The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit
-     logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
-     \"user,system\"."""
+      logs UX. Default value is \"user,system\". Known values are: \"user\", \"system\", and
+      \"user,system\"."""
+
     action_type: Optional[Union[str, "_models.ActionType"]] = rest_field(name="actionType", visibility=["read"])
     """Extensible enum. Indicates the action type. \"Internal\" refers to actions that are for
-     internal only APIs. \"Internal\""""
+      internal only APIs. \"Internal\""""
 
     @overload
     def __init__(
@@ -431,16 +446,19 @@ class OperationDisplay(_Model):
 
     provider: Optional[str] = rest_field(visibility=["read"])
     """The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring
-     Insights\" or \"Microsoft Compute\"."""
+      Insights\" or \"Microsoft Compute\"."""
+
     resource: Optional[str] = rest_field(visibility=["read"])
     """The localized friendly name of the resource type related to this operation. E.g. \"Virtual
-     Machines\" or \"Job Schedule Collections\"."""
+      Machines\" or \"Job Schedule Collections\"."""
+
     operation: Optional[str] = rest_field(visibility=["read"])
     """The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create
-     or Update Virtual Machine\", \"Restart Virtual Machine\"."""
+      or Update Virtual Machine\", \"Restart Virtual Machine\"."""
+
     description: Optional[str] = rest_field(visibility=["read"])
     """The short, localized friendly description of the operation; suitable for tool tips and detailed
-     views."""
+      views."""
 
 
 class Resource(_Model):
@@ -461,12 +479,15 @@ class Resource(_Model):
 
     id: Optional[str] = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+
     name: Optional[str] = rest_field(visibility=["read"])
     """The name of the resource."""
+
     type: Optional[str] = rest_field(visibility=["read"])
     """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\"."""
+      \"Microsoft.Storage/storageAccounts\"."""
+
     system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
     """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
@@ -493,6 +514,7 @@ class TrackedResource(Resource):
 
     tags: Optional[dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
+
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
 
@@ -517,7 +539,7 @@ class TrackedResource(Resource):
 
 class Order(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -576,8 +598,10 @@ class OrderProperties(_Model):
 
     product_id: str = rest_field(name="productId", visibility=["read", "create", "update", "delete", "query"])
     """The product ID of the order. Required."""
+
     amount: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Amount of the product. Required."""
+
     provisioning_state: Optional[str] = rest_field(name="provisioningState", visibility=["read"])
     """The provisioning state of the product."""
 
@@ -622,24 +646,29 @@ class SystemData(_Model):
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
+
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
-     \"ManagedIdentity\", and \"Key\"."""
+      \"ManagedIdentity\", and \"Key\"."""
+
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
     """The timestamp of resource creation (UTC)."""
+
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
     )
     """The identity that last modified the resource."""
+
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",
-     \"Application\", \"ManagedIdentity\", and \"Key\"."""
+      \"Application\", \"ManagedIdentity\", and \"Key\"."""
+
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
@@ -670,7 +699,7 @@ class SystemData(_Model):
 
 class Widget(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -729,8 +758,10 @@ class WidgetProperties(_Model):
 
     name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name of the widget."""
+
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the widget."""
+
     provisioning_state: Optional[str] = rest_field(name="provisioningState", visibility=["read"])
     """The provisioning state of the widget."""
 

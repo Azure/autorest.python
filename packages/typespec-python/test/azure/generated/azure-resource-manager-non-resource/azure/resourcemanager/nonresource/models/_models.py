@@ -26,6 +26,7 @@ class ErrorAdditionalInfo(_Model):
 
     type: Optional[str] = rest_field(visibility=["read"])
     """The additional info type."""
+
     info: Optional[Any] = rest_field(visibility=["read"])
     """The additional info."""
 
@@ -47,12 +48,16 @@ class ErrorDetail(_Model):
 
     code: Optional[str] = rest_field(visibility=["read"])
     """The error code."""
+
     message: Optional[str] = rest_field(visibility=["read"])
     """The error message."""
+
     target: Optional[str] = rest_field(visibility=["read"])
     """The error target."""
+
     details: Optional[list["_models.ErrorDetail"]] = rest_field(visibility=["read"])
     """The error details."""
+
     additional_info: Optional[list["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )
@@ -89,7 +94,7 @@ class ErrorResponse(_Model):
 
 class NonResource(_Model):
     """Though this model has ``id``, ``name``, ``type`` properties, it is not a resource as it doesn't
-    extends ``Resource``.
+     extends ``Resource``.
 
     :ivar id: An id.
     :vartype id: str
@@ -101,8 +106,10 @@ class NonResource(_Model):
 
     id: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """An id."""
+
     name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """A name."""
+
     type: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """A type."""
 

@@ -45,7 +45,7 @@ class InputModel(_Model):
 
 class OrphanModel(_Model):
     """Not used anywhere, but access is override to public so still need to be generated and exported
-    with serialization.
+     with serialization.
 
     :ivar model_name: Required.
     :vartype model_name: str
@@ -55,6 +55,7 @@ class OrphanModel(_Model):
 
     model_name: str = rest_field(name="name", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     description: str = rest_field(name="desc", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

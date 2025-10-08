@@ -31,11 +31,11 @@ class OperationTemplatesClientConfiguration:  # pylint: disable=too-many-instanc
     :param base_url: Service host. Default value is "https://management.azure.com".
     :type base_url: str
     :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :type cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Default value is
-     "2023-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+      "2023-12-01-preview". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype api_version: str
     """
 

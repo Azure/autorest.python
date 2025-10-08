@@ -54,6 +54,7 @@ class ErrorAdditionalInfo(_Model):
 
     type: Optional[str] = rest_field(visibility=["read"])
     """The additional info type."""
+
     info: Optional[Any] = rest_field(visibility=["read"])
     """The additional info."""
 
@@ -75,12 +76,16 @@ class ErrorDetail(_Model):
 
     code: Optional[str] = rest_field(visibility=["read"])
     """The error code."""
+
     message: Optional[str] = rest_field(visibility=["read"])
     """The error message."""
+
     target: Optional[str] = rest_field(visibility=["read"])
     """The error target."""
+
     details: Optional[list["_models.ErrorDetail"]] = rest_field(visibility=["read"])
     """The error details."""
+
     additional_info: Optional[list["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )

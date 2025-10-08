@@ -24,7 +24,7 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar azure_location_scalar: AzureLocationScalarOperations operations
     :vartype azure_location_scalar:
-     specs.azure.core.scalar.aio.operations.AzureLocationScalarOperations
+      specs.azure.core.scalar.aio.operations.AzureLocationScalarOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

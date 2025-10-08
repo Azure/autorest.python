@@ -230,9 +230,8 @@ class _ConditionalRequestClientOperationsMixin(
         """Check when only If-Modified-Since in header is defined.
 
         :keyword if_modified_since: A timestamp indicating the last modified time of the resource known
-         to the
-         client. The operation will be performed only if the resource on the service has
-         been modified since the specified time. Default value is None.
+         to the client. The operation will be performed only if the resource on the service has been
+         modified since the specified time. Default value is None.
         :paramtype if_modified_since: ~datetime.datetime
         :return: bool
         :rtype: bool
@@ -283,8 +282,7 @@ class _ConditionalRequestClientOperationsMixin(
         """Check when only If-Unmodified-Since in header is defined.
 
         :keyword if_unmodified_since: A timestamp indicating the last modified time of the resource
-         known to the
-         client. The operation will be performed only if the resource on the service has
+         known to the client. The operation will be performed only if the resource on the service has
          not been modified since the specified time. Default value is None.
         :paramtype if_unmodified_since: ~datetime.datetime
         :return: None

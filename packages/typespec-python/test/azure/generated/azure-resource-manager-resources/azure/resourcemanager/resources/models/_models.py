@@ -28,6 +28,7 @@ class ErrorAdditionalInfo(_Model):
 
     type: Optional[str] = rest_field(visibility=["read"])
     """The additional info type."""
+
     info: Optional[Any] = rest_field(visibility=["read"])
     """The additional info."""
 
@@ -49,12 +50,16 @@ class ErrorDetail(_Model):
 
     code: Optional[str] = rest_field(visibility=["read"])
     """The error code."""
+
     message: Optional[str] = rest_field(visibility=["read"])
     """The error message."""
+
     target: Optional[str] = rest_field(visibility=["read"])
     """The error target."""
+
     details: Optional[list["_models.ErrorDetail"]] = rest_field(visibility=["read"])
     """The error details."""
+
     additional_info: Optional[list["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )
@@ -107,12 +112,15 @@ class Resource(_Model):
 
     id: Optional[str] = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+
     name: Optional[str] = rest_field(visibility=["read"])
     """The name of the resource."""
+
     type: Optional[str] = rest_field(visibility=["read"])
     """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\"."""
+      \"Microsoft.Storage/storageAccounts\"."""
+
     system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
     """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
@@ -136,7 +144,7 @@ class ExtensionResource(Resource):
 
 class ExtensionsResource(ExtensionResource):
     """Concrete extension resource types can be created by aliasing this type using a specific
-    property type.
+     property type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -188,11 +196,12 @@ class ExtensionsResourceProperties(_Model):
 
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
+
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
-     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
     @overload
     def __init__(
@@ -231,7 +240,7 @@ class ProxyResource(Resource):
 
 class LocationResource(ProxyResource):
     """Concrete proxy resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -283,11 +292,12 @@ class LocationResourceProperties(_Model):
 
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
+
     provisioning_state: Optional[Union[str, "_models.ProvisioningState"]] = rest_field(
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
-     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
 
     @overload
     def __init__(
@@ -362,7 +372,8 @@ class NestedProxyResourceProperties(_Model):
         name="provisioningState", visibility=["read"]
     )
     """Provisioning State of the nested child Resource. Known values are: \"Succeeded\", \"Failed\",
-     \"Canceled\", \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+      \"Canceled\", \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Nested resource description."""
 
@@ -395,6 +406,7 @@ class NotificationDetails(_Model):
 
     message: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The notification message. Required."""
+
     urgent: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """If true, the notification is urgent. Required."""
 
@@ -439,6 +451,7 @@ class TrackedResource(Resource):
 
     tags: Optional[dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
+
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
 
@@ -463,7 +476,7 @@ class TrackedResource(Resource):
 
 class SingletonTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -523,7 +536,8 @@ class SingletonTrackedResourceProperties(_Model):
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
-     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
 
@@ -566,24 +580,29 @@ class SystemData(_Model):
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
+
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
-     \"ManagedIdentity\", and \"Key\"."""
+      \"ManagedIdentity\", and \"Key\"."""
+
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
     """The timestamp of resource creation (UTC)."""
+
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
     )
     """The identity that last modified the resource."""
+
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",
-     \"Application\", \"ManagedIdentity\", and \"Key\"."""
+      \"Application\", \"ManagedIdentity\", and \"Key\"."""
+
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
@@ -614,7 +633,7 @@ class SystemData(_Model):
 
 class TopLevelTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -674,7 +693,8 @@ class TopLevelTrackedResourceProperties(_Model):
         name="provisioningState", visibility=["read"]
     )
     """The status of the last operation. Known values are: \"Succeeded\", \"Failed\", \"Canceled\",
-     \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+      \"Provisioning\", \"Updating\", \"Deleting\", and \"Accepted\"."""
+
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The description of the resource."""
 

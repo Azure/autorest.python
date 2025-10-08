@@ -84,8 +84,10 @@ class Widget(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Widget identifier. Required."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Widget name. Required."""
+
     color: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Widget color, only available in preview version."""
 

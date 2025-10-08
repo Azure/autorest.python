@@ -41,7 +41,7 @@ class DifferentSpreadFloatRecord(_Model):
 
 class DifferentSpreadFloatDerived(DifferentSpreadFloatRecord):
     """The model extends from a model that spread Record<float32> with the different known property
-    type.
+     type.
 
     :ivar name: The id property. Required.
     :vartype name: str
@@ -101,7 +101,7 @@ class DifferentSpreadModelArrayRecord(_Model):
 
 class DifferentSpreadModelArrayDerived(DifferentSpreadModelArrayRecord):
     """The model extends from a model that spread Record<ModelForRecord[]> with the different known
-    property type.
+     property type.
 
     :ivar known_prop: Required.
     :vartype known_prop: str
@@ -163,7 +163,7 @@ class DifferentSpreadModelRecord(_Model):
 
 class DifferentSpreadModelDerived(DifferentSpreadModelRecord):
     """The model extends from a model that spread Record<ModelForRecord> with the different known
-    property type.
+     property type.
 
     :ivar known_prop: Required.
     :vartype known_prop: str
@@ -225,7 +225,7 @@ class DifferentSpreadStringRecord(_Model):
 
 class DifferentSpreadStringDerived(DifferentSpreadStringRecord):
     """The model extends from a model that spread Record<string> with the different known property
-    type.
+     type.
 
     :ivar id: The name property. Required.
     :vartype id: float
@@ -412,6 +412,7 @@ class ExtendsUnknownAdditionalPropertiesDerived(ExtendsUnknownAdditionalProperti
 
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
+
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
@@ -439,7 +440,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disabl
     """The model extends from Record<unknown> with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
+     ExtendsUnknownAdditionalPropertiesDiscriminatedDerived
 
     :ivar name: The name property. Required.
     :vartype name: str
@@ -450,6 +451,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disabl
     __mapping__: dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
+
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The discriminator. Required. Default value is None."""
 
@@ -489,8 +491,10 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 
     kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
+
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
+
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
@@ -672,6 +676,7 @@ class IsUnknownAdditionalPropertiesDerived(IsUnknownAdditionalProperties):
 
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
+
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
@@ -699,7 +704,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=nam
     """The model is Record<unknown> with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    IsUnknownAdditionalPropertiesDiscriminatedDerived
+     IsUnknownAdditionalPropertiesDiscriminatedDerived
 
     :ivar name: The name property. Required.
     :vartype name: str
@@ -710,6 +715,7 @@ class IsUnknownAdditionalPropertiesDiscriminated(_Model):  # pylint: disable=nam
     __mapping__: dict[str, _Model] = {}
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name property. Required."""
+
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The discriminator. Required. Default value is None."""
 
@@ -749,8 +755,10 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 
     kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"derived\"."""
+
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
+
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The age property."""
 
@@ -1070,6 +1078,7 @@ class WidgetData0(_Model):
 
     kind: Literal["kind0"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind0\"."""
+
     foo_prop: str = rest_field(name="fooProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -1105,8 +1114,10 @@ class WidgetData1(_Model):
 
     kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind1\"."""
+
     start: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
     """Required."""
+
     end: Optional[datetime.datetime] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
@@ -1142,6 +1153,7 @@ class WidgetData2(_Model):
 
     kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind1\"."""
+
     start: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

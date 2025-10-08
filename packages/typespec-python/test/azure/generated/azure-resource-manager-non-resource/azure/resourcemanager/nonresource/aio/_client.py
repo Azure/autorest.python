@@ -31,7 +31,7 @@ class NonResourceClient:
 
     :ivar non_resource_operations: NonResourceOperationsOperations operations
     :vartype non_resource_operations:
-     azure.resourcemanager.nonresource.aio.operations.NonResourceOperationsOperations
+      azure.resourcemanager.nonresource.aio.operations.NonResourceOperationsOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -39,11 +39,11 @@ class NonResourceClient:
     :param base_url: Service host. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Default value is
-     "2023-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+      "2023-12-01-preview". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype api_version: str
     """
 

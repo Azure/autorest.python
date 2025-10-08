@@ -31,7 +31,7 @@ class CommonPropertiesClient:
 
     :ivar managed_identity: ManagedIdentityOperations operations
     :vartype managed_identity:
-     azure.resourcemanager.commonproperties.operations.ManagedIdentityOperations
+      azure.resourcemanager.commonproperties.operations.ManagedIdentityOperations
     :ivar error: ErrorOperations operations
     :vartype error: azure.resourcemanager.commonproperties.operations.ErrorOperations
     :param credential: Credential used to authenticate requests to the service. Required.
@@ -41,11 +41,11 @@ class CommonPropertiesClient:
     :param base_url: Service host. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Default value is
-     "2023-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+      "2023-12-01-preview". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype api_version: str
     """
 

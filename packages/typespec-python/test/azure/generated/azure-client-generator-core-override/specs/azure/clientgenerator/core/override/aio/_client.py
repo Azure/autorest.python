@@ -29,16 +29,16 @@ class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar reorder_parameters: ReorderParametersOperations operations
     :vartype reorder_parameters:
-     specs.azure.clientgenerator.core.override.aio.operations.ReorderParametersOperations
+      specs.azure.clientgenerator.core.override.aio.operations.ReorderParametersOperations
     :ivar group_parameters: GroupParametersOperations operations
     :vartype group_parameters:
-     specs.azure.clientgenerator.core.override.aio.operations.GroupParametersOperations
+      specs.azure.clientgenerator.core.override.aio.operations.GroupParametersOperations
     :ivar require_optional_parameter: RequireOptionalParameterOperations operations
     :vartype require_optional_parameter:
-     specs.azure.clientgenerator.core.override.aio.operations.RequireOptionalParameterOperations
+      specs.azure.clientgenerator.core.override.aio.operations.RequireOptionalParameterOperations
     :ivar remove_optional_parameter: RemoveOptionalParameterOperations operations
     :vartype remove_optional_parameter:
-     specs.azure.clientgenerator.core.override.aio.operations.RemoveOptionalParameterOperations
+      specs.azure.clientgenerator.core.override.aio.operations.RemoveOptionalParameterOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

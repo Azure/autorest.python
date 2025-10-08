@@ -25,8 +25,10 @@ class Resource(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     scope: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

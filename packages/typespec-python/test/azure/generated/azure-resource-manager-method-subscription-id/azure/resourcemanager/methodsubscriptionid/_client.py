@@ -30,12 +30,12 @@ class MethodSubscriptionIdClient:
     """Test for ARM method level subscription ID parameter placement.
 
     :ivar two_subscription_resources_method_level: TwoSubscriptionResourcesMethodLevelOperations
-     operations
+      operations
     :vartype two_subscription_resources_method_level:
-     azure.resourcemanager.methodsubscriptionid.operations.TwoSubscriptionResourcesMethodLevelOperations
+      azure.resourcemanager.methodsubscriptionid.operations.TwoSubscriptionResourcesMethodLevelOperations
     :ivar mixed_subscription_placement: MixedSubscriptionPlacementOperations operations
     :vartype mixed_subscription_placement:
-     azure.resourcemanager.methodsubscriptionid.operations.MixedSubscriptionPlacementOperations
+      azure.resourcemanager.methodsubscriptionid.operations.MixedSubscriptionPlacementOperations
     :ivar operations: Operations operations
     :vartype operations: azure.resourcemanager.methodsubscriptionid.operations.Operations
     :param credential: Credential used to authenticate requests to the service. Required.
@@ -45,11 +45,11 @@ class MethodSubscriptionIdClient:
     :param base_url: Service host. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Default value is
-     "2023-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+      "2023-12-01-preview". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype api_version: str
     """
 

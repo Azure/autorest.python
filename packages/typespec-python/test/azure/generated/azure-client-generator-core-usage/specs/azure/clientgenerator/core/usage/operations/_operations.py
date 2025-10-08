@@ -126,13 +126,7 @@ class ModelInOperationOperations:
     def input_to_input_output(
         self, body: _models.InputModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Expected body parameter:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge"
-           }.
+        """Expected body parameter: .. code-block:: json { "name": "Madge" }.
 
         :param body: Required.
         :type body: ~specs.azure.clientgenerator.core.usage.models.InputModel
@@ -146,13 +140,7 @@ class ModelInOperationOperations:
 
     @overload
     def input_to_input_output(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """Expected body parameter:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge"
-           }.
+        """Expected body parameter: .. code-block:: json { "name": "Madge" }.
 
         :param body: Required.
         :type body: JSON
@@ -166,13 +154,7 @@ class ModelInOperationOperations:
 
     @overload
     def input_to_input_output(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """Expected body parameter:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge"
-           }.
+        """Expected body parameter: .. code-block:: json { "name": "Madge" }.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -188,13 +170,7 @@ class ModelInOperationOperations:
     def input_to_input_output(  # pylint: disable=inconsistent-return-statements
         self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
-        """Expected body parameter:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge"
-           }.
+        """Expected body parameter: .. code-block:: json { "name": "Madge" }.
 
         :param body: Is one of the following types: InputModel, JSON, IO[bytes] Required.
         :type body: ~specs.azure.clientgenerator.core.usage.models.InputModel or JSON or IO[bytes]
@@ -250,13 +226,7 @@ class ModelInOperationOperations:
 
     @distributed_trace
     def output_to_input_output(self, **kwargs: Any) -> _models.OutputModel:
-        """Expected response body:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge"
-           }.
+        """Expected response body: .. code-block:: json { "name": "Madge" }.
 
         :return: OutputModel. The OutputModel is compatible with MutableMapping
         :rtype: ~specs.azure.clientgenerator.core.usage.models.OutputModel
@@ -315,23 +285,8 @@ class ModelInOperationOperations:
         self, body: _models.RoundTripModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
-
-        Expected body parameter:
-
-        .. code-block:: json
-
-           {
-           }
-
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "result": {
-               "name": "Madge"
-             }
-           }.
+         Expected body parameter: .. code-block:: json { } Expected response body: .. code-block:: json
+         { "result": { "name": "Madge" } }.
 
         :param body: Required.
         :type body: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel
@@ -348,23 +303,8 @@ class ModelInOperationOperations:
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
-
-        Expected body parameter:
-
-        .. code-block:: json
-
-           {
-           }
-
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "result": {
-               "name": "Madge"
-             }
-           }.
+         Expected body parameter: .. code-block:: json { } Expected response body: .. code-block:: json
+         { "result": { "name": "Madge" } }.
 
         :param body: Required.
         :type body: JSON
@@ -381,23 +321,8 @@ class ModelInOperationOperations:
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
-
-        Expected body parameter:
-
-        .. code-block:: json
-
-           {
-           }
-
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "result": {
-               "name": "Madge"
-             }
-           }.
+         Expected body parameter: .. code-block:: json { } Expected response body: .. code-block:: json
+         { "result": { "name": "Madge" } }.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -414,23 +339,8 @@ class ModelInOperationOperations:
         self, body: Union[_models.RoundTripModel, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
-
-        Expected body parameter:
-
-        .. code-block:: json
-
-           {
-           }
-
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "result": {
-               "name": "Madge"
-             }
-           }.
+         Expected body parameter: .. code-block:: json { } Expected response body: .. code-block:: json
+         { "result": { "name": "Madge" } }.
 
         :param body: Is one of the following types: RoundTripModel, JSON, IO[bytes] Required.
         :type body: ~specs.azure.clientgenerator.core.usage.models.RoundTripModel or JSON or IO[bytes]
@@ -500,16 +410,8 @@ class ModelInOperationOperations:
     def orphan_model_serializable(  # pylint: disable=inconsistent-return-statements
         self, body: Any, **kwargs: Any
     ) -> None:
-        """Serialize the 'OrphanModel' as request body.
-
-        Expected body parameter:
-
-        .. code-block:: json
-
-           {
-             "name": "name",
-             "desc": "desc"
-           }.
+        """Serialize the 'OrphanModel' as request body. Expected body parameter: .. code-block:: json {
+         "name": "name", "desc": "desc" }.
 
         :param body: Required.
         :type body: any

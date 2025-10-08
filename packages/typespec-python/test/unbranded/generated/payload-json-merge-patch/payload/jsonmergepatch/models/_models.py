@@ -63,6 +63,7 @@ class Resource(_Model):
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     description: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     map: Optional[dict[str, "_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]

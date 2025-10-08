@@ -23,6 +23,7 @@ class TestModel(_Model):
 
     prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     changed_prop: Optional[str] = rest_field(
         name="changedProp", visibility=["read", "create", "update", "delete", "query"]
     )

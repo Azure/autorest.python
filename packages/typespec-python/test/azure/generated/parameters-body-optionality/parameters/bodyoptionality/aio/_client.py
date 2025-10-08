@@ -27,7 +27,7 @@ class BodyOptionalityClient(
 
     :ivar optional_explicit: OptionalExplicitOperations operations
     :vartype optional_explicit:
-     parameters.bodyoptionality.aio.operations.OptionalExplicitOperations
+      parameters.bodyoptionality.aio.operations.OptionalExplicitOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

@@ -12,7 +12,7 @@ class Snake(_Model):
     """Test fixed enum type for discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Cobra
+     Cobra
 
     :ivar kind: discriminator property. Required. "cobra"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.SnakeKind
@@ -23,6 +23,7 @@ class Snake(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"cobra\""""
+
     length: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Length of the snake. Required."""
 
@@ -80,7 +81,7 @@ class Dog(_Model):
     """Test extensible enum type for discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Golden
+     Golden
 
     :ivar kind: discriminator property. Required. "golden"
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.DogKind
@@ -91,6 +92,7 @@ class Dog(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """discriminator property. Required. \"golden\""""
+
     weight: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Weight of the dog. Required."""
 

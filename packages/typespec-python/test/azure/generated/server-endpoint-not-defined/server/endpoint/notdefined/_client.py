@@ -21,7 +21,7 @@ from ._utils.serialization import Deserializer, Serializer
 
 class NotDefinedClient(_NotDefinedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates server doesn't define endpoint. Client should automatically add an endpoint to let
-    user pass in.
+     user pass in.
 
     :param endpoint: Service host. Required.
     :type endpoint: str

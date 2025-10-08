@@ -22,10 +22,12 @@ class ModelV2(_Model):
 
     prop: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     enum_prop: Union[str, "_models.EnumV2"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. \"enumMemberV2\""""
+
     union_prop: "_types.UnionV2" = rest_field(
         name="unionProp", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -62,6 +64,7 @@ class ModelV3(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     enum_prop: Union[str, "_models.EnumV3"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )

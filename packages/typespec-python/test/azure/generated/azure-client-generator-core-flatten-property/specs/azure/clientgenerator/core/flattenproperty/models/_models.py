@@ -26,6 +26,7 @@ class ChildFlattenModel(_Model):
 
     summary: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     properties: "_models.ChildModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -79,6 +80,7 @@ class ChildModel(_Model):
 
     description: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -112,6 +114,7 @@ class FlattenModel(_Model):
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     properties: "_models.ChildModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -165,6 +168,7 @@ class NestedFlattenModel(_Model):
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     properties: "_models.ChildFlattenModel" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

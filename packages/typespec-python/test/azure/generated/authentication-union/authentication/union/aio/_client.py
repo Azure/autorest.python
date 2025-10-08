@@ -27,9 +27,9 @@ class UnionClient(_UnionClientOperationsMixin):  # pylint: disable=client-accept
     """Illustrates clients generated with ApiKey and OAuth2 authentication.
 
     :param credential: Credential used to authenticate requests to the service. Is either a key
-     credential type or a token credential type. Required.
+      credential type or a token credential type. Required.
     :type credential: ~azure.core.credentials.AzureKeyCredential or
-     ~azure.core.credentials_async.AsyncTokenCredential
+      ~azure.core.credentials_async.AsyncTokenCredential
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

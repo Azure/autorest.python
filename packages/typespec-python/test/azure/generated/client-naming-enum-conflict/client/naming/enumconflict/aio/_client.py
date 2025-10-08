@@ -26,7 +26,7 @@ class EnumConflictClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype first_operations: client.naming.enumconflict.aio.operations.FirstOperationsOperations
     :ivar second_operations: SecondOperationsOperations operations
     :vartype second_operations:
-     client.naming.enumconflict.aio.operations.SecondOperationsOperations
+      client.naming.enumconflict.aio.operations.SecondOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

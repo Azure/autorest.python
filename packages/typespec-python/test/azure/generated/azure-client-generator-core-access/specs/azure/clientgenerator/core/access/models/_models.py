@@ -20,7 +20,7 @@ class AbstractModel(_Model):
     """Used in internal operations, should be generated but not exported.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    RealModel
+     RealModel
 
     :ivar kind: Discriminator property for AbstractModel. Required. Default value is None.
     :vartype kind: str
@@ -31,6 +31,7 @@ class AbstractModel(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for AbstractModel. Required. Default value is None."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

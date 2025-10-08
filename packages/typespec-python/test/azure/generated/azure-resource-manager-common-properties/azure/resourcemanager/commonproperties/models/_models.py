@@ -36,12 +36,16 @@ class ApiError(_Model):
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The Api error details."""
+
     innererror: Optional["_models.InnerError"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The Api inner error."""
+
     code: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error code."""
+
     target: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The target of the particular error."""
+
     message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error message."""
 
@@ -80,8 +84,10 @@ class ApiErrorBase(_Model):
 
     code: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error code."""
+
     target: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The target of the particular error."""
+
     message: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The error message."""
 
@@ -151,12 +157,15 @@ class Resource(_Model):
 
     id: Optional[str] = rest_field(visibility=["read"])
     """Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}."""
+
     name: Optional[str] = rest_field(visibility=["read"])
     """The name of the resource."""
+
     type: Optional[str] = rest_field(visibility=["read"])
     """The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or
-     \"Microsoft.Storage/storageAccounts\"."""
+      \"Microsoft.Storage/storageAccounts\"."""
+
     system_data: Optional["_models.SystemData"] = rest_field(name="systemData", visibility=["read"])
     """Azure Resource Manager metadata containing createdBy and modifiedBy information."""
 
@@ -183,6 +192,7 @@ class TrackedResource(Resource):
 
     tags: Optional[dict[str, str]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Resource tags."""
+
     location: str = rest_field(visibility=["read", "create"])
     """The geo-location where the resource lives. Required."""
 
@@ -207,7 +217,7 @@ class TrackedResource(Resource):
 
 class ConfidentialResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -265,6 +275,7 @@ class ConfidentialResourceProperties(_Model):
 
     provisioning_state: str = rest_field(name="provisioningState", visibility=["read"])
     """The status of the last operation. Required."""
+
     username: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -297,6 +308,7 @@ class ErrorAdditionalInfo(_Model):
 
     type: Optional[str] = rest_field(visibility=["read"])
     """The additional info type."""
+
     info: Optional[Any] = rest_field(visibility=["read"])
     """The additional info."""
 
@@ -319,12 +331,16 @@ class ErrorDetail(_Model):
 
     code: Optional[str] = rest_field(visibility=["read"])
     """The error code."""
+
     message: Optional[str] = rest_field(visibility=["read"])
     """The error message."""
+
     target: Optional[str] = rest_field(visibility=["read"])
     """The error target."""
+
     details: Optional[list["_models.ErrorDetail"]] = rest_field(visibility=["read"])
     """The error details."""
+
     additional_info: Optional[list["_models.ErrorAdditionalInfo"]] = rest_field(
         name="additionalInfo", visibility=["read"]
     )
@@ -370,6 +386,7 @@ class InnerError(_Model):
 
     exceptiontype: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The exception type."""
+
     errordetail: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The internal error message or exception dump."""
 
@@ -394,7 +411,7 @@ class InnerError(_Model):
 
 class ManagedIdentityTrackedResource(TrackedResource):
     """Concrete tracked resource types can be created by aliasing this type using a specific property
-    type.
+     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
      /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
@@ -422,6 +439,7 @@ class ManagedIdentityTrackedResource(TrackedResource):
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The resource-specific properties for this resource."""
+
     identity: Optional["_models.ManagedServiceIdentity"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
@@ -478,15 +496,18 @@ class ManagedServiceIdentity(_Model):
 
     principal_id: Optional[str] = rest_field(name="principalId", visibility=["read"])
     """The service principal ID of the system assigned identity. This property will only be provided
-     for a system assigned identity."""
+      for a system assigned identity."""
+
     tenant_id: Optional[str] = rest_field(name="tenantId", visibility=["read"])
     """The tenant ID of the system assigned identity. This property will only be provided for a system
-     assigned identity."""
+      assigned identity."""
+
     type: Union[str, "_models.ManagedServiceIdentityType"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of managed identity assigned to this resource. Required. Known values are: \"None\",
-     \"SystemAssigned\", \"UserAssigned\", and \"SystemAssigned,UserAssigned\"."""
+      \"SystemAssigned\", \"UserAssigned\", and \"SystemAssigned,UserAssigned\"."""
+
     user_assigned_identities: Optional[dict[str, "_models.UserAssignedIdentity"]] = rest_field(
         name="userAssignedIdentities", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -533,24 +554,29 @@ class SystemData(_Model):
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """The identity that created the resource."""
+
     created_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="createdByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
-     \"ManagedIdentity\", and \"Key\"."""
+      \"ManagedIdentity\", and \"Key\"."""
+
     created_at: Optional[datetime.datetime] = rest_field(
         name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
     """The timestamp of resource creation (UTC)."""
+
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
     )
     """The identity that last modified the resource."""
+
     last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = rest_field(
         name="lastModifiedByType", visibility=["read", "create", "update", "delete", "query"]
     )
     """The type of identity that last modified the resource. Known values are: \"User\",
-     \"Application\", \"ManagedIdentity\", and \"Key\"."""
+      \"Application\", \"ManagedIdentity\", and \"Key\"."""
+
     last_modified_at: Optional[datetime.datetime] = rest_field(
         name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
@@ -590,5 +616,6 @@ class UserAssignedIdentity(_Model):
 
     principal_id: Optional[str] = rest_field(name="principalId", visibility=["read"])
     """The principal ID of the assigned identity."""
+
     client_id: Optional[str] = rest_field(name="clientId", visibility=["read"])
     """The client ID of the assigned identity."""

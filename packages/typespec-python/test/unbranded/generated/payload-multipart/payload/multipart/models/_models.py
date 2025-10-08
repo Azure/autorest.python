@@ -49,6 +49,7 @@ class BinaryArrayPartsRequest(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
@@ -90,16 +91,20 @@ class ComplexHttpPartsModelRequest(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     profile_image: FileType = rest_field(
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
+
     previous_addresses: list["_models.Address"] = rest_field(
         name="previousAddresses", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required."""
+
     pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
@@ -142,12 +147,15 @@ class ComplexPartsRequest(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     profile_image: FileType = rest_field(
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
+
     pictures: list[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
@@ -275,6 +283,7 @@ class JsonPartRequest(_Model):
 
     address: "_models.Address" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     profile_image: FileType = rest_field(
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
@@ -312,6 +321,7 @@ class MultiBinaryPartsRequest(_Model):
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
     """Required."""
+
     picture: Optional[FileType] = rest_field(
         visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )
@@ -346,6 +356,7 @@ class MultiPartRequest(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     profile_image: FileType = rest_field(
         name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
     )

@@ -194,7 +194,7 @@ class _RemovedClientOperationsMixin(
         self, body: _models.ModelV3, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.ModelV3:
         """This operation will pass different paths and different request bodies based on different
-        versions.
+         versions.
 
         :param body: Required.
         :type body: ~versioning.removed.models.ModelV3
@@ -209,7 +209,7 @@ class _RemovedClientOperationsMixin(
     @overload
     def model_v3(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV3:
         """This operation will pass different paths and different request bodies based on different
-        versions.
+         versions.
 
         :param body: Required.
         :type body: JSON
@@ -224,7 +224,7 @@ class _RemovedClientOperationsMixin(
     @overload
     def model_v3(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> _models.ModelV3:
         """This operation will pass different paths and different request bodies based on different
-        versions.
+         versions.
 
         :param body: Required.
         :type body: IO[bytes]
@@ -239,7 +239,7 @@ class _RemovedClientOperationsMixin(
     @distributed_trace
     def model_v3(self, body: Union[_models.ModelV3, JSON, IO[bytes]], **kwargs: Any) -> _models.ModelV3:
         """This operation will pass different paths and different request bodies based on different
-        versions.
+         versions.
 
         :param body: Is one of the following types: ModelV3, JSON, IO[bytes] Required.
         :type body: ~versioning.removed.models.ModelV3 or JSON or IO[bytes]

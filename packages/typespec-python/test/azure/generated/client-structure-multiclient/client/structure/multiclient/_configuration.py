@@ -21,11 +21,11 @@ class ClientAClientConfiguration:  # pylint: disable=too-many-instance-attribute
     attributes.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.multiclient.models.ClientType
     """
 
@@ -60,11 +60,11 @@ class ClientBClientConfiguration:  # pylint: disable=too-many-instance-attribute
     attributes.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.multiclient.models.ClientType
     """
 

@@ -714,18 +714,8 @@ class RelativeModelInOperationOperations:
 
     @distributed_trace
     def _operation(self, *, name: str, **kwargs: Any) -> _models._models.OuterModel:
-        """Expected query parameter: name="Madge"
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge",
-             "inner":
-             {
-               "name": "Madge"
-             }
-           }.
+        """Expected query parameter: name="Madge" Expected response body: .. code-block:: json { "name":
+         "Madge", "inner": { "name": "Madge" } }.
 
         :keyword name: Required.
         :paramtype name: str
@@ -784,15 +774,8 @@ class RelativeModelInOperationOperations:
 
     @distributed_trace
     def _discriminator(self, *, kind: str, **kwargs: Any) -> _models._models.AbstractModel:
-        """Expected query parameter: kind="real"
-        Expected response body:
-
-        .. code-block:: json
-
-           {
-             "name": "Madge",
-             "kind": "real"
-           }.
+        """Expected query parameter: kind="real" Expected response body: .. code-block:: json { "name":
+         "Madge", "kind": "real" }.
 
         :keyword kind: Required.
         :paramtype kind: str

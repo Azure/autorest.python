@@ -20,7 +20,7 @@ class HeaderParamClientConfiguration:  # pylint: disable=too-many-instance-attri
     attributes.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
@@ -55,10 +55,10 @@ class MultipleParamsClientConfiguration:  # pylint: disable=too-many-instance-at
     attributes.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :param region: The region to use for all operations. This parameter is used as a query
-     parameter. Required.
+      parameter. Required.
     :type region: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
@@ -96,7 +96,7 @@ class MixedParamsClientConfiguration:  # pylint: disable=too-many-instance-attri
     attributes.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
@@ -131,7 +131,7 @@ class PathParamClientConfiguration:  # pylint: disable=too-many-instance-attribu
     attributes.
 
     :param blob_name: The name of the blob. This parameter is used as a path parameter in all
-     operations. Required.
+      operations. Required.
     :type blob_name: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
@@ -200,7 +200,7 @@ class ParentClientConfiguration:  # pylint: disable=too-many-instance-attributes
     attributes.
 
     :param blob_name: The name of the blob. This parameter is used as a path parameter in all
-     operations. Required.
+      operations. Required.
     :type blob_name: str
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str

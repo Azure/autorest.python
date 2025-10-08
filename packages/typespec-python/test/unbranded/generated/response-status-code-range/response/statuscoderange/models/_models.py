@@ -45,6 +45,7 @@ class ErrorInRange(_Model):
 
     code: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     message: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -78,6 +79,7 @@ class NotFoundError(_Model):
 
     code: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     resource_id: str = rest_field(name="resourceId", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

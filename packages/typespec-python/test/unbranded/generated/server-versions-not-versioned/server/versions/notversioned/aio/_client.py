@@ -16,7 +16,7 @@ class NotVersionedClient(_NotVersionedClientOperationsMixin):  # pylint: disable
     """Illustrates not-versioned server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     """
 

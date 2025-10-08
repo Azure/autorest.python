@@ -30,6 +30,7 @@ class ActionRequest(_Model):
 
     string_property: str = rest_field(name="stringProperty", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -76,6 +77,7 @@ class ActionResponse(_Model):
 
     string_property: str = rest_field(name="stringProperty", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     model_property: Optional["_models.Model"] = rest_field(
         name="modelProperty", visibility=["read", "create", "update", "delete", "query"]
     )

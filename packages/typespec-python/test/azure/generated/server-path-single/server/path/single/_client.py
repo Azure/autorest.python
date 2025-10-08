@@ -23,7 +23,7 @@ class SingleClient(_SingleClientOperationsMixin):  # pylint: disable=client-acce
     """Illustrates server with a single path parameter @server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     """
 

@@ -16,10 +16,10 @@ class VersionedClient(_VersionedClientOperationsMixin):
     """Illustrates versioned server.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :keyword api_version: Default value is "2022-12-01-preview". Note that overriding this default
-     value may result in unsupported behavior.
+      value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

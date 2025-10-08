@@ -18,7 +18,7 @@ class PageableClient(_PageableClientOperationsMixin):  # pylint: disable=client-
 
     :ivar server_driven_pagination: ServerDrivenPaginationOperations operations
     :vartype server_driven_pagination:
-     payload.pageable.aio.operations.ServerDrivenPaginationOperations
+      payload.pageable.aio.operations.ServerDrivenPaginationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

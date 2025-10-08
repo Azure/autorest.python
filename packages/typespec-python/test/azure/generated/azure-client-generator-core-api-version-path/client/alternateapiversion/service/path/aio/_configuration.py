@@ -22,7 +22,7 @@ class PathClientConfiguration:  # pylint: disable=too-many-instance-attributes
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
     :keyword version: Default value is "2025-01-01". Note that overriding this default value may
-     result in unsupported behavior.
+      result in unsupported behavior.
     :paramtype version: str
     """
 

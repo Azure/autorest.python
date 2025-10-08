@@ -23,6 +23,7 @@ class ExportedUser(_Model):
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The name of user. Required."""
+
     resource_uri: str = rest_field(name="resourceUri", visibility=["read", "create", "update", "delete", "query"])
     """The exported URI. Required."""
 
@@ -56,6 +57,7 @@ class User(_Model):
 
     name: str = rest_field(visibility=["read"])
     """The name of user. Required."""
+
     role: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The role of user. Required."""
 

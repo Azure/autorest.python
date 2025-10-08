@@ -16,11 +16,11 @@ class MadeOptionalClient(_MadeOptionalClientOperationsMixin):  # pylint: disable
     """Test for the ``@madeOptional`` decorator.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
-     Default value is "v2". Note that overriding this default value may result in unsupported
-     behavior.
+      Default value is "v2". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype version: str or ~versioning.madeoptional.models.Versions
     """
 

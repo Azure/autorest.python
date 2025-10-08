@@ -22,10 +22,12 @@ class NewModel(_Model):
 
     new_prop: str = rest_field(name="newProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     enum_prop: Union[str, "_models.NewEnum"] = rest_field(
         name="enumProp", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required. \"newEnumMember\""""
+
     union_prop: "_types.NewUnion" = rest_field(
         name="unionProp", visibility=["read", "create", "update", "delete", "query"]
     )

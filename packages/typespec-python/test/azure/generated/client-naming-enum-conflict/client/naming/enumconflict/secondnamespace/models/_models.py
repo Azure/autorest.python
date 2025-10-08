@@ -27,6 +27,7 @@ class SecondModel(_Model):
 
     status: Union[str, "_models.SecondStatus"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Status from second namespace. Required. Known values are: \"running\" and \"stopped\"."""
+
     description: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Description of the item. Required."""
 

@@ -21,18 +21,18 @@ from ._operations import _ResiliencyServiceDrivenClientOperationsMixin
 
 class ResiliencyServiceDrivenClient(_ResiliencyServiceDrivenClientOperationsMixin):
     """Test that we can grow up a service spec and service deployment into a multi-versioned service
-    with full client support.
+     with full client support.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param service_deployment_version: Pass in either 'v1' or 'v2'. This represents a version of
-     the service deployment in history. 'v1' is for the deployment when the service had only one api
-     version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
+      the service deployment in history. 'v1' is for the deployment when the service had only one api
+      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in 'v1'. This represents the API version of the service. Will grow
-     up in the next deployment to be both 'v1' and 'v2'. Known values are "v1" and None. Default
-     value is "v1". Note that overriding this default value may result in unsupported behavior.
+      up in the next deployment to be both 'v1' and 'v2'. Known values are "v1" and None. Default
+      value is "v1". Note that overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

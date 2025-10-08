@@ -32,34 +32,34 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
     :vartype simple_model_value: payload.xml.operations.SimpleModelValueOperations
     :ivar model_with_simple_arrays_value: ModelWithSimpleArraysValueOperations operations
     :vartype model_with_simple_arrays_value:
-     payload.xml.operations.ModelWithSimpleArraysValueOperations
+      payload.xml.operations.ModelWithSimpleArraysValueOperations
     :ivar model_with_array_of_model_value: ModelWithArrayOfModelValueOperations operations
     :vartype model_with_array_of_model_value:
-     payload.xml.operations.ModelWithArrayOfModelValueOperations
+      payload.xml.operations.ModelWithArrayOfModelValueOperations
     :ivar model_with_optional_field_value: ModelWithOptionalFieldValueOperations operations
     :vartype model_with_optional_field_value:
-     payload.xml.operations.ModelWithOptionalFieldValueOperations
+      payload.xml.operations.ModelWithOptionalFieldValueOperations
     :ivar model_with_attributes_value: ModelWithAttributesValueOperations operations
     :vartype model_with_attributes_value: payload.xml.operations.ModelWithAttributesValueOperations
     :ivar model_with_unwrapped_array_value: ModelWithUnwrappedArrayValueOperations operations
     :vartype model_with_unwrapped_array_value:
-     payload.xml.operations.ModelWithUnwrappedArrayValueOperations
+      payload.xml.operations.ModelWithUnwrappedArrayValueOperations
     :ivar model_with_renamed_arrays_value: ModelWithRenamedArraysValueOperations operations
     :vartype model_with_renamed_arrays_value:
-     payload.xml.operations.ModelWithRenamedArraysValueOperations
+      payload.xml.operations.ModelWithRenamedArraysValueOperations
     :ivar model_with_renamed_fields_value: ModelWithRenamedFieldsValueOperations operations
     :vartype model_with_renamed_fields_value:
-     payload.xml.operations.ModelWithRenamedFieldsValueOperations
+      payload.xml.operations.ModelWithRenamedFieldsValueOperations
     :ivar model_with_empty_array_value: ModelWithEmptyArrayValueOperations operations
     :vartype model_with_empty_array_value:
-     payload.xml.operations.ModelWithEmptyArrayValueOperations
+      payload.xml.operations.ModelWithEmptyArrayValueOperations
     :ivar model_with_text_value: ModelWithTextValueOperations operations
     :vartype model_with_text_value: payload.xml.operations.ModelWithTextValueOperations
     :ivar model_with_dictionary_value: ModelWithDictionaryValueOperations operations
     :vartype model_with_dictionary_value: payload.xml.operations.ModelWithDictionaryValueOperations
     :ivar model_with_encoded_names_value: ModelWithEncodedNamesValueOperations operations
     :vartype model_with_encoded_names_value:
-     payload.xml.operations.ModelWithEncodedNamesValueOperations
+      payload.xml.operations.ModelWithEncodedNamesValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

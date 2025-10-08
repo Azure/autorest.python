@@ -31,19 +31,19 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
 
     :ivar move_to_existing_sub_client: MoveToExistingSubClientOperations operations
     :vartype move_to_existing_sub_client:
-     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToExistingSubClientOperations
+      specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToExistingSubClientOperations
     :ivar move_to_new_sub_client: MoveToNewSubClientOperations operations
     :vartype move_to_new_sub_client:
-     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToNewSubClientOperations
+      specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToNewSubClientOperations
     :ivar move_to_root_client: MoveToRootClientOperations operations
     :vartype move_to_root_client:
-     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToRootClientOperations
+      specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveToRootClientOperations
     :ivar move_method_parameter_to_client: MoveMethodParameterToClientOperations operations
     :vartype move_method_parameter_to_client:
-     specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveMethodParameterToClientOperations
+      specs.azure.clientgenerator.core.clientlocation.aio.operations.MoveMethodParameterToClientOperations
     :ivar archive_operations: ArchiveOperationsOperations operations
     :vartype archive_operations:
-     specs.azure.clientgenerator.core.clientlocation.aio.operations.ArchiveOperationsOperations
+      specs.azure.clientgenerator.core.clientlocation.aio.operations.ArchiveOperationsOperations
     :param storage_account: Required.
     :type storage_account: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

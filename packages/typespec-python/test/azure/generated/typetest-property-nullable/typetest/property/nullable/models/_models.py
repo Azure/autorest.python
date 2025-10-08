@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 
 class BytesProperty(_Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
-    are looking for.
+     are looking for.
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str
@@ -30,6 +30,7 @@ class BytesProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: bytes = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
     )
@@ -67,6 +68,7 @@ class CollectionsByteProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: list[bytes] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="base64"
     )
@@ -104,6 +106,7 @@ class CollectionsModelProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: list["_models.InnerModel"] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -141,6 +144,7 @@ class CollectionsStringProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: list[str] = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -178,6 +182,7 @@ class DatetimeProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: datetime.datetime = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
@@ -215,6 +220,7 @@ class DurationProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: datetime.timedelta = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -269,7 +275,7 @@ class InnerModel(_Model):
 
 class StringProperty(_Model):
     """Template type for testing models with nullable property. Pass in the type of the property you
-    are looking for.
+     are looking for.
 
     :ivar required_property: Required property. Required.
     :vartype required_property: str
@@ -281,6 +287,7 @@ class StringProperty(_Model):
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
+
     nullable_property: str = rest_field(
         name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
     )

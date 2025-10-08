@@ -78,15 +78,15 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype model: typetest.property.valuetypes.aio.operations.ModelOperations
     :ivar collections_string: CollectionsStringOperations operations
     :vartype collections_string:
-     typetest.property.valuetypes.aio.operations.CollectionsStringOperations
+      typetest.property.valuetypes.aio.operations.CollectionsStringOperations
     :ivar collections_int: CollectionsIntOperations operations
     :vartype collections_int: typetest.property.valuetypes.aio.operations.CollectionsIntOperations
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model:
-     typetest.property.valuetypes.aio.operations.CollectionsModelOperations
+      typetest.property.valuetypes.aio.operations.CollectionsModelOperations
     :ivar dictionary_string: DictionaryStringOperations operations
     :vartype dictionary_string:
-     typetest.property.valuetypes.aio.operations.DictionaryStringOperations
+      typetest.property.valuetypes.aio.operations.DictionaryStringOperations
     :ivar never: NeverOperations operations
     :vartype never: typetest.property.valuetypes.aio.operations.NeverOperations
     :ivar unknown_string: UnknownStringOperations operations
@@ -107,13 +107,13 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype boolean_literal: typetest.property.valuetypes.aio.operations.BooleanLiteralOperations
     :ivar union_string_literal: UnionStringLiteralOperations operations
     :vartype union_string_literal:
-     typetest.property.valuetypes.aio.operations.UnionStringLiteralOperations
+      typetest.property.valuetypes.aio.operations.UnionStringLiteralOperations
     :ivar union_int_literal: UnionIntLiteralOperations operations
     :vartype union_int_literal:
-     typetest.property.valuetypes.aio.operations.UnionIntLiteralOperations
+      typetest.property.valuetypes.aio.operations.UnionIntLiteralOperations
     :ivar union_float_literal: UnionFloatLiteralOperations operations
     :vartype union_float_literal:
-     typetest.property.valuetypes.aio.operations.UnionFloatLiteralOperations
+      typetest.property.valuetypes.aio.operations.UnionFloatLiteralOperations
     :ivar union_enum_value: UnionEnumValueOperations operations
     :vartype union_enum_value: typetest.property.valuetypes.aio.operations.UnionEnumValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

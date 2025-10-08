@@ -22,14 +22,10 @@ from .operations import BarOperations, BazOperations, FooOperations, QuxOperatio
 
 class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can use @client and @operationGroup decorators to customize client side code
-    structure, such as:
-
-    1. have everything as default.
-    2. to rename client or operation group
-    3. one client can have more than one operations groups
-    4. split one interface into two clients
-    5. have two clients with operations come from different interfaces
-    6. have two clients with a hierarchy relation.
+     structure, such as: 1. have everything as default. 2. to rename client or operation group 3.
+     one client can have more than one operations groups 4. split one interface into two clients 5.
+     have two clients with operations come from different interfaces 6. have two clients with a
+     hierarchy relation.
 
     :ivar baz: BazOperations operations
     :vartype baz: client.structure.service.aio.operations.BazOperations
@@ -40,11 +36,11 @@ class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-ac
     :ivar bar: BarOperations operations
     :vartype bar: client.structure.service.aio.operations.BarOperations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.service.models.ClientType
     """
 

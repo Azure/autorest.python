@@ -24,7 +24,7 @@ class UsageClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar model_in_operation: ModelInOperationOperations operations
     :vartype model_in_operation:
-     specs.azure.clientgenerator.core.usage.operations.ModelInOperationOperations
+      specs.azure.clientgenerator.core.usage.operations.ModelInOperationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

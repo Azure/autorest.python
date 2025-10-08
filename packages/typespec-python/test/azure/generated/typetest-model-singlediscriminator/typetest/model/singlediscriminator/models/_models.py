@@ -20,7 +20,7 @@ class Bird(_Model):
     """This is base model for polymorphic single level inheritance with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Eagle, Goose, SeaGull, Sparrow
+     Eagle, Goose, SeaGull, Sparrow
 
     :ivar kind: Required. Default value is None.
     :vartype kind: str
@@ -31,6 +31,7 @@ class Bird(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
+
     wingspan: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -55,10 +56,10 @@ class Bird(_Model):
 
 class Dinosaur(_Model):
     """Define a base class in the legacy way. Discriminator property is not explicitly defined in the
-    model.
+     model.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    TRex
+     TRex
 
     :ivar kind: Discriminator property for Dinosaur. Required. Default value is None.
     :vartype kind: str
@@ -69,6 +70,7 @@ class Dinosaur(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Dinosaur. Required. Default value is None."""
+
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -93,7 +95,7 @@ class Dinosaur(_Model):
 
 class Eagle(Bird, discriminator="eagle"):
     """The second level model in polymorphic single levels inheritance which contains references to
-    other polymorphic instances.
+     other polymorphic instances.
 
     :ivar wingspan: Required.
     :vartype wingspan: int
@@ -109,6 +111,7 @@ class Eagle(Bird, discriminator="eagle"):
 
     kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"eagle\"."""
+
     friends: Optional[list["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     partner: Optional["_models.Bird"] = rest_field(visibility=["read", "create", "update", "delete", "query"])

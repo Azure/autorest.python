@@ -28,11 +28,11 @@ class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-key
     :ivar group2: Group2Operations operations
     :vartype group2: client.structure.twooperationgroup.operations.Group2Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.twooperationgroup.models.ClientType
     """
 

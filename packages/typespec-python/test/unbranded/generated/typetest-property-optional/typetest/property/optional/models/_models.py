@@ -40,7 +40,7 @@ class BooleanLiteralProperty(_Model):
 
 class BytesProperty(_Model):
     """Template type for testing models with optional property. Pass in the type of the property you
-    are looking for.
+     are looking for.
 
     :ivar property: Property.
     :vartype property: bytes
@@ -310,6 +310,7 @@ class RequiredAndOptionalProperty(_Model):
         name="optionalProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """optional string property."""
+
     required_property: int = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
@@ -364,7 +365,7 @@ class StringLiteralProperty(_Model):
 
 class StringProperty(_Model):
     """Template type for testing models with optional property. Pass in the type of the property you
-    are looking for.
+     are looking for.
 
     :ivar property: Property.
     :vartype property: str

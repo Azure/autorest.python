@@ -18,11 +18,11 @@ class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accept
     :ivar interface_v2: InterfaceV2Operations operations
     :vartype interface_v2: versioning.added.aio.operations.InterfaceV2Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
-     Default value is "v2". Note that overriding this default value may result in unsupported
-     behavior.
+      Default value is "v2". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype version: str or ~versioning.added.models.Versions
     """
 

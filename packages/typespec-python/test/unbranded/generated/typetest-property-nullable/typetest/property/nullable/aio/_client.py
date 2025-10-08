@@ -35,10 +35,10 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     :vartype collections_byte: typetest.property.nullable.aio.operations.CollectionsByteOperations
     :ivar collections_model: CollectionsModelOperations operations
     :vartype collections_model:
-     typetest.property.nullable.aio.operations.CollectionsModelOperations
+      typetest.property.nullable.aio.operations.CollectionsModelOperations
     :ivar collections_string: CollectionsStringOperations operations
     :vartype collections_string:
-     typetest.property.nullable.aio.operations.CollectionsStringOperations
+      typetest.property.nullable.aio.operations.CollectionsStringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

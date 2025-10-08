@@ -23,6 +23,7 @@ class User(_Model):
 
     id: int = rest_field(visibility=["read"])
     """The user's id. Required."""
+
     name: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The user's name."""
 

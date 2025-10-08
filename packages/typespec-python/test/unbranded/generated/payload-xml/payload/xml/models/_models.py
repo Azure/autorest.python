@@ -59,11 +59,13 @@ class ModelWithAttributes(_Model):
         xml={"attribute": True, "name": "id1", "text": False, "unwrapped": False},
     )
     """Required."""
+
     id2: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": True, "name": "id2", "text": False, "unwrapped": False},
     )
     """Required."""
+
     enabled: bool = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "enabled", "text": False, "unwrapped": False},
@@ -174,6 +176,7 @@ class ModelWithEncodedNames(_Model):
         xml={"attribute": False, "name": "SimpleModelData", "text": False, "unwrapped": False},
     )
     """Required."""
+
     colors: list[str] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "string", "name": "PossibleColors", "text": False, "unwrapped": False},
@@ -215,6 +218,7 @@ class ModelWithOptionalField(_Model):
         xml={"attribute": False, "name": "item", "text": False, "unwrapped": False},
     )
     """Required."""
+
     value: Optional[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "value", "text": False, "unwrapped": False},
@@ -243,7 +247,7 @@ class ModelWithOptionalField(_Model):
 
 class ModelWithRenamedArrays(_Model):
     """Contains fields of wrapped and unwrapped arrays of primitive types that have different XML
-    representations.
+     representations.
 
     :ivar colors: Required.
     :vartype colors: list[str]
@@ -256,6 +260,7 @@ class ModelWithRenamedArrays(_Model):
         xml={"attribute": False, "itemsName": "Colors", "name": "Colors", "text": False, "unwrapped": True},
     )
     """Required."""
+
     counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "Counts", "text": False, "unwrapped": False},
@@ -298,6 +303,7 @@ class ModelWithRenamedFields(_Model):
         xml={"attribute": False, "name": "InputData", "text": False, "unwrapped": False},
     )
     """Required."""
+
     output_data: "_models.SimpleModel" = rest_field(
         name="outputData",
         visibility=["read", "create", "update", "delete", "query"],
@@ -340,6 +346,7 @@ class ModelWithSimpleArrays(_Model):
         xml={"attribute": False, "itemsName": "string", "name": "colors", "text": False, "unwrapped": False},
     )
     """Required."""
+
     counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False},
@@ -381,6 +388,7 @@ class ModelWithText(_Model):
         xml={"attribute": True, "name": "language", "text": False, "unwrapped": False},
     )
     """Required."""
+
     content: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "content", "text": True, "unwrapped": False},
@@ -422,6 +430,7 @@ class ModelWithUnwrappedArray(_Model):
         xml={"attribute": False, "itemsName": "colors", "name": "colors", "text": False, "unwrapped": True},
     )
     """Required."""
+
     counts: list[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "int32", "name": "counts", "text": False, "unwrapped": False},
@@ -463,6 +472,7 @@ class SimpleModel(_Model):
         xml={"attribute": False, "name": "name", "text": False, "unwrapped": False},
     )
     """Required."""
+
     age: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "age", "text": False, "unwrapped": False},

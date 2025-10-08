@@ -26,6 +26,7 @@ class FirstModel(_Model):
 
     status: Union[str, "_models.Status"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Status from first namespace. Required. Known values are: \"active\" and \"inactive\"."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Name of the item. Required."""
 

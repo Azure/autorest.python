@@ -20,7 +20,7 @@ class Fish(_Model):
     """This is base model for polymorphic multiple levels inheritance with a discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Salmon, Shark
+     Salmon, Shark
 
     :ivar kind: Discriminator property for Fish. Required. Default value is None.
     :vartype kind: str
@@ -31,6 +31,7 @@ class Fish(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind")
     """Discriminator property for Fish. Required. Default value is None."""
+
     age: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -55,10 +56,10 @@ class Fish(_Model):
 
 class Shark(Fish, discriminator="shark"):
     """The second level model in polymorphic multiple levels inheritance and it defines a new
-    discriminator.
+     discriminator.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    GoblinShark, SawShark
+     GoblinShark, SawShark
 
     :ivar age: Required.
     :vartype age: int
@@ -71,6 +72,7 @@ class Shark(Fish, discriminator="shark"):
     __mapping__: dict[str, _Model] = {}
     kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"shark\"."""
+
     sharktype: str = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
 
@@ -130,7 +132,7 @@ class GoblinShark(Shark, discriminator="goblin"):
 
 class Salmon(Fish, discriminator="salmon"):
     """The second level model in polymorphic multiple levels inheritance which contains references to
-    other polymorphic instances.
+     other polymorphic instances.
 
     :ivar age: Required.
     :vartype age: int
@@ -146,6 +148,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     kind: Literal["salmon"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"salmon\"."""
+
     friends: Optional[list["_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[dict[str, "_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     partner: Optional["_models.Fish"] = rest_field(visibility=["read", "create", "update", "delete", "query"])

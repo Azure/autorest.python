@@ -78,7 +78,7 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype model: typetest.property.valuetypes.operations.ModelOperations
     :ivar collections_string: CollectionsStringOperations operations
     :vartype collections_string:
-     typetest.property.valuetypes.operations.CollectionsStringOperations
+      typetest.property.valuetypes.operations.CollectionsStringOperations
     :ivar collections_int: CollectionsIntOperations operations
     :vartype collections_int: typetest.property.valuetypes.operations.CollectionsIntOperations
     :ivar collections_model: CollectionsModelOperations operations
@@ -105,12 +105,12 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype boolean_literal: typetest.property.valuetypes.operations.BooleanLiteralOperations
     :ivar union_string_literal: UnionStringLiteralOperations operations
     :vartype union_string_literal:
-     typetest.property.valuetypes.operations.UnionStringLiteralOperations
+      typetest.property.valuetypes.operations.UnionStringLiteralOperations
     :ivar union_int_literal: UnionIntLiteralOperations operations
     :vartype union_int_literal: typetest.property.valuetypes.operations.UnionIntLiteralOperations
     :ivar union_float_literal: UnionFloatLiteralOperations operations
     :vartype union_float_literal:
-     typetest.property.valuetypes.operations.UnionFloatLiteralOperations
+      typetest.property.valuetypes.operations.UnionFloatLiteralOperations
     :ivar union_enum_value: UnionEnumValueOperations operations
     :vartype union_enum_value: typetest.property.valuetypes.operations.UnionEnumValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

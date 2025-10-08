@@ -24,13 +24,13 @@ class HierarchyBuildingClient:  # pylint: disable=client-accepts-api-version-key
 
     :ivar animal_operations: AnimalOperationsOperations operations
     :vartype animal_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.AnimalOperationsOperations
+      specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.AnimalOperationsOperations
     :ivar pet_operations: PetOperationsOperations operations
     :vartype pet_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.PetOperationsOperations
+      specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.PetOperationsOperations
     :ivar dog_operations: DogOperationsOperations operations
     :vartype dog_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.DogOperationsOperations
+      specs.azure.clientgenerator.core.hierarchybuilding.aio.operations.DogOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

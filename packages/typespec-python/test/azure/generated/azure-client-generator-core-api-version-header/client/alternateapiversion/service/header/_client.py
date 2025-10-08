@@ -25,7 +25,7 @@ class HeaderClient(_HeaderClientOperationsMixin):  # pylint: disable=client-acce
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword version: Default value is "2025-01-01". Note that overriding this default value may
-     result in unsupported behavior.
+      result in unsupported behavior.
     :paramtype version: str
     """
 

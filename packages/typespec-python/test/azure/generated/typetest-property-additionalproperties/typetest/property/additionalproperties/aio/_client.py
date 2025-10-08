@@ -56,97 +56,97 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
 
     :ivar extends_unknown: ExtendsUnknownOperations operations
     :vartype extends_unknown:
-     typetest.property.additionalproperties.aio.operations.ExtendsUnknownOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsUnknownOperations
     :ivar extends_unknown_derived: ExtendsUnknownDerivedOperations operations
     :vartype extends_unknown_derived:
-     typetest.property.additionalproperties.aio.operations.ExtendsUnknownDerivedOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsUnknownDerivedOperations
     :ivar extends_unknown_discriminated: ExtendsUnknownDiscriminatedOperations operations
     :vartype extends_unknown_discriminated:
-     typetest.property.additionalproperties.aio.operations.ExtendsUnknownDiscriminatedOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsUnknownDiscriminatedOperations
     :ivar is_unknown: IsUnknownOperations operations
     :vartype is_unknown: typetest.property.additionalproperties.aio.operations.IsUnknownOperations
     :ivar is_unknown_derived: IsUnknownDerivedOperations operations
     :vartype is_unknown_derived:
-     typetest.property.additionalproperties.aio.operations.IsUnknownDerivedOperations
+      typetest.property.additionalproperties.aio.operations.IsUnknownDerivedOperations
     :ivar is_unknown_discriminated: IsUnknownDiscriminatedOperations operations
     :vartype is_unknown_discriminated:
-     typetest.property.additionalproperties.aio.operations.IsUnknownDiscriminatedOperations
+      typetest.property.additionalproperties.aio.operations.IsUnknownDiscriminatedOperations
     :ivar extends_string: ExtendsStringOperations operations
     :vartype extends_string:
-     typetest.property.additionalproperties.aio.operations.ExtendsStringOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsStringOperations
     :ivar is_string: IsStringOperations operations
     :vartype is_string: typetest.property.additionalproperties.aio.operations.IsStringOperations
     :ivar spread_string: SpreadStringOperations operations
     :vartype spread_string:
-     typetest.property.additionalproperties.aio.operations.SpreadStringOperations
+      typetest.property.additionalproperties.aio.operations.SpreadStringOperations
     :ivar extends_float: ExtendsFloatOperations operations
     :vartype extends_float:
-     typetest.property.additionalproperties.aio.operations.ExtendsFloatOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsFloatOperations
     :ivar is_float: IsFloatOperations operations
     :vartype is_float: typetest.property.additionalproperties.aio.operations.IsFloatOperations
     :ivar spread_float: SpreadFloatOperations operations
     :vartype spread_float:
-     typetest.property.additionalproperties.aio.operations.SpreadFloatOperations
+      typetest.property.additionalproperties.aio.operations.SpreadFloatOperations
     :ivar extends_model: ExtendsModelOperations operations
     :vartype extends_model:
-     typetest.property.additionalproperties.aio.operations.ExtendsModelOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsModelOperations
     :ivar is_model: IsModelOperations operations
     :vartype is_model: typetest.property.additionalproperties.aio.operations.IsModelOperations
     :ivar spread_model: SpreadModelOperations operations
     :vartype spread_model:
-     typetest.property.additionalproperties.aio.operations.SpreadModelOperations
+      typetest.property.additionalproperties.aio.operations.SpreadModelOperations
     :ivar extends_model_array: ExtendsModelArrayOperations operations
     :vartype extends_model_array:
-     typetest.property.additionalproperties.aio.operations.ExtendsModelArrayOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsModelArrayOperations
     :ivar is_model_array: IsModelArrayOperations operations
     :vartype is_model_array:
-     typetest.property.additionalproperties.aio.operations.IsModelArrayOperations
+      typetest.property.additionalproperties.aio.operations.IsModelArrayOperations
     :ivar spread_model_array: SpreadModelArrayOperations operations
     :vartype spread_model_array:
-     typetest.property.additionalproperties.aio.operations.SpreadModelArrayOperations
+      typetest.property.additionalproperties.aio.operations.SpreadModelArrayOperations
     :ivar spread_different_string: SpreadDifferentStringOperations operations
     :vartype spread_different_string:
-     typetest.property.additionalproperties.aio.operations.SpreadDifferentStringOperations
+      typetest.property.additionalproperties.aio.operations.SpreadDifferentStringOperations
     :ivar spread_different_float: SpreadDifferentFloatOperations operations
     :vartype spread_different_float:
-     typetest.property.additionalproperties.aio.operations.SpreadDifferentFloatOperations
+      typetest.property.additionalproperties.aio.operations.SpreadDifferentFloatOperations
     :ivar spread_different_model: SpreadDifferentModelOperations operations
     :vartype spread_different_model:
-     typetest.property.additionalproperties.aio.operations.SpreadDifferentModelOperations
+      typetest.property.additionalproperties.aio.operations.SpreadDifferentModelOperations
     :ivar spread_different_model_array: SpreadDifferentModelArrayOperations operations
     :vartype spread_different_model_array:
-     typetest.property.additionalproperties.aio.operations.SpreadDifferentModelArrayOperations
+      typetest.property.additionalproperties.aio.operations.SpreadDifferentModelArrayOperations
     :ivar extends_different_spread_string: ExtendsDifferentSpreadStringOperations operations
     :vartype extends_different_spread_string:
-     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadStringOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadStringOperations
     :ivar extends_different_spread_float: ExtendsDifferentSpreadFloatOperations operations
     :vartype extends_different_spread_float:
-     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadFloatOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadFloatOperations
     :ivar extends_different_spread_model: ExtendsDifferentSpreadModelOperations operations
     :vartype extends_different_spread_model:
-     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelOperations
     :ivar extends_different_spread_model_array: ExtendsDifferentSpreadModelArrayOperations
-     operations
+      operations
     :vartype extends_different_spread_model_array:
-     typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelArrayOperations
+      typetest.property.additionalproperties.aio.operations.ExtendsDifferentSpreadModelArrayOperations
     :ivar multiple_spread: MultipleSpreadOperations operations
     :vartype multiple_spread:
-     typetest.property.additionalproperties.aio.operations.MultipleSpreadOperations
+      typetest.property.additionalproperties.aio.operations.MultipleSpreadOperations
     :ivar spread_record_union: SpreadRecordUnionOperations operations
     :vartype spread_record_union:
-     typetest.property.additionalproperties.aio.operations.SpreadRecordUnionOperations
+      typetest.property.additionalproperties.aio.operations.SpreadRecordUnionOperations
     :ivar spread_record_non_discriminated_union: SpreadRecordNonDiscriminatedUnionOperations
-     operations
+      operations
     :vartype spread_record_non_discriminated_union:
-     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnionOperations
+      typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnionOperations
     :ivar spread_record_non_discriminated_union2: SpreadRecordNonDiscriminatedUnion2Operations
-     operations
+      operations
     :vartype spread_record_non_discriminated_union2:
-     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion2Operations
+      typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion2Operations
     :ivar spread_record_non_discriminated_union3: SpreadRecordNonDiscriminatedUnion3Operations
-     operations
+      operations
     :vartype spread_record_non_discriminated_union3:
-     typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion3Operations
+      typetest.property.additionalproperties.aio.operations.SpreadRecordNonDiscriminatedUnion3Operations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

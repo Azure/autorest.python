@@ -54,7 +54,7 @@ class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,to
     :vartype model_value: typetest.dictionary.aio.operations.ModelValueOperations
     :ivar recursive_model_value: RecursiveModelValueOperations operations
     :vartype recursive_model_value:
-     typetest.dictionary.aio.operations.RecursiveModelValueOperations
+      typetest.dictionary.aio.operations.RecursiveModelValueOperations
     :ivar nullable_float_value: NullableFloatValueOperations operations
     :vartype nullable_float_value: typetest.dictionary.aio.operations.NullableFloatValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".

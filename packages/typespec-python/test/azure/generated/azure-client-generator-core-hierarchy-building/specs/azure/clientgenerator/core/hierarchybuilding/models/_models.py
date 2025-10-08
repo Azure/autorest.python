@@ -17,7 +17,7 @@ class Animal(_Model):
     """Animal.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Dog, Pet
+     Dog, Pet
 
     :ivar kind: The kind of animal. Required. Default value is None.
     :vartype kind: str
@@ -28,6 +28,7 @@ class Animal(_Model):
     __mapping__: dict[str, _Model] = {}
     kind: str = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])
     """The kind of animal. Required. Default value is None."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Name of the animal. Required."""
 
@@ -54,7 +55,7 @@ class Pet(Animal, discriminator="pet"):
     """Pet.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Dog
+     Dog
 
     :ivar name: Name of the animal. Required.
     :vartype name: str
@@ -67,6 +68,7 @@ class Pet(Animal, discriminator="pet"):
     __mapping__: dict[str, _Model] = {}
     kind: Literal["pet"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"pet\"."""
+
     trained: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Whether the pet is trained. Required."""
 
@@ -105,6 +107,7 @@ class Dog(Pet, discriminator="dog"):
 
     kind: Literal["dog"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
     """Required. Default value is \"dog\"."""
+
     breed: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The breed of the dog. Required."""
 

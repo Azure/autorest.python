@@ -41,7 +41,7 @@ class _ResiliencyServiceDrivenClientOperationsMixin(
     @distributed_trace_async
     async def from_none(self, **kwargs: Any) -> bool:
         """Test that currently accepts no parameters, will be updated in next spec to accept a new
-        optional parameter as well.
+         optional parameter as well.
 
         :return: bool
         :rtype: bool
@@ -91,7 +91,7 @@ class _ResiliencyServiceDrivenClientOperationsMixin(
     @distributed_trace_async
     async def from_one_required(self, *, parameter: str, **kwargs: Any) -> None:
         """Test that currently accepts one required parameter, will be updated in next spec to accept a
-        new optional parameter as well.
+         new optional parameter as well.
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
@@ -143,7 +143,7 @@ class _ResiliencyServiceDrivenClientOperationsMixin(
     @distributed_trace_async
     async def from_one_optional(self, *, parameter: Optional[str] = None, **kwargs: Any) -> None:
         """Test that currently accepts one optional parameter, will be updated in next spec to accept a
-        new optional parameter as well.
+         new optional parameter as well.
 
         :keyword parameter: I am an optional parameter. Default value is None.
         :paramtype parameter: str

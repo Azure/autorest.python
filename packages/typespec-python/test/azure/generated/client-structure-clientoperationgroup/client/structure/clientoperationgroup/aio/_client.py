@@ -34,11 +34,11 @@ class FirstClient(_FirstClientOperationsMixin):  # pylint: disable=client-accept
     :ivar group4: Group4Operations operations
     :vartype group4: client.structure.clientoperationgroup.aio.operations.Group4Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.clientoperationgroup.models.ClientType
     """
 
@@ -119,11 +119,11 @@ class SecondClient(_SecondClientOperationsMixin):  # pylint: disable=client-acce
     :ivar group5: Group5Operations operations
     :vartype group5: client.structure.clientoperationgroup.aio.operations.Group5Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
-     client. Required.
+      client. Required.
     :type endpoint: str
     :param client: Need to be set as 'default', 'multi-client', 'renamed-operation',
-     'two-operation-group' in client. Known values are: "default", "multi-client",
-     "renamed-operation", "two-operation-group", and "client-operation-group". Required.
+      'two-operation-group' in client. Known values are: "default", "multi-client",
+      "renamed-operation", "two-operation-group", and "client-operation-group". Required.
     :type client: str or ~client.structure.clientoperationgroup.models.ClientType
     """
 

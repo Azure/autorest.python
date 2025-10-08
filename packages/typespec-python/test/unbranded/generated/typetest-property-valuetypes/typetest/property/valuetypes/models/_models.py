@@ -558,7 +558,7 @@ class StringProperty(_Model):
 
 class UnionEnumValueProperty(_Model):
     """Template type for testing models with specific properties. Pass in the type of the property you
-    are looking for.
+     are looking for.
 
     :ivar property: Property. Required.
     :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2

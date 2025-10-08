@@ -29,16 +29,16 @@ class AccessClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar public_operation: PublicOperationOperations operations
     :vartype public_operation:
-     specs.azure.clientgenerator.core.access.aio.operations.PublicOperationOperations
+      specs.azure.clientgenerator.core.access.aio.operations.PublicOperationOperations
     :ivar internal_operation: InternalOperationOperations operations
     :vartype internal_operation:
-     specs.azure.clientgenerator.core.access.aio.operations.InternalOperationOperations
+      specs.azure.clientgenerator.core.access.aio.operations.InternalOperationOperations
     :ivar shared_model_in_operation: SharedModelInOperationOperations operations
     :vartype shared_model_in_operation:
-     specs.azure.clientgenerator.core.access.aio.operations.SharedModelInOperationOperations
+      specs.azure.clientgenerator.core.access.aio.operations.SharedModelInOperationOperations
     :ivar relative_model_in_operation: RelativeModelInOperationOperations operations
     :vartype relative_model_in_operation:
-     specs.azure.clientgenerator.core.access.aio.operations.RelativeModelInOperationOperations
+      specs.azure.clientgenerator.core.access.aio.operations.RelativeModelInOperationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

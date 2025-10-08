@@ -24,7 +24,7 @@ class ModelClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar azure_core_embedding_vector: AzureCoreEmbeddingVectorOperations operations
     :vartype azure_core_embedding_vector:
-     specs.azure.core.model.operations.AzureCoreEmbeddingVectorOperations
+      specs.azure.core.model.operations.AzureCoreEmbeddingVectorOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

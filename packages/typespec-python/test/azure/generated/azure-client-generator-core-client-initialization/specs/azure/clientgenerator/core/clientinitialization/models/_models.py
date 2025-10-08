@@ -28,10 +28,13 @@ class BlobProperties(_Model):
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     content_type: str = rest_field(name="contentType", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     created_on: datetime.datetime = rest_field(
         name="createdOn", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )

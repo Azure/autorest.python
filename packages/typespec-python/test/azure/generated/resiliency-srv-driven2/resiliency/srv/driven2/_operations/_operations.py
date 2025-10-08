@@ -212,7 +212,7 @@ class _ResiliencyServiceDrivenClientOperationsMixin(
         self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Operation that grew up from accepting one required parameter to accepting a required parameter
-        and an optional parameter.
+         and an optional parameter.
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
@@ -273,7 +273,7 @@ class _ResiliencyServiceDrivenClientOperationsMixin(
         self, *, parameter: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Tests that we can grow up an operation from accepting one optional parameter to accepting two
-        optional parameters.
+         optional parameters.
 
         :keyword parameter: I am an optional parameter. Default value is None.
         :paramtype parameter: str

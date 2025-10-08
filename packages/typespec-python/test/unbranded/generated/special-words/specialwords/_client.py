@@ -16,45 +16,9 @@ from .operations import Operations, ParametersOperations
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Scenarios to verify that reserved words can be used in service and generators will handle it
-    appropriately.
-
-    Current list of special words
-
-    .. code-block:: txt
-
-       and
-       as
-       assert
-       async
-       await
-       break
-       class
-       constructor
-       continue
-       def
-       del
-       elif
-       else
-       except
-       exec
-       finally
-       for
-       from
-       global
-       if
-       import
-       in
-       is
-       lambda
-       not
-       or
-       pass
-       raise
-       return
-       try
-       while
-       with
-       yield.
+     appropriately. Current list of special words .. code-block:: txt and as assert async await
+     break class constructor continue def del elif else except exec finally for from global if
+     import in is lambda not or pass raise return try while with yield.
 
     :ivar models: ModelsOperations operations
     :vartype models: specialwords.operations.ModelsOperations

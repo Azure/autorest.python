@@ -27,10 +27,13 @@ class Blob(_Model):
 
     id: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     size: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
+
     path: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

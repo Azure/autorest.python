@@ -37,7 +37,7 @@ class HeaderParamClient(_HeaderParamClientOperationsMixin):  # pylint: disable=c
     """Client for testing header parameter moved to client level.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -115,10 +115,10 @@ class MultipleParamsClient(_MultipleParamsClientOperationsMixin):  # pylint: dis
     """MultipleParamsClient.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :param region: The region to use for all operations. This parameter is used as a query
-     parameter. Required.
+      parameter. Required.
     :type region: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -196,7 +196,7 @@ class MixedParamsClient(_MixedParamsClientOperationsMixin):  # pylint: disable=c
     """MixedParamsClient.
 
     :param name: The name of the client. This parameter is used as a header in all operations.
-     Required.
+      Required.
     :type name: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -274,7 +274,7 @@ class PathParamClient(_PathParamClientOperationsMixin):  # pylint: disable=clien
     """PathParamClient.
 
     :param blob_name: The name of the blob. This parameter is used as a path parameter in all
-     operations. Required.
+      operations. Required.
     :type blob_name: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
@@ -430,9 +430,9 @@ class ParentClient:  # pylint: disable=client-accepts-api-version-keyword
 
     :ivar child_client: ChildClientOperations operations
     :vartype child_client:
-     specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations
+      specs.azure.clientgenerator.core.clientinitialization.aio.operations.ChildClientOperations
     :param blob_name: The name of the blob. This parameter is used as a path parameter in all
-     operations. Required.
+      operations. Required.
     :type blob_name: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str

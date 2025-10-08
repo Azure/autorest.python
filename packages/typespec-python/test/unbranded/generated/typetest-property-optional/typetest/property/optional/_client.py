@@ -58,14 +58,14 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
     :vartype boolean_literal: typetest.property.optional.operations.BooleanLiteralOperations
     :ivar union_string_literal: UnionStringLiteralOperations operations
     :vartype union_string_literal:
-     typetest.property.optional.operations.UnionStringLiteralOperations
+      typetest.property.optional.operations.UnionStringLiteralOperations
     :ivar union_int_literal: UnionIntLiteralOperations operations
     :vartype union_int_literal: typetest.property.optional.operations.UnionIntLiteralOperations
     :ivar union_float_literal: UnionFloatLiteralOperations operations
     :vartype union_float_literal: typetest.property.optional.operations.UnionFloatLiteralOperations
     :ivar required_and_optional: RequiredAndOptionalOperations operations
     :vartype required_and_optional:
-     typetest.property.optional.operations.RequiredAndOptionalOperations
+      typetest.property.optional.operations.RequiredAndOptionalOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

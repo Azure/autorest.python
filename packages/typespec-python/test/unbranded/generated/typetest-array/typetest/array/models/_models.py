@@ -20,6 +20,7 @@ class InnerModel(_Model):
 
     property: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required string property. Required."""
+
     children: Optional[list["_models.InnerModel"]] = rest_field(
         visibility=["read", "create", "update", "delete", "query"]
     )

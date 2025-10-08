@@ -33,12 +33,12 @@ class OperationTemplatesClient:
     :vartype operations: azure.resourcemanager.operationtemplates.operations.Operations
     :ivar check_name_availability: CheckNameAvailabilityOperations operations
     :vartype check_name_availability:
-     azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations
+      azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations
     :ivar lro: LroOperations operations
     :vartype lro: azure.resourcemanager.operationtemplates.operations.LroOperations
     :ivar optional_body: OptionalBodyOperations operations
     :vartype optional_body:
-     azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations
+      azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -46,14 +46,14 @@ class OperationTemplatesClient:
     :param base_url: Service host. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Default value is
-     "2023-12-01-preview". Note that overriding this default value may result in unsupported
-     behavior.
+      "2023-12-01-preview". Note that overriding this default value may result in unsupported
+      behavior.
     :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+      Retry-After header is present.
     """
 
     def __init__(

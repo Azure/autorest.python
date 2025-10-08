@@ -188,7 +188,7 @@ class TwoModelsAsPageItemOperations:
     @distributed_trace
     def list_first_item(self, **kwargs: Any) -> ItemPaged["_models.FirstItem"]:
         """Two operations with two different page item types should be successfully generated. Should
-        generate model for FirstItem.
+         generate model for FirstItem.
 
         :return: An iterator like instance of FirstItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.FirstItem]
@@ -271,7 +271,7 @@ class TwoModelsAsPageItemOperations:
     @distributed_trace
     def list_second_item(self, **kwargs: Any) -> ItemPaged["_models.SecondItem"]:
         """Two operations with two different page item types should be successfully generated. Should
-        generate model for SecondItem.
+         generate model for SecondItem.
 
         :return: An iterator like instance of SecondItem
         :rtype: ~azure.core.paging.ItemPaged[~specs.azure.core.page.models.SecondItem]
