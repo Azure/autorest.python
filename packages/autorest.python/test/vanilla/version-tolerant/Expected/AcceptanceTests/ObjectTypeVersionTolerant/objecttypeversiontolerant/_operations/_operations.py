@@ -72,7 +72,7 @@ class _ObjectTypeClientOperationsMixin(
     @distributed_trace
     def get(self, **kwargs: Any) -> JSON:
         """Basic get that returns an object. Returns object { 'message': 'An object was successfully
-        returned' }.
+         returned' }.
 
         :return: JSON
         :rtype: JSON
@@ -121,7 +121,7 @@ class _ObjectTypeClientOperationsMixin(
     @distributed_trace
     def put(self, put_object: JSON, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Basic put that puts an object. Pass in {'foo': 'bar'} to get a 200 and anything else to get an
-        object error.
+         object error.
 
         :param put_object: Pass in {'foo': 'bar'} for a 200, anything else for an object error.
          Required.

@@ -51,7 +51,7 @@ class _DPGClientOperationsMixin(
     @distributed_trace_async
     async def get_model(self, mode: str, **kwargs: Any) -> _models.Product:
         """Get models that you will either return to end users as a raw body, or with a model added during
-        grow up.
+         grow up.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -104,7 +104,7 @@ class _DPGClientOperationsMixin(
         self, mode: str, input: _models.Input, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
+         take a model instead, and put in 'model' as mode.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -125,7 +125,7 @@ class _DPGClientOperationsMixin(
         self, mode: str, input: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
+         take a model instead, and put in 'model' as mode.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -144,7 +144,7 @@ class _DPGClientOperationsMixin(
     @distributed_trace_async
     async def post_model(self, mode: str, input: Union[_models.Input, IO[bytes]], **kwargs: Any) -> _models.Product:
         """Post either raw response as a model and pass in 'raw' for mode, or grow up your operation to
-        take a model instead, and put in 'model' as mode.
+         take a model instead, and put in 'model' as mode.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -210,7 +210,7 @@ class _DPGClientOperationsMixin(
     @distributed_trace
     def get_pages(self, mode: str, **kwargs: Any) -> AsyncItemPaged["_models.Product"]:
         """Get pages that you will either return to users in pages of raw bodies, or pages of models
-        following growup.
+         following growup.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body
@@ -321,7 +321,7 @@ class _DPGClientOperationsMixin(
     @distributed_trace_async
     async def begin_lro(self, mode: str, **kwargs: Any) -> AsyncLROPoller[_models.LROProduct]:
         """Long running put request that will either return to end users a final payload of a raw body, or
-        a final payload of a model after the SDK has grown up.
+         a final payload of a model after the SDK has grown up.
 
         :param mode: The mode with which you'll be handling your returned body. 'raw' for just dealing
          with the raw body, and 'model' if you are going to convert the raw body to a customized body

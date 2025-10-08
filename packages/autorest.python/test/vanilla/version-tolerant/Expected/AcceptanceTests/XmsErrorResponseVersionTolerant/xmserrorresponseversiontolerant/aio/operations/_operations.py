@@ -68,8 +68,8 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "aniType": "str",
-                    "name": "str"
+                "aniType": "str",
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -130,7 +130,7 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "actionResponse": "str"
+                "actionResponse": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -177,7 +177,7 @@ class PetOperations:
     @distributed_trace_async
     async def has_models_param(self, *, models: str = "value1", **kwargs: Any) -> None:
         """Ensure you can correctly deserialize the returned PetActionError and deserialization doesn't
-        conflict with the input param name 'models'.
+         conflict with the input param name 'models'.
 
         :keyword models: Make sure model deserialization doesn't conflict with this param name, which
          has input name 'models'. Use client default value in call. Default value is "value1".

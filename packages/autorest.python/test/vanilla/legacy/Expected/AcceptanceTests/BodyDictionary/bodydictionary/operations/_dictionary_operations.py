@@ -2782,7 +2782,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_date_valid(
         self, array_body: dict[str, datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
+        """Set dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.date]
@@ -2796,7 +2796,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
 
     @overload
     def put_date_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
+        """Set dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2812,7 +2812,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_date_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: Union[dict[str, datetime.date], IO[bytes]], **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
+        """Set dictionary value {"0": "2000-12-01", "1": "1980-01-02", "2": "1492-10-12"}.
 
         :param array_body: Is either a {str: datetime.date} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.date] or IO[bytes]
@@ -2961,7 +2961,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_date_time_valid(self, **kwargs: Any) -> dict[str, datetime.datetime]:
         """Get date-time dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00",
-        "2": "1492-10-12T10:15:01-08:00"}.
+         "2": "1492-10-12T10:15:01-08:00"}.
 
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
@@ -3009,8 +3009,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_date_time_valid(
         self, array_body: dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
-        "1492-10-12T10:15:01-08:00"}.
+        """Set dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+         "1492-10-12T10:15:01-08:00"}.
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.datetime]
@@ -3026,8 +3026,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_date_time_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
-        "1492-10-12T10:15:01-08:00"}.
+        """Set dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+         "1492-10-12T10:15:01-08:00"}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3043,8 +3043,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_date_time_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: Union[dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
-        "1492-10-12T10:15:01-08:00"}.
+        """Set dictionary value {"0": "2000-12-01t00:00:01z", "1": "1980-01-02T00:11:35+01:00", "2":
+         "1492-10-12T10:15:01-08:00"}.
 
         :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
@@ -3193,7 +3193,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_date_time_rfc1123_valid(self, **kwargs: Any) -> dict[str, datetime.datetime]:
         """Get date-time-rfc1123 dictionary value {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan
-        1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+         1980 00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :return: dict mapping str to datetime or the result of cls(response)
         :rtype: dict[str, ~datetime.datetime]
@@ -3242,7 +3242,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
-        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.datetime]
@@ -3259,7 +3259,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
-        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3276,7 +3276,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: Union[dict[str, datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
         """Set dictionary value empty {"0": "Fri, 01 Dec 2000 00:00:01 GMT", "1": "Wed, 02 Jan 1980
-        00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
+         00:11:35 GMT", "2": "Wed, 12 Oct 1492 10:15:01 GMT"}.
 
         :param array_body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.datetime] or IO[bytes]
@@ -3380,7 +3380,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_duration_valid(
         self, array_body: dict[str, datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
+        """Set dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body: Required.
         :type array_body: dict[str, ~datetime.timedelta]
@@ -3396,7 +3396,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_duration_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
+        """Set dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3412,7 +3412,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     def put_duration_valid(  # pylint: disable=inconsistent-return-statements
         self, array_body: Union[dict[str, datetime.timedelta], IO[bytes]], **kwargs: Any
     ) -> None:
-        """Set dictionary value  {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
+        """Set dictionary value {"0": "P123DT22H14M12.011S", "1": "P5DT1H0M0S"}.
 
         :param array_body: Is either a {str: datetime.timedelta} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~datetime.timedelta] or IO[bytes]
@@ -3469,7 +3469,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_byte_valid(self, **kwargs: Any) -> dict[str, bytes]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
-        with each item encoded in base64.
+         with each item encoded in base64.
 
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
@@ -3518,7 +3518,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: dict[str, bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
-        with each elementencoded in base 64.
+         with each elementencoded in base 64.
 
         :param array_body: Required.
         :type array_body: dict[str, bytes]
@@ -3533,7 +3533,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @overload
     def put_byte_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
-        with each elementencoded in base 64.
+         with each elementencoded in base 64.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3550,7 +3550,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: Union[dict[str, bytes], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put the dictionary value {"0": hex(FF FF FF FA), "1": hex(01 02 03), "2": hex (25, 29, 43)}
-        with each elementencoded in base 64.
+         with each elementencoded in base 64.
 
         :param array_body: Is either a {str: bytes} type or a IO[bytes] type. Required.
         :type array_body: dict[str, bytes] or IO[bytes]
@@ -3607,7 +3607,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_byte_invalid_null(self, **kwargs: Any) -> dict[str, bytes]:
         """Get byte dictionary value {"0": hex(FF FF FF FA), "1": null} with the first item base64
-        encoded.
+         encoded.
 
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
@@ -3654,7 +3654,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_base64_url(self, **kwargs: Any) -> dict[str, bytes]:
         """Get base64url dictionary value {"0": "a string that gets encoded with base64url", "1": "test
-        string", "2": "Lorem ipsum"}.
+         string", "2": "Lorem ipsum"}.
 
         :return: dict mapping str to bytes or the result of cls(response)
         :rtype: dict[str, bytes]
@@ -3793,7 +3793,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_complex_item_null(self, **kwargs: Any) -> dict[str, _models.Widget]:
         """Get dictionary of complex type with null item {"0": {"integer": 1, "string": "2"}, "1": null,
-        "2": {"integer": 5, "string": "6"}}.
+         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -3840,7 +3840,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_complex_item_empty(self, **kwargs: Any) -> dict[str, _models.Widget]:
         """Get dictionary of complex type with empty item {"0": {"integer": 1, "string": "2"}, "1:" {},
-        "2": {"integer": 5, "string": "6"}}.
+         "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -3887,7 +3887,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_complex_valid(self, **kwargs: Any) -> dict[str, _models.Widget]:
         """Get dictionary of complex type with {"0": {"integer": 1, "string": "2"}, "1": {"integer": 3,
-        "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+         "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :return: dict mapping str to Widget or the result of cls(response)
         :rtype: dict[str, ~bodydictionary.models.Widget]
@@ -3936,7 +3936,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: dict[str, _models.Widget], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
-        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body: Required.
         :type array_body: dict[str, ~bodydictionary.models.Widget]
@@ -3953,7 +3953,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
-        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3970,7 +3970,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: Union[dict[str, _models.Widget], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put an dictionary of complex type with values {"0": {"integer": 1, "string": "2"}, "1":
-        {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
+         {"integer": 3, "string": "4"}, "2": {"integer": 5, "string": "6"}}.
 
         :param array_body: Is either a {str: Widget} type or a IO[bytes] type. Required.
         :type array_body: dict[str, ~bodydictionary.models.Widget] or IO[bytes]
@@ -4211,7 +4211,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_array_valid(self, **kwargs: Any) -> dict[str, list[str]]:
         """Get an array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-        "9"]}.
+         "9"]}.
 
         :return: dict mapping str to list of str or the result of cls(response)
         :rtype: dict[str, list[str]]
@@ -4260,7 +4260,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: dict[str, list[str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-        "9"]}.
+         "9"]}.
 
         :param array_body: Required.
         :type array_body: dict[str, list[str]]
@@ -4275,7 +4275,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @overload
     def put_array_valid(self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-        "9"]}.
+         "9"]}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -4292,7 +4292,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: Union[dict[str, list[str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Put An array of array of strings {"0": ["1", "2", "3"], "1": ["4", "5", "6"], "2": ["7", "8",
-        "9"]}.
+         "9"]}.
 
         :param array_body: Is either a {str: [str]} type or a IO[bytes] type. Required.
         :type array_body: dict[str, list[str]] or IO[bytes]
@@ -4441,7 +4441,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_dictionary_item_null(self, **kwargs: Any) -> dict[str, dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": null, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
@@ -4488,7 +4488,7 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_dictionary_item_empty(self, **kwargs: Any) -> dict[str, dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": {}, "2": {"7": "seven", "8": "eight", "9": "nine"}}.
 
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
@@ -4535,8 +4535,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_dictionary_valid(self, **kwargs: Any) -> dict[str, dict[str, str]]:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-        "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+         "eight", "9": "nine"}}.
 
         :return: dict mapping str to dict mapping str to str or the result of cls(response)
         :rtype: dict[str, dict[str, str]]
@@ -4585,8 +4585,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: dict[str, dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-        "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+         "eight", "9": "nine"}}.
 
         :param array_body: Required.
         :type array_body: dict[str, dict[str, str]]
@@ -4603,8 +4603,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-        "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+         "eight", "9": "nine"}}.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -4621,8 +4621,8 @@ class DictionaryOperations:  # pylint: disable=too-many-public-methods
         self, array_body: Union[dict[str, dict[str, str]], IO[bytes]], **kwargs: Any
     ) -> None:
         """Get an dictionaries of dictionaries of type <string, string> with value {"0": {"1": "one", "2":
-        "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
-        "eight", "9": "nine"}}.
+         "two", "3": "three"}, "1": {"4": "four", "5": "five", "6": "six"}, "2": {"7": "seven", "8":
+         "eight", "9": "nine"}}.
 
         :param array_body: Is either a {str: {str: str}} type or a IO[bytes] type. Required.
         :type array_body: dict[str, dict[str, str]] or IO[bytes]

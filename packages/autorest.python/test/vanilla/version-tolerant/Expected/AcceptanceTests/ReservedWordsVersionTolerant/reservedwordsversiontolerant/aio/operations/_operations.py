@@ -236,7 +236,7 @@ class _ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-ins
         self, url: str, *, header_parameters: str, query_parameters: Optional[list[str]] = None, **kwargs: Any
     ) -> JSON:
         """Operation with path format argument URL, header param headerParameters, and query param
-        queryParameters.
+         queryParameters.
 
         :param url: Pass in 'foo'. Required.
         :type url: str

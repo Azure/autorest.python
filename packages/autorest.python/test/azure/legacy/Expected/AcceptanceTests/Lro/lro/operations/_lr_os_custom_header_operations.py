@@ -201,9 +201,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 200 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running put request, service returns a 200 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -220,9 +220,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 200 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running put request, service returns a 200 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -239,9 +239,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 200 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running put request, service returns a 200 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -368,9 +368,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 201 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
-        returns a ‘200’ with ProvisioningState=’Succeeded’.
+         all requests. Long running put request, service returns a 201 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Polls return this value until the last poll
+         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -387,9 +387,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 201 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
-        returns a ‘200’ with ProvisioningState=’Succeeded’.
+         all requests. Long running put request, service returns a 201 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Polls return this value until the last poll
+         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -406,9 +406,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[_models.Product]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running put request, service returns a 201 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’.  Polls return this value until the last poll
-        returns a ‘200’ with ProvisioningState=’Succeeded’.
+         all requests. Long running put request, service returns a 201 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Polls return this value until the last poll
+         returns a ‘200’ with ProvisioningState=’Succeeded’.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -531,8 +531,8 @@ class LROsCustomHeaderOperations:
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with
-        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+         all requests. Long running post request, service returns a 202 to the initial request, with
+         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -549,8 +549,8 @@ class LROsCustomHeaderOperations:
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with
-        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+         all requests. Long running post request, service returns a 202 to the initial request, with
+         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -567,8 +567,8 @@ class LROsCustomHeaderOperations:
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with
-        'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
+         all requests. Long running post request, service returns a 202 to the initial request, with
+         'Location' and 'Retry-After' headers, Polls return a 200 with a response body after success.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -690,9 +690,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running post request, service returns a 202 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -709,9 +709,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running post request, service returns a 202 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -728,9 +728,9 @@ class LROsCustomHeaderOperations:
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> LROPoller[None]:
         """x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 is required message header for
-        all requests. Long running post request, service returns a 202 to the initial request, with an
-        entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
-        Azure-AsyncOperation header for operation status.
+         all requests. Long running post request, service returns a 202 to the initial request, with an
+         entity that contains ProvisioningState=’Creating’. Poll the endpoint indicated in the
+         Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.

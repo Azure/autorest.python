@@ -21,18 +21,18 @@ from .operations import QuestionAnsweringProjectsOperations
 
 class LroPagingClient:
     """The language service API is a suite of natural language processing (NLP) skills built with
-    best-in-class Microsoft machine learning algorithms.
+     best-in-class Microsoft machine learning algorithms.
 
     :ivar question_answering_projects: QuestionAnsweringProjectsOperations operations
     :vartype question_answering_projects:
-     lropagingversiontolerant.operations.QuestionAnsweringProjectsOperations
+      lropagingversiontolerant.operations.QuestionAnsweringProjectsOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: Api Version. Default value is "2021-10-01". Note that overriding this
-     default value may result in unsupported behavior.
+      default value may result in unsupported behavior.
     :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+      Retry-After header is present.
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential

@@ -516,7 +516,7 @@ class ParameterGroupingOperations:
         self, grouper: Optional[_models.Grouper] = None, **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
-        groupedParameter.
+         groupedParameter.
 
         :param grouper: Parameter group. Default value is None.
         :type grouper: ~azureparametergrouping.models.Grouper

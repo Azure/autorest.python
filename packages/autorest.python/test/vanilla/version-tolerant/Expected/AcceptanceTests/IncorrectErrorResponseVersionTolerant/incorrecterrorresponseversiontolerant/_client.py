@@ -23,7 +23,7 @@ class IncorrectReturnedErrorModel(
     _IncorrectReturnedErrorModelOperationsMixin
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test to see when throwing an HttpResponseError whether we swallow error model deserialization
-    errors.
+     errors.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

@@ -96,7 +96,7 @@ class _AutoRestReportServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0
+                "str": 0
                 }
         """
         error_map: MutableMapping = {
@@ -157,7 +157,7 @@ class _AutoRestReportServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "str": 0
+                "str": 0
                 }
         """
         error_map: MutableMapping = {

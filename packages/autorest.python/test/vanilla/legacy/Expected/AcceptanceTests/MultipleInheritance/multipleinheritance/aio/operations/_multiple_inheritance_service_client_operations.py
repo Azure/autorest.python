@@ -554,7 +554,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @distributed_trace_async
     async def get_kitten(self, **kwargs: Any) -> _models.Kitten:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
-        is false.
+         is false.
 
         :return: Kitten or the result of cls(response)
         :rtype: ~multipleinheritance.models.Kitten
@@ -601,7 +601,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @overload
     async def put_kitten(self, kitten: _models.Kitten, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
@@ -617,7 +617,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @overload
     async def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
@@ -633,7 +633,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @distributed_trace_async
     async def put_kitten(self, kitten: Union[_models.Kitten, IO[bytes]], **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Is either a Kitten type or a IO[bytes] type. Required.

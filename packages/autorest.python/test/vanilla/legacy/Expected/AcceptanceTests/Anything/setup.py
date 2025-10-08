@@ -29,6 +29,6 @@ setup(
         "typing-extensions>=4.6.0",
     ],
     long_description="""\
-    Service client for testing basic anything types. Those schemas without types can be anything:  primitive, object, array.
+    Service client for testing basic anything types. Those schemas without types can be anything: primitive, object, array.
     """,
 )

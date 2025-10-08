@@ -42,13 +42,13 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
 
     :ivar xms_client_request_id: XMsClientRequestIdOperations operations
     :vartype xms_client_request_id:
-     azurespecialproperties.aio.operations.XMsClientRequestIdOperations
+      azurespecialproperties.aio.operations.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials:
-     azurespecialproperties.aio.operations.SubscriptionInCredentialsOperations
+      azurespecialproperties.aio.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method:
-     azurespecialproperties.aio.operations.SubscriptionInMethodOperations
+      azurespecialproperties.aio.operations.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
     :vartype api_version_default: azurespecialproperties.aio.operations.ApiVersionDefaultOperations
     :ivar api_version_local: ApiVersionLocalOperations operations
@@ -62,15 +62,15 @@ class AutoRestAzureSpecialParametersTestClient:  # pylint: disable=too-many-inst
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'. Required.
+      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
-     this default value may result in unsupported behavior.
+      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

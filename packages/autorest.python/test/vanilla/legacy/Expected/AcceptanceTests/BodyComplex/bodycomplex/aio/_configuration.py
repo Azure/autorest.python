@@ -20,7 +20,7 @@ class AutoRestComplexTestServiceConfiguration:  # pylint: disable=too-many-insta
     attributes.
 
     :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
-     default value may result in unsupported behavior.
+      default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

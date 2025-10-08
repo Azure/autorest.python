@@ -97,9 +97,9 @@ class AvailabilitySetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 tags = {
-                    "tags": {
-                        "str": "str"
-                    }
+                "tags": {
+                "str": "str"
+                }
                 }
         """
 
@@ -150,9 +150,9 @@ class AvailabilitySetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 tags = {
-                    "tags": {
-                        "str": "str"
-                    }
+                "tags": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {

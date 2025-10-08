@@ -2998,7 +2998,7 @@ class HttpRedirectsOperations:
 
                 # response body for status code(s): 300
                 response == [
-                    "str"
+                "str"
                 ]
         """
         error_map: MutableMapping = {
@@ -3140,8 +3140,8 @@ class HttpRedirectsOperations:
     def put301(  # pylint: disable=inconsistent-return-statements
         self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
-        """Put true Boolean value in request returns 301.  This request should not be automatically
-        redirected, but should return the received 301 to the caller for evaluation.
+        """Put true Boolean value in request returns 301. This request should not be automatically
+         redirected, but should return the received 301 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is None.
@@ -3289,8 +3289,8 @@ class HttpRedirectsOperations:
     def patch302(  # pylint: disable=inconsistent-return-statements
         self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
-        """Patch true Boolean value in request returns 302.  This request should not be automatically
-        redirected, but should return the received 302 to the caller for evaluation.
+        """Patch true Boolean value in request returns 302. This request should not be automatically
+         redirected, but should return the received 302 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is None.
@@ -3348,8 +3348,8 @@ class HttpRedirectsOperations:
     def post303(  # pylint: disable=inconsistent-return-statements
         self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
-        """Post true Boolean value in request returns 303.  This request should be automatically
-        redirected usign a get, ultimately returning a 200 status code.
+        """Post true Boolean value in request returns 303. This request should be automatically redirected
+         usign a get, ultimately returning a 200 status code.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is None.
@@ -5770,7 +5770,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -5830,7 +5830,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -5890,7 +5890,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -5950,7 +5950,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6010,7 +6010,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6068,12 +6068,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",
-                    "textStatusCode": "str"
+                "statusCode": "str",
+                "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6129,12 +6129,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",
-                    "textStatusCode": "str"
+                "statusCode": "str",
+                "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6190,12 +6190,12 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "statusCode": "str",
-                    "textStatusCode": "str"
+                "statusCode": "str",
+                "textStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6253,15 +6253,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"
+                "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"
+                "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6319,15 +6319,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"
+                "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"
+                "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6385,15 +6385,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"
+                "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"
+                "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6451,15 +6451,15 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
                 # response body for status code(s): 201
                 response == {
-                    "httpCode": "str"
+                "httpCode": "str"
                 }
                 # response body for status code(s): 404
                 response == {
-                    "httpStatusCode": "str"
+                "httpStatusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6816,7 +6816,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -6872,7 +6872,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7164,7 +7164,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get200_model_a200_none(self, **kwargs: Any) -> JSON:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
-        object of thde type for model A.
+         object of thde type for model A.
 
         :return: JSON object
         :rtype: JSON
@@ -7175,7 +7175,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7231,7 +7231,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7287,7 +7287,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7343,7 +7343,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7399,7 +7399,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7455,7 +7455,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -7511,7 +7511,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "statusCode": "str"
+                "statusCode": "str"
                 }
         """
         error_map: MutableMapping = {

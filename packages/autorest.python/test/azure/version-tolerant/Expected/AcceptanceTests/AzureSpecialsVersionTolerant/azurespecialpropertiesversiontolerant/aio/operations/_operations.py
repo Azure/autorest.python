@@ -85,7 +85,7 @@ class XMsClientRequestIdOperations:
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
-        9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :return: None
         :rtype: None
@@ -127,7 +127,7 @@ class XMsClientRequestIdOperations:
     @distributed_trace_async
     async def param_get(self, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
-        9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :return: None
         :rtype: None
@@ -188,8 +188,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace_async
     async def post_method_global_valid(self, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None
         :rtype: None
@@ -231,8 +231,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace_async
     async def post_method_global_null(self, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        null, and client-side validation should prevent you from making this call.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         null, and client-side validation should prevent you from making this call.
 
         :return: None
         :rtype: None
@@ -274,8 +274,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace_async
     async def post_method_global_not_provided_valid(self, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None
         :rtype: None
@@ -318,8 +318,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace_async
     async def post_path_global_valid(self, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None
         :rtype: None
@@ -361,8 +361,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace_async
     async def post_swagger_global_valid(self, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None
         :rtype: None
@@ -424,8 +424,8 @@ class SubscriptionInMethodOperations:
 
     @distributed_trace_async
     async def post_method_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id =
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method. pass in subscription id =
+         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: This should appear as a method parameter, use value
          '1234-5678-9012-3456'. Required.
@@ -470,8 +470,8 @@ class SubscriptionInMethodOperations:
 
     @distributed_trace_async
     async def post_method_local_null(self, subscription_id: str, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id = null,
-        client-side validation should prevent you from making this call.
+        """POST method with subscriptionId modeled in the method. pass in subscription id = null,
+         client-side validation should prevent you from making this call.
 
         :param subscription_id: This should appear as a method parameter, use value null, client-side
          validation should prvenet the call. Required.
@@ -516,8 +516,8 @@ class SubscriptionInMethodOperations:
 
     @distributed_trace_async
     async def post_path_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id =
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method. pass in subscription id =
+         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: Should appear as a method parameter -use value '1234-5678-9012-3456'.
          Required.
@@ -562,8 +562,8 @@ class SubscriptionInMethodOperations:
 
     @distributed_trace_async
     async def post_swagger_local_valid(self, subscription_id: str, **kwargs: Any) -> None:
-        """POST method with subscriptionId modeled in the method.  pass in subscription id =
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in the method. pass in subscription id =
+         '1234-5678-9012-3456' to succeed.
 
         :param subscription_id: The subscriptionId, which appears in the path, the value is always
          '1234-5678-9012-3456'. Required.
@@ -816,7 +816,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace_async
     async def get_method_local_valid(self, **kwargs: Any) -> None:
-        """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
+        """Get method with api-version modeled in the method. pass in api-version = '2.0' to succeed.
 
         :return: None
         :rtype: None
@@ -859,7 +859,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace_async
     async def get_method_local_null(self, *, api_version: Optional[str] = None, **kwargs: Any) -> None:
-        """Get method with api-version modeled in the method.  pass in api-version = null to succeed.
+        """Get method with api-version modeled in the method. pass in api-version = null to succeed.
 
         :keyword api_version: This should appear as a method parameter, use value null, this should
          result in no serialized parameter. Default value is None.
@@ -904,7 +904,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace_async
     async def get_path_local_valid(self, **kwargs: Any) -> None:
-        """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
+        """Get method with api-version modeled in the method. pass in api-version = '2.0' to succeed.
 
         :return: None
         :rtype: None
@@ -947,7 +947,7 @@ class ApiVersionLocalOperations:
 
     @distributed_trace_async
     async def get_swagger_local_valid(self, **kwargs: Any) -> None:
-        """Get method with api-version modeled in the method.  pass in api-version = '2.0' to succeed.
+        """Get method with api-version modeled in the method. pass in api-version = '2.0' to succeed.
 
         :return: None
         :rtype: None
@@ -1457,7 +1457,7 @@ class HeaderOperations:
     @distributed_trace_async
     async def custom_named_request_id_param_grouping(self, *, foo_client_request_id: str, **kwargs: Any) -> None:
         """Send foo-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the request,
-        via a parameter group.
+         via a parameter group.
 
         :keyword foo_client_request_id: The fooRequestId. Required.
         :paramtype foo_client_request_id: str

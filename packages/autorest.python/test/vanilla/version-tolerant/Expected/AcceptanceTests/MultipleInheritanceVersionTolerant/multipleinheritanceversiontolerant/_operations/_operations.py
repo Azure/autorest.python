@@ -216,8 +216,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",
-                    "isAShowHorse": bool
+                "name": "str",
+                "isAShowHorse": bool
                 }
         """
         error_map: MutableMapping = {
@@ -278,8 +278,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "name": "str",
-                    "isAShowHorse": bool
+                "name": "str",
+                "isAShowHorse": bool
                 }
         """
 
@@ -313,8 +313,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 horse = {
-                    "name": "str",
-                    "isAShowHorse": bool
+                "name": "str",
+                "isAShowHorse": bool
                 }
         """
         error_map: MutableMapping = {
@@ -382,7 +382,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str"
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -443,7 +443,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"
+                "name": "str"
                 }
         """
 
@@ -476,7 +476,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 pet = {
-                    "name": "str"
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -544,8 +544,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "hisses": bool,
-                    "meows": bool
+                "hisses": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {
@@ -606,8 +606,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 feline = {
-                    "hisses": bool,
-                    "meows": bool
+                "hisses": bool,
+                "meows": bool
                 }
         """
 
@@ -641,8 +641,8 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 feline = {
-                    "hisses": bool,
-                    "meows": bool
+                "hisses": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {
@@ -710,10 +710,10 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {
@@ -775,10 +775,10 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "name": "str",
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
 
@@ -813,10 +813,10 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 cat = {
-                    "name": "str",
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {
@@ -874,7 +874,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @distributed_trace
     def get_kitten(self, **kwargs: Any) -> JSON:
         """Get a kitten with name 'Gatito' where likesMilk and meows is true, and hisses and eatsMiceYet
-        is false.
+         is false.
 
         :return: JSON object
         :rtype: JSON
@@ -885,11 +885,11 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "name": "str",
-                    "eatsMiceYet": bool,
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "eatsMiceYet": bool,
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {
@@ -935,7 +935,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @overload
     def put_kitten(self, kitten: JSON, *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
@@ -952,18 +952,18 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "name": "str",
-                    "eatsMiceYet": bool,
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "eatsMiceYet": bool,
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
 
     @overload
     def put_kitten(self, kitten: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Required.
@@ -979,7 +979,7 @@ class _MultipleInheritanceServiceClientOperationsMixin(
     @distributed_trace
     def put_kitten(self, kitten: Union[JSON, IO[bytes]], **kwargs: Any) -> str:
         """Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and eatsMiceYet is
-        true.
+         true.
 
         :param kitten: Put a kitten with name 'Kitty' where likesMilk and hisses is false, meows and
          eatsMiceYet is true. Is either a JSON type or a IO[bytes] type. Required.
@@ -993,11 +993,11 @@ class _MultipleInheritanceServiceClientOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 kitten = {
-                    "name": "str",
-                    "eatsMiceYet": bool,
-                    "hisses": bool,
-                    "likesMilk": bool,
-                    "meows": bool
+                "name": "str",
+                "eatsMiceYet": bool,
+                "hisses": bool,
+                "likesMilk": bool,
+                "meows": bool
                 }
         """
         error_map: MutableMapping = {

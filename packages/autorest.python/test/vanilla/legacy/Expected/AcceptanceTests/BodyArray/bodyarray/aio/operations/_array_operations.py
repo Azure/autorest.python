@@ -1980,7 +1980,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_uuid_valid(self, **kwargs: Any) -> list[str]:
         """Get uuid array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :return: list of str or the result of cls(response)
         :rtype: list[str]
@@ -2028,8 +2028,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_uuid_valid(
         self, array_body: list[str], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Set array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body: Required.
         :type array_body: list[str]
@@ -2045,8 +2045,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_uuid_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Set array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2060,8 +2060,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_uuid_valid(self, array_body: Union[list[str], IO[bytes]], **kwargs: Any) -> None:
-        """Set array value  ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
-        'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
+        """Set array value ['6dcc7237-45fe-45c4-8a6b-3a8a3f625652',
+         'd1399005-30f7-40d6-8da6-dd7c89ad34db', 'f42f6aa1-a5bc-4ddf-907e-5f915de43205'].
 
         :param array_body: Is either a [str] type or a IO[bytes] type. Required.
         :type array_body: list[str] or IO[bytes]
@@ -2211,7 +2211,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_valid(
         self, array_body: list[datetime.date], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+        """Set array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.date]
@@ -2227,7 +2227,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+        """Set array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2241,7 +2241,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_valid(self, array_body: Union[list[datetime.date], IO[bytes]], **kwargs: Any) -> None:
-        """Set array value  ['2000-12-01', '1980-01-02', '1492-10-12'].
+        """Set array value ['2000-12-01', '1980-01-02', '1492-10-12'].
 
         :param array_body: Is either a [datetime.date] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.date] or IO[bytes]
@@ -2390,7 +2390,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_date_time_valid(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date-time array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-        '1492-10-12T10:15:01-08:00'].
+         '1492-10-12T10:15:01-08:00'].
 
         :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
@@ -2438,8 +2438,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_time_valid(
         self, array_body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-        '1492-10-12T10:15:01-08:00'].
+        """Set array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+         '1492-10-12T10:15:01-08:00'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
@@ -2455,8 +2455,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_time_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-        '1492-10-12T10:15:01-08:00'].
+        """Set array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+         '1492-10-12T10:15:01-08:00'].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2470,8 +2470,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_date_time_valid(self, array_body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
-        """Set array value  ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
-        '1492-10-12T10:15:01-08:00'].
+        """Set array value ['2000-12-01t00:00:01z', '1980-01-02T00:11:35+01:00',
+         '1492-10-12T10:15:01-08:00'].
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
@@ -2620,7 +2620,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_date_time_rfc1123_valid(self, **kwargs: Any) -> list[datetime.datetime]:
         """Get date-time array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT',
-        'Wed, 12 Oct 1492 10:15:01 GMT'].
+         'Wed, 12 Oct 1492 10:15:01 GMT'].
 
         :return: list of datetime or the result of cls(response)
         :rtype: list[~datetime.datetime]
@@ -2668,8 +2668,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_time_rfc1123_valid(
         self, array_body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
-        Oct 1492 10:15:01 GMT'].
+        """Set array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
+         1492 10:15:01 GMT'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.datetime]
@@ -2685,8 +2685,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_time_rfc1123_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
-        Oct 1492 10:15:01 GMT'].
+        """Set array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
+         1492 10:15:01 GMT'].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2702,8 +2702,8 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_date_time_rfc1123_valid(
         self, array_body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any
     ) -> None:
-        """Set array value  ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12
-        Oct 1492 10:15:01 GMT'].
+        """Set array value ['Fri, 01 Dec 2000 00:00:01 GMT', 'Wed, 02 Jan 1980 00:11:35 GMT', 'Wed, 12 Oct
+         1492 10:15:01 GMT'].
 
         :param array_body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.datetime] or IO[bytes]
@@ -2807,7 +2807,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_duration_valid(
         self, array_body: list[datetime.timedelta], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+        """Set array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Required.
         :type array_body: list[~datetime.timedelta]
@@ -2823,7 +2823,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     async def put_duration_valid(
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
-        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+        """Set array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2837,7 +2837,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace_async
     async def put_duration_valid(self, array_body: Union[list[datetime.timedelta], IO[bytes]], **kwargs: Any) -> None:
-        """Set array value  ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
+        """Set array value ['P123DT22H14M12.011S', 'P5DT1H0M0S'].
 
         :param array_body: Is either a [datetime.timedelta] type or a IO[bytes] type. Required.
         :type array_body: list[~datetime.timedelta] or IO[bytes]
@@ -2894,7 +2894,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_byte_valid(self, **kwargs: Any) -> list[bytes]:
         """Get byte array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each item encoded
-        in base64.
+         in base64.
 
         :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
@@ -2943,7 +2943,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: list[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
-        elementencoded in base 64.
+         elementencoded in base 64.
 
         :param array_body: Required.
         :type array_body: list[bytes]
@@ -2960,7 +2960,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
-        elementencoded in base 64.
+         elementencoded in base 64.
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -2975,7 +2975,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def put_byte_valid(self, array_body: Union[list[bytes], IO[bytes]], **kwargs: Any) -> None:
         """Put the array value [hex(FF FF FF FA), hex(01 02 03), hex (25, 29, 43)] with each
-        elementencoded in base 64.
+         elementencoded in base 64.
 
         :param array_body: Is either a [bytes] type or a IO[bytes] type. Required.
         :type array_body: list[bytes] or IO[bytes]
@@ -3078,7 +3078,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_base64_url(self, **kwargs: Any) -> list[bytes]:
         """Get array value ['a string that gets encoded with base64url', 'test string' 'Lorem ipsum'] with
-        the items base64url encoded.
+         the items base64url encoded.
 
         :return: list of bytes or the result of cls(response)
         :rtype: list[bytes]
@@ -3217,7 +3217,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_complex_item_null(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with null item [{'integer': 1 'string': '2'}, null, {'integer': 5,
-        'string': '6'}].
+         'string': '6'}].
 
         :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
@@ -3264,7 +3264,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_complex_item_empty(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with empty item [{'integer': 1 'string': '2'}, {}, {'integer': 5,
-        'string': '6'}].
+         'string': '6'}].
 
         :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
@@ -3311,7 +3311,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_complex_valid(self, **kwargs: Any) -> list[_models.Product]:
         """Get array of complex type with [{'integer': 1 'string': '2'}, {'integer': 3, 'string': '4'},
-        {'integer': 5, 'string': '6'}].
+         {'integer': 5, 'string': '6'}].
 
         :return: list of Product or the result of cls(response)
         :rtype: list[~bodyarray.models.Product]
@@ -3360,7 +3360,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: list[_models.Product], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
-        'string': '4'}, {'integer': 5, 'string': '6'}].
+         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Required.
         :type array_body: list[~bodyarray.models.Product]
@@ -3377,7 +3377,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
-        'string': '4'}, {'integer': 5, 'string': '6'}].
+         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -3392,7 +3392,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def put_complex_valid(self, array_body: Union[list[_models.Product], IO[bytes]], **kwargs: Any) -> None:
         """Put an array of complex type with values [{'integer': 1 'string': '2'}, {'integer': 3,
-        'string': '4'}, {'integer': 5, 'string': '6'}].
+         'string': '4'}, {'integer': 5, 'string': '6'}].
 
         :param array_body: Is either a [Product] type or a IO[bytes] type. Required.
         :type array_body: list[~bodyarray.models.Product] or IO[bytes]
@@ -3859,7 +3859,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_dictionary_item_null(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, null, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
@@ -3906,7 +3906,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_dictionary_item_empty(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, {}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
@@ -3953,7 +3953,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def get_dictionary_valid(self, **kwargs: Any) -> list[dict[str, str]]:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :return: list of dict mapping str to str or the result of cls(response)
         :rtype: list[dict[str, str]]
@@ -4002,7 +4002,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: list[dict[str, str]], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body: Required.
         :type array_body: list[dict[str, str]]
@@ -4019,7 +4019,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
         self, array_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body: Required.
         :type array_body: IO[bytes]
@@ -4034,7 +4034,7 @@ class ArrayOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def put_dictionary_valid(self, array_body: Union[list[dict[str, str]], IO[bytes]], **kwargs: Any) -> None:
         """Get an array of Dictionaries of type <string, string> with value [{'1': 'one', '2': 'two', '3':
-        'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
+         'three'}, {'4': 'four', '5': 'five', '6': 'six'}, {'7': 'seven', '8': 'eight', '9': 'nine'}].
 
         :param array_body: Is either a [{str: str}] type or a IO[bytes] type. Required.
         :type array_body: list[dict[str, str]] or IO[bytes]

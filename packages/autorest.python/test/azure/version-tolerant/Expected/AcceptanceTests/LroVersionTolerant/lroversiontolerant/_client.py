@@ -42,10 +42,10 @@ class AutoRestLongRunningOperationTestService:  # pylint: disable=client-accepts
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+      Retry-After header is present.
     """
 
     def __init__(

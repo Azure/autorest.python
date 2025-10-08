@@ -143,8 +143,8 @@ class ParamsOperations:
 
     @distributed_trace
     def head_no_params(self, **kwargs: Any) -> JSON:
-        """Head request, no params.
-         Initially has no query parameters. After evolution, a new optional query parameter is added.
+        """Head request, no params. Initially has no query parameters. After evolution, a new optional
+         query parameter is added.
 
         :return: JSON
         :rtype: JSON
@@ -192,9 +192,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_required(self, *, parameter: str, **kwargs: Any) -> JSON:
-        """Get true Boolean value on path.
-         Initially only has one required Query Parameter. After evolution, a new optional query
-        parameter is added.
+        """Get true Boolean value on path. Initially only has one required Query Parameter. After
+         evolution, a new optional query parameter is added.
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
@@ -247,8 +246,8 @@ class ParamsOperations:
     def put_required_optional(
         self, *, required_param: str, optional_param: Optional[str] = None, **kwargs: Any
     ) -> JSON:
-        """Initially has one required query parameter and one optional query parameter.  After evolution,
-        a new optional query parameter is added.
+        """Initially has one required query parameter and one optional query parameter. After evolution, a
+         new optional query parameter is added.
 
         :keyword required_param: I am a required parameter. Required.
         :paramtype required_param: str
@@ -319,7 +318,7 @@ class ParamsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameter = {
-                    "url": "str"
+                "url": "str"
                 }
         """
 
@@ -354,7 +353,7 @@ class ParamsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameter = {
-                    "url": "str"
+                "url": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -411,9 +410,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> JSON:
-        """Get true Boolean value on path.
-         Initially has one optional query parameter. After evolution, a new optional query parameter is
-        added.
+        """Get true Boolean value on path. Initially has one optional query parameter. After evolution, a
+         new optional query parameter is added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str

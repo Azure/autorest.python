@@ -42,7 +42,7 @@ class MixedApiVersionClient:  # pylint: disable=client-accepts-api-version-keywo
     :vartype xms_client_request_id: mixedapiversion.aio.operations.XMsClientRequestIdOperations
     :ivar subscription_in_credentials: SubscriptionInCredentialsOperations operations
     :vartype subscription_in_credentials:
-     mixedapiversion.aio.operations.SubscriptionInCredentialsOperations
+      mixedapiversion.aio.operations.SubscriptionInCredentialsOperations
     :ivar subscription_in_method: SubscriptionInMethodOperations operations
     :vartype subscription_in_method: mixedapiversion.aio.operations.SubscriptionInMethodOperations
     :ivar api_version_default: ApiVersionDefaultOperations operations
@@ -58,7 +58,7 @@ class MixedApiVersionClient:  # pylint: disable=client-accepts-api-version-keywo
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'. Required.
+      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str

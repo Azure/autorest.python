@@ -52,7 +52,7 @@ class XMsClientRequestIdOperations:
     @distributed_trace_async
     async def get(self, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
-        9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :return: None or the result of cls(response)
         :rtype: None
@@ -94,7 +94,7 @@ class XMsClientRequestIdOperations:
     @distributed_trace_async
     async def param_get(self, x_ms_client_request_id: str, **kwargs: Any) -> None:
         """Get method that overwrites x-ms-client-request header with value
-        9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
+         9C4D50EE-2D56-4CD3-8152-34347DC9F2B0.
 
         :param x_ms_client_request_id: This should appear as a method parameter, use value
          '9C4D50EE-2D56-4CD3-8152-34347DC9F2B0'. Required.

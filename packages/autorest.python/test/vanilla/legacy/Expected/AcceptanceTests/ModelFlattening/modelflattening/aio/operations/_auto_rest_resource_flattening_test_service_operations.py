@@ -62,7 +62,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.Resource]
@@ -81,7 +81,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO[bytes]
@@ -100,7 +100,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [Resource] type or a
          IO[bytes] type. Default value is None.
@@ -164,7 +164,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: list of FlattenedProduct or the result of cls(response)
         :rtype: list[~modelflattening.models.FlattenedProduct]
@@ -217,10 +217,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[~modelflattening.models.WrappedProduct]
@@ -237,10 +237,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO[bytes]
@@ -257,10 +257,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         self, resource_array: Optional[Union[list[_models.WrappedProduct], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [WrappedProduct] type
          or a IO[bytes] type. Default value is None.
@@ -322,10 +322,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     @distributed_trace_async
     async def get_wrapped_array(self, **kwargs: Any) -> list[_models.ProductWrapper]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: list of ProductWrapper or the result of cls(response)
         :rtype: list[~modelflattening.models.ProductWrapper]
@@ -380,7 +380,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, ~modelflattening.models.FlattenedProduct]
@@ -399,7 +399,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO[bytes]
@@ -418,7 +418,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str:
          FlattenedProduct} type or a IO[bytes] type. Default value is None.
@@ -482,7 +482,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: dict mapping str to FlattenedProduct or the result of cls(response)
         :rtype: dict[str, ~modelflattening.models.FlattenedProduct]
@@ -537,7 +537,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -561,7 +561,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -581,7 +581,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          ResourceCollection type or a IO[bytes] type. Default value is None.
@@ -645,7 +645,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: ResourceCollection or the result of cls(response)
         :rtype: ~modelflattening.models.ResourceCollection
@@ -700,7 +700,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: ~modelflattening.models.SimpleProduct
@@ -719,7 +719,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO[bytes]
@@ -738,7 +738,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a SimpleProduct type or a
          IO[bytes] type. Default value is None.
@@ -815,7 +815,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param product_id: Unique identifier representing a specific product for a given latitude &
          longitude. For example, uberX in San Francisco will have a different product_id than uberX in
@@ -897,7 +897,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param flatten_parameter_group: Parameter group. Required.
         :type flatten_parameter_group: ~modelflattening.models.FlattenParameterGroup

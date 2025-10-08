@@ -836,7 +836,7 @@ class ContantsOperations:
     @distributed_trace_async
     async def put_client_constants(self, **kwargs: Any) -> None:
         """Pass constants from the client to this function. Will pass in constant path, query, and header
-        parameters.
+         parameters.
 
         :return: None
         :rtype: None

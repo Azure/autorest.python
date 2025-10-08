@@ -100,10 +100,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -182,10 +182,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -264,10 +264,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -346,10 +346,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -435,15 +435,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"
+                "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
 
@@ -467,10 +467,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
 
@@ -492,15 +492,15 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "name": "str"
+                "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -580,7 +580,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def first_response_empty(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation whose first response's items list is empty, but still returns a next link.
-        Second (and final) call, will give you an items list of 1.
+         Second (and final) call, will give you an items list of 1.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -591,10 +591,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -681,10 +681,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -755,7 +755,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_with_query_params(self, *, required_query_parameter: int, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a next operation. It has a different query parameter from it's
-        next operation nextOperationWithQueryParams. Returns a ProductResult.
+         next operation nextOperationWithQueryParams. Returns a ProductResult.
 
         :keyword required_query_parameter: A required integer query parameter. Put in value '100' to
          pass test. Required.
@@ -769,10 +769,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -838,8 +838,8 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def duplicate_params(self, *, filter: Optional[str] = None, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Define ``filter`` as a query param for all calls. However, the returned next link will also
-        include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
-        param in the url sent.
+         include the ``filter`` as part of it. Make sure you don't end up duplicating the ``filter``
+         param in the url sent.
 
         :keyword filter: OData filter options. Pass in 'foo'. Default value is None.
         :paramtype filter: str
@@ -852,10 +852,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -935,10 +935,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1027,10 +1027,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1121,10 +1121,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1196,7 +1196,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_retry_first(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that fails on the first call with 500 and then retries and then get a
-        response including a nextLink that has 10 pages.
+         response including a nextLink that has 10 pages.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1207,10 +1207,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1279,7 +1279,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_multiple_pages_retry_second(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation that includes a nextLink that has 10 pages, of which the 2nd call fails
-        first with 500. The client should retry and finish all 10 pages eventually.
+         first with 500. The client should retry and finish all 10 pages eventually.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1290,10 +1290,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1372,10 +1372,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1454,10 +1454,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1536,10 +1536,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1624,10 +1624,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1710,10 +1710,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1845,10 +1845,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 202
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
 
@@ -1958,7 +1958,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def append_api_version(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation with api version. When calling the next link, you want to append your
-        client's api version to the next link.
+         client's api version to the next link.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1969,10 +1969,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2042,7 +2042,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def replace_api_version(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """A paging operation with api version. When calling the next link, you want to reformat it and
-        override the returned api version with your client's api version.
+         override the returned api version with your client's api version.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -2053,10 +2053,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -2128,7 +2128,7 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> AsyncItemPaged[JSON]:
         """A paging operation that returns a paging model whose item name is is overriden by
-        x-ms-client-name 'indexes'.
+         x-ms-client-name 'indexes'.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -2139,10 +2139,10 @@ class PagingOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

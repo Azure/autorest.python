@@ -39,15 +39,15 @@ class AutoRestHttpInfrastructureTestService:  # pylint: disable=client-accepts-a
     :vartype http_redirects: httpinfrastructureversiontolerant.operations.HttpRedirectsOperations
     :ivar http_client_failure: HttpClientFailureOperations operations
     :vartype http_client_failure:
-     httpinfrastructureversiontolerant.operations.HttpClientFailureOperations
+      httpinfrastructureversiontolerant.operations.HttpClientFailureOperations
     :ivar http_server_failure: HttpServerFailureOperations operations
     :vartype http_server_failure:
-     httpinfrastructureversiontolerant.operations.HttpServerFailureOperations
+      httpinfrastructureversiontolerant.operations.HttpServerFailureOperations
     :ivar http_retry: HttpRetryOperations operations
     :vartype http_retry: httpinfrastructureversiontolerant.operations.HttpRetryOperations
     :ivar multiple_responses: MultipleResponsesOperations operations
     :vartype multiple_responses:
-     httpinfrastructureversiontolerant.operations.MultipleResponsesOperations
+      httpinfrastructureversiontolerant.operations.MultipleResponsesOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

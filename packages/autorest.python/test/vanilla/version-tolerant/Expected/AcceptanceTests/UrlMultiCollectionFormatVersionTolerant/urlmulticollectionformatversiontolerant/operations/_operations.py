@@ -219,7 +219,7 @@ class QueriesOperations:
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        mult-array format.
+         mult-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the mult-array format. Default value is None.

@@ -28,13 +28,13 @@ class AutoRestAzureSpecialParametersTestClientConfiguration:  # pylint: disable=
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The subscription id, which appears in the path, always modeled in
-     credentials. The value is always '1234-5678-9012-3456'. Required.
+      credentials. The value is always '1234-5678-9012-3456'. Required.
     :type subscription_id: str
     :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :type cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
-     this default value may result in unsupported behavior.
+      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

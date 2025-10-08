@@ -243,39 +243,14 @@ class PolymorphismOperations:
     def put_valid(self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };.
+         Required.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -289,39 +264,14 @@ class PolymorphismOperations:
     def put_valid(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };.
+         Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -337,39 +287,14 @@ class PolymorphismOperations:
     ) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Is either a Fish type or a IO[bytes] type. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };. Is
+         either a Fish type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :return: None or the result of cls(response)
         :rtype: None
@@ -470,8 +395,8 @@ class PolymorphismOperations:
     @distributed_trace
     def get_composed_with_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
-        element type, with discriminator specified. Deserialization must NOT fail and use the
-        discriminator type specified on the wire.
+         element type, with discriminator specified. Deserialization must NOT fail and use the
+         discriminator type specified on the wire.
 
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -518,8 +443,8 @@ class PolymorphismOperations:
     @distributed_trace
     def get_composed_without_discriminator(self, **kwargs: Any) -> _models.DotFishMarket:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
-        element type, without discriminator specified on wire. Deserialization must NOT fail and use
-        the explicit type of the property.
+         element type, without discriminator specified on wire. Deserialization must NOT fail and use
+         the explicit type of the property.
 
         :return: DotFishMarket or the result of cls(response)
         :rtype: ~bodycomplex.models.DotFishMarket
@@ -566,7 +491,7 @@ class PolymorphismOperations:
     @distributed_trace
     def get_complicated(self, **kwargs: Any) -> _models.Salmon:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :return: Salmon or the result of cls(response)
         :rtype: ~bodycomplex.models.Salmon
@@ -615,7 +540,7 @@ class PolymorphismOperations:
         self, complex_body: _models.Salmon, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Required.
         :type complex_body: ~bodycomplex.models.Salmon
@@ -632,7 +557,7 @@ class PolymorphismOperations:
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Required.
         :type complex_body: IO[bytes]
@@ -649,7 +574,7 @@ class PolymorphismOperations:
         self, complex_body: Union[_models.Salmon, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Is either a Salmon type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Salmon or IO[bytes]
@@ -802,35 +727,14 @@ class PolymorphismOperations:
         self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Required.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -845,35 +749,14 @@ class PolymorphismOperations:
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -888,35 +771,15 @@ class PolymorphismOperations:
         self, complex_body: Union[_models.Fish, IO[bytes]], **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Is either a Fish type or a IO[bytes] type. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Is either a
+         Fish type or a IO[bytes] type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :return: None or the result of cls(response)
         :rtype: None

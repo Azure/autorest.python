@@ -24,7 +24,7 @@ class AutoRestParameterFlattening:  # pylint: disable=client-accepts-api-version
 
     :ivar availability_sets: AvailabilitySetsOperations operations
     :vartype availability_sets:
-     parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations
+      parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

@@ -260,8 +260,8 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def put301(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
-        """Put true Boolean value in request returns 301.  This request should not be automatically
-        redirected, but should return the received 301 to the caller for evaluation.
+        """Put true Boolean value in request returns 301. This request should not be automatically
+         redirected, but should return the received 301 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
@@ -410,8 +410,8 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def patch302(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
-        """Patch true Boolean value in request returns 302.  This request should not be automatically
-        redirected, but should return the received 302 to the caller for evaluation.
+        """Patch true Boolean value in request returns 302. This request should not be automatically
+         redirected, but should return the received 302 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.
@@ -468,8 +468,8 @@ class HttpRedirectsOperations:
 
     @distributed_trace_async
     async def post303(self, boolean_value: Literal[True] = True, **kwargs: Any) -> None:
-        """Post true Boolean value in request returns 303.  This request should be automatically
-        redirected usign a get, ultimately returning a 200 status code.
+        """Post true Boolean value in request returns 303. This request should be automatically redirected
+         usign a get, ultimately returning a 200 status code.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
          is True.

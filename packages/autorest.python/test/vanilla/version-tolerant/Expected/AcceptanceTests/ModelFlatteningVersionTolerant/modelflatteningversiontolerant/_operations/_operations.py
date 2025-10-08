@@ -249,7 +249,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
@@ -265,15 +265,15 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 resource_array = [
-                    {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 ]
         """
 
@@ -284,7 +284,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO[bytes]
@@ -303,7 +303,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
          IO[bytes] type. Default value is None.
@@ -366,7 +366,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as an Array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -377,21 +377,21 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == [
-                    {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 ]
         """
         error_map: MutableMapping = {
@@ -439,10 +439,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         self, resource_array: Optional[list[JSON]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: list[JSON]
@@ -458,9 +458,9 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 resource_array = [
-                    {
-                        "value": "str"
-                    }
+                {
+                "value": "str"
+                }
                 ]
         """
 
@@ -469,10 +469,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         self, resource_array: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Default value is None.
         :type resource_array: IO[bytes]
@@ -489,10 +489,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         self, resource_array: Optional[Union[list[JSON], IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_array: External Resource as an Array to put. Is either a [JSON] type or a
          IO[bytes] type. Default value is None.
@@ -553,10 +553,10 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
     @distributed_trace
     def get_wrapped_array(self, **kwargs: Any) -> list[JSON]:
         """No need to have a route in Express server for this operation. Used to verify the type flattened
-        is not removed if it's referenced in an array.
+         is not removed if it's referenced in an array.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: list of JSON object
         :rtype: list[JSON]
@@ -567,11 +567,11 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == [
-                    {
-                        "property": {
-                            "value": "str"
-                        }
-                    }
+                {
+                "property": {
+                "value": "str"
+                }
+                }
                 ]
         """
         error_map: MutableMapping = {
@@ -625,7 +625,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: dict[str, JSON]
@@ -641,21 +641,21 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 resource_dictionary = {
-                    "str": {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                "str": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 }
         """
 
@@ -666,7 +666,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Default value is None.
         :type resource_dictionary: IO[bytes]
@@ -685,7 +685,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_dictionary: External Resource as a Dictionary to put. Is either a {str: JSON}
          type or a IO[bytes] type. Default value is None.
@@ -748,7 +748,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as a Dictionary.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: dict mapping str to JSON object
         :rtype: dict[str, JSON]
@@ -759,21 +759,21 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "str": {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                "str": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -823,7 +823,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -840,55 +840,55 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 resource_complex_object = {
-                    "arrayofresources": [
-                        {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    ],
-                    "dictionaryofresources": {
-                        "str": {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    },
-                    "productresource": {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                "arrayofresources": [
+                {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                ],
+                "dictionaryofresources": {
+                "str": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                },
+                "productresource": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 }
         """
 
@@ -903,7 +903,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Default value
          is None.
@@ -923,7 +923,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param resource_complex_object: External Resource as a ResourceCollection to put. Is either a
          JSON type or a IO[bytes] type. Default value is None.
@@ -937,55 +937,55 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 resource_complex_object = {
-                    "arrayofresources": [
-                        {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    ],
-                    "dictionaryofresources": {
-                        "str": {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    },
-                    "productresource": {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                "arrayofresources": [
+                {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                ],
+                "dictionaryofresources": {
+                "str": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                },
+                "productresource": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -1042,7 +1042,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Get External Resource as a ResourceCollection.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :return: JSON object
         :rtype: JSON
@@ -1053,55 +1053,55 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "arrayofresources": [
-                        {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    ],
-                    "dictionaryofresources": {
-                        "str": {
-                            "id": "str",
-                            "location": "str",
-                            "name": "str",
-                            "properties": {
-                                "p.name": "str",
-                                "provisioningState": "str",
-                                "provisioningStateValues": "str",
-                                "type": "str"
-                            },
-                            "tags": {
-                                "str": "str"
-                            },
-                            "type": "str"
-                        }
-                    },
-                    "productresource": {
-                        "id": "str",
-                        "location": "str",
-                        "name": "str",
-                        "properties": {
-                            "p.name": "str",
-                            "provisioningState": "str",
-                            "provisioningStateValues": "str",
-                            "type": "str"
-                        },
-                        "tags": {
-                            "str": "str"
-                        },
-                        "type": "str"
-                    }
+                "arrayofresources": [
+                {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                ],
+                "dictionaryofresources": {
+                "str": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
+                },
+                "productresource": {
+                "id": "str",
+                "location": "str",
+                "name": "str",
+                "properties": {
+                "p.name": "str",
+                "provisioningState": "str",
+                "provisioningStateValues": "str",
+                "type": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -1151,7 +1151,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: JSON
@@ -1167,30 +1167,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1201,7 +1201,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Default value is None.
         :type simple_body_product: IO[bytes]
@@ -1217,16 +1217,16 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1235,7 +1235,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to put. Is either a JSON type or a IO[bytes]
          type. Default value is None.
@@ -1249,30 +1249,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -1338,7 +1338,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: JSON
@@ -1354,30 +1354,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1388,7 +1388,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Default value is None.
         :type simple_body_product: IO[bytes]
@@ -1404,16 +1404,16 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1424,7 +1424,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Flattened Simple Product with client flattening true on the parameter.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param simple_body_product: Simple body product to post. Is either a JSON type or a IO[bytes]
          type. Default value is None.
@@ -1438,30 +1438,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -1532,7 +1532,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1550,30 +1550,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1589,7 +1589,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1607,16 +1607,16 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
 
@@ -1627,7 +1627,7 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
         """Put Simple Product with client flattening true on the model.
 
         .. seealso::
-           - http://tempuri.org
+        - http://tempuri.org
 
         :param name: Product name with value 'groupproduct'. Required.
         :type name: str
@@ -1643,30 +1643,30 @@ class _AutoRestResourceFlatteningTestServiceOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 simple_body_product = {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "base_product_id": "str",
-                    "base_product_description": "str",
-                    "details": {
-                        "max_product_capacity": "Large",
-                        "max_product_display_name": "str",
-                        "max_product_image": {
-                            "@odata.value": "str",
-                            "generic_value": "str"
-                        }
-                    }
+                "base_product_id": "str",
+                "base_product_description": "str",
+                "details": {
+                "max_product_capacity": "Large",
+                "max_product_display_name": "str",
+                "max_product_image": {
+                "@odata.value": "str",
+                "generic_value": "str"
+                }
+                }
                 }
         """
         error_map: MutableMapping = {

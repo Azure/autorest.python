@@ -170,8 +170,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace
     def post_method_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None or the result of cls(response)
         :rtype: None
@@ -214,8 +214,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace
     def post_method_global_null(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        null, and client-side validation should prevent you from making this call.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         null, and client-side validation should prevent you from making this call.
 
         :return: None or the result of cls(response)
         :rtype: None
@@ -260,8 +260,8 @@ class SubscriptionInCredentialsOperations:
     def post_method_global_not_provided_valid(  # pylint: disable=inconsistent-return-statements
         self, **kwargs: Any
     ) -> None:
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None or the result of cls(response)
         :rtype: None
@@ -306,8 +306,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace
     def post_path_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None or the result of cls(response)
         :rtype: None
@@ -350,8 +350,8 @@ class SubscriptionInCredentialsOperations:
 
     @distributed_trace
     def post_swagger_global_valid(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """POST method with subscriptionId modeled in credentials.  Set the credential subscriptionId to
-        '1234-5678-9012-3456' to succeed.
+        """POST method with subscriptionId modeled in credentials. Set the credential subscriptionId to
+         '1234-5678-9012-3456' to succeed.
 
         :return: None or the result of cls(response)
         :rtype: None

@@ -145,7 +145,7 @@ class QueriesOperations:
     @distributed_trace_async
     async def array_string_multi_valid(self, *, array_query: Optional[list[str]] = None, **kwargs: Any) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        mult-array format.
+         mult-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the mult-array format. Default value is None.

@@ -55,7 +55,7 @@ class NotFoundErrorBase(BaseError):
     """NotFoundErrorBase.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    AnimalNotFound, LinkNotFound
+     AnimalNotFound, LinkNotFound
 
     All required parameters must be populated in order to send to server.
 
@@ -238,7 +238,7 @@ class PetActionError(PetAction):
     """PetActionError.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    PetSadError
+     PetSadError
 
     All required parameters must be populated in order to send to server.
 
@@ -280,7 +280,7 @@ class PetSadError(PetActionError):
     """PetSadError.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    PetHungryOrThirstyError
+     PetHungryOrThirstyError
 
     All required parameters must be populated in order to send to server.
 

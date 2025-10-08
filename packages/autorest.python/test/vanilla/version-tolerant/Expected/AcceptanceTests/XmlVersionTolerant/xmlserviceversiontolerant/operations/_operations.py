@@ -1897,7 +1897,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self, properties: _models.JSONInput, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
-        number 42.
+         number 42.
 
         :param properties: Required.
         :type properties: ~xmlserviceversiontolerant.models.JSONInput
@@ -1912,7 +1912,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     @overload
     def json_input(self, properties: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
-        number 42.
+         number 42.
 
         :param properties: Required.
         :type properties: IO[bytes]
@@ -1929,7 +1929,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self, properties: Union[_models.JSONInput, IO[bytes]], **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
-        number 42.
+         number 42.
 
         :param properties: Is either a JSONInput type or a IO[bytes] type. Required.
         :type properties: ~xmlserviceversiontolerant.models.JSONInput or IO[bytes]
@@ -2030,7 +2030,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
-        object's 'language' property being 'english' and its 'content' property being 'I am text'.
+         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
         :return: ObjectWithXMsTextProperty
         :rtype: ~xmlserviceversiontolerant.models.ObjectWithXMsTextProperty

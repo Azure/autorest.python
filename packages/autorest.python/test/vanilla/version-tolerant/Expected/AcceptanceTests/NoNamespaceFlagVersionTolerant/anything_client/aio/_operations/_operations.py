@@ -45,7 +45,7 @@ class _AnythingClientOperationsMixin(
     @distributed_trace_async
     async def get_object(self, **kwargs: Any) -> Any:
         """Basic get that returns an object as anything. Returns object { 'message': 'An object was
-        successfully returned' }.
+         successfully returned' }.
 
         :return: any
         :rtype: any
@@ -94,7 +94,7 @@ class _AnythingClientOperationsMixin(
     @distributed_trace_async
     async def put_object(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an object as anything. Pass in {'foo': 'bar'} to get a 200 and anything
-        else to get an object error.
+         else to get an object error.
 
         :param input: Pass in {'foo': 'bar'} for a 200, anything else for an object error. Required.
         :type input: any
@@ -191,7 +191,7 @@ class _AnythingClientOperationsMixin(
     @distributed_trace_async
     async def put_string(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an string as anything. Pass in 'anything' to get a 200 and anything else to
-        get an object error.
+         get an object error.
 
         :param input: Pass in 'anything' for a 200, anything else for an object error. Required.
         :type input: any
@@ -288,7 +288,7 @@ class _AnythingClientOperationsMixin(
     @distributed_trace_async
     async def put_array(self, input: Any, **kwargs: Any) -> None:
         """Basic put that puts an array as anything. Pass in ['foo', 'bar'] to get a 200 and anything else
-        to get an object error.
+         to get an object error.
 
         :param input: Pass in ['foo', 'bar'] for a 200, anything else for an object error. Required.
         :type input: any

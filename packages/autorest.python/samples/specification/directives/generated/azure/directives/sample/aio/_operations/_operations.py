@@ -127,18 +127,18 @@ class _PollingPagingExampleOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
 
@@ -162,10 +162,10 @@ class _PollingPagingExampleOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
 
@@ -187,18 +187,18 @@ class _PollingPagingExampleOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 product = {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -264,10 +264,10 @@ class _PollingPagingExampleOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "properties": {
-                        "id": 0,
-                        "name": "str"
-                    }
+                "properties": {
+                "id": 0,
+                "name": "str"
+                }
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}

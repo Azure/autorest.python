@@ -2013,7 +2013,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        csv-array format.
+         csv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the csv-array format. Default value is None.
@@ -2157,7 +2157,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
-        'bonjour'] for the 'arrayQuery' parameter to the service.
+         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :param array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour']. Default
          value is None.
@@ -2206,7 +2206,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        ssv-array format.
+         ssv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the ssv-array format. Default value is None.
@@ -2255,7 +2255,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        tsv-array format.
+         tsv-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the tsv-array format. Default value is None.
@@ -2304,7 +2304,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        pipes-array format.
+         pipes-array format.
 
         :param array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the pipes-array format. Default value is None.

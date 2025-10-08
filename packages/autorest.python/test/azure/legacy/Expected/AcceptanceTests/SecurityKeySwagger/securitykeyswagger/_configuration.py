@@ -27,7 +27,7 @@ class AutorestSecurityKeyConfiguration:  # pylint: disable=too-many-instance-att
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :type cloud_setting: ~azure.core.AzureClouds
     """
 

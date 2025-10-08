@@ -136,59 +136,14 @@ class PolymorphicrecursiveOperations:
     def put_valid(self, complex_body: _models.Fish, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Required.
         :type complex_body: ~bodycomplex.models.Fish
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -202,59 +157,14 @@ class PolymorphicrecursiveOperations:
     def put_valid(self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -270,59 +180,15 @@ class PolymorphicrecursiveOperations:
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Is either a Fish type or a IO[bytes] type. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Is either a Fish type or a IO[bytes]
+         type. Required.
         :type complex_body: ~bodycomplex.models.Fish or IO[bytes]
         :return: None or the result of cls(response)
         :rtype: None

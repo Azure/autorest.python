@@ -59,7 +59,7 @@ class PagingOperations:
     @distributed_trace
     def get_pages_partial_url(self, account_name: str, **kwargs: Any) -> AsyncItemPaged["_models.Product"]:
         """A paging operation that combines custom url, paging and partial URL and expect to concat after
-        host.
+         host.
 
         :param account_name: Account Name. Required.
         :type account_name: str

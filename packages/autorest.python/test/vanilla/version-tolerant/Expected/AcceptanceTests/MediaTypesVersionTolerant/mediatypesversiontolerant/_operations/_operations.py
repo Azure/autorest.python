@@ -176,7 +176,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"
+                "source": "str"
                 }
         """
 
@@ -211,7 +211,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"
+                "source": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -280,7 +280,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         self, input: Optional[JSON] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Default value is None.
         :type input: JSON
@@ -296,7 +296,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"
+                "source": "str"
                 }
         """
 
@@ -305,7 +305,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         self, input: Optional[IO[bytes]] = None, *, content_type: str, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Default value is None.
         :type input: IO[bytes]
@@ -323,7 +323,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
         self, input: Optional[Union[JSON, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Is either a JSON type or a IO[bytes] type. Default value is
          None.
@@ -337,7 +337,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
 
                 # JSON input template you can fill out and use as your body input.
                 input = {
-                    "source": "str"
+                "source": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -456,7 +456,7 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
     @distributed_trace
     def binary_body_with_two_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
-        content type, and a byte stream of 'hello, world!' for application/octet-stream.
+         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body. Required.
         :type message: IO[bytes]
@@ -512,8 +512,8 @@ class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instan
     @distributed_trace
     def binary_body_with_three_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
-        'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
-        'application/octet-stream'.
+         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+         'application/octet-stream'.
 
         :param message: The payload body. Required.
         :type message: IO[bytes]

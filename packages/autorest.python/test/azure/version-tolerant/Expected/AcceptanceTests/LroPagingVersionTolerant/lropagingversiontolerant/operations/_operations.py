@@ -159,63 +159,62 @@ class QuestionAnsweringProjectsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "activeLearningSuggestions": [
-                        {
-                            "clusterHead": "str",
-                            "suggestedQuestions": [
-                                {
-                                    "autoSuggestedCount": 0,
-                                    "question": "str",
-                                    "userSuggestedCount": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "answer": "str",
-                    "dialog": {
-                        "isContextOnly": bool,
-                        "prompts": [
-                            {
-                                "displayOrder": 0,
-                                "displayText": "str",
-                                "qna": {
-                                    "activeLearningSuggestions": [
-                                        {
-                                            "clusterHead": "str",
-                                            "suggestedQuestions": [
-                                                {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
                 "autoSuggestedCount": 0,
-                                                    "question":
-                                                      "str",
+                "question": "str",
                 "userSuggestedCount": 0
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "answer": "str",
-                                    "dialog": ...,
-                                    "id": 0,
-                                    "metadata": {
-                                        "str": "str"
-                                    },
-                                    "questions": [
-                                        "str"
-                                    ],
-                                    "source": "str"
-                                },
-                                "qnaId": 0
-                            }
-                        ]
-                    },
-                    "id": 0,
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
-                    "metadata": {
-                        "str": "str"
-                    },
-                    "questions": [
-                        "str"
-                    ],
-                    "source": "str"
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": {
+                "isContextOnly": bool,
+                "prompts": [
+                {
+                "displayOrder": 0,
+                "displayText": "str",
+                "qna": {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
+                "autoSuggestedCount": 0,
+                "question": "str",
+                "userSuggestedCount": 0
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": ...,
+                "id": 0,
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
+                },
+                "qnaId": 0
+                }
+                ]
+                },
+                "id": 0,
+                "lastUpdatedDateTime": "2020-02-20 00:00:00",
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -376,104 +375,103 @@ class QuestionAnsweringProjectsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 body = [
-                    {
-                        "op": "str",
-                        "value": {
-                            "activeLearningSuggestions": [
-                                {
-                                    "clusterHead": "str",
-                                    "suggestedQuestions": [
-                                        {
-                                            "autoSuggestedCount": 0,
-                                            "question": "str",
-                                            "userSuggestedCount": 0
-                                        }
-                                    ]
-                                }
-                            ],
-                            "answer": "str",
-                            "dialog": {
-                                "isContextOnly": bool,
-                                "prompts": [
-                                    {
-                                        "displayOrder": 0,
-                                        "displayText": "str",
-                                        "qna": ...,
-                                        "qnaId": 0
-                                    }
-                                ]
-                            },
-                            "id": 0,
-                            "metadata": {
-                                "str": "str"
-                            },
-                            "questions": [
-                                "str"
-                            ],
-                            "source": "str"
-                        }
-                    }
+                {
+                "op": "str",
+                "value": {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
+                "autoSuggestedCount": 0,
+                "question": "str",
+                "userSuggestedCount": 0
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": {
+                "isContextOnly": bool,
+                "prompts": [
+                {
+                "displayOrder": 0,
+                "displayText": "str",
+                "qna": ...,
+                "qnaId": 0
+                }
+                ]
+                },
+                "id": 0,
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
+                }
+                }
                 ]
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "activeLearningSuggestions": [
-                        {
-                            "clusterHead": "str",
-                            "suggestedQuestions": [
-                                {
-                                    "autoSuggestedCount": 0,
-                                    "question": "str",
-                                    "userSuggestedCount": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "answer": "str",
-                    "dialog": {
-                        "isContextOnly": bool,
-                        "prompts": [
-                            {
-                                "displayOrder": 0,
-                                "displayText": "str",
-                                "qna": {
-                                    "activeLearningSuggestions": [
-                                        {
-                                            "clusterHead": "str",
-                                            "suggestedQuestions": [
-                                                {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
                 "autoSuggestedCount": 0,
-                                                    "question":
-                                                      "str",
+                "question": "str",
                 "userSuggestedCount": 0
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "answer": "str",
-                                    "dialog": ...,
-                                    "id": 0,
-                                    "metadata": {
-                                        "str": "str"
-                                    },
-                                    "questions": [
-                                        "str"
-                                    ],
-                                    "source": "str"
-                                },
-                                "qnaId": 0
-                            }
-                        ]
-                    },
-                    "id": 0,
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
-                    "metadata": {
-                        "str": "str"
-                    },
-                    "questions": [
-                        "str"
-                    ],
-                    "source": "str"
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": {
+                "isContextOnly": bool,
+                "prompts": [
+                {
+                "displayOrder": 0,
+                "displayText": "str",
+                "qna": {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
+                "autoSuggestedCount": 0,
+                "question": "str",
+                "userSuggestedCount": 0
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": ...,
+                "id": 0,
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
+                },
+                "qnaId": 0
+                }
+                ]
+                },
+                "id": 0,
+                "lastUpdatedDateTime": "2020-02-20 00:00:00",
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
                 }
         """
 
@@ -501,63 +499,62 @@ class QuestionAnsweringProjectsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "activeLearningSuggestions": [
-                        {
-                            "clusterHead": "str",
-                            "suggestedQuestions": [
-                                {
-                                    "autoSuggestedCount": 0,
-                                    "question": "str",
-                                    "userSuggestedCount": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "answer": "str",
-                    "dialog": {
-                        "isContextOnly": bool,
-                        "prompts": [
-                            {
-                                "displayOrder": 0,
-                                "displayText": "str",
-                                "qna": {
-                                    "activeLearningSuggestions": [
-                                        {
-                                            "clusterHead": "str",
-                                            "suggestedQuestions": [
-                                                {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
                 "autoSuggestedCount": 0,
-                                                    "question":
-                                                      "str",
+                "question": "str",
                 "userSuggestedCount": 0
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "answer": "str",
-                                    "dialog": ...,
-                                    "id": 0,
-                                    "metadata": {
-                                        "str": "str"
-                                    },
-                                    "questions": [
-                                        "str"
-                                    ],
-                                    "source": "str"
-                                },
-                                "qnaId": 0
-                            }
-                        ]
-                    },
-                    "id": 0,
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
-                    "metadata": {
-                        "str": "str"
-                    },
-                    "questions": [
-                        "str"
-                    ],
-                    "source": "str"
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": {
+                "isContextOnly": bool,
+                "prompts": [
+                {
+                "displayOrder": 0,
+                "displayText": "str",
+                "qna": {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
+                "autoSuggestedCount": 0,
+                "question": "str",
+                "userSuggestedCount": 0
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": ...,
+                "id": 0,
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
+                },
+                "qnaId": 0
+                }
+                ]
+                },
+                "id": 0,
+                "lastUpdatedDateTime": "2020-02-20 00:00:00",
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
                 }
         """
 
@@ -583,63 +580,62 @@ class QuestionAnsweringProjectsOperations:
 
                 # response body for status code(s): 200, 202
                 response == {
-                    "activeLearningSuggestions": [
-                        {
-                            "clusterHead": "str",
-                            "suggestedQuestions": [
-                                {
-                                    "autoSuggestedCount": 0,
-                                    "question": "str",
-                                    "userSuggestedCount": 0
-                                }
-                            ]
-                        }
-                    ],
-                    "answer": "str",
-                    "dialog": {
-                        "isContextOnly": bool,
-                        "prompts": [
-                            {
-                                "displayOrder": 0,
-                                "displayText": "str",
-                                "qna": {
-                                    "activeLearningSuggestions": [
-                                        {
-                                            "clusterHead": "str",
-                                            "suggestedQuestions": [
-                                                {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
                 "autoSuggestedCount": 0,
-                                                    "question":
-                                                      "str",
+                "question": "str",
                 "userSuggestedCount": 0
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "answer": "str",
-                                    "dialog": ...,
-                                    "id": 0,
-                                    "metadata": {
-                                        "str": "str"
-                                    },
-                                    "questions": [
-                                        "str"
-                                    ],
-                                    "source": "str"
-                                },
-                                "qnaId": 0
-                            }
-                        ]
-                    },
-                    "id": 0,
-                    "lastUpdatedDateTime": "2020-02-20 00:00:00",
-                    "metadata": {
-                        "str": "str"
-                    },
-                    "questions": [
-                        "str"
-                    ],
-                    "source": "str"
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": {
+                "isContextOnly": bool,
+                "prompts": [
+                {
+                "displayOrder": 0,
+                "displayText": "str",
+                "qna": {
+                "activeLearningSuggestions": [
+                {
+                "clusterHead": "str",
+                "suggestedQuestions": [
+                {
+                "autoSuggestedCount": 0,
+                "question": "str",
+                "userSuggestedCount": 0
+                }
+                ]
+                }
+                ],
+                "answer": "str",
+                "dialog": ...,
+                "id": 0,
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
+                },
+                "qnaId": 0
+                }
+                ]
+                },
+                "id": 0,
+                "lastUpdatedDateTime": "2020-02-20 00:00:00",
+                "metadata": {
+                "str": "str"
+                },
+                "questions": [
+                "str"
+                ],
+                "source": "str"
                 }
         """
 

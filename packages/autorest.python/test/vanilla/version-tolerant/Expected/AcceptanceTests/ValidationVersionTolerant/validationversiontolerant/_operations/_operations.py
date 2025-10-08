@@ -160,22 +160,22 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -253,42 +253,42 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
 
@@ -323,22 +323,22 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
 
@@ -364,42 +364,42 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -525,42 +525,42 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
 
@@ -584,22 +584,22 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
 
@@ -618,42 +618,42 @@ class _AutoRestValidationTestOperationsMixin(
 
                 # JSON input template you can fill out and use as your body input.
                 body = {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "child": {
-                        "constProperty": "constant",
-                        "count": 0
-                    },
-                    "constChild": {
-                        "constProperty": "constant",
-                        "constProperty2": "constant2"
-                    },
-                    "constInt": 0,
-                    "constString": "constant",
-                    "capacity": 0,
-                    "constStringAsEnum": "constant_string_as_enum",
-                    "display_names": [
-                        "str"
-                    ],
-                    "image": "str"
+                "child": {
+                "constProperty": "constant",
+                "count": 0
+                },
+                "constChild": {
+                "constProperty": "constant",
+                "constProperty2": "constant2"
+                },
+                "constInt": 0,
+                "constString": "constant",
+                "capacity": 0,
+                "constStringAsEnum": "constant_string_as_enum",
+                "display_names": [
+                "str"
+                ],
+                "image": "str"
                 }
         """
         error_map: MutableMapping = {

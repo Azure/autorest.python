@@ -359,8 +359,8 @@ class StringOperations:
     @distributed_trace_async
     async def get_whitespace(self, **kwargs: Any) -> str:
         """Get string value with leading and trailing whitespace '\\ :code:`<tab>`\\ :code:`<space>`\\
-        :code:`<space>`Now is the time for all good men to come to the aid of their country\\
-        :code:`<tab>`\\ :code:`<space>`\\ :code:`<space>`'.
+         :code:`<space>`Now is the time for all good men to come to the aid of their country\\
+         :code:`<tab>`\\ :code:`<space>`\\ :code:`<space>`'.
 
         :return: str or the result of cls(response)
         :rtype: str
@@ -407,8 +407,8 @@ class StringOperations:
     @distributed_trace_async
     async def put_whitespace(self, **kwargs: Any) -> None:
         """Set String value with leading and trailing whitespace '\\ :code:`<tab>`\\ :code:`<space>`\\
-        :code:`<space>`Now is the time for all good men to come to the aid of their country\\
-        :code:`<tab>`\\ :code:`<space>`\\ :code:`<space>`'.
+         :code:`<space>`Now is the time for all good men to come to the aid of their country\\
+         :code:`<tab>`\\ :code:`<space>`\\ :code:`<space>`'.
 
         :return: None or the result of cls(response)
         :rtype: None

@@ -305,7 +305,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -323,7 +323,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -341,7 +341,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -461,7 +461,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -479,7 +479,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -497,7 +497,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a Product with 'ProvisioningState' = 'Creating' and
-        201 response code.
+         201 response code.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -624,7 +624,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
-        endpoint indicated in the Azure-AsyncOperation header for operation status.
+         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -642,7 +642,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
-        endpoint indicated in the Azure-AsyncOperation header for operation status.
+         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -660,7 +660,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 with ProvisioningState=’Creating’. Poll the
-        endpoint indicated in the Azure-AsyncOperation header for operation status.
+         endpoint indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -951,7 +951,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def begin_delete_async_relative_retry400(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -1363,7 +1363,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -1380,7 +1380,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -1397,7 +1397,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -1672,8 +1672,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -1691,8 +1691,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -1710,8 +1710,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -1846,8 +1846,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -1865,8 +1865,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -1884,8 +1884,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2088,7 +2088,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -2197,7 +2197,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
-        header.
+         header.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -2214,7 +2214,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
-        header.
+         header.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -2231,7 +2231,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, without a location
-        header.
+         header.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2353,8 +2353,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -2371,8 +2371,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -2389,8 +2389,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2505,7 +2505,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
-        not a valid json.
+         not a valid json.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -2523,7 +2523,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
-        not a valid json.
+         not a valid json.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -2541,7 +2541,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that is
-        not a valid json.
+         not a valid json.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2668,8 +2668,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -2687,8 +2687,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -2706,8 +2706,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2842,8 +2842,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -2861,8 +2861,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -2880,8 +2880,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[_models.Product]:
         """Long running put request, service returns a 200 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -2993,7 +2993,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def begin_delete202_retry_invalid_header(self, **kwargs: Any) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request receing a reponse
-        with an invalid 'Location' and 'Retry-After' headers.
+         with an invalid 'Location' and 'Retry-After' headers.
 
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -3089,7 +3089,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. The endpoint
-        indicated in the Azure-AsyncOperation header is invalid.
+         indicated in the Azure-AsyncOperation header is invalid.
 
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -3185,7 +3185,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running delete request, service returns a 202 to the initial request. Poll the endpoint
-        indicated in the Azure-AsyncOperation header for operation status.
+         indicated in the Azure-AsyncOperation header for operation status.
 
         :return: An instance of AsyncLROPoller that returns either None or the result of cls(response)
         :rtype: ~azure.core.polling.AsyncLROPoller[None]
@@ -3294,7 +3294,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
-        'Location' and 'Retry-After' headers.
+         'Location' and 'Retry-After' headers.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -3311,7 +3311,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
-        'Location' and 'Retry-After' headers.
+         'Location' and 'Retry-After' headers.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -3328,7 +3328,7 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with invalid
-        'Location' and 'Retry-After' headers.
+         'Location' and 'Retry-After' headers.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -3450,8 +3450,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -3468,8 +3468,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -3486,8 +3486,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
-        header is invalid.
+         contains ProvisioningState=’Creating’. The endpoint indicated in the Azure-AsyncOperation
+         header is invalid.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.
@@ -3609,8 +3609,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[_models.Product] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: ~lro.models.Product
@@ -3627,8 +3627,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[IO[bytes]] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Default value is None.
         :type product: IO[bytes]
@@ -3645,8 +3645,8 @@ class LROSADsOperations:  # pylint: disable=too-many-public-methods
         self, product: Optional[Union[_models.Product, IO[bytes]]] = None, **kwargs: Any
     ) -> AsyncLROPoller[None]:
         """Long running post request, service returns a 202 to the initial request, with an entity that
-        contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
-        header for operation status.
+         contains ProvisioningState=’Creating’. Poll the endpoint indicated in the Azure-AsyncOperation
+         header for operation status.
 
         :param product: Product to put. Is either a Product type or a IO[bytes] type. Default value is
          None.

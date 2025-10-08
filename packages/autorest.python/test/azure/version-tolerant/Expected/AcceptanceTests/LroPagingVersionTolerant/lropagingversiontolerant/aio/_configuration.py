@@ -20,7 +20,7 @@ class LroPagingClientConfiguration:  # pylint: disable=too-many-instance-attribu
     attributes.
 
     :keyword api_version: Api Version. Default value is "2021-10-01". Note that overriding this
-     default value may result in unsupported behavior.
+      default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

@@ -266,7 +266,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_integer(self, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 1 or "scenario":
-        "negative", "value": -2.
+         "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
          Required.
@@ -365,7 +365,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_long(self, scenario: str, value: int, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 105 or "scenario":
-        "negative", "value": -2.
+         "negative", "value": -2.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
          Required.
@@ -464,7 +464,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_float(self, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 0.07 or "scenario":
-        "negative", "value": -3.0.
+         "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
          Required.
@@ -563,7 +563,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_double(self, scenario: str, value: float, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "positive", "value": 7e120 or "scenario":
-        "negative", "value": -3.0.
+         "negative", "value": -3.0.
 
         :param scenario: Send a post request with header values "scenario": "positive" or "negative".
          Required.
@@ -662,7 +662,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_bool(self, scenario: str, value: bool, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "true", "value": true or "scenario":
-        "false", "value": false.
+         "false", "value": false.
 
         :param scenario: Send a post request with header values "scenario": "true" or "false".
          Required.
@@ -761,7 +761,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_string(self, scenario: str, value: Optional[str] = None, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "The quick brown fox jumps
-        over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
+         over the lazy dog" or "scenario": "null", "value": null or "scenario": "empty", "value": "".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty". Required.
@@ -861,7 +861,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_date(self, scenario: str, value: datetime.date, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01" or
-        "scenario": "min", "value": "0001-01-01".
+         "scenario": "min", "value": "0001-01-01".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
@@ -958,7 +958,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def param_datetime(self, scenario: str, value: datetime.datetime, **kwargs: Any) -> None:
         """Send a post request with header values "scenario": "valid", "value": "2010-01-01T12:34:56Z" or
-        "scenario": "min", "value": "0001-01-01T00:00:00Z".
+         "scenario": "min", "value": "0001-01-01T00:00:00Z".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
@@ -1058,7 +1058,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         self, scenario: str, value: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "Wed, 01 Jan 2010 12:34:56
-        GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
+         GMT" or "scenario": "min", "value": "Mon, 01 Jan 0001 00:00:00 GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
@@ -1108,7 +1108,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def response_datetime_rfc1123(self, scenario: str, **kwargs: Any) -> None:
         """Get a response with header values "Wed, 01 Jan 2010 12:34:56 GMT" or "Mon, 01 Jan 0001 00:00:00
-        GMT".
+         GMT".
 
         :param scenario: Send a post request with header values "scenario": "valid" or "min". Required.
         :type scenario: str
@@ -1351,7 +1351,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
         self, scenario: str, value: Optional[Union[str, _models.GreyscaleColors]] = None, **kwargs: Any
     ) -> None:
         """Send a post request with header values "scenario": "valid", "value": "GREY" or "scenario":
-        "null", "value": null.
+         "null", "value": null.
 
         :param scenario: Send a post request with header values "scenario": "valid" or "null" or
          "empty". Required.
@@ -1451,7 +1451,7 @@ class HeaderOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def custom_request_id(self, **kwargs: Any) -> None:
         """Send x-ms-client-request-id = 9C4D50EE-2D56-4CD3-8152-34347DC9F2B0 in the header of the
-        request.
+         request.
 
         :return: None or the result of cls(response)
         :rtype: None

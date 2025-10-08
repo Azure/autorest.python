@@ -27,13 +27,13 @@ class StorageManagementClientConfiguration:  # pylint: disable=too-many-instance
     :param credential: Credential needed for the client to connect to Azure. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: Gets subscription credentials which uniquely identify Microsoft Azure
-     subscription. The subscription ID forms part of the URI for every service call. Required.
+      subscription. The subscription ID forms part of the URI for every service call. Required.
     :type subscription_id: str
     :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :type cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: Api Version. Default value is "2015-05-01-preview". Note that overriding
-     this default value may result in unsupported behavior.
+      this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

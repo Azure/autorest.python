@@ -20,7 +20,7 @@ class AutoRestUrlTestServiceConfiguration:  # pylint: disable=too-many-instance-
     attributes.
 
     :param global_string_path: A string value 'globalItemStringPath' that appears in the path.
-     Required.
+      Required.
     :type global_string_path: str
     :param global_string_query: should contain value null. Default value is None.
     :type global_string_query: str

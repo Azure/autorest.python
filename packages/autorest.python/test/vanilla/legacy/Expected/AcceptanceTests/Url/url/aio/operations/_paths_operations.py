@@ -1016,7 +1016,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def date_null(self, date_path: datetime.date, **kwargs: Any) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
-        representation.
+         representation.
 
         :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
@@ -1196,7 +1196,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace_async
     async def array_csv_in_path(self, array_path: list[str], **kwargs: Any) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        csv-array format.
+         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format. Required.

@@ -36,7 +36,7 @@ class AutoRestHeadExceptionTestService:  # pylint: disable=client-accepts-api-ve
     :param endpoint: Service URL. Default value is None.
     :type endpoint: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     """
 

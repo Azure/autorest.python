@@ -203,7 +203,7 @@ class Fish(msrest.serialization.Model):
     """Fish.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Salmon, Shark
+     Salmon, Shark
 
     All required parameters must be populated in order to send to server.
 
@@ -258,7 +258,7 @@ class Shark(Fish):
     """Shark.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    Cookiecuttershark, Goblinshark, Sawshark
+     Cookiecuttershark, Goblinshark, Sawshark
 
     All required parameters must be populated in order to send to server.
 
@@ -528,7 +528,7 @@ class DotFish(msrest.serialization.Model):
     """DotFish.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    DotSalmon
+     DotSalmon
 
     All required parameters must be populated in order to send to server.
 
@@ -900,7 +900,7 @@ class MyBaseType(msrest.serialization.Model):
     """MyBaseType.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    MyDerivedType
+     MyDerivedType
 
     All required parameters must be populated in order to send to server.
 
@@ -1018,7 +1018,7 @@ class Salmon(Fish):
     """Salmon.
 
     You probably want to use the sub-classes and not this class directly. Known sub-classes are:
-    SmartSalmon
+     SmartSalmon
 
     All required parameters must be populated in order to send to server.
 

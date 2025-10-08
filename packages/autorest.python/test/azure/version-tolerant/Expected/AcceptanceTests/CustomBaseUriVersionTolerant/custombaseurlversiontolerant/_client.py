@@ -25,7 +25,7 @@ class AutoRestParameterizedHostTestClient:  # pylint: disable=client-accepts-api
     :ivar paths: PathsOperations operations
     :vartype paths: custombaseurlversiontolerant.operations.PathsOperations
     :param host: A string value that is used as a global part of the parameterized host. Default
-     value is "host".
+      value is "host".
     :type host: str
     """
 

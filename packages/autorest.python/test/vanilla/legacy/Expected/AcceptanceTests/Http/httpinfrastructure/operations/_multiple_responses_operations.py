@@ -1788,7 +1788,7 @@ class MultipleResponsesOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get200_model_a200_none(self, **kwargs: Any) -> _models.MyException:
         """Send a 200 response with no payload, when a payload is expected - client should return a null
-        object of thde type for model A.
+         object of thde type for model A.
 
         :return: MyException or the result of cls(response)
         :rtype: ~httpinfrastructure.models.MyException

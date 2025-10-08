@@ -34,7 +34,7 @@ class AutorestSecurityKey(_AutorestSecurityKeyOperationsMixin):  # pylint: disab
     :param base_url: Service URL. Default value is None.
     :type base_url: str
     :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
+      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     """
 

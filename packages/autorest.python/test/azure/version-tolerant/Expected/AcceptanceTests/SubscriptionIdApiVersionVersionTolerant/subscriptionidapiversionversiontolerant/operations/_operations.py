@@ -93,8 +93,8 @@ class GroupOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "name": "str"
+                "location": "str",
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {

@@ -147,7 +147,7 @@ class _MediaTypesClientOperationsMixin(
         self, input: Optional[_models.SourcePath] = None, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Default value is None.
         :type input: ~internaloperation.models.SourcePath
@@ -164,7 +164,7 @@ class _MediaTypesClientOperationsMixin(
         self, input: Optional[IO[bytes]] = None, *, content_type: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Default value is None.
         :type input: IO[bytes]
@@ -182,7 +182,7 @@ class _MediaTypesClientOperationsMixin(
         self, input: Optional[Union[_models.SourcePath, IO[bytes]]] = None, **kwargs: Any
     ) -> None:
         """Analyze body, that could be different media types. Adds to AnalyzeBody by not having an accept
-        type.
+         type.
 
         :param input: Input parameter. Is either a SourcePath type or a IO[bytes] type. Default value
          is None.
@@ -299,7 +299,7 @@ class _MediaTypesClientOperationsMixin(
     @distributed_trace_async
     async def binary_body_with_two_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with two content types. Pass in of {'hello': 'world'} for the application/json
-        content type, and a byte stream of 'hello, world!' for application/octet-stream.
+         content type, and a byte stream of 'hello, world!' for application/octet-stream.
 
         :param message: The payload body. Required.
         :type message: IO[bytes]
@@ -352,8 +352,8 @@ class _MediaTypesClientOperationsMixin(
     @distributed_trace_async
     async def binary_body_with_three_content_types(self, message: IO[bytes], **kwargs: Any) -> str:
         """Binary body with three content types. Pass in string 'hello, world' with content type
-        'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
-        'application/octet-stream'.
+         'text/plain', {'hello': world'} with content type 'application/json' and a byte string for
+         'application/octet-stream'.
 
         :param message: The payload body. Required.
         :type message: IO[bytes]
@@ -417,8 +417,8 @@ class _MediaTypesClientOperationsMixin(
     @distributed_trace_async
     async def _body_three_types(self, message: Union[Any, IO[bytes], str], **kwargs: Any) -> str:
         """Body with three types. Can be stream, string, or JSON. Pass in string 'hello, world' with
-        content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
-        string for 'application/octet-stream'.
+         content type 'text/plain', {'hello': world'} with content type 'application/json' and a byte
+         string for 'application/octet-stream'.
 
         :param message: The payload body. Is one of the following types: Any, IO[bytes], str Required.
         :type message: any or IO[bytes] or str

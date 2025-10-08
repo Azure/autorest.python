@@ -20,7 +20,7 @@ class LROWithParamaterizedEndpointsConfiguration:  # pylint: disable=too-many-in
     attributes.
 
     :param host: A string value that is used as a global part of the parameterized host. Pass in
-     'host:3000' to pass test. Default value is "host".
+      'host:3000' to pass test. Default value is "host".
     :type host: str
     """
 

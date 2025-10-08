@@ -121,9 +121,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -184,9 +184,9 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
 
@@ -222,9 +222,9 @@ class BasicOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -286,9 +286,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -344,9 +344,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -402,9 +402,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -460,9 +460,9 @@ class BasicOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "color": "str",
-                    "id": 0,
-                    "name": "str"
+                "color": "str",
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -538,8 +538,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
         error_map: MutableMapping = {
@@ -600,8 +600,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
 
@@ -634,8 +634,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
         error_map: MutableMapping = {
@@ -696,8 +696,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
         error_map: MutableMapping = {
@@ -758,8 +758,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
 
@@ -793,8 +793,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0,
-                    "field2": 0
+                "field1": 0,
+                "field2": 0
                 }
         """
         error_map: MutableMapping = {
@@ -855,8 +855,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0.0,
-                    "field2": 0.0
+                "field1": 0.0,
+                "field2": 0.0
                 }
         """
         error_map: MutableMapping = {
@@ -917,8 +917,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,
-                    "field2": 0.0
+                "field1": 0.0,
+                "field2": 0.0
                 }
         """
 
@@ -954,8 +954,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,
-                    "field2": 0.0
+                "field1": 0.0,
+                "field2": 0.0
                 }
         """
         error_map: MutableMapping = {
@@ -1016,9 +1016,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field1": 0.0,
+                "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0
+                       0.0
                 }
         """
         error_map: MutableMapping = {
@@ -1080,9 +1080,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,
+                "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0
+                       0.0
                 }
         """
 
@@ -1120,9 +1120,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field1": 0.0,
+                "field1": 0.0,
                 "field_56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose":
-                      0.0
+                       0.0
                 }
         """
         error_map: MutableMapping = {
@@ -1183,8 +1183,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field_false": bool,
-                    "field_true": bool
+                "field_false": bool,
+                "field_true": bool
                 }
         """
         error_map: MutableMapping = {
@@ -1245,8 +1245,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field_false": bool,
-                    "field_true": bool
+                "field_false": bool,
+                "field_true": bool
                 }
         """
 
@@ -1280,8 +1280,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field_false": bool,
-                    "field_true": bool
+                "field_false": bool,
+                "field_true": bool
                 }
         """
         error_map: MutableMapping = {
@@ -1342,9 +1342,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "empty": "str",
-                    "field": "str",
-                    "null": "str"
+                "empty": "str",
+                "field": "str",
+                "null": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -1405,9 +1405,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "empty": "str",
-                    "field": "str",
-                    "null": "str"
+                "empty": "str",
+                "field": "str",
+                "null": "str"
                 }
         """
 
@@ -1443,9 +1443,9 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "empty": "str",
-                    "field": "str",
-                    "null": "str"
+                "empty": "str",
+                "field": "str",
+                "null": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -1506,8 +1506,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20",
-                    "leap": "2020-02-20"
+                "field": "2020-02-20",
+                "leap": "2020-02-20"
                 }
         """
         error_map: MutableMapping = {
@@ -1568,8 +1568,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20",
-                    "leap": "2020-02-20"
+                "field": "2020-02-20",
+                "leap": "2020-02-20"
                 }
         """
 
@@ -1603,8 +1603,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20",
-                    "leap": "2020-02-20"
+                "field": "2020-02-20",
+                "leap": "2020-02-20"
                 }
         """
         error_map: MutableMapping = {
@@ -1665,8 +1665,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -1728,8 +1728,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
 
@@ -1766,8 +1766,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -1828,8 +1828,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -1893,8 +1893,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
 
@@ -1931,8 +1931,8 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "2020-02-20 00:00:00",
-                    "now": "2020-02-20 00:00:00"
+                "field": "2020-02-20 00:00:00",
+                "now": "2020-02-20 00:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -1993,7 +1993,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": "1 day, 0:00:00"
+                "field": "1 day, 0:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -2054,7 +2054,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "1 day, 0:00:00"
+                "field": "1 day, 0:00:00"
                 }
         """
 
@@ -2090,7 +2090,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": "1 day, 0:00:00"
+                "field": "1 day, 0:00:00"
                 }
         """
         error_map: MutableMapping = {
@@ -2151,7 +2151,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # response body for status code(s): 200
                 response == {
-                    "field": bytes("bytes", encoding="utf-8")
+                "field": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping = {
@@ -2213,7 +2213,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": bytes("bytes", encoding="utf-8")
+                "field": bytes("bytes", encoding="utf-8")
                 }
         """
 
@@ -2248,7 +2248,7 @@ class PrimitiveOperations:  # pylint: disable=too-many-public-methods
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "field": bytes("bytes", encoding="utf-8")
+                "field": bytes("bytes", encoding="utf-8")
                 }
         """
         error_map: MutableMapping = {
@@ -2329,9 +2329,9 @@ class ArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
         error_map: MutableMapping = {
@@ -2393,9 +2393,9 @@ class ArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
 
@@ -2432,9 +2432,9 @@ class ArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
         error_map: MutableMapping = {
@@ -2495,9 +2495,9 @@ class ArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
         error_map: MutableMapping = {
@@ -2558,9 +2558,9 @@ class ArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
 
@@ -2596,9 +2596,9 @@ class ArrayOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
         error_map: MutableMapping = {
@@ -2659,9 +2659,9 @@ class ArrayOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "array": [
-                        "str"
-                    ]
+                "array": [
+                "str"
+                ]
                 }
         """
         error_map: MutableMapping = {
@@ -2737,9 +2737,9 @@ class DictionaryOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -2801,9 +2801,9 @@ class DictionaryOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
 
@@ -2841,9 +2841,9 @@ class DictionaryOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -2904,9 +2904,9 @@ class DictionaryOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -2967,9 +2967,9 @@ class DictionaryOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
 
@@ -3005,9 +3005,9 @@ class DictionaryOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -3068,9 +3068,9 @@ class DictionaryOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -3126,9 +3126,9 @@ class DictionaryOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "defaultProgram": {
-                        "str": "str"
-                    }
+                "defaultProgram": {
+                "str": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -3204,17 +3204,17 @@ class InheritanceOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "breed": "str",
-                    "color": "str",
-                    "hates": [
-                        {
-                            "food": "str",
-                            "id": 0,
-                            "name": "str"
-                        }
-                    ],
-                    "id": 0,
-                    "name": "str"
+                "breed": "str",
+                "color": "str",
+                "hates": [
+                {
+                "food": "str",
+                "id": 0,
+                "name": "str"
+                }
+                ],
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -3277,17 +3277,17 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str",
-                    "color": "str",
-                    "hates": [
-                        {
-                            "food": "str",
-                            "id": 0,
-                            "name": "str"
-                        }
-                    ],
-                    "id": 0,
-                    "name": "str"
+                "breed": "str",
+                "color": "str",
+                "hates": [
+                {
+                "food": "str",
+                "id": 0,
+                "name": "str"
+                }
+                ],
+                "id": 0,
+                "name": "str"
                 }
         """
 
@@ -3327,17 +3327,17 @@ class InheritanceOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "breed": "str",
-                    "color": "str",
-                    "hates": [
-                        {
-                            "food": "str",
-                            "id": 0,
-                            "name": "str"
-                        }
-                    ],
-                    "id": 0,
-                    "name": "str"
+                "breed": "str",
+                "color": "str",
+                "hates": [
+                {
+                "food": "str",
+                "id": 0,
+                "name": "str"
+                }
+                ],
+                "id": 0,
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -3417,58 +3417,58 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -3518,39 +3518,14 @@ class PolymorphismOperations:
     async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };.
+         Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -3563,58 +3538,58 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -3627,39 +3602,14 @@ class PolymorphismOperations:
     ) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };.
+         Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -3673,39 +3623,14 @@ class PolymorphismOperations:
     async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-                 'fishtype':'Salmon',
-                 'location':'alaska',
-                 'iswild':true,
-                 'species':'king',
-                 'length':1.0,
-                 'siblings':[
-                   {
-                     'fishtype':'Shark',
-                     'age':6,
-                     'birthday': '2012-01-05T01:00:00Z',
-                     'length':20.0,
-                     'species':'predator',
-                   },
-                   {
-                     'fishtype':'Sawshark',
-                     'age':105,
-                     'birthday': '1900-01-05T01:00:00Z',
-                     'length':10.0,
-                     'picture': new Buffer([255, 255, 255, 255, 254]).toString('base64'),
-                     'species':'dangerous',
-                   },
-                   {
-                     'fishtype': 'goblin',
-                     'age': 1,
-                     'birthday': '2015-08-08T00:00:00Z',
-                     'length': 30.0,
-                     'species': 'scary',
-                     'jawsize': 5
-                   }
-                 ]
-               };. Is either a JSON type or a IO[bytes] type. Required.
+        :param complex_body: Please put a salmon that looks like this: { 'fishtype':'Salmon',
+         'location':'alaska', 'iswild':true, 'species':'king', 'length':1.0, 'siblings':[ {
+         'fishtype':'Shark', 'age':6, 'birthday': '2012-01-05T01:00:00Z', 'length':20.0,
+         'species':'predator', }, { 'fishtype':'Sawshark', 'age':105, 'birthday':
+         '1900-01-05T01:00:00Z', 'length':10.0, 'picture': new Buffer([255, 255, 255, 255,
+         254]).toString('base64'), 'species':'dangerous', }, { 'fishtype': 'goblin', 'age': 1,
+         'birthday': '2015-08-08T00:00:00Z', 'length': 30.0, 'species': 'scary', 'jawsize': 5 } ] };. Is
+         either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
         :return: None
         :rtype: None
@@ -3715,58 +3640,58 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -3829,14 +3754,14 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fish.type":
+                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
-                    "fish.type": "DotSalmon",
-                    "iswild": bool,
-                    "location": "str",
-                    "species": "str"
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -3885,8 +3810,8 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_with_discriminator(self, **kwargs: Any) -> JSON:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
-        element type, with discriminator specified. Deserialization must NOT fail and use the
-        discriminator type specified on the wire.
+         element type, with discriminator specified. Deserialization must NOT fail and use the
+         discriminator type specified on the wire.
 
         :return: JSON object
         :rtype: JSON
@@ -3896,36 +3821,36 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fish.type":
+                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
-                    "fish.type": "DotSalmon",
-                    "iswild": bool,
-                    "location": "str",
-                    "species": "str"
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "fishes": [
-                        dot_fish
-                    ],
-                    "salmons": [
-                        {
-                            "fish.type": "DotSalmon",
-                            "iswild": bool,
-                            "location": "str",
-                            "species": "str"
-                        }
-                    ],
-                    "sampleFish": dot_fish,
-                    "sampleSalmon": {
-                        "fish.type": "DotSalmon",
-                        "iswild": bool,
-                        "location": "str",
-                        "species": "str"
-                    }
+                "fishes": [
+                dot_fish
+                ],
+                "salmons": [
+                {
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
+                }
+                ],
+                "sampleFish": dot_fish,
+                "sampleSalmon": {
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -3971,8 +3896,8 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_composed_without_discriminator(self, **kwargs: Any) -> JSON:
         """Get complex object composing a polymorphic scalar property and array property with polymorphic
-        element type, without discriminator specified on wire. Deserialization must NOT fail and use
-        the explicit type of the property.
+         element type, without discriminator specified on wire. Deserialization must NOT fail and use
+         the explicit type of the property.
 
         :return: JSON object
         :rtype: JSON
@@ -3982,36 +3907,36 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fish.type":
+                   off discriminator "fish.type":
 
                 # JSON input template for discriminator value "DotSalmon":
                 dot_fish = {
-                    "fish.type": "DotSalmon",
-                    "iswild": bool,
-                    "location": "str",
-                    "species": "str"
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "fishes": [
-                        dot_fish
-                    ],
-                    "salmons": [
-                        {
-                            "fish.type": "DotSalmon",
-                            "iswild": bool,
-                            "location": "str",
-                            "species": "str"
-                        }
-                    ],
-                    "sampleFish": dot_fish,
-                    "sampleSalmon": {
-                        "fish.type": "DotSalmon",
-                        "iswild": bool,
-                        "location": "str",
-                        "species": "str"
-                    }
+                "fishes": [
+                dot_fish
+                ],
+                "salmons": [
+                {
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
+                }
+                ],
+                "sampleFish": dot_fish,
+                "sampleSalmon": {
+                "fish.type": "DotSalmon",
+                "iswild": bool,
+                "location": "str",
+                "species": "str"
+                }
                 }
         """
         error_map: MutableMapping = {
@@ -4057,7 +3982,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def get_complicated(self, **kwargs: Any) -> JSON:
         """Get complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :return: JSON object
         :rtype: JSON
@@ -4067,19 +3992,19 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4130,7 +4055,7 @@ class PolymorphismOperations:
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Required.
         :type complex_body: JSON
@@ -4145,19 +4070,19 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -4169,7 +4094,7 @@ class PolymorphismOperations:
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Required.
         :type complex_body: IO[bytes]
@@ -4184,7 +4109,7 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_complicated(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic, but not at the root of the hierarchy; also have
-        additional properties.
+         additional properties.
 
         :param complex_body: Is either a JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
@@ -4196,19 +4121,19 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -4278,38 +4203,38 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4335,19 +4260,19 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4368,38 +4293,38 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = salmon
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4462,35 +4387,14 @@ class PolymorphismOperations:
         self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -4503,58 +4407,58 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -4566,35 +4470,14 @@ class PolymorphismOperations:
         self, complex_body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -4607,35 +4490,15 @@ class PolymorphismOperations:
     @distributed_trace_async
     async def put_valid_missing_required(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic, attempting to omit required 'birthday' field - the
-        request should not be allowed from the client.
+         request should not be allowed from the client.
 
         :param complex_body: Please attempt put a sawshark that looks like this, the client should not
-         allow this data to be sent:
-         {
-             "fishtype": "sawshark",
-             "species": "snaggle toothed",
-             "length": 18.5,
-             "age": 2,
-             "birthday": "2013-06-01T01:00:00Z",
-             "location": "alaska",
-             "picture": base64(FF FF FF FF FE),
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "birthday": "2012-01-05T01:00:00Z",
-                     "length": 20,
-                     "age": 6
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "picture": base64(FF FF FF FF FE),
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Is either a JSON type or a IO[bytes] type. Required.
+         allow this data to be sent: { "fishtype": "sawshark", "species": "snaggle toothed", "length":
+         18.5, "age": 2, "birthday": "2013-06-01T01:00:00Z", "location": "alaska", "picture": base64(FF
+         FF FF FF FE), "siblings": [ { "fishtype": "shark", "species": "predator", "birthday":
+         "2012-01-05T01:00:00Z", "length": 20, "age": 6 }, { "fishtype": "sawshark", "species":
+         "dangerous", "picture": base64(FF FF FF FF FE), "length": 10, "age": 105 } ] }. Is either a
+         JSON type or a IO[bytes] type. Required.
         :type complex_body: JSON or IO[bytes]
         :return: None
         :rtype: None
@@ -4645,58 +4508,58 @@ class PolymorphismOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -4779,58 +4642,58 @@ class PolymorphicrecursiveOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "fishtype":
+                   off discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # response body for status code(s): 200
@@ -4880,59 +4743,14 @@ class PolymorphicrecursiveOperations:
     async def put_valid(self, complex_body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Required.
         :type complex_body: JSON
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
@@ -4945,58 +4763,58 @@ class PolymorphicrecursiveOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -5009,59 +4827,14 @@ class PolymorphicrecursiveOperations:
     ) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Required.
         :type complex_body: IO[bytes]
         :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
          Default value is "application/json".
@@ -5075,59 +4848,15 @@ class PolymorphicrecursiveOperations:
     async def put_valid(self, complex_body: Union[JSON, IO[bytes]], **kwargs: Any) -> None:
         """Put complex types that are polymorphic and have recursive references.
 
-        :param complex_body: Please put a salmon that looks like this:
-         {
-             "fishtype": "salmon",
-             "species": "king",
-             "length": 1,
-             "age": 1,
-             "location": "alaska",
-             "iswild": true,
-             "siblings": [
-                 {
-                     "fishtype": "shark",
-                     "species": "predator",
-                     "length": 20,
-                     "age": 6,
-                     "siblings": [
-                         {
-                             "fishtype": "salmon",
-                             "species": "coho",
-                             "length": 2,
-                             "age": 2,
-                             "location": "atlantic",
-                             "iswild": true,
-                             "siblings": [
-                                 {
-                                     "fishtype": "shark",
-                                     "species": "predator",
-                                     "length": 20,
-                                     "age": 6
-                                 },
-                                 {
-                                     "fishtype": "sawshark",
-                                     "species": "dangerous",
-                                     "length": 10,
-                                     "age": 105
-                                 }
-                             ]
-                         },
-                         {
-                             "fishtype": "sawshark",
-                             "species": "dangerous",
-                             "length": 10,
-                             "age": 105
-                         }
-                     ]
-                 },
-                 {
-                     "fishtype": "sawshark",
-                     "species": "dangerous",
-                     "length": 10,
-                     "age": 105
-                 }
-             ]
-         }. Is either a JSON type or a IO[bytes] type. Required.
+        :param complex_body: Please put a salmon that looks like this: { "fishtype": "salmon",
+         "species": "king", "length": 1, "age": 1, "location": "alaska", "iswild": true, "siblings": [ {
+         "fishtype": "shark", "species": "predator", "length": 20, "age": 6, "siblings": [ { "fishtype":
+         "salmon", "species": "coho", "length": 2, "age": 2, "location": "atlantic", "iswild": true,
+         "siblings": [ { "fishtype": "shark", "species": "predator", "length": 20, "age": 6 }, {
+         "fishtype": "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype":
+         "sawshark", "species": "dangerous", "length": 10, "age": 105 } ] }, { "fishtype": "sawshark",
+         "species": "dangerous", "length": 10, "age": 105 } ] }. Is either a JSON type or a IO[bytes]
+         type. Required.
         :type complex_body: JSON or IO[bytes]
         :return: None
         :rtype: None
@@ -5137,58 +4866,58 @@ class PolymorphicrecursiveOperations:
             .. code-block:: python
 
                 # The input is polymorphic. The following are possible polymorphic inputs based off
-                  discriminator "fishtype":
+                   discriminator "fishtype":
 
                 # JSON input template for discriminator value "smart_salmon":
                 fish = {
-                    "fishtype": "smart_salmon",
-                    "length": 0.0,
-                    "college_degree": "str",
-                    "iswild": bool,
-                    "location": "str",
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "fishtype": "smart_salmon",
+                "length": 0.0,
+                "college_degree": "str",
+                "iswild": bool,
+                "location": "str",
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "cookiecuttershark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "cookiecuttershark",
-                    "length": 0.0,
-                    "age": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "cookiecuttershark",
+                "length": 0.0,
+                "age": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "goblin":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "goblin",
-                    "length": 0.0,
-                    "age": 0,
-                    "color": "gray",
-                    "jawsize": 0,
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "goblin",
+                "length": 0.0,
+                "age": 0,
+                "color": "gray",
+                "jawsize": 0,
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template for discriminator value "sawshark":
                 fish = {
-                    "birthday": "2020-02-20 00:00:00",
-                    "fishtype": "sawshark",
-                    "length": 0.0,
-                    "age": 0,
-                    "picture": bytes("bytes", encoding="utf-8"),
-                    "siblings": [
-                        fish
-                    ],
-                    "species": "str"
+                "birthday": "2020-02-20 00:00:00",
+                "fishtype": "sawshark",
+                "length": 0.0,
+                "age": 0,
+                "picture": bytes("bytes", encoding="utf-8"),
+                "siblings": [
+                fish
+                ],
+                "species": "str"
                 }
 
                 # JSON input template you can fill out and use as your body input.
@@ -5272,8 +5001,8 @@ class ReadonlypropertyOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": "str",
-                    "size": 0
+                "id": "str",
+                "size": 0
                 }
         """
         error_map: MutableMapping = {
@@ -5334,8 +5063,8 @@ class ReadonlypropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "id": "str",
-                    "size": 0
+                "id": "str",
+                "size": 0
                 }
         """
 
@@ -5370,8 +5099,8 @@ class ReadonlypropertyOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 complex_body = {
-                    "id": "str",
-                    "size": 0
+                "id": "str",
+                "size": 0
                 }
         """
         error_map: MutableMapping = {
@@ -5451,16 +5180,16 @@ class FlattencomplexOperations:
             .. code-block:: python
 
                 # The response is polymorphic. The following are possible polymorphic responses based
-                  off discriminator "kind":
+                   off discriminator "kind":
 
                 # JSON input template for discriminator value "Kind1":
                 my_base_type = {
-                    "kind": "Kind1",
-                    "helper": {
-                        "propBH1": "str"
-                    },
-                    "propB1": "str",
-                    "propD1": "str"
+                "kind": "Kind1",
+                "helper": {
+                "propBH1": "str"
+                },
+                "propB1": "str",
+                "propD1": "str"
                 }
 
                 # response body for status code(s): 200

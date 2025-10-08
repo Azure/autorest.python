@@ -65,8 +65,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -132,8 +132,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
-        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+         localStringPath='localStringPath', globalStringQuery=null,
+         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -199,8 +199,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
-        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+         localStringPath='localStringPath', globalStringQuery=null,
+         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -266,8 +266,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery=null, localStringQuery=null.
+         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.

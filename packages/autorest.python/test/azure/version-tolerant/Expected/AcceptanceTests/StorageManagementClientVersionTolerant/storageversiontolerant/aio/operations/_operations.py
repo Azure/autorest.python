@@ -92,15 +92,15 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 account_name = {
-                    "name": "str",
-                    "type": "Microsoft.Storage/storageAccounts"
+                "name": "str",
+                "type": "Microsoft.Storage/storageAccounts"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",
-                    "nameAvailable": bool,
-                    "reason": "str"
+                "message": "str",
+                "nameAvailable": bool,
+                "reason": "str"
                 }
         """
 
@@ -126,9 +126,9 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",
-                    "nameAvailable": bool,
-                    "reason": "str"
+                "message": "str",
+                "nameAvailable": bool,
+                "reason": "str"
                 }
         """
 
@@ -149,15 +149,15 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 account_name = {
-                    "name": "str",
-                    "type": "Microsoft.Storage/storageAccounts"
+                "name": "str",
+                "type": "Microsoft.Storage/storageAccounts"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "message": "str",
-                    "nameAvailable": bool,
-                    "reason": "str"
+                "message": "str",
+                "nameAvailable": bool,
+                "reason": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -285,9 +285,9 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-        cannot be updated with this API and should instead use the Update Storage Account API. If an
-        account is already created and subsequent PUT request is issued with exact same set of
-        properties, then HTTP 200 would be returned.
+         cannot be updated with this API and should instead use the Update Storage Account API. If an
+         account is already created and subsequent PUT request is issued with exact same set of
+         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -310,63 +310,63 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
 
@@ -381,9 +381,9 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-        cannot be updated with this API and should instead use the Update Storage Account API. If an
-        account is already created and subsequent PUT request is issued with exact same set of
-        properties, then HTTP 200 would be returned.
+         cannot be updated with this API and should instead use the Update Storage Account API. If an
+         account is already created and subsequent PUT request is issued with exact same set of
+         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -406,49 +406,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
 
@@ -457,9 +457,9 @@ class StorageAccountsOperations:
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> AsyncLROPoller[JSON]:
         """Asynchronously creates a new storage account with the specified parameters. Existing accounts
-        cannot be updated with this API and should instead use the Update Storage Account API. If an
-        account is already created and subsequent PUT request is issued with exact same set of
-        properties, then HTTP 200 would be returned.
+         cannot be updated with this API and should instead use the Update Storage Account API. If an
+         account is already created and subsequent PUT request is issued with exact same set of
+         properties, then HTTP 200 would be returned.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -480,63 +480,63 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -641,8 +641,8 @@ class StorageAccountsOperations:
     @distributed_trace_async
     async def get_properties(self, resource_group_name: str, account_name: str, **kwargs: Any) -> JSON:
         """Returns the properties for the specified storage account including but not limited to name,
-        account type, location, and account status. The ListKeys operation should be used to retrieve
-        storage keys.
+         account type, location, and account status. The ListKeys operation should be used to retrieve
+         storage keys.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -660,49 +660,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -760,12 +760,12 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
-        domain (note that custom domains cannot be added via the Create operation). Only one custom
-        domain is supported per storage account. This API can only be used to update one of tags,
-        accountType, or customDomain per call. To update multiple of these properties, call the API
-        multiple times with one change per call. This call does not change the storage keys for the
-        account. If you want to change storage account keys, use the RegenerateKey operation. The
-        location and name of the storage account cannot be changed after creation.
+         domain (note that custom domains cannot be added via the Create operation). Only one custom
+         domain is supported per storage account. This API can only be used to update one of tags,
+         accountType, or customDomain per call. To update multiple of these properties, call the API
+         multiple times with one change per call. This call does not change the storage keys for the
+         account. If you want to change storage account keys, use the RegenerateKey operation. The
+         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -789,67 +789,67 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        }
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                }
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
 
@@ -864,12 +864,12 @@ class StorageAccountsOperations:
         **kwargs: Any
     ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
-        domain (note that custom domains cannot be added via the Create operation). Only one custom
-        domain is supported per storage account. This API can only be used to update one of tags,
-        accountType, or customDomain per call. To update multiple of these properties, call the API
-        multiple times with one change per call. This call does not change the storage keys for the
-        account. If you want to change storage account keys, use the RegenerateKey operation. The
-        location and name of the storage account cannot be changed after creation.
+         domain (note that custom domains cannot be added via the Create operation). Only one custom
+         domain is supported per storage account. This API can only be used to update one of tags,
+         accountType, or customDomain per call. To update multiple of these properties, call the API
+         multiple times with one change per call. This call does not change the storage keys for the
+         account. If you want to change storage account keys, use the RegenerateKey operation. The
+         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -893,49 +893,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
 
@@ -944,12 +944,12 @@ class StorageAccountsOperations:
         self, resource_group_name: str, account_name: str, parameters: Union[JSON, IO[bytes]], **kwargs: Any
     ) -> JSON:
         """Updates the account type or tags for a storage account. It can also be used to add a custom
-        domain (note that custom domains cannot be added via the Create operation). Only one custom
-        domain is supported per storage account. This API can only be used to update one of tags,
-        accountType, or customDomain per call. To update multiple of these properties, call the API
-        multiple times with one change per call. This call does not change the storage keys for the
-        account. If you want to change storage account keys, use the RegenerateKey operation. The
-        location and name of the storage account cannot be changed after creation.
+         domain (note that custom domains cannot be added via the Create operation). Only one custom
+         domain is supported per storage account. This API can only be used to update one of tags,
+         accountType, or customDomain per call. To update multiple of these properties, call the API
+         multiple times with one change per call. This call does not change the storage keys for the
+         account. If you want to change storage account keys, use the RegenerateKey operation. The
+         location and name of the storage account cannot be changed after creation.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -970,67 +970,67 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 parameters = {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        }
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                }
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -1107,8 +1107,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",
-                    "key2": "str"
+                "key1": "str",
+                "key2": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -1158,7 +1158,7 @@ class StorageAccountsOperations:
     @distributed_trace
     def list(self, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Lists all the storage accounts available under the subscription. Note that storage keys are not
-        returned; use the ListKeys operation for this.
+         returned; use the ListKeys operation for this.
 
         :return: An iterator like instance of JSON object
         :rtype: ~azure.core.async_paging.AsyncItemPaged[JSON]
@@ -1169,49 +1169,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1282,7 +1282,7 @@ class StorageAccountsOperations:
     @distributed_trace
     def list_by_resource_group(self, resource_group_name: str, **kwargs: Any) -> AsyncItemPaged[JSON]:
         """Lists all the storage accounts available under the given resource group. Note that storage keys
-        are not returned; use the ListKeys operation for this.
+         are not returned; use the ListKeys operation for this.
 
         :param resource_group_name: The name of the resource group within the user’s subscription.
          Required.
@@ -1296,49 +1296,49 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "location": "str",
-                    "id": "str",
-                    "name": "str",
-                    "properties": {
-                        "accountType": "str",
-                        "creationTime": "2020-02-20 00:00:00",
-                        "customDomain": {
-                            "name": "str",
-                            "useSubDomain": bool
-                        },
-                        "lastGeoFailoverTime": "2020-02-20 00:00:00",
-                        "primaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "primaryLocation": "str",
-                        "provisioningState": "str",
-                        "secondaryEndpoints": {
-                            "FooPoint": {
-                                "Bar.Point": {
-                                    "RecursivePoint": ...
-                                }
-                            },
-                            "blob": "str",
-                            "dummyEndPoint": ...,
-                            "queue": "str",
-                            "table": "str"
-                        },
-                        "secondaryLocation": "str",
-                        "statusOfPrimary": "str",
-                        "statusOfSecondary": "str"
-                    },
-                    "tags": {
-                        "str": "str"
-                    },
-                    "type": "str"
+                "location": "str",
+                "id": "str",
+                "name": "str",
+                "properties": {
+                "accountType": "str",
+                "creationTime": "2020-02-20 00:00:00",
+                "customDomain": {
+                "name": "str",
+                "useSubDomain": bool
+                },
+                "lastGeoFailoverTime": "2020-02-20 00:00:00",
+                "primaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "primaryLocation": "str",
+                "provisioningState": "str",
+                "secondaryEndpoints": {
+                "FooPoint": {
+                "Bar.Point": {
+                "RecursivePoint": ...
+                }
+                },
+                "blob": "str",
+                "dummyEndPoint": ...,
+                "queue": "str",
+                "table": "str"
+                },
+                "secondaryLocation": "str",
+                "statusOfPrimary": "str",
+                "statusOfSecondary": "str"
+                },
+                "tags": {
+                "str": "str"
+                },
+                "type": "str"
                 }
         """
         _headers = kwargs.pop("headers", {}) or {}
@@ -1440,13 +1440,13 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"
+                "keyName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",
-                    "key2": "str"
+                "key1": "str",
+                "key2": "str"
                 }
         """
 
@@ -1483,8 +1483,8 @@ class StorageAccountsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",
-                    "key2": "str"
+                "key1": "str",
+                "key2": "str"
                 }
         """
 
@@ -1513,13 +1513,13 @@ class StorageAccountsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 regenerate_key = {
-                    "keyName": "str"
+                "keyName": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "key1": "str",
-                    "key2": "str"
+                "key1": "str",
+                "key2": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -1609,17 +1609,17 @@ class UsageOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "value": [
-                        {
-                            "currentValue": 0,
-                            "limit": 0,
-                            "name": {
-                                "localizedValue": "str",
-                                "value": "str"
-                            },
-                            "unit": "str"
-                        }
-                    ]
+                "value": [
+                {
+                "currentValue": 0,
+                "limit": 0,
+                "name": {
+                "localizedValue": "str",
+                "value": "str"
+                },
+                "unit": "str"
+                }
+                ]
                 }
         """
         error_map: MutableMapping = {

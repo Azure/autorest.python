@@ -102,9 +102,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {
@@ -168,16 +168,16 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
         """
 
@@ -201,9 +201,9 @@ class PetOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
         """
 
@@ -222,16 +222,16 @@ class PetOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 pet_param = {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "IntEnum": "str",
-                    "DaysOfWeek": "Friday",
-                    "name": "str"
+                "IntEnum": "str",
+                "DaysOfWeek": "Friday",
+                "name": "str"
                 }
         """
         error_map: MutableMapping = {

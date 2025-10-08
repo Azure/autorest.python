@@ -332,7 +332,7 @@ class ParameterGroupingOperations:
         **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
-        groupedParameter.
+         groupedParameter.
 
         :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
          None. Default value is None.

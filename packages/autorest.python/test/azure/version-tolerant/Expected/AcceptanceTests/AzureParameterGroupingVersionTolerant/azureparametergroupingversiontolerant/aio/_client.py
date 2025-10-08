@@ -24,7 +24,7 @@ class AutoRestParameterGroupingTestService:  # pylint: disable=client-accepts-ap
 
     :ivar parameter_grouping: ParameterGroupingOperations operations
     :vartype parameter_grouping:
-     azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations
+      azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """

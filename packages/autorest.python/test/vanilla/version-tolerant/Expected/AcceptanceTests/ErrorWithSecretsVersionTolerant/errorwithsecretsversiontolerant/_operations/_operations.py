@@ -81,8 +81,8 @@ class _ErrorWithSecretsOperationsMixin(
 
                 # response body for status code(s): 200
                 response == {
-                    "key": "str",
-                    "value": "str"
+                "key": "str",
+                "value": "str"
                 }
         """
         error_map: MutableMapping = {

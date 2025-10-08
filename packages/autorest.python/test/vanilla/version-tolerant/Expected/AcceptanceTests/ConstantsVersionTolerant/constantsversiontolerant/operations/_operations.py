@@ -1079,7 +1079,7 @@ class ContantsOperations:
     @distributed_trace
     def put_client_constants(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
         """Pass constants from the client to this function. Will pass in constant path, query, and header
-        parameters.
+         parameters.
 
         :return: None
         :rtype: None

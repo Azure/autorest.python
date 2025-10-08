@@ -21,7 +21,7 @@ from ._operations import _AnythingClientOperationsMixin
 
 class AnythingClient(_AnythingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Service client for testing basic anything types. Those schemas without types can be anything:
-    primitive, object, array.
+     primitive, object, array.
 
     :keyword endpoint: Service URL. Default value is "http://localhost:3000".
     :paramtype endpoint: str

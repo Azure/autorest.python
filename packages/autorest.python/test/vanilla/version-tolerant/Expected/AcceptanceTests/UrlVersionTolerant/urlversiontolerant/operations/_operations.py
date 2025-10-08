@@ -2345,7 +2345,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         self, date_path: datetime.date, **kwargs: Any
     ) -> None:
         """Get null as date - this should throw or be unusable on the client side, depending on date
-        representation.
+         representation.
 
         :param date_path: null as date (should throw). Required.
         :type date_path: ~datetime.date
@@ -2527,7 +2527,7 @@ class PathsOperations:  # pylint: disable=too-many-public-methods
         self, array_path: list[str], **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        csv-array format.
+         csv-array format.
 
         :param array_path: an array of string ['ArrayPath1', 'begin!*'();:@ &=+$,/?#[]end' , null, '']
          using the csv-array format. Required.
@@ -3888,7 +3888,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        csv-array format.
+         csv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the csv-array format. Default value is None.
@@ -4029,7 +4029,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Array query has no defined collection format, should default to csv. Pass in ['hello', 'nihao',
-        'bonjour'] for the 'arrayQuery' parameter to the service.
+         'bonjour'] for the 'arrayQuery' parameter to the service.
 
         :keyword array_query: Array-typed query parameter. Pass in ['hello', 'nihao', 'bonjour'].
          Default value is None.
@@ -4077,7 +4077,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        ssv-array format.
+         ssv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the ssv-array format. Default value is None.
@@ -4125,7 +4125,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        tsv-array format.
+         tsv-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the tsv-array format. Default value is None.
@@ -4173,7 +4173,7 @@ class QueriesOperations:  # pylint: disable=too-many-public-methods
         self, *, array_query: Optional[list[str]] = None, **kwargs: Any
     ) -> None:
         """Get an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null, ''] using the
-        pipes-array format.
+         pipes-array format.
 
         :keyword array_query: an array of string ['ArrayQuery1', 'begin!*'();:@ &=+$,/?#[]end' , null,
          ''] using the pipes-array format. Default value is None.
@@ -4245,8 +4245,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -4312,8 +4312,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
-        pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
+         localStringPath='localStringPath', globalStringQuery=null,
+         pathItemStringQuery='pathItemStringQuery', localStringQuery='localStringQuery'.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -4379,8 +4379,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath=globalStringPath, pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery=null,
-        pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
+         localStringPath='localStringPath', globalStringQuery=null,
+         pathItemStringQuery='pathItemStringQuery', localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.
@@ -4446,8 +4446,8 @@ class PathItemsOperations:
         **kwargs: Any
     ) -> None:
         """send globalStringPath='globalStringPath', pathItemStringPath='pathItemStringPath',
-        localStringPath='localStringPath', globalStringQuery='globalStringQuery',
-        pathItemStringQuery=null, localStringQuery=null.
+         localStringPath='localStringPath', globalStringQuery='globalStringQuery',
+         pathItemStringQuery=null, localStringQuery=null.
 
         :param path_item_string_path: A string value 'pathItemStringPath' that appears in the path.
          Required.

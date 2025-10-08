@@ -176,16 +176,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -209,9 +209,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -230,16 +230,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {
@@ -314,18 +314,18 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "friendly": bool,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "friendly": bool,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "friendly": bool,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "friendly": bool,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -349,10 +349,10 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "friendly": bool,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "friendly": bool,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -371,18 +371,18 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "friendly": bool,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "friendly": bool,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "friendly": bool,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "friendly": bool,
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {
@@ -457,16 +457,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -490,9 +490,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -511,16 +511,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {
@@ -595,16 +595,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -628,9 +628,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -649,16 +649,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {
@@ -733,16 +733,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -766,9 +766,9 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -787,16 +787,16 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "id": 0,
-                    "name": "str",
-                    "status": bool
+                "id": 0,
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {
@@ -871,24 +871,24 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",
-                    "id": 0,
-                    "additionalProperties": {
-                        "str": 0.0
-                    },
-                    "name": "str",
-                    "status": bool
+                "@odata.location": "str",
+                "id": 0,
+                "additionalProperties": {
+                "str": 0.0
+                },
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",
-                    "id": 0,
-                    "additionalProperties": {
-                        "str": 0.0
-                    },
-                    "name": "str",
-                    "status": bool
+                "@odata.location": "str",
+                "id": 0,
+                "additionalProperties": {
+                "str": 0.0
+                },
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -912,13 +912,13 @@ class PetsOperations:
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",
-                    "id": 0,
-                    "additionalProperties": {
-                        "str": 0.0
-                    },
-                    "name": "str",
-                    "status": bool
+                "@odata.location": "str",
+                "id": 0,
+                "additionalProperties": {
+                "str": 0.0
+                },
+                "name": "str",
+                "status": bool
                 }
         """
 
@@ -937,24 +937,24 @@ class PetsOperations:
 
                 # JSON input template you can fill out and use as your body input.
                 create_parameters = {
-                    "@odata.location": "str",
-                    "id": 0,
-                    "additionalProperties": {
-                        "str": 0.0
-                    },
-                    "name": "str",
-                    "status": bool
+                "@odata.location": "str",
+                "id": 0,
+                "additionalProperties": {
+                "str": 0.0
+                },
+                "name": "str",
+                "status": bool
                 }
 
                 # response body for status code(s): 200
                 response == {
-                    "@odata.location": "str",
-                    "id": 0,
-                    "additionalProperties": {
-                        "str": 0.0
-                    },
-                    "name": "str",
-                    "status": bool
+                "@odata.location": "str",
+                "id": 0,
+                "additionalProperties": {
+                "str": 0.0
+                },
+                "name": "str",
+                "status": bool
                 }
         """
         error_map: MutableMapping = {

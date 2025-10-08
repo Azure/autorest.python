@@ -20,7 +20,7 @@ class AutoRestParameterizedHostTestClientConfiguration:  # pylint: disable=too-m
     attributes.
 
     :param host: A string value that is used as a global part of the parameterized host. Default
-     value is "host".
+      value is "host".
     :type host: str
     """
 

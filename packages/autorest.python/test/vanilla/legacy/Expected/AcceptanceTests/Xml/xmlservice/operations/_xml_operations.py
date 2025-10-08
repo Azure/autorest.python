@@ -1890,7 +1890,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
         self, id: Optional[int] = None, **kwargs: Any
     ) -> None:
         """A Swagger with XML that has one operation that takes JSON as input. You need to send the ID
-        number 42.
+         number 42.
 
         :param id: Default value is None.
         :type id: int
@@ -1985,7 +1985,7 @@ class XmlOperations:  # pylint: disable=too-many-public-methods
     @distributed_trace
     def get_xms_text(self, **kwargs: Any) -> _models.ObjectWithXMsTextProperty:
         """Get back an XML object with an x-ms-text property, which should translate to the returned
-        object's 'language' property being 'english' and its 'content' property being 'I am text'.
+         object's 'language' property being 'english' and its 'content' property being 'I am text'.
 
         :return: ObjectWithXMsTextProperty or the result of cls(response)
         :rtype: ~xmlservice.models.ObjectWithXMsTextProperty
