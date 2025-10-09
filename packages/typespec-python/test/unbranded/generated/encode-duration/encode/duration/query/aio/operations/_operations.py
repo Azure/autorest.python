@@ -19,8 +19,12 @@ from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DurationClientConfiguration
 from ...operations._operations import (
     build_query_default_request,
+    build_query_float64_milliseconds_request,
     build_query_float64_seconds_request,
+    build_query_float_milliseconds_request,
     build_query_float_seconds_request,
+    build_query_int32_milliseconds_array_request,
+    build_query_int32_milliseconds_request,
     build_query_int32_seconds_array_request,
     build_query_int32_seconds_request,
     build_query_iso8601_request,
@@ -267,6 +271,138 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
+    async def int32_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """int32_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_int32_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def float_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """float_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_float_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def float64_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """float64_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_float64_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
     async def int32_seconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_seconds_array.
 
@@ -290,6 +426,50 @@ class QueryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_query_int32_seconds_array_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    async def int32_milliseconds_array(self, *, input: list[datetime.timedelta], **kwargs: Any) -> None:
+        """int32_milliseconds_array.
+
+        :keyword input: Required.
+        :paramtype input: list[~datetime.timedelta]
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_int32_milliseconds_array_request(
             input=input,
             headers=_headers,
             params=_params,

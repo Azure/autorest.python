@@ -1,5 +1,14 @@
 # Release
 
+## 6.41.3
+
+### Bug Fixes
+
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix outputted bullet-point documentation to pass sphinx
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix indentation issue when deserializing internal error model
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Exclude `generated_samples` and `generated_tests` from wheel
+
+
 ## 6.41.2
 
 ### Bump dependencies
