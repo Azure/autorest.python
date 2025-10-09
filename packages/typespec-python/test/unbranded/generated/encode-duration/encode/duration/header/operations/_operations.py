@@ -98,6 +98,58 @@ def build_header_float64_seconds_request(*, duration: float, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
+def build_header_int32_milliseconds_request(*, duration: datetime.timedelta, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/encode/duration/header/int32-milliseconds"
+
+    # Construct headers
+    _headers["duration"] = _SERIALIZER.header("duration", duration, "duration")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_header_float_milliseconds_request(*, duration: datetime.timedelta, **kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/encode/duration/header/float-milliseconds"
+
+    # Construct headers
+    _headers["duration"] = _SERIALIZER.header("duration", duration, "duration")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_header_float64_milliseconds_request(  # pylint: disable=name-too-long
+    *, duration: datetime.timedelta, **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/encode/duration/header/float64-milliseconds"
+
+    # Construct headers
+    _headers["duration"] = _SERIALIZER.header("duration", duration, "duration")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
+def build_header_int32_milliseconds_array_request(  # pylint: disable=name-too-long
+    *, duration: list[datetime.timedelta], **kwargs: Any
+) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/encode/duration/header/int32-milliseconds-array"
+
+    # Construct headers
+    _headers["duration"] = _SERIALIZER.header("duration", duration, "[duration]", div=",")
+
+    return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
+
+
 class HeaderOperations:
     """
     .. warning::
@@ -368,6 +420,190 @@ class HeaderOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_header_float64_seconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    def int32_milliseconds(  # pylint: disable=inconsistent-return-statements
+        self, *, duration: datetime.timedelta, **kwargs: Any
+    ) -> None:
+        """int32_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_int32_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    def float_milliseconds(  # pylint: disable=inconsistent-return-statements
+        self, *, duration: datetime.timedelta, **kwargs: Any
+    ) -> None:
+        """float_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_float_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    def float64_milliseconds(  # pylint: disable=inconsistent-return-statements
+        self, *, duration: datetime.timedelta, **kwargs: Any
+    ) -> None:
+        """float64_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_float64_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    def int32_milliseconds_array(  # pylint: disable=inconsistent-return-statements
+        self, *, duration: list[datetime.timedelta], **kwargs: Any
+    ) -> None:
+        """int32_milliseconds_array.
+
+        :keyword duration: Required.
+        :paramtype duration: list[~datetime.timedelta]
+        :return: None
+        :rtype: None
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_int32_milliseconds_array_request(
             duration=duration,
             headers=_headers,
             params=_params,

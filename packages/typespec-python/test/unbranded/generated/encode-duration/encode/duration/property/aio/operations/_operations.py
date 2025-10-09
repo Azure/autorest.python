@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 from collections.abc import MutableMapping
 from io import IOBase
@@ -25,9 +26,13 @@ from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DurationClientConfiguration
 from ...operations._operations import (
     build_property_default_request,
+    build_property_float64_milliseconds_request,
     build_property_float64_seconds_request,
+    build_property_float_milliseconds_array_request,
+    build_property_float_milliseconds_request,
     build_property_float_seconds_array_request,
     build_property_float_seconds_request,
+    build_property_int32_milliseconds_request,
     build_property_int32_seconds_request,
     build_property_iso8601_request,
 )
@@ -646,6 +651,373 @@ class PropertyOperations:
         return deserialized  # type: ignore
 
     @overload
+    async def int32_milliseconds(
+        self, body: _models2.Int32MillisecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.property.models.Int32MillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.Int32MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def int32_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.Int32MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def int32_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.Int32MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def int32_milliseconds(
+        self, body: Union[_models2.Int32MillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models2.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Is one of the following types: Int32MillisecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.property.models.Int32MillisecondsDurationProperty or JSON or
+         IO[bytes]
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.Int32MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models2.Int32MillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_int32_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models2.Int32MillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float_milliseconds(
+        self, body: _models2.FloatMillisecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.property.models.FloatMillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def float_milliseconds(
+        self, body: Union[_models2.FloatMillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Is one of the following types: FloatMillisecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.property.models.FloatMillisecondsDurationProperty or JSON or
+         IO[bytes]
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models2.FloatMillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models2.FloatMillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float64_milliseconds(
+        self,
+        body: _models2.Float64MillisecondsDurationProperty,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models2.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.property.models.Float64MillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.Float64MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float64_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.Float64MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float64_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.Float64MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def float64_milliseconds(
+        self, body: Union[_models2.Float64MillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models2.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Is one of the following types: Float64MillisecondsDurationProperty, JSON,
+         IO[bytes] Required.
+        :type body: ~encode.duration.property.models.Float64MillisecondsDurationProperty or JSON or
+         IO[bytes]
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.Float64MillisecondsDurationProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models2.Float64MillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float64_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models2.Float64MillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
     async def float_seconds_array(
         self, body: _models2.FloatSecondsDurationArrayProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models2.FloatSecondsDurationArrayProperty:
@@ -760,6 +1132,131 @@ class PropertyOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models2.FloatSecondsDurationArrayProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float_milliseconds_array(
+        self,
+        body: _models2.FloatMillisecondsDurationArrayProperty,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds_array(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds_array(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+
+    async def float_milliseconds_array(
+        self, body: Union[_models2.FloatMillisecondsDurationArrayProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models2.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Is one of the following types: FloatMillisecondsDurationArrayProperty, JSON,
+         IO[bytes] Required.
+        :type body: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty or JSON or
+         IO[bytes]
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.property.models.FloatMillisecondsDurationArrayProperty
+        :raises ~corehttp.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models2.FloatMillisecondsDurationArrayProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float_milliseconds_array_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client.pipeline.run(_request, stream=_stream, **kwargs)
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models2.FloatMillisecondsDurationArrayProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
