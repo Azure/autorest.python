@@ -35,6 +35,34 @@ class DefaultDurationProperty(_Model):
         super().__init__(*args, **kwargs)
 
 
+class Float64MillisecondsDurationProperty(_Model):
+    """Float64MillisecondsDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.timedelta
+    """
+
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.timedelta,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class Float64SecondsDurationProperty(_Model):
     """Float64SecondsDurationProperty.
 
@@ -50,6 +78,62 @@ class Float64SecondsDurationProperty(_Model):
         self,
         *,
         value: float,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class FloatMillisecondsDurationArrayProperty(_Model):
+    """FloatMillisecondsDurationArrayProperty.
+
+    :ivar value: Required.
+    :vartype value: list[~datetime.timedelta]
+    """
+
+    value: list[datetime.timedelta] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: list[datetime.timedelta],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class FloatMillisecondsDurationProperty(_Model):
+    """FloatMillisecondsDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.timedelta
+    """
+
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.timedelta,
     ) -> None: ...
 
     @overload
@@ -106,6 +190,34 @@ class FloatSecondsDurationProperty(_Model):
         self,
         *,
         value: float,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Int32MillisecondsDurationProperty(_Model):
+    """Int32MillisecondsDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.timedelta
+    """
+
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.timedelta,
     ) -> None: ...
 
     @overload
