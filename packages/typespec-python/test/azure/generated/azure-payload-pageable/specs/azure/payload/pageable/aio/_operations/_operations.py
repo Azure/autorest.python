@@ -27,7 +27,6 @@ from ... import models as _models
 from ..._operations._operations import build_pageable_list_request
 from ..._utils.model_base import _deserialize
 from ..._utils.utils import ClientMixinABC
-from ..._validation import api_version_validation
 from .._configuration import PageableClientConfiguration
 
 T = TypeVar("T")
@@ -40,9 +39,6 @@ class _PageableClientOperationsMixin(
 ):
 
     @distributed_trace
-    @api_version_validation(
-        params_added_on={"1.0-preview.1": ["maxpagesize"]},
-    )
     def list(self, **kwargs: Any) -> AsyncItemPaged["_models.User"]:
         """List users.
 

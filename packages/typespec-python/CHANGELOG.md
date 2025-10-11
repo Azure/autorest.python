@@ -1,5 +1,30 @@
 # Release
 
+## 0.52.1
+
+### Bug Fixes
+
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix outputted bullet-point documentation to pass sphinx
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix indentation issue when deserializing internal error model
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Exclude `generated_samples` and `generated_tests` from wheel
+
+
+## 0.52.0
+
+### Features
+
+- [#3222](https://github.com/Azure/autorest.python/pull/3222) Support move method level signature to client level
+
+### Bump dependencies
+
+- [7da55dc](https://github.com/Azure/autorest.python/commit/7da55dc5be74c0887e4196a76680fd19725cb1e7) Bump `@typespec/http-client-python` dep to `0.19.0`
+
+### Bug Fixes
+
+- [#3226](https://github.com/Azure/autorest.python/pull/3226) [python] ensure first line in param description wrap around is a space
+- [#3226](https://github.com/Azure/autorest.python/pull/3226) Fix bugs related to import and pylint for libraries with only internal models
+
+
 ## 0.51.2
 
 ### Bump dependencies

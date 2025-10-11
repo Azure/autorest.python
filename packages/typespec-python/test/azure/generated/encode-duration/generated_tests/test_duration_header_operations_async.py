@@ -78,3 +78,47 @@ class TestDurationHeaderOperationsAsync(DurationClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_int32_milliseconds(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.int32_milliseconds(
+            duration="1 day, 0:00:00",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_float_milliseconds(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.float_milliseconds(
+            duration="1 day, 0:00:00",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_float64_milliseconds(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.float64_milliseconds(
+            duration="1 day, 0:00:00",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_int32_milliseconds_array(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.int32_milliseconds_array(
+            duration=["1 day, 0:00:00"],
+        )
+
+        # please add some check logic here by yourself
+        # ...

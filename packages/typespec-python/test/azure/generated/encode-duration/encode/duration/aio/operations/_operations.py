@@ -33,20 +33,32 @@ from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
     build_header_default_request,
+    build_header_float64_milliseconds_request,
     build_header_float64_seconds_request,
+    build_header_float_milliseconds_request,
     build_header_float_seconds_request,
+    build_header_int32_milliseconds_array_request,
+    build_header_int32_milliseconds_request,
     build_header_int32_seconds_request,
     build_header_iso8601_array_request,
     build_header_iso8601_request,
     build_property_default_request,
+    build_property_float64_milliseconds_request,
     build_property_float64_seconds_request,
+    build_property_float_milliseconds_array_request,
+    build_property_float_milliseconds_request,
     build_property_float_seconds_array_request,
     build_property_float_seconds_request,
+    build_property_int32_milliseconds_request,
     build_property_int32_seconds_request,
     build_property_iso8601_request,
     build_query_default_request,
+    build_query_float64_milliseconds_request,
     build_query_float64_seconds_request,
+    build_query_float_milliseconds_request,
     build_query_float_seconds_request,
+    build_query_int32_milliseconds_array_request,
+    build_query_int32_milliseconds_request,
     build_query_int32_seconds_array_request,
     build_query_int32_seconds_request,
     build_query_iso8601_request,
@@ -311,6 +323,147 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
+    async def int32_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """int32_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_int32_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def float_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """float_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_float_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def float64_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+        """float64_milliseconds.
+
+        :keyword input: Required.
+        :paramtype input: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_float64_milliseconds_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
     async def int32_seconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_seconds_array.
 
@@ -334,6 +487,53 @@ class QueryOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_query_int32_seconds_array_request(
+            input=input,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def int32_milliseconds_array(self, *, input: list[datetime.timedelta], **kwargs: Any) -> None:
+        """int32_milliseconds_array.
+
+        :keyword input: Required.
+        :paramtype input: list[~datetime.timedelta]
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_query_int32_milliseconds_array_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -981,6 +1181,379 @@ class PropertyOperations:
         return deserialized  # type: ignore
 
     @overload
+    async def int32_milliseconds(
+        self, body: _models.Int32MillisecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.models.Int32MillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.Int32MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def int32_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.Int32MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def int32_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.Int32MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def int32_milliseconds(
+        self, body: Union[_models.Int32MillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Int32MillisecondsDurationProperty:
+        """int32_milliseconds.
+
+        :param body: Is one of the following types: Int32MillisecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.models.Int32MillisecondsDurationProperty or JSON or IO[bytes]
+        :return: Int32MillisecondsDurationProperty. The Int32MillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.Int32MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Int32MillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_int32_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Int32MillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float_milliseconds(
+        self, body: _models.FloatMillisecondsDurationProperty, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.models.FloatMillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def float_milliseconds(
+        self, body: Union[_models.FloatMillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationProperty:
+        """float_milliseconds.
+
+        :param body: Is one of the following types: FloatMillisecondsDurationProperty, JSON, IO[bytes]
+         Required.
+        :type body: ~encode.duration.models.FloatMillisecondsDurationProperty or JSON or IO[bytes]
+        :return: FloatMillisecondsDurationProperty. The FloatMillisecondsDurationProperty is compatible
+         with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.FloatMillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.FloatMillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float64_milliseconds(
+        self,
+        body: _models.Float64MillisecondsDurationProperty,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: ~encode.duration.models.Float64MillisecondsDurationProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.Float64MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float64_milliseconds(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.Float64MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float64_milliseconds(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.Float64MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def float64_milliseconds(
+        self, body: Union[_models.Float64MillisecondsDurationProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.Float64MillisecondsDurationProperty:
+        """float64_milliseconds.
+
+        :param body: Is one of the following types: Float64MillisecondsDurationProperty, JSON,
+         IO[bytes] Required.
+        :type body: ~encode.duration.models.Float64MillisecondsDurationProperty or JSON or IO[bytes]
+        :return: Float64MillisecondsDurationProperty. The Float64MillisecondsDurationProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.Float64MillisecondsDurationProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.Float64MillisecondsDurationProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float64_milliseconds_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.Float64MillisecondsDurationProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
     async def float_seconds_array(
         self, body: _models.FloatSecondsDurationArrayProperty, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.FloatSecondsDurationArrayProperty:
@@ -1097,6 +1670,133 @@ class PropertyOperations:
             deserialized = response.iter_bytes()
         else:
             deserialized = _deserialize(_models.FloatSecondsDurationArrayProperty, response.json())
+
+        if cls:
+            return cls(pipeline_response, deserialized, {})  # type: ignore
+
+        return deserialized  # type: ignore
+
+    @overload
+    async def float_milliseconds_array(
+        self,
+        body: _models.FloatMillisecondsDurationArrayProperty,
+        *,
+        content_type: str = "application/json",
+        **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: ~encode.duration.models.FloatMillisecondsDurationArrayProperty
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationArrayProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds_array(
+        self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: JSON
+        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationArrayProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    async def float_milliseconds_array(
+        self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Required.
+        :type body: IO[bytes]
+        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
+         Default value is "application/json".
+        :paramtype content_type: str
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationArrayProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace_async
+    async def float_milliseconds_array(
+        self, body: Union[_models.FloatMillisecondsDurationArrayProperty, JSON, IO[bytes]], **kwargs: Any
+    ) -> _models.FloatMillisecondsDurationArrayProperty:
+        """float_milliseconds_array.
+
+        :param body: Is one of the following types: FloatMillisecondsDurationArrayProperty, JSON,
+         IO[bytes] Required.
+        :type body: ~encode.duration.models.FloatMillisecondsDurationArrayProperty or JSON or IO[bytes]
+        :return: FloatMillisecondsDurationArrayProperty. The FloatMillisecondsDurationArrayProperty is
+         compatible with MutableMapping
+        :rtype: ~encode.duration.models.FloatMillisecondsDurationArrayProperty
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+        _params = kwargs.pop("params", {}) or {}
+
+        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        cls: ClsType[_models.FloatMillisecondsDurationArrayProperty] = kwargs.pop("cls", None)
+
+        content_type = content_type or "application/json"
+        _content = None
+        if isinstance(body, (IOBase, bytes)):
+            _content = body
+        else:
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+
+        _request = build_property_float_milliseconds_array_request(
+            content_type=content_type,
+            content=_content,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = kwargs.pop("stream", False)
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [200]:
+            if _stream:
+                try:
+                    await response.read()  # Load the body in memory and close the socket
+                except (StreamConsumedError, StreamClosedError):
+                    pass
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if _stream:
+            deserialized = response.iter_bytes()
+        else:
+            deserialized = _deserialize(_models.FloatMillisecondsDurationArrayProperty, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1380,6 +2080,194 @@ class HeaderOperations:
         cls: ClsType[None] = kwargs.pop("cls", None)
 
         _request = build_header_float64_seconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def int32_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+        """int32_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_int32_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def float_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+        """float_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_float_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def float64_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+        """float64_milliseconds.
+
+        :keyword duration: Required.
+        :paramtype duration: ~datetime.timedelta
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_float64_milliseconds_request(
+            duration=duration,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = await self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @distributed_trace_async
+    async def int32_milliseconds_array(self, *, duration: list[datetime.timedelta], **kwargs: Any) -> None:
+        """int32_milliseconds_array.
+
+        :keyword duration: Required.
+        :paramtype duration: list[~datetime.timedelta]
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _request = build_header_int32_milliseconds_array_request(
             duration=duration,
             headers=_headers,
             params=_params,
