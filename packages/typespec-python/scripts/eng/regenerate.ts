@@ -431,6 +431,39 @@ async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number)
     await Promise.all(workers);
 }
 
+// create some files before regeneration. After regeneration, these files should be deleted and we will test it
+// in test case
+async function preprocess(flags: RegenerateFlagsInput): Promise<void> {
+    if (flags.flavor === "azure") {
+        const generalParts = [PLUGIN_DIR, "test", "azure", "generated"];
+        await promises.writeFile(
+            join(
+                ...generalParts,
+                "authentication-api-key",
+                "authentication",
+                "apikey",
+                "_operations",
+                "to_be_deleted.py",
+            ),
+            "# This file is to be deleted after regeneration",
+        );
+
+        const folderParts = [...generalParts, "generation-subdir"];
+        await promises.writeFile(
+            join(...folderParts, "generation", "subdir", "_generated", "to_be_deleted.py"),
+            "# This file is to be deleted after regeneration",
+        );
+        await promises.writeFile(
+            join(...folderParts, "generated_tests", "to_be_deleted.py"),
+            "# This file is to be kept after regeneration",
+        );
+        await promises.writeFile(
+            join(...folderParts, "generation", "subdir", "to_be_kept.py"),
+            "# This file is to be kept after regeneration",
+        );
+    }
+}
+
 async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     if (flags.flavor === undefined) {
         await regenerate({ ...flags, flavor: "azure" });
