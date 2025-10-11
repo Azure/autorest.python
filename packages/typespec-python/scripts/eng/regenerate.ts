@@ -469,6 +469,7 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
         await regenerate({ ...flags, flavor: "azure" });
         await regenerate({ ...flags, flavor: "unbranded" });
     } else {
+        await preprocess(flags);
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
         const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
         const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
