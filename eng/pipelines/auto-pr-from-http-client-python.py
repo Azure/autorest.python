@@ -104,6 +104,10 @@ class Repo:
         return self._autorest_repo
 
     @property
+    def pull_is_merged(self):
+        return self.pull.merged
+
+    @property
     def pull(self):
         if not self._pull:
             pull_number = re.findall(r"pull/\d+", self.pull_url)[0].replace("pull/", "")
@@ -136,12 +140,17 @@ class Repo:
         if not self._http_client_python_json:
             os.chdir(self.typespec_repo_path)
             logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
-            user_name = self.source_branch_name.split(":")[0]
-            branch_name = self.source_branch_name.split(":")[1]
-            if user_name != "microsoft":
-                log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
-                log_call(f"git fetch {user_name} {branch_name}")
-            log_call(f"git checkout {branch_name}")
+
+            if not self.pull_is_merged:
+                user_name = self.source_branch_name.split(":")[0]
+                branch_name = self.source_branch_name.split(":")[1]
+                if user_name != "microsoft":
+                    log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
+                    log_call(f"git fetch {user_name} {branch_name}")
+                log_call(f"git checkout {branch_name}")
+            else:
+                logger.info(f"PR {self.pull_url} is already merged.")
+
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
 
