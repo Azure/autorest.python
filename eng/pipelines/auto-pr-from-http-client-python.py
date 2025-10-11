@@ -104,7 +104,7 @@ class Repo:
         return self._autorest_repo
 
     @property
-    def pull_is_merged(self):
+    def is_pull_merged(self):
         return self.pull.merged
 
     @property
@@ -141,7 +141,7 @@ class Repo:
             os.chdir(self.typespec_repo_path)
             logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
 
-            if not self.pull_is_merged:
+            if not self.is_pull_merged:
                 user_name = self.source_branch_name.split(":")[0]
                 branch_name = self.source_branch_name.split(":")[1]
                 if user_name != "microsoft":
