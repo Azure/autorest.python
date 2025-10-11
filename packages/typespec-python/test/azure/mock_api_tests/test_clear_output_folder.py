@@ -5,10 +5,11 @@
 # --------------------------------------------------------------------------
 from pathlib import Path
 
-GENERATED_PATH = Path(__file__).parent.resolve() / "generated"
+GENERATED_PATH = Path(__file__).parent.parent.resolve() / "generated"
 
 
 def test_clear_output_folder():
+    assert GENERATED_PATH.exists(), "Generated path should exist"
     assert not (
         GENERATED_PATH / "authentication-api-key/authentication/apiKey/_operations/to_be_deleted.py"
     ).exists(), "File to_be_deleted.py should be deleted after regeneration"
