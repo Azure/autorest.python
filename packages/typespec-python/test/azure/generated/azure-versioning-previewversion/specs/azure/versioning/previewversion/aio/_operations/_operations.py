@@ -72,6 +72,7 @@ class _PreviewVersionClientOperationsMixin(
 
         _request = build_preview_version_get_widget_request(
             id=id,
+            api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )
@@ -170,7 +171,7 @@ class _PreviewVersionClientOperationsMixin(
     @distributed_trace_async
     @api_version_validation(
         method_added_on="2024-12-01-preview",
-        params_added_on={"2024-12-01-preview": ["id", "content_type", "accept"]},
+        params_added_on={"2024-12-01-preview": ["id", "content_type", "api_version", "accept"]},
         api_versions_list=["2024-12-01-preview"],
     )
     async def update_widget_color(
@@ -212,6 +213,7 @@ class _PreviewVersionClientOperationsMixin(
         _request = build_preview_version_update_widget_color_request(
             id=id,
             content_type=content_type,
+            api_version=self._config.api_version,
             content=_content,
             headers=_headers,
             params=_params,
@@ -283,6 +285,7 @@ class _PreviewVersionClientOperationsMixin(
         _request = build_preview_version_list_widgets_request(
             name=name,
             color=color,
+            api_version=self._config.api_version,
             headers=_headers,
             params=_params,
         )

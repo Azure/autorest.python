@@ -21,11 +21,17 @@ class PreviewVersionClientConfiguration:  # pylint: disable=too-many-instance-at
 
     :param endpoint: Service host. Default value is "http://localhost:3000".
     :type endpoint: str
+    :keyword api_version: The API version to use for this operation. Default value is
+     "2024-12-01-preview". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype api_version: str
     """
 
     def __init__(self, endpoint: str = "http://localhost:3000", **kwargs: Any) -> None:
+        api_version: str = kwargs.pop("api_version", "2024-12-01-preview")
 
         self.endpoint = endpoint
+        self.api_version = api_version
         kwargs.setdefault("sdk_moniker", "specs-azure-versioning-previewversion/{}".format(VERSION))
         self.polling_interval = kwargs.get("polling_interval", 30)
         self._configure(**kwargs)
