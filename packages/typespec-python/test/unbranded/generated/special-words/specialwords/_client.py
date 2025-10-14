@@ -15,10 +15,12 @@ from .operations import Operations, ParametersOperations
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
-    """Scenarios to verify that reserved words can be used in service and generators will handle it
-    appropriately.
+    """Scenarios to verify that reserved words can be used in service and generators will handle it appropriately.
+
     Current list of special words
+
     .. code-block:: txt
+
        and
        as
        assert

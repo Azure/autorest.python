@@ -31,10 +31,10 @@ class ResiliencyServiceDrivenClient(_ResiliencyServiceDrivenClientOperationsMixi
     3. Api version: The initial deployment of the service only supports api version 'v1'. The new
     deployment of the service supports api versions 'v1' and 'v2'.
     We test the following configurations from this service spec:
-    * A client generated from the second service spec can call the second deployment of a service
-      with api version v1
-    * A client generated from the second service spec can call the second deployment of a service
-      with api version v2.
+         * A client generated from the second service spec can call the second deployment of a
+       service with api version v1
+         * A client generated from the second service spec can call the second deployment of a
+       service with api version v2.
 
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
