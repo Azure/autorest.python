@@ -7,6 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
+from azure.core.messaging import CloudEvent
 from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
@@ -20,6 +21,7 @@ class InvalidAuth(_Model):
     """
 
     error: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    cloud_event: CloudEvent = rest_field(name="cloudEvent", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -27,6 +29,7 @@ class InvalidAuth(_Model):
         self,
         *,
         error: str,
+        cloud_event: CloudEvent,
     ) -> None: ...
 
     @overload

@@ -162,6 +162,8 @@ class SdkJSONEncoder(JSONEncoder):
             except AttributeError:
                 # This will be raised when it hits value.total_seconds in the method above
                 pass
+            if _SERIALIZE_REGISTER.get(type(o)):
+                return _SERIALIZE_REGISTER.get(type(o))(o)
             return super(SdkJSONEncoder, self).default(o)
 
 
@@ -312,12 +314,17 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 }
 
 
+_SERIALIZE_REGISTER = {}
+_DESERIALIZE_REGISTER = {}
+
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
     if annotation is int and rf and rf._format == "str":
         return _deserialize_int_as_str
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
+    if _DESERIALIZE_MAPPING.get(annotation):
+        return _DESERIALIZE_MAPPING.get(annotation)
+    return _DESERIALIZE_REGISTER.get(annotation)
 
 
 def _get_type_alias_type(module_name: str, alias_name: str):
@@ -511,6 +518,8 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
     except AttributeError:
         # This will be raised when it hits value.total_seconds in the method above
         pass
+    if _SERIALIZE_REGISTER.get(type(o)):
+        return _SERIALIZE_REGISTER.get(type(o))(o)
     return o
 
 
