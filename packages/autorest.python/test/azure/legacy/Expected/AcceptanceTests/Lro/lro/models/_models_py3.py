@@ -18,7 +18,7 @@ class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+    "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~lro.models.OperationResultStatus
     :ivar error:
     :vartype error: ~lro.models.OperationResultError
@@ -139,7 +139,7 @@ class Product(Resource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+    "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or ~lro.models.ProductPropertiesProvisioningStateValues
     """
 
@@ -246,9 +246,9 @@ class SubProduct(SubResource):
     :ivar provisioning_state:
     :vartype provisioning_state: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+    "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or
-     ~lro.models.SubProductPropertiesProvisioningStateValues
+    ~lro.models.SubProductPropertiesProvisioningStateValues
     """
 
     _validation = {

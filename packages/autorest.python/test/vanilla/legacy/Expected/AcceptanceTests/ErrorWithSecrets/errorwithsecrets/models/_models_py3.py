@@ -20,10 +20,10 @@ class Error(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
+    collection.
     :vartype additional_properties: dict[str, any]
     :ivar code: One of a server-defined set of error codes. Required. Known values are:
-     "BadParameter" and "Unauthorized".
+    "BadParameter" and "Unauthorized".
     :vartype code: str or ~errorwithsecrets.models.ErrorCode
     :ivar message: A human-readable representation of the error. Required.
     :vartype message: str
@@ -32,7 +32,7 @@ class Error(_serialization.Model):
     :ivar details: An array of details about specific errors that led to this reported error.
     :vartype details: list[~errorwithsecrets.models.Error]
     :ivar innererror: An object containing more specific information than the current object about
-     the error.
+    the error.
     :vartype innererror: ~errorwithsecrets.models.InnerError
     """
 
@@ -93,7 +93,7 @@ class ErrorResponse(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
+    collection.
     :vartype additional_properties: dict[str, any]
     :ivar error: The error object. Required.
     :vartype error: ~errorwithsecrets.models.Error
@@ -131,15 +131,15 @@ class InnerError(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
+    collection.
     :vartype additional_properties: dict[str, any]
     :ivar code: One of a server-defined set of error codes. Required. Known values are:
-     "MissingSharedKey" and "UnauthorizedSharedKey".
+    "MissingSharedKey" and "UnauthorizedSharedKey".
     :vartype code: str or ~errorwithsecrets.models.InnerErrorCode
     :ivar message: Error message. Required.
     :vartype message: str
     :ivar innererror: An object containing more specific information than the current object about
-     the error.
+    the error.
     :vartype innererror: ~errorwithsecrets.models.InnerError
     """
 

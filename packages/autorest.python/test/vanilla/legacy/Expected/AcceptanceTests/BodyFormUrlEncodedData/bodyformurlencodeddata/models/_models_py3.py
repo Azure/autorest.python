@@ -22,10 +22,10 @@ class Paths14Hl8BdFormsdataurlencodedPetAddPetidPostRequestbodyContentApplicatio
     All required parameters must be populated in order to send to server.
 
     :ivar pet_type: Can take a value of dog, or cat, or fish. Required. Known values are: "dog",
-     "cat", and "fish".
+    "cat", and "fish".
     :vartype pet_type: str or ~bodyformurlencodeddata.models.PetType
     :ivar pet_food: Can take a value of meat, or fish, or plant. Required. Known values are:
-     "meat", "fish", and "plant".
+    "meat", "fish", and "plant".
     :vartype pet_food: str or ~bodyformurlencodeddata.models.PetFood
     :ivar pet_age: How many years is it old?. Required.
     :vartype pet_age: int
@@ -95,7 +95,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
     :ivar service: Indicates the name of your Azure container registry. Required.
     :vartype service: str
     :ivar aad_access_token: AAD access token, mandatory when grant_type is
-     access_token_refresh_token or access_token. Required.
+    access_token_refresh_token or access_token. Required.
     :vartype aad_access_token: str
     """
 

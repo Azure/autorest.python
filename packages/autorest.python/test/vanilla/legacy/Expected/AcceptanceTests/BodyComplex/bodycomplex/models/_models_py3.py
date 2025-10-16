@@ -42,7 +42,7 @@ class Basic(msrest.serialization.Model):
     :ivar id: Basic Id.
     :vartype id: int
     :ivar name: Name property with a very long description that does not fit on a single line and a
-     line break.
+    line break.
     :vartype name: str
     :ivar color: Known values are: "cyan", "Magenta", "YELLOW", and "blacK".
     :vartype color: str or ~bodycomplex.models.CMYKColors
@@ -659,10 +659,10 @@ class DoubleWrapper(msrest.serialization.Model):
     :ivar field1:
     :vartype field1: float
     :ivar
-     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+    field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
     :vartype
-     field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-     float
+    field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+    float
     """
 
     _attribute_map = {
@@ -688,8 +688,8 @@ class DoubleWrapper(msrest.serialization.Model):
         :keyword
          field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
         :paramtype
-         field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
-         float
+        field56_zeros_after_the_dot_and_negative_zero_before_dot_and_this_is_a_long_field_name_on_purpose:
+        float
         """
         super().__init__(**kwargs)
         self.field1 = field1
@@ -1214,7 +1214,7 @@ class SmartSalmon(Salmon):
     :ivar iswild:
     :vartype iswild: bool
     :ivar additional_properties: Unmatched properties from the message are deserialized to this
-     collection.
+    collection.
     :vartype additional_properties: dict[str, any]
     :ivar college_degree:
     :vartype college_degree: str
