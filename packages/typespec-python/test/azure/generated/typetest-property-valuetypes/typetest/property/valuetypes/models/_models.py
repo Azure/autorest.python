@@ -651,7 +651,7 @@ class UnionStringLiteralProperty(_Model):
     """Model with a union of string literal as property.
 
     :ivar property: Property. Required. Is either a Literal["hello"] type or a Literal["world"]
-     type.
+    type.
     :vartype property: str or str
     """
 

@@ -69,10 +69,10 @@ class EnumsOnlyCases(_Model):
     """EnumsOnlyCases.
 
     :ivar lr: This should be receive/send the left variant. Required. Is one of the following
-     types: Literal["left"], Literal["right"], Literal["up"], Literal["down"]
+    types: Literal["left"], Literal["right"], Literal["up"], Literal["down"]
     :vartype lr: str or str or str or str
     :ivar ud: This should be receive/send the up variant. Required. Is either a Literal["up"] type
-     or a Literal["down"] type.
+    or a Literal["down"] type.
     :vartype ud: str or str
     """
 
@@ -390,16 +390,16 @@ class MixedLiteralsCases(_Model):
     """MixedLiteralsCases.
 
     :ivar string_literal: This should be receive/send the "a" variant. Required. Is one of the
-     following types: Literal["a"], Literal[2], float, Literal[True]
+    following types: Literal["a"], Literal[2], float, Literal[True]
     :vartype string_literal: str or int or float or bool
     :ivar int_literal: This should be receive/send the 2 variant. Required. Is one of the following
-     types: Literal["a"], Literal[2], float, Literal[True]
+    types: Literal["a"], Literal[2], float, Literal[True]
     :vartype int_literal: str or int or float or bool
     :ivar float_literal: This should be receive/send the 3.3 variant. Required. Is one of the
-     following types: Literal["a"], Literal[2], float, Literal[True]
+    following types: Literal["a"], Literal[2], float, Literal[True]
     :vartype float_literal: str or int or float or bool
     :ivar boolean_literal: This should be receive/send the true variant. Required. Is one of the
-     following types: Literal["a"], Literal[2], float, Literal[True]
+    following types: Literal["a"], Literal[2], float, Literal[True]
     :vartype boolean_literal: str or int or float or bool
     """
 
@@ -449,16 +449,16 @@ class MixedTypesCases(_Model):
     """MixedTypesCases.
 
     :ivar model: This should be receive/send the Cat variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
+    types: Cat, Literal["a"], int, bool
     :vartype model: ~typetest.union.models.Cat or str or int or bool
     :ivar literal: This should be receive/send the "a" variant. Required. Is one of the following
-     types: Cat, Literal["a"], int, bool
+    types: Cat, Literal["a"], int, bool
     :vartype literal: ~typetest.union.models.Cat or str or int or bool
     :ivar int_property: This should be receive/send the int variant. Required. Is one of the
-     following types: Cat, Literal["a"], int, bool
+    following types: Cat, Literal["a"], int, bool
     :vartype int_property: ~typetest.union.models.Cat or str or int or bool
     :ivar boolean: This should be receive/send the boolean variant. Required. Is one of the
-     following types: Cat, Literal["a"], int, bool
+    following types: Cat, Literal["a"], int, bool
     :vartype boolean: ~typetest.union.models.Cat or str or int or bool
     :ivar array: This should be receive/send 4 element with Cat, "a", int, and boolean. Required.
     :vartype array: list[~typetest.union.models.Cat or str or int or bool]
@@ -515,10 +515,10 @@ class StringAndArrayCases(_Model):
     """StringAndArrayCases.
 
     :ivar string: This should be receive/send the string variant. Required. Is either a str type or
-     a [str] type.
+    a [str] type.
     :vartype string: str or list[str]
     :ivar array: This should be receive/send the array variant. Required. Is either a str type or a
-     [str] type.
+    [str] type.
     :vartype array: str or list[str]
     """
 

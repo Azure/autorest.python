@@ -137,15 +137,15 @@ class Resource(_Model):
     """Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
+    "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
+    information.
     :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
     """
 
@@ -165,15 +165,15 @@ class TrackedResource(Resource):
     """Tracked Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
+    "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
+    information.
     :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -210,15 +210,15 @@ class ConfidentialResource(TrackedResource):
     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
+    "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
+    information.
     :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -226,7 +226,7 @@ class ConfidentialResource(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties:
-     ~azure.resourcemanager.commonproperties.models.ConfidentialResourceProperties
+    ~azure.resourcemanager.commonproperties.models.ConfidentialResourceProperties
     """
 
     properties: Optional["_models.ConfidentialResourceProperties"] = rest_field(
@@ -314,7 +314,7 @@ class ErrorDetail(_Model):
     :vartype details: list[~azure.resourcemanager.commonproperties.models.ErrorDetail]
     :ivar additional_info: The error additional info.
     :vartype additional_info:
-     list[~azure.resourcemanager.commonproperties.models.ErrorAdditionalInfo]
+    list[~azure.resourcemanager.commonproperties.models.ErrorAdditionalInfo]
     """
 
     code: Optional[str] = rest_field(visibility=["read"])
@@ -397,15 +397,15 @@ class ManagedIdentityTrackedResource(TrackedResource):
     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-     "Microsoft.Storage/storageAccounts".
+    "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-     information.
+    information.
     :vartype system_data: ~azure.resourcemanager.commonproperties.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -413,7 +413,7 @@ class ManagedIdentityTrackedResource(TrackedResource):
     :vartype location: str
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties:
-     ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResourceProperties
+    ~azure.resourcemanager.commonproperties.models.ManagedIdentityTrackedResourceProperties
     :ivar identity: The managed service identities assigned to this resource.
     :vartype identity: ~azure.resourcemanager.commonproperties.models.ManagedServiceIdentity
     """
@@ -463,17 +463,17 @@ class ManagedServiceIdentity(_Model):
     """Managed service identity (system assigned and/or user assigned identities).
 
     :ivar principal_id: The service principal ID of the system assigned identity. This property
-     will only be provided for a system assigned identity.
+    will only be provided for a system assigned identity.
     :vartype principal_id: str
     :ivar tenant_id: The tenant ID of the system assigned identity. This property will only be
-     provided for a system assigned identity.
+    provided for a system assigned identity.
     :vartype tenant_id: str
     :ivar type: The type of managed identity assigned to this resource. Required. Known values are:
-     "None", "SystemAssigned", "UserAssigned", and "SystemAssigned,UserAssigned".
+    "None", "SystemAssigned", "UserAssigned", and "SystemAssigned,UserAssigned".
     :vartype type: str or ~azure.resourcemanager.commonproperties.models.ManagedServiceIdentityType
     :ivar user_assigned_identities: The identities assigned to this resource by the user.
     :vartype user_assigned_identities: dict[str,
-     ~azure.resourcemanager.commonproperties.models.UserAssignedIdentity]
+    ~azure.resourcemanager.commonproperties.models.UserAssignedIdentity]
     """
 
     principal_id: Optional[str] = rest_field(name="principalId", visibility=["read"])
@@ -517,16 +517,16 @@ class SystemData(_Model):
     :ivar created_by: The identity that created the resource.
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
-     "User", "Application", "ManagedIdentity", and "Key".
+    "User", "Application", "ManagedIdentity", and "Key".
     :vartype created_by_type: str or ~azure.resourcemanager.commonproperties.models.CreatedByType
     :ivar created_at: The timestamp of resource creation (UTC).
     :vartype created_at: ~datetime.datetime
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
-     are: "User", "Application", "ManagedIdentity", and "Key".
+    are: "User", "Application", "ManagedIdentity", and "Key".
     :vartype last_modified_by_type: str or
-     ~azure.resourcemanager.commonproperties.models.CreatedByType
+    ~azure.resourcemanager.commonproperties.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
     :vartype last_modified_at: ~datetime.datetime
     """
