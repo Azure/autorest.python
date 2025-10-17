@@ -93,15 +93,15 @@ class Resource(_Model):
     """Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     """
 
@@ -121,15 +121,15 @@ class ExtensionResource(Resource):
     """The base extension resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     """
 
@@ -139,15 +139,15 @@ class ExtensionsResource(ExtensionResource):
     property type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.ExtensionsResourceProperties
@@ -182,7 +182,7 @@ class ExtensionsResourceProperties(_Model):
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-    "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     """
 
@@ -216,15 +216,15 @@ class ProxyResource(Resource):
     """Proxy Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     """
 
@@ -234,15 +234,15 @@ class LocationResource(ProxyResource):
     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.LocationResourceProperties
@@ -277,7 +277,7 @@ class LocationResourceProperties(_Model):
     :ivar description: The description of the resource.
     :vartype description: str
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-    "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     """
 
@@ -311,15 +311,15 @@ class NestedProxyResource(ProxyResource):
     """Nested child of Top Level Tracked Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar properties: The resource-specific properties for this resource.
     :vartype properties: ~azure.resourcemanager.resources.models.NestedProxyResourceProperties
@@ -352,7 +352,7 @@ class NestedProxyResourceProperties(_Model):
     """Nested Proxy Resource Properties.
 
     :ivar provisioning_state: Provisioning State of the nested child Resource. Known values are:
-    "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+     "Succeeded", "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     :ivar description: Nested resource description.
     :vartype description: str
@@ -421,15 +421,15 @@ class TrackedResource(Resource):
     """Tracked Resource.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -466,15 +466,15 @@ class SingletonTrackedResource(TrackedResource):
     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -513,7 +513,7 @@ class SingletonTrackedResourceProperties(_Model):
     """Singleton Arm Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-    "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     :ivar description: The description of the resource.
     :vartype description: str
@@ -551,14 +551,14 @@ class SystemData(_Model):
     :ivar created_by: The identity that created the resource.
     :vartype created_by: str
     :ivar created_by_type: The type of identity that created the resource. Known values are:
-    "User", "Application", "ManagedIdentity", and "Key".
+     "User", "Application", "ManagedIdentity", and "Key".
     :vartype created_by_type: str or ~azure.resourcemanager.resources.models.CreatedByType
     :ivar created_at: The timestamp of resource creation (UTC).
     :vartype created_at: ~datetime.datetime
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
-    are: "User", "Application", "ManagedIdentity", and "Key".
+     are: "User", "Application", "ManagedIdentity", and "Key".
     :vartype last_modified_by_type: str or ~azure.resourcemanager.resources.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
     :vartype last_modified_at: ~datetime.datetime
@@ -617,15 +617,15 @@ class TopLevelTrackedResource(TrackedResource):
     type.
 
     :ivar id: Fully qualified resource ID for the resource. Ex -
-    /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
+     /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}.
     :vartype id: str
     :ivar name: The name of the resource.
     :vartype name: str
     :ivar type: The type of the resource. E.g. "Microsoft.Compute/virtualMachines" or
-    "Microsoft.Storage/storageAccounts".
+     "Microsoft.Storage/storageAccounts".
     :vartype type: str
     :ivar system_data: Azure Resource Manager metadata containing createdBy and modifiedBy
-    information.
+     information.
     :vartype system_data: ~azure.resourcemanager.resources.models.SystemData
     :ivar tags: Resource tags.
     :vartype tags: dict[str, str]
@@ -664,7 +664,7 @@ class TopLevelTrackedResourceProperties(_Model):
     """Top Level Arm Resource Properties.
 
     :ivar provisioning_state: The status of the last operation. Known values are: "Succeeded",
-    "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
+     "Failed", "Canceled", "Provisioning", "Updating", "Deleting", and "Accepted".
     :vartype provisioning_state: str or ~azure.resourcemanager.resources.models.ProvisioningState
     :ivar description: The description of the resource.
     :vartype description: str

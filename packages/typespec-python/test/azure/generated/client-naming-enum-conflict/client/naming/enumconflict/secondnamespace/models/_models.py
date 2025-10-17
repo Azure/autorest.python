@@ -19,7 +19,7 @@ class SecondModel(_Model):
     """SecondModel.
 
     :ivar status: Status from second namespace. Required. Known values are: "running" and
-    "stopped".
+     "stopped".
     :vartype status: str or ~client.naming.enumconflict.secondnamespace.models.SecondStatus
     :ivar description: Description of the item. Required.
     :vartype description: str
