@@ -20,8 +20,8 @@ class BaseProduct(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
-    longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-    Los Angeles. Required.
+     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+     Los Angeles. Required.
     :vartype product_id: str
     :ivar description: Description of product.
     :vartype description: str
@@ -155,9 +155,9 @@ class FlattenedProduct(Resource):
     :ivar type_properties_type:
     :vartype type_properties_type: str
     :ivar provisioning_state_values: Known values are: "Succeeded", "Failed", "canceled",
-    "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype provisioning_state_values: str or
-    ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
+     ~modelflattening.models.FlattenedProductPropertiesProvisioningStateValues
     :ivar provisioning_state:
     :vartype provisioning_state: str
     """
@@ -222,8 +222,8 @@ class FlattenParameterGroup(_serialization.Model):
     :ivar simple_body_product: Simple body product to put.
     :vartype simple_body_product: ~modelflattening.models.SimpleProduct
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
-    longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-    Los Angeles. Required.
+     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+     Los Angeles. Required.
     :vartype product_id: str
     :ivar description: Description of product.
     :vartype description: str
@@ -409,8 +409,8 @@ class SimpleProduct(BaseProduct):
     All required parameters must be populated in order to send to server.
 
     :ivar product_id: Unique identifier representing a specific product for a given latitude &
-    longitude. For example, uberX in San Francisco will have a different product_id than uberX in
-    Los Angeles. Required.
+     longitude. For example, uberX in San Francisco will have a different product_id than uberX in
+     Los Angeles. Required.
     :vartype product_id: str
     :ivar description: Description of product.
     :vartype description: str

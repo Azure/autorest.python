@@ -99,7 +99,7 @@ class OperationResult(_serialization.Model):
     """OperationResult.
 
     :ivar status: The status of the request. Known values are: "Succeeded", "Failed", "canceled",
-    "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
+     "Accepted", "Creating", "Created", "Updating", "Updated", "Deleting", "Deleted", and "OK".
     :vartype status: str or ~paging.models.OperationResultStatus
     """
 
@@ -124,7 +124,7 @@ class PagingGetMultiplePagesLroOptions(_serialization.Model):
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
-    seconds. The default is 30 seconds.
+     seconds. The default is 30 seconds.
     :vartype timeout: int
     """
 
@@ -152,7 +152,7 @@ class PagingGetMultiplePagesOptions(_serialization.Model):
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
-    seconds. The default is 30 seconds.
+     seconds. The default is 30 seconds.
     :vartype timeout: int
     """
 
@@ -184,7 +184,7 @@ class PagingGetMultiplePagesWithOffsetOptions(_serialization.Model):
     :ivar offset: Offset of return value. Required.
     :vartype offset: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
-    seconds. The default is 30 seconds.
+     seconds. The default is 30 seconds.
     :vartype timeout: int
     """
 
@@ -220,7 +220,7 @@ class PagingGetOdataMultiplePagesOptions(_serialization.Model):
     :ivar maxresults: Sets the maximum number of items to return in the response.
     :vartype maxresults: int
     :ivar timeout: Sets the maximum time that the server can spend processing the request, in
-    seconds. The default is 30 seconds.
+     seconds. The default is 30 seconds.
     :vartype timeout: int
     """
 

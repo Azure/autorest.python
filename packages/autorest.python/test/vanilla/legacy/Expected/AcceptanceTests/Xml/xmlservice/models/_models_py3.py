@@ -243,7 +243,7 @@ class BlobProperties(_serialization.Model):
     :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
-    "broken".
+     "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
     :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
@@ -270,12 +270,12 @@ class BlobProperties(_serialization.Model):
     :ivar remaining_retention_days:
     :vartype remaining_retention_days: int
     :ivar access_tier: Known values are: "P4", "P6", "P10", "P20", "P30", "P40", "P50", "Hot",
-    "Cool", and "Archive".
+     "Cool", and "Archive".
     :vartype access_tier: str or ~xmlservice.models.AccessTier
     :ivar access_tier_inferred:
     :vartype access_tier_inferred: bool
     :ivar archive_status: Known values are: "rehydrate-pending-to-hot" and
-    "rehydrate-pending-to-cool".
+     "rehydrate-pending-to-cool".
     :vartype archive_status: str or ~xmlservice.models.ArchiveStatus
     """
 
@@ -571,7 +571,7 @@ class ContainerProperties(_serialization.Model):
     :ivar lease_status: Known values are: "locked" and "unlocked".
     :vartype lease_status: str or ~xmlservice.models.LeaseStatusType
     :ivar lease_state: Known values are: "available", "leased", "expired", "breaking", and
-    "broken".
+     "broken".
     :vartype lease_state: str or ~xmlservice.models.LeaseStateType
     :ivar lease_duration: Known values are: "infinite" and "fixed".
     :vartype lease_duration: str or ~xmlservice.models.LeaseDurationType
@@ -637,22 +637,22 @@ class CorsRule(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar allowed_origins: The origin domains that are permitted to make a request against the
-    storage service via CORS. The origin domain is the domain from which the request originates.
-    Note that the origin must be an exact case-sensitive match with the origin that the user age
-    sends to the service. You can also use the wildcard character '*' to allow all origin domains
-    to make requests via CORS. Required.
+     storage service via CORS. The origin domain is the domain from which the request originates.
+     Note that the origin must be an exact case-sensitive match with the origin that the user age
+     sends to the service. You can also use the wildcard character '*' to allow all origin domains
+     to make requests via CORS. Required.
     :vartype allowed_origins: str
     :ivar allowed_methods: The methods (HTTP request verbs) that the origin domain may use for a
-    CORS request. (comma separated). Required.
+     CORS request. (comma separated). Required.
     :vartype allowed_methods: str
     :ivar allowed_headers: the request headers that the origin domain may specify on the CORS
-    request. Required.
+     request. Required.
     :vartype allowed_headers: str
     :ivar exposed_headers: The response headers that may be sent in the response to the CORS
-    request and exposed by the browser to the request issuer. Required.
+     request and exposed by the browser to the request issuer. Required.
     :vartype exposed_headers: str
     :ivar max_age_in_seconds: The maximum amount time that a browser should cache the preflight
-    OPTIONS request. Required.
+     OPTIONS request. Required.
     :vartype max_age_in_seconds: int
     """
 
@@ -1007,7 +1007,7 @@ class Metrics(_serialization.Model):
     :ivar enabled: Indicates whether metrics are enabled for the Blob service. Required.
     :vartype enabled: bool
     :ivar include_apis: Indicates whether metrics should generate summary statistics for called API
-    operations.
+     operations.
     :vartype include_apis: bool
     :ivar retention_policy: the retention policy.
     :vartype retention_policy: ~xmlservice.models.RetentionPolicy
@@ -1124,10 +1124,10 @@ class RetentionPolicy(_serialization.Model):
     All required parameters must be populated in order to send to server.
 
     :ivar enabled: Indicates whether a retention policy is enabled for the storage service.
-    Required.
+     Required.
     :vartype enabled: bool
     :ivar days: Indicates the number of days that metrics or logging or soft-deleted data should be
-    retained. All data older than this value will be deleted.
+     retained. All data older than this value will be deleted.
     :vartype days: int
     """
 
@@ -1348,16 +1348,16 @@ class StorageServiceProperties(_serialization.Model):
     :ivar logging: Azure Analytics Logging settings.
     :vartype logging: ~xmlservice.models.Logging
     :ivar hour_metrics: A summary of request statistics grouped by API in hourly aggregates for
-    blobs.
+     blobs.
     :vartype hour_metrics: ~xmlservice.models.Metrics
     :ivar minute_metrics: a summary of request statistics grouped by API in minute aggregates for
-    blobs.
+     blobs.
     :vartype minute_metrics: ~xmlservice.models.Metrics
     :ivar cors: The set of CORS rules.
     :vartype cors: list[~xmlservice.models.CorsRule]
     :ivar default_service_version: The default version to use for requests to the Blob service if
-    an incoming request's version is not specified. Possible values include version 2008-10-27 and
-    all more recent versions.
+     an incoming request's version is not specified. Possible values include version 2008-10-27 and
+     all more recent versions.
     :vartype default_service_version: str
     :ivar delete_retention_policy: The Delete Retention Policy for the service.
     :vartype delete_retention_policy: ~xmlservice.models.RetentionPolicy

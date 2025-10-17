@@ -134,7 +134,7 @@ class Product(msrest.serialization.Model):
     :ivar const_string: Constant string. Required. Default value is "constant".
     :vartype const_string: str
     :ivar const_string_as_enum: Constant string as Enum. Default value is
-    "constant_string_as_enum".
+     "constant_string_as_enum".
     :vartype const_string_as_enum: str
     """
 
