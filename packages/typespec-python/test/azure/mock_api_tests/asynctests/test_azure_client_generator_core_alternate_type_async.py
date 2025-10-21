@@ -5,7 +5,7 @@
 # --------------------------------------------------------------------------
 import pytest
 import geojson
-from specs.azure.clientgenerator.core.alternatetype import AlternateTypeClient
+from specs.azure.clientgenerator.core.alternatetype.aio import AlternateTypeClient
 from specs.azure.clientgenerator.core.alternatetype import models
 
 
@@ -22,8 +22,8 @@ FEATURE_ID = "feature-1"
 
 
 @pytest.fixture
-def client():
-    with AlternateTypeClient(endpoint="http://localhost:3000") as client:
+async def client():
+    async with AlternateTypeClient(endpoint="http://localhost:3000") as client:
         yield client
 
 
@@ -38,9 +38,10 @@ def feature_geojson():
     )
 
 
-def test_external_type_get_model(client: AlternateTypeClient):
+@pytest.mark.asyncio
+async def test_external_type_get_model(client: AlternateTypeClient):
     """Test getting a Feature object with geometry, properties, and optional id fields."""
-    result = client.external_type.get_model()
+    result = await client.external_type.get_model()
     
     # Validate the response structure based on the TypeSpec example
     assert result.type == "Feature"
@@ -50,16 +51,18 @@ def test_external_type_get_model(client: AlternateTypeClient):
     assert result.id == FEATURE_ID
 
 
-def test_external_type_put_model(client: AlternateTypeClient, feature_geojson):
+@pytest.mark.asyncio
+async def test_external_type_put_model(client: AlternateTypeClient, feature_geojson):
     """Test putting a Feature object in request body."""
     # Should return None (204/empty response)
-    result = client.external_type.put_model(body=feature_geojson)
+    result = await client.external_type.put_model(body=feature_geojson)
     assert result is None
 
 
-def test_external_type_get_property(client: AlternateTypeClient):
+@pytest.mark.asyncio
+async def test_external_type_get_property(client: AlternateTypeClient):
     """Test getting a ModelWithFeatureProperty object with feature and additionalProperty fields."""
-    result = client.external_type.get_property()
+    result = await client.external_type.get_property()
     
     # Validate the response structure based on the TypeSpec example
     assert result.feature.type == "Feature"
@@ -70,7 +73,8 @@ def test_external_type_get_property(client: AlternateTypeClient):
     assert result.additional_property == "extra"
 
 
-def test_external_type_put_property(client: AlternateTypeClient, feature_geojson):
+@pytest.mark.asyncio
+async def test_external_type_put_property(client: AlternateTypeClient, feature_geojson):
     """Test putting a ModelWithFeatureProperty object in request body."""
     model_with_feature = models.ModelWithFeatureProperty(
         feature=feature_geojson,
@@ -78,5 +82,5 @@ def test_external_type_put_property(client: AlternateTypeClient, feature_geojson
     )
     
     # Should return None (204/empty response)
-    result = client.external_type.put_property(body=model_with_feature)
+    result = await client.external_type.put_property(body=model_with_feature)
     assert result is None
