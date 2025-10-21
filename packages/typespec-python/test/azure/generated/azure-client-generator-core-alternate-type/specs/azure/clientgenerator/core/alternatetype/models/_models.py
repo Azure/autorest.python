@@ -7,55 +7,11 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Literal, Mapping, Optional, TYPE_CHECKING, Union, overload
+from typing import Any, Mapping, overload
+
+import geojson
 
 from .._utils.model_base import Model as _Model, rest_field
-
-if TYPE_CHECKING:
-    from .. import models as _models
-
-
-class Feature(_Model):
-    """Feature.
-
-    :ivar type: Required. Default value is "Feature".
-    :vartype type: str
-    :ivar geometry: Required.
-    :vartype geometry: ~specs.azure.clientgenerator.core.alternatetype.models.Geometry
-    :ivar properties: Required.
-    :vartype properties: dict[str, any]
-    :ivar id: Is either a str type or a int type.
-    :vartype id: str or int
-    """
-
-    type: Literal["Feature"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Default value is \"Feature\"."""
-    geometry: "_models.Geometry" = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
-    properties: dict[str, Any] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required."""
-    id: Optional[Union[str, int]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Is either a str type or a int type."""
-
-    @overload
-    def __init__(
-        self,
-        *,
-        geometry: "_models.Geometry",
-        properties: dict[str, Any],
-        id: Optional[Union[str, int]] = None,  # pylint: disable=redefined-builtin
-    ) -> None: ...
-
-    @overload
-    def __init__(self, mapping: Mapping[str, Any]) -> None:
-        """
-        :param mapping: raw JSON to initialize the model.
-        :type mapping: Mapping[str, Any]
-        """
-
-    def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
-        self.type: Literal["Feature"] = "Feature"
 
 
 class Geometry(_Model):
@@ -95,12 +51,12 @@ class ModelWithFeatureProperty(_Model):
     """ModelWithFeatureProperty.
 
     :ivar feature: Required.
-    :vartype feature: ~specs.azure.clientgenerator.core.alternatetype.models.Feature
+    :vartype feature: ~geojson.Feature
     :ivar additional_property: Required.
     :vartype additional_property: str
     """
 
-    feature: "_models.Feature" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    feature: "geojson.Feature" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
     additional_property: str = rest_field(
         name="additionalProperty", visibility=["read", "create", "update", "delete", "query"]
@@ -111,7 +67,7 @@ class ModelWithFeatureProperty(_Model):
     def __init__(
         self,
         *,
-        feature: "_models.Feature",
+        feature: "geojson.Feature",
         additional_property: str,
     ) -> None: ...
 
