@@ -17,7 +17,7 @@ def client():
 def test_external_type_get_model(client: AlternateTypeClient):
     """Test getting a Feature object with geometry, properties, and optional id fields."""
     result = client.external_type.get_model()
-    
+
     # Validate the response structure based on the TypeSpec example
     assert result.type == "Feature"
     assert result.geometry.type == "Point"
@@ -32,18 +32,11 @@ def test_external_type_put_model(client: AlternateTypeClient):
     """Test putting a Feature object in request body."""
     feature = {
         "type": "Feature",
-        "geometry": {
-            "type": "Point",
-            "coordinates": [-122.25, 37.87]
-        },
-        "properties": {
-            "name": "A single point of interest",
-            "category": "landmark",
-            "elevation": 100
-        },
-        "id": "feature-1"
+        "geometry": {"type": "Point", "coordinates": [-122.25, 37.87]},
+        "properties": {"name": "A single point of interest", "category": "landmark", "elevation": 100},
+        "id": "feature-1",
     }
-    
+
     # Should return None (204/empty response)
     result = client.external_type.put_model(body=feature)
     assert result is None
@@ -52,7 +45,7 @@ def test_external_type_put_model(client: AlternateTypeClient):
 def test_external_type_get_property(client: AlternateTypeClient):
     """Test getting a ModelWithFeatureProperty object with feature and additionalProperty fields."""
     result = client.external_type.get_property()
-    
+
     # Validate the response structure based on the TypeSpec example
     assert result.feature.type == "Feature"
     assert result.feature.geometry.type == "Point"
@@ -69,20 +62,13 @@ def test_external_type_put_property(client: AlternateTypeClient):
     model_with_feature = {
         "feature": {
             "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [-122.25, 37.87]
-            },
-            "properties": {
-                "name": "A single point of interest",
-                "category": "landmark",
-                "elevation": 100
-            },
-            "id": "feature-1"
+            "geometry": {"type": "Point", "coordinates": [-122.25, 37.87]},
+            "properties": {"name": "A single point of interest", "category": "landmark", "elevation": 100},
+            "id": "feature-1",
         },
-        "additionalProperty": "extra"
+        "additionalProperty": "extra",
     }
-    
+
     # Should return None (204/empty response)
     result = client.external_type.put_property(body=model_with_feature)
     assert result is None
