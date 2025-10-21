@@ -27,7 +27,7 @@ class TestAlternateTypeExternalTypeOperationsAsync(AlternateTypeClientTestBaseAs
     async def test_external_type_put_model(self, alternatetype_endpoint):
         client = self.create_async_client(endpoint=alternatetype_endpoint)
         response = await client.external_type.put_model(
-            body=~geojson.Feature,
+            body="geojson.Feature(...)",
             content_type="str",
         )
 
@@ -48,7 +48,7 @@ class TestAlternateTypeExternalTypeOperationsAsync(AlternateTypeClientTestBaseAs
     async def test_external_type_put_property(self, alternatetype_endpoint):
         client = self.create_async_client(endpoint=alternatetype_endpoint)
         response = await client.external_type.put_property(
-            body={"additionalProperty": "str", "feature": ~geojson.Feature},
+            body={"additionalProperty": "str", "feature": "geojson.Feature(...)"},
         )
 
         # please add some check logic here by yourself

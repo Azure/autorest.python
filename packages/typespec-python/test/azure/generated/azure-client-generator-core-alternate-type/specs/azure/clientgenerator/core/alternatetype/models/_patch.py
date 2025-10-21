@@ -11,18 +11,17 @@ from typing import Type
 from .._utils.model_base import TYPE_HANDLER_REGISTRY
 import geojson
 
+
 @TYPE_HANDLER_REGISTRY.register_serializer(geojson.Feature)
 def feature_serializer(obj: geojson.Feature) -> dict:
     """Serialize a geojson.Feature to a dict."""
     return {
         "type": obj.type,
-        "geometry": {
-            "type": obj.geometry.type,
-            "coordinates": obj.geometry.coordinates
-        },
+        "geometry": {"type": obj.geometry.type, "coordinates": obj.geometry.coordinates},
         "properties": obj.properties,
-        "id": obj.id
+        "id": obj.id,
     }
+
 
 @TYPE_HANDLER_REGISTRY.register_deserializer(geojson.Feature)
 def feature_deserializer(cls: Type[geojson.Feature], data: dict) -> geojson.Feature:
@@ -30,11 +29,10 @@ def feature_deserializer(cls: Type[geojson.Feature], data: dict) -> geojson.Feat
     return cls(
         type=data.get("type"),
         geometry=geojson.geometry.Geometry(
-            type=data["geometry"].get("type"),
-            coordinates=data["geometry"].get("coordinates")
+            type=data["geometry"].get("type"), coordinates=data["geometry"].get("coordinates")
         ),
         properties=data.get("properties"),
-        id=data.get("id")
+        id=data.get("id"),
     )
 
 
