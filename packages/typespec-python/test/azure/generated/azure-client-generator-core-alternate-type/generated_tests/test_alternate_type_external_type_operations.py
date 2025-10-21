@@ -26,12 +26,8 @@ class TestAlternateTypeExternalTypeOperations(AlternateTypeClientTestBase):
     def test_external_type_put_model(self, alternatetype_endpoint):
         client = self.create_client(endpoint=alternatetype_endpoint)
         response = client.external_type.put_model(
-            body={
-                "geometry": {"coordinates": [0], "type": "str"},
-                "properties": {"str": {}},
-                "type": "Feature",
-                "id": "str",
-            },
+            body=~geojson.Feature,
+            content_type="str",
         )
 
         # please add some check logic here by yourself
@@ -51,15 +47,7 @@ class TestAlternateTypeExternalTypeOperations(AlternateTypeClientTestBase):
     def test_external_type_put_property(self, alternatetype_endpoint):
         client = self.create_client(endpoint=alternatetype_endpoint)
         response = client.external_type.put_property(
-            body={
-                "additionalProperty": "str",
-                "feature": {
-                    "geometry": {"coordinates": [0], "type": "str"},
-                    "properties": {"str": {}},
-                    "type": "Feature",
-                    "id": "str",
-                },
-            },
+            body={"additionalProperty": "str", "feature": ~geojson.Feature},
         )
 
         # please add some check logic here by yourself
