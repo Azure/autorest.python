@@ -23,6 +23,7 @@ from .operations import BarOperations, BazOperations, FooOperations, QuxOperatio
 class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test that we can use @client and @operationGroup decorators to customize client side code
     structure, such as:
+
     1. have everything as default.
     2. to rename client or operation group
     3. one client can have more than one operations groups

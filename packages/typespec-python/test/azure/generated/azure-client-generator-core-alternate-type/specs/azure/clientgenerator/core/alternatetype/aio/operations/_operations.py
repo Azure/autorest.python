@@ -10,6 +10,8 @@ from io import IOBase
 import json
 from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
 
+import geojson
+
 from azure.core import AsyncPipelineClient
 from azure.core.exceptions import (
     ClientAuthenticationError,
@@ -60,11 +62,11 @@ class ExternalTypeOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get_model(self, **kwargs: Any) -> _models.Feature:
+    async def get_model(self, **kwargs: Any) -> geojson.Feature:
         """get_model.
 
-        :return: Feature. The Feature is compatible with MutableMapping
-        :rtype: ~specs.azure.clientgenerator.core.alternatetype.models.Feature
+        :return: ~geojson.Feature
+        :rtype: ~geojson.Feature
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -78,7 +80,7 @@ class ExternalTypeOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[_models.Feature] = kwargs.pop("cls", None)
+        cls: ClsType[geojson.Feature] = kwargs.pop("cls", None)
 
         _request = build_external_type_get_model_request(
             headers=_headers,
@@ -108,61 +110,19 @@ class ExternalTypeOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(_models.Feature, response.json())
+            deserialized = _deserialize(geojson.Feature, response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
 
         return deserialized  # type: ignore
 
-    @overload
-    async def put_model(self, body: _models.Feature, *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """put_model.
-
-        :param body: Required.
-        :type body: ~specs.azure.clientgenerator.core.alternatetype.models.Feature
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def put_model(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """put_model.
-
-        :param body: Required.
-        :type body: JSON
-        :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
-    @overload
-    async def put_model(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
-        """put_model.
-
-        :param body: Required.
-        :type body: IO[bytes]
-        :keyword content_type: Body Parameter content-type. Content type parameter for binary body.
-         Default value is "application/json".
-        :paramtype content_type: str
-        :return: None
-        :rtype: None
-        :raises ~azure.core.exceptions.HttpResponseError:
-        """
-
     @distributed_trace_async
-    async def put_model(self, body: Union[_models.Feature, JSON, IO[bytes]], **kwargs: Any) -> None:
+    async def put_model(self, body: geojson.Feature, **kwargs: Any) -> None:
         """put_model.
 
-        :param body: Is one of the following types: Feature, JSON, IO[bytes] Required.
-        :type body: ~specs.azure.clientgenerator.core.alternatetype.models.Feature or JSON or IO[bytes]
+        :param body: Required.
+        :type body: ~geojson.Feature
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -178,15 +138,10 @@ class ExternalTypeOperations:
         _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
         _params = kwargs.pop("params", {}) or {}
 
-        content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
+        content_type: str = kwargs.pop("content_type", _headers.pop("Content-Type", "application/json"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        content_type = content_type or "application/json"
-        _content = None
-        if isinstance(body, (IOBase, bytes)):
-            _content = body
-        else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+        _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_external_type_put_model_request(
             content_type=content_type,

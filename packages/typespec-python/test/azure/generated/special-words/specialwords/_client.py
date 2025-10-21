@@ -22,8 +22,11 @@ from .operations import ModelPropertiesOperations, ModelsOperations, Operations,
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     """Scenarios to verify that reserved words can be used in service and generators will handle it
     appropriately.
+
     Current list of special words
+
     .. code-block:: txt
+
        and
        as
        assert
