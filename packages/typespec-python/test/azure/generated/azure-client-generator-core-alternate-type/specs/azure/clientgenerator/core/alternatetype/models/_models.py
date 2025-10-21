@@ -56,7 +56,7 @@ class ModelWithFeatureProperty(_Model):
     :vartype additional_property: str
     """
 
-    feature: "geojson.Feature" = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    feature: geojson.Feature = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
     additional_property: str = rest_field(
         name="additionalProperty", visibility=["read", "create", "update", "delete", "query"]
@@ -67,7 +67,7 @@ class ModelWithFeatureProperty(_Model):
     def __init__(
         self,
         *,
-        feature: "geojson.Feature",
+        feature: geojson.Feature,
         additional_property: str,
     ) -> None: ...
 
