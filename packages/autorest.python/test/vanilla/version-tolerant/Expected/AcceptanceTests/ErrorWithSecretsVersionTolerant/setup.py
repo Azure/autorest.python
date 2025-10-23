@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate>=0.6.1",
-        "azure-core>=1.35.0",
+        "azure-core @ git+https://github.com/Azure/azure-sdk-for-python.git@core-serviceresponsetimeouterror#subdirectory=sdk/core/azure-core",
         "typing-extensions>=4.6.0",
     ],
     long_description="""\
