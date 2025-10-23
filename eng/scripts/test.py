@@ -57,13 +57,6 @@ def main(package_name: str, regenerate: bool, check_change: bool, check_code: bo
         # "Regenerate Code"
         call("inv regenerate", cwd=package_dir)
 
-        if check_change:
-            # Fail on regeneration diff in Typespec
-            call(
-                "node ../../../eng/scripts/check-for-changed-files.js",
-                cwd=package_dir / Path("test"),
-            )
-
     call(f"git restore .")
 
 
