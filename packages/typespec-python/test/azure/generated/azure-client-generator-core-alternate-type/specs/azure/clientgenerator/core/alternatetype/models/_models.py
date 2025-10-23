@@ -18,7 +18,7 @@ if TYPE_CHECKING:
 class Feature(_Model):
     """Feature.
 
-    :ivar type: Required. Default value is "Feature".
+    :ivar type: Default value is "Feature".
     :vartype type: str
     :ivar geometry: Required.
     :vartype geometry: ~specs.azure.clientgenerator.core.alternatetype.models.Geometry
@@ -28,8 +28,8 @@ class Feature(_Model):
     :vartype id: str or int
     """
 
-    type: Literal["Feature"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Required. Default value is \"Feature\"."""
+    type: Literal["Feature"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="Feature")
+    """Default value is \"Feature\"."""
     geometry: "_models.Geometry" = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
     properties: dict[str, Any] = rest_field(visibility=["read", "create", "update", "delete", "query"])

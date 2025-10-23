@@ -58,15 +58,15 @@ class Pet(Animal, discriminator="pet"):
 
     :ivar name: Name of the animal. Required.
     :vartype name: str
-    :ivar kind: Required. Default value is "pet".
+    :ivar kind: Default value is "pet".
     :vartype kind: str
     :ivar trained: Whether the pet is trained. Required.
     :vartype trained: bool
     """
 
     __mapping__: dict[str, _Model] = {}
-    kind: Literal["pet"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
-    """Required. Default value is \"pet\"."""
+    kind: Literal["pet"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="pet")  # type: ignore
+    """Default value is \"pet\"."""
     trained: bool = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Whether the pet is trained. Required."""
 
@@ -97,14 +97,14 @@ class Dog(Pet, discriminator="dog"):
     :vartype name: str
     :ivar trained: Whether the pet is trained. Required.
     :vartype trained: bool
-    :ivar kind: Required. Default value is "dog".
+    :ivar kind: Default value is "dog".
     :vartype kind: str
     :ivar breed: The breed of the dog. Required.
     :vartype breed: str
     """
 
-    kind: Literal["dog"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
-    """Required. Default value is \"dog\"."""
+    kind: Literal["dog"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="dog")  # type: ignore
+    """Default value is \"dog\"."""
     breed: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The breed of the dog. Required."""
 

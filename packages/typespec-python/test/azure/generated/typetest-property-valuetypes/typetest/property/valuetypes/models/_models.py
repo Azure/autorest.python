@@ -21,12 +21,12 @@ if TYPE_CHECKING:
 class BooleanLiteralProperty(_Model):
     """Model with a boolean literal property.
 
-    :ivar property: Property. Required. Default value is True.
+    :ivar property: Property. Default value is True.
     :vartype property: bool
     """
 
-    property: Literal[True] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Property. Required. Default value is True."""
+    property: Literal[True] = rest_field(visibility=["read", "create", "update", "delete", "query"], default=True)
+    """Property. Default value is True."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -376,12 +376,12 @@ class ExtensibleEnumProperty(_Model):
 class FloatLiteralProperty(_Model):
     """Model with a float literal property.
 
-    :ivar property: Property. Required. Default value is 43.125.
+    :ivar property: Property. Default value is 43.125.
     :vartype property: float
     """
 
-    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Property. Required. Default value is 43.125."""
+    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"], default=43.125)
+    """Property. Default value is 43.125."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -447,12 +447,12 @@ class InnerModel(_Model):
 class IntLiteralProperty(_Model):
     """Model with a int literal property.
 
-    :ivar property: Property. Required. Default value is 42.
+    :ivar property: Property. Default value is 42.
     :vartype property: int
     """
 
-    property: Literal[42] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Property. Required. Default value is 42."""
+    property: Literal[42] = rest_field(visibility=["read", "create", "update", "delete", "query"], default=42)
+    """Property. Default value is 42."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
@@ -522,12 +522,12 @@ class NeverProperty(_Model):
 class StringLiteralProperty(_Model):
     """Model with a string literal property.
 
-    :ivar property: Property. Required. Default value is "hello".
+    :ivar property: Property. Default value is "hello".
     :vartype property: str
     """
 
-    property: Literal["hello"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Property. Required. Default value is \"hello\"."""
+    property: Literal["hello"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="hello")
+    """Property. Default value is \"hello\"."""
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)

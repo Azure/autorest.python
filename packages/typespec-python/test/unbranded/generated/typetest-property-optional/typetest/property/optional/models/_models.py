@@ -17,14 +17,14 @@ class BooleanLiteralProperty(_Model):
     :vartype property: bool
     """
 
-    property: Optional[Literal[True]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: Literal[True] = rest_field(visibility=["read", "create", "update", "delete", "query"], default=True)
     """Property. Default value is True."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Literal[True]] = None,  # pylint: disable=redefined-builtin
+        property: Literal[True] = True,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -192,14 +192,14 @@ class FloatLiteralProperty(_Model):
     :vartype property: float
     """
 
-    property: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: float = rest_field(visibility=["read", "create", "update", "delete", "query"], default=1.25)
     """Property. Default value is 1.25."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[float] = None,  # pylint: disable=redefined-builtin
+        property: float = 1.25,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -220,14 +220,14 @@ class IntLiteralProperty(_Model):
     :vartype property: int
     """
 
-    property: Optional[Literal[1]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: Literal[1] = rest_field(visibility=["read", "create", "update", "delete", "query"], default=1)
     """Property. Default value is 1."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Literal[1]] = None,  # pylint: disable=redefined-builtin
+        property: Literal[1] = 1,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
@@ -341,14 +341,14 @@ class StringLiteralProperty(_Model):
     :vartype property: str
     """
 
-    property: Optional[Literal["hello"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    property: Literal["hello"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="hello")
     """Property. Default value is \"hello\"."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[Literal["hello"]] = None,  # pylint: disable=redefined-builtin
+        property: Literal["hello"] = "hello",  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload
