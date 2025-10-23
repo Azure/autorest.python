@@ -165,13 +165,13 @@ class ContantsOperations:
 
     @distributed_trace_async
     async def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=name-too-long
-        self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
+        self, *, input: Literal["value1"] = "value1", **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are "value1" and None. Default value is None.
+        :keyword input: Known values are "value1" and None. Default value is "value1".
         :paramtype input: str
         :return: None
         :rtype: None

@@ -21,7 +21,7 @@ class ChildProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar const_property: Constant string. Required. Default value is "constant".
+    :ivar const_property: Constant string. Default value is "constant".
     :vartype const_property: str
     :ivar count: Count.
     :vartype count: int
@@ -54,9 +54,9 @@ class ConstantProduct(msrest.serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar const_property: Constant string. Required. Default value is "constant".
+    :ivar const_property: Constant string. Default value is "constant".
     :vartype const_property: str
-    :ivar const_property2: Constant string2. Required. Default value is "constant2".
+    :ivar const_property2: Constant string2. Default value is "constant2".
     :vartype const_property2: str
     """
 
@@ -131,7 +131,7 @@ class Product(msrest.serialization.Model):
     :vartype const_child: ~validation.models.ConstantProduct
     :ivar const_int: Constant int. Required. Default value is 0.
     :vartype const_int: int
-    :ivar const_string: Constant string. Required. Default value is "constant".
+    :ivar const_string: Constant string. Default value is "constant".
     :vartype const_string: str
     :ivar const_string_as_enum: Constant string as Enum. Default value is
      "constant_string_as_enum".
@@ -170,7 +170,7 @@ class Product(msrest.serialization.Model):
         display_names: Optional[list[str]] = None,
         capacity: Optional[int] = None,
         image: Optional[str] = None,
-        const_string_as_enum: Optional[Literal["constant_string_as_enum"]] = None,
+        const_string_as_enum: Literal["constant_string_as_enum"] = "constant_string_as_enum",
         **kwargs: Any
     ) -> None:
         """

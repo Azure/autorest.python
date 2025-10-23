@@ -90,7 +90,7 @@ class PathsPvivzlFormsdataurlencodedPartialconstantbodyPostRequestbodyContentApp
 
     All required parameters must be populated in order to send to server.
 
-    :ivar grant_type: Constant part of a formdata body. Required. Default value is "access_token".
+    :ivar grant_type: Constant part of a formdata body. Default value is "access_token".
     :vartype grant_type: str
     :ivar service: Indicates the name of your Azure container registry. Required.
     :vartype service: str

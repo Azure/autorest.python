@@ -20,7 +20,7 @@ class Error(_serialization.Model):
 
     :ivar status:
     :vartype status: int
-    :ivar constant_id: Required. Default value is 1.
+    :ivar constant_id: Default value is 1.
     :vartype constant_id: int
     :ivar message:
     :vartype message: str
