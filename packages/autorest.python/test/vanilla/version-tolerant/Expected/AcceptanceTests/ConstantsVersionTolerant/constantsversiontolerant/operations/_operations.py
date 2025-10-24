@@ -64,7 +64,7 @@ def build_contants_put_no_model_as_string_no_required_two_value_default_request(
 
 
 def build_contants_put_no_model_as_string_no_required_one_value_no_default_request(  # pylint: disable=name-too-long
-    *, input: Literal["value1"] = "value1", **kwargs: Any
+    *, input: Optional[Literal["value1"]] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -408,13 +408,13 @@ class ContantsOperations:
 
     @distributed_trace
     def put_no_model_as_string_no_required_one_value_no_default(  # pylint: disable=inconsistent-return-statements,name-too-long
-        self, *, input: Literal["value1"] = "value1", **kwargs: Any
+        self, *, input: Optional[Literal["value1"]] = None, **kwargs: Any
     ) -> None:
         """Puts constants to the testserver.
 
         Puts constants to the testserver.
 
-        :keyword input: Known values are "value1" and None. Default value is "value1".
+        :keyword input: Known values are "value1" and None. Default value is None.
         :paramtype input: str
         :return: None
         :rtype: None

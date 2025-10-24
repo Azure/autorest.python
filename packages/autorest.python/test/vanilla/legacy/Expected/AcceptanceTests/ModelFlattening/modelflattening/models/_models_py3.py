@@ -261,7 +261,7 @@ class FlattenParameterGroup(_serialization.Model):
         simple_body_product: Optional["_models.SimpleProduct"] = None,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Literal["Large"] = "Large",
+        capacity: Optional[Literal["Large"]] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any
@@ -443,7 +443,7 @@ class SimpleProduct(BaseProduct):
         product_id: str,
         description: Optional[str] = None,
         max_product_display_name: Optional[str] = None,
-        capacity: Literal["Large"] = "Large",
+        capacity: Optional[Literal["Large"]] = None,
         generic_value: Optional[str] = None,
         odata_value: Optional[str] = None,
         **kwargs: Any

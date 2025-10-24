@@ -159,7 +159,7 @@ def build_parameter_grouping_post_shared_parameter_group_object_request(  # pyli
 
 
 def build_parameter_grouping_group_with_constant_request(  # pylint: disable=name-too-long
-    *, grouped_constant: Literal["foo"] = "foo", grouped_parameter: Optional[str] = None, **kwargs: Any
+    *, grouped_constant: Optional[Literal["foo"]] = None, grouped_parameter: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -468,13 +468,17 @@ class ParameterGroupingOperations:
 
     @distributed_trace
     def group_with_constant(  # pylint: disable=inconsistent-return-statements
-        self, *, grouped_constant: Literal["foo"] = "foo", grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[Literal["foo"]] = None,
+        grouped_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.
 
         :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
-         None. Default value is "foo".
+         None. Default value is None.
         :paramtype grouped_constant: str
         :keyword grouped_parameter: Optional parameter part of a parameter grouping. Default value is
          None.

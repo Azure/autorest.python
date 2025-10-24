@@ -118,7 +118,7 @@ def build_http_success_options200_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_success_put200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_put200_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -135,7 +135,7 @@ def build_http_success_put200_request(*, json: Literal[True] = True, **kwargs: A
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_patch200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch200_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -152,7 +152,7 @@ def build_http_success_patch200_request(*, json: Literal[True] = True, **kwargs:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_post200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_post200_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -169,7 +169,7 @@ def build_http_success_post200_request(*, json: Literal[True] = True, **kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_delete200_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete200_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -186,7 +186,7 @@ def build_http_success_delete200_request(*, json: Literal[True] = True, **kwargs
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_put201_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_put201_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -203,7 +203,7 @@ def build_http_success_put201_request(*, json: Literal[True] = True, **kwargs: A
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_post201_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_post201_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -220,7 +220,7 @@ def build_http_success_post201_request(*, json: Literal[True] = True, **kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_put202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_put202_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -237,7 +237,7 @@ def build_http_success_put202_request(*, json: Literal[True] = True, **kwargs: A
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_patch202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch202_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -254,7 +254,7 @@ def build_http_success_patch202_request(*, json: Literal[True] = True, **kwargs:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_post202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_post202_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -271,7 +271,7 @@ def build_http_success_post202_request(*, json: Literal[True] = True, **kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_delete202_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete202_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -302,7 +302,7 @@ def build_http_success_head204_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_success_put204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_put204_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -319,7 +319,7 @@ def build_http_success_put204_request(*, json: Literal[True] = True, **kwargs: A
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_patch204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_patch204_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -336,7 +336,7 @@ def build_http_success_patch204_request(*, json: Literal[True] = True, **kwargs:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_post204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_post204_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -353,7 +353,7 @@ def build_http_success_post204_request(*, json: Literal[True] = True, **kwargs: 
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_success_delete204_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_success_delete204_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -440,7 +440,7 @@ def build_http_redirects_get301_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_put301_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_put301_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -485,7 +485,7 @@ def build_http_redirects_get302_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_patch302_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_patch302_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -502,7 +502,7 @@ def build_http_redirects_patch302_request(*, json: Literal[True] = True, **kwarg
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_redirects_post303_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_post303_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -561,7 +561,7 @@ def build_http_redirects_options307_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_redirects_put307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_put307_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -578,7 +578,7 @@ def build_http_redirects_put307_request(*, json: Literal[True] = True, **kwargs:
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_redirects_patch307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_patch307_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -595,7 +595,7 @@ def build_http_redirects_patch307_request(*, json: Literal[True] = True, **kwarg
     return HttpRequest(method="PATCH", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_redirects_post307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_post307_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -612,7 +612,7 @@ def build_http_redirects_post307_request(*, json: Literal[True] = True, **kwargs
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_redirects_delete307_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_redirects_delete307_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -671,7 +671,7 @@ def build_http_client_failure_options400_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put400_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_client_failure_put400_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -689,7 +689,7 @@ def build_http_client_failure_put400_request(*, json: Literal[True] = True, **kw
 
 
 def build_http_client_failure_patch400_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -708,7 +708,7 @@ def build_http_client_failure_patch400_request(  # pylint: disable=name-too-long
 
 
 def build_http_client_failure_post400_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -727,7 +727,7 @@ def build_http_client_failure_post400_request(  # pylint: disable=name-too-long
 
 
 def build_http_client_failure_delete400_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -801,7 +801,7 @@ def build_http_client_failure_get403_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put404_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_client_failure_put404_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -819,7 +819,7 @@ def build_http_client_failure_put404_request(*, json: Literal[True] = True, **kw
 
 
 def build_http_client_failure_patch405_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -838,7 +838,7 @@ def build_http_client_failure_patch405_request(  # pylint: disable=name-too-long
 
 
 def build_http_client_failure_post406_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -857,7 +857,7 @@ def build_http_client_failure_post406_request(  # pylint: disable=name-too-long
 
 
 def build_http_client_failure_delete407_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -875,7 +875,7 @@ def build_http_client_failure_delete407_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_client_failure_put409_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_client_failure_put409_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -948,7 +948,7 @@ def build_http_client_failure_get412_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_client_failure_put413_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_client_failure_put413_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -966,7 +966,7 @@ def build_http_client_failure_put413_request(*, json: Literal[True] = True, **kw
 
 
 def build_http_client_failure_patch414_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -985,7 +985,7 @@ def build_http_client_failure_patch414_request(  # pylint: disable=name-too-long
 
 
 def build_http_client_failure_post415_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1018,7 +1018,7 @@ def build_http_client_failure_get416_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_http_client_failure_delete417_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1079,7 +1079,7 @@ def build_http_server_failure_get501_request(**kwargs: Any) -> HttpRequest:
 
 
 def build_http_server_failure_post505_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1098,7 +1098,7 @@ def build_http_server_failure_post505_request(  # pylint: disable=name-too-long
 
 
 def build_http_server_failure_delete505_request(  # pylint: disable=name-too-long
-    *, json: Literal[True] = True, **kwargs: Any
+    *, json: Optional[Literal[True]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -1130,7 +1130,7 @@ def build_http_retry_head408_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_retry_put500_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_put500_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1147,7 +1147,7 @@ def build_http_retry_put500_request(*, json: Literal[True] = True, **kwargs: Any
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_retry_patch500_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_patch500_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1192,7 +1192,7 @@ def build_http_retry_options502_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="OPTIONS", url=_url, headers=_headers, **kwargs)
 
 
-def build_http_retry_post503_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_post503_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1209,7 +1209,7 @@ def build_http_retry_post503_request(*, json: Literal[True] = True, **kwargs: An
     return HttpRequest(method="POST", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_retry_delete503_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_delete503_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1226,7 +1226,7 @@ def build_http_retry_delete503_request(*, json: Literal[True] = True, **kwargs: 
     return HttpRequest(method="DELETE", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_retry_put504_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_put504_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -1243,7 +1243,7 @@ def build_http_retry_put504_request(*, json: Literal[True] = True, **kwargs: Any
     return HttpRequest(method="PUT", url=_url, headers=_headers, json=json, **kwargs)
 
 
-def build_http_retry_patch504_request(*, json: Literal[True] = True, **kwargs: Any) -> HttpRequest:
+def build_http_retry_patch504_request(*, json: Optional[Literal[True]] = None, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -2070,12 +2070,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put boolean value true returning 200 success.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2125,12 +2125,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returning 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2180,12 +2180,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post bollean value true in request that returns a 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2235,12 +2235,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete200(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Delete simple boolean value true returns 200.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2290,12 +2290,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 201.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2345,12 +2345,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post201(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 201 (Created).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2400,12 +2400,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2455,12 +2455,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 202.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2510,12 +2510,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 202 (Accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2565,12 +2565,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete202(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 202 (accepted).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2661,12 +2661,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def put204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2716,12 +2716,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def patch204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2771,12 +2771,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def post204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -2826,12 +2826,12 @@ class HttpSuccessOperations:
 
     @distributed_trace
     def delete204(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Delete true Boolean value in request returns 204 (no content).
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3138,13 +3138,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def put301(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put true Boolean value in request returns 301.  This request should not be automatically
         redirected, but should return the received 301 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3287,13 +3287,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def patch302(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Patch true Boolean value in request returns 302.  This request should not be automatically
         redirected, but should return the received 302 to the caller for evaluation.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3346,13 +3346,13 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def post303(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post true Boolean value in request returns 303.  This request should be automatically
         redirected usign a get, ultimately returning a 200 status code.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3541,12 +3541,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def put307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Put redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3600,12 +3600,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def patch307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Patch redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3659,12 +3659,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def post307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Post redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3718,12 +3718,12 @@ class HttpRedirectsOperations:
 
     @distributed_trace
     def delete307(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Delete redirected with 307, resulting in a 200 after redirect.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3920,12 +3920,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -3975,12 +3975,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4030,12 +4030,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4085,12 +4085,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete400(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 400 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4304,12 +4304,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put404(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 404 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4359,12 +4359,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch405(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 405 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4414,12 +4414,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post406(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 406 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4469,12 +4469,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete407(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 407 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4524,12 +4524,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put409(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 409 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4743,12 +4743,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def put413(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 413 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4798,12 +4798,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def patch414(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 414 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4853,12 +4853,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def post415(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 415 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -4949,12 +4949,12 @@ class HttpClientFailureOperations:  # pylint: disable=too-many-public-methods
 
     @distributed_trace
     def delete417(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 417 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5147,12 +5147,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def post505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5202,12 +5202,12 @@ class HttpServerFailureOperations:
 
     @distributed_trace
     def delete505(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 505 status code - should be represented in the client as an error.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5318,12 +5318,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5373,12 +5373,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch500(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 500 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5517,12 +5517,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def post503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5572,12 +5572,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def delete503(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 503 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5627,12 +5627,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def put504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None
@@ -5682,12 +5682,12 @@ class HttpRetryOperations:
 
     @distributed_trace
     def patch504(  # pylint: disable=inconsistent-return-statements
-        self, boolean_value: Literal[True] = True, **kwargs: Any
+        self, boolean_value: Optional[Literal[True]] = None, **kwargs: Any
     ) -> None:
         """Return 504 status code, then 200 after retry.
 
         :param boolean_value: Simple boolean value true. Known values are True and None. Default value
-         is True.
+         is None.
         :type boolean_value: bool
         :return: None
         :rtype: None

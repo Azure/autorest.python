@@ -325,13 +325,17 @@ class ParameterGroupingOperations:
 
     @distributed_trace_async
     async def group_with_constant(
-        self, *, grouped_constant: Literal["foo"] = "foo", grouped_parameter: Optional[str] = None, **kwargs: Any
+        self,
+        *,
+        grouped_constant: Optional[Literal["foo"]] = None,
+        grouped_parameter: Optional[str] = None,
+        **kwargs: Any
     ) -> None:
         """Parameter group with a constant. Pass in 'foo' for groupedConstant and 'bar' for
         groupedParameter.
 
         :keyword grouped_constant: A grouped parameter that is a constant. Known values are "foo" and
-         None. Default value is "foo".
+         None. Default value is None.
         :paramtype grouped_constant: str
         :keyword grouped_parameter: Optional parameter part of a parameter grouping. Default value is
          None.

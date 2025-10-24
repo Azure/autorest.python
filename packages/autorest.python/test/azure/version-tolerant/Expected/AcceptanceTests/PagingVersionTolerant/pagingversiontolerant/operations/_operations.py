@@ -213,7 +213,7 @@ def build_paging_duplicate_params_request(*, filter: Optional[str] = None, **kwa
 
 
 def build_paging_page_with_max_page_size_request(  # pylint: disable=name-too-long
-    *, maxpagesize: Literal["5"] = "5", **kwargs: Any
+    *, maxpagesize: Optional[Literal["5"]] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})

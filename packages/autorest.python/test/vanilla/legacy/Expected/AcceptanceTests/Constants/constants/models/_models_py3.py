@@ -251,7 +251,7 @@ class NoModelAsStringNoRequiredOneValueNoDefault(_serialization.Model):  # pylin
         "parameter": {"key": "parameter", "type": "str"},
     }
 
-    def __init__(self, *, parameter: Literal["value1"] = "value1", **kwargs: Any) -> None:
+    def __init__(self, *, parameter: Optional[Literal["value1"]] = None, **kwargs: Any) -> None:
         """
         :keyword parameter: Default value is "value1".
         :paramtype parameter: str
@@ -340,7 +340,7 @@ class NoModelAsStringRequiredOneValueNoDefault(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar parameter: Default value is "value1".
+    :ivar parameter: Required. Default value is "value1".
     :vartype parameter: str
     """
 

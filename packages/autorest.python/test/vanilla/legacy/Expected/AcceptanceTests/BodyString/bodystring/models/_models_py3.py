@@ -44,7 +44,8 @@ class RefColorConstant(_serialization.Model):
 
     All required parameters must be populated in order to send to server.
 
-    :ivar color_constant: Referenced Color Constant Description. Default value is "green-color".
+    :ivar color_constant: Referenced Color Constant Description. Required. Default value is
+     "green-color".
     :vartype color_constant: str
     :ivar field1: Sample string.
     :vartype field1: str
