@@ -62,15 +62,15 @@ class Shark(Fish, discriminator="shark"):
 
     :ivar age: Required.
     :vartype age: int
-    :ivar kind: Default value is "shark".
+    :ivar kind: Required. Default value is "shark".
     :vartype kind: str
     :ivar sharktype: Required. Default value is None.
     :vartype sharktype: str
     """
 
     __mapping__: dict[str, _Model] = {}
-    kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="shark")  # type: ignore
-    """Default value is \"shark\"."""
+    kind: Literal["shark"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"shark\"."""
     sharktype: str = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is None."""
 
@@ -99,15 +99,15 @@ class GoblinShark(Shark, discriminator="goblin"):
 
     :ivar age: Required.
     :vartype age: int
-    :ivar kind: Default value is "shark".
+    :ivar kind: Required. Default value is "shark".
     :vartype kind: str
-    :ivar sharktype: Default value is "goblin".
+    :ivar sharktype: Required. Default value is "goblin".
     :vartype sharktype: str
     """
 
     __mapping__: dict[str, _Model] = {}
-    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"], default="goblin")  # type: ignore
-    """Default value is \"goblin\"."""
+    sharktype: Literal["goblin"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"goblin\"."""
 
     @overload
     def __init__(
@@ -134,7 +134,7 @@ class Salmon(Fish, discriminator="salmon"):
 
     :ivar age: Required.
     :vartype age: int
-    :ivar kind: Default value is "salmon".
+    :ivar kind: Required. Default value is "salmon".
     :vartype kind: str
     :ivar friends:
     :vartype friends: list[~typetest.model.nesteddiscriminator.models.Fish]
@@ -144,8 +144,8 @@ class Salmon(Fish, discriminator="salmon"):
     :vartype partner: ~typetest.model.nesteddiscriminator.models.Fish
     """
 
-    kind: Literal["salmon"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="salmon")  # type: ignore
-    """Default value is \"salmon\"."""
+    kind: Literal["salmon"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"salmon\"."""
     friends: Optional[list["_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[dict[str, "_models.Fish"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     partner: Optional["_models.Fish"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -177,15 +177,15 @@ class SawShark(Shark, discriminator="saw"):
 
     :ivar age: Required.
     :vartype age: int
-    :ivar kind: Default value is "shark".
+    :ivar kind: Required. Default value is "shark".
     :vartype kind: str
-    :ivar sharktype: Default value is "saw".
+    :ivar sharktype: Required. Default value is "saw".
     :vartype sharktype: str
     """
 
     __mapping__: dict[str, _Model] = {}
-    sharktype: Literal["saw"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"], default="saw")  # type: ignore
-    """Default value is \"saw\"."""
+    sharktype: Literal["saw"] = rest_discriminator(name="sharktype", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"saw\"."""
 
     @overload
     def __init__(

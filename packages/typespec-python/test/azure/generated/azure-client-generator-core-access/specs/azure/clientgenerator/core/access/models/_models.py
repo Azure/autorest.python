@@ -285,12 +285,12 @@ class RealModel(AbstractModel, discriminator="real"):
 
     :ivar name: Required.
     :vartype name: str
-    :ivar kind: Default value is "real".
+    :ivar kind: Required. Default value is "real".
     :vartype kind: str
     """
 
-    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="real")  # type: ignore
-    """Default value is \"real\"."""
+    kind: Literal["real"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"real\"."""
 
     @overload
     def __init__(

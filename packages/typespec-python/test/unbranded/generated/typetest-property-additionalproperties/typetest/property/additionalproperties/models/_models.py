@@ -479,7 +479,7 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
 
     :ivar name: The name property. Required.
     :vartype name: str
-    :ivar kind: Default value is "derived".
+    :ivar kind: Required. Default value is "derived".
     :vartype kind: str
     :ivar index: The index property. Required.
     :vartype index: int
@@ -487,8 +487,8 @@ class ExtendsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="derived")  # type: ignore
-    """Default value is \"derived\"."""
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"derived\"."""
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -739,7 +739,7 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
 
     :ivar name: The name property. Required.
     :vartype name: str
-    :ivar kind: Default value is "derived".
+    :ivar kind: Required. Default value is "derived".
     :vartype kind: str
     :ivar index: The index property. Required.
     :vartype index: int
@@ -747,8 +747,8 @@ class IsUnknownAdditionalPropertiesDiscriminatedDerived(
     :vartype age: float
     """
 
-    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="derived")  # type: ignore
-    """Default value is \"derived\"."""
+    kind: Literal["derived"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"derived\"."""
     index: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """The index property. Required."""
     age: Optional[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -1062,14 +1062,14 @@ class SpreadStringRecord(_Model):
 class WidgetData0(_Model):
     """WidgetData0.
 
-    :ivar kind: Default value is "kind0".
+    :ivar kind: Required. Default value is "kind0".
     :vartype kind: str
     :ivar foo_prop: Required.
     :vartype foo_prop: str
     """
 
-    kind: Literal["kind0"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="kind0")
-    """Default value is \"kind0\"."""
+    kind: Literal["kind0"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Default value is \"kind0\"."""
     foo_prop: str = rest_field(name="fooProp", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
@@ -1095,7 +1095,7 @@ class WidgetData0(_Model):
 class WidgetData1(_Model):
     """WidgetData1.
 
-    :ivar kind: Default value is "kind1".
+    :ivar kind: Required. Default value is "kind1".
     :vartype kind: str
     :ivar start: Required.
     :vartype start: ~datetime.datetime
@@ -1103,8 +1103,8 @@ class WidgetData1(_Model):
     :vartype end: ~datetime.datetime
     """
 
-    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="kind1")
-    """Default value is \"kind1\"."""
+    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Default value is \"kind1\"."""
     start: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
     """Required."""
     end: Optional[datetime.datetime] = rest_field(
@@ -1134,14 +1134,14 @@ class WidgetData1(_Model):
 class WidgetData2(_Model):
     """WidgetData2.
 
-    :ivar kind: Default value is "kind1".
+    :ivar kind: Required. Default value is "kind1".
     :vartype kind: str
     :ivar start: Required.
     :vartype start: str
     """
 
-    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"], default="kind1")
-    """Default value is \"kind1\"."""
+    kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required. Default value is \"kind1\"."""
     start: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 

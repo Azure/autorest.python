@@ -97,7 +97,7 @@ class Eagle(Bird, discriminator="eagle"):
 
     :ivar wingspan: Required.
     :vartype wingspan: int
-    :ivar kind: Default value is "eagle".
+    :ivar kind: Required. Default value is "eagle".
     :vartype kind: str
     :ivar friends:
     :vartype friends: list[~typetest.model.singlediscriminator.models.Bird]
@@ -107,8 +107,8 @@ class Eagle(Bird, discriminator="eagle"):
     :vartype partner: ~typetest.model.singlediscriminator.models.Bird
     """
 
-    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="eagle")  # type: ignore
-    """Default value is \"eagle\"."""
+    kind: Literal["eagle"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"eagle\"."""
     friends: Optional[list["_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     hate: Optional[dict[str, "_models.Bird"]] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     partner: Optional["_models.Bird"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -140,12 +140,12 @@ class Goose(Bird, discriminator="goose"):
 
     :ivar wingspan: Required.
     :vartype wingspan: int
-    :ivar kind: Default value is "goose".
+    :ivar kind: Required. Default value is "goose".
     :vartype kind: str
     """
 
-    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="goose")  # type: ignore
-    """Default value is \"goose\"."""
+    kind: Literal["goose"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"goose\"."""
 
     @overload
     def __init__(
@@ -171,12 +171,12 @@ class SeaGull(Bird, discriminator="seagull"):
 
     :ivar wingspan: Required.
     :vartype wingspan: int
-    :ivar kind: Default value is "seagull".
+    :ivar kind: Required. Default value is "seagull".
     :vartype kind: str
     """
 
-    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="seagull")  # type: ignore
-    """Default value is \"seagull\"."""
+    kind: Literal["seagull"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"seagull\"."""
 
     @overload
     def __init__(
@@ -202,12 +202,12 @@ class Sparrow(Bird, discriminator="sparrow"):
 
     :ivar wingspan: Required.
     :vartype wingspan: int
-    :ivar kind: Default value is "sparrow".
+    :ivar kind: Required. Default value is "sparrow".
     :vartype kind: str
     """
 
-    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="sparrow")  # type: ignore
-    """Default value is \"sparrow\"."""
+    kind: Literal["sparrow"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"sparrow\"."""
 
     @overload
     def __init__(
@@ -233,12 +233,12 @@ class TRex(Dinosaur, discriminator="t-rex"):
 
     :ivar size: Required.
     :vartype size: int
-    :ivar kind: Default value is "t-rex".
+    :ivar kind: Required. Default value is "t-rex".
     :vartype kind: str
     """
 
-    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"], default="t-rex")  # type: ignore
-    """Default value is \"t-rex\"."""
+    kind: Literal["t-rex"] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
+    """Required. Default value is \"t-rex\"."""
 
     @overload
     def __init__(
