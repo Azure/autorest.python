@@ -127,7 +127,9 @@ class ModelInOperationOperations:
         self, body: _models.InputModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> None:
         """Expected body parameter:
+
         .. code-block:: json
+
            {
              "name": "Madge"
            }.
@@ -145,7 +147,9 @@ class ModelInOperationOperations:
     @overload
     def input_to_input_output(self, body: JSON, *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Expected body parameter:
+
         .. code-block:: json
+
            {
              "name": "Madge"
            }.
@@ -163,7 +167,9 @@ class ModelInOperationOperations:
     @overload
     def input_to_input_output(self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """Expected body parameter:
+
         .. code-block:: json
+
            {
              "name": "Madge"
            }.
@@ -183,7 +189,9 @@ class ModelInOperationOperations:
         self, body: Union[_models.InputModel, JSON, IO[bytes]], **kwargs: Any
     ) -> None:
         """Expected body parameter:
+
         .. code-block:: json
+
            {
              "name": "Madge"
            }.
@@ -243,7 +251,9 @@ class ModelInOperationOperations:
     @distributed_trace
     def output_to_input_output(self, **kwargs: Any) -> _models.OutputModel:
         """Expected response body:
+
         .. code-block:: json
+
            {
              "name": "Madge"
            }.
@@ -305,12 +315,18 @@ class ModelInOperationOperations:
         self, body: _models.RoundTripModel, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
         Expected body parameter:
+
         .. code-block:: json
+
            {
            }
+
         Expected response body:
+
         .. code-block:: json
+
            {
              "result": {
                "name": "Madge"
@@ -332,12 +348,18 @@ class ModelInOperationOperations:
         self, body: JSON, *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
         Expected body parameter:
+
         .. code-block:: json
+
            {
            }
+
         Expected response body:
+
         .. code-block:: json
+
            {
              "result": {
                "name": "Madge"
@@ -359,12 +381,18 @@ class ModelInOperationOperations:
         self, body: IO[bytes], *, content_type: str = "application/json", **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
         Expected body parameter:
+
         .. code-block:: json
+
            {
            }
+
         Expected response body:
+
         .. code-block:: json
+
            {
              "result": {
                "name": "Madge"
@@ -386,12 +414,18 @@ class ModelInOperationOperations:
         self, body: Union[_models.RoundTripModel, JSON, IO[bytes]], **kwargs: Any
     ) -> _models.RoundTripModel:
         """ "ResultModel" should be usage=output, as it is read-only and does not exist in request body.
+
         Expected body parameter:
+
         .. code-block:: json
+
            {
            }
+
         Expected response body:
+
         .. code-block:: json
+
            {
              "result": {
                "name": "Madge"
@@ -467,8 +501,11 @@ class ModelInOperationOperations:
         self, body: Any, **kwargs: Any
     ) -> None:
         """Serialize the 'OrphanModel' as request body.
+
         Expected body parameter:
+
         .. code-block:: json
+
            {
              "name": "name",
              "desc": "desc"
