@@ -716,7 +716,9 @@ class RelativeModelInOperationOperations:
     def _operation(self, *, name: str, **kwargs: Any) -> _models._models.OuterModel:
         """Expected query parameter: name="Madge"
         Expected response body:
+
         .. code-block:: json
+
            {
              "name": "Madge",
              "inner":
@@ -784,7 +786,9 @@ class RelativeModelInOperationOperations:
     def _discriminator(self, *, kind: str, **kwargs: Any) -> _models._models.AbstractModel:
         """Expected query parameter: kind="real"
         Expected response body:
+
         .. code-block:: json
+
            {
              "name": "Madge",
              "kind": "real"
