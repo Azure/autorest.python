@@ -1,5 +1,14 @@
 # Release
 
+## 6.41.4
+
+### Bug Fixes
+
+- [#3252](https://github.com/Azure/autorest.python/pull/3252) Additional fixes to documentation with bullet points
+- [#3240](https://github.com/Azure/autorest.python/pull/3240) Fix api-version for @override
+- [#3251](https://github.com/Azure/autorest.python/pull/3251) Fix runtime error for constant query parameter
+
+
 ## 6.41.3
 
 ### Bug Fixes
