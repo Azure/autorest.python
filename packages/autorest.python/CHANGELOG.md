@@ -1,5 +1,17 @@
 # Release
 
+## 6.42.0
+
+### Features
+
+- [#3239](https://github.com/Azure/autorest.python/pull/3239) Add logic to clear output folder
+
+### Bug Fixes
+
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix bad indent
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix setting attribute of flattened property when flattened property's name is not `properties`
+
+
 ## 6.41.4
 
 ### Bug Fixes
