@@ -1,5 +1,12 @@
 # Release
 
+## 0.53.1
+
+### Bug Fixes
+
+- [#3257](https://github.com/Azure/autorest.python/pull/3257) add flag for clear output folder and set default to false
+
+
 ## 0.53.0
 
 ### Features
