@@ -15,7 +15,7 @@ const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
 const AZURE_HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@azure-tools/azure-http-specs/specs");
 const HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@typespec/http-specs/specs");
 // Local azure specs (used for testing scenarios that aren't in the published specs yet)
-const LOCAL_AZURE_SPECS = resolve(PLUGIN_DIR, "generator/test/azure/specs");
+const LOCAL_AZURE_SPECS = resolve(PLUGIN_DIR, "test/azure/specs");
 interface TspCommand {
     outputDir: string;
     command: string;
