@@ -38,7 +38,7 @@ def test_docstring_generation():
     import azure.docstring
 
     with open(
-        _FILE_PATH.parent.parent / "azure/generated/docstring/azure/docstring/models/_models.py", "r", encoding="utf-8"
+        _FILE_PATH.parent.parent / "generated/docstring/azure/docstring/models/_models.py", "r", encoding="utf-8"
     ) as f:
         content = f.read()
         hash_id = string_to_hash_id(content)
