@@ -56,7 +56,7 @@ class DocStringOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~docstring.DocStringClient`'s
+        :class:`~azure.docstring.DocStringClient`'s
         :attr:`doc_string` attribute.
     """
 
@@ -72,7 +72,7 @@ class DocStringOperations:
         """Get doc.
 
         :return: DocModel. The DocModel is compatible with MutableMapping
-        :rtype: ~docstring.models.DocModel
+        :rtype: ~azure.docstring.models.DocModel
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
