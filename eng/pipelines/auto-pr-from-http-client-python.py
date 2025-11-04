@@ -240,6 +240,10 @@ class Repo:
                         '  - "@autorest/python"\n  - "@azure-tools/typespec-python"',
                     )
 
+                    # create folder for changelog path if not exists
+                    changelog_dir = os.path.dirname(azure_log_path)
+                    os.makedirs(changelog_dir, exist_ok=True)
+
                     with open(azure_log_path, "w") as f:
                         f.write(new_file_content)
                     log_call(f"git add {azure_log_path}")
