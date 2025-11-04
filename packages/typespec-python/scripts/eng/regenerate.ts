@@ -391,7 +391,9 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 
 function defaultPackageName(spec: string): string {
     const { specDir } = classifySpec(spec);
-    return toPosix(relative(specDir, dirname(spec))).replace(/\//g, "-").toLowerCase();
+    return toPosix(relative(specDir, dirname(spec)))
+        .replace(/\//g, "-")
+        .toLowerCase();
 }
 
 interface EmitterConfig {
@@ -492,12 +494,12 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     } else {
         await preprocess(flags);
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
-    const subdirectoriesForLocalAzure = await getSubdirectories(LOCAL_AZURE_SPECS, flagsResolved).catch(() => []);
-    const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
-    const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
+        const subdirectoriesForLocalAzure = await getSubdirectories(LOCAL_AZURE_SPECS, flagsResolved).catch(() => []);
+        const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
+        const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
         const subdirectories =
             flags.flavor === "azure"
-        ? [...subdirectoriesForLocalAzure, ...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
+                ? [...subdirectoriesForLocalAzure, ...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
                 : subdirectoriesForNonAzure;
         const cmdList: TspCommand[] = subdirectories.flatMap((subdirectory) =>
             _getCmdList(subdirectory, flagsResolved),

@@ -28,15 +28,8 @@ EXPECTED_HASH = "REPLACE_ME"
 
 
 def test_docstring_generation():
-    target = (
-        _FILE_PATH.parent.parent
-        / "generated"
-        / "docstring"
-        / "docstring"
-        / "models"
-        / "_models.py"
-    )
-    assert target.exists(), f"Generated models file not found: {target}" 
+    target = _FILE_PATH.parent.parent / "generated" / "docstring" / "docstring" / "models" / "_models.py"
+    assert target.exists(), f"Generated models file not found: {target}"
     content = target.read_text(encoding="utf-8")
     hash_id = _string_to_hash_id(content)
     assert (
