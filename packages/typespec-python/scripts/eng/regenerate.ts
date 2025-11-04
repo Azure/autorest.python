@@ -14,6 +14,8 @@ const exec = promisify(execCallback);
 const PLUGIN_DIR = resolve(fileURLToPath(import.meta.url), "../../../");
 const AZURE_HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@azure-tools/azure-http-specs/specs");
 const HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@typespec/http-specs/specs");
+// Local azure specs (used for testing scenarios that aren't in the published specs yet)
+const LOCAL_AZURE_SPECS = resolve(PLUGIN_DIR, "generator/test/azure/specs");
 interface TspCommand {
     outputDir: string;
     command: string;
@@ -279,8 +281,25 @@ function toPosix(dir: string): string {
     return dir.replace(/\\/g, "/");
 }
 
+// Classify a spec path to determine its root directory (so relative() calculations stay stable)
+function classifySpec(spec: string): { specDir: string; isAzure: boolean } {
+    const posixSpec = toPosix(spec);
+    if (posixSpec.startsWith(toPosix(AZURE_HTTP_SPECS) + "/")) {
+        return { specDir: AZURE_HTTP_SPECS, isAzure: true };
+    }
+    if (posixSpec.startsWith(toPosix(LOCAL_AZURE_SPECS) + "/")) {
+        // Treat local azure specs the same as remote azure specs for options & naming.
+        return { specDir: LOCAL_AZURE_SPECS, isAzure: true };
+    }
+    if (posixSpec.startsWith(toPosix(HTTP_SPECS) + "/")) {
+        return { specDir: HTTP_SPECS, isAzure: false };
+    }
+    // Fallback: treat as non-azure and use HTTP_SPECS for relative calculations to avoid '..'
+    return { specDir: HTTP_SPECS, isAzure: false };
+}
+
 function getEmitterOption(spec: string, flavor: string): Record<string, string>[] {
-    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
+    const { specDir } = classifySpec(spec);
     const relativeSpec = toPosix(relative(specDir, spec));
     const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
     const emitter_options = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
@@ -371,10 +390,8 @@ async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promi
 }
 
 function defaultPackageName(spec: string): string {
-    const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
-    return toPosix(relative(specDir, dirname(spec)))
-        .replace(/\//g, "-")
-        .toLowerCase();
+    const { specDir } = classifySpec(spec);
+    return toPosix(relative(specDir, dirname(spec))).replace(/\//g, "-").toLowerCase();
 }
 
 interface EmitterConfig {
@@ -475,11 +492,12 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     } else {
         await preprocess(flags);
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
-        const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
-        const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
+    const subdirectoriesForLocalAzure = await getSubdirectories(LOCAL_AZURE_SPECS, flagsResolved).catch(() => []);
+    const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
+    const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);
         const subdirectories =
             flags.flavor === "azure"
-                ? [...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
+        ? [...subdirectoriesForLocalAzure, ...subdirectoriesForAzure, ...subdirectoriesForNonAzure]
                 : subdirectoriesForNonAzure;
         const cmdList: TspCommand[] = subdirectories.flatMap((subdirectory) =>
             _getCmdList(subdirectory, flagsResolved),
