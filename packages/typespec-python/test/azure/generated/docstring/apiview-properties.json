@@ -1,0 +1,8 @@
+{
+    "CrossLanguagePackageId": "DocString",
+    "CrossLanguageDefinitionId": {
+        "docstring.models.DocModel": "DocString.DocModel",
+        "docstring.operations.DocStringOperations.get": "DocString.DocString.get",
+        "docstring.aio.operations.DocStringOperations.get": "DocString.DocString.get"
+    }
+}
