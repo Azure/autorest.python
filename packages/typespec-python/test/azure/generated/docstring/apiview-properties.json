@@ -1,0 +1,8 @@
+{
+    "CrossLanguagePackageId": "Azure.DocString",
+    "CrossLanguageDefinitionId": {
+        "azure.docstring.models.DocModel": "Azure.DocString.DocModel",
+        "azure.docstring.operations.DocStringOperations.get": "Azure.DocString.DocString.get",
+        "azure.docstring.aio.operations.DocStringOperations.get": "Azure.DocString.DocString.get"
+    }
+}
