@@ -146,6 +146,9 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
+    "authentication/api-key": {
+        "clear-output-folder": "true",
+    },
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
         "namespace": "authentication.http.custom",
@@ -207,6 +210,7 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
             "package-name": "generation-subdir",
             "namespace": "generation.subdir",
             "generation-subdir": "_generated",
+            "clear-output-folder": "true",
         },
     ],
     "type/model/usage": {
@@ -431,11 +435,45 @@ async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number)
     await Promise.all(workers);
 }
 
+// create some files before regeneration. After regeneration, these files should be deleted and we will test it
+// in test case
+async function preprocess(flags: RegenerateFlagsInput): Promise<void> {
+    if (flags.flavor === "azure") {
+        const generalParts = [PLUGIN_DIR, "test", "azure", "generated"];
+        await promises.writeFile(
+            join(
+                ...generalParts,
+                "authentication-api-key",
+                "authentication",
+                "apikey",
+                "_operations",
+                "to_be_deleted.py",
+            ),
+            "# This file is to be deleted after regeneration",
+        );
+
+        const folderParts = [...generalParts, "generation-subdir"];
+        await promises.writeFile(
+            join(...folderParts, "generation", "subdir", "_generated", "to_be_deleted.py"),
+            "# This file is to be deleted after regeneration",
+        );
+        await promises.writeFile(
+            join(...folderParts, "generated_tests", "to_be_deleted.py"),
+            "# This file is to be kept after regeneration",
+        );
+        await promises.writeFile(
+            join(...folderParts, "generation", "subdir", "to_be_kept.py"),
+            "# This file is to be kept after regeneration",
+        );
+    }
+}
+
 async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
     if (flags.flavor === undefined) {
         await regenerate({ ...flags, flavor: "azure" });
         await regenerate({ ...flags, flavor: "unbranded" });
     } else {
+        await preprocess(flags);
         const flagsResolved = { debug: false, flavor: flags.flavor, ...flags };
         const subdirectoriesForAzure = await getSubdirectories(AZURE_HTTP_SPECS, flagsResolved);
         const subdirectoriesForNonAzure = await getSubdirectories(HTTP_SPECS, flagsResolved);

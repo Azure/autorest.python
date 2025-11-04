@@ -1,5 +1,33 @@
 # Release
 
+## 6.42.1
+
+### Bug Fixes
+
+- [#3257](https://github.com/Azure/autorest.python/pull/3257) add flag for clear output folder and set default to false
+
+
+## 6.42.0
+
+### Features
+
+- [#3239](https://github.com/Azure/autorest.python/pull/3239) Add logic to clear output folder
+
+### Bug Fixes
+
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix bad indent
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix setting attribute of flattened property when flattened property's name is not `properties`
+
+
+## 6.41.4
+
+### Bug Fixes
+
+- [#3252](https://github.com/Azure/autorest.python/pull/3252) Additional fixes to documentation with bullet points
+- [#3240](https://github.com/Azure/autorest.python/pull/3240) Fix api-version for @override
+- [#3251](https://github.com/Azure/autorest.python/pull/3251) Fix runtime error for constant query parameter
+
+
 ## 6.41.3
 
 ### Bug Fixes

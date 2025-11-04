@@ -19,11 +19,15 @@ from ._configuration import PreviewVersionClientConfiguration
 from ._operations import _PreviewVersionClientOperationsMixin
 
 
-class PreviewVersionClient(_PreviewVersionClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
+class PreviewVersionClient(_PreviewVersionClientOperationsMixin):
     """PreviewVersionClient.
 
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
+    :keyword api_version: The API version to use for this operation. Default value is
+     "2024-12-01-preview". Note that overriding this default value may result in unsupported
+     behavior.
+    :paramtype api_version: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
