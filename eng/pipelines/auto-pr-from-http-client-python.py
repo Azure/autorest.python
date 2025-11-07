@@ -221,13 +221,17 @@ class Repo:
         logger.info("Adding changelog...")
         try:
             branch_name_in_typespec_log = self.source_branch_name.split(":")[-1].replace("/", "-")
+            logger.info(f"Typespec branch name for changelog: {branch_name_in_typespec_log}")
             branch_name_in_azure_log = self.new_branch_name.replace("/", "-")
+            logger.info(f"Azure branch name for changelog: {branch_name_in_azure_log}")
             typespec_changelog_prefix = f".chronus/changes/{branch_name_in_typespec_log}"
+            logger.info(f"Typespec changelog prefix: {typespec_changelog_prefix}")
             for file in self.pull.get_files():
                 if typespec_changelog_prefix in file.filename and file.status == "added":
                     azure_log_path = file.filename.replace(
                         typespec_changelog_prefix, f".chronus/changes/{branch_name_in_azure_log}"
                     )
+                    logger.info(f"Azure changelog path: {azure_log_path}")
                     if Path(azure_log_path).exists():
                         logger.info(f"Changelog {azure_log_path} already exists.")
                         return
@@ -242,6 +246,7 @@ class Repo:
 
                     # create folder for changelog path if not exists
                     changelog_dir = os.path.dirname(azure_log_path)
+                    logger.info(f"Creating changelog directory: {changelog_dir}")
                     os.makedirs(changelog_dir, exist_ok=True)
 
                     with open(azure_log_path, "w") as f:
