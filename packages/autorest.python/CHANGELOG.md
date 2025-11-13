@@ -1,5 +1,16 @@
 # Release
 
+## 6.42.2
+
+### Bump dependencies
+
+- [#3260](https://github.com/Azure/autorest.python/pull/3260) Bump typespec dependency
+
+### Bug Fixes
+
+- [#3259](https://github.com/Azure/autorest.python/pull/3259) Fix subscriptionId missing for override
+
+
 ## 6.42.1
 
 ### Bug Fixes
