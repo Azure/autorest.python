@@ -153,6 +153,34 @@ class FloatMillisecondsDurationProperty(_Model):
         super().__init__(*args, **kwargs)
 
 
+class FloatMillisecondsLargerUnitDurationProperty(_Model):  # pylint: disable=name-too-long
+    """FloatMillisecondsLargerUnitDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.timedelta
+    """
+
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.timedelta,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class FloatSecondsDurationArrayProperty(_Model):
     """FloatSecondsDurationArrayProperty.
 
@@ -209,6 +237,34 @@ class FloatSecondsDurationProperty(_Model):
         super().__init__(*args, **kwargs)
 
 
+class FloatSecondsLargerUnitDurationProperty(_Model):
+    """FloatSecondsLargerUnitDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: float
+    """
+
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: float,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class Int32MillisecondsDurationProperty(_Model):
     """Int32MillisecondsDurationProperty.
 
@@ -237,8 +293,64 @@ class Int32MillisecondsDurationProperty(_Model):
         super().__init__(*args, **kwargs)
 
 
+class Int32MillisecondsLargerUnitDurationProperty(_Model):  # pylint: disable=name-too-long
+    """Int32MillisecondsLargerUnitDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: ~datetime.timedelta
+    """
+
+    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: datetime.timedelta,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class Int32SecondsDurationProperty(_Model):
     """Int32SecondsDurationProperty.
+
+    :ivar value: Required.
+    :vartype value: int
+    """
+
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        value: int,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Int32SecondsLargerUnitDurationProperty(_Model):
+    """Int32SecondsLargerUnitDurationProperty.
 
     :ivar value: Required.
     :vartype value: int

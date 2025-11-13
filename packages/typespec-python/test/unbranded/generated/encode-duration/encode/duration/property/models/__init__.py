@@ -13,11 +13,15 @@ from ._models import (  # type: ignore
     Float64SecondsDurationProperty,
     FloatMillisecondsDurationArrayProperty,
     FloatMillisecondsDurationProperty,
+    FloatMillisecondsLargerUnitDurationProperty,
     FloatSecondsDurationArrayProperty,
     FloatSecondsDurationProperty,
+    FloatSecondsLargerUnitDurationProperty,
     ISO8601DurationProperty,
     Int32MillisecondsDurationProperty,
+    Int32MillisecondsLargerUnitDurationProperty,
     Int32SecondsDurationProperty,
+    Int32SecondsLargerUnitDurationProperty,
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -29,11 +33,15 @@ __all__ = [
     "Float64SecondsDurationProperty",
     "FloatMillisecondsDurationArrayProperty",
     "FloatMillisecondsDurationProperty",
+    "FloatMillisecondsLargerUnitDurationProperty",
     "FloatSecondsDurationArrayProperty",
     "FloatSecondsDurationProperty",
+    "FloatSecondsLargerUnitDurationProperty",
     "ISO8601DurationProperty",
     "Int32MillisecondsDurationProperty",
+    "Int32MillisecondsLargerUnitDurationProperty",
     "Int32SecondsDurationProperty",
+    "Int32SecondsLargerUnitDurationProperty",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

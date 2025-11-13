@@ -59,9 +59,31 @@ class TestDurationHeaderOperationsAsync(DurationClientTestBaseAsync):
 
     @DurationPreparer()
     @recorded_by_proxy_async
+    async def test_header_int32_seconds_larger_unit(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.int32_seconds_larger_unit(
+            duration=0,
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
     async def test_header_float_seconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.header.float_seconds(
+            duration=0.0,
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_float_seconds_larger_unit(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.float_seconds_larger_unit(
             duration=0.0,
         )
 
@@ -92,9 +114,31 @@ class TestDurationHeaderOperationsAsync(DurationClientTestBaseAsync):
 
     @DurationPreparer()
     @recorded_by_proxy_async
+    async def test_header_int32_milliseconds_larger_unit(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.int32_milliseconds_larger_unit(
+            duration="1 day, 0:00:00",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
     async def test_header_float_milliseconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.header.float_milliseconds(
+            duration="1 day, 0:00:00",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @DurationPreparer()
+    @recorded_by_proxy_async
+    async def test_header_float_milliseconds_larger_unit(self, duration_endpoint):
+        client = self.create_async_client(endpoint=duration_endpoint)
+        response = await client.header.float_milliseconds_larger_unit(
             duration="1 day, 0:00:00",
         )
 
