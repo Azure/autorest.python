@@ -7,17 +7,17 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils.aio import recorded_by_proxy_async
-from testpreparer import PageablePreparer
-from testpreparer_async import PageableClientTestBaseAsync
+from testpreparer import NextLinkVerbPreparer
+from testpreparer_async import NextLinkVerbClientTestBaseAsync
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestPageableAsync(PageableClientTestBaseAsync):
-    @PageablePreparer()
+class TestNextLinkVerbAsync(NextLinkVerbClientTestBaseAsync):
+    @NextLinkVerbPreparer()
     @recorded_by_proxy_async
-    async def test_list_without_continuation(self, pageable_endpoint):
-        client = self.create_async_client(endpoint=pageable_endpoint)
-        response = client.list_without_continuation()
+    async def test_list_items(self, nextlinkverb_endpoint):
+        client = self.create_async_client(endpoint=nextlinkverb_endpoint)
+        response = client.list_items()
         result = [r async for r in response]
         # please add some check logic here by yourself
         # ...

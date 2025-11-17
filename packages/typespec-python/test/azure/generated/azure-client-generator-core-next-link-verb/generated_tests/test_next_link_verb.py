@@ -7,16 +7,16 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import PageableClientTestBase, PageablePreparer
+from testpreparer import NextLinkVerbClientTestBase, NextLinkVerbPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestPageable(PageableClientTestBase):
-    @PageablePreparer()
+class TestNextLinkVerb(NextLinkVerbClientTestBase):
+    @NextLinkVerbPreparer()
     @recorded_by_proxy
-    def test_list_without_continuation(self, pageable_endpoint):
-        client = self.create_client(endpoint=pageable_endpoint)
-        response = client.list_without_continuation()
+    def test_list_items(self, nextlinkverb_endpoint):
+        client = self.create_client(endpoint=nextlinkverb_endpoint)
+        response = client.list_items()
         result = [r for r in response]
         # please add some check logic here by yourself
         # ...
