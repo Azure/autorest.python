@@ -26,6 +26,7 @@ class ModelWithArrayOfModel(_Model):
         name="items",
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
+        original_tsp_name=items,
     )
     """Required."""
 
@@ -142,6 +143,7 @@ class ModelWithEmptyArray(_Model):
         name="items",
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "itemsName": "SimpleModel", "name": "items", "text": False, "unwrapped": False},
+        original_tsp_name=items,
     )
     """Required."""
 
