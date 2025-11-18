@@ -647,10 +647,10 @@ class Model(_MyMutableMapping):
 
     @classmethod
     def _get_backcompat_attribute_name(cls, attr_to_rest_field: dict[str, "_RestField"], attr_name: str) -> str:
-        rest_field = attr_to_rest_field.get(attr_name)  # pylint: disable=protected-access
-        if rest_field is None:
+        rest_field_obj = attr_to_rest_field.get(attr_name)  # pylint: disable=protected-access
+        if rest_field_obj is None:
             return attr_name
-        original_tsp_name = getattr(rest_field, "_original_tsp_name", None)  # pylint: disable=protected-access
+        original_tsp_name = getattr(rest_field_obj, "_original_tsp_name", None)  # pylint: disable=protected-access
         if original_tsp_name:
             return original_tsp_name
         return attr_name
@@ -980,6 +980,7 @@ def _failsafe_deserialize_xml(
         return None
 
 
+# pylint: disable=too-many-instance-attributes
 class _RestField:
     def __init__(
         self,
