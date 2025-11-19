@@ -1,0 +1,7 @@
+{
+    "CrossLanguagePackageId": "Type.Union.Discriminated",
+    "CrossLanguageDefinitionId": {
+        "typetest.union.discriminated.models.Cat": "Type.Union.Discriminated.Cat",
+        "typetest.union.discriminated.models.Dog": "Type.Union.Discriminated.Dog"
+    }
+}
