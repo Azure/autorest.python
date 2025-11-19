@@ -20,7 +20,7 @@ interface TspCommand {
 }
 
 // Add this near the top with other constants
-const SKIP_SPECS = [];
+const SKIP_SPECS: string[] = [];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
