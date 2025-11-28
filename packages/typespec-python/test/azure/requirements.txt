@@ -22,6 +22,7 @@ azure-mgmt-core==1.6.0
 -e ./generated/azure-core-model
 -e ./generated/azure-core-traits
 -e ./generated/azure-core-page
+-e ./generated/azure-client-generator-core-next-link-verb
 -e ./generated/azure-encode-duration
 -e ./generated/azure-special-headers-client-request-id/
 -e ./generated/azure-example-basic
