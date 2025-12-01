@@ -34,7 +34,7 @@ changeKinds:
 versionPolicies:
   - name: python-generator
     type: lockstep
-    step: minor
+    step: patch
     packages:
       - "@azure-tools/typespec-python"
       - "@autorest/python"
