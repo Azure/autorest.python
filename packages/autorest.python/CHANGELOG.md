@@ -1,5 +1,17 @@
 # Release
 
+## 6.43.0
+
+### Features
+
+- [#3268](https://github.com/Azure/autorest.python/pull/3268) Support customized http method to call next link for paging operation
+
+### Bug Fixes
+
+- [#3267](https://github.com/Azure/autorest.python/pull/3267) fix logic about which scenario to add msrest as dependency
+- [#3266](https://github.com/Azure/autorest.python/pull/3266) Fix @override to avoid duplicated subscriptionId or api-version signatures
+
+
 ## 6.42.2
 
 ### Bump dependencies
