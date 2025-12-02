@@ -8,3 +8,4 @@ azure-mgmt-core==1.6.0
 -e ../../samples/specification/azure-mgmt-test/test/azure-mgmt-test
 -e ../../samples/specification/azure-mgmt-pyproject/test/azure-mgmt-pyproject
 -e ../../samples/specification/azure-test/test/azure-test
+-e ../../samples/specification/management/generated

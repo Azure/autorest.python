@@ -130,3 +130,28 @@ class TestAdditionalProperties(object):
         from additionalproperties.operations._pets_operations import PetsOperations as PetsOperationsPy2
 
         assert PetsOperations == PetsOperationsPy2
+
+    def test_setup_py_requirements(self):
+        # this file is generated, so we can basic check on it
+        # We want to make sure "isodate" is a dependency and not "msrest"
+        setup_path = realpath(
+            join(
+                dirname(realpath(__file__)),
+                "..",
+                "Expected",
+                "AcceptanceTests",
+                "AdditionalProperties",
+                "setup.py",
+            )
+        )
+        # Super ugly, but I don't want to write a parser for a setup.py
+        with open(setup_path, "r") as setup_file:
+            content = setup_file.read()
+
+        # Let's just check the install_requires is what we expect
+        # We can't use ast, since it's not abstract syntax tree, it's just text.
+        # Let's find the install_requires
+        install_requires_part = content[content.find("install_requires") :]
+        # This is very fragile, but for a test on generated code, that's what we want
+        assert "isodate" in install_requires_part
+        assert "msrest" not in install_requires_part
