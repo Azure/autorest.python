@@ -323,7 +323,7 @@ def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] =
         return _deserialize_int_as_str
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    if _DESERIALIZE_MAPPING.get(annotation):
+    if _DESERIALIZE_MAPPING.get(annotation):  # pyright: ignore
         return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
     return TYPE_HANDLER_REGISTRY.get_deserializer(annotation)  # pyright: ignore
 
@@ -524,6 +524,7 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
     custom_serializer = TYPE_HANDLER_REGISTRY.get_serializer(o)
     if custom_serializer:
         return custom_serializer(o)
+
     return o
 
 
