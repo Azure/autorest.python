@@ -524,7 +524,6 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
     custom_serializer = TYPE_HANDLER_REGISTRY.get_serializer(o)
     if custom_serializer:
         return custom_serializer(o)
-
     return o
 
 
