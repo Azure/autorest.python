@@ -20,7 +20,7 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
 
     Current list of special words
 
-    .. code-block:: txt
+    .. code-block:: text
 
        and
        as

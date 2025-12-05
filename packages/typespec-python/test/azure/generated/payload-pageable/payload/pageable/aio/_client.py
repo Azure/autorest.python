@@ -15,6 +15,7 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
+from ..pagesize.aio.operations import PageSizeOperations
 from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
 from ._configuration import PageableClientConfiguration
 
@@ -25,6 +26,8 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
     :ivar server_driven_pagination: ServerDrivenPaginationOperations operations
     :vartype server_driven_pagination:
      payload.pageable.aio.operations.ServerDrivenPaginationOperations
+    :ivar page_size: PageSizeOperations operations
+    :vartype page_size: payload.pageable.aio.operations.PageSizeOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -60,6 +63,7 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
         self.server_driven_pagination = ServerDrivenPaginationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.page_size = PageSizeOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

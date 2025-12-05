@@ -18,6 +18,7 @@ from ._configuration import ClientLocationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
     ArchiveOperationsOperations,
+    MoveMethodParameterToClientOperations,
     MoveToExistingSubClientOperations,
     MoveToNewSubClientOperations,
     MoveToRootClientOperations,
@@ -37,18 +38,23 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
     :ivar move_to_root_client: MoveToRootClientOperations operations
     :vartype move_to_root_client:
      specs.azure.clientgenerator.core.clientlocation.operations.MoveToRootClientOperations
+    :ivar move_method_parameter_to_client: MoveMethodParameterToClientOperations operations
+    :vartype move_method_parameter_to_client:
+     specs.azure.clientgenerator.core.clientlocation.operations.MoveMethodParameterToClientOperations
     :ivar archive_operations: ArchiveOperationsOperations operations
     :vartype archive_operations:
      specs.azure.clientgenerator.core.clientlocation.operations.ArchiveOperationsOperations
+    :param storage_account: Required.
+    :type storage_account: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
 
     def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
-        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
+        self, storage_account: str, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        self._config = ClientLocationClientConfiguration(endpoint=endpoint, **kwargs)
+        self._config = ClientLocationClientConfiguration(storage_account=storage_account, endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -79,6 +85,9 @@ class ClientLocationClient(_ClientLocationClientOperationsMixin):  # pylint: dis
             self._client, self._config, self._serialize, self._deserialize
         )
         self.move_to_root_client = MoveToRootClientOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.move_method_parameter_to_client = MoveMethodParameterToClientOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.archive_operations = ArchiveOperationsOperations(

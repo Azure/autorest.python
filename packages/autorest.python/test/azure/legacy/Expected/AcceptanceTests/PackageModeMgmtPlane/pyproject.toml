@@ -31,7 +31,7 @@ requires-python = ">=3.9"
 keywords = ["azure", "azure sdk"]
 
 dependencies = [
-    "msrest>=0.7.1",
+    "isodate>=0.6.1",
     "azure-mgmt-core>=1.6.0",
     "typing-extensions>=4.6.0",
 ]
@@ -49,7 +49,9 @@ readme = {file = ["README.md", "CHANGELOG.md"], content-type = "text/markdown"}
 [tool.setuptools.packages.find]
 exclude = [
     "tests*",
+    "generated_tests*",
     "samples*",
+    "generated_samples*",
     "doc*",
     "azure",
     "azure.package",

@@ -73,7 +73,10 @@ class _StatusCodeRangeClientOperationsMixin(
             if 494 <= response.status_code <= 499:
                 error = _failsafe_deserialize(_models.ErrorInRange, response)
             else:
-                error = _failsafe_deserialize(_models.DefaultError, response)
+                error = _failsafe_deserialize(
+                    _models.DefaultError,
+                    response,
+                )
             raise HttpResponseError(response=response, model=error)
 
         if cls:

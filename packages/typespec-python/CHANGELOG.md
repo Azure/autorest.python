@@ -1,5 +1,121 @@
 # Release
 
+## 0.54.0
+
+### Features
+
+- [#3268](https://github.com/Azure/autorest.python/pull/3268) Support customized http method to call next link for paging operation
+
+### Bug Fixes
+
+- [#3267](https://github.com/Azure/autorest.python/pull/3267) fix logic about which scenario to add msrest as dependency
+- [#3266](https://github.com/Azure/autorest.python/pull/3266) Fix @override to avoid duplicated subscriptionId or api-version signatures
+
+
+## 0.53.2
+
+### Bump dependencies
+
+- [#3260](https://github.com/Azure/autorest.python/pull/3260) Bump typespec dependency
+
+### Bug Fixes
+
+- [#3259](https://github.com/Azure/autorest.python/pull/3259) Fix subscriptionId missing for override
+
+
+## 0.53.1
+
+### Bug Fixes
+
+- [#3257](https://github.com/Azure/autorest.python/pull/3257) add flag for clear output folder and set default to false
+
+
+## 0.53.0
+
+### Features
+
+- [#3239](https://github.com/Azure/autorest.python/pull/3239) Add logic to clear output folder
+
+### Bug Fixes
+
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix bad indent
+- [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix setting attribute of flattened property when flattened property's name is not `properties`
+
+
+## 0.52.2
+
+### Bug Fixes
+
+- [#3252](https://github.com/Azure/autorest.python/pull/3252) Additional fixes to documentation with bullet points
+- [#3240](https://github.com/Azure/autorest.python/pull/3240) Fix api-version for @override
+- [#3251](https://github.com/Azure/autorest.python/pull/3251) Fix runtime error for constant query parameter
+
+
+## 0.52.1
+
+### Bug Fixes
+
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix outputted bullet-point documentation to pass sphinx
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix indentation issue when deserializing internal error model
+- [#3237](https://github.com/Azure/autorest.python/pull/3237) Exclude `generated_samples` and `generated_tests` from wheel
+
+
+## 0.52.0
+
+### Features
+
+- [#3222](https://github.com/Azure/autorest.python/pull/3222) Support move method level signature to client level
+
+### Bump dependencies
+
+- [7da55dc](https://github.com/Azure/autorest.python/commit/7da55dc5be74c0887e4196a76680fd19725cb1e7) Bump `@typespec/http-client-python` dep to `0.19.0`
+
+### Bug Fixes
+
+- [#3226](https://github.com/Azure/autorest.python/pull/3226) [python] ensure first line in param description wrap around is a space
+- [#3226](https://github.com/Azure/autorest.python/pull/3226) Fix bugs related to import and pylint for libraries with only internal models
+
+
+## 0.51.2
+
+### Bump dependencies
+
+- [#3221](https://github.com/Azure/autorest.python/pull/3221) Bump dependency to fix install
+
+## 0.51.1
+
+### Bump dependencies
+
+- [#3220](https://github.com/Azure/autorest.python/pull/3220) Fix dependency bump from `@azure-tools/typespec` libraries
+
+
+## 0.51.0
+
+### Features
+
+- [#3209](https://github.com/Azure/autorest.python/pull/3209) Support nested nextLink for paging operation
+
+### Bug Fixes
+
+- [#3216](https://github.com/Azure/autorest.python/pull/3216) Add overload for operation when body type is array of model
+
+
+## 0.50.0
+
+### Features
+
+- [#3169](https://github.com/Azure/autorest.python/pull/3169) DPG model supports multi-layer discriminator.
+
+### Bump dependencies
+
+- [#3190](https://github.com/Azure/autorest.python/pull/3190) Bump dependencies on `http-client-python`
+- [#3192](https://github.com/Azure/autorest.python/pull/3192) Bump dependency on `http-client-python` which optimizes exception handling logic when Python and package managers are available but installation fails
+
+### Bug Fixes
+
+- [#3194](https://github.com/Azure/autorest.python/pull/3194) Fix dependencies of pyproject.toml for ARM SDK
+
+
 ## 0.49.0
 
 ### Features

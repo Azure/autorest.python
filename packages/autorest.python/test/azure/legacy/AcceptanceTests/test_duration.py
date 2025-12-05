@@ -24,15 +24,8 @@
 #
 # --------------------------------------------------------------------------
 
-import unittest
-import subprocess
-import sys
-import isodate
-import tempfile
-import json
 from uuid import uuid4
-from datetime import date, datetime, timedelta
-import os
+from datetime import timedelta
 from os.path import dirname, pardir, join, realpath
 
 from azure.core.exceptions import DeserializationError
@@ -76,3 +69,28 @@ class TestDuration(object):
         from bodyduration.operations._duration_operations import DurationOperations as DurationOperationsPy2
 
         assert DurationOperations == DurationOperationsPy2
+
+    def test_setup_py_requirements(self):
+        # this file is generated, so we can basic check on it
+        # We want to make sure "isodate" is a dependency and not "msrest"
+        setup_path = realpath(
+            join(
+                dirname(realpath(__file__)),
+                "..",
+                "Expected",
+                "AcceptanceTests",
+                "AzureBodyDuration",
+                "setup.py",
+            )
+        )
+        # Super ugly, but I don't want to write a parser for a setup.py
+        with open(setup_path, "r") as setup_file:
+            content = setup_file.read()
+
+        # Let's just check the install_requires is what we expect
+        # We can't use ast, since it's not abstract syntax tree, it's just text.
+        # Let's find the install_requires
+        install_requires_part = content[content.find("install_requires") :]
+        # This is very fragile, but for a test on generated code, that's what we want
+        assert "isodate" in install_requires_part
+        assert "msrest" not in install_requires_part

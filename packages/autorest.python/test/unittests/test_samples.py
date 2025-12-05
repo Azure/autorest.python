@@ -3,6 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+import re
+import tomli
 from pathlib import Path
 
 
@@ -61,8 +63,6 @@ def test_package_mode_for_azure_mgmt_test():
 
 
 def test_package_mode_for_azure_mgmt_pyproject():
-    import tomli
-
     pyproject = (
         Path(__file__).parent.parent.parent
         / "samples/specification/azure-mgmt-pyproject/test/azure-mgmt-pyproject/pyproject.toml"
@@ -89,3 +89,55 @@ def test_import_azure_mgmt_pyproject():
     # just need to check import so that we could make sure the generated code is valid
     from azure.mgmt.pyproject import PyprojectMgmtClient
     from azure.mgmt.pyproject import operations
+
+
+def test_pyproject_dependencies():
+    pyproject = (
+        Path(__file__).parent.parent.parent
+        / "samples/specification/azure-mgmt-pyproject/test/azure-mgmt-pyproject/pyproject.toml"
+    )
+    assert pyproject.exists(), "pyproject.toml should exist in the specified path"
+
+    with open(pyproject, "rb") as f:
+        pyproject_data = tomli.load(f)
+
+    dependencies = pyproject_data.get("project", {}).get("dependencies", [])
+    dependencies = [re.split(r"[<>=!]", dep)[0].strip() for dep in dependencies]  # Remove version specifiers
+    assert "isodate" in dependencies
+    assert "msrest" not in dependencies
+
+
+def test_setup_py_dependencies():
+    setup_py_path = (
+        Path(__file__).parent.parent.parent / "samples/specification/azure-mgmt-test/test/azure-mgmt-test/setup.py"
+    )
+    assert setup_py_path.exists()
+
+    with open(setup_py_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    match = re.search(r"install_requires=\[(.*?)\]", content, re.DOTALL)
+    assert match
+    install_requires_str = match.group(1)
+    install_requires = [req.strip().strip("'\",") for req in install_requires_str.split("\n") if req.strip()]
+    install_requires = [re.split(r"[<>=!]", dep)[0].strip() for dep in install_requires]  # Remove version specifiers
+
+    assert "isodate" in install_requires
+    assert "msrest" not in install_requires
+
+
+def test_management_setup_py_dependencies():
+    setup_py_path = Path(__file__).parent.parent.parent / "samples/specification/management/generated/setup.py"
+    assert setup_py_path.exists()
+
+    with open(setup_py_path, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    match = re.search(r"install_requires=\[(.*?)\]", content, re.DOTALL)
+    assert match
+    install_requires_str = match.group(1)
+    install_requires = [req.strip().strip("'\",") for req in install_requires_str.split("\n") if req.strip()]
+    install_requires = [re.split(r"[<>=!]", dep)[0].strip() for dep in install_requires]  # Remove version specifiers
+
+    assert "isodate" in install_requires
+    assert "msrest" not in install_requires
