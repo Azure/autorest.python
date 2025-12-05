@@ -28,8 +28,8 @@ extends:
                   inputs:
                       versionSpec: 3.10
 
-                - script: npm install -g pnpm@9.5.0
-                  displayName: Install PNPM 9.5.0
+                - script: npm install -g pnpm@10.11.0
+                  displayName: Install PNPM 10.11.0
 
                 - script: pnpm install
                   displayName: Install dependencies
