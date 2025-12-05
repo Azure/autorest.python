@@ -101,11 +101,10 @@ class FormDataHttpPartsOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage", "pictures"]
         _data_fields: list[str] = ["id", "address", "previousAddresses"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_json_array_and_file_array_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )

@@ -102,11 +102,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = ["id"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -174,11 +173,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage", "pictures"]
         _data_fields: list[str] = ["id", "address"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_file_array_and_basic_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -246,11 +244,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = ["address"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_json_part_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -318,11 +315,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["pictures"]
         _data_fields: list[str] = ["id"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_binary_array_parts_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -390,11 +386,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage", "picture"]
         _data_fields: list[str] = []
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_multi_binary_parts_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -464,11 +459,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = ["id"]
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_check_file_name_and_content_type_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -536,11 +530,10 @@ class FormDataOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = []
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_anonymous_model_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
