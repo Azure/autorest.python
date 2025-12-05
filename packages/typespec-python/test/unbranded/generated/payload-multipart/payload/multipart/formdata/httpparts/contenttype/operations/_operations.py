@@ -129,11 +129,10 @@ class FormDataHttpPartsContentTypeOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = []
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_image_jpeg_content_type_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -204,11 +203,10 @@ class FormDataHttpPartsContentTypeOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = []
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_required_content_type_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
@@ -279,11 +277,10 @@ class FormDataHttpPartsContentTypeOperations:
         _body = body.as_dict() if isinstance(body, _Model) else body
         _file_fields: list[str] = ["profileImage"]
         _data_fields: list[str] = []
-        _files, _data = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_http_parts_content_type_optional_content_type_request(
             files=_files,
-            data=_data,
             headers=_headers,
             params=_params,
         )
