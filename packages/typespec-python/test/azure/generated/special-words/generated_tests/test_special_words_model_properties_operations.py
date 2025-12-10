@@ -22,3 +22,25 @@ class TestSpecialWordsModelPropertiesOperations(SpecialWordsClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @SpecialWordsPreparer()
+    @recorded_by_proxy
+    def test_model_properties_dict_methods(self, specialwords_endpoint):
+        client = self.create_client(endpoint=specialwords_endpoint)
+        response = client.model_properties.dict_methods(
+            body={
+                "clear": "str",
+                "copy": "str",
+                "get": "str",
+                "items": "str",
+                "keys": "str",
+                "pop": "str",
+                "popitem": "str",
+                "setdefault": "str",
+                "update": "str",
+                "values": "str",
+            },
+        )
+
+        # please add some check logic here by yourself
+        # ...
