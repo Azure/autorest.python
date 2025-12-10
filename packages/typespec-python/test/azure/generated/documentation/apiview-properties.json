@@ -1,0 +1,19 @@
+{
+    "CrossLanguagePackageId": "Documentation",
+    "CrossLanguageDefinitionId": {
+        "documentation.lists.models.BulletPointsModel": "Documentation.Lists.BulletPointsModel",
+        "documentation.models.BulletPointsEnum": "Documentation.Lists.BulletPointsEnum",
+        "documentation.operations.ListsOperations.bullet_points_op": "Documentation.Lists.bulletPointsOp",
+        "documentation.aio.operations.ListsOperations.bullet_points_op": "Documentation.Lists.bulletPointsOp",
+        "documentation.operations.ListsOperations.bullet_points_model": "Documentation.Lists.bulletPointsModel",
+        "documentation.aio.operations.ListsOperations.bullet_points_model": "Documentation.Lists.bulletPointsModel",
+        "documentation.operations.ListsOperations.numbered": "Documentation.Lists.numbered",
+        "documentation.aio.operations.ListsOperations.numbered": "Documentation.Lists.numbered",
+        "documentation.operations.TextFormattingOperations.bold_text": "Documentation.TextFormatting.boldText",
+        "documentation.aio.operations.TextFormattingOperations.bold_text": "Documentation.TextFormatting.boldText",
+        "documentation.operations.TextFormattingOperations.italic_text": "Documentation.TextFormatting.italicText",
+        "documentation.aio.operations.TextFormattingOperations.italic_text": "Documentation.TextFormatting.italicText",
+        "documentation.operations.TextFormattingOperations.combined_formatting": "Documentation.TextFormatting.combinedFormatting",
+        "documentation.aio.operations.TextFormattingOperations.combined_formatting": "Documentation.TextFormatting.combinedFormatting"
+    }
+}
