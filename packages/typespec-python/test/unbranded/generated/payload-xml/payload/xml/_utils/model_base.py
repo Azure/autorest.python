@@ -165,6 +165,19 @@ _VALID_RFC7231 = re.compile(
     r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT"
 )
 
+_ARRAY_ENCODE_MAPPING = {
+    "pipeDelimited": "|",
+    "spaceDelimited": " ",
+    "commaDelimited": ",",
+    "newlineDelimited": "\n",
+}
+
+
+def _deserialize_array_encoded(delimit: str, attr):
+    if isinstance(attr, str):
+        return attr.split(delimit)
+    return attr
+
 
 def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
     """Deserialize ISO-8601 formatted string into Datetime object.
@@ -309,6 +322,8 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
     if annotation is int and rf and rf._format == "str":
         return _deserialize_int_as_str
+    if annotation is str and rf and rf._format in _ARRAY_ENCODE_MAPPING:
+        return functools.partial(_deserialize_array_encoded, _ARRAY_ENCODE_MAPPING[rf._format])
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
     return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
@@ -477,6 +492,8 @@ def _is_model(obj: typing.Any) -> bool:
 
 def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-many-return-statements
     if isinstance(o, list):
+        if format in _ARRAY_ENCODE_MAPPING and all(isinstance(x, str) for x in o):
+            return _ARRAY_ENCODE_MAPPING[format].join(o)
         return [_serialize(x, format) for x in o]
     if isinstance(o, dict):
         return {k: _serialize(v, format) for k, v in o.items()}
@@ -775,6 +792,19 @@ def _deserialize_sequence(
         return obj
     if isinstance(obj, ET.Element):
         obj = list(obj)
+    if isinstance(obj, str):
+        return deserializer(obj)
+    try:
+        if (
+            isinstance(obj, str)
+            and isinstance(deserializer, functools.partial)
+            and isinstance(deserializer.args[0], functools.partial)
+            and deserializer.args[0].func == _deserialize_array_encoded
+        ):
+            # encoded string may be deserialized to sequence
+            return deserializer(obj)
+    except:  # pylint: disable=bare-except
+        pass
     return type(obj)(_deserialize(deserializer, entry, module) for entry in obj)
 
 
