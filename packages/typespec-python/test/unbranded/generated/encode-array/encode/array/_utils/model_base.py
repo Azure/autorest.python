@@ -175,6 +175,8 @@ _ARRAY_ENCODE_MAPPING = {
 
 def _deserialize_array_encoded(delimit: str, attr):
     if isinstance(attr, str):
+        if attr == "":
+            return []
         return attr.split(delimit)
     return attr
 
