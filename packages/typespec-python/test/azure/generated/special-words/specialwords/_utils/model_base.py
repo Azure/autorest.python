@@ -798,14 +798,12 @@ def _deserialize_sequence(
         return obj
     if isinstance(obj, ET.Element):
         obj = list(obj)
-    if isinstance(obj, str):
-        return deserializer(obj)
     try:
         if (
             isinstance(obj, str)
             and isinstance(deserializer, functools.partial)
             and isinstance(deserializer.args[0], functools.partial)
-            and deserializer.args[0].func == _deserialize_array_encoded
+            and deserializer.args[0].func == _deserialize_array_encoded  # pylint: disable=comparison-with-callable
         ):
             # encoded string may be deserialized to sequence
             return deserializer(obj)
