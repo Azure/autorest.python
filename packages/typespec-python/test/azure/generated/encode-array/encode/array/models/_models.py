@@ -19,7 +19,7 @@ class CommaDelimitedArrayProperty(_Model):
     :vartype value: list[str]
     """
 
-    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="commaDelimited")
     """Required."""
 
     @overload
@@ -47,7 +47,7 @@ class NewlineDelimitedArrayProperty(_Model):
     :vartype value: list[str]
     """
 
-    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="newlineDelimited")
     """Required."""
 
     @overload
@@ -75,7 +75,7 @@ class PipeDelimitedArrayProperty(_Model):
     :vartype value: list[str]
     """
 
-    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="pipeDelimited")
     """Required."""
 
     @overload
@@ -103,7 +103,7 @@ class SpaceDelimitedArrayProperty(_Model):
     :vartype value: list[str]
     """
 
-    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[str] = rest_field(visibility=["read", "create", "update", "delete", "query"], format="spaceDelimited")
     """Required."""
 
     @overload
