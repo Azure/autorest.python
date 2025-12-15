@@ -64,7 +64,7 @@
     "@azure-tools/typespec-client-generator-core": ">=0.63.0 <1.0.0"
   },
   "dependencies": {
-    "js-yaml": "~4.1.0",
+    "js-yaml": "~4.1.1",
     "semver": "~7.6.2",
     "tsx": "~4.19.1",
     "@typespec/http-client-python": "~0.23.0",
