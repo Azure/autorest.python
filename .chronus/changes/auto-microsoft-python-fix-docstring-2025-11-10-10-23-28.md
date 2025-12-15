@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-Fix for optional properties in flatten model to keep compatibility
+Fix bad indent

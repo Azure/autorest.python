@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-Support SDK users defined customized serialization/deserialization function for external models
+Support encode for array of string in serialization and deserialization

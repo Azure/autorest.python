@@ -1,5 +1,19 @@
 # Release
 
+## 6.44.0
+
+### Features
+
+- [#3246](https://github.com/Azure/autorest.python/pull/3246) Support SDK users defined customized serialization/deserialization function for external models
+
+### Bug Fixes
+
+- [#3264](https://github.com/Azure/autorest.python/pull/3264) Keep original client name for backcompat reasons when the name is only padded for tsp generations
+- [#3271](https://github.com/Azure/autorest.python/pull/3271) Fix for optional properties in flatten model to keep compatibility
+- [#3276](https://github.com/Azure/autorest.python/pull/3276) Fix multipart when files part is optional
+- [#3274](https://github.com/Azure/autorest.python/pull/3274) Fix serialization name for multipart
+
+
 ## 6.43.0
 
 ### Features

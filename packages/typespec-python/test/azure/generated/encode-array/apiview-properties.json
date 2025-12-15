@@ -1,0 +1,17 @@
+{
+    "CrossLanguagePackageId": "Encode.Array",
+    "CrossLanguageDefinitionId": {
+        "encode.array.models.CommaDelimitedArrayProperty": "Encode.Array.CommaDelimitedArrayProperty",
+        "encode.array.models.NewlineDelimitedArrayProperty": "Encode.Array.NewlineDelimitedArrayProperty",
+        "encode.array.models.PipeDelimitedArrayProperty": "Encode.Array.PipeDelimitedArrayProperty",
+        "encode.array.models.SpaceDelimitedArrayProperty": "Encode.Array.SpaceDelimitedArrayProperty",
+        "encode.array.operations.PropertyOperations.comma_delimited": "Encode.Array.Property.commaDelimited",
+        "encode.array.aio.operations.PropertyOperations.comma_delimited": "Encode.Array.Property.commaDelimited",
+        "encode.array.operations.PropertyOperations.space_delimited": "Encode.Array.Property.spaceDelimited",
+        "encode.array.aio.operations.PropertyOperations.space_delimited": "Encode.Array.Property.spaceDelimited",
+        "encode.array.operations.PropertyOperations.pipe_delimited": "Encode.Array.Property.pipeDelimited",
+        "encode.array.aio.operations.PropertyOperations.pipe_delimited": "Encode.Array.Property.pipeDelimited",
+        "encode.array.operations.PropertyOperations.newline_delimited": "Encode.Array.Property.newlineDelimited",
+        "encode.array.aio.operations.PropertyOperations.newline_delimited": "Encode.Array.Property.newlineDelimited"
+    }
+}
