@@ -494,7 +494,7 @@ async function regenerate(flags: RegenerateFlagsInput): Promise<void> {
         // But the emitter will try to recreate venv again in runtime, so we shall not run in parallel until venv is
         // installed correctly. This is just workaround solution so when we find the root cause, we can remove this line.
         // NOTE: if we use `npm install`, emitter can be installed completely so maybe it is pnpm's bug.
-        await tasks[0]();
+        // await tasks[0]();
 
         // Run tasks with a concurrency limit
         await runTaskPool(tasks, 30);
