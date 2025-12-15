@@ -1,5 +1,16 @@
 # Release
 
+## 6.45.0
+
+### Features
+
+- [#3280](https://github.com/Azure/autorest.python/pull/3280) Support encode for array of string in serialization and deserialization
+
+### Bug Fixes
+
+- [#3279](https://github.com/Azure/autorest.python/pull/3279) Fix bad indent
+
+
 ## 6.44.0
 
 ### Features
