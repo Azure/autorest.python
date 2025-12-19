@@ -1,5 +1,12 @@
 # Release
 
+## 6.45.1
+
+### Bug Fixes
+
+- [#3284](https://github.com/Azure/autorest.python/pull/3284) Persist mutations to mutable properties when accessed via attribute syntax
+
+
 ## 6.45.0
 
 ### Features
