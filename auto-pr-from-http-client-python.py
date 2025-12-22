@@ -240,7 +240,7 @@ class Repo:
         package_names = []
         for line in changelog_data_lines:
             if line.strip().startswith('- "@'):
-                package_name = line.replace("-", "").replace('"', "").strip()
+                package_name = line.replace('"', "").strip().strip("- ").strip()
                 package_names.append(package_name)
         return package_names == ["@typespec/http-client-python"]
 
@@ -275,6 +275,7 @@ class Repo:
                     changelog_data = self.replace_package_name_in_changelog(file_content)
                     if changelog_data not in all_changelog:
                         logger.info(f"copy changelog file {content_file.name}")
+                        os.makedirs(".chronus/changes", exist_ok=True)
                         local_changelog_path = Path(".chronus/changes") / content_file.name
                         with open(local_changelog_path, "w") as f:
                             f.write(changelog_data)
