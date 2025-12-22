@@ -38,7 +38,7 @@ jobs:
     displayName: Install autorest
 
   - bash: |
-        YmlPath=$(pwd)/eng/pipelines
+        YmlPath=$(pwd)
         echo "##vso[task.setvariable variable=YmlPath]$YmlPath"
     displayName: find yml path
 
