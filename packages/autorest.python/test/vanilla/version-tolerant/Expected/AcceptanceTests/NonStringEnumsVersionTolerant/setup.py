@@ -24,7 +24,7 @@ setup(
     include_package_data=True,
     install_requires=[
         "isodate>=0.6.1",
-        "azure-core>=1.36.0",
+        "azure-core>=1.37.0",
         "typing-extensions>=4.6.0",
     ],
     long_description="""\
