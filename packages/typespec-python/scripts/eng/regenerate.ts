@@ -273,6 +273,10 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-name": "client-structure-twooperationgroup",
         "namespace": "client.structure.twooperationgroup",
     },
+    "documentation": {
+        "package-name": "specs-documentation",
+        "namespace": "specs.documentation",
+    },
 };
 
 function toPosix(dir: string): string {

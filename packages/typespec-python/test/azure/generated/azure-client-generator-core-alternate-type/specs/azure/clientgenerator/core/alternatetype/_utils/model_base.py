@@ -29,6 +29,7 @@ from azure.core.exceptions import DeserializationError
 from azure.core import CaseInsensitiveEnumMeta
 from azure.core.pipeline import PipelineResponse
 from azure.core.serialization import _Null
+from azure.core.serialization import TypeHandlerRegistry
 from azure.core.rest import HttpResponse
 
 _LOGGER = logging.getLogger(__name__)
@@ -37,6 +38,8 @@ __all__ = ["SdkJSONEncoder", "Model", "rest_field", "rest_discriminator"]
 
 TZ_UTC = timezone.utc
 _T = typing.TypeVar("_T")
+
+TYPE_HANDLER_REGISTRY = TypeHandlerRegistry()
 
 
 def _timedelta_as_isostr(td: timedelta) -> str:
@@ -162,6 +165,9 @@ class SdkJSONEncoder(JSONEncoder):
             except AttributeError:
                 # This will be raised when it hits value.total_seconds in the method above
                 pass
+            custom_serializer = TYPE_HANDLER_REGISTRY.get_serializer(o)
+            if custom_serializer:
+                return custom_serializer(o)
             return super(SdkJSONEncoder, self).default(o)
 
 
@@ -170,6 +176,21 @@ _VALID_RFC7231 = re.compile(
     r"(Mon|Tue|Wed|Thu|Fri|Sat|Sun),\s\d{2}\s"
     r"(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s\d{4}\s\d{2}:\d{2}:\d{2}\sGMT"
 )
+
+_ARRAY_ENCODE_MAPPING = {
+    "pipeDelimited": "|",
+    "spaceDelimited": " ",
+    "commaDelimited": ",",
+    "newlineDelimited": "\n",
+}
+
+
+def _deserialize_array_encoded(delimit: str, attr):
+    if isinstance(attr, str):
+        if attr == "":
+            return []
+        return attr.split(delimit)
+    return attr
 
 
 def _deserialize_datetime(attr: typing.Union[str, datetime]) -> datetime:
@@ -315,9 +336,13 @@ _DESERIALIZE_MAPPING_WITHFORMAT = {
 def get_deserializer(annotation: typing.Any, rf: typing.Optional["_RestField"] = None):
     if annotation is int and rf and rf._format == "str":
         return _deserialize_int_as_str
+    if annotation is str and rf and rf._format in _ARRAY_ENCODE_MAPPING:
+        return functools.partial(_deserialize_array_encoded, _ARRAY_ENCODE_MAPPING[rf._format])
     if rf and rf._format:
         return _DESERIALIZE_MAPPING_WITHFORMAT.get(rf._format)
-    return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
+    if _DESERIALIZE_MAPPING.get(annotation):  # pyright: ignore
+        return _DESERIALIZE_MAPPING.get(annotation)  # pyright: ignore
+    return TYPE_HANDLER_REGISTRY.get_deserializer(annotation)  # pyright: ignore
 
 
 def _get_type_alias_type(module_name: str, alias_name: str):
@@ -353,9 +378,39 @@ class _MyMutableMapping(MutableMapping[str, typing.Any]):
         return key in self._data
 
     def __getitem__(self, key: str) -> typing.Any:
+        # If this key has been deserialized (for mutable types), we need to handle serialization
+        if hasattr(self, "_attr_to_rest_field"):
+            cache_attr = f"_deserialized_{key}"
+            if hasattr(self, cache_attr):
+                rf = _get_rest_field(getattr(self, "_attr_to_rest_field"), key)
+                if rf:
+                    value = self._data.get(key)
+                    if isinstance(value, (dict, list, set)):
+                        # For mutable types, serialize and return
+                        # But also update _data with serialized form and clear flag
+                        # so mutations via this returned value affect _data
+                        serialized = _serialize(value, rf._format)
+                        # If serialized form is same type (no transformation needed),
+                        # return _data directly so mutations work
+                        if isinstance(serialized, type(value)) and serialized == value:
+                            return self._data.get(key)
+                        # Otherwise return serialized copy and clear flag
+                        try:
+                            object.__delattr__(self, cache_attr)
+                        except AttributeError:
+                            pass
+                        # Store serialized form back
+                        self._data[key] = serialized
+                        return serialized
         return self._data.__getitem__(key)
 
     def __setitem__(self, key: str, value: typing.Any) -> None:
+        # Clear any cached deserialized value when setting through dictionary access
+        cache_attr = f"_deserialized_{key}"
+        try:
+            object.__delattr__(self, cache_attr)
+        except AttributeError:
+            pass
         self._data.__setitem__(key, value)
 
     def __delitem__(self, key: str) -> None:
@@ -483,6 +538,8 @@ def _is_model(obj: typing.Any) -> bool:
 
 def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-many-return-statements
     if isinstance(o, list):
+        if format in _ARRAY_ENCODE_MAPPING and all(isinstance(x, str) for x in o):
+            return _ARRAY_ENCODE_MAPPING[format].join(o)
         return [_serialize(x, format) for x in o]
     if isinstance(o, dict):
         return {k: _serialize(v, format) for k, v in o.items()}
@@ -511,6 +568,12 @@ def _serialize(o, format: typing.Optional[str] = None):  # pylint: disable=too-m
     except AttributeError:
         # This will be raised when it hits value.total_seconds in the method above
         pass
+
+    # Check if there's a custom serializer for the type
+    custom_serializer = TYPE_HANDLER_REGISTRY.get_serializer(o)
+    if custom_serializer:
+        return custom_serializer(o)
+
     return o
 
 
@@ -767,6 +830,17 @@ def _deserialize_sequence(
         return obj
     if isinstance(obj, ET.Element):
         obj = list(obj)
+    try:
+        if (
+            isinstance(obj, str)
+            and isinstance(deserializer, functools.partial)
+            and isinstance(deserializer.args[0], functools.partial)
+            and deserializer.args[0].func == _deserialize_array_encoded  # pylint: disable=comparison-with-callable
+        ):
+            # encoded string may be deserialized to sequence
+            return deserializer(obj)
+    except:  # pylint: disable=bare-except
+        pass
     return type(obj)(_deserialize(deserializer, entry, module) for entry in obj)
 
 
@@ -998,7 +1072,11 @@ class _RestField:
 
     @property
     def _class_type(self) -> typing.Any:
-        return getattr(self._type, "args", [None])[0]
+        result = getattr(self._type, "args", [None])[0]
+        # type may be wrapped by nested functools.partial so we need to check for that
+        if isinstance(result, functools.partial):
+            return getattr(result, "args", [None])[0]
+        return result
 
     @property
     def _rest_name(self) -> str:
@@ -1009,14 +1087,37 @@ class _RestField:
     def __get__(self, obj: Model, type=None):  # pylint: disable=redefined-builtin
         # by this point, type and rest_name will have a value bc we default
         # them in __new__ of the Model class
-        item = obj.get(self._rest_name)
+        # Use _data.get() directly to avoid triggering __getitem__ which clears the cache
+        item = obj._data.get(self._rest_name)
         if item is None:
             return item
         if self._is_model:
             return item
-        return _deserialize(self._type, _serialize(item, self._format), rf=self)
+
+        # For mutable types, we want mutations to directly affect _data
+        # Check if we've already deserialized this value
+        cache_attr = f"_deserialized_{self._rest_name}"
+        if hasattr(obj, cache_attr):
+            # Return the value from _data directly (it's been deserialized in place)
+            return obj._data.get(self._rest_name)
+
+        deserialized = _deserialize(self._type, _serialize(item, self._format), rf=self)
+
+        # For mutable types, store the deserialized value back in _data
+        # so mutations directly affect _data
+        if isinstance(deserialized, (dict, list, set)):
+            obj._data[self._rest_name] = deserialized
+            object.__setattr__(obj, cache_attr, True)  # Mark as deserialized
+            return deserialized
+
+        return deserialized
 
     def __set__(self, obj: Model, value) -> None:
+        # Clear the cached deserialized object when setting a new value
+        cache_attr = f"_deserialized_{self._rest_name}"
+        if hasattr(obj, cache_attr):
+            object.__delattr__(obj, cache_attr)
+
         if value is None:
             # we want to wipe out entries if users set attr to None
             try:

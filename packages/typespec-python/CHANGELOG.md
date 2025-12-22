@@ -1,5 +1,60 @@
 # Release
 
+## 0.56.1
+
+### Bug Fixes
+
+- [#3284](https://github.com/Azure/autorest.python/pull/3284) Persist mutations to mutable properties when accessed via attribute syntax
+
+
+## 0.56.0
+
+### Features
+
+- [#3280](https://github.com/Azure/autorest.python/pull/3280) Support encode for array of string in serialization and deserialization
+
+### Bug Fixes
+
+- [#3279](https://github.com/Azure/autorest.python/pull/3279) Fix bad indent
+
+
+## 0.55.0
+
+### Features
+
+- [#3246](https://github.com/Azure/autorest.python/pull/3246) Support SDK users defined customized serialization/deserialization function for external models
+
+### Bug Fixes
+
+- [#3264](https://github.com/Azure/autorest.python/pull/3264) Keep original client name for backcompat reasons when the name is only padded for tsp generations
+- [#3271](https://github.com/Azure/autorest.python/pull/3271) Fix for optional properties in flatten model to keep compatibility
+- [#3276](https://github.com/Azure/autorest.python/pull/3276) Fix multipart when files part is optional
+- [#3274](https://github.com/Azure/autorest.python/pull/3274) Fix serialization name for multipart
+
+
+## 0.54.0
+
+### Features
+
+- [#3268](https://github.com/Azure/autorest.python/pull/3268) Support customized http method to call next link for paging operation
+
+### Bug Fixes
+
+- [#3267](https://github.com/Azure/autorest.python/pull/3267) fix logic about which scenario to add msrest as dependency
+- [#3266](https://github.com/Azure/autorest.python/pull/3266) Fix @override to avoid duplicated subscriptionId or api-version signatures
+
+
+## 0.53.2
+
+### Bump dependencies
+
+- [#3260](https://github.com/Azure/autorest.python/pull/3260) Bump typespec dependency
+
+### Bug Fixes
+
+- [#3259](https://github.com/Azure/autorest.python/pull/3259) Fix subscriptionId missing for override
+
+
 ## 0.53.1
 
 ### Bug Fixes
