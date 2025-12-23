@@ -90,6 +90,8 @@ class Repo:
         self._pull = None
         self._http_client_python_json = None
         self.new_branch_name = None
+        self.autorest_repo_existing_changelog_content = ""
+        self.added_changelog_map = {}  # file_name -> content
 
     @property
     def tsp_repo(self):
@@ -247,41 +249,7 @@ class Repo:
     def add_changelog(self):
         logger.info("Adding changelog...")
 
-        try:
-            # get all existing changelog files in .chronus/changes
-            changelog_dir = Path(".chronus/changes")
-            all_changelog = ""
-            if changelog_dir.exists():
-                for existing_file in changelog_dir.iterdir():
-                    if existing_file.is_file():
-                        with open(existing_file, "r") as f:
-                            all_changelog += f.read()
-                logger.info(f"Existing changelogs in .chronus/changes:\n{all_changelog}")
-
-            # download changelog files from https://github.com/microsoft/typespec/tree/main/.chronus/changes
-            changes_contents = self.tsp_repo.get_contents(".chronus/changes", ref="main")
-            logger.info(f"Found {len(changes_contents)} items in .chronus/changes")
-
-            # select changelog files that packages equal to "@typespec/http-client-python"
-            for content_file in changes_contents:
-                if content_file.type == "file":
-                    file_content = content_file.decoded_content.decode()
-                    # if file_content only contain changelog of @typespec/http-client-python
-                    if not self.has_only_http_client_python(file_content):
-                        logger.info(f"Skipping changelog not only for http-client-python: {content_file.name}")
-                        continue
-
-                    # Check if this changelog is already in all_changelog
-                    changelog_data = self.replace_package_name_in_changelog(file_content)
-                    if changelog_data not in all_changelog:
-                        logger.info(f"copy changelog file {content_file.name}")
-                        os.makedirs(".chronus/changes", exist_ok=True)
-                        local_changelog_path = Path(".chronus/changes") / content_file.name
-                        with open(local_changelog_path, "w") as f:
-                            f.write(changelog_data)
-        except Exception as e:
-            logger.warning(f"Failed to process main branch changelogs: {e}")
-
+        logger.info("get changelog for target branch...")
         try:
             branch_name_in_typespec_log = self.source_branch_name.split(":")[-1].replace("/", "-")
             logger.info(f"Typespec branch name for changelog: {branch_name_in_typespec_log}")
@@ -297,29 +265,72 @@ class Repo:
                     logger.info(f"Azure changelog path: {azure_log_path}")
                     if Path(azure_log_path).exists():
                         logger.info(f"Changelog {azure_log_path} already exists.")
-                        return
+                        break
 
                     file_content = self.tsp_repo.get_contents(
                         file.filename, ref=self.pull.head.sha
                     ).decoded_content.decode()
                     new_file_content = self.replace_package_name_in_changelog(file_content)
 
-                    # create folder for changelog path if not exists
-                    changelog_dir = os.path.dirname(azure_log_path)
-                    logger.info(f"Creating changelog directory: {changelog_dir}")
-                    os.makedirs(changelog_dir, exist_ok=True)
+                    if new_file_content not in self.autorest_repo_existing_changelog_content:
+                        self.added_changelog_map[Path(azure_log_path).name] = new_file_content
 
-                    with open(azure_log_path, "w") as f:
-                        f.write(new_file_content)
-                    log_call("git add .chronus/")
-                    log_call(f'git commit -m "Add changelog"')
-                    git_push()
                     break
         except Exception as e:
             logger.warning(f"Failed to add changelog: {e}")
 
+        logger.info("write changelogs to .chronus/changes/")
+        os.makedirs(".chronus/changes", exist_ok=True)
+        for file_name, content in self.added_changelog_map.items():
+            changelog_path = Path(".chronus/changes") / file_name
+            with open(changelog_path, "w") as f:
+                f.write(content)
+            logger.info(f"Written changelog to {changelog_path}")
+
+        # commit changelogs
+        log_call("git add .chronus/")
+        log_call(f'git commit -m "Add changelog"')
+        git_push()
+
+    @return_origin_path
+    def get_existing_changelogs_from_tsp_main_branch(self):
+        try:
+            changelog_dir = Path(".chronus/changes")
+            if changelog_dir.exists():
+                for existing_file in changelog_dir.iterdir():
+                    if existing_file.is_file():
+                        with open(existing_file, "r") as f:
+                            self.autorest_repo_existing_changelog_content += f.read()
+                logger.info(
+                    f"Existing changelogs in .chronus/changes:\n{self.autorest_repo_existing_changelog_content}"
+                )
+
+            os.chdir(self.typespec_repo_path)
+            if changelog_dir.exists():
+                tsp_changelog_files = [file for file in changelog_dir.iterdir() if file.is_file()]
+            else:
+                tsp_changelog_files = []
+
+            # select changelog files that packages equal to "@typespec/http-client-python"
+            for changelog_file in tsp_changelog_files:
+                with open(changelog_file, "r") as f:
+                    file_content = f.read()
+                # if file_content only contain changelog of @typespec/http-client-python
+                if not self.has_only_http_client_python(file_content):
+                    logger.info(f"Skipping changelog not only for http-client-python: {changelog_file.name}")
+                    continue
+
+                # Check if this changelog is already in autorest_repo_existing_changelog_content
+                changelog_data = self.replace_package_name_in_changelog(file_content)
+                if changelog_data not in self.autorest_repo_existing_changelog_content:
+                    logger.info(f"copy changelog file {changelog_file.name}")
+                    self.added_changelog_map[changelog_file.name] = changelog_data
+        except Exception as e:
+            logger.warning(f"Failed to process main branch changelogs: {e}")
+
     def run(self):
         if "https://github.com/microsoft/typespec" in self.pull_url:
+            self.get_existing_changelogs_from_tsp_main_branch()
             self.checkout_branch()
             self.update_dependency()
             self.add_changelog()
