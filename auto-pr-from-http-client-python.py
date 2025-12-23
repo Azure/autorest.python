@@ -330,8 +330,8 @@ class Repo:
 
     def run(self):
         if "https://github.com/microsoft/typespec" in self.pull_url:
-            self.get_existing_changelogs_from_tsp_main_branch()
             self.checkout_branch()
+            self.get_existing_changelogs_from_tsp_main_branch()
             self.update_dependency()
             self.add_changelog()
             self.create_pr()
