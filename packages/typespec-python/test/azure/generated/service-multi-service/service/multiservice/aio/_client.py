@@ -7,69 +7,34 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
-from typing import Any, Awaitable, Optional, TYPE_CHECKING, cast
+from typing import Any, Awaitable
 from typing_extensions import Self
 
+from azure.core import AsyncPipelineClient
 from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
-from azure.core.settings import settings
-from azure.mgmt.core import AsyncARMPipelineClient
-from azure.mgmt.core.policies import AsyncARMAutoResourceProviderRegistrationPolicy
-from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import CombinedClientConfiguration
-from .operations import DisksOperations, VirtualMachinesOperations
-
-if TYPE_CHECKING:
-    from azure.core import AzureClouds
-    from azure.core.credentials_async import AsyncTokenCredential
+from .operations import BarOperations, FooOperations
 
 
 class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
     """CombinedClient.
 
-    :ivar virtual_machines: VirtualMachinesOperations operations
-    :vartype virtual_machines:
-     azure.resourcemanager.multiservice.combined.aio.operations.VirtualMachinesOperations
-    :ivar disks: DisksOperations operations
-    :vartype disks: azure.resourcemanager.multiservice.combined.aio.operations.DisksOperations
-    :param credential: Credential used to authenticate requests to the service. Required.
-    :type credential: ~azure.core.credentials_async.AsyncTokenCredential
-    :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
-    :type subscription_id: str
-    :param base_url: Service host. Default value is None.
-    :type base_url: str
-    :keyword cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
-     None.
-    :paramtype cloud_setting: ~azure.core.AzureClouds
-    :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
-     Retry-After header is present.
+    :ivar foo: FooOperations operations
+    :vartype foo: service.multiservice.aio.operations.FooOperations
+    :ivar bar: BarOperations operations
+    :vartype bar: service.multiservice.aio.operations.BarOperations
+    :keyword endpoint: Service host. Default value is "http://localhost:3000".
+    :paramtype endpoint: str
     """
 
-    def __init__(
-        self,
-        credential: "AsyncTokenCredential",
-        subscription_id: str,
-        base_url: Optional[str] = None,
-        *,
-        cloud_setting: Optional["AzureClouds"] = None,
-        **kwargs: Any
+    def __init__(  # pylint: disable=missing-client-constructor-parameter-credential
+        self, *, endpoint: str = "http://localhost:3000", **kwargs: Any
     ) -> None:
         _endpoint = "{endpoint}"
-        _cloud = cloud_setting or settings.current.azure_cloud  # type: ignore
-        _endpoints = get_arm_endpoints(_cloud)
-        if not base_url:
-            base_url = _endpoints["resource_manager"]
-        credential_scopes = kwargs.pop("credential_scopes", _endpoints["credential_scopes"])
-        self._config = CombinedClientConfiguration(
-            credential=credential,
-            subscription_id=subscription_id,
-            base_url=cast(str, base_url),
-            cloud_setting=cloud_setting,
-            credential_scopes=credential_scopes,
-            **kwargs
-        )
+        self._config = CombinedClientConfiguration(endpoint=endpoint, **kwargs)
 
         _policies = kwargs.pop("policies", None)
         if _policies is None:
@@ -79,7 +44,6 @@ class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
                 self._config.user_agent_policy,
                 self._config.proxy_policy,
                 policies.ContentDecodePolicy(**kwargs),
-                AsyncARMAutoResourceProviderRegistrationPolicy(),
                 self._config.redirect_policy,
                 self._config.retry_policy,
                 self._config.authentication_policy,
@@ -89,17 +53,13 @@ class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
                 policies.SensitiveHeaderCleanupPolicy(**kwargs) if self._config.redirect_policy else None,
                 self._config.http_logging_policy,
             ]
-        self._client: AsyncARMPipelineClient = AsyncARMPipelineClient(
-            base_url=cast(str, _endpoint), policies=_policies, **kwargs
-        )
+        self._client: AsyncPipelineClient = AsyncPipelineClient(base_url=_endpoint, policies=_policies, **kwargs)
 
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.virtual_machines = VirtualMachinesOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.disks = DisksOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -123,7 +83,7 @@ class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
 
         request_copy = deepcopy(request)
         path_format_arguments = {
-            "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
         }
 
         request_copy.url = self._client.format_url(request_copy.url, **path_format_arguments)

@@ -38,7 +38,7 @@ from ...operations._operations import (
     build_virtual_machines_create_or_update_request,
     build_virtual_machines_get_request,
 )
-from .._configuration import CombinedConfiguration
+from .._configuration import CombinedClientConfiguration
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -51,14 +51,14 @@ class VirtualMachinesOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.resourcemanager.multiservice.combined.aio.Combined`'s
+        :class:`~azure.resourcemanager.multiservice.combined.aio.CombinedClient`'s
         :attr:`virtual_machines` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config: CombinedConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._config: CombinedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
@@ -386,14 +386,14 @@ class DisksOperations:
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
-        :class:`~azure.resourcemanager.multiservice.combined.aio.Combined`'s
+        :class:`~azure.resourcemanager.multiservice.combined.aio.CombinedClient`'s
         :attr:`disks` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
         input_args = list(args)
         self._client: AsyncPipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config: CombinedConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._config: CombinedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
