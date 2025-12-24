@@ -157,7 +157,7 @@ class Repo:
                 self._http_client_python_json = json.load(f)
 
         return self._http_client_python_json
-    
+
     def get_ado_pipeline_build_id(self) -> str:
         """
         Get Azure DevOps pipeline build ID from GitHub pull request check runs.
@@ -167,59 +167,59 @@ class Repo:
             # Get the head commit
             head_commit = self.tsp_repo.get_commit(self.pull.head.sha)
             logger.info(f"Head SHA of PR {self.pull_url}: {self.pull.head.sha}")
-            
+
             # Wait for Python - Build check runs to appear
             timeout = timedelta(minutes=10)
             start_time = datetime.now()
             python_build_runs = []
-            
+
             logger.info("Looking for 'Python - Build' check runs...")
             while not python_build_runs and (datetime.now() - start_time) < timeout:
                 check_runs = head_commit.get_check_runs()
                 check_runs_list = list(check_runs)
                 python_build_runs = [run for run in check_runs_list if "Python - Build" in run.name]
-                
+
                 if not python_build_runs:
                     logger.info("No 'Python - Build' check runs found yet, waiting 30 seconds...")
                     time.sleep(30)
-            
+
             if not python_build_runs:
                 logger.error("Timeout: No 'Python - Build' check runs found after 10 minutes")
                 raise Exception("No 'Python - Build' check runs found")
-            
+
             logger.info(f"Found {len(python_build_runs)} 'Python - Build' check runs")
-            
+
             # Wait for all Python - Build checks to complete
             logger.info("Waiting for all Python - Build checks to complete...")
             start_time = datetime.now()
-            
+
             while (datetime.now() - start_time) < timeout:
                 # Refresh check runs status
                 check_runs = head_commit.get_check_runs()
                 check_runs_list = list(check_runs)
                 python_build_runs = [run for run in check_runs_list if "Python - Build" in run.name]
-                
+
                 all_completed = all(run.status == "completed" for run in python_build_runs)
-                
+
                 if all_completed:
                     if any(run.conclusion != "success" for run in python_build_runs):
                         raise Exception(f"Check run {run.name} failed with conclusion: {run.conclusion}")
                     logger.info("All Python - Build checks completed!")
                     break
-                    
+
                 in_progress = sum(1 for run in python_build_runs if run.status != "completed")
                 logger.info(f"{in_progress} check(s) still in progress...")
                 time.sleep(30)
             else:
                 logger.warning("Timeout: Not all checks completed after 10 minutes")
-            
+
             # Extract build ID from details_url
             for run in python_build_runs:
                 logger.info(f"Check run: {run.name} - Status: {run.status} - Conclusion: {run.conclusion}")
                 details_url = run.details_url
                 if details_url:
                     # Extract buildId using regex pattern like buildId=5692673
-                    match = re.search(r'buildId=(\d+)', details_url)
+                    match = re.search(r"buildId=(\d+)", details_url)
                     if match:
                         build_id = match.group(1)
                         logger.info(f"Found Build ID: {build_id}")
@@ -229,29 +229,77 @@ class Repo:
                         logger.warning(f"No build ID found in URL: {details_url}")
                 else:
                     logger.warning(f"No details URL available for check run: {run.name}")
-            
+
             logger.error("Could not extract build ID from any Python - Build check run")
             return None
-            
+
         except Exception as e:
             logger.error(f"Error getting ADO pipeline build ID: {e}")
             return None
-    
-    def get_artifacts_url_from_ado_pipeline(self, buildid: str):
-        pass
-        
-    
+
+    @return_origin_path
+    def get_http_client_python_version(self) -> str:
+        os.chdir(self.typespec_repo_path)
+        with open(Path("packages/http-client-python/package.json"), "r") as f:
+            package_data = json.load(f)
+        return package_data["version"]
+
+    def get_artifacts_url_from_ado_pipeline(self, build_id: str) -> str:
+        """
+        Get the artifacts URL from Azure DevOps pipeline build.
+        Returns the URL to download the typespec-http-client-python package.
+        """
+
+        from azure.devops.connection import Connection
+        from msrest.authentication import BasicAuthentication
+
+        # Configuration
+        ARTIFACT_NAME = "build_artifacts_python"
+
+        # Connection Setup
+        credentials = BasicAuthentication("", self.ado_token)
+        connection = Connection(base_url="https://dev.azure.com/azure-sdk", creds=credentials)
+        build_client = connection.clients.get_build_client()
+
+        # Get the artifact details using the SDK client
+        logger.info(f"Fetching artifact '{ARTIFACT_NAME}' from build {build_id}")
+        artifact = build_client.get_artifact(project="public", build_id=int(build_id), artifact_name=ARTIFACT_NAME)
+
+        # Extract the download URL from the artifact resource
+        if artifact and artifact.resource and artifact.resource.download_url:
+            download_url = artifact.resource.download_url
+            logger.info(f"Artifact download URL: {download_url}")
+
+            # Get the version of http-client-python package
+            version = self.get_http_client_python_version()
+            logger.info(f"http-client-python version: {version}")
+
+            # Replace part of URL to get specific download URL of the component
+            if download_url.endswith("content?format=zip"):
+                target_url = download_url.replace(
+                    "content?format=zip",
+                    f"content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-{version}.tgz",
+                )
+                logger.info(f"Target artifact URL: {target_url}")
+                return target_url
+            else:
+                error_msg = f"Unexpected artifact download URL format: {download_url}"
+                logger.error(error_msg)
+                raise ValueError(error_msg)
+        else:
+            error_msg = f"Artifact '{ARTIFACT_NAME}' not found or no download URL available."
+            logger.error(error_msg)
+            raise Exception(error_msg)
+
     def get_artifacts_url_from_pull_request(self):
         build_id = self.get_ado_pipeline_build_id()
-        self.get_artifacts_url_from_ado_pipeline(build_id)
-        
-        
+        self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id)
 
     def update_dependency_http_client_python(self):
         if not self.artifacts_url:
             logger.info("No artifacts URL provided, try to get from PR.")
             self.get_artifacts_url_from_pull_request()
-        
+
         for package in ["autorest.python", "typespec-python"]:
             package_path = Path(f"packages/{package}")
             package_json = package_path / "package.json"
@@ -429,13 +477,13 @@ if __name__ == "__main__":
         help="microsft/typespec repo path",
         type=str,
     )
-    
+
     parser.add_argument(
         "--ado-token",
         help="Azure DevOps token",
         type=str,
     )
-    
+
     parser.add_argument(
         "--artifacts-url",
         help="Artifacts url",
@@ -443,7 +491,6 @@ if __name__ == "__main__":
         required=False,
         default=None,
     )
-
 
     args = parser.parse_args()
     repo = Repo(args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url, args.ado_token)

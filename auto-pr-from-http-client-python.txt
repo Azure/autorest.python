@@ -1,3 +1,4 @@
 PyGithub==2.4.0
 azure-devops==7.1.0b4
+msrest==0.7.1
 black
