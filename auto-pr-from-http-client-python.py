@@ -293,13 +293,13 @@ class Repo:
                     f.write(content)
                 logger.info(f"Added changelog file: {changelog_path}")
 
-        except Exception as e:
-            logger.warning(f"Failed to process main branch changelogs: {e}")
-        else:
             # commit changelogs
             log_call("git add .chronus/")
             log_call(f'git commit -m "Add changelog"')
             git_push()
+
+        except Exception as e:
+            logger.warning(f"error occurs when adding changelog: {e}")
 
     def run(self):
         if "https://github.com/microsoft/typespec" in self.pull_url:
