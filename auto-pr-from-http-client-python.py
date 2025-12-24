@@ -13,7 +13,8 @@ import re
 from github import Github, Auth
 from functools import wraps
 from subprocess import check_call, CalledProcessError
-from datetime import datetime
+from datetime import datetime, timedelta
+import time
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -80,11 +81,12 @@ def git_push():
 
 
 class Repo:
-    def __init__(self, pull_url: str, repo_token: str, typespec_repo_path: str, artifacts_url: str):
+    def __init__(self, pull_url: str, repo_token: str, typespec_repo_path: str, artifacts_url: str, ado_token: str):
         self.pull_url = pull_url
         self.repo_token = repo_token
         self.typespec_repo_path = typespec_repo_path
         self.artifacts_url = artifacts_url
+        self.ado_token = ado_token
         self._tsp_repo = None
         self._autorest_repo = None
         self._pull = None
@@ -155,8 +157,101 @@ class Repo:
                 self._http_client_python_json = json.load(f)
 
         return self._http_client_python_json
+    
+    def get_ado_pipeline_build_id(self) -> str:
+        """
+        Get Azure DevOps pipeline build ID from GitHub pull request check runs.
+        Returns the build ID from the 'Python - Build' check run.
+        """
+        try:
+            # Get the head commit
+            head_commit = self.tsp_repo.get_commit(self.pull.head.sha)
+            logger.info(f"Head SHA of PR {self.pull_url}: {self.pull.head.sha}")
+            
+            # Wait for Python - Build check runs to appear
+            timeout = timedelta(minutes=10)
+            start_time = datetime.now()
+            python_build_runs = []
+            
+            logger.info("Looking for 'Python - Build' check runs...")
+            while not python_build_runs and (datetime.now() - start_time) < timeout:
+                check_runs = head_commit.get_check_runs()
+                check_runs_list = list(check_runs)
+                python_build_runs = [run for run in check_runs_list if "Python - Build" in run.name]
+                
+                if not python_build_runs:
+                    logger.info("No 'Python - Build' check runs found yet, waiting 30 seconds...")
+                    time.sleep(30)
+            
+            if not python_build_runs:
+                logger.error("Timeout: No 'Python - Build' check runs found after 10 minutes")
+                raise Exception("No 'Python - Build' check runs found")
+            
+            logger.info(f"Found {len(python_build_runs)} 'Python - Build' check runs")
+            
+            # Wait for all Python - Build checks to complete
+            logger.info("Waiting for all Python - Build checks to complete...")
+            start_time = datetime.now()
+            
+            while (datetime.now() - start_time) < timeout:
+                # Refresh check runs status
+                check_runs = head_commit.get_check_runs()
+                check_runs_list = list(check_runs)
+                python_build_runs = [run for run in check_runs_list if "Python - Build" in run.name]
+                
+                all_completed = all(run.status == "completed" for run in python_build_runs)
+                
+                if all_completed:
+                    if any(run.conclusion != "success" for run in python_build_runs):
+                        raise Exception(f"Check run {run.name} failed with conclusion: {run.conclusion}")
+                    logger.info("All Python - Build checks completed!")
+                    break
+                    
+                in_progress = sum(1 for run in python_build_runs if run.status != "completed")
+                logger.info(f"{in_progress} check(s) still in progress...")
+                time.sleep(30)
+            else:
+                logger.warning("Timeout: Not all checks completed after 10 minutes")
+            
+            # Extract build ID from details_url
+            for run in python_build_runs:
+                logger.info(f"Check run: {run.name} - Status: {run.status} - Conclusion: {run.conclusion}")
+                details_url = run.details_url
+                if details_url:
+                    # Extract buildId using regex pattern like buildId=5692673
+                    match = re.search(r'buildId=(\d+)', details_url)
+                    if match:
+                        build_id = match.group(1)
+                        logger.info(f"Found Build ID: {build_id}")
+                        logger.info(f"Details URL: {details_url}")
+                        return build_id
+                    else:
+                        logger.warning(f"No build ID found in URL: {details_url}")
+                else:
+                    logger.warning(f"No details URL available for check run: {run.name}")
+            
+            logger.error("Could not extract build ID from any Python - Build check run")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting ADO pipeline build ID: {e}")
+            return None
+    
+    def get_artifacts_url_from_ado_pipeline(self, buildid: str):
+        pass
+        
+    
+    def get_artifacts_url_from_pull_request(self):
+        build_id = self.get_ado_pipeline_build_id()
+        self.get_artifacts_url_from_ado_pipeline(build_id)
+        
+        
 
     def update_dependency_http_client_python(self):
+        if not self.artifacts_url:
+            logger.info("No artifacts URL provided, try to get from PR.")
+            self.get_artifacts_url_from_pull_request()
+        
         for package in ["autorest.python", "typespec-python"]:
             package_path = Path(f"packages/{package}")
             package_json = package_path / "package.json"
@@ -334,13 +429,22 @@ if __name__ == "__main__":
         help="microsft/typespec repo path",
         type=str,
     )
-
+    
+    parser.add_argument(
+        "--ado-token",
+        help="Azure DevOps token",
+        type=str,
+    )
+    
     parser.add_argument(
         "--artifacts-url",
         help="Artifacts url",
         type=str,
+        required=False,
+        default=None,
     )
 
+
     args = parser.parse_args()
-    repo = Repo(args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url)
+    repo = Repo(args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url, args.ado_token)
     repo.run()

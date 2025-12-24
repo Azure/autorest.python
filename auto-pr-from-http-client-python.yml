@@ -54,6 +54,10 @@ jobs:
 
   - bash: |
       pip install -r $(YmlPath)/auto-pr-from-http-client-python.txt
-      python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --typespec-repo-path=$(Build.SourcesDirectory)/typespec --artifacts-url=$(ARTIFACTS-URL)
+      ARTIFACTS_PARAM=""
+      if [ -n "$(ARTIFACTS-URL)" ]; then
+        ARTIFACTS_PARAM="--artifacts-url=$(ARTIFACTS-URL)"
+      fi
+      python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --typespec-repo-path=$(Build.SourcesDirectory)/typespec $ARTIFACTS_PARAM --ado-token=$(PIPELINE-TOKEN)
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: create PR
