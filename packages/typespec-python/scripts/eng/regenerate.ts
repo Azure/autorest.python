@@ -131,6 +131,9 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     "special-words": {
         namespace: "specialwords",
     },
+    "service/multi-service": {
+        namespace: "service.multiservice",
+    },
 };
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
