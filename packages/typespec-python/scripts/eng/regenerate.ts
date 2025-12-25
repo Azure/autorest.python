@@ -20,7 +20,7 @@ interface TspCommand {
 }
 
 // Add this near the top with other constants
-const SKIP_SPECS = ["type/union/discriminated"];
+const SKIP_SPECS: string[] = [];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
@@ -259,6 +259,10 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "type/union": {
         "package-name": "typetest-union",
         "namespace": "typetest.union",
+    },
+    "type/union/discriminated": {
+        "package-name": "typetest-discriminatedunion",
+        "namespace": "typetest.discriminatedunion",
     },
     "client/structure/client-operation-group": {
         "package-name": "client-structure-clientoperationgroup",
