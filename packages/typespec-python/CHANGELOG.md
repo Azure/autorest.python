@@ -1,5 +1,23 @@
 # Release
 
+## 0.57.0
+
+### Features
+
+- [#3291](https://github.com/Azure/autorest.python/pull/3291) Support multi-service scenario.
+- [#3293](https://github.com/Azure/autorest.python/pull/3293) Support lro-paging operation
+
+### Bump dependencies
+
+- [#3289](https://github.com/Azure/autorest.python/pull/3289) Bump generated code's dependency on `azure-core` to `1.37.0`
+
+### Bug Fixes
+
+- [#3291](https://github.com/Azure/autorest.python/pull/3291) Fix syntax error when model property is named "list" by using type alias to avoid naming conflicts
+- [#3291](https://github.com/Azure/autorest.python/pull/3291) Fix import error about apiversion validation for nested operation groups
+- [#3265](https://github.com/Azure/autorest.python/pull/3265) Fix import when body parameter is union of models
+
+
 ## 0.56.1
 
 ### Bug Fixes
