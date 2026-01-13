@@ -42,7 +42,9 @@ class ProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensit
     OK = "OK"
 
 
-class SubProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class SubProductPropertiesProvisioningStateValues(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """SubProductPropertiesProvisioningStateValues."""
 
     SUCCEEDED = "Succeeded"
