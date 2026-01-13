@@ -10,52 +10,68 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class ModelAsStringNoRequiredOneValueDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredOneValueDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredOneValueDefaultEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredOneValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredOneValueDefaultOpEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredOneValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredOneValueNoDefaultEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredOneValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredOneValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredOneValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringNoRequiredTwoValueDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredTwoValueDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredTwoValueDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredTwoValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredTwoValueDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredTwoValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredTwoValueNoDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringNoRequiredTwoValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringNoRequiredTwoValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringNoRequiredTwoValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
@@ -68,19 +84,25 @@ class ModelAsStringRequiredOneValueDefaultEnum(str, Enum, metaclass=CaseInsensit
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredOneValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredOneValueDefaultOpEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredOneValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredOneValueNoDefaultEnum."""
 
     VALUE1 = "value1"
 
 
-class ModelAsStringRequiredOneValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredOneValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredOneValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
@@ -93,77 +115,99 @@ class ModelAsStringRequiredTwoValueDefaultEnum(str, Enum, metaclass=CaseInsensit
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredTwoValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredTwoValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredTwoValueDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredTwoValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredTwoValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredTwoValueNoDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class ModelAsStringRequiredTwoValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class ModelAsStringRequiredTwoValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """ModelAsStringRequiredTwoValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringNoRequiredTwoValueDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringNoRequiredTwoValueDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringNoRequiredTwoValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringNoRequiredTwoValueDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringNoRequiredTwoValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringNoRequiredTwoValueNoDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringNoRequiredTwoValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringRequiredTwoValueDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringRequiredTwoValueDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringRequiredTwoValueDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringRequiredTwoValueDefaultOpEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueNoDefaultEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringRequiredTwoValueNoDefaultEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringRequiredTwoValueNoDefaultEnum."""
 
     VALUE1 = "value1"
     VALUE2 = "value2"
 
 
-class NoModelAsStringRequiredTwoValueNoDefaultOpEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class NoModelAsStringRequiredTwoValueNoDefaultOpEnum(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """NoModelAsStringRequiredTwoValueNoDefaultOpEnum."""
 
     VALUE1 = "value1"
