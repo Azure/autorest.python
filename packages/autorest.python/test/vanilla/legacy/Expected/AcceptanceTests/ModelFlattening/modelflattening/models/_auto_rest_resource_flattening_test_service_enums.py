@@ -10,7 +10,9 @@ from enum import Enum
 from azure.core import CaseInsensitiveEnumMeta
 
 
-class FlattenedProductPropertiesProvisioningStateValues(str, Enum, metaclass=CaseInsensitiveEnumMeta):
+class FlattenedProductPropertiesProvisioningStateValues(  # pylint: disable=name-too-long
+    str, Enum, metaclass=CaseInsensitiveEnumMeta
+):
     """FlattenedProductPropertiesProvisioningStateValues."""
 
     SUCCEEDED = "Succeeded"
