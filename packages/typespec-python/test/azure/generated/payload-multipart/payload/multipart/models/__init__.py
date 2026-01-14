@@ -25,7 +25,9 @@ from ._models import (  # type: ignore
     FloatRequest,
     JsonPartRequest,
     MultiBinaryPartsRequest,
+    MultiPartOptionalRequest,
     MultiPartRequest,
+    MultiPartRequestWithWireName,
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -43,7 +45,9 @@ __all__ = [
     "FloatRequest",
     "JsonPartRequest",
     "MultiBinaryPartsRequest",
+    "MultiPartOptionalRequest",
     "MultiPartRequest",
+    "MultiPartRequestWithWireName",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()
