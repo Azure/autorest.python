@@ -25,6 +25,28 @@ class TestMultiPartFormDataOperations(MultiPartClientTestBase):
 
     @MultiPartPreparer()
     @recorded_by_proxy
+    def test_form_data_with_wire_name(self, multipart_endpoint):
+        client = self.create_client(endpoint=multipart_endpoint)
+        response = client.form_data.with_wire_name(
+            body={"id": "str", "profileImage": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy
+    def test_form_data_optional_parts(self, multipart_endpoint):
+        client = self.create_client(endpoint=multipart_endpoint)
+        response = client.form_data.optional_parts(
+            body={"id": "str", "profileImage": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy
     def test_form_data_file_array_and_basic(self, multipart_endpoint):
         client = self.create_client(endpoint=multipart_endpoint)
         response = client.form_data.file_array_and_basic(
