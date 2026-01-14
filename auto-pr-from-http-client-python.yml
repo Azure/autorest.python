@@ -55,9 +55,9 @@ jobs:
   - bash: |
       pip install -r $(YmlPath)/auto-pr-from-http-client-python.txt
       ARTIFACTS_PARAM=""
-      if [ -n "$(ARTIFACTS-URL)" ]; then
-        ARTIFACTS_PARAM="--artifacts-url=$(ARTIFACTS-URL)"
-        echo "Artifacts URL: $(ARTIFACTS-URL)"
+      if [ -n "$ARTIFACTS_URL" ]; then
+        ARTIFACTS_PARAM="--artifacts-url=$ARTIFACTS_URL"
+        echo "Artifacts URL: $ARTIFACTS_URL"
       else
         echo "No Artifacts URL provided."
       fi
