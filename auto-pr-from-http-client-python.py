@@ -240,8 +240,10 @@ class Repo:
     @return_origin_path
     def get_http_client_python_version(self) -> str:
         os.chdir(self.typespec_repo_path)
-        with open(Path("packages/http-client-python/package.json"), "r") as f:
-            package_data = json.load(f)
+        # get content of packages/http-client-python/package.json with tsp_repo from target commit id
+        commit_id = self.pull.head.sha
+        file_content = self.tsp_repo.get_contents("packages/http-client-python/package.json", ref=commit_id)
+        package_data = json.loads(file_content.decoded_content.decode("utf-8"))
         return package_data["version"]
 
     def get_artifacts_url_from_ado_pipeline(self, build_id: str) -> str:
