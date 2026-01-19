@@ -44,3 +44,14 @@ class TestSpecialWordsModelPropertiesOperations(SpecialWordsClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @SpecialWordsPreparer()
+    @recorded_by_proxy
+    def test_model_properties_with_list(self, specialwords_endpoint):
+        client = self.create_client(endpoint=specialwords_endpoint)
+        response = client.model_properties.with_list(
+            body={"list": "str"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
