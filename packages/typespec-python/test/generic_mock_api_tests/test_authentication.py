@@ -10,7 +10,6 @@ from authentication.union import UnionClient
 from setuppy.authentication.union import UnionClient as SetuppyUnionClient
 from authentication.http.custom import CustomClient
 
-
 # Utilities functions
 
 
