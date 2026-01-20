@@ -1,7 +1,8 @@
 ---
 changeKind: internal
 packages:
+  - "@autorest/python"
   - "@azure-tools/typespec-python"
 ---
 
-Add testcases for several spector scenarios
+Add test case

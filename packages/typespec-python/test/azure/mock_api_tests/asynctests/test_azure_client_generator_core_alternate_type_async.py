@@ -8,7 +8,6 @@ import geojson
 from specs.azure.clientgenerator.core.alternatetype.aio import AlternateTypeClient
 from specs.azure.clientgenerator.core.alternatetype import models
 
-
 # Shared test data
 PROPERTIES = {"name": "A single point of interest", "category": "landmark", "elevation": 100}
 

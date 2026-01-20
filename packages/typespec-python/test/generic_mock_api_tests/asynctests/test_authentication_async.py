@@ -10,7 +10,6 @@ from authentication.oauth2.aio import OAuth2Client
 from authentication.union.aio import UnionClient
 from setuppy.authentication.union.aio import UnionClient as SetuppyUnionClient
 
-
 # Utilities functions
 
 

@@ -45,3 +45,14 @@ class TestSpecialWordsModelPropertiesOperationsAsync(SpecialWordsClientTestBaseA
 
         # please add some check logic here by yourself
         # ...
+
+    @SpecialWordsPreparer()
+    @recorded_by_proxy_async
+    async def test_model_properties_with_list(self, specialwords_endpoint):
+        client = self.create_async_client(endpoint=specialwords_endpoint)
+        response = await client.model_properties.with_list(
+            body={"list": "str"},
+        )
+
+        # please add some check logic here by yourself
+        # ...

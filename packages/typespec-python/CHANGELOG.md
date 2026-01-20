@@ -1,5 +1,12 @@
 # Release
 
+## 0.57.1
+
+### Bug Fixes
+
+- [#3300](https://github.com/Azure/autorest.python/pull/3300) Fix clients with `NoAuth` credentials to have optional generated `credential` parameters
+
+
 ## 0.57.0
 
 ### Features
