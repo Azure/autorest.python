@@ -13,7 +13,6 @@ from encode.bytes.models import (
     Base64urlArrayBytesProperty,
 )
 
-
 FILE_FOLDER = Path(__file__).parent.parent
 
 
