@@ -5,6 +5,8 @@ from typing import Any, Mapping, overload
 
 from ..._utils.model_base import Model as _Model, rest_field
 
+List = list
+
 
 class AndModel(_Model):
     """AndModel.

@@ -36,9 +36,8 @@ pnpm clean
 
 **Semi-auto:**
 
-Branch `publish/auto-release` should be automatically updated with the latest changelog. Give it 5min after merging a PR or check the status of the [Release action](https://github.com/Azure/autorest.python/actions/workflows/prepare-auto-release-branch.yml)
-
-Then go to https://github.com/Azure/autorest.python/pull/new/publish/auto-release and create this PR.
+Follow https://github.com/Azure/autorest.python/blob/main/.github/skills/bump-and-release/SKILL.md to make a release PR. 
+After it merged, trigger [release pipeline](https://dev.azure.com/azure-sdk/internal/_build?definitionId=1668) to release new version.
 
 ## Contributing
 

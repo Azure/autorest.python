@@ -46,6 +46,24 @@ def build_form_data_basic_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
+def build_form_data_with_wire_name_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/multipart/form-data/mixed-parts-with-wire-name"
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
+def build_form_data_optional_parts_request(**kwargs: Any) -> HttpRequest:
+    _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
+
+    # Construct URL
+    _url = "/multipart/form-data/optional-parts"
+
+    return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
+
+
 def build_form_data_file_array_and_basic_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -227,6 +245,158 @@ class FormDataOperations:
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
         _request = build_form_data_basic_request(
+            files=_files,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def with_wire_name(self, body: _models.MultiPartRequestWithWireName, **kwargs: Any) -> None:
+        """Test content-type: multipart/form-data with wire names.
+
+        :param body: Required.
+        :type body: ~payload.multipart.models.MultiPartRequestWithWireName
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def with_wire_name(self, body: JSON, **kwargs: Any) -> None:
+        """Test content-type: multipart/form-data with wire names.
+
+        :param body: Required.
+        :type body: JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def with_wire_name(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.MultiPartRequestWithWireName, JSON], **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data with wire names.
+
+        :param body: Is either a MultiPartRequestWithWireName type or a JSON type. Required.
+        :type body: ~payload.multipart.models.MultiPartRequestWithWireName or JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = ["id"]
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+
+        _request = build_form_data_with_wire_name_request(
+            files=_files,
+            headers=_headers,
+            params=_params,
+        )
+        path_format_arguments = {
+            "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
+        }
+        _request.url = self._client.format_url(_request.url, **path_format_arguments)
+
+        _stream = False
+        pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
+            _request, stream=_stream, **kwargs
+        )
+
+        response = pipeline_response.http_response
+
+        if response.status_code not in [204]:
+            map_error(status_code=response.status_code, response=response, error_map=error_map)
+            raise HttpResponseError(response=response)
+
+        if cls:
+            return cls(pipeline_response, None, {})  # type: ignore
+
+    @overload
+    def optional_parts(self, body: _models.MultiPartOptionalRequest, **kwargs: Any) -> None:
+        """Test content-type: multipart/form-data with optional parts.
+
+        :param body: Required.
+        :type body: ~payload.multipart.models.MultiPartOptionalRequest
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @overload
+    def optional_parts(self, body: JSON, **kwargs: Any) -> None:
+        """Test content-type: multipart/form-data with optional parts.
+
+        :param body: Required.
+        :type body: JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+
+    @distributed_trace
+    def optional_parts(  # pylint: disable=inconsistent-return-statements
+        self, body: Union[_models.MultiPartOptionalRequest, JSON], **kwargs: Any
+    ) -> None:
+        """Test content-type: multipart/form-data with optional parts.
+
+        :param body: Is either a MultiPartOptionalRequest type or a JSON type. Required.
+        :type body: ~payload.multipart.models.MultiPartOptionalRequest or JSON
+        :return: None
+        :rtype: None
+        :raises ~azure.core.exceptions.HttpResponseError:
+        """
+        error_map: MutableMapping = {
+            401: ClientAuthenticationError,
+            404: ResourceNotFoundError,
+            409: ResourceExistsError,
+            304: ResourceNotModifiedError,
+        }
+        error_map.update(kwargs.pop("error_map", {}) or {})
+
+        _headers = kwargs.pop("headers", {}) or {}
+        _params = kwargs.pop("params", {}) or {}
+
+        cls: ClsType[None] = kwargs.pop("cls", None)
+
+        _body = body.as_dict() if isinstance(body, _Model) else body
+        _file_fields: list[str] = ["profileImage"]
+        _data_fields: list[str] = ["id"]
+        _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
+
+        _request = build_form_data_optional_parts_request(
             files=_files,
             headers=_headers,
             params=_params,

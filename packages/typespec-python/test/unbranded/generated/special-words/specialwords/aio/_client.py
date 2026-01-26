@@ -46,6 +46,7 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
        in
        is
        lambda
+       list
        not
        or
        pass

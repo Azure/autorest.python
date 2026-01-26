@@ -1,5 +1,23 @@
 # Release
 
+## 6.47.0
+
+### Features
+
+- [#3302](https://github.com/Azure/autorest.python/pull/3302) Support enum type for array encode
+
+### Bug Fixes
+
+- [#3304](https://github.com/Azure/autorest.python/pull/3304) support "apiVersions" of TCGC metadata
+
+
+## 6.46.1
+
+### Bug Fixes
+
+- [#3300](https://github.com/Azure/autorest.python/pull/3300) Fix clients with `NoAuth` credentials to have optional generated `credential` parameters
+
+
 ## 6.46.0
 
 ### Features

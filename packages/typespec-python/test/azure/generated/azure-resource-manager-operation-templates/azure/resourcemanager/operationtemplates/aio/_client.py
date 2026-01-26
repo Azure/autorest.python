@@ -19,7 +19,13 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OperationTemplatesClientConfiguration
-from .operations import CheckNameAvailabilityOperations, LroOperations, Operations, OptionalBodyOperations
+from .operations import (
+    CheckNameAvailabilityOperations,
+    LroOperations,
+    LroPagingOperations,
+    Operations,
+    OptionalBodyOperations,
+)
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -36,6 +42,9 @@ class OperationTemplatesClient:
      azure.resourcemanager.operationtemplates.aio.operations.CheckNameAvailabilityOperations
     :ivar lro: LroOperations operations
     :vartype lro: azure.resourcemanager.operationtemplates.aio.operations.LroOperations
+    :ivar lro_paging: LroPagingOperations operations
+    :vartype lro_paging:
+     azure.resourcemanager.operationtemplates.aio.operations.LroPagingOperations
     :ivar optional_body: OptionalBodyOperations operations
     :vartype optional_body:
      azure.resourcemanager.operationtemplates.aio.operations.OptionalBodyOperations
@@ -110,6 +119,7 @@ class OperationTemplatesClient:
             self._client, self._config, self._serialize, self._deserialize
         )
         self.lro = LroOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.lro_paging = LroPagingOperations(self._client, self._config, self._serialize, self._deserialize)
         self.optional_body = OptionalBodyOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(

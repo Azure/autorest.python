@@ -335,6 +335,39 @@ class MultiBinaryPartsRequest(_Model):
         super().__init__(*args, **kwargs)
 
 
+class MultiPartOptionalRequest(_Model):
+    """MultiPartOptionalRequest.
+
+    :ivar id:
+    :vartype id: str
+    :ivar profile_image:
+    :vartype profile_image: ~payload.multipart._utils.utils.FileType
+    """
+
+    id: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    profile_image: Optional[FileType] = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: Optional[str] = None,  # pylint: disable=redefined-builtin
+        profile_image: Optional[FileType] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class MultiPartRequest(_Model):
     """MultiPartRequest.
 
@@ -357,6 +390,41 @@ class MultiPartRequest(_Model):
         *,
         id: str,  # pylint: disable=redefined-builtin
         profile_image: FileType,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class MultiPartRequestWithWireName(_Model):
+    """MultiPartRequestWithWireName.
+
+    :ivar identifier: Required.
+    :vartype identifier: str
+    :ivar image: Required.
+    :vartype image: ~payload.multipart._utils.utils.FileType
+    """
+
+    identifier: str = rest_field(name="id", visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+    image: FileType = rest_field(
+        name="profileImage", visibility=["read", "create", "update", "delete", "query"], is_multipart_file_input=True
+    )
+    """Required."""
+
+    @overload
+    def __init__(
+        self,
+        *,
+        identifier: str,
+        image: FileType,
     ) -> None: ...
 
     @overload
