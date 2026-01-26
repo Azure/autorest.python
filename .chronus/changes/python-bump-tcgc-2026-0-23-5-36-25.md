@@ -1,8 +1,8 @@
 ---
-changeKind: feature
+changeKind: dependencies
 packages:
   - "@autorest/python"
   - "@azure-tools/typespec-python"
 ---
 
-Support enum type for array encode
+Bump TCGC 0.64.3
