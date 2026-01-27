@@ -1,5 +1,16 @@
 # Release
 
+## 6.48.0
+
+### Features
+
+- [#3311](https://github.com/Azure/autorest.python/pull/3311) Add support for xml paging
+
+### Bump dependencies
+
+- [#3310](https://github.com/Azure/autorest.python/pull/3310) Bump TCGC 0.64.3
+
+
 ## 6.47.0
 
 ### Features
