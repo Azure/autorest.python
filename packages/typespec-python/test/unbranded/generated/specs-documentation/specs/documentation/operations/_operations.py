@@ -325,9 +325,8 @@ class TextFormattingOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     def bold_text(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """This is **bold text** in the middle of a sentence.
-        This is a sentence with **multiple bold** sections and **another bold** section.
-        **This entire sentence is bold.**.
+        """This is **bold text** in the middle of a sentence. This is a sentence with **multiple bold**
+        sections and **another bold** section. **This entire sentence is bold.**.
 
         :return: None
         :rtype: None
@@ -368,9 +367,8 @@ class TextFormattingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def italic_text(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """This is *italic text* in the middle of a sentence.
-        This is a sentence with *multiple italic* sections and *another italic* section.
-        *This entire sentence is italic.*.
+        """This is *italic text* in the middle of a sentence. This is a sentence with *multiple italic*
+        sections and *another italic* section. *This entire sentence is italic.*.
 
         :return: None
         :rtype: None
@@ -411,10 +409,9 @@ class TextFormattingOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     def combined_formatting(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """This sentence has **bold**, *italic*, and ***bold italic*** text.
-        You can also combine them like **bold with *italic inside* bold**.
-        Or *italic with **bold inside** italic*.
-        This is a sentence with **bold**, *italic*, and ***bold italic*** text.
+        """This sentence has **bold**, *italic*, and ***bold italic*** text. You can also combine them
+        like **bold with *italic inside* bold**. Or *italic with **bold inside** italic*. This is a
+        sentence with **bold**, *italic*, and ***bold italic*** text.
 
         :return: None
         :rtype: None
