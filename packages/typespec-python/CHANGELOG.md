@@ -1,5 +1,14 @@
 # Release
 
+## 0.59.1
+
+### Bug Fixes
+
+- [#3315](https://github.com/Azure/autorest.python/pull/3315) Don't remove azure-sdk tool definitions from pyproject.toml
+- [#3316](https://github.com/Azure/autorest.python/pull/3316) Fix additional indentation issues
+- [#3316](https://github.com/Azure/autorest.python/pull/3316) `_failsafe_deserialize_xml` xml errors
+
+
 ## 0.59.0
 
 ### Features
