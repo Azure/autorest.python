@@ -231,9 +231,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_required(self, *, parameter: str, new_parameter: Optional[str] = None, **kwargs: Any) -> JSON:
-        """Get true Boolean value on path.
-         Initially only has one required Query Parameter. After evolution, a new optional query
-        parameter is added.
+        """Get true Boolean value on path. Initially only has one required Query Parameter. After
+        evolution, a new optional query parameter is added.
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
@@ -466,9 +465,8 @@ class ParamsOperations:
 
     @distributed_trace
     def delete_parameters(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
-        """Delete something.
-         Initially the path exists but there is no delete method. After evolution this is a new method
-        in a known path.
+        """Delete something. Initially the path exists but there is no delete method. After evolution this
+        is a new method in a known path.
 
         :return: None
         :rtype: None
@@ -511,9 +509,8 @@ class ParamsOperations:
     def get_optional(
         self, *, optional_param: Optional[str] = None, new_parameter: Optional[str] = None, **kwargs: Any
     ) -> JSON:
-        """Get true Boolean value on path.
-         Initially has one optional query parameter. After evolution, a new optional query parameter is
-        added.
+        """Get true Boolean value on path. Initially has one optional query parameter. After evolution, a
+        new optional query parameter is added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str
@@ -567,9 +564,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_new_operation(self, **kwargs: Any) -> JSON:
-        """I'm a new operation.
-         Initiallty neither path or method exist for this operation. After evolution, this is a new
-        method in a new path.
+        """I'm a new operation. Initiallty neither path or method exist for this operation. After
+        evolution, this is a new method in a new path.
 
         :return: JSON
         :rtype: JSON
