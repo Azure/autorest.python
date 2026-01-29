@@ -523,10 +523,12 @@ class TestXmlDeserialization:
 class TestXmlSerialization:
     def test_basic(self):
         """Test an ultra basic XML."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <Data country="france">
                 <Age>37</Age>
-            </Data>""")
+            </Data>"""
+        )
 
         class XmlModel(Model):
             age: int = rest_field(xml={"name": "Age"})
@@ -542,8 +544,12 @@ class TestXmlSerialization:
 
     def test_basic_unicode(self):
         """Test a XML with unicode."""
-        basic_xml = ET.fromstring("""<?xml version="1.0" encoding="utf-8"?>
-            <Data language="français"/>""".encode("utf-8"))
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0" encoding="utf-8"?>
+            <Data language="français"/>""".encode(
+                "utf-8"
+            )
+        )
 
         class XmlModel(Model):
             language: str = rest_field(xml={"name": "language", "attribute": True})
@@ -583,11 +589,13 @@ class TestXmlSerialization:
 
     def test_type_basic(self):
         """Test basic types."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <Data>
                 <Age>37</Age>
                 <Enabled>true</Enabled>
-            </Data>""")
+            </Data>"""
+        )
 
         class XmlModel(Model):
             age: int = rest_field(name="age", xml={"name": "Age"})
@@ -603,8 +611,10 @@ class TestXmlSerialization:
 
     def test_basic_text(self):
         """Test a XML with unicode."""
-        basic_xml = ET.fromstring("""<?xml version="1.0" encoding="utf-8"?>
-            <Data language="english">I am text</Data>""")
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0" encoding="utf-8"?>
+            <Data language="english">I am text</Data>"""
+        )
 
         class XmlModel(Model):
             language: str = rest_field(name="language", xml={"name": "language", "attribute": True})
@@ -620,13 +630,15 @@ class TestXmlSerialization:
 
     def test_dict_type(self):
         """Test dict type."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <Data>
                 <Metadata>
                   <Key1>value1</Key1>
                   <Key2>value2</Key2>
                 </Metadata>
-            </Data>""")
+            </Data>"""
+        )
 
         class XmlModel(Model):
             metadata: Dict[str, str] = rest_field(name="Metadata", xml={"name": "Metadata"})
@@ -646,7 +658,8 @@ class TestXmlSerialization:
 
     def test_additional_properties(self):
         """Test additional properties."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <Data>
                 <Name>test</Name>
                 <add1>text</add1>
@@ -659,7 +672,8 @@ class TestXmlSerialization:
                     <a>a</a>
                     <b>b</b>
                 </add3>
-            </Data>""")
+            </Data>"""
+        )
 
         class XmlModel(Model):
             name: str = rest_field(name="name", xml={"name": "Name"})
@@ -682,13 +696,15 @@ class TestXmlSerialization:
     def test_list_wrapped_basic_types(self):
         """Test XML list and wrap, items is basic type and there is no itemsName."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <GoodApples>
                   <GoodApples>granny</GoodApples>
                   <GoodApples>fuji</GoodApples>
                 </GoodApples>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class AppleBarrel(Model):
             good_apples: List[str] = rest_field(name="GoodApples", xml={"name": "GoodApples"})
@@ -704,11 +720,13 @@ class TestXmlSerialization:
     def test_list_not_wrapped_basic_types(self):
         """Test XML list and no wrap, items is basic type and there is no itemsName."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <GoodApples>granny</GoodApples>
                 <GoodApples>fuji</GoodApples>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class AppleBarrel(Model):
             good_apples: List[str] = rest_field(name="GoodApples", xml={"name": "GoodApples", "unwrapped": True})
@@ -724,13 +742,15 @@ class TestXmlSerialization:
     def test_list_wrapped_basic_types_items_name(self):
         """Test XML list and wrap, items is basic type and itemsName."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <GoodApples>
                   <string>granny</string>
                   <string>fuji</string>
                 </GoodApples>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class AppleBarrel(Model):
             good_apples: List[str] = rest_field(name="GoodApples", xml={"name": "GoodApples", "itemsName": "string"})
@@ -746,11 +766,13 @@ class TestXmlSerialization:
     def test_list_not_wrapped_basic_types_items_name(self):
         """Test XML list and no wrap, items is basic type and itemsName."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <string>granny</string>
                 <string>fuji</string>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class AppleBarrel(Model):
             good_apples: List[str] = rest_field(
@@ -769,13 +791,15 @@ class TestXmlSerialization:
     def test_list_wrapped_complex_types(self):
         """Test XML list and wrap, items is ref."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <GoodApples>
                   <Apple name="granny"/>
                   <Apple name="fuji"/>
                 </GoodApples>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class Apple(Model):
             name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
@@ -800,11 +824,13 @@ class TestXmlSerialization:
     def test_list_not_wrapped_complex_types(self):
         """Test XML list and wrap, items is ref."""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <Apple name="granny"/>
                 <Apple name="fuji"/>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class Apple(Model):
             name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
@@ -826,11 +852,13 @@ class TestXmlSerialization:
     def test_two_complex_same_type(self):
         """Two different attribute are same type"""
 
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <AppleBarrel>
                 <EuropeanApple name="granny"/>
                 <USAApple name="fuji"/>
-            </AppleBarrel>""")
+            </AppleBarrel>"""
+        )
 
         class Apple(Model):
             name: str = rest_field(name="name", xml={"name": "name", "attribute": True})
@@ -855,10 +883,12 @@ class TestXmlSerialization:
 
     def test_basic_namespace(self):
         """Test an ultra basic XML."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <Data xmlns:fictional="http://characters.example.com">
                 <fictional:Age>37</fictional:Age>
-            </Data>""")
+            </Data>"""
+        )
 
         class XmlModel(Model):
             age: int = rest_field(
@@ -882,7 +912,8 @@ class TestXmlSerialization:
 
     def test_complex_namespace(self):
         """Test recursive namespace."""
-        basic_xml = ET.fromstring("""<?xml version="1.0"?>
+        basic_xml = ET.fromstring(
+            """<?xml version="1.0"?>
             <entry xmlns="http://www.w3.org/2005/Atom" xmlns:i="http://www.w3.org/2001/XMLSchema-instance">
                 <author>
                     <name>lmazuel</name>
@@ -895,7 +926,8 @@ class TestXmlSerialization:
                 <MessageCountDetails xmlns="http://schemas.microsoft.com/netservices/2010/10/servicebus/connect">
                     <d2p1:ActiveMessageCount xmlns:d2p1="http://schemas.microsoft.com/netservices/2011/06/servicebus">12</d2p1:ActiveMessageCount>
                 </MessageCountDetails>
-            </entry>""")
+            </entry>"""
+        )
 
         class QueueDescriptionResponseAuthor(Model):
             name: str = rest_field(name="name", xml={"ns": "http://www.w3.org/2005/Atom"})
