@@ -17,15 +17,9 @@ class TestHierarchyBuildingAnimalOperationsOperations(HierarchyBuildingClientTes
     def test_animal_operations_update_pet_as_animal(self, hierarchybuilding_endpoint):
         client = self.create_client(endpoint=hierarchybuilding_endpoint)
         response = client.animal_operations.update_pet_as_animal(
-            animal={
-    "breed": "str",
-    "kind": "dog",
-    "name": "str",
-    "trained": bool
-}
-,
+            animal={"breed": "str", "kind": "dog", "name": "str", "trained": bool},
         )
-        
+
         # please add some check logic here by yourself
         # ...
 
@@ -34,15 +28,8 @@ class TestHierarchyBuildingAnimalOperationsOperations(HierarchyBuildingClientTes
     def test_animal_operations_update_dog_as_animal(self, hierarchybuilding_endpoint):
         client = self.create_client(endpoint=hierarchybuilding_endpoint)
         response = client.animal_operations.update_dog_as_animal(
-            animal={
-    "breed": "str",
-    "kind": "dog",
-    "name": "str",
-    "trained": bool
-}
-,
+            animal={"breed": "str", "kind": "dog", "name": "str", "trained": bool},
         )
-        
+
         # please add some check logic here by yourself
         # ...
-
