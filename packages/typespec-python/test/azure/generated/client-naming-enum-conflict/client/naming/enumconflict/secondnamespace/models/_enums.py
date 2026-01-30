@@ -14,6 +14,6 @@ class SecondStatus(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Status enum in second namespace."""
 
     RUNNING = "running"
-    """Running status"""
+    """Running status."""
     STOPPED = "stopped"
-    """Stopped status"""
+    """Stopped status."""
