@@ -1,5 +1,12 @@
 # Release
 
+## 6.48.2
+
+### Bug Fixes
+
+- [#3322](https://github.com/Azure/autorest.python/pull/3322) Properly cache enum values
+
+
 ## 6.48.1
 
 ### Bug Fixes
