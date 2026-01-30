@@ -14,10 +14,13 @@ class ClientExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of ClientExtensibleEnum."""
 
     ENUM_VALUE1 = "value1"
+    """ENUM_VALUE1."""
 
 
 class ExtensibleEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of ExtensibleEnum."""
 
     CLIENT_ENUM_VALUE1 = "value1"
+    """CLIENT_ENUM_VALUE1."""
     CLIENT_ENUM_VALUE2 = "value2"
+    """CLIENT_ENUM_VALUE2."""

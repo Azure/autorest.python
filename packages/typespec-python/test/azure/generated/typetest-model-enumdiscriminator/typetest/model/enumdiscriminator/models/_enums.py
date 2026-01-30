@@ -14,11 +14,11 @@ class DogKind(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """extensible enum type for discriminator."""
 
     GOLDEN = "golden"
-    """Species golden"""
+    """Species golden."""
 
 
 class SnakeKind(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """fixed enum type for discriminator."""
 
     COBRA = "cobra"
-    """Species cobra"""
+    """Species cobra."""
