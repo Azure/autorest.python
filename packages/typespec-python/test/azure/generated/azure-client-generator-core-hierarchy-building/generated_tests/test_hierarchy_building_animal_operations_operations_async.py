@@ -19,11 +19,11 @@ class TestHierarchyBuildingAnimalOperationsOperationsAsync(HierarchyBuildingClie
         client = self.create_async_client(endpoint=hierarchybuilding_endpoint)
         response = await client.animal_operations.update_pet_as_animal(
             animal={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
+    "breed": "str",
+    "kind": "dog",
+    "name": "str",
+    "trained": bool
+}
 ,
         )
         
@@ -36,11 +36,11 @@ class TestHierarchyBuildingAnimalOperationsOperationsAsync(HierarchyBuildingClie
         client = self.create_async_client(endpoint=hierarchybuilding_endpoint)
         response = await client.animal_operations.update_dog_as_animal(
             animal={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
+    "breed": "str",
+    "kind": "dog",
+    "name": "str",
+    "trained": bool
+}
 ,
         )
         

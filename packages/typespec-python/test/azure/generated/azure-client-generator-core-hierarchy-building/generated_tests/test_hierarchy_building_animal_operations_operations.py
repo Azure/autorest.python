@@ -18,11 +18,11 @@ class TestHierarchyBuildingAnimalOperationsOperations(HierarchyBuildingClientTes
         client = self.create_client(endpoint=hierarchybuilding_endpoint)
         response = client.animal_operations.update_pet_as_animal(
             animal={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
+    "breed": "str",
+    "kind": "dog",
+    "name": "str",
+    "trained": bool
+}
 ,
         )
         
@@ -35,11 +35,11 @@ class TestHierarchyBuildingAnimalOperationsOperations(HierarchyBuildingClientTes
         client = self.create_client(endpoint=hierarchybuilding_endpoint)
         response = client.animal_operations.update_dog_as_animal(
             animal={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
+    "breed": "str",
+    "kind": "dog",
+    "name": "str",
+    "trained": bool
+}
 ,
         )
         
