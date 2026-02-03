@@ -1031,7 +1031,7 @@ def _failsafe_deserialize(
 ) -> typing.Any:
     try:
         return _deserialize(deserializer, response.json(), module, rf, format)
-    except DeserializationError:
+    except Exception:  # pylint: disable=broad-except
         _LOGGER.warning(
             "Ran into a deserialization error. Ignoring since this is failsafe deserialization", exc_info=True
         )
@@ -1044,7 +1044,7 @@ def _failsafe_deserialize_xml(
 ) -> typing.Any:
     try:
         return _deserialize_xml(deserializer, response.text())
-    except DeserializationError:
+    except Exception:  # pylint: disable=broad-except
         _LOGGER.warning(
             "Ran into a deserialization error. Ignoring since this is failsafe deserialization", exc_info=True
         )
