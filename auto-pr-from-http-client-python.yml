@@ -61,6 +61,14 @@ jobs:
       else
         echo "No Artifacts URL provided."
       fi
-      python $(YmlPath)/auto-pr-from-http-client-python.py --pull-url=$(PULL-REQUEST-URL) --repo-token=$(Yuchao-GitToken) --typespec-repo-path=$(Build.SourcesDirectory)/typespec $ARTIFACTS_PARAM --ado-token=$(PIPELINE-TOKEN)
+      PIPELINE_LINK="$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)"
+      echo "Pipeline Link: $PIPELINE_LINK"
+      python $(YmlPath)/auto-pr-from-http-client-python.py \
+        --pull-url=$(PULL-REQUEST-URL) \
+        --repo-token=$(Yuchao-GitToken) \
+        --typespec-repo-path=$(Build.SourcesDirectory)/typespec \
+        $ARTIFACTS_PARAM \
+        --ado-token=$(PIPELINE-TOKEN) \
+        --pipeline-link="$PIPELINE_LINK"
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: create PR

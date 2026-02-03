@@ -44,9 +44,10 @@ def install_and_build():
     log_call("pnpm install --no-frozen-lockfile")
     log_call("pnpm run build")
     log_call("pnpm format")
-    log_call("black packages/typespec-python/test/azure/mock_api_tests -l 120")
-    log_call("black packages/typespec-python/test/generic_mock_api_tests -l 120")
-    log_call("black packages/typespec-python/test/unbranded/mock_api_tests -l 120")
+    log_call(
+        "cd packages/typespec-python && . venv/bin/activate && black test/azure/mock_api_tests test/generic_mock_api_tests test/unbranded/mock_api_tests -l 120"
+    )
+
     log_call("git add .")
     try:
         log_call(f'git commit -m "Update dependencies ({get_current_time()})"')
@@ -81,12 +82,21 @@ def git_push():
 
 
 class Repo:
-    def __init__(self, pull_url: str, repo_token: str, typespec_repo_path: str, artifacts_url: str, ado_token: str):
+    def __init__(
+        self,
+        pull_url: str,
+        repo_token: str,
+        typespec_repo_path: str,
+        artifacts_url: str,
+        ado_token: str,
+        pipeline_link: str = None,
+    ):
         self.pull_url = pull_url
         self.repo_token = repo_token
         self.typespec_repo_path = typespec_repo_path
         self.artifacts_url = artifacts_url
         self.ado_token = ado_token
+        self.pipeline_link = pipeline_link
         self._tsp_repo = None
         self._autorest_repo = None
         self._pull = None
@@ -353,11 +363,15 @@ class Repo:
             for item in existing_pr:
                 logger.info(f"Existing PR: {item.html_url}")
         else:
+            # Include pipeline link in PR body for traceability
+            pr_body = f"Auto PR for {self.pull_url}"
+            if self.pipeline_link:
+                pr_body += f"\n\nThis PR is generated from the [pipeline]({self.pipeline_link}) triggered manually."
             self.autorest_repo.create_pull(
                 base="main",
                 head=self.new_branch_name,
                 title=self.pull_title,
-                body=f"Auto PR for {self.pull_url}",
+                body=pr_body,
                 maintainer_can_modify=True,
                 draft=True,
             )
@@ -494,6 +508,16 @@ if __name__ == "__main__":
         default=None,
     )
 
+    parser.add_argument(
+        "--pipeline-link",
+        help="Azure DevOps pipeline link",
+        type=str,
+        required=False,
+        default=None,
+    )
+
     args = parser.parse_args()
-    repo = Repo(args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url, args.ado_token)
+    repo = Repo(
+        args.pull_url, args.repo_token, args.typespec_repo_path, args.artifacts_url, args.ado_token, args.pipeline_link
+    )
     repo.run()
