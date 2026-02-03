@@ -14,3 +14,4 @@ class SecondClientEnumType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of SecondClientEnumType."""
 
     SECOND = "second"
+    """SECOND."""

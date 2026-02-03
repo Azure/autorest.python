@@ -14,6 +14,7 @@ class ExtendedEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of ExtendedEnum."""
 
     ENUM_VALUE2 = "value2"
+    """ENUM_VALUE2."""
 
 
 class FixedInnerEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):

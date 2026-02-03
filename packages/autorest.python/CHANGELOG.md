@@ -1,5 +1,32 @@
 # Release
 
+## 6.48.2
+
+### Bug Fixes
+
+- [#3322](https://github.com/Azure/autorest.python/pull/3322) Properly cache enum values
+
+
+## 6.48.1
+
+### Bug Fixes
+
+- [#3315](https://github.com/Azure/autorest.python/pull/3315) Don't remove azure-sdk tool definitions from pyproject.toml
+- [#3316](https://github.com/Azure/autorest.python/pull/3316) Fix additional indentation issues
+- [#3316](https://github.com/Azure/autorest.python/pull/3316) `_failsafe_deserialize_xml` xml errors
+
+
+## 6.48.0
+
+### Features
+
+- [#3311](https://github.com/Azure/autorest.python/pull/3311) Add support for xml paging
+
+### Bump dependencies
+
+- [#3310](https://github.com/Azure/autorest.python/pull/3310) Bump TCGC 0.64.3
+
+
 ## 6.47.0
 
 ### Features

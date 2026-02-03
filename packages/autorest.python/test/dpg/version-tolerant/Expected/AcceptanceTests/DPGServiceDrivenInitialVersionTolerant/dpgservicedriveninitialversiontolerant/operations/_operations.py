@@ -143,8 +143,8 @@ class ParamsOperations:
 
     @distributed_trace
     def head_no_params(self, **kwargs: Any) -> JSON:
-        """Head request, no params.
-         Initially has no query parameters. After evolution, a new optional query parameter is added.
+        """Head request, no params. Initially has no query parameters. After evolution, a new optional
+        query parameter is added.
 
         :return: JSON
         :rtype: JSON
@@ -192,9 +192,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_required(self, *, parameter: str, **kwargs: Any) -> JSON:
-        """Get true Boolean value on path.
-         Initially only has one required Query Parameter. After evolution, a new optional query
-        parameter is added.
+        """Get true Boolean value on path. Initially only has one required Query Parameter. After
+        evolution, a new optional query parameter is added.
 
         :keyword parameter: I am a required parameter. Required.
         :paramtype parameter: str
@@ -411,9 +410,8 @@ class ParamsOperations:
 
     @distributed_trace
     def get_optional(self, *, optional_param: Optional[str] = None, **kwargs: Any) -> JSON:
-        """Get true Boolean value on path.
-         Initially has one optional query parameter. After evolution, a new optional query parameter is
-        added.
+        """Get true Boolean value on path. Initially has one optional query parameter. After evolution, a
+        new optional query parameter is added.
 
         :keyword optional_param: I am an optional parameter. Default value is None.
         :paramtype optional_param: str

@@ -8,13 +8,16 @@ class EnumV1(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of EnumV1."""
 
     ENUM_MEMBER_V1 = "enumMemberV1"
+    """ENUM_MEMBER_V1."""
     ENUM_MEMBER_V2 = "enumMemberV2"
+    """ENUM_MEMBER_V2."""
 
 
 class EnumV2(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of EnumV2."""
 
     ENUM_MEMBER = "enumMember"
+    """ENUM_MEMBER."""
 
 
 class Versions(str, Enum, metaclass=CaseInsensitiveEnumMeta):
