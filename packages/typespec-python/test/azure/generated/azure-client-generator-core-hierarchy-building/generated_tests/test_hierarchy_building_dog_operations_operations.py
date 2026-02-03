@@ -17,15 +17,8 @@ class TestHierarchyBuildingDogOperationsOperations(HierarchyBuildingClientTestBa
     def test_dog_operations_update_dog_as_dog(self, hierarchybuilding_endpoint):
         client = self.create_client(endpoint=hierarchybuilding_endpoint)
         response = client.dog_operations.update_dog_as_dog(
-            dog={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
-,
+            dog={"breed": "str", "kind": "dog", "name": "str", "trained": bool},
         )
-        
+
         # please add some check logic here by yourself
         # ...
-
