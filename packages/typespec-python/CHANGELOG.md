@@ -1,5 +1,12 @@
 # Release
 
+## 0.59.3
+
+### Bug Fixes
+
+- [#3328](https://github.com/Azure/autorest.python/pull/3328) Catch all deserialization errors when deserializing error response models
+
+
 ## 0.59.2
 
 ### Bug Fixes
