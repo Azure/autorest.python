@@ -39,6 +39,8 @@
         "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_export": "Azure.ResourceManager.OperationTemplates.Lro.export",
         "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete",
         "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_delete": "Azure.ResourceManager.OperationTemplates.Lro.delete",
+        "azure.resourcemanager.operationtemplates.operations.LroOperations.begin_export_array": "Azure.ResourceManager.OperationTemplates.Lro.exportArray",
+        "azure.resourcemanager.operationtemplates.aio.operations.LroOperations.begin_export_array": "Azure.ResourceManager.OperationTemplates.Lro.exportArray",
         "azure.resourcemanager.operationtemplates.operations.LroPagingOperations.begin_post_paging_lro": "Azure.ResourceManager.OperationTemplates.LroPaging.postPagingLro",
         "azure.resourcemanager.operationtemplates.aio.operations.LroPagingOperations.begin_post_paging_lro": "Azure.ResourceManager.OperationTemplates.LroPaging.postPagingLro",
         "azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations.get": "Azure.ResourceManager.OperationTemplates.OptionalBody.get",

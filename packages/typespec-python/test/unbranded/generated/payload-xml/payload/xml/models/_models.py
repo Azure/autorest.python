@@ -490,3 +490,44 @@ class SimpleModel(_Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
+
+
+class XmlErrorBody(_Model):
+    """The body of an XML error response.
+
+    :ivar message: Required.
+    :vartype message: str
+    :ivar code: Required.
+    :vartype code: int
+    """
+
+    message: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "message", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    code: int = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "code", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "XmlErrorBody", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        message: str,
+        code: int,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
