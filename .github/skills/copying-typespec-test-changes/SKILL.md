@@ -78,6 +78,7 @@ Run this command for each Python file that was created or modified.
 - **Formatting**: Always run `python -m black <file> -l 120` on changed Python files
 - **Scope**: Only copy files from the `generator/test` folder, ignore other changes
 - **Verify**: After copying, the test files should be identical between repos (after formatting)
+- **DO NOT address unrelated differences**: If you encounter existing discrepancies between the two repositories (such as in `requirements.txt` or other configuration files), refrain from trying to eliminate those differences. Focus solely on copying the modified code from the typespec pull request, disregarding any pre-existing variations.
 
 ## Example usage
 
