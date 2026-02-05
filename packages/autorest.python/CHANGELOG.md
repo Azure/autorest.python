@@ -1,5 +1,12 @@
 # Release
 
+## 6.49.0
+
+### Features
+
+- [#3332](https://github.com/Azure/autorest.python/pull/3332) Add support for `@clientOption("includeRootSlash")` to control stripping of the slash after the root url
+
+
 ## 6.48.3
 
 ### Bug Fixes
