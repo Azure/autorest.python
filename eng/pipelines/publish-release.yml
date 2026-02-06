@@ -1,5 +1,6 @@
-# This is a manual pipeline, don't trigger automatically
-trigger: none
+# Trigger only after PR merged into main
+trigger:
+  - main
 pr: none
 
 extends: 
@@ -27,6 +28,31 @@ extends:
                   displayName: "Use Python 3.10"
                   inputs:
                       versionSpec: 3.10
+
+                - script: |
+                      set -e
+                      
+                      # Check @azure-tools/typespec-python
+                      TYPESPEC_VERSION=$(node -p "require('./packages/typespec-python/package.json').version")
+                      echo "Checking if @azure-tools/typespec-python@$TYPESPEC_VERSION is already published..."
+                      if npm view @azure-tools/typespec-python@$TYPESPEC_VERSION version 2>/dev/null; then
+                        echo "##vso[task.logissue type=error]@azure-tools/typespec-python@$TYPESPEC_VERSION is already published to npm"
+                        exit 1
+                      fi
+                      echo "@azure-tools/typespec-python@$TYPESPEC_VERSION is not yet published"
+                      
+                      # Check @autorest/python
+                      AUTOREST_VERSION=$(node -p "require('./packages/autorest.python/package.json').version")
+                      echo "Checking if @autorest/python@$AUTOREST_VERSION is already published..."
+                      if npm view @autorest/python@$AUTOREST_VERSION version 2>/dev/null; then
+                        echo "##vso[task.logissue type=error]@autorest/python@$AUTOREST_VERSION is already published to npm"
+                        exit 1
+                      fi
+                      echo "@autorest/python@$AUTOREST_VERSION is not yet published"
+                      
+                      echo "Version check passed. Proceeding with build and tests."
+                  displayName: Check if versions are already published
+                  workingDirectory: $(Build.SourcesDirectory)
 
                 - script: npm install -g pnpm@9.5.0
                   displayName: Install PNPM 9.5.0
