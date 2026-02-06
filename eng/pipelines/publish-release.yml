@@ -1,8 +1,6 @@
-# Automatically trigger on main branch merges
+# Trigger only after PR merged into main
 trigger:
-  branches:
-    include:
-      - main
+  - main
 pr: none
 
 extends: 
