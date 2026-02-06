@@ -280,6 +280,10 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
         "package-name": "client-structure-twooperationgroup",
         "namespace": "client.structure.twooperationgroup",
     },
+    "type/file": {
+        "package-name": "typetest-file",
+        "namespace": "typetest.file",
+    },
     "documentation": {
         "package-name": "specs-documentation",
         "namespace": "specs.documentation",
