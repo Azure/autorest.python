@@ -31,6 +31,7 @@ pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
+-e ./generated/typetest-file
 -e ./generated/typetest-model-enumdiscriminator
 -e ./generated/typetest-model-nesteddiscriminator
 -e ./generated/typetest-model-notdiscriminated
