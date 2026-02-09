@@ -144,7 +144,7 @@ def build_media_types_put_text_and_json_body_request(  # pylint: disable=name-to
     return HttpRequest(method="POST", url=_url, headers=_headers, content=content, **kwargs)
 
 
-class _MediaTypesClientOperationsMixin(
+class _MediaTypesClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], MediaTypesClientConfiguration]
 ):
 
