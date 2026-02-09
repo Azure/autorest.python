@@ -21,6 +21,7 @@ from ..._configuration import MultiPartClientConfiguration
 from ..._utils.model_base import Model as _Model
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import prepare_multipart_form_data
+from ..file.operations._operations import FormDataFileOperations
 from ..httpparts.operations._operations import FormDataHttpPartsOperations
 
 JSON = MutableMapping[str, Any]
@@ -132,6 +133,7 @@ class FormDataOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.file = FormDataFileOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
     def basic(self, body: _models2.MultiPartRequest, **kwargs: Any) -> None:
