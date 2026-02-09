@@ -207,7 +207,7 @@ class ImportOperations:
         return cast(JSON, deserialized)  # type: ignore
 
 
-class _ReservedWordsClientOperationsMixin(  # pylint: disable=abstract-class-instantiated
+class _ReservedWordsClientOperationsMixin(
     ClientMixinABC[PipelineClient[HttpRequest, HttpResponse], ReservedWordsClientConfiguration]
 ):
 

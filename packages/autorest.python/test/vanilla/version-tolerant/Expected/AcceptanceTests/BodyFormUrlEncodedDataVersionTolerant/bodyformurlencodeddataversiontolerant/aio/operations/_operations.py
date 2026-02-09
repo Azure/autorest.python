@@ -12,7 +12,7 @@ from ..._utils.utils import raise_if_not_implemented
 from .._configuration import BodyFormsDataURLEncodedConfiguration
 
 
-class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiated
+class FormdataurlencodedOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.

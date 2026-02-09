@@ -12,7 +12,7 @@ from .._utils.serialization import Deserializer, Serializer
 from .._utils.utils import raise_if_not_implemented
 
 
-class FormdataurlencodedOperations:  # pylint: disable=abstract-class-instantiated
+class FormdataurlencodedOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
