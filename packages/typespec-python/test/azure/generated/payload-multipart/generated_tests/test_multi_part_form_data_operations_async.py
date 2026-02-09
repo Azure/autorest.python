@@ -131,6 +131,39 @@ class TestMultiPartFormDataOperationsAsync(MultiPartClientTestBaseAsync):
 
     @MultiPartPreparer()
     @recorded_by_proxy_async
+    async def test_form_data_file_upload_file_specific_content_type(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file.upload_file_specific_content_type(
+            body={"file": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_form_data_file_upload_file_required_filename(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file.upload_file_required_filename(
+            body={"file": "filetype"},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
+    async def test_form_data_file_upload_file_array(self, multipart_endpoint):
+        client = self.create_async_client(endpoint=multipart_endpoint)
+        response = await client.form_data.file.upload_file_array(
+            body={"files": ["filetype"]},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @MultiPartPreparer()
+    @recorded_by_proxy_async
     async def test_form_data_http_parts_content_type_image_jpeg_content_type(self, multipart_endpoint):
         client = self.create_async_client(endpoint=multipart_endpoint)
         response = await client.form_data.http_parts.content_type.image_jpeg_content_type(

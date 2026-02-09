@@ -20,7 +20,7 @@ interface TspCommand {
 }
 
 // Add this near the top with other constants
-const SKIP_SPECS: string[] = [];
+const SKIP_SPECS: string[] = ["type/file"];
 
 const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
@@ -32,8 +32,14 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
     "azure/client-generator-core/api-version": {
         namespace: "specs.azure.clientgenerator.core.apiversion",
     },
-    "azure/client-generator-core/client-initialization": {
-        namespace: "specs.azure.clientgenerator.core.clientinitialization",
+    "azure/client-generator-core/client-initialization/default": {
+        namespace: "specs.azure.clientgenerator.core.clientinitialization.default",
+    },
+    "azure/client-generator-core/client-initialization/individually": {
+        namespace: "specs.azure.clientgenerator.core.clientinitialization.individually",
+    },
+    "azure/client-generator-core/client-initialization/individuallyParent": {
+        namespace: "specs.azure.clientgenerator.core.clientinitialization.individuallyparent",
     },
     "azure/client-generator-core/client-location": {
         namespace: "specs.azure.clientgenerator.core.clientlocation",
@@ -279,6 +285,10 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
         "namespace": "client.structure.twooperationgroup",
+    },
+    "type/file": {
+        "package-name": "typetest-file",
+        "namespace": "typetest.file",
     },
     "documentation": {
         "package-name": "specs-documentation",

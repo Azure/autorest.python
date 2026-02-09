@@ -20,6 +20,7 @@ from ...._utils.model_base import Model as _Model
 from ...._utils.serialization import Deserializer, Serializer
 from ...._utils.utils import prepare_multipart_form_data
 from ....aio._configuration import MultiPartClientConfiguration
+from ...file.aio.operations._operations import FormDataFileOperations
 from ...httpparts.aio.operations._operations import FormDataHttpPartsOperations
 from ...operations._operations import (
     build_form_data_anonymous_model_request,
@@ -56,6 +57,7 @@ class FormDataOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
         self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.file = FormDataFileOperations(self._client, self._config, self._serialize, self._deserialize)
 
     @overload
     async def basic(self, body: _models3.MultiPartRequest, **kwargs: Any) -> None:
