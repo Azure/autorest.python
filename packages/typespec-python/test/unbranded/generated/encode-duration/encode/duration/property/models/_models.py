@@ -39,17 +39,17 @@ class Float64MillisecondsDurationProperty(_Model):
     """Float64MillisecondsDurationProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.timedelta
+    :vartype value: float
     """
 
-    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.timedelta,
+        value: float,
     ) -> None: ...
 
     @overload
@@ -95,17 +95,17 @@ class FloatMillisecondsDurationArrayProperty(_Model):
     """FloatMillisecondsDurationArrayProperty.
 
     :ivar value: Required.
-    :vartype value: list[~datetime.timedelta]
+    :vartype value: list[float]
     """
 
-    value: list[datetime.timedelta] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: list[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: list[datetime.timedelta],
+        value: list[float],
     ) -> None: ...
 
     @overload
@@ -123,17 +123,17 @@ class FloatMillisecondsDurationProperty(_Model):
     """FloatMillisecondsDurationProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.timedelta
+    :vartype value: float
     """
 
-    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.timedelta,
+        value: float,
     ) -> None: ...
 
     @overload
@@ -151,17 +151,17 @@ class FloatMillisecondsLargerUnitDurationProperty(_Model):  # pylint: disable=na
     """FloatMillisecondsLargerUnitDurationProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.timedelta
+    :vartype value: float
     """
 
-    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: float = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.timedelta,
+        value: float,
     ) -> None: ...
 
     @overload
@@ -263,17 +263,17 @@ class Int32MillisecondsDurationProperty(_Model):
     """Int32MillisecondsDurationProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.timedelta
+    :vartype value: int
     """
 
-    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.timedelta,
+        value: int,
     ) -> None: ...
 
     @overload
@@ -291,17 +291,17 @@ class Int32MillisecondsLargerUnitDurationProperty(_Model):  # pylint: disable=na
     """Int32MillisecondsLargerUnitDurationProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.timedelta
+    :vartype value: int
     """
 
-    value: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    value: int = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.timedelta,
+        value: int,
     ) -> None: ...
 
     @overload

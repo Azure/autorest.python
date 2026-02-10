@@ -95,7 +95,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_int32_milliseconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.int32_milliseconds(
-            input="1 day, 0:00:00",
+            input=0,
         )
 
         # please add some check logic here by yourself
@@ -106,7 +106,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_int32_milliseconds_larger_unit(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.int32_milliseconds_larger_unit(
-            input="1 day, 0:00:00",
+            input=0,
         )
 
         # please add some check logic here by yourself
@@ -117,7 +117,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_float_milliseconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.float_milliseconds(
-            input="1 day, 0:00:00",
+            input=0.0,
         )
 
         # please add some check logic here by yourself
@@ -128,7 +128,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_float_milliseconds_larger_unit(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.float_milliseconds_larger_unit(
-            input="1 day, 0:00:00",
+            input=0.0,
         )
 
         # please add some check logic here by yourself
@@ -139,7 +139,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_float64_milliseconds(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.float64_milliseconds(
-            input="1 day, 0:00:00",
+            input=0.0,
         )
 
         # please add some check logic here by yourself
@@ -161,7 +161,7 @@ class TestDurationQueryOperationsAsync(DurationClientTestBaseAsync):
     async def test_query_int32_milliseconds_array(self, duration_endpoint):
         client = self.create_async_client(endpoint=duration_endpoint)
         response = await client.query.int32_milliseconds_array(
-            input=["1 day, 0:00:00"],
+            input=[0],
         )
 
         # please add some check logic here by yourself

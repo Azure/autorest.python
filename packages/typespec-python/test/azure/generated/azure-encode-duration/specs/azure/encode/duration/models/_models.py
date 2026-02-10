@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-import datetime
 from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
@@ -17,17 +16,17 @@ class DurationModel(_Model):
     """DurationModel.
 
     :ivar input: Required.
-    :vartype input: ~datetime.timedelta
+    :vartype input: str
     """
 
-    input: datetime.timedelta = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    input: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        input: datetime.timedelta,
+        input: str,
     ) -> None: ...
 
     @overload
