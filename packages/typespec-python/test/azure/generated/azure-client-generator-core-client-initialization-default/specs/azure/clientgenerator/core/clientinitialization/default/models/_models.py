@@ -7,7 +7,6 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-import datetime
 from typing import Any, Mapping, overload
 
 from .._utils.model_base import Model as _Model, rest_field
@@ -23,7 +22,7 @@ class BlobProperties(_Model):
     :ivar content_type: Required.
     :vartype content_type: str
     :ivar created_on: Required.
-    :vartype created_on: ~datetime.datetime
+    :vartype created_on: str
     """
 
     name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
@@ -32,9 +31,7 @@ class BlobProperties(_Model):
     """Required."""
     content_type: str = rest_field(name="contentType", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    created_on: datetime.datetime = rest_field(
-        name="createdOn", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    created_on: str = rest_field(name="createdOn", visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -44,7 +41,7 @@ class BlobProperties(_Model):
         name: str,
         size: int,
         content_type: str,
-        created_on: datetime.datetime,
+        created_on: str,
     ) -> None: ...
 
     @overload

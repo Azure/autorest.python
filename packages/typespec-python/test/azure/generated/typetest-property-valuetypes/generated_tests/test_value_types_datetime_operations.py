@@ -26,7 +26,7 @@ class TestValueTypesDatetimeOperations(ValueTypesClientTestBase):
     def test_datetime_put(self, valuetypes_endpoint):
         client = self.create_client(endpoint=valuetypes_endpoint)
         response = client.datetime.put(
-            body={"property": "2020-02-20 00:00:00"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself

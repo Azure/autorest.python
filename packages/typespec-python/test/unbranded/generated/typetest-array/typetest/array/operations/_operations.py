@@ -1213,11 +1213,11 @@ class DatetimeValueOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def get(self, **kwargs: Any) -> list[datetime.datetime]:
+    def get(self, **kwargs: Any) -> list[str]:
         """get.
 
-        :return: list of datetime
-        :rtype: list[~datetime.datetime]
+        :return: list of str
+        :rtype: list[str]
         :raises ~corehttp.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -1231,7 +1231,7 @@ class DatetimeValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
+        cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
         _request = build_datetime_value_get_request(
             headers=_headers,
@@ -1259,7 +1259,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(list[datetime.datetime], response.json())
+            deserialized = _deserialize(list[str], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -1267,11 +1267,11 @@ class DatetimeValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    def put(self, body: list[datetime.datetime], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    def put(self, body: list[str], *, content_type: str = "application/json", **kwargs: Any) -> None:
         """put.
 
         :param body: Required.
-        :type body: list[~datetime.datetime]
+        :type body: list[str]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -1295,12 +1295,12 @@ class DatetimeValueOperations:
         """
 
     def put(  # pylint: disable=inconsistent-return-statements
-        self, body: Union[list[datetime.datetime], IO[bytes]], **kwargs: Any
+        self, body: Union[list[str], IO[bytes]], **kwargs: Any
     ) -> None:
         """put.
 
-        :param body: Is either a [datetime.datetime] type or a IO[bytes] type. Required.
-        :type body: list[~datetime.datetime] or IO[bytes]
+        :param body: Is either a [str] type or a IO[bytes] type. Required.
+        :type body: list[str] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -1324,7 +1324,7 @@ class DatetimeValueOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True, format="rfc3339")  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
         _request = build_datetime_value_put_request(
             content_type=content_type,

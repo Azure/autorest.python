@@ -8,7 +8,6 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-import datetime
 from typing import Any, Literal, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_discriminator, rest_field
@@ -1104,25 +1103,23 @@ class WidgetData1(_Model):
     :ivar kind: Required. Default value is "kind1".
     :vartype kind: str
     :ivar start: Required.
-    :vartype start: ~datetime.datetime
+    :vartype start: str
     :ivar end:
-    :vartype end: ~datetime.datetime
+    :vartype end: str
     """
 
     kind: Literal["kind1"] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required. Default value is \"kind1\"."""
-    start: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
+    start: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    end: Optional[datetime.datetime] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    end: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
 
     @overload
     def __init__(
         self,
         *,
-        start: datetime.datetime,
-        end: Optional[datetime.datetime] = None,
+        start: str,
+        end: Optional[str] = None,
     ) -> None: ...
 
     @overload

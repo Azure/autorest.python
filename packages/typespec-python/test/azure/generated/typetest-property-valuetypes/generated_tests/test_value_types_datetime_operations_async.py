@@ -27,7 +27,7 @@ class TestValueTypesDatetimeOperationsAsync(ValueTypesClientTestBaseAsync):
     async def test_datetime_put(self, valuetypes_endpoint):
         client = self.create_async_client(endpoint=valuetypes_endpoint)
         response = await client.datetime.put(
-            body={"property": "2020-02-20 00:00:00"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself

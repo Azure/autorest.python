@@ -46,11 +46,11 @@ class HeaderOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
+    async def default(self, *, value: str, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
-        :paramtype value: ~datetime.datetime
+        :paramtype value: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -90,11 +90,11 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
+    async def rfc3339(self, *, value: str, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
-        :paramtype value: ~datetime.datetime
+        :paramtype value: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -134,11 +134,11 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
+    async def rfc7231(self, *, value: str, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
-        :paramtype value: ~datetime.datetime
+        :paramtype value: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

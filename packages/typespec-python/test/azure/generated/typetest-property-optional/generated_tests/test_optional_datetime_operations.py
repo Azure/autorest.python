@@ -35,7 +35,7 @@ class TestOptionalDatetimeOperations(OptionalClientTestBase):
     def test_datetime_put_all(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.datetime.put_all(
-            body={"property": "2020-02-20 00:00:00"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself
@@ -46,7 +46,7 @@ class TestOptionalDatetimeOperations(OptionalClientTestBase):
     def test_datetime_put_default(self, optional_endpoint):
         client = self.create_client(endpoint=optional_endpoint)
         response = client.datetime.put_default(
-            body={"property": "2020-02-20 00:00:00"},
+            body={"property": "str"},
         )
 
         # please add some check logic here by yourself

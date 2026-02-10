@@ -17,7 +17,7 @@ class TestDatetimeHeaderOperations(DatetimeClientTestBase):
     def test_header_default(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.header.default(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself
@@ -28,7 +28,7 @@ class TestDatetimeHeaderOperations(DatetimeClientTestBase):
     def test_header_rfc3339(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.header.rfc3339(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself
@@ -39,7 +39,7 @@ class TestDatetimeHeaderOperations(DatetimeClientTestBase):
     def test_header_rfc7231(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.header.rfc7231(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself

@@ -1,6 +1,5 @@
 # coding=utf-8
 from collections.abc import MutableMapping
-import datetime
 from typing import Any, Callable, Optional, TypeVar
 
 from corehttp import MatchConditions
@@ -68,7 +67,7 @@ def build_conditional_request_post_if_none_match_request(  # pylint: disable=nam
 
 
 def build_conditional_request_head_if_modified_since_request(  # pylint: disable=name-too-long
-    *, if_modified_since: Optional[datetime.datetime] = None, **kwargs: Any
+    *, if_modified_since: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -77,13 +76,13 @@ def build_conditional_request_head_if_modified_since_request(  # pylint: disable
 
     # Construct headers
     if if_modified_since is not None:
-        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
+        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "str")
 
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
 def build_conditional_request_post_if_unmodified_since_request(  # pylint: disable=name-too-long
-    *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
+    *, if_unmodified_since: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -92,7 +91,7 @@ def build_conditional_request_post_if_unmodified_since_request(  # pylint: disab
 
     # Construct headers
     if if_unmodified_since is not None:
-        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
+        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "str")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -213,14 +212,14 @@ class _ConditionalRequestClientOperationsMixin(
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def head_if_modified_since(self, *, if_modified_since: Optional[datetime.datetime] = None, **kwargs: Any) -> bool:
+    def head_if_modified_since(self, *, if_modified_since: Optional[str] = None, **kwargs: Any) -> bool:
         """Check when only If-Modified-Since in header is defined.
 
         :keyword if_modified_since: A timestamp indicating the last modified time of the resource known
          to the
          client. The operation will be performed only if the resource on the service has
          been modified since the specified time. Default value is None.
-        :paramtype if_modified_since: ~datetime.datetime
+        :paramtype if_modified_since: str
         :return: bool
         :rtype: bool
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -262,7 +261,7 @@ class _ConditionalRequestClientOperationsMixin(
         return 200 <= response.status_code <= 299
 
     def post_if_unmodified_since(  # pylint: disable=inconsistent-return-statements
-        self, *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
+        self, *, if_unmodified_since: Optional[str] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Unmodified-Since in header is defined.
 
@@ -270,7 +269,7 @@ class _ConditionalRequestClientOperationsMixin(
          known to the
          client. The operation will be performed only if the resource on the service has
          not been modified since the specified time. Default value is None.
-        :paramtype if_unmodified_since: ~datetime.datetime
+        :paramtype if_unmodified_since: str
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

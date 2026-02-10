@@ -131,19 +131,17 @@ class DatetimeProperty(_Model):
     """Model with a datetime property.
 
     :ivar property: Property.
-    :vartype property: ~datetime.datetime
+    :vartype property: str
     """
 
-    property: Optional[datetime.datetime] = rest_field(
-        visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
-    )
+    property: Optional[str] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Property."""
 
     @overload
     def __init__(
         self,
         *,
-        property: Optional[datetime.datetime] = None,  # pylint: disable=redefined-builtin
+        property: Optional[str] = None,  # pylint: disable=redefined-builtin
     ) -> None: ...
 
     @overload

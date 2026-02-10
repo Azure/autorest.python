@@ -41,10 +41,10 @@ class TestCommonPropertiesErrorOperations(AzureMgmtRecordedTestCase):
                 "name": "str",
                 "properties": {"provisioningState": "str", "username": "str"},
                 "systemData": {
-                    "createdAt": "2020-02-20 00:00:00",
+                    "createdAt": "str",
                     "createdBy": "str",
                     "createdByType": "str",
-                    "lastModifiedAt": "2020-02-20 00:00:00",
+                    "lastModifiedAt": "str",
                     "lastModifiedBy": "str",
                     "lastModifiedByType": "str",
                 },

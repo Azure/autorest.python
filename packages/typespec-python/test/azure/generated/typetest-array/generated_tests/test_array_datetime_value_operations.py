@@ -26,7 +26,7 @@ class TestArrayDatetimeValueOperations(ArrayClientTestBase):
     def test_datetime_value_put(self, array_endpoint):
         client = self.create_client(endpoint=array_endpoint)
         response = client.datetime_value.put(
-            body=["2020-02-20 00:00:00"],
+            body=["str"],
         )
 
         # please add some check logic here by yourself

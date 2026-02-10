@@ -17,7 +17,7 @@ class TestDatetimeQueryOperations(DatetimeClientTestBase):
     def test_query_default(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.query.default(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself
@@ -28,7 +28,7 @@ class TestDatetimeQueryOperations(DatetimeClientTestBase):
     def test_query_rfc3339(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.query.rfc3339(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself
@@ -39,7 +39,7 @@ class TestDatetimeQueryOperations(DatetimeClientTestBase):
     def test_query_rfc7231(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.query.rfc7231(
-            value="2020-02-20 00:00:00",
+            value="str",
         )
 
         # please add some check logic here by yourself

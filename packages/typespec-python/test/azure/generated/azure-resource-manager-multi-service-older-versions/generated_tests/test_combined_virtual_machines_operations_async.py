@@ -44,10 +44,10 @@ class TestCombinedVirtualMachinesOperationsAsync(AzureMgmtRecordedTestCase):
                     "name": "str",
                     "properties": {"provisioningState": "str", "size": "str"},
                     "systemData": {
-                        "createdAt": "2020-02-20 00:00:00",
+                        "createdAt": "str",
                         "createdBy": "str",
                         "createdByType": "str",
-                        "lastModifiedAt": "2020-02-20 00:00:00",
+                        "lastModifiedAt": "str",
                         "lastModifiedBy": "str",
                         "lastModifiedByType": "str",
                     },

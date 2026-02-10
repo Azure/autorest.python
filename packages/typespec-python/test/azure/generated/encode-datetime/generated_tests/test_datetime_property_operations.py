@@ -17,7 +17,7 @@ class TestDatetimePropertyOperations(DatetimeClientTestBase):
     def test_property_default(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.property.default(
-            body={"value": "2020-02-20 00:00:00"},
+            body={"value": "str"},
         )
 
         # please add some check logic here by yourself
@@ -28,7 +28,7 @@ class TestDatetimePropertyOperations(DatetimeClientTestBase):
     def test_property_rfc3339(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.property.rfc3339(
-            body={"value": "2020-02-20 00:00:00"},
+            body={"value": "str"},
         )
 
         # please add some check logic here by yourself
@@ -39,7 +39,7 @@ class TestDatetimePropertyOperations(DatetimeClientTestBase):
     def test_property_rfc7231(self, datetime_endpoint):
         client = self.create_client(endpoint=datetime_endpoint)
         response = client.property.rfc7231(
-            body={"value": "2020-02-20 00:00:00"},
+            body={"value": "str"},
         )
 
         # please add some check logic here by yourself

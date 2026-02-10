@@ -17,17 +17,17 @@ class DefaultDatetimeProperty(_Model):
     """DefaultDatetimeProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.datetime
+    :vartype value: str
     """
 
-    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
+    value: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.datetime,
+        value: str,
     ) -> None: ...
 
     @overload
@@ -45,17 +45,17 @@ class Rfc3339DatetimeProperty(_Model):
     """Rfc3339DatetimeProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.datetime
+    :vartype value: str
     """
 
-    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc3339")
+    value: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.datetime,
+        value: str,
     ) -> None: ...
 
     @overload
@@ -73,17 +73,17 @@ class Rfc7231DatetimeProperty(_Model):
     """Rfc7231DatetimeProperty.
 
     :ivar value: Required.
-    :vartype value: ~datetime.datetime
+    :vartype value: str
     """
 
-    value: datetime.datetime = rest_field(visibility=["read", "create", "update", "delete", "query"], format="rfc7231")
+    value: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
     def __init__(
         self,
         *,
-        value: datetime.datetime,
+        value: str,
     ) -> None: ...
 
     @overload

@@ -7,7 +7,6 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
-import datetime
 from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import AsyncPipelineClient, MatchConditions
@@ -160,16 +159,14 @@ class _ConditionalRequestClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def head_if_modified_since(
-        self, *, if_modified_since: Optional[datetime.datetime] = None, **kwargs: Any
-    ) -> bool:
+    async def head_if_modified_since(self, *, if_modified_since: Optional[str] = None, **kwargs: Any) -> bool:
         """Check when only If-Modified-Since in header is defined.
 
         :keyword if_modified_since: A timestamp indicating the last modified time of the resource known
          to the
          client. The operation will be performed only if the resource on the service has
          been modified since the specified time. Default value is None.
-        :paramtype if_modified_since: ~datetime.datetime
+        :paramtype if_modified_since: str
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -213,16 +210,14 @@ class _ConditionalRequestClientOperationsMixin(
         return 200 <= response.status_code <= 299
 
     @distributed_trace_async
-    async def post_if_unmodified_since(
-        self, *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
-    ) -> None:
+    async def post_if_unmodified_since(self, *, if_unmodified_since: Optional[str] = None, **kwargs: Any) -> None:
         """Check when only If-Unmodified-Since in header is defined.
 
         :keyword if_unmodified_since: A timestamp indicating the last modified time of the resource
          known to the
          client. The operation will be performed only if the resource on the service has
          not been modified since the specified time. Default value is None.
-        :paramtype if_unmodified_since: ~datetime.datetime
+        :paramtype if_unmodified_since: str
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

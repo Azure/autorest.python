@@ -30,10 +30,10 @@ class TestOperationTemplatesLroOperations(AzureMgmtRecordedTestCase):
                 "name": "str",
                 "properties": {"amount": 0, "productId": "str", "provisioningState": "str"},
                 "systemData": {
-                    "createdAt": "2020-02-20 00:00:00",
+                    "createdAt": "str",
                     "createdBy": "str",
                     "createdByType": "str",
-                    "lastModifiedAt": "2020-02-20 00:00:00",
+                    "lastModifiedAt": "str",
                     "lastModifiedBy": "str",
                     "lastModifiedByType": "str",
                 },

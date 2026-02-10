@@ -47,8 +47,8 @@ def build_traits_smoke_test_request(
     id: int,
     *,
     foo: str,
-    if_unmodified_since: Optional[datetime.datetime] = None,
-    if_modified_since: Optional[datetime.datetime] = None,
+    if_unmodified_since: Optional[str] = None,
+    if_modified_since: Optional[str] = None,
     etag: Optional[str] = None,
     match_condition: Optional[MatchConditions] = None,
     **kwargs: Any
@@ -73,9 +73,9 @@ def build_traits_smoke_test_request(
     # Construct headers
     _headers["foo"] = _SERIALIZER.header("foo", foo, "str")
     if if_unmodified_since is not None:
-        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
+        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "str")
     if if_modified_since is not None:
-        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
+        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "str")
     _headers["Accept"] = _SERIALIZER.header("accept", accept, "str")
     if_match = prep_if_match(etag, match_condition)
     if if_match is not None:
@@ -130,8 +130,8 @@ class _TraitsClientOperationsMixin(
         id: int,
         *,
         foo: str,
-        if_unmodified_since: Optional[datetime.datetime] = None,
-        if_modified_since: Optional[datetime.datetime] = None,
+        if_unmodified_since: Optional[str] = None,
+        if_modified_since: Optional[str] = None,
         etag: Optional[str] = None,
         match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
@@ -144,10 +144,10 @@ class _TraitsClientOperationsMixin(
         :paramtype foo: str
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
-        :paramtype if_unmodified_since: ~datetime.datetime
+        :paramtype if_unmodified_since: str
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
-        :paramtype if_modified_since: ~datetime.datetime
+        :paramtype if_modified_since: str
         :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
          None.
         :paramtype etag: str
