@@ -6,6 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
+import datetime
 from typing import Any, Callable, Optional, TypeVar
 
 from azure.core import MatchConditions, PipelineClient
@@ -73,7 +74,7 @@ def build_conditional_request_post_if_none_match_request(  # pylint: disable=nam
 
 
 def build_conditional_request_head_if_modified_since_request(  # pylint: disable=name-too-long
-    *, if_modified_since: Optional[str] = None, **kwargs: Any
+    *, if_modified_since: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -82,13 +83,13 @@ def build_conditional_request_head_if_modified_since_request(  # pylint: disable
 
     # Construct headers
     if if_modified_since is not None:
-        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "str")
+        _headers["If-Modified-Since"] = _SERIALIZER.header("if_modified_since", if_modified_since, "rfc-1123")
 
     return HttpRequest(method="HEAD", url=_url, headers=_headers, **kwargs)
 
 
 def build_conditional_request_post_if_unmodified_since_request(  # pylint: disable=name-too-long
-    *, if_unmodified_since: Optional[str] = None, **kwargs: Any
+    *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
@@ -97,7 +98,7 @@ def build_conditional_request_post_if_unmodified_since_request(  # pylint: disab
 
     # Construct headers
     if if_unmodified_since is not None:
-        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "str")
+        _headers["If-Unmodified-Since"] = _SERIALIZER.header("if_unmodified_since", if_unmodified_since, "rfc-1123")
 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
@@ -225,14 +226,14 @@ class _ConditionalRequestClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace
-    def head_if_modified_since(self, *, if_modified_since: Optional[str] = None, **kwargs: Any) -> bool:
+    def head_if_modified_since(self, *, if_modified_since: Optional[datetime.datetime] = None, **kwargs: Any) -> bool:
         """Check when only If-Modified-Since in header is defined.
 
         :keyword if_modified_since: A timestamp indicating the last modified time of the resource known
          to the
          client. The operation will be performed only if the resource on the service has
          been modified since the specified time. Default value is None.
-        :paramtype if_modified_since: str
+        :paramtype if_modified_since: ~datetime.datetime
         :return: bool
         :rtype: bool
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -277,7 +278,7 @@ class _ConditionalRequestClientOperationsMixin(
 
     @distributed_trace
     def post_if_unmodified_since(  # pylint: disable=inconsistent-return-statements
-        self, *, if_unmodified_since: Optional[str] = None, **kwargs: Any
+        self, *, if_unmodified_since: Optional[datetime.datetime] = None, **kwargs: Any
     ) -> None:
         """Check when only If-Unmodified-Since in header is defined.
 
@@ -285,7 +286,7 @@ class _ConditionalRequestClientOperationsMixin(
          known to the
          client. The operation will be performed only if the resource on the service has
          not been modified since the specified time. Default value is None.
-        :paramtype if_unmodified_since: str
+        :paramtype if_unmodified_since: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

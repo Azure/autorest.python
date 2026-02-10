@@ -35,7 +35,7 @@ class TestNullableDatetimeOperations(NullableClientTestBase):
     def test_datetime_patch_non_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.datetime.patch_non_null(
-            body={"nullableProperty": "str", "requiredProperty": "str"},
+            body={"nullableProperty": "2020-02-20 00:00:00", "requiredProperty": "str"},
         )
 
         # please add some check logic here by yourself
@@ -46,7 +46,7 @@ class TestNullableDatetimeOperations(NullableClientTestBase):
     def test_datetime_patch_null(self, nullable_endpoint):
         client = self.create_client(endpoint=nullable_endpoint)
         response = client.datetime.patch_null(
-            body={"nullableProperty": "str", "requiredProperty": "str"},
+            body={"nullableProperty": "2020-02-20 00:00:00", "requiredProperty": "str"},
         )
 
         # please add some check logic here by yourself

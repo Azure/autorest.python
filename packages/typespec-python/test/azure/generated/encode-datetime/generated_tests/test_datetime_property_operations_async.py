@@ -18,7 +18,7 @@ class TestDatetimePropertyOperationsAsync(DatetimeClientTestBaseAsync):
     async def test_property_default(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
         response = await client.property.default(
-            body={"value": "str"},
+            body={"value": "2020-02-20 00:00:00"},
         )
 
         # please add some check logic here by yourself
@@ -29,7 +29,7 @@ class TestDatetimePropertyOperationsAsync(DatetimeClientTestBaseAsync):
     async def test_property_rfc3339(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
         response = await client.property.rfc3339(
-            body={"value": "str"},
+            body={"value": "2020-02-20 00:00:00"},
         )
 
         # please add some check logic here by yourself
@@ -40,7 +40,7 @@ class TestDatetimePropertyOperationsAsync(DatetimeClientTestBaseAsync):
     async def test_property_rfc7231(self, datetime_endpoint):
         client = self.create_async_client(endpoint=datetime_endpoint)
         response = await client.property.rfc7231(
-            body={"value": "str"},
+            body={"value": "2020-02-20 00:00:00"},
         )
 
         # please add some check logic here by yourself

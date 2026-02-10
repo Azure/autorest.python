@@ -54,11 +54,11 @@ class QueryOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def default(self, *, value: str, **kwargs: Any) -> None:
+    async def default(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """default.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -101,11 +101,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def rfc3339(self, *, value: str, **kwargs: Any) -> None:
+    async def rfc3339(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc3339.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -148,11 +148,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def rfc7231(self, *, value: str, **kwargs: Any) -> None:
+    async def rfc7231(self, *, value: datetime.datetime, **kwargs: Any) -> None:
         """rfc7231.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

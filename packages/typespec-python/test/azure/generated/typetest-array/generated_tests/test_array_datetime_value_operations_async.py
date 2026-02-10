@@ -27,7 +27,7 @@ class TestArrayDatetimeValueOperationsAsync(ArrayClientTestBaseAsync):
     async def test_datetime_value_put(self, array_endpoint):
         client = self.create_async_client(endpoint=array_endpoint)
         response = await client.datetime_value.put(
-            body=["str"],
+            body=["2020-02-20 00:00:00"],
         )
 
         # please add some check logic here by yourself

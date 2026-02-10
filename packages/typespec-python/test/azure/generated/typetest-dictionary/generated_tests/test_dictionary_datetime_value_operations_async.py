@@ -27,7 +27,7 @@ class TestDictionaryDatetimeValueOperationsAsync(DictionaryClientTestBaseAsync):
     async def test_datetime_value_put(self, dictionary_endpoint):
         client = self.create_async_client(endpoint=dictionary_endpoint)
         response = await client.datetime_value.put(
-            body={"str": "str"},
+            body={"str": "2020-02-20 00:00:00"},
         )
 
         # please add some check logic here by yourself

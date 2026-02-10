@@ -118,7 +118,7 @@ class ResponseHeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("str", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -165,7 +165,7 @@ class ResponseHeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("str", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("iso-8601", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore
@@ -212,7 +212,7 @@ class ResponseHeaderOperations:
             raise HttpResponseError(response=response)
 
         response_headers = {}
-        response_headers["value"] = self._deserialize("str", response.headers.get("value"))
+        response_headers["value"] = self._deserialize("rfc-1123", response.headers.get("value"))
 
         if cls:
             return cls(pipeline_response, None, response_headers)  # type: ignore

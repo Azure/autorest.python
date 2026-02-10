@@ -7,6 +7,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from collections.abc import MutableMapping
+import datetime
 from io import IOBase
 import json
 from typing import Any, Callable, IO, Optional, TypeVar, Union, overload
@@ -49,8 +50,8 @@ class _TraitsClientOperationsMixin(
         id: int,
         *,
         foo: str,
-        if_unmodified_since: Optional[str] = None,
-        if_modified_since: Optional[str] = None,
+        if_unmodified_since: Optional[datetime.datetime] = None,
+        if_modified_since: Optional[datetime.datetime] = None,
         etag: Optional[str] = None,
         match_condition: Optional[MatchConditions] = None,
         **kwargs: Any
@@ -63,10 +64,10 @@ class _TraitsClientOperationsMixin(
         :paramtype foo: str
         :keyword if_unmodified_since: The request should only proceed if the entity was not modified
          after this time. Default value is None.
-        :paramtype if_unmodified_since: str
+        :paramtype if_unmodified_since: ~datetime.datetime
         :keyword if_modified_since: The request should only proceed if the entity was modified after
          this time. Default value is None.
-        :paramtype if_modified_since: str
+        :paramtype if_modified_since: ~datetime.datetime
         :keyword etag: check if resource is changed. Set None to skip checking etag. Default value is
          None.
         :paramtype etag: str

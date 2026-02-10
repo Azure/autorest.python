@@ -26,38 +26,38 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_header_default_request(*, value: str, **kwargs: Any) -> HttpRequest:
+def build_header_default_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/encode/datetime/header/default"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "str")
+    _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_rfc3339_request(*, value: str, **kwargs: Any) -> HttpRequest:
+def build_header_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/encode/datetime/header/rfc3339"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "str")
+    _headers["value"] = _SERIALIZER.header("value", value, "iso-8601")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_rfc7231_request(*, value: str, **kwargs: Any) -> HttpRequest:
+def build_header_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
     _url = "/encode/datetime/header/rfc7231"
 
     # Construct headers
-    _headers["value"] = _SERIALIZER.header("value", value, "str")
+    _headers["value"] = _SERIALIZER.header("value", value, "rfc-1123")
 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
@@ -105,11 +105,13 @@ class HeaderOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-    def default(self, *, value: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def default(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
         """default.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -149,11 +151,13 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def rfc3339(self, *, value: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def rfc3339(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
         """rfc3339.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -193,11 +197,13 @@ class HeaderOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    def rfc7231(self, *, value: str, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
+    def rfc7231(  # pylint: disable=inconsistent-return-statements
+        self, *, value: datetime.datetime, **kwargs: Any
+    ) -> None:
         """rfc7231.
 
         :keyword value: Required.
-        :paramtype value: str
+        :paramtype value: ~datetime.datetime
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

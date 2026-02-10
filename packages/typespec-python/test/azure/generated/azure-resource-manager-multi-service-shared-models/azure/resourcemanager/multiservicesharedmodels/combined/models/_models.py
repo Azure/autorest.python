@@ -8,6 +8,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
+import datetime
 from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .._utils.model_base import Model as _Model, rest_field
@@ -123,14 +124,16 @@ class SharedMetadata(_Model):
     """Common metadata shared across multiple services.
 
     :ivar created_at: Creation timestamp of the resource.
-    :vartype created_at: str
+    :vartype created_at: ~datetime.datetime
     :ivar created_by: Creator of the resource.
     :vartype created_by: str
     :ivar tags: Tags associated with the resource.
     :vartype tags: dict[str, str]
     """
 
-    created_at: Optional[str] = rest_field(name="createdAt", visibility=["read", "create", "update", "delete", "query"])
+    created_at: Optional[datetime.datetime] = rest_field(
+        name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """Creation timestamp of the resource."""
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
     """Creator of the resource."""
@@ -141,7 +144,7 @@ class SharedMetadata(_Model):
     def __init__(
         self,
         *,
-        created_at: Optional[str] = None,
+        created_at: Optional[datetime.datetime] = None,
         created_by: Optional[str] = None,
         tags: Optional[dict[str, str]] = None,
     ) -> None: ...
@@ -299,7 +302,7 @@ class SystemData(_Model):
     :vartype created_by_type: str or
      ~azure.resourcemanager.multiservicesharedmodels.combined.models.CreatedByType
     :ivar created_at: The timestamp of resource creation (UTC).
-    :vartype created_at: str
+    :vartype created_at: ~datetime.datetime
     :ivar last_modified_by: The identity that last modified the resource.
     :vartype last_modified_by: str
     :ivar last_modified_by_type: The type of identity that last modified the resource. Known values
@@ -307,7 +310,7 @@ class SystemData(_Model):
     :vartype last_modified_by_type: str or
      ~azure.resourcemanager.multiservicesharedmodels.combined.models.CreatedByType
     :ivar last_modified_at: The timestamp of resource last modification (UTC).
-    :vartype last_modified_at: str
+    :vartype last_modified_at: ~datetime.datetime
     """
 
     created_by: Optional[str] = rest_field(name="createdBy", visibility=["read", "create", "update", "delete", "query"])
@@ -317,7 +320,9 @@ class SystemData(_Model):
     )
     """The type of identity that created the resource. Known values are: \"User\", \"Application\",
      \"ManagedIdentity\", and \"Key\"."""
-    created_at: Optional[str] = rest_field(name="createdAt", visibility=["read", "create", "update", "delete", "query"])
+    created_at: Optional[datetime.datetime] = rest_field(
+        name="createdAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
+    )
     """The timestamp of resource creation (UTC)."""
     last_modified_by: Optional[str] = rest_field(
         name="lastModifiedBy", visibility=["read", "create", "update", "delete", "query"]
@@ -328,8 +333,8 @@ class SystemData(_Model):
     )
     """The type of identity that last modified the resource. Known values are: \"User\",
      \"Application\", \"ManagedIdentity\", and \"Key\"."""
-    last_modified_at: Optional[str] = rest_field(
-        name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"]
+    last_modified_at: Optional[datetime.datetime] = rest_field(
+        name="lastModifiedAt", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
     """The timestamp of resource last modification (UTC)."""
 
@@ -339,10 +344,10 @@ class SystemData(_Model):
         *,
         created_by: Optional[str] = None,
         created_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
-        created_at: Optional[str] = None,
+        created_at: Optional[datetime.datetime] = None,
         last_modified_by: Optional[str] = None,
         last_modified_by_type: Optional[Union[str, "_models.CreatedByType"]] = None,
-        last_modified_at: Optional[str] = None,
+        last_modified_at: Optional[datetime.datetime] = None,
     ) -> None: ...
 
     @overload

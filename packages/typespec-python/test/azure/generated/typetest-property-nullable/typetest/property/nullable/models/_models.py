@@ -171,15 +171,15 @@ class DatetimeProperty(_Model):
     :ivar required_property: Required property. Required.
     :vartype required_property: str
     :ivar nullable_property: Property. Required.
-    :vartype nullable_property: str
+    :vartype nullable_property: ~datetime.datetime
     """
 
     required_property: str = rest_field(
         name="requiredProperty", visibility=["read", "create", "update", "delete", "query"]
     )
     """Required property. Required."""
-    nullable_property: str = rest_field(
-        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"]
+    nullable_property: datetime.datetime = rest_field(
+        name="nullableProperty", visibility=["read", "create", "update", "delete", "query"], format="rfc3339"
     )
     """Property. Required."""
 
@@ -188,7 +188,7 @@ class DatetimeProperty(_Model):
         self,
         *,
         required_property: str,
-        nullable_property: str,
+        nullable_property: datetime.datetime,
     ) -> None: ...
 
     @overload

@@ -870,11 +870,11 @@ class DatetimeValueOperations:
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
     @distributed_trace_async
-    async def get(self, **kwargs: Any) -> dict[str, str]:
+    async def get(self, **kwargs: Any) -> dict[str, datetime.datetime]:
         """get.
 
-        :return: dict mapping str to str
-        :rtype: dict[str, str]
+        :return: dict mapping str to datetime
+        :rtype: dict[str, ~datetime.datetime]
         :raises ~azure.core.exceptions.HttpResponseError:
         """
         error_map: MutableMapping = {
@@ -888,7 +888,7 @@ class DatetimeValueOperations:
         _headers = kwargs.pop("headers", {}) or {}
         _params = kwargs.pop("params", {}) or {}
 
-        cls: ClsType[dict[str, str]] = kwargs.pop("cls", None)
+        cls: ClsType[dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
         _request = build_datetime_value_get_request(
             headers=_headers,
@@ -918,7 +918,7 @@ class DatetimeValueOperations:
         if _stream:
             deserialized = response.iter_bytes()
         else:
-            deserialized = _deserialize(dict[str, str], response.json())
+            deserialized = _deserialize(dict[str, datetime.datetime], response.json())
 
         if cls:
             return cls(pipeline_response, deserialized, {})  # type: ignore
@@ -926,11 +926,13 @@ class DatetimeValueOperations:
         return deserialized  # type: ignore
 
     @overload
-    async def put(self, body: dict[str, str], *, content_type: str = "application/json", **kwargs: Any) -> None:
+    async def put(
+        self, body: dict[str, datetime.datetime], *, content_type: str = "application/json", **kwargs: Any
+    ) -> None:
         """put.
 
         :param body: Required.
-        :type body: dict[str, str]
+        :type body: dict[str, ~datetime.datetime]
         :keyword content_type: Body Parameter content-type. Content type parameter for JSON body.
          Default value is "application/json".
         :paramtype content_type: str
@@ -954,11 +956,11 @@ class DatetimeValueOperations:
         """
 
     @distributed_trace_async
-    async def put(self, body: Union[dict[str, str], IO[bytes]], **kwargs: Any) -> None:
+    async def put(self, body: Union[dict[str, datetime.datetime], IO[bytes]], **kwargs: Any) -> None:
         """put.
 
-        :param body: Is either a {str: str} type or a IO[bytes] type. Required.
-        :type body: dict[str, str] or IO[bytes]
+        :param body: Is either a {str: datetime.datetime} type or a IO[bytes] type. Required.
+        :type body: dict[str, ~datetime.datetime] or IO[bytes]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -982,7 +984,7 @@ class DatetimeValueOperations:
         if isinstance(body, (IOBase, bytes)):
             _content = body
         else:
-            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
+            _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True, format="rfc3339")  # type: ignore
 
         _request = build_datetime_value_put_request(
             content_type=content_type,
