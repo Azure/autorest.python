@@ -1,5 +1,13 @@
 # Release
 
+## 0.60.1
+
+### Bug Fixes
+
+- [#3337](https://github.com/Azure/autorest.python/pull/3337) Fall back to wire type for unknown or unsupported encode
+- [#3330](https://github.com/Azure/autorest.python/pull/3330) Fix import for xml paging
+
+
 ## 0.60.0
 
 ### Features
