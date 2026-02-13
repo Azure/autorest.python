@@ -542,10 +542,7 @@ class Repo:
         # Sync shared files from typespec repo
         self.sync_from_typespec()
 
-        # Build, regenerate, and push
-        self.prepare_pr()
-
-        # Create PR
+        # Create PR before build/regenerate so it's visible early
         commit_sha_short = self._main_commit_sha[:7]
         pr_title = f"Sync from typespec main ({date_str}) ({commit_sha_short})"
         pr_body = f"Auto PR syncing from typespec main branch\n\nSource commit: https://github.com/microsoft/typespec/commit/{self._main_commit_sha}"
@@ -559,6 +556,9 @@ class Repo:
             maintainer_can_modify=True,
             draft=True,
         )
+
+        # Build, regenerate, and push
+        self.prepare_pr()
 
 
 if __name__ == "__main__":
