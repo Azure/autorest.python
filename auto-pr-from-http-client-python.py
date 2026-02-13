@@ -346,6 +346,16 @@ class Repo:
         except:
             logger.info("No changes about dependencies to commit.")
 
+    def sync_from_typespec(self):
+        script_path = Path(__file__).resolve().parent / "eng" / "scripts" / "sync_from_typespec.py"
+        log_call(f"python {script_path} {self.typespec_repo_path}")
+        log_call("git add .")
+        try:
+            log_call(f'git commit -m "Sync shared files from typespec repo ({get_current_time()})"')
+            git_push()
+        except CalledProcessError:
+            logger.info("No changes to commit.")
+
     # prepare pr for autorest.python repo
     def prepare_pr(self):
         install_and_build()
@@ -464,6 +474,7 @@ class Repo:
         if "https://github.com/microsoft/typespec" in self.pull_url:
             self.checkout_branch()
             self.update_dependency()
+            self.sync_from_typespec()
             self.add_changelog()
             self.create_pr()
             self.prepare_pr()
