@@ -353,8 +353,10 @@ class Repo:
             logger.info("No changes about dependencies to commit.")
 
     def sync_from_typespec(self):
-        script_path = Path(__file__).resolve().parent / "eng" / "scripts" / "sync_from_typespec.py"
-        log_call(f"python {script_path} {self.typespec_repo_path}")
+        script_path = Path("eng/scripts/sync_from_typespec.py").resolve()
+        if not script_path.is_file():
+            raise FileNotFoundError(f"sync_from_typespec.py not found at expected path: {script_path}")
+        log_call(f'python "{script_path}" "{self.typespec_repo_path}"')
         log_call("git add .")
         try:
             log_call(f'git commit -m "Sync shared files from typespec repo ({get_current_time()})"')
