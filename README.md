@@ -37,7 +37,7 @@ pnpm clean
 **Semi-auto:**
 
 Follow https://github.com/Azure/autorest.python/blob/main/.github/skills/bump-and-release/SKILL.md to make a release PR. 
-After it merged, trigger [release pipeline](https://dev.azure.com/azure-sdk/internal/_build?definitionId=1668) to release new version.
+After it merged, [release pipeline](https://dev.azure.com/azure-sdk/internal/_build?definitionId=1668) will be triggered automatically to release new version.
 
 ## Contributing
 

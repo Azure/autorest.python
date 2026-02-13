@@ -1,5 +1,27 @@
 # Release
 
+## 0.60.1
+
+### Bug Fixes
+
+- [#3337](https://github.com/Azure/autorest.python/pull/3337) Fall back to wire type for unknown or unsupported encode
+- [#3330](https://github.com/Azure/autorest.python/pull/3330) Fix import for xml paging
+
+
+## 0.60.0
+
+### Features
+
+- [#3332](https://github.com/Azure/autorest.python/pull/3332) Add support for `@clientOption("includeRootSlash")` to control stripping of the slash after the root url
+
+
+## 0.59.3
+
+### Bug Fixes
+
+- [#3328](https://github.com/Azure/autorest.python/pull/3328) Catch all deserialization errors when deserializing error response models
+
+
 ## 0.59.2
 
 ### Bug Fixes

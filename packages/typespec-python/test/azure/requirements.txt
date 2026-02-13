@@ -3,12 +3,15 @@ requests==2.32.4
 pytest
 pytest-asyncio==0.14.0;python_full_version>="3.5.2"
 azure-mgmt-core==1.6.0
+# === common azure dependencies across repos ===
 # only for azure
 -e ./generated/azure-client-generator-core-access
 -e ./generated/azure-client-generator-core-api-version-header
 -e ./generated/azure-client-generator-core-api-version-path
 -e ./generated/azure-client-generator-core-api-version-query
--e ./generated/azure-client-generator-core-client-initialization
+-e ./generated/azure-client-generator-core-client-initialization-default
+-e ./generated/azure-client-generator-core-client-initialization-individually
+-e ./generated/azure-client-generator-core-client-initialization-individuallyparent
 -e ./generated/azure-client-generator-core-deserialize-empty-string-as-null
 -e ./generated/azure-client-generator-core-flatten-property
 -e ./generated/azure-client-generator-core-hierarchy-building
@@ -20,6 +23,7 @@ azure-mgmt-core==1.6.0
 -e ./generated/azure-client-generator-core-client-location-move-to-root-client
 -e ./generated/azure-client-generator-core-client-default-value
 -e ./generated/azure-client-generator-core-alternate-type
+-e ./generated/azure-client-generator-core-next-link-verb
 -e ./generated/azure-core-basic
 -e ./generated/azure-core-scalar
 -e ./generated/azure-core-lro-rpc
@@ -27,7 +31,6 @@ azure-mgmt-core==1.6.0
 -e ./generated/azure-core-model
 -e ./generated/azure-core-traits
 -e ./generated/azure-core-page
--e ./generated/azure-client-generator-core-next-link-verb
 -e ./generated/azure-encode-duration
 -e ./generated/azure-special-headers-client-request-id/
 -e ./generated/azure-example-basic
@@ -38,9 +41,11 @@ azure-mgmt-core==1.6.0
 -e ./generated/azure-resource-manager-resources
 -e ./generated/azure-resource-manager-method-subscription-id
 -e ./generated/azure-resource-manager-multi-service
+-e ./generated/azure-resource-manager-multi-service-older-versions
+-e ./generated/azure-resource-manager-multi-service-shared-models
 -e ./generated/azure-versioning-previewversion
--e ./generated/azure-payload-pageable
 -e ./generated/client-namespace
+-e ./generated/azure-payload-pageable
 -e ./generated/client-naming
 -e ./generated/client-naming-enum-conflict
 -e ./generated/client-overload
@@ -52,18 +57,22 @@ azure-mgmt-core==1.6.0
 -e ./generated/resiliency-srv-driven1
 -e ./generated/resiliency-srv-driven2
 -e ./generated/service-multi-service
+# === end common azure dependencies across repos ===
 
-# common test case
+# autorest-only
+-e ./generated/generation-subdir
+
+# === common test dependencies across repos ===
 -e ./generated/authentication-api-key
 -e ./generated/authentication-http-custom
 -e ./generated/authentication-noauth-union
 -e ./generated/authentication-oauth2
 -e ./generated/authentication-union
+-e ./generated/setuppy-authentication-union
 -e ./generated/specs-documentation
 -e ./generated/encode-duration
 -e ./generated/encode-numeric
 -e ./generated/encode-array
--e ./generated/generation-subdir
 -e ./generated/parameters-basic
 -e ./generated/parameters-collection-format
 -e ./generated/parameters-path
@@ -81,6 +90,7 @@ azure-mgmt-core==1.6.0
 -e ./generated/typetest-dictionary
 -e ./generated/typetest-enum-extensible
 -e ./generated/typetest-enum-fixed
+# -e ./generated/typetest-file
 -e ./generated/typetest-model-enumdiscriminator
 -e ./generated/typetest-model-nesteddiscriminator
 -e ./generated/typetest-model-notdiscriminated
@@ -94,11 +104,11 @@ azure-mgmt-core==1.6.0
 -e ./generated/typetest-property-additionalproperties
 -e ./generated/typetest-scalar
 -e ./generated/typetest-union
+-e ./generated/typetest-discriminatedunion
 -e ./generated/typetest-model-empty
 -e ./generated/headasbooleantrue
 -e ./generated/headasbooleanfalse
 -e ./generated/parameters-body-optionality
--e ./generated/setuppy-authentication-union
 -e ./generated/special-headers-repeatability
 -e ./generated/special-headers-conditional-request
 -e ./generated/encode-datetime
@@ -109,11 +119,12 @@ azure-mgmt-core==1.6.0
 -e ./generated/payload-multipart
 -e ./generated/payload-media-type
 -e ./generated/payload-xml
+-e ./generated/routes
+-e ./generated/response-status-code-range
 -e ./generated/versioning-added
 -e ./generated/versioning-madeoptional
 -e ./generated/versioning-removed
 -e ./generated/versioning-renamedfrom
 -e ./generated/versioning-returntypechangedfrom
 -e ./generated/versioning-typechangedfrom
--e ./generated/routes
--e ./generated/response-status-code-range
+# === end common test dependencies across repos ===

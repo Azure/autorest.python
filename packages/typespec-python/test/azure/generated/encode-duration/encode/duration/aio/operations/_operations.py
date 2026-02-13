@@ -429,11 +429,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds(self, *, input: int, **kwargs: Any) -> None:
         """int32_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: int
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -476,11 +476,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds_larger_unit(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds_larger_unit(self, *, input: int, **kwargs: Any) -> None:
         """int32_milliseconds_larger_unit.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: int
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -523,11 +523,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds(self, *, input: float, **kwargs: Any) -> None:
         """float_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -570,11 +570,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_milliseconds_larger_unit(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds_larger_unit(self, *, input: float, **kwargs: Any) -> None:
         """float_milliseconds_larger_unit.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -617,11 +617,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float64_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float64_milliseconds(self, *, input: float, **kwargs: Any) -> None:
         """float64_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -711,11 +711,11 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds_array(self, *, input: list[datetime.timedelta], **kwargs: Any) -> None:
+    async def int32_milliseconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_milliseconds_array.
 
         :keyword input: Required.
-        :paramtype input: list[~datetime.timedelta]
+        :paramtype input: list[int]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2908,11 +2908,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds(self, *, duration: int, **kwargs: Any) -> None:
         """int32_milliseconds.
 
         :keyword duration: Required.
-        :paramtype duration: ~datetime.timedelta
+        :paramtype duration: int
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -2955,11 +2955,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds_larger_unit(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds_larger_unit(self, *, duration: int, **kwargs: Any) -> None:
         """int32_milliseconds_larger_unit.
 
         :keyword duration: Required.
-        :paramtype duration: ~datetime.timedelta
+        :paramtype duration: int
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3002,11 +3002,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds(self, *, duration: float, **kwargs: Any) -> None:
         """float_milliseconds.
 
         :keyword duration: Required.
-        :paramtype duration: ~datetime.timedelta
+        :paramtype duration: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3049,11 +3049,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float_milliseconds_larger_unit(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds_larger_unit(self, *, duration: float, **kwargs: Any) -> None:
         """float_milliseconds_larger_unit.
 
         :keyword duration: Required.
-        :paramtype duration: ~datetime.timedelta
+        :paramtype duration: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3096,11 +3096,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def float64_milliseconds(self, *, duration: datetime.timedelta, **kwargs: Any) -> None:
+    async def float64_milliseconds(self, *, duration: float, **kwargs: Any) -> None:
         """float64_milliseconds.
 
         :keyword duration: Required.
-        :paramtype duration: ~datetime.timedelta
+        :paramtype duration: float
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:
@@ -3143,11 +3143,11 @@ class HeaderOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
     @distributed_trace_async
-    async def int32_milliseconds_array(self, *, duration: list[datetime.timedelta], **kwargs: Any) -> None:
+    async def int32_milliseconds_array(self, *, duration: list[int], **kwargs: Any) -> None:
         """int32_milliseconds_array.
 
         :keyword duration: Required.
-        :paramtype duration: list[~datetime.timedelta]
+        :paramtype duration: list[int]
         :return: None
         :rtype: None
         :raises ~azure.core.exceptions.HttpResponseError:

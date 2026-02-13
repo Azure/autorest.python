@@ -363,11 +363,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def int32_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds(self, *, input: int, **kwargs: Any) -> None:
         """int32_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: int
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -407,11 +407,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def int32_milliseconds_larger_unit(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def int32_milliseconds_larger_unit(self, *, input: int, **kwargs: Any) -> None:
         """int32_milliseconds_larger_unit.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: int
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -451,11 +451,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def float_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds(self, *, input: float, **kwargs: Any) -> None:
         """float_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -495,11 +495,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def float_milliseconds_larger_unit(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float_milliseconds_larger_unit(self, *, input: float, **kwargs: Any) -> None:
         """float_milliseconds_larger_unit.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -539,11 +539,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def float64_milliseconds(self, *, input: datetime.timedelta, **kwargs: Any) -> None:
+    async def float64_milliseconds(self, *, input: float, **kwargs: Any) -> None:
         """float64_milliseconds.
 
         :keyword input: Required.
-        :paramtype input: ~datetime.timedelta
+        :paramtype input: float
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:
@@ -627,11 +627,11 @@ class QueryOperations:
         if cls:
             return cls(pipeline_response, None, {})  # type: ignore
 
-    async def int32_milliseconds_array(self, *, input: list[datetime.timedelta], **kwargs: Any) -> None:
+    async def int32_milliseconds_array(self, *, input: list[int], **kwargs: Any) -> None:
         """int32_milliseconds_array.
 
         :keyword input: Required.
-        :paramtype input: list[~datetime.timedelta]
+        :paramtype input: list[int]
         :return: None
         :rtype: None
         :raises ~corehttp.exceptions.HttpResponseError:

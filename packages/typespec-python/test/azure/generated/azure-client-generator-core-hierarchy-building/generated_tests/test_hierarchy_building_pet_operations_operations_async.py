@@ -18,15 +18,9 @@ class TestHierarchyBuildingPetOperationsOperationsAsync(HierarchyBuildingClientT
     async def test_pet_operations_update_pet_as_pet(self, hierarchybuilding_endpoint):
         client = self.create_async_client(endpoint=hierarchybuilding_endpoint)
         response = await client.pet_operations.update_pet_as_pet(
-            pet={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
-,
+            pet={"breed": "str", "kind": "dog", "name": "str", "trained": bool},
         )
-        
+
         # please add some check logic here by yourself
         # ...
 
@@ -35,15 +29,8 @@ class TestHierarchyBuildingPetOperationsOperationsAsync(HierarchyBuildingClientT
     async def test_pet_operations_update_dog_as_pet(self, hierarchybuilding_endpoint):
         client = self.create_async_client(endpoint=hierarchybuilding_endpoint)
         response = await client.pet_operations.update_dog_as_pet(
-            pet={
-                "breed": "str",
-                "kind": "dog",
-                "name": "str",
-                "trained": bool
-            }
-,
+            pet={"breed": "str", "kind": "dog", "name": "str", "trained": bool},
         )
-        
+
         # please add some check logic here by yourself
         # ...
-

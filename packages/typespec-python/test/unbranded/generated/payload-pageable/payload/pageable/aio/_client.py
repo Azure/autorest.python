@@ -10,6 +10,7 @@ from corehttp.runtime import AsyncPipelineClient, policies
 from .._utils.serialization import Deserializer, Serializer
 from ..pagesize.aio.operations import PageSizeOperations
 from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
+from ..xmlpagination.aio.operations import XmlPaginationOperations
 from ._configuration import PageableClientConfiguration
 
 
@@ -21,6 +22,8 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
      payload.pageable.aio.operations.ServerDrivenPaginationOperations
     :ivar page_size: PageSizeOperations operations
     :vartype page_size: payload.pageable.aio.operations.PageSizeOperations
+    :ivar xml_pagination: XmlPaginationOperations operations
+    :vartype xml_pagination: payload.pageable.aio.operations.XmlPaginationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -51,6 +54,7 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
             self._client, self._config, self._serialize, self._deserialize
         )
         self.page_size = PageSizeOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.xml_pagination = XmlPaginationOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

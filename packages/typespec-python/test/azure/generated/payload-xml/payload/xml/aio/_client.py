@@ -29,6 +29,7 @@ from .operations import (
     ModelWithTextValueOperations,
     ModelWithUnwrappedArrayValueOperations,
     SimpleModelValueOperations,
+    XmlErrorValueOperations,
 )
 
 
@@ -69,6 +70,8 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
     :ivar model_with_encoded_names_value: ModelWithEncodedNamesValueOperations operations
     :vartype model_with_encoded_names_value:
      payload.xml.aio.operations.ModelWithEncodedNamesValueOperations
+    :ivar xml_error_value: XmlErrorValueOperations operations
+    :vartype xml_error_value: payload.xml.aio.operations.XmlErrorValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -137,6 +140,7 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
         self.model_with_encoded_names_value = ModelWithEncodedNamesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.xml_error_value = XmlErrorValueOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
