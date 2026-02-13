@@ -242,12 +242,11 @@ def main() -> int:
     result = subprocess.run(
         ["pnpm", "format"],
         cwd=ts_python_dir,
-        capture_output=True,
         text=True,
         shell=(os.name == "nt"),
     )
     if result.returncode != 0:
-        print(f"WARNING: pnpm format failed:\n{result.stderr}", file=sys.stderr)
+        print(f"WARNING: pnpm format failed (exit code {result.returncode})", file=sys.stderr)
     else:
         print("pnpm format succeeded.")
 
