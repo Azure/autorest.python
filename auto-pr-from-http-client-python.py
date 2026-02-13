@@ -542,6 +542,9 @@ class Repo:
         # Sync shared files from typespec repo
         self.sync_from_typespec()
 
+        # Add changelog
+        self.add_changelog()
+
         # Create PR before build/regenerate so it's visible early
         commit_sha_short = self._main_commit_sha[:7]
         pr_title = f"Sync from typespec main ({date_str}) ({commit_sha_short})"
