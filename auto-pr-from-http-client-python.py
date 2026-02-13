@@ -152,17 +152,20 @@ class Repo:
     def http_client_python_json(self):
         if not self._http_client_python_json:
             os.chdir(self.typespec_repo_path)
-            logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
 
-            if not self.is_pull_merged:
-                user_name = self.source_branch_name.split(":")[0]
-                branch_name = self.source_branch_name.split(":")[1]
-                if user_name != "microsoft":
-                    log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
-                    log_call(f"git fetch {user_name} {branch_name}")
-                log_call(f"git checkout {branch_name}")
+            if self.pull_url:
+                logging.info(f"branch name for PR {self.pull_url}: {self.source_branch_name}")
+                if not self.is_pull_merged:
+                    user_name = self.source_branch_name.split(":")[0]
+                    branch_name = self.source_branch_name.split(":")[1]
+                    if user_name != "microsoft":
+                        log_call(f"git remote add {user_name} https://github.com/{user_name}/typespec.git")
+                        log_call(f"git fetch {user_name} {branch_name}")
+                    log_call(f"git checkout {branch_name}")
+                else:
+                    logger.info(f"PR {self.pull_url} is already merged.")
             else:
-                logger.info(f"PR {self.pull_url} is already merged.")
+                logger.info("No pull URL, reading package.json from current typespec repo state (main).")
 
             with open(Path("packages/http-client-python/package.json"), "r") as f:
                 self._http_client_python_json = json.load(f)
@@ -526,6 +529,9 @@ class Repo:
             with open(package_json, "w") as f:
                 json.dump(package_data, f, indent=2)
 
+        # Sync other dependencies from typespec repo's package.json
+        self.update_other_dependencies()
+
         try:
             log_call("git add .")
             log_call('git commit -m "Update dependencies"')
@@ -540,13 +546,15 @@ class Repo:
         self.prepare_pr()
 
         # Create PR
-        pr_body = "Auto PR syncing from typespec main branch"
+        commit_sha_short = self._main_commit_sha[:7]
+        pr_title = f"Sync from typespec main ({date_str}) ({commit_sha_short})"
+        pr_body = f"Auto PR syncing from typespec main branch\n\nSource commit: https://github.com/microsoft/typespec/commit/{self._main_commit_sha}"
         if self.pipeline_link:
             pr_body += f"\n\nThis PR is generated from the [pipeline]({self.pipeline_link}) triggered manually."
         self.autorest_repo.create_pull(
             base="main",
             head=self.new_branch_name,
-            title=f"Sync from typespec main ({date_str})",
+            title=pr_title,
             body=pr_body,
             maintainer_can_modify=True,
             draft=True,
