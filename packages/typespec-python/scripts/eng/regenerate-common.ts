@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { promises } from "fs";
 import { dirname, join, relative, resolve } from "path";
 
@@ -15,10 +14,7 @@ export const SpecialFlags: Record<string, Record<string, any>> = {
 
 // ---- Base emitter options (shared across repos) ----
 
-export const BASE_AZURE_EMITTER_OPTIONS: Record<
-    string,
-    Record<string, string> | Record<string, string>[]
-> = {
+export const BASE_AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "azure/client-generator-core/access": {
         namespace: "specs.azure.clientgenerator.core.access",
     },
@@ -93,15 +89,15 @@ export const BASE_AZURE_EMITTER_OPTIONS: Record<
     },
     "client/structure/multi-client": {
         "package-name": "client-structure-multiclient",
-        namespace: "client.structure.multiclient",
+        "namespace": "client.structure.multiclient",
     },
     "client/structure/renamed-operation": {
         "package-name": "client-structure-renamedoperation",
-        namespace: "client.structure.renamedoperation",
+        "namespace": "client.structure.renamedoperation",
     },
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
-        namespace: "client.structure.twooperationgroup",
+        "namespace": "client.structure.twooperationgroup",
     },
     "client/naming": {
         namespace: "client.naming.main",
@@ -138,19 +134,16 @@ export const BASE_AZURE_EMITTER_OPTIONS: Record<
     },
 };
 
-export const BASE_EMITTER_OPTIONS: Record<
-    string,
-    Record<string, string> | Record<string, string>[]
-> = {
+export const BASE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     "resiliency/srv-driven/old.tsp": {
         "package-name": "resiliency-srv-driven1",
-        namespace: "resiliency.srv.driven1",
+        "namespace": "resiliency.srv.driven1",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven1",
     },
     "resiliency/srv-driven": {
         "package-name": "resiliency-srv-driven2",
-        namespace: "resiliency.srv.driven2",
+        "namespace": "resiliency.srv.driven2",
         "package-mode": "azure-dataplane",
         "package-pprint-name": "ResiliencySrvDriven2",
     },
@@ -159,115 +152,115 @@ export const BASE_EMITTER_OPTIONS: Record<
     },
     "authentication/http/custom": {
         "package-name": "authentication-http-custom",
-        namespace: "authentication.http.custom",
+        "namespace": "authentication.http.custom",
         "package-pprint-name": "Authentication Http Custom",
     },
     "authentication/union": [
         {
             "package-name": "authentication-union",
-            namespace: "authentication.union",
+            "namespace": "authentication.union",
         },
         {
             "package-name": "setuppy-authentication-union",
-            namespace: "setuppy.authentication.union",
+            "namespace": "setuppy.authentication.union",
             "keep-setup-py": "true",
         },
     ],
     "type/array": {
         "package-name": "typetest-array",
-        namespace: "typetest.array",
+        "namespace": "typetest.array",
     },
     "type/dictionary": {
         "package-name": "typetest-dictionary",
-        namespace: "typetest.dictionary",
+        "namespace": "typetest.dictionary",
     },
     "type/enum/extensible": {
         "package-name": "typetest-enum-extensible",
-        namespace: "typetest.enum.extensible",
+        "namespace": "typetest.enum.extensible",
     },
     "type/enum/fixed": {
         "package-name": "typetest-enum-fixed",
-        namespace: "typetest.enum.fixed",
+        "namespace": "typetest.enum.fixed",
     },
     "type/model/empty": {
         "package-name": "typetest-model-empty",
-        namespace: "typetest.model.empty",
+        "namespace": "typetest.model.empty",
     },
     "type/model/inheritance/enum-discriminator": {
         "package-name": "typetest-model-enumdiscriminator",
-        namespace: "typetest.model.enumdiscriminator",
+        "namespace": "typetest.model.enumdiscriminator",
     },
     "type/model/inheritance/nested-discriminator": {
         "package-name": "typetest-model-nesteddiscriminator",
-        namespace: "typetest.model.nesteddiscriminator",
+        "namespace": "typetest.model.nesteddiscriminator",
     },
     "type/model/inheritance/not-discriminated": {
         "package-name": "typetest-model-notdiscriminated",
-        namespace: "typetest.model.notdiscriminated",
+        "namespace": "typetest.model.notdiscriminated",
     },
     "type/model/inheritance/single-discriminator": {
         "package-name": "typetest-model-singlediscriminator",
-        namespace: "typetest.model.singlediscriminator",
+        "namespace": "typetest.model.singlediscriminator",
     },
     "type/model/inheritance/recursive": {
         "package-name": "typetest-model-recursive",
-        namespace: "typetest.model.recursive",
+        "namespace": "typetest.model.recursive",
     },
     "type/model/usage": {
         "package-name": "typetest-model-usage",
-        namespace: "typetest.model.usage",
+        "namespace": "typetest.model.usage",
     },
     "type/model/visibility": [
         {
             "package-name": "typetest-model-visibility",
-            namespace: "typetest.model.visibility",
+            "namespace": "typetest.model.visibility",
         },
         {
             "package-name": "headasbooleantrue",
-            namespace: "headasbooleantrue",
+            "namespace": "headasbooleantrue",
             "head-as-boolean": "true",
         },
         {
             "package-name": "headasbooleanfalse",
-            namespace: "headasbooleanfalse",
+            "namespace": "headasbooleanfalse",
             "head-as-boolean": "false",
         },
     ],
     "type/property/nullable": {
         "package-name": "typetest-property-nullable",
-        namespace: "typetest.property.nullable",
+        "namespace": "typetest.property.nullable",
     },
     "type/property/optionality": {
         "package-name": "typetest-property-optional",
-        namespace: "typetest.property.optional",
+        "namespace": "typetest.property.optional",
     },
     "type/property/additional-properties": {
         "package-name": "typetest-property-additionalproperties",
-        namespace: "typetest.property.additionalproperties",
+        "namespace": "typetest.property.additionalproperties",
     },
     "type/scalar": {
         "package-name": "typetest-scalar",
-        namespace: "typetest.scalar",
+        "namespace": "typetest.scalar",
     },
     "type/property/value-types": {
         "package-name": "typetest-property-valuetypes",
-        namespace: "typetest.property.valuetypes",
+        "namespace": "typetest.property.valuetypes",
     },
     "type/union": {
         "package-name": "typetest-union",
-        namespace: "typetest.union",
+        "namespace": "typetest.union",
     },
     "type/union/discriminated": {
         "package-name": "typetest-discriminatedunion",
-        namespace: "typetest.discriminatedunion",
+        "namespace": "typetest.discriminatedunion",
     },
     "type/file": {
         "package-name": "typetest-file",
-        namespace: "typetest.file",
+        "namespace": "typetest.file",
     },
-    documentation: {
+    "documentation": {
         "package-name": "specs-documentation",
-        namespace: "specs.documentation",
+        "namespace": "specs.documentation",
     },
 };
 
@@ -313,25 +306,16 @@ export function toPosix(dir: string): string {
     return dir.replace(/\\/g, "/");
 }
 
-export function getEmitterOption(
-    spec: string,
-    flavor: string,
-    config: RegenerateConfig,
-): Record<string, string>[] {
+export function getEmitterOption(spec: string, flavor: string, config: RegenerateConfig): Record<string, string>[] {
     const specDir = spec.includes("azure") ? config.azureHttpSpecs : config.httpSpecs;
     const relativeSpec = toPosix(relative(specDir, spec));
-    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp")
-        ? relativeSpec
-        : dirname(relativeSpec);
+    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
     const emitter_options = config.emitterOptions[key] ||
         (flavor === "azure" ? config.azureEmitterOptions[key] : [{}]) || [{}];
     return Array.isArray(emitter_options) ? emitter_options : [emitter_options];
 }
 
-export async function getSubdirectories(
-    baseDir: string,
-    flags: RegenerateFlags,
-): Promise<string[]> {
+export async function getSubdirectories(baseDir: string, flags: RegenerateFlags): Promise<string[]> {
     const subdirectories: string[] = [];
 
     async function searchDir(currentDir: string) {
@@ -379,10 +363,7 @@ export async function getSubdirectories(
     return subdirectories;
 }
 
-export function defaultPackageName(
-    spec: string,
-    config: RegenerateConfig,
-): string {
+export function defaultPackageName(spec: string, config: RegenerateConfig): string {
     const specDir = spec.includes("azure") ? config.azureHttpSpecs : config.httpSpecs;
     return toPosix(relative(specDir, dirname(spec)))
         .replace(/\//g, "-")
@@ -407,9 +388,7 @@ export function buildOptions(
         }
         if (options["emitter-output-dir"] === undefined) {
             const packageName = options["package-name"] || defaultPackageName(spec, config);
-            options["emitter-output-dir"] = toPosix(
-                `${generatedFolder}/test/${flags.flavor}/generated/${packageName}`,
-            );
+            options["emitter-output-dir"] = toPosix(`${generatedFolder}/test/${flags.flavor}/generated/${packageName}`);
         }
         if (flags.debug) {
             options["debug"] = "true";
@@ -423,10 +402,7 @@ export function buildOptions(
     return results;
 }
 
-export async function runTaskPool(
-    tasks: Array<() => Promise<void>>,
-    poolLimit: number,
-): Promise<void> {
+export async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number): Promise<void> {
     async function worker(start: number, end: number) {
         while (start < end) {
             await tasks[start]();
@@ -444,10 +420,7 @@ export async function runTaskPool(
     await Promise.all(workers);
 }
 
-export async function regenerate(
-    flags: RegenerateFlagsInput,
-    config: RegenerateConfig,
-): Promise<void> {
+export async function regenerate(flags: RegenerateFlagsInput, config: RegenerateConfig): Promise<void> {
     if (flags.flavor === undefined) {
         await regenerate({ flavor: "azure", ...flags }, config);
         await regenerate({ flavor: "unbranded", ...flags }, config);

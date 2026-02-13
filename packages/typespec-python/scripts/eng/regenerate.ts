@@ -113,9 +113,11 @@ async function preprocess(flags: RegenerateFlagsInput): Promise<void> {
 
 function _getCmdList(spec: string, flags: RegenerateFlags): TspCommand[] {
     return buildOptions(spec, PLUGIN_DIR, flags, config).map((po) => {
-        const optionsStr = Object.entries(po.options).flatMap(([k, v]) => {
-            return `--option ${EMITTER_NAME}.${k}=${typeof v === "string" && v.indexOf(" ") > -1 ? `"${v}"` : v}`;
-        }).join(" ");
+        const optionsStr = Object.entries(po.options)
+            .flatMap(([k, v]) => {
+                return `--option ${EMITTER_NAME}.${k}=${typeof v === "string" && v.indexOf(" ") > -1 ? `"${v}"` : v}`;
+            })
+            .join(" ");
         return {
             outputDir: po.outputDir,
             command: `tsp compile ${spec} --emit=${toPosix(PLUGIN_DIR)} ${optionsStr}`,
