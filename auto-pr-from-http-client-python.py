@@ -15,6 +15,7 @@ from functools import wraps
 from subprocess import check_call, CalledProcessError
 from datetime import datetime, timedelta
 import time
+import random
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.INFO)
@@ -168,15 +169,17 @@ class Repo:
 
         return self._http_client_python_json
 
-    def get_ado_pipeline_build_id(self) -> str:
+    def get_ado_pipeline_build_id(self, commit_sha: str = None) -> str:
         """
-        Get Azure DevOps pipeline build ID from GitHub pull request check runs.
+        Get Azure DevOps pipeline build ID from GitHub commit check runs.
         Returns the build ID from the 'Python - Build' check run.
+        If commit_sha is not provided, uses the PR head SHA.
         """
         try:
             # Get the head commit
-            head_commit = self.tsp_repo.get_commit(self.pull.head.sha)
-            logger.info(f"Head SHA of PR {self.pull_url}: {self.pull.head.sha}")
+            sha = commit_sha or self.pull.head.sha
+            head_commit = self.tsp_repo.get_commit(sha)
+            logger.info(f"Looking up check runs for SHA: {sha}")
 
             # Wait for Python - Build check runs to appear
             timeout = timedelta(minutes=10)
@@ -248,15 +251,15 @@ class Repo:
             return None
 
     @return_origin_path
-    def get_http_client_python_version(self) -> str:
+    def get_http_client_python_version(self, commit_sha: str = None) -> str:
         os.chdir(self.typespec_repo_path)
         # get content of packages/http-client-python/package.json with tsp_repo from target commit id
-        commit_id = self.pull.head.sha
+        commit_id = commit_sha or self.pull.head.sha
         file_content = self.tsp_repo.get_contents("packages/http-client-python/package.json", ref=commit_id)
         package_data = json.loads(file_content.decoded_content.decode("utf-8"))
         return package_data["version"]
 
-    def get_artifacts_url_from_ado_pipeline(self, build_id: str) -> str:
+    def get_artifacts_url_from_ado_pipeline(self, build_id: str, commit_sha: str = None) -> str:
         """
         Get the artifacts URL from Azure DevOps pipeline build.
         Returns the URL to download the typespec-http-client-python package.
@@ -283,7 +286,7 @@ class Repo:
             logger.info(f"Artifact download URL: {download_url}")
 
             # Get the version of http-client-python package
-            version = self.get_http_client_python_version()
+            version = self.get_http_client_python_version(commit_sha=commit_sha)
             logger.info(f"http-client-python version: {version}")
 
             # Replace part of URL to get specific download URL of the component
@@ -471,7 +474,9 @@ class Repo:
             logger.warning(f"error occurs when adding changelog: {e}")
 
     def run(self):
-        if "https://github.com/microsoft/typespec" in self.pull_url:
+        if not self.pull_url:
+            self.run_from_main()
+        elif "https://github.com/microsoft/typespec" in self.pull_url:
             self.checkout_branch()
             self.update_dependency()
             self.sync_from_typespec()
@@ -483,14 +488,80 @@ class Repo:
             self.checkout_branch(prefix="")
             self.prepare_pr()
 
+    def get_latest_http_client_python_commit_sha(self) -> str:
+        """Get the latest commit SHA that touches packages/http-client-python on main."""
+        commits = self.tsp_repo.get_commits(sha="main", path="packages/http-client-python")
+        latest = commits[0]
+        logger.info(f"Latest commit for packages/http-client-python: {latest.sha}")
+        return latest.sha
+
+    def get_artifacts_url_from_main(self):
+        """Get the artifacts URL from the latest main branch commit."""
+        commit_sha = self.get_latest_http_client_python_commit_sha()
+        self._main_commit_sha = commit_sha
+        build_id = self.get_ado_pipeline_build_id(commit_sha=commit_sha)
+        self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id, commit_sha=commit_sha)
+
+    def run_from_main(self):
+        """Sync from the main branch of typespec repo when no PR is given."""
+        logger.info("No pull URL provided. Syncing from main branch of typespec repo.")
+
+        # Generate branch name: auto-microsoft-main-YYYY-MM-DD-NNNNNN
+        date_str = datetime.now().strftime("%Y-%m-%d")
+        random_suffix = f"{random.randint(0, 999999):06d}"
+        self.new_branch_name = f"auto-microsoft-main-{date_str}-{random_suffix}"
+        logger.info(f"Creating branch: {self.new_branch_name}")
+        log_call(f"git checkout -b {self.new_branch_name}")
+
+        # Get artifacts URL from latest main commit
+        if not self.artifacts_url:
+            self.get_artifacts_url_from_main()
+
+        # Update dependency in both packages
+        for package in ["autorest.python", "typespec-python"]:
+            package_json = Path(f"packages/{package}/package.json")
+            with open(package_json, "r") as f:
+                package_data = json.load(f)
+            package_data["dependencies"]["@typespec/http-client-python"] = self.artifacts_url
+            with open(package_json, "w") as f:
+                json.dump(package_data, f, indent=2)
+
+        try:
+            log_call("git add .")
+            log_call('git commit -m "Update dependencies"')
+            git_push()
+        except CalledProcessError:
+            logger.info("No changes about dependencies to commit.")
+
+        # Sync shared files from typespec repo
+        self.sync_from_typespec()
+
+        # Build, regenerate, and push
+        self.prepare_pr()
+
+        # Create PR
+        pr_body = "Auto PR syncing from typespec main branch"
+        if self.pipeline_link:
+            pr_body += f"\n\nThis PR is generated from the [pipeline]({self.pipeline_link}) triggered manually."
+        self.autorest_repo.create_pull(
+            base="main",
+            head=self.new_branch_name,
+            title=f"Sync from typespec main ({date_str})",
+            body=pr_body,
+            maintainer_can_modify=True,
+            draft=True,
+        )
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
         "--pull-url",
-        help="Pull request url",
+        help="Pull request url (if not provided, syncs from main branch)",
         type=str,
+        required=False,
+        default=None,
     )
 
     parser.add_argument(

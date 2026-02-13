@@ -54,6 +54,13 @@ jobs:
 
   - bash: |
       pip install -r $(YmlPath)/auto-pr-from-http-client-python.txt
+      PULL_URL_PARAM=""
+      if [ -n "$PULL_REQUEST_URL" ]; then
+        PULL_URL_PARAM="--pull-url=$PULL_REQUEST_URL"
+        echo "Pull Request URL: $PULL_REQUEST_URL"
+      else
+        echo "No Pull Request URL provided. Will sync from main branch."
+      fi
       ARTIFACTS_PARAM=""
       if [ -n "$ARTIFACTS_URL" ]; then
         ARTIFACTS_PARAM="--artifacts-url=$ARTIFACTS_URL"
@@ -64,7 +71,7 @@ jobs:
       PIPELINE_LINK="$(System.TeamFoundationCollectionUri)$(System.TeamProject)/_build/results?buildId=$(Build.BuildId)"
       echo "Pipeline Link: $PIPELINE_LINK"
       python $(YmlPath)/auto-pr-from-http-client-python.py \
-        --pull-url=$(PULL-REQUEST-URL) \
+        $PULL_URL_PARAM \
         --repo-token=$(Yuchao-GitToken) \
         --typespec-repo-path=$(Build.SourcesDirectory)/typespec \
         $ARTIFACTS_PARAM \
