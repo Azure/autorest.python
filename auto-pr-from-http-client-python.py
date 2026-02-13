@@ -517,8 +517,10 @@ class Repo:
         log_call(f"git checkout -b {self.new_branch_name}")
 
         # Get artifacts URL from latest main commit
+        self._main_commit_sha = self.get_latest_http_client_python_commit_sha()
         if not self.artifacts_url:
-            self.get_artifacts_url_from_main()
+            build_id = self.get_ado_pipeline_build_id(commit_sha=self._main_commit_sha)
+            self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id, commit_sha=self._main_commit_sha)
 
         # Update dependency in both packages
         for package in ["autorest.python", "typespec-python"]:
