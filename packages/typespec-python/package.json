@@ -66,8 +66,8 @@
   "dependencies": {
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
-    "tsx": "~4.19.1",
-    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTg3ODQwMi9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.1.tgz",
+    "tsx": "^4.21.0",
+    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTg4MjE3OC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.1.tgz",
     "fs-extra": "~11.2.0"
   },
   "devDependencies": {
@@ -91,14 +91,14 @@
     "@typespec/spector": "0.1.0-alpha.23",
     "@typespec/spec-api": "0.1.0-alpha.12",
     "@types/js-yaml": "~4.0.5",
-    "@types/node": "~24.1.0",
+    "@types/node": "~25.0.2",
     "@types/yargs": "~17.0.33",
     "@types/semver": "7.5.8",
     "c8": "^10.1.3",
-    "vitest": "^3.1.2",
-    "rimraf": "~6.0.1",
-    "typescript": "~5.8.2",
-    "typescript-eslint": "^8.21.0",
+    "vitest": "^4.0.15",
+    "rimraf": "~6.1.2",
+    "typescript": "~5.9.2",
+    "typescript-eslint": "^8.49.0",
     "yargs": "~17.7.2",
     "chalk": "5.3.0",
     "@types/fs-extra": "11.0.4"
