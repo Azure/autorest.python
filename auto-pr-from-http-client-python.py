@@ -511,18 +511,31 @@ class Repo:
         """Sync from the main branch of typespec repo when no PR is given."""
         logger.info("No pull URL provided. Syncing from main branch of typespec repo.")
 
+        # Get artifacts URL from latest main commit
+        self._main_commit_sha = self.get_latest_http_client_python_commit_sha()
+        if not self.artifacts_url:
+            build_id = self.get_ado_pipeline_build_id(commit_sha=self._main_commit_sha)
+            self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id, commit_sha=self._main_commit_sha)
+
+        current_artifacts = []
+        for package in ["autorest.python", "typespec-python"]:
+            package_json = Path(f"packages/{package}/package.json")
+            with open(package_json, "r") as f:
+                package_data = json.load(f)
+            current_artifacts.append(package_data["dependencies"].get("@typespec/http-client-python"))
+
+        if all(dep == self.artifacts_url for dep in current_artifacts):
+            logger.info(
+                "Artifacts URL is already up to date on main branch. Skipping branch creation, regenerate, and PR creation."
+            )
+            return
+
         # Generate branch name: auto-microsoft-main-YYYY-MM-DD-NNNNNN
         date_str = datetime.now().strftime("%Y-%m-%d")
         random_suffix = f"{random.randint(0, 999999):06d}"
         self.new_branch_name = f"auto-microsoft-main-{date_str}-{random_suffix}"
         logger.info(f"Creating branch: {self.new_branch_name}")
         log_call(f"git checkout -b {self.new_branch_name}")
-
-        # Get artifacts URL from latest main commit
-        self._main_commit_sha = self.get_latest_http_client_python_commit_sha()
-        if not self.artifacts_url:
-            build_id = self.get_ado_pipeline_build_id(commit_sha=self._main_commit_sha)
-            self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id, commit_sha=self._main_commit_sha)
 
         # Update dependency in both packages
         for package in ["autorest.python", "typespec-python"]:
