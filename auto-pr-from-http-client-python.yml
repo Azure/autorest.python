@@ -11,8 +11,8 @@ pr:
       - '*'
 
 schedules:
-  - cron: "0 0 * * *"
-    displayName: Daily midnight run
+  - cron: "0 0 * * 1-5"
+    displayName: Weekday midnight run
     branches:
       include:
         - main
