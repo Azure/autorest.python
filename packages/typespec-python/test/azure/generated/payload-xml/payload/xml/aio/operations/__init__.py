@@ -24,8 +24,6 @@ from ._operations import ModelWithEmptyArrayValueOperations  # type: ignore
 from ._operations import ModelWithTextValueOperations  # type: ignore
 from ._operations import ModelWithDictionaryValueOperations  # type: ignore
 from ._operations import ModelWithEncodedNamesValueOperations  # type: ignore
-from ._operations import ModelWithEnumValueOperations  # type: ignore
-from ._operations import ModelWithDatetimeValueOperations  # type: ignore
 from ._operations import XmlErrorValueOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
@@ -45,8 +43,6 @@ __all__ = [
     "ModelWithTextValueOperations",
     "ModelWithDictionaryValueOperations",
     "ModelWithEncodedNamesValueOperations",
-    "ModelWithEnumValueOperations",
-    "ModelWithDatetimeValueOperations",
     "XmlErrorValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore

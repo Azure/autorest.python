@@ -607,6 +607,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -628,7 +629,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource1, response.json())
 
@@ -772,6 +773,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -793,7 +795,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource1, response.json())
 
@@ -918,6 +920,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -939,7 +942,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource2, response.json())
 
@@ -1083,6 +1086,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -1104,7 +1108,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource2, response.json())
 
@@ -1227,6 +1231,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -1248,7 +1253,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource, response.json())
 
@@ -1392,6 +1397,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -1413,7 +1419,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.SubscriptionResource, response.json())
 
@@ -1540,6 +1546,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -1561,7 +1568,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.ResourceGroupResource, response.json())
 
@@ -1710,6 +1717,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -1731,7 +1739,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
             raise HttpResponseError(response=response, model=error, error_format=ARMErrorFormat)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.ResourceGroupResource, response.json())
 
