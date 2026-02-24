@@ -1,7 +1,8 @@
 # coding=utf-8
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
+import datetime
+from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -80,6 +81,49 @@ class ModelWithAttributes(_Model):
         id1: int,
         id2: str,
         enabled: bool,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithDatetime(_Model):
+    """Contains datetime properties with different encodings.
+
+    :ivar rfc3339: DateTime value with rfc3339 encoding. Required.
+    :vartype rfc3339: ~datetime.datetime
+    :ivar rfc7231: DateTime value with rfc7231 encoding. Required.
+    :vartype rfc7231: ~datetime.datetime
+    """
+
+    rfc3339: datetime.datetime = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        format="rfc3339",
+        xml={"attribute": False, "name": "rfc3339", "text": False, "unwrapped": False},
+    )
+    """DateTime value with rfc3339 encoding. Required."""
+    rfc7231: datetime.datetime = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        format="rfc7231",
+        xml={"attribute": False, "name": "rfc7231", "text": False, "unwrapped": False},
+    )
+    """DateTime value with rfc7231 encoding. Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithDatetime", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        rfc3339: datetime.datetime,
+        rfc7231: datetime.datetime,
     ) -> None: ...
 
     @overload
@@ -190,6 +234,39 @@ class ModelWithEncodedNames(_Model):
         *,
         model_data: "_models.SimpleModel",
         colors: list[str],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithEnum(_Model):
+    """Contains a single property with an enum value.
+
+    :ivar status: Required. Known values are: "pending", "success", and "error".
+    :vartype status: str or ~payload.xml.models.Status
+    """
+
+    status: Union[str, "_models.Status"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "status", "text": False, "unwrapped": False},
+    )
+    """Required. Known values are: \"pending\", \"success\", and \"error\"."""
+
+    _xml = {"attribute": False, "name": "ModelWithEnum", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        status: Union[str, "_models.Status"],
     ) -> None: ...
 
     @overload
