@@ -23,12 +23,12 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_group1_four_request,
-    build_group1_one_request,
-    build_group1_three_request,
-    build_group2_five_request,
-    build_group2_six_request,
-    build_group2_two_request,
+    build_two_operation_group_client_group1_four_request,
+    build_two_operation_group_client_group1_one_request,
+    build_two_operation_group_client_group1_three_request,
+    build_two_operation_group_client_group2_five_request,
+    build_two_operation_group_client_group2_six_request,
+    build_two_operation_group_client_group2_two_request,
 )
 from .._configuration import TwoOperationGroupClientConfiguration
 
@@ -36,14 +36,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class Group1Operations:
+class TwoOperationGroupClientGroup1Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.twooperationgroup.aio.TwoOperationGroupClient`'s
-        :attr:`group1` attribute.
+        :attr:`two_operation_group_client_group1` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -74,7 +74,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_one_request(
+        _request = build_two_operation_group_client_group1_one_request(
             headers=_headers,
             params=_params,
         )
@@ -119,7 +119,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_three_request(
+        _request = build_two_operation_group_client_group1_three_request(
             headers=_headers,
             params=_params,
         )
@@ -164,7 +164,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_four_request(
+        _request = build_two_operation_group_client_group1_four_request(
             headers=_headers,
             params=_params,
         )
@@ -189,14 +189,14 @@ class Group1Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group2Operations:
+class TwoOperationGroupClientGroup2Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.twooperationgroup.aio.TwoOperationGroupClient`'s
-        :attr:`group2` attribute.
+        :attr:`two_operation_group_client_group2` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -227,7 +227,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_two_request(
+        _request = build_two_operation_group_client_group2_two_request(
             headers=_headers,
             params=_params,
         )
@@ -272,7 +272,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_five_request(
+        _request = build_two_operation_group_client_group2_five_request(
             headers=_headers,
             params=_params,
         )
@@ -317,7 +317,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_six_request(
+        _request = build_two_operation_group_client_group2_six_request(
             headers=_headers,
             params=_params,
         )

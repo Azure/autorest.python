@@ -15,27 +15,29 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
-from ..header.aio.operations import HeaderOperations
-from ..property.aio.operations import PropertyOperations
-from ..query.aio.operations import QueryOperations
-from ..requestbody.aio.operations import RequestBodyOperations
-from ..responsebody.aio.operations import ResponseBodyOperations
+from ..header.aio.operations import BytesClientHeaderOperations
+from ..property.aio.operations import BytesClientPropertyOperations
+from ..query.aio.operations import BytesClientQueryOperations
+from ..requestbody.aio.operations import BytesClientRequestBodyOperations
+from ..responsebody.aio.operations import BytesClientResponseBodyOperations
 from ._configuration import BytesClientConfiguration
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on bytes.
 
-    :ivar query: QueryOperations operations
-    :vartype query: encode.bytes.aio.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.bytes.aio.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.bytes.aio.operations.HeaderOperations
-    :ivar request_body: RequestBodyOperations operations
-    :vartype request_body: encode.bytes.aio.operations.RequestBodyOperations
-    :ivar response_body: ResponseBodyOperations operations
-    :vartype response_body: encode.bytes.aio.operations.ResponseBodyOperations
+    :ivar bytes_client_query: BytesClientQueryOperations operations
+    :vartype bytes_client_query: encode.bytes.aio.operations.BytesClientQueryOperations
+    :ivar bytes_client_property: BytesClientPropertyOperations operations
+    :vartype bytes_client_property: encode.bytes.aio.operations.BytesClientPropertyOperations
+    :ivar bytes_client_header: BytesClientHeaderOperations operations
+    :vartype bytes_client_header: encode.bytes.aio.operations.BytesClientHeaderOperations
+    :ivar bytes_client_request_body: BytesClientRequestBodyOperations operations
+    :vartype bytes_client_request_body:
+     encode.bytes.aio.operations.BytesClientRequestBodyOperations
+    :ivar bytes_client_response_body: BytesClientResponseBodyOperations operations
+    :vartype bytes_client_response_body:
+     encode.bytes.aio.operations.BytesClientResponseBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -68,11 +70,21 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.request_body = RequestBodyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.response_body = ResponseBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.bytes_client_query = BytesClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_property = BytesClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_header = BytesClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_request_body = BytesClientRequestBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_response_body = BytesClientResponseBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

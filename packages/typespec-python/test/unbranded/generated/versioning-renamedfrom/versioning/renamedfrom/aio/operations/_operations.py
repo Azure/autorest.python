@@ -24,7 +24,7 @@ from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
-    build_new_interface_new_op_in_new_interface_request,
+    build_renamed_from_client_new_interface_new_op_in_new_interface_request,
     build_renamed_from_new_op_request,
 )
 from .._configuration import RenamedFromClientConfiguration
@@ -34,14 +34,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class NewInterfaceOperations:
+class RenamedFromClientNewInterfaceOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~versioning.renamedfrom.aio.RenamedFromClient`'s
-        :attr:`new_interface` attribute.
+        :attr:`renamed_from_client_new_interface` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -131,7 +131,7 @@ class NewInterfaceOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_new_interface_new_op_in_new_interface_request(
+        _request = build_renamed_from_client_new_interface_new_op_in_new_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

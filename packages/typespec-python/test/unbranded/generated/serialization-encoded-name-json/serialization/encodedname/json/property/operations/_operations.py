@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_property_send_request(**kwargs: Any) -> HttpRequest:
+def build_json_client_property_send_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -46,7 +46,7 @@ def build_property_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_get_request(**kwargs: Any) -> HttpRequest:
+def build_json_client_property_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -60,14 +60,14 @@ def build_property_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class PropertyOperations:
+class JsonClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~serialization.encodedname.json.JsonClient`'s
-        :attr:`property` attribute.
+        :attr:`json_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -154,7 +154,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_send_request(
+        _request = build_json_client_property_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -197,7 +197,7 @@ class PropertyOperations:
 
         cls: ClsType[_models1.JsonEncodedNameModel] = kwargs.pop("cls", None)
 
-        _request = build_property_get_request(
+        _request = build_json_client_property_get_request(
             headers=_headers,
             params=_params,
         )

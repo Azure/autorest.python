@@ -1,15 +1,15 @@
 {
     "CrossLanguagePackageId": "Parameters.CollectionFormat",
     "CrossLanguageDefinitionId": {
-        "parameters.collectionformat.operations.QueryOperations.multi": "Parameters.CollectionFormat.Query.multi",
-        "parameters.collectionformat.aio.operations.QueryOperations.multi": "Parameters.CollectionFormat.Query.multi",
-        "parameters.collectionformat.operations.QueryOperations.ssv": "Parameters.CollectionFormat.Query.ssv",
-        "parameters.collectionformat.aio.operations.QueryOperations.ssv": "Parameters.CollectionFormat.Query.ssv",
-        "parameters.collectionformat.operations.QueryOperations.pipes": "Parameters.CollectionFormat.Query.pipes",
-        "parameters.collectionformat.aio.operations.QueryOperations.pipes": "Parameters.CollectionFormat.Query.pipes",
-        "parameters.collectionformat.operations.QueryOperations.csv": "Parameters.CollectionFormat.Query.csv",
-        "parameters.collectionformat.aio.operations.QueryOperations.csv": "Parameters.CollectionFormat.Query.csv",
-        "parameters.collectionformat.operations.HeaderOperations.csv": "Parameters.CollectionFormat.Header.csv",
-        "parameters.collectionformat.aio.operations.HeaderOperations.csv": "Parameters.CollectionFormat.Header.csv"
+        "parameters.collectionformat.operations.CollectionFormatClientQueryOperations.multi": "Parameters.CollectionFormat.Query.multi",
+        "parameters.collectionformat.aio.operations.CollectionFormatClientQueryOperations.multi": "Parameters.CollectionFormat.Query.multi",
+        "parameters.collectionformat.operations.CollectionFormatClientQueryOperations.ssv": "Parameters.CollectionFormat.Query.ssv",
+        "parameters.collectionformat.aio.operations.CollectionFormatClientQueryOperations.ssv": "Parameters.CollectionFormat.Query.ssv",
+        "parameters.collectionformat.operations.CollectionFormatClientQueryOperations.pipes": "Parameters.CollectionFormat.Query.pipes",
+        "parameters.collectionformat.aio.operations.CollectionFormatClientQueryOperations.pipes": "Parameters.CollectionFormat.Query.pipes",
+        "parameters.collectionformat.operations.CollectionFormatClientQueryOperations.csv": "Parameters.CollectionFormat.Query.csv",
+        "parameters.collectionformat.aio.operations.CollectionFormatClientQueryOperations.csv": "Parameters.CollectionFormat.Query.csv",
+        "parameters.collectionformat.operations.CollectionFormatClientHeaderOperations.csv": "Parameters.CollectionFormat.Header.csv",
+        "parameters.collectionformat.aio.operations.CollectionFormatClientHeaderOperations.csv": "Parameters.CollectionFormat.Header.csv"
     }
 }

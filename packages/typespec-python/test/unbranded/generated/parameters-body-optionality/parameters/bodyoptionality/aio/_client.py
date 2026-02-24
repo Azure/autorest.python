@@ -8,7 +8,7 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
-from ..optionalexplicit.aio.operations import OptionalExplicitOperations
+from ..optionalexplicit.aio.operations import BodyOptionalityClientOptionalExplicitOperations
 from ._configuration import BodyOptionalityClientConfiguration
 from ._operations import _BodyOptionalityClientOperationsMixin
 
@@ -18,9 +18,10 @@ class BodyOptionalityClient(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
-    :ivar optional_explicit: OptionalExplicitOperations operations
-    :vartype optional_explicit:
-     parameters.bodyoptionality.aio.operations.OptionalExplicitOperations
+    :ivar body_optionality_client_optional_explicit:
+     BodyOptionalityClientOptionalExplicitOperations operations
+    :vartype body_optionality_client_optional_explicit:
+     parameters.bodyoptionality.aio.operations.BodyOptionalityClientOptionalExplicitOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -47,7 +48,7 @@ class BodyOptionalityClient(
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.optional_explicit = OptionalExplicitOperations(
+        self.body_optionality_client_optional_explicit = BodyOptionalityClientOptionalExplicitOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

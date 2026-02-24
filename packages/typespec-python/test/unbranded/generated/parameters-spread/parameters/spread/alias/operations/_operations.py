@@ -30,7 +30,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_spread_client_alias_spread_as_request_body_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -44,7 +46,7 @@ def build_alias_spread_as_request_body_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_parameter_with_inner_model_request(  # pylint: disable=name-too-long
+def build_spread_client_alias_spread_parameter_with_inner_model_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -66,7 +68,7 @@ def build_alias_spread_parameter_with_inner_model_request(  # pylint: disable=na
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_as_request_parameter_request(  # pylint: disable=name-too-long
+def build_spread_client_alias_spread_as_request_parameter_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -88,7 +90,7 @@ def build_alias_spread_as_request_parameter_request(  # pylint: disable=name-too
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_with_multiple_parameters_request(  # pylint: disable=name-too-long
+def build_spread_client_alias_spread_with_multiple_parameters_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -110,7 +112,7 @@ def build_alias_spread_with_multiple_parameters_request(  # pylint: disable=name
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_alias_spread_parameter_with_inner_alias_request(  # pylint: disable=name-too-long
+def build_spread_client_alias_spread_parameter_with_inner_alias_request(  # pylint: disable=name-too-long
     id: str, *, x_ms_test_header: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -132,14 +134,14 @@ def build_alias_spread_parameter_with_inner_alias_request(  # pylint: disable=na
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class AliasOperations:
+class SpreadClientAliasOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.spread.SpreadClient`'s
-        :attr:`alias` attribute.
+        :attr:`spread_client_alias` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -230,7 +232,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_body_request(
+        _request = build_spread_client_alias_spread_as_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -320,7 +322,7 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         name: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_parameter_with_inner_model.
 
@@ -362,7 +364,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_model_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_model_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -454,7 +456,7 @@ class AliasOperations:
         *,
         x_ms_test_header: str,
         name: str = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_as_request_parameter.
 
@@ -496,7 +498,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_parameter_request(
+        _request = build_spread_client_alias_spread_as_request_parameter_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -532,7 +534,7 @@ class AliasOperations:
         content_type: str = "application/json",
         optional_int: Optional[int] = None,
         optional_string_list: Optional[list[str]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -606,7 +608,7 @@ class AliasOperations:
         required_int_list: list[int] = _Unset,
         optional_int: Optional[int] = None,
         optional_string_list: Optional[list[str]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread_with_multiple_parameters.
 
@@ -661,7 +663,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_with_multiple_parameters_request(
+        _request = build_spread_client_alias_spread_with_multiple_parameters_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -695,7 +697,7 @@ class AliasOperations:
         name: str,
         age: int,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread an alias with contains another alias property as body.
 
@@ -763,7 +765,7 @@ class AliasOperations:
         x_ms_test_header: str,
         name: str = _Unset,
         age: int = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """spread an alias with contains another alias property as body.
 
@@ -809,7 +811,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_alias_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_alias_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,

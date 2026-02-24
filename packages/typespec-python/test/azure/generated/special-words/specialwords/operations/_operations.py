@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_models_with_and_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_and_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -52,7 +52,7 @@ def build_models_with_and_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_as_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_as_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -66,7 +66,9 @@ def build_models_with_as_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_assert_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_assert_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -80,7 +82,7 @@ def build_models_with_assert_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_async_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_async_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -94,7 +96,7 @@ def build_models_with_async_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_await_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_await_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -108,7 +110,7 @@ def build_models_with_await_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_break_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_break_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -122,7 +124,7 @@ def build_models_with_break_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_class_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_class_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -136,7 +138,9 @@ def build_models_with_class_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_constructor_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_constructor_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -150,7 +154,9 @@ def build_models_with_constructor_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_continue_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_continue_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -164,7 +170,7 @@ def build_models_with_continue_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_def_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_def_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -178,7 +184,7 @@ def build_models_with_def_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_del_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_del_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -192,7 +198,7 @@ def build_models_with_del_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_elif_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_elif_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -206,7 +212,7 @@ def build_models_with_elif_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_else_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_else_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -220,7 +226,9 @@ def build_models_with_else_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_except_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_except_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -234,7 +242,7 @@ def build_models_with_except_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_exec_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_exec_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -248,7 +256,9 @@ def build_models_with_exec_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_finally_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_finally_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -262,7 +272,7 @@ def build_models_with_finally_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_for_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_for_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -276,7 +286,7 @@ def build_models_with_for_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_from_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_from_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -290,7 +300,9 @@ def build_models_with_from_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_global_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_global_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -304,7 +316,7 @@ def build_models_with_global_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_if_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_if_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -318,7 +330,9 @@ def build_models_with_if_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_import_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_import_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -332,7 +346,7 @@ def build_models_with_import_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_in_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_in_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -346,7 +360,7 @@ def build_models_with_in_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_is_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_is_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -360,7 +374,9 @@ def build_models_with_is_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_lambda_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_lambda_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -374,7 +390,7 @@ def build_models_with_lambda_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_not_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_not_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -388,7 +404,7 @@ def build_models_with_not_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_or_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_or_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -402,7 +418,7 @@ def build_models_with_or_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_pass_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_pass_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -416,7 +432,7 @@ def build_models_with_pass_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_raise_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_raise_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -430,7 +446,9 @@ def build_models_with_raise_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_return_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_return_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -444,7 +462,7 @@ def build_models_with_return_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_try_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_try_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -458,7 +476,7 @@ def build_models_with_try_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_while_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_while_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -472,7 +490,7 @@ def build_models_with_while_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_with_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_with_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -486,7 +504,7 @@ def build_models_with_with_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_with_yield_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_models_with_yield_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -500,7 +518,9 @@ def build_models_with_yield_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_properties_same_as_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_special_words_client_model_properties_same_as_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -514,7 +534,9 @@ def build_model_properties_same_as_model_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_properties_dict_methods_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_special_words_client_model_properties_dict_methods_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -528,7 +550,9 @@ def build_model_properties_dict_methods_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_properties_with_list_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_model_properties_with_list_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -542,238 +566,306 @@ def build_model_properties_with_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_operations_and_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_and_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/and"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_as_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_as_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/as"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_assert_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_assert_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/assert"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_async_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_async_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/async"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_await_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_await_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/await"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_break_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_break_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/break"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_class_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_class_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/class"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_constructor_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_constructor_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/constructor"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_continue_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_continue_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/continue"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_def_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_def_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/def"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_del_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_del_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/del"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_elif_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_elif_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/elif"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_else_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_else_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/else"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_except_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_except_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/except"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_exec_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_exec_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/exec"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_finally_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_finally_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/finally"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_for_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_for_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/for"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_from_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_from_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/from"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_global_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_global_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/global"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_if_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_if_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/if"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_import_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_import_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/import"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_in_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_in_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/in"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_is_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_is_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/is"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_lambda_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_lambda_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/lambda"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_not_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_not_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/not"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_or_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_or_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/or"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_pass_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_pass_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/pass"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_raise_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_raise_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/raise"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_return_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_return_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/return"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_try_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_try_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/try"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_while_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_while_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/while"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_with_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_with_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/with"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_operations_yield_method_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_operations_yield_method_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/special-words/operations/yield"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_parameters_with_and_request(*, and_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_and_request(  # pylint: disable=name-too-long
+    *, and_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -785,7 +877,9 @@ def build_parameters_with_and_request(*, and_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_as_request(*, as_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_as_request(  # pylint: disable=name-too-long
+    *, as_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -797,7 +891,9 @@ def build_parameters_with_as_request(*, as_parameter: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_assert_request(*, assert_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_assert_request(  # pylint: disable=name-too-long
+    *, assert_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -809,7 +905,9 @@ def build_parameters_with_assert_request(*, assert_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_async_request(*, async_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_async_request(  # pylint: disable=name-too-long
+    *, async_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -821,7 +919,9 @@ def build_parameters_with_async_request(*, async_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_await_request(*, await_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_await_request(  # pylint: disable=name-too-long
+    *, await_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -833,7 +933,9 @@ def build_parameters_with_await_request(*, await_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_break_request(*, break_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_break_request(  # pylint: disable=name-too-long
+    *, break_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -845,7 +947,9 @@ def build_parameters_with_break_request(*, break_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_class_request(*, class_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_class_request(  # pylint: disable=name-too-long
+    *, class_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -857,7 +961,7 @@ def build_parameters_with_class_request(*, class_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_constructor_request(  # pylint: disable=name-too-long
+def build_special_words_client_parameters_with_constructor_request(  # pylint: disable=name-too-long
     *, constructor: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -871,7 +975,9 @@ def build_parameters_with_constructor_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_continue_request(*, continue_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_continue_request(  # pylint: disable=name-too-long
+    *, continue_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -883,7 +989,9 @@ def build_parameters_with_continue_request(*, continue_parameter: str, **kwargs:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_def_request(*, def_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_def_request(  # pylint: disable=name-too-long
+    *, def_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -895,7 +1003,9 @@ def build_parameters_with_def_request(*, def_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_del_request(*, del_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_del_request(  # pylint: disable=name-too-long
+    *, del_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -907,7 +1017,9 @@ def build_parameters_with_del_request(*, del_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_elif_request(*, elif_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_elif_request(  # pylint: disable=name-too-long
+    *, elif_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -919,7 +1031,9 @@ def build_parameters_with_elif_request(*, elif_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_else_request(*, else_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_else_request(  # pylint: disable=name-too-long
+    *, else_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -931,7 +1045,9 @@ def build_parameters_with_else_request(*, else_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_except_request(*, except_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_except_request(  # pylint: disable=name-too-long
+    *, except_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -943,7 +1059,9 @@ def build_parameters_with_except_request(*, except_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_exec_request(*, exec_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_exec_request(  # pylint: disable=name-too-long
+    *, exec_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -955,7 +1073,9 @@ def build_parameters_with_exec_request(*, exec_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_finally_request(*, finally_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_finally_request(  # pylint: disable=name-too-long
+    *, finally_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -967,7 +1087,9 @@ def build_parameters_with_finally_request(*, finally_parameter: str, **kwargs: A
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_for_request(*, for_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_for_request(  # pylint: disable=name-too-long
+    *, for_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -979,7 +1101,9 @@ def build_parameters_with_for_request(*, for_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_from_request(*, from_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_from_request(  # pylint: disable=name-too-long
+    *, from_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -991,7 +1115,9 @@ def build_parameters_with_from_request(*, from_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_global_request(*, global_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_global_request(  # pylint: disable=name-too-long
+    *, global_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1003,7 +1129,9 @@ def build_parameters_with_global_request(*, global_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_if_request(*, if_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_if_request(  # pylint: disable=name-too-long
+    *, if_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1015,7 +1143,9 @@ def build_parameters_with_if_request(*, if_parameter: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_import_request(*, import_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_import_request(  # pylint: disable=name-too-long
+    *, import_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1027,7 +1157,9 @@ def build_parameters_with_import_request(*, import_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_in_request(*, in_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_in_request(  # pylint: disable=name-too-long
+    *, in_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1039,7 +1171,9 @@ def build_parameters_with_in_request(*, in_parameter: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_is_request(*, is_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_is_request(  # pylint: disable=name-too-long
+    *, is_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1051,7 +1185,9 @@ def build_parameters_with_is_request(*, is_parameter: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_lambda_request(*, lambda_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_lambda_request(  # pylint: disable=name-too-long
+    *, lambda_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1063,7 +1199,9 @@ def build_parameters_with_lambda_request(*, lambda_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_not_request(*, not_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_not_request(  # pylint: disable=name-too-long
+    *, not_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1075,7 +1213,9 @@ def build_parameters_with_not_request(*, not_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_or_request(*, or_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_or_request(  # pylint: disable=name-too-long
+    *, or_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1087,7 +1227,9 @@ def build_parameters_with_or_request(*, or_parameter: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_pass_request(*, pass_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_pass_request(  # pylint: disable=name-too-long
+    *, pass_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1099,7 +1241,9 @@ def build_parameters_with_pass_request(*, pass_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_raise_request(*, raise_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_raise_request(  # pylint: disable=name-too-long
+    *, raise_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1111,7 +1255,9 @@ def build_parameters_with_raise_request(*, raise_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_return_request(*, return_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_return_request(  # pylint: disable=name-too-long
+    *, return_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1123,7 +1269,9 @@ def build_parameters_with_return_request(*, return_parameter: str, **kwargs: Any
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_try_request(*, try_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_try_request(  # pylint: disable=name-too-long
+    *, try_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1135,7 +1283,9 @@ def build_parameters_with_try_request(*, try_parameter: str, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_while_request(*, while_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_while_request(  # pylint: disable=name-too-long
+    *, while_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1147,7 +1297,9 @@ def build_parameters_with_while_request(*, while_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_with_request(*, with_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_with_request(  # pylint: disable=name-too-long
+    *, with_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1159,7 +1311,9 @@ def build_parameters_with_with_request(*, with_parameter: str, **kwargs: Any) ->
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_yield_request(*, yield_parameter: str, **kwargs: Any) -> HttpRequest:
+def build_special_words_client_parameters_with_yield_request(  # pylint: disable=name-too-long
+    *, yield_parameter: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -1171,7 +1325,7 @@ def build_parameters_with_yield_request(*, yield_parameter: str, **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_parameters_with_cancellation_token_request(  # pylint: disable=name-too-long
+def build_special_words_client_parameters_with_cancellation_token_request(  # pylint: disable=name-too-long
     *, cancellation_token: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -1185,14 +1339,14 @@ def build_parameters_with_cancellation_token_request(  # pylint: disable=name-to
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class ModelsOperations:  # pylint: disable=too-many-public-methods
+class SpecialWordsClientModelsOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.SpecialWordsClient`'s
-        :attr:`models` attribute.
+        :attr:`special_words_client_models` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1277,7 +1431,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_and_request(
+        _request = build_special_words_client_models_with_and_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1377,7 +1531,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_as_request(
+        _request = build_special_words_client_models_with_as_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1477,7 +1631,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_assert_request(
+        _request = build_special_words_client_models_with_assert_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1577,7 +1731,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_async_request(
+        _request = build_special_words_client_models_with_async_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1677,7 +1831,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_await_request(
+        _request = build_special_words_client_models_with_await_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1777,7 +1931,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_break_request(
+        _request = build_special_words_client_models_with_break_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1877,7 +2031,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_class_request(
+        _request = build_special_words_client_models_with_class_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1979,7 +2133,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_constructor_request(
+        _request = build_special_words_client_models_with_constructor_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2081,7 +2235,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_continue_request(
+        _request = build_special_words_client_models_with_continue_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2181,7 +2335,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_def_request(
+        _request = build_special_words_client_models_with_def_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2281,7 +2435,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_del_request(
+        _request = build_special_words_client_models_with_del_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2381,7 +2535,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_elif_request(
+        _request = build_special_words_client_models_with_elif_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2481,7 +2635,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_else_request(
+        _request = build_special_words_client_models_with_else_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2581,7 +2735,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_except_request(
+        _request = build_special_words_client_models_with_except_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2681,7 +2835,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_exec_request(
+        _request = build_special_words_client_models_with_exec_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2783,7 +2937,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_finally_request(
+        _request = build_special_words_client_models_with_finally_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2883,7 +3037,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_for_request(
+        _request = build_special_words_client_models_with_for_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2983,7 +3137,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_from_request(
+        _request = build_special_words_client_models_with_from_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3083,7 +3237,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_global_request(
+        _request = build_special_words_client_models_with_global_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3183,7 +3337,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_if_request(
+        _request = build_special_words_client_models_with_if_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3283,7 +3437,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_import_request(
+        _request = build_special_words_client_models_with_import_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3383,7 +3537,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_in_request(
+        _request = build_special_words_client_models_with_in_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3483,7 +3637,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_is_request(
+        _request = build_special_words_client_models_with_is_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3583,7 +3737,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_lambda_request(
+        _request = build_special_words_client_models_with_lambda_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3683,7 +3837,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_not_request(
+        _request = build_special_words_client_models_with_not_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3783,7 +3937,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_or_request(
+        _request = build_special_words_client_models_with_or_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3883,7 +4037,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_pass_request(
+        _request = build_special_words_client_models_with_pass_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3983,7 +4137,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_raise_request(
+        _request = build_special_words_client_models_with_raise_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4083,7 +4237,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_return_request(
+        _request = build_special_words_client_models_with_return_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4183,7 +4337,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_try_request(
+        _request = build_special_words_client_models_with_try_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4283,7 +4437,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_while_request(
+        _request = build_special_words_client_models_with_while_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4383,7 +4537,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_with_request(
+        _request = build_special_words_client_models_with_with_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4483,7 +4637,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_yield_request(
+        _request = build_special_words_client_models_with_yield_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4509,14 +4663,14 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ModelPropertiesOperations:
+class SpecialWordsClientModelPropertiesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.SpecialWordsClient`'s
-        :attr:`model_properties` attribute.
+        :attr:`special_words_client_model_properties` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4603,7 +4757,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_same_as_model_request(
+        _request = build_special_words_client_model_properties_same_as_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4703,7 +4857,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_dict_methods_request(
+        _request = build_special_words_client_model_properties_dict_methods_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4803,7 +4957,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_with_list_request(
+        _request = build_special_words_client_model_properties_with_list_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4829,14 +4983,14 @@ class ModelPropertiesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Operations:  # pylint: disable=too-many-public-methods
+class SpecialWordsClientOperationsOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.SpecialWordsClient`'s
-        :attr:`operations` attribute.
+        :attr:`special_words_client_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4867,7 +5021,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_and_method_request(
+        _request = build_special_words_client_operations_and_method_request(
             headers=_headers,
             params=_params,
         )
@@ -4911,7 +5065,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_as_method_request(
+        _request = build_special_words_client_operations_as_method_request(
             headers=_headers,
             params=_params,
         )
@@ -4955,7 +5109,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_assert_method_request(
+        _request = build_special_words_client_operations_assert_method_request(
             headers=_headers,
             params=_params,
         )
@@ -4999,7 +5153,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_async_method_request(
+        _request = build_special_words_client_operations_async_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5043,7 +5197,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_await_method_request(
+        _request = build_special_words_client_operations_await_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5087,7 +5241,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_break_method_request(
+        _request = build_special_words_client_operations_break_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5131,7 +5285,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_class_method_request(
+        _request = build_special_words_client_operations_class_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5175,7 +5329,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_constructor_request(
+        _request = build_special_words_client_operations_constructor_request(
             headers=_headers,
             params=_params,
         )
@@ -5219,7 +5373,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_continue_method_request(
+        _request = build_special_words_client_operations_continue_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5263,7 +5417,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_def_method_request(
+        _request = build_special_words_client_operations_def_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5307,7 +5461,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_del_method_request(
+        _request = build_special_words_client_operations_del_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5351,7 +5505,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_elif_method_request(
+        _request = build_special_words_client_operations_elif_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5395,7 +5549,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_else_method_request(
+        _request = build_special_words_client_operations_else_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5439,7 +5593,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_except_method_request(
+        _request = build_special_words_client_operations_except_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5483,7 +5637,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_exec_method_request(
+        _request = build_special_words_client_operations_exec_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5527,7 +5681,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_finally_method_request(
+        _request = build_special_words_client_operations_finally_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5571,7 +5725,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_for_method_request(
+        _request = build_special_words_client_operations_for_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5615,7 +5769,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_from_method_request(
+        _request = build_special_words_client_operations_from_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5659,7 +5813,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_global_method_request(
+        _request = build_special_words_client_operations_global_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5703,7 +5857,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_if_method_request(
+        _request = build_special_words_client_operations_if_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5747,7 +5901,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_import_method_request(
+        _request = build_special_words_client_operations_import_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5791,7 +5945,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_in_method_request(
+        _request = build_special_words_client_operations_in_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5835,7 +5989,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_is_method_request(
+        _request = build_special_words_client_operations_is_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5879,7 +6033,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_lambda_method_request(
+        _request = build_special_words_client_operations_lambda_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5923,7 +6077,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_not_method_request(
+        _request = build_special_words_client_operations_not_method_request(
             headers=_headers,
             params=_params,
         )
@@ -5967,7 +6121,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_or_method_request(
+        _request = build_special_words_client_operations_or_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6011,7 +6165,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_pass_method_request(
+        _request = build_special_words_client_operations_pass_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6055,7 +6209,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_raise_method_request(
+        _request = build_special_words_client_operations_raise_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6099,7 +6253,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_return_method_request(
+        _request = build_special_words_client_operations_return_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6143,7 +6297,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_try_method_request(
+        _request = build_special_words_client_operations_try_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6187,7 +6341,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_while_method_request(
+        _request = build_special_words_client_operations_while_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6231,7 +6385,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_with_method_request(
+        _request = build_special_words_client_operations_with_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6275,7 +6429,7 @@ class Operations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_operations_yield_method_request(
+        _request = build_special_words_client_operations_yield_method_request(
             headers=_headers,
             params=_params,
         )
@@ -6299,14 +6453,14 @@ class Operations:  # pylint: disable=too-many-public-methods
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ParametersOperations:  # pylint: disable=too-many-public-methods
+class SpecialWordsClientParametersOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.SpecialWordsClient`'s
-        :attr:`parameters` attribute.
+        :attr:`special_words_client_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -6339,7 +6493,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_and_request(
+        _request = build_special_words_client_parameters_with_and_request(
             and_parameter=and_parameter,
             headers=_headers,
             params=_params,
@@ -6386,7 +6540,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_as_request(
+        _request = build_special_words_client_parameters_with_as_request(
             as_parameter=as_parameter,
             headers=_headers,
             params=_params,
@@ -6435,7 +6589,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_assert_request(
+        _request = build_special_words_client_parameters_with_assert_request(
             assert_parameter=assert_parameter,
             headers=_headers,
             params=_params,
@@ -6484,7 +6638,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_async_request(
+        _request = build_special_words_client_parameters_with_async_request(
             async_parameter=async_parameter,
             headers=_headers,
             params=_params,
@@ -6533,7 +6687,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_await_request(
+        _request = build_special_words_client_parameters_with_await_request(
             await_parameter=await_parameter,
             headers=_headers,
             params=_params,
@@ -6582,7 +6736,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_break_request(
+        _request = build_special_words_client_parameters_with_break_request(
             break_parameter=break_parameter,
             headers=_headers,
             params=_params,
@@ -6631,7 +6785,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_class_request(
+        _request = build_special_words_client_parameters_with_class_request(
             class_parameter=class_parameter,
             headers=_headers,
             params=_params,
@@ -6680,7 +6834,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_constructor_request(
+        _request = build_special_words_client_parameters_with_constructor_request(
             constructor=constructor,
             headers=_headers,
             params=_params,
@@ -6729,7 +6883,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_continue_request(
+        _request = build_special_words_client_parameters_with_continue_request(
             continue_parameter=continue_parameter,
             headers=_headers,
             params=_params,
@@ -6776,7 +6930,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_def_request(
+        _request = build_special_words_client_parameters_with_def_request(
             def_parameter=def_parameter,
             headers=_headers,
             params=_params,
@@ -6823,7 +6977,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_del_request(
+        _request = build_special_words_client_parameters_with_del_request(
             del_parameter=del_parameter,
             headers=_headers,
             params=_params,
@@ -6872,7 +7026,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_elif_request(
+        _request = build_special_words_client_parameters_with_elif_request(
             elif_parameter=elif_parameter,
             headers=_headers,
             params=_params,
@@ -6921,7 +7075,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_else_request(
+        _request = build_special_words_client_parameters_with_else_request(
             else_parameter=else_parameter,
             headers=_headers,
             params=_params,
@@ -6970,7 +7124,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_except_request(
+        _request = build_special_words_client_parameters_with_except_request(
             except_parameter=except_parameter,
             headers=_headers,
             params=_params,
@@ -7019,7 +7173,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_exec_request(
+        _request = build_special_words_client_parameters_with_exec_request(
             exec_parameter=exec_parameter,
             headers=_headers,
             params=_params,
@@ -7068,7 +7222,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_finally_request(
+        _request = build_special_words_client_parameters_with_finally_request(
             finally_parameter=finally_parameter,
             headers=_headers,
             params=_params,
@@ -7115,7 +7269,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_for_request(
+        _request = build_special_words_client_parameters_with_for_request(
             for_parameter=for_parameter,
             headers=_headers,
             params=_params,
@@ -7164,7 +7318,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_from_request(
+        _request = build_special_words_client_parameters_with_from_request(
             from_parameter=from_parameter,
             headers=_headers,
             params=_params,
@@ -7213,7 +7367,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_global_request(
+        _request = build_special_words_client_parameters_with_global_request(
             global_parameter=global_parameter,
             headers=_headers,
             params=_params,
@@ -7260,7 +7414,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_if_request(
+        _request = build_special_words_client_parameters_with_if_request(
             if_parameter=if_parameter,
             headers=_headers,
             params=_params,
@@ -7309,7 +7463,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_import_request(
+        _request = build_special_words_client_parameters_with_import_request(
             import_parameter=import_parameter,
             headers=_headers,
             params=_params,
@@ -7356,7 +7510,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_in_request(
+        _request = build_special_words_client_parameters_with_in_request(
             in_parameter=in_parameter,
             headers=_headers,
             params=_params,
@@ -7403,7 +7557,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_is_request(
+        _request = build_special_words_client_parameters_with_is_request(
             is_parameter=is_parameter,
             headers=_headers,
             params=_params,
@@ -7452,7 +7606,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_lambda_request(
+        _request = build_special_words_client_parameters_with_lambda_request(
             lambda_parameter=lambda_parameter,
             headers=_headers,
             params=_params,
@@ -7499,7 +7653,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_not_request(
+        _request = build_special_words_client_parameters_with_not_request(
             not_parameter=not_parameter,
             headers=_headers,
             params=_params,
@@ -7546,7 +7700,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_or_request(
+        _request = build_special_words_client_parameters_with_or_request(
             or_parameter=or_parameter,
             headers=_headers,
             params=_params,
@@ -7595,7 +7749,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_pass_request(
+        _request = build_special_words_client_parameters_with_pass_request(
             pass_parameter=pass_parameter,
             headers=_headers,
             params=_params,
@@ -7644,7 +7798,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_raise_request(
+        _request = build_special_words_client_parameters_with_raise_request(
             raise_parameter=raise_parameter,
             headers=_headers,
             params=_params,
@@ -7693,7 +7847,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_return_request(
+        _request = build_special_words_client_parameters_with_return_request(
             return_parameter=return_parameter,
             headers=_headers,
             params=_params,
@@ -7740,7 +7894,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_try_request(
+        _request = build_special_words_client_parameters_with_try_request(
             try_parameter=try_parameter,
             headers=_headers,
             params=_params,
@@ -7789,7 +7943,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_while_request(
+        _request = build_special_words_client_parameters_with_while_request(
             while_parameter=while_parameter,
             headers=_headers,
             params=_params,
@@ -7838,7 +7992,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_with_request(
+        _request = build_special_words_client_parameters_with_with_request(
             with_parameter=with_parameter,
             headers=_headers,
             params=_params,
@@ -7887,7 +8041,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_yield_request(
+        _request = build_special_words_client_parameters_with_yield_request(
             yield_parameter=yield_parameter,
             headers=_headers,
             params=_params,
@@ -7936,7 +8090,7 @@ class ParametersOperations:  # pylint: disable=too-many-public-methods
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_parameters_with_cancellation_token_request(
+        _request = build_special_words_client_parameters_with_cancellation_token_request(
             cancellation_token=cancellation_token,
             headers=_headers,
             params=_params,

@@ -35,7 +35,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_page_size_list_without_continuation_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_pageable_client_page_size_list_without_continuation_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -49,7 +51,7 @@ def build_page_size_list_without_continuation_request(**kwargs: Any) -> HttpRequ
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_page_size_list_with_page_size_request(  # pylint: disable=name-too-long
+def build_pageable_client_page_size_list_with_page_size_request(  # pylint: disable=name-too-long
     *, page_size: Optional[int] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -70,14 +72,14 @@ def build_page_size_list_with_page_size_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class PageSizeOperations:
+class PageableClientPageSizeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.PageableClient`'s
-        :attr:`page_size` attribute.
+        :attr:`pageable_client_page_size` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -111,7 +113,7 @@ class PageSizeOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_page_size_list_without_continuation_request(
+                _request = build_pageable_client_page_size_list_without_continuation_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -183,7 +185,7 @@ class PageSizeOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_page_size_list_with_page_size_request(
+                _request = build_pageable_client_page_size_list_with_page_size_request(
                     page_size=page_size,
                     headers=_headers,
                     params=_params,

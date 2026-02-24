@@ -9,18 +9,18 @@ from azure.core import PipelineClient
 
 from ...._configuration import RoutesClientConfiguration
 from ...._utils.serialization import Deserializer, Serializer
-from ..explode.operations._operations import QueryParametersQueryExpansionExplodeOperations
-from ..standard.operations._operations import QueryParametersQueryExpansionStandardOperations
+from ..explode.operations._operations import RoutesClientQueryParametersQueryExpansionExplodeOperations
+from ..standard.operations._operations import RoutesClientQueryParametersQueryExpansionStandardOperations
 
 
-class QueryParametersQueryExpansionOperations:
+class RoutesClientQueryParametersQueryExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`query_expansion` attribute.
+        :attr:`routes_client_query_parameters_query_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -30,9 +30,13 @@ class QueryParametersQueryExpansionOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.standard = QueryParametersQueryExpansionStandardOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_query_parameters_query_expansion_standard = (
+            RoutesClientQueryParametersQueryExpansionStandardOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.explode = QueryParametersQueryExpansionExplodeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_query_parameters_query_expansion_explode = (
+            RoutesClientQueryParametersQueryExpansionExplodeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )

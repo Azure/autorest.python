@@ -10,54 +10,68 @@ from corehttp.runtime import AsyncPipelineClient, policies
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ArrayClientConfiguration
 from .operations import (
-    BooleanValueOperations,
-    DatetimeValueOperations,
-    DurationValueOperations,
-    Float32ValueOperations,
-    Int32ValueOperations,
-    Int64ValueOperations,
-    ModelValueOperations,
-    NullableBooleanValueOperations,
-    NullableFloatValueOperations,
-    NullableInt32ValueOperations,
-    NullableModelValueOperations,
-    NullableStringValueOperations,
-    StringValueOperations,
-    UnknownValueOperations,
+    ArrayClientBooleanValueOperations,
+    ArrayClientDatetimeValueOperations,
+    ArrayClientDurationValueOperations,
+    ArrayClientFloat32ValueOperations,
+    ArrayClientInt32ValueOperations,
+    ArrayClientInt64ValueOperations,
+    ArrayClientModelValueOperations,
+    ArrayClientNullableBooleanValueOperations,
+    ArrayClientNullableFloatValueOperations,
+    ArrayClientNullableInt32ValueOperations,
+    ArrayClientNullableModelValueOperations,
+    ArrayClientNullableStringValueOperations,
+    ArrayClientStringValueOperations,
+    ArrayClientUnknownValueOperations,
 )
 
 
 class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various types of arrays.
 
-    :ivar int32_value: Int32ValueOperations operations
-    :vartype int32_value: typetest.array.aio.operations.Int32ValueOperations
-    :ivar int64_value: Int64ValueOperations operations
-    :vartype int64_value: typetest.array.aio.operations.Int64ValueOperations
-    :ivar boolean_value: BooleanValueOperations operations
-    :vartype boolean_value: typetest.array.aio.operations.BooleanValueOperations
-    :ivar string_value: StringValueOperations operations
-    :vartype string_value: typetest.array.aio.operations.StringValueOperations
-    :ivar float32_value: Float32ValueOperations operations
-    :vartype float32_value: typetest.array.aio.operations.Float32ValueOperations
-    :ivar datetime_value: DatetimeValueOperations operations
-    :vartype datetime_value: typetest.array.aio.operations.DatetimeValueOperations
-    :ivar duration_value: DurationValueOperations operations
-    :vartype duration_value: typetest.array.aio.operations.DurationValueOperations
-    :ivar unknown_value: UnknownValueOperations operations
-    :vartype unknown_value: typetest.array.aio.operations.UnknownValueOperations
-    :ivar model_value: ModelValueOperations operations
-    :vartype model_value: typetest.array.aio.operations.ModelValueOperations
-    :ivar nullable_float_value: NullableFloatValueOperations operations
-    :vartype nullable_float_value: typetest.array.aio.operations.NullableFloatValueOperations
-    :ivar nullable_int32_value: NullableInt32ValueOperations operations
-    :vartype nullable_int32_value: typetest.array.aio.operations.NullableInt32ValueOperations
-    :ivar nullable_boolean_value: NullableBooleanValueOperations operations
-    :vartype nullable_boolean_value: typetest.array.aio.operations.NullableBooleanValueOperations
-    :ivar nullable_string_value: NullableStringValueOperations operations
-    :vartype nullable_string_value: typetest.array.aio.operations.NullableStringValueOperations
-    :ivar nullable_model_value: NullableModelValueOperations operations
-    :vartype nullable_model_value: typetest.array.aio.operations.NullableModelValueOperations
+    :ivar array_client_int32_value: ArrayClientInt32ValueOperations operations
+    :vartype array_client_int32_value:
+     typetest.array.aio.operations.ArrayClientInt32ValueOperations
+    :ivar array_client_int64_value: ArrayClientInt64ValueOperations operations
+    :vartype array_client_int64_value:
+     typetest.array.aio.operations.ArrayClientInt64ValueOperations
+    :ivar array_client_boolean_value: ArrayClientBooleanValueOperations operations
+    :vartype array_client_boolean_value:
+     typetest.array.aio.operations.ArrayClientBooleanValueOperations
+    :ivar array_client_string_value: ArrayClientStringValueOperations operations
+    :vartype array_client_string_value:
+     typetest.array.aio.operations.ArrayClientStringValueOperations
+    :ivar array_client_float32_value: ArrayClientFloat32ValueOperations operations
+    :vartype array_client_float32_value:
+     typetest.array.aio.operations.ArrayClientFloat32ValueOperations
+    :ivar array_client_datetime_value: ArrayClientDatetimeValueOperations operations
+    :vartype array_client_datetime_value:
+     typetest.array.aio.operations.ArrayClientDatetimeValueOperations
+    :ivar array_client_duration_value: ArrayClientDurationValueOperations operations
+    :vartype array_client_duration_value:
+     typetest.array.aio.operations.ArrayClientDurationValueOperations
+    :ivar array_client_unknown_value: ArrayClientUnknownValueOperations operations
+    :vartype array_client_unknown_value:
+     typetest.array.aio.operations.ArrayClientUnknownValueOperations
+    :ivar array_client_model_value: ArrayClientModelValueOperations operations
+    :vartype array_client_model_value:
+     typetest.array.aio.operations.ArrayClientModelValueOperations
+    :ivar array_client_nullable_float_value: ArrayClientNullableFloatValueOperations operations
+    :vartype array_client_nullable_float_value:
+     typetest.array.aio.operations.ArrayClientNullableFloatValueOperations
+    :ivar array_client_nullable_int32_value: ArrayClientNullableInt32ValueOperations operations
+    :vartype array_client_nullable_int32_value:
+     typetest.array.aio.operations.ArrayClientNullableInt32ValueOperations
+    :ivar array_client_nullable_boolean_value: ArrayClientNullableBooleanValueOperations operations
+    :vartype array_client_nullable_boolean_value:
+     typetest.array.aio.operations.ArrayClientNullableBooleanValueOperations
+    :ivar array_client_nullable_string_value: ArrayClientNullableStringValueOperations operations
+    :vartype array_client_nullable_string_value:
+     typetest.array.aio.operations.ArrayClientNullableStringValueOperations
+    :ivar array_client_nullable_model_value: ArrayClientNullableModelValueOperations operations
+    :vartype array_client_nullable_model_value:
+     typetest.array.aio.operations.ArrayClientNullableModelValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -84,28 +98,46 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword,too-man
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.int32_value = Int32ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int64_value = Int64ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean_value = BooleanValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.string_value = StringValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float32_value = Float32ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.datetime_value = DatetimeValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.duration_value = DurationValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_value = UnknownValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model_value = ModelValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.nullable_float_value = NullableFloatValueOperations(
+        self.array_client_int32_value = ArrayClientInt32ValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.nullable_int32_value = NullableInt32ValueOperations(
+        self.array_client_int64_value = ArrayClientInt64ValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.nullable_boolean_value = NullableBooleanValueOperations(
+        self.array_client_boolean_value = ArrayClientBooleanValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.nullable_string_value = NullableStringValueOperations(
+        self.array_client_string_value = ArrayClientStringValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.nullable_model_value = NullableModelValueOperations(
+        self.array_client_float32_value = ArrayClientFloat32ValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_datetime_value = ArrayClientDatetimeValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_duration_value = ArrayClientDurationValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_unknown_value = ArrayClientUnknownValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_model_value = ArrayClientModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_nullable_float_value = ArrayClientNullableFloatValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_nullable_int32_value = ArrayClientNullableInt32ValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_nullable_boolean_value = ArrayClientNullableBooleanValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_nullable_string_value = ArrayClientNullableStringValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.array_client_nullable_model_value = ArrayClientNullableModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

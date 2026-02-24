@@ -38,14 +38,18 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_lists_bullet_points_op_request(**kwargs: Any) -> HttpRequest:
+def build_documentation_client_lists_bullet_points_op_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/documentation/lists/bullet-points/op"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_lists_bullet_points_model_request(**kwargs: Any) -> HttpRequest:
+def build_documentation_client_lists_bullet_points_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -59,42 +63,48 @@ def build_lists_bullet_points_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_lists_numbered_request(**kwargs: Any) -> HttpRequest:
+def build_documentation_client_lists_numbered_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/documentation/lists/numbered"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_text_formatting_bold_text_request(**kwargs: Any) -> HttpRequest:
+def build_documentation_client_text_formatting_bold_text_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/documentation/text-formatting/bold"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_text_formatting_italic_text_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_documentation_client_text_formatting_italic_text_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/documentation/text-formatting/italic"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_text_formatting_combined_formatting_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_documentation_client_text_formatting_combined_formatting_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/documentation/text-formatting/combined"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ListsOperations:
+class DocumentationClientListsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.documentation.DocumentationClient`'s
-        :attr:`lists` attribute.
+        :attr:`documentation_client_lists` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -141,7 +151,7 @@ class ListsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_lists_bullet_points_op_request(
+        _request = build_documentation_client_lists_bullet_points_op_request(
             headers=_headers,
             params=_params,
         )
@@ -248,7 +258,7 @@ class ListsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lists_bullet_points_model_request(
+        _request = build_documentation_client_lists_bullet_points_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -299,7 +309,7 @@ class ListsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_lists_numbered_request(
+        _request = build_documentation_client_lists_numbered_request(
             headers=_headers,
             params=_params,
         )
@@ -323,14 +333,14 @@ class ListsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class TextFormattingOperations:
+class DocumentationClientTextFormattingOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.documentation.DocumentationClient`'s
-        :attr:`text_formatting` attribute.
+        :attr:`documentation_client_text_formatting` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -362,7 +372,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_bold_text_request(
+        _request = build_documentation_client_text_formatting_bold_text_request(
             headers=_headers,
             params=_params,
         )
@@ -407,7 +417,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_italic_text_request(
+        _request = build_documentation_client_text_formatting_italic_text_request(
             headers=_headers,
             params=_params,
         )
@@ -453,7 +463,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_combined_formatting_request(
+        _request = build_documentation_client_text_formatting_combined_formatting_request(
             headers=_headers,
             params=_params,
         )

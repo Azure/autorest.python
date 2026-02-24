@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_managed_identity_get_request(
+def build_common_properties_client_managed_identity_get_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -71,7 +71,7 @@ def build_managed_identity_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_managed_identity_create_with_system_assigned_request(  # pylint: disable=name-too-long
+def build_common_properties_client_managed_identity_create_with_system_assigned_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -104,7 +104,7 @@ def build_managed_identity_create_with_system_assigned_request(  # pylint: disab
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_managed_identity_update_with_user_assigned_and_system_assigned_request(  # pylint: disable=name-too-long
+def build_common_properties_client_managed_identity_update_with_user_assigned_and_system_assigned_request(  # pylint: disable=name-too-long
     resource_group_name: str, managed_identity_tracked_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -137,7 +137,7 @@ def build_managed_identity_update_with_user_assigned_and_system_assigned_request
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_error_get_for_predefined_error_request(  # pylint: disable=name-too-long
+def build_common_properties_client_error_get_for_predefined_error_request(  # pylint: disable=name-too-long
     resource_group_name: str, confidential_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -165,7 +165,7 @@ def build_error_get_for_predefined_error_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_error_create_for_user_defined_error_request(  # pylint: disable=name-too-long
+def build_common_properties_client_error_create_for_user_defined_error_request(  # pylint: disable=name-too-long
     resource_group_name: str, confidential_resource_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -196,14 +196,14 @@ def build_error_create_for_user_defined_error_request(  # pylint: disable=name-t
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class ManagedIdentityOperations:
+class CommonPropertiesClientManagedIdentityOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.commonproperties.CommonPropertiesClient`'s
-        :attr:`managed_identity` attribute.
+        :attr:`common_properties_client_managed_identity` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -242,7 +242,7 @@ class ManagedIdentityOperations:
 
         cls: ClsType[_models.ManagedIdentityTrackedResource] = kwargs.pop("cls", None)
 
-        _request = build_managed_identity_get_request(
+        _request = build_common_properties_client_managed_identity_get_request(
             resource_group_name=resource_group_name,
             managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -414,7 +414,7 @@ class ManagedIdentityOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_managed_identity_create_with_system_assigned_request(
+        _request = build_common_properties_client_managed_identity_create_with_system_assigned_request(
             resource_group_name=resource_group_name,
             managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -588,15 +588,17 @@ class ManagedIdentityOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_managed_identity_update_with_user_assigned_and_system_assigned_request(
-            resource_group_name=resource_group_name,
-            managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
-            subscription_id=self._config.subscription_id,
-            content_type=content_type,
-            api_version=self._config.api_version,
-            content=_content,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_common_properties_client_managed_identity_update_with_user_assigned_and_system_assigned_request(
+                resource_group_name=resource_group_name,
+                managed_identity_tracked_resource_name=managed_identity_tracked_resource_name,
+                subscription_id=self._config.subscription_id,
+                content_type=content_type,
+                api_version=self._config.api_version,
+                content=_content,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.base_url", self._config.base_url, "str", skip_quote=True),
@@ -634,14 +636,14 @@ class ManagedIdentityOperations:
         return deserialized  # type: ignore
 
 
-class ErrorOperations:
+class CommonPropertiesClientErrorOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.commonproperties.CommonPropertiesClient`'s
-        :attr:`error` attribute.
+        :attr:`common_properties_client_error` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -679,7 +681,7 @@ class ErrorOperations:
 
         cls: ClsType[_models.ConfidentialResource] = kwargs.pop("cls", None)
 
-        _request = build_error_get_for_predefined_error_request(
+        _request = build_common_properties_client_error_get_for_predefined_error_request(
             resource_group_name=resource_group_name,
             confidential_resource_name=confidential_resource_name,
             subscription_id=self._config.subscription_id,
@@ -847,7 +849,7 @@ class ErrorOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_error_create_for_user_defined_error_request(
+        _request = build_common_properties_client_error_create_for_user_defined_error_request(
             resource_group_name=resource_group_name,
             confidential_resource_name=confidential_resource_name,
             subscription_id=self._config.subscription_id,

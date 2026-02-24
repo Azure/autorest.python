@@ -16,15 +16,15 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AlternateTypeClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ExternalTypeOperations
+from .operations import AlternateTypeClientExternalTypeOperations
 
 
 class AlternateTypeClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for alternate type decorator.
 
-    :ivar external_type: ExternalTypeOperations operations
-    :vartype external_type:
-     specs.azure.clientgenerator.core.alternatetype.operations.ExternalTypeOperations
+    :ivar alternate_type_client_external_type: AlternateTypeClientExternalTypeOperations operations
+    :vartype alternate_type_client_external_type:
+     specs.azure.clientgenerator.core.alternatetype.operations.AlternateTypeClientExternalTypeOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -57,7 +57,9 @@ class AlternateTypeClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.external_type = ExternalTypeOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.alternate_type_client_external_type = AlternateTypeClientExternalTypeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

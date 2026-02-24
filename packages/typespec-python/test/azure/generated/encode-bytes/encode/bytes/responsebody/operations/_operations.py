@@ -35,7 +35,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_response_body_default_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_response_body_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/octet-stream")
@@ -49,7 +49,9 @@ def build_response_body_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_response_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_response_body_octet_stream_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/octet-stream")
@@ -63,7 +65,9 @@ def build_response_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_response_body_custom_content_type_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_bytes_client_response_body_custom_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "image/png")
@@ -77,7 +81,7 @@ def build_response_body_custom_content_type_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_response_body_base64_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_response_body_base64_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -91,7 +95,7 @@ def build_response_body_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_response_body_base64_url_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_response_body_base64_url_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -105,14 +109,14 @@ def build_response_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ResponseBodyOperations:
+class BytesClientResponseBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.BytesClient`'s
-        :attr:`response_body` attribute.
+        :attr:`bytes_client_response_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -143,7 +147,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_default_request(
+        _request = build_bytes_client_response_body_default_request(
             headers=_headers,
             params=_params,
         )
@@ -196,7 +200,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_octet_stream_request(
+        _request = build_bytes_client_response_body_octet_stream_request(
             headers=_headers,
             params=_params,
         )
@@ -252,7 +256,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_custom_content_type_request(
+        _request = build_bytes_client_response_body_custom_content_type_request(
             headers=_headers,
             params=_params,
         )
@@ -308,7 +312,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64_request(
+        _request = build_bytes_client_response_body_base64_request(
             headers=_headers,
             params=_params,
         )
@@ -367,7 +371,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64_url_request(
+        _request = build_bytes_client_response_body_base64_url_request(
             headers=_headers,
             params=_params,
         )

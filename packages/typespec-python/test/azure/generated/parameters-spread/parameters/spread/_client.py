@@ -16,16 +16,16 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SpreadClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import AliasOperations, ModelOperations
+from .operations import SpreadClientAliasOperations, SpreadClientModelOperations
 
 
 class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for the spread operator.
 
-    :ivar model: ModelOperations operations
-    :vartype model: parameters.spread.operations.ModelOperations
-    :ivar alias: AliasOperations operations
-    :vartype alias: parameters.spread.operations.AliasOperations
+    :ivar spread_client_model: SpreadClientModelOperations operations
+    :vartype spread_client_model: parameters.spread.operations.SpreadClientModelOperations
+    :ivar spread_client_alias: SpreadClientAliasOperations operations
+    :vartype spread_client_alias: parameters.spread.operations.SpreadClientAliasOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -58,8 +58,12 @@ class SpreadClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.alias = AliasOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.spread_client_model = SpreadClientModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.spread_client_alias = SpreadClientAliasOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

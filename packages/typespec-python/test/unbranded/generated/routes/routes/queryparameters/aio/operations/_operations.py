@@ -17,25 +17,25 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
-    build_query_parameters_annotation_only_request,
-    build_query_parameters_explicit_request,
-    build_query_parameters_template_only_request,
+    build_routes_client_query_parameters_annotation_only_request,
+    build_routes_client_query_parameters_explicit_request,
+    build_routes_client_query_parameters_template_only_request,
 )
-from ...querycontinuation.aio.operations._operations import QueryParametersQueryContinuationOperations
-from ...queryexpansion.aio.operations._operations import QueryParametersQueryExpansionOperations
+from ...querycontinuation.aio.operations._operations import RoutesClientQueryParametersQueryContinuationOperations
+from ...queryexpansion.aio.operations._operations import RoutesClientQueryParametersQueryExpansionOperations
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryParametersOperations:
+class RoutesClientQueryParametersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`query_parameters` attribute.
+        :attr:`routes_client_query_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -45,10 +45,10 @@ class QueryParametersOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.query_expansion = QueryParametersQueryExpansionOperations(
+        self.routes_client_query_parameters_query_expansion = RoutesClientQueryParametersQueryExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.query_continuation = QueryParametersQueryContinuationOperations(
+        self.routes_client_query_parameters_query_continuation = RoutesClientQueryParametersQueryContinuationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -74,7 +74,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_template_only_request(
+        _request = build_routes_client_query_parameters_template_only_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -118,7 +118,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_explicit_request(
+        _request = build_routes_client_query_parameters_explicit_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -162,7 +162,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_annotation_only_request(
+        _request = build_routes_client_query_parameters_annotation_only_request(
             param=param,
             headers=_headers,
             params=_params,

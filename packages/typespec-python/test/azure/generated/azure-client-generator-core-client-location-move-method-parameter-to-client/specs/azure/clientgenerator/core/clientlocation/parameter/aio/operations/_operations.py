@@ -26,21 +26,21 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ... import models as _models
 from ..._utils.model_base import _deserialize
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_blob_operations_get_blob_request
+from ...operations._operations import build_move_method_parameter_to_client_blob_operations_get_blob_request
 from .._configuration import MoveMethodParameterToClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class BlobOperationsOperations:
+class MoveMethodParameterToClientBlobOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.parameter.aio.MoveMethodParameterToClient`'s
-        :attr:`blob_operations` attribute.
+        :attr:`move_method_parameter_to_client_blob_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -77,7 +77,7 @@ class BlobOperationsOperations:
 
         cls: ClsType[_models.Blob] = kwargs.pop("cls", None)
 
-        _request = build_blob_operations_get_blob_request(
+        _request = build_move_method_parameter_to_client_blob_operations_get_blob_request(
             container=container,
             blob=blob,
             storage_account=self._config.storage_account,

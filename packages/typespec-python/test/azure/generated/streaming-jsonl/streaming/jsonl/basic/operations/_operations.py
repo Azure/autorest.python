@@ -34,7 +34,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_basic_send_request(**kwargs: Any) -> HttpRequest:
+def build_jsonl_client_basic_send_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -47,7 +47,7 @@ def build_basic_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_basic_receive_request(**kwargs: Any) -> HttpRequest:
+def build_jsonl_client_basic_receive_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/jsonl")
@@ -61,14 +61,14 @@ def build_basic_receive_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class BasicOperations:
+class JsonlClientBasicOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~streaming.jsonl.JsonlClient`'s
-        :attr:`basic` attribute.
+        :attr:`jsonl_client_basic` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -104,7 +104,7 @@ class BasicOperations:
 
         _content = body
 
-        _request = build_basic_send_request(
+        _request = build_jsonl_client_basic_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -150,7 +150,7 @@ class BasicOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_basic_receive_request(
+        _request = build_jsonl_client_basic_receive_request(
             headers=_headers,
             params=_params,
         )

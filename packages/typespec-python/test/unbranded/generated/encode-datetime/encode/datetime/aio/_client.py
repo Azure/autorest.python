@@ -8,24 +8,26 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
-from ..header.aio.operations import HeaderOperations
-from ..property.aio.operations import PropertyOperations
-from ..query.aio.operations import QueryOperations
-from ..responseheader.aio.operations import ResponseHeaderOperations
+from ..header.aio.operations import DatetimeClientHeaderOperations
+from ..property.aio.operations import DatetimeClientPropertyOperations
+from ..query.aio.operations import DatetimeClientQueryOperations
+from ..responseheader.aio.operations import DatetimeClientResponseHeaderOperations
 from ._configuration import DatetimeClientConfiguration
 
 
 class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on datetime.
 
-    :ivar query: QueryOperations operations
-    :vartype query: encode.datetime.aio.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.datetime.aio.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.datetime.aio.operations.HeaderOperations
-    :ivar response_header: ResponseHeaderOperations operations
-    :vartype response_header: encode.datetime.aio.operations.ResponseHeaderOperations
+    :ivar datetime_client_query: DatetimeClientQueryOperations operations
+    :vartype datetime_client_query: encode.datetime.aio.operations.DatetimeClientQueryOperations
+    :ivar datetime_client_property: DatetimeClientPropertyOperations operations
+    :vartype datetime_client_property:
+     encode.datetime.aio.operations.DatetimeClientPropertyOperations
+    :ivar datetime_client_header: DatetimeClientHeaderOperations operations
+    :vartype datetime_client_header: encode.datetime.aio.operations.DatetimeClientHeaderOperations
+    :ivar datetime_client_response_header: DatetimeClientResponseHeaderOperations operations
+    :vartype datetime_client_response_header:
+     encode.datetime.aio.operations.DatetimeClientResponseHeaderOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -52,10 +54,18 @@ class DatetimeClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.response_header = ResponseHeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.datetime_client_query = DatetimeClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.datetime_client_property = DatetimeClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.datetime_client_header = DatetimeClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.datetime_client_response_header = DatetimeClientResponseHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

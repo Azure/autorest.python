@@ -25,25 +25,25 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
 from ...operations._operations import (
-    build_query_default_request,
-    build_query_rfc3339_request,
-    build_query_rfc7231_request,
-    build_query_unix_timestamp_array_request,
-    build_query_unix_timestamp_request,
+    build_datetime_client_query_default_request,
+    build_datetime_client_query_rfc3339_request,
+    build_datetime_client_query_rfc7231_request,
+    build_datetime_client_query_unix_timestamp_array_request,
+    build_datetime_client_query_unix_timestamp_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryOperations:
+class DatetimeClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.aio.DatetimeClient`'s
-        :attr:`query` attribute.
+        :attr:`datetime_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,7 +76,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_datetime_client_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -123,7 +123,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_rfc3339_request(
+        _request = build_datetime_client_query_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -170,7 +170,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_rfc7231_request(
+        _request = build_datetime_client_query_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -217,7 +217,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_unix_timestamp_request(
+        _request = build_datetime_client_query_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -264,7 +264,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_unix_timestamp_array_request(
+        _request = build_datetime_client_query_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,

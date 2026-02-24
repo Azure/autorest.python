@@ -37,32 +37,32 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_extensions_resources_create_or_update_request,
-    build_extensions_resources_delete_request,
-    build_extensions_resources_get_request,
-    build_extensions_resources_list_by_scope_request,
-    build_extensions_resources_update_request,
-    build_location_resources_create_or_update_request,
-    build_location_resources_delete_request,
-    build_location_resources_get_request,
-    build_location_resources_list_by_location_request,
-    build_location_resources_update_request,
-    build_nested_create_or_replace_request,
-    build_nested_delete_request,
-    build_nested_get_request,
-    build_nested_list_by_top_level_tracked_resource_request,
-    build_nested_update_request,
-    build_singleton_create_or_update_request,
-    build_singleton_get_by_resource_group_request,
-    build_singleton_list_by_resource_group_request,
-    build_singleton_update_request,
-    build_top_level_action_sync_request,
-    build_top_level_create_or_replace_request,
-    build_top_level_delete_request,
-    build_top_level_get_request,
-    build_top_level_list_by_resource_group_request,
-    build_top_level_list_by_subscription_request,
-    build_top_level_update_request,
+    build_resources_client_extensions_resources_create_or_update_request,
+    build_resources_client_extensions_resources_delete_request,
+    build_resources_client_extensions_resources_get_request,
+    build_resources_client_extensions_resources_list_by_scope_request,
+    build_resources_client_extensions_resources_update_request,
+    build_resources_client_location_resources_create_or_update_request,
+    build_resources_client_location_resources_delete_request,
+    build_resources_client_location_resources_get_request,
+    build_resources_client_location_resources_list_by_location_request,
+    build_resources_client_location_resources_update_request,
+    build_resources_client_nested_create_or_replace_request,
+    build_resources_client_nested_delete_request,
+    build_resources_client_nested_get_request,
+    build_resources_client_nested_list_by_top_level_tracked_resource_request,
+    build_resources_client_nested_update_request,
+    build_resources_client_singleton_create_or_update_request,
+    build_resources_client_singleton_get_by_resource_group_request,
+    build_resources_client_singleton_list_by_resource_group_request,
+    build_resources_client_singleton_update_request,
+    build_resources_client_top_level_action_sync_request,
+    build_resources_client_top_level_create_or_replace_request,
+    build_resources_client_top_level_delete_request,
+    build_resources_client_top_level_get_request,
+    build_resources_client_top_level_list_by_resource_group_request,
+    build_resources_client_top_level_list_by_subscription_request,
+    build_resources_client_top_level_update_request,
 )
 from .._configuration import ResourcesClientConfiguration
 
@@ -71,14 +71,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class TopLevelOperations:
+class ResourcesClientTopLevelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.resources.aio.ResourcesClient`'s
-        :attr:`top_level` attribute.
+        :attr:`resources_client_top_level` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -116,7 +116,7 @@ class TopLevelOperations:
 
         cls: ClsType[_models.TopLevelTrackedResource] = kwargs.pop("cls", None)
 
-        _request = build_top_level_get_request(
+        _request = build_resources_client_top_level_get_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -187,7 +187,7 @@ class TopLevelOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_top_level_create_or_replace_request(
+        _request = build_resources_client_top_level_create_or_replace_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -427,7 +427,7 @@ class TopLevelOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_top_level_update_request(
+        _request = build_resources_client_top_level_update_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -653,7 +653,7 @@ class TopLevelOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_top_level_delete_request(
+        _request = build_resources_client_top_level_delete_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -786,7 +786,7 @@ class TopLevelOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_top_level_list_by_resource_group_request(
+                _request = build_resources_client_top_level_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -875,7 +875,7 @@ class TopLevelOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_top_level_list_by_subscription_request(
+                _request = build_resources_client_top_level_list_by_subscription_request(
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -1062,7 +1062,7 @@ class TopLevelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_top_level_action_sync_request(
+        _request = build_resources_client_top_level_action_sync_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             subscription_id=self._config.subscription_id,
@@ -1096,14 +1096,14 @@ class TopLevelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NestedOperations:
+class ResourcesClientNestedOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.resources.aio.ResourcesClient`'s
-        :attr:`nested` attribute.
+        :attr:`resources_client_nested` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1147,7 +1147,7 @@ class NestedOperations:
 
         cls: ClsType[_models.NestedProxyResource] = kwargs.pop("cls", None)
 
-        _request = build_nested_get_request(
+        _request = build_resources_client_nested_get_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
@@ -1220,7 +1220,7 @@ class NestedOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nested_create_or_replace_request(
+        _request = build_resources_client_nested_create_or_replace_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
@@ -1475,7 +1475,7 @@ class NestedOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nested_update_request(
+        _request = build_resources_client_nested_update_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
@@ -1719,7 +1719,7 @@ class NestedOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_nested_delete_request(
+        _request = build_resources_client_nested_delete_request(
             resource_group_name=resource_group_name,
             top_level_tracked_resource_name=top_level_tracked_resource_name,
             nexted_proxy_resource_name=nexted_proxy_resource_name,
@@ -1862,7 +1862,7 @@ class NestedOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_nested_list_by_top_level_tracked_resource_request(
+                _request = build_resources_client_nested_list_by_top_level_tracked_resource_request(
                     resource_group_name=resource_group_name,
                     top_level_tracked_resource_name=top_level_tracked_resource_name,
                     subscription_id=self._config.subscription_id,
@@ -1928,14 +1928,14 @@ class NestedOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class SingletonOperations:
+class ResourcesClientSingletonOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.resources.aio.ResourcesClient`'s
-        :attr:`singleton` attribute.
+        :attr:`resources_client_singleton` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1970,7 +1970,7 @@ class SingletonOperations:
 
         cls: ClsType[_models.SingletonTrackedResource] = kwargs.pop("cls", None)
 
-        _request = build_singleton_get_by_resource_group_request(
+        _request = build_resources_client_singleton_get_by_resource_group_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
             api_version=self._config.api_version,
@@ -2039,7 +2039,7 @@ class SingletonOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_singleton_create_or_update_request(
+        _request = build_resources_client_singleton_create_or_update_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
             content_type=content_type,
@@ -2334,7 +2334,7 @@ class SingletonOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_singleton_update_request(
+        _request = build_resources_client_singleton_update_request(
             resource_group_name=resource_group_name,
             subscription_id=self._config.subscription_id,
             content_type=content_type,
@@ -2408,7 +2408,7 @@ class SingletonOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_singleton_list_by_resource_group_request(
+                _request = build_resources_client_singleton_list_by_resource_group_request(
                     resource_group_name=resource_group_name,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,
@@ -2473,14 +2473,14 @@ class SingletonOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class ExtensionsResourcesOperations:
+class ResourcesClientExtensionsResourcesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.resources.aio.ResourcesClient`'s
-        :attr:`extensions_resources` attribute.
+        :attr:`resources_client_extensions_resources` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2516,7 +2516,7 @@ class ExtensionsResourcesOperations:
 
         cls: ClsType[_models.ExtensionsResource] = kwargs.pop("cls", None)
 
-        _request = build_extensions_resources_get_request(
+        _request = build_resources_client_extensions_resources_get_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
             api_version=self._config.api_version,
@@ -2586,7 +2586,7 @@ class ExtensionsResourcesOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extensions_resources_create_or_update_request(
+        _request = build_resources_client_extensions_resources_create_or_update_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
             content_type=content_type,
@@ -2921,7 +2921,7 @@ class ExtensionsResourcesOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extensions_resources_update_request(
+        _request = build_resources_client_extensions_resources_update_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
             content_type=content_type,
@@ -2991,7 +2991,7 @@ class ExtensionsResourcesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_extensions_resources_delete_request(
+        _request = build_resources_client_extensions_resources_delete_request(
             resource_uri=resource_uri,
             extensions_resource_name=extensions_resource_name,
             api_version=self._config.api_version,
@@ -3049,7 +3049,7 @@ class ExtensionsResourcesOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_extensions_resources_list_by_scope_request(
+                _request = build_resources_client_extensions_resources_list_by_scope_request(
                     resource_uri=resource_uri,
                     api_version=self._config.api_version,
                     headers=_headers,
@@ -3113,14 +3113,14 @@ class ExtensionsResourcesOperations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class LocationResourcesOperations:
+class ResourcesClientLocationResourcesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.resources.aio.ResourcesClient`'s
-        :attr:`location_resources` attribute.
+        :attr:`resources_client_location_resources` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3155,7 +3155,7 @@ class LocationResourcesOperations:
 
         cls: ClsType[_models.LocationResource] = kwargs.pop("cls", None)
 
-        _request = build_location_resources_get_request(
+        _request = build_resources_client_location_resources_get_request(
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
@@ -3318,7 +3318,7 @@ class LocationResourcesOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_location_resources_create_or_update_request(
+        _request = build_resources_client_location_resources_create_or_update_request(
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
@@ -3483,7 +3483,7 @@ class LocationResourcesOperations:
         else:
             _content = json.dumps(properties, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_location_resources_update_request(
+        _request = build_resources_client_location_resources_update_request(
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
@@ -3553,7 +3553,7 @@ class LocationResourcesOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_location_resources_delete_request(
+        _request = build_resources_client_location_resources_delete_request(
             location=location,
             location_resource_name=location_resource_name,
             subscription_id=self._config.subscription_id,
@@ -3611,7 +3611,7 @@ class LocationResourcesOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_location_resources_list_by_location_request(
+                _request = build_resources_client_location_resources_list_by_location_request(
                     location=location,
                     subscription_id=self._config.subscription_id,
                     api_version=self._config.api_version,

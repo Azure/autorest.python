@@ -25,20 +25,20 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DurationClientConfiguration
 from ...operations._operations import (
-    build_property_default_request,
-    build_property_float64_milliseconds_request,
-    build_property_float64_seconds_request,
-    build_property_float_milliseconds_array_request,
-    build_property_float_milliseconds_larger_unit_request,
-    build_property_float_milliseconds_request,
-    build_property_float_seconds_array_request,
-    build_property_float_seconds_larger_unit_request,
-    build_property_float_seconds_request,
-    build_property_int32_milliseconds_larger_unit_request,
-    build_property_int32_milliseconds_request,
-    build_property_int32_seconds_larger_unit_request,
-    build_property_int32_seconds_request,
-    build_property_iso8601_request,
+    build_duration_client_property_default_request,
+    build_duration_client_property_float64_milliseconds_request,
+    build_duration_client_property_float64_seconds_request,
+    build_duration_client_property_float_milliseconds_array_request,
+    build_duration_client_property_float_milliseconds_larger_unit_request,
+    build_duration_client_property_float_milliseconds_request,
+    build_duration_client_property_float_seconds_array_request,
+    build_duration_client_property_float_seconds_larger_unit_request,
+    build_duration_client_property_float_seconds_request,
+    build_duration_client_property_int32_milliseconds_larger_unit_request,
+    build_duration_client_property_int32_milliseconds_request,
+    build_duration_client_property_int32_seconds_larger_unit_request,
+    build_duration_client_property_int32_seconds_request,
+    build_duration_client_property_iso8601_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -46,14 +46,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class DurationClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.aio.DurationClient`'s
-        :attr:`property` attribute.
+        :attr:`duration_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -143,7 +143,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_duration_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -258,7 +258,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_iso8601_request(
+        _request = build_duration_client_property_iso8601_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -378,7 +378,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_request(
+        _request = build_duration_client_property_int32_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -498,7 +498,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_request(
+        _request = build_duration_client_property_float_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -619,7 +619,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_seconds_request(
+        _request = build_duration_client_property_float64_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -740,7 +740,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_request(
+        _request = build_duration_client_property_int32_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -861,7 +861,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_request(
+        _request = build_duration_client_property_float_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -986,7 +986,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_milliseconds_request(
+        _request = build_duration_client_property_float64_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1107,7 +1107,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_array_request(
+        _request = build_duration_client_property_float_seconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1232,7 +1232,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_array_request(
+        _request = build_duration_client_property_float_milliseconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1357,7 +1357,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_larger_unit_request(
+        _request = build_duration_client_property_int32_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1482,7 +1482,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_larger_unit_request(
+        _request = build_duration_client_property_float_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1607,7 +1607,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_int32_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1732,7 +1732,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_float_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

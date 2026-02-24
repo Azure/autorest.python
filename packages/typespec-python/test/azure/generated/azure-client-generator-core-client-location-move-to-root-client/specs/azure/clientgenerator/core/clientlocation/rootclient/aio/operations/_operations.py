@@ -25,8 +25,8 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
+    build_move_to_root_client_resource_operations_get_resource_request,
     build_move_to_root_get_health_status_request,
-    build_resource_operations_get_resource_request,
 )
 from .._configuration import MoveToRootClientConfiguration
 
@@ -34,14 +34,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ResourceOperationsOperations:
+class MoveToRootClientResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.rootclient.aio.MoveToRootClient`'s
-        :attr:`resource_operations` attribute.
+        :attr:`move_to_root_client_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -72,7 +72,7 @@ class ResourceOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_resource_operations_get_resource_request(
+        _request = build_move_to_root_client_resource_operations_get_resource_request(
             headers=_headers,
             params=_params,
         )

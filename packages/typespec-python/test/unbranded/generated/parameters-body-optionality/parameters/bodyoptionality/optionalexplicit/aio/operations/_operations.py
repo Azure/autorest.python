@@ -21,21 +21,24 @@ from .... import models as _models3
 from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BodyOptionalityClientConfiguration
-from ...operations._operations import build_optional_explicit_omit_request, build_optional_explicit_set_request
+from ...operations._operations import (
+    build_body_optionality_client_optional_explicit_omit_request,
+    build_body_optionality_client_optional_explicit_set_request,
+)
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class OptionalExplicitOperations:
+class BodyOptionalityClientOptionalExplicitOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.bodyoptionality.aio.BodyOptionalityClient`'s
-        :attr:`optional_explicit` attribute.
+        :attr:`body_optionality_client_optional_explicit` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -125,7 +128,7 @@ class OptionalExplicitOperations:
             else:
                 _content = None
 
-        _request = build_optional_explicit_set_request(
+        _request = build_body_optionality_client_optional_explicit_set_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -228,7 +231,7 @@ class OptionalExplicitOperations:
             else:
                 _content = None
 
-        _request = build_optional_explicit_omit_request(
+        _request = build_body_optionality_client_optional_explicit_omit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

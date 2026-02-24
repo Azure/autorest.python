@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_path_parameters_label_expansion_standard_primitive_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_label_expansion_standard_primitive_request(  # pylint: disable=name-too-long
     param: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -45,7 +45,7 @@ def build_path_parameters_label_expansion_standard_primitive_request(  # pylint:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_parameters_label_expansion_standard_array_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_label_expansion_standard_array_request(  # pylint: disable=name-too-long
     param: list[str], **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -59,7 +59,7 @@ def build_path_parameters_label_expansion_standard_array_request(  # pylint: dis
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_parameters_label_expansion_standard_record_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_label_expansion_standard_record_request(  # pylint: disable=name-too-long
     param: dict[str, int], **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -73,14 +73,14 @@ def build_path_parameters_label_expansion_standard_record_request(  # pylint: di
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-too-long
+class RoutesClientPathParametersLabelExpansionStandardOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`standard` attribute.
+        :attr:`routes_client_path_parameters_label_expansion_standard` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -113,7 +113,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_label_expansion_standard_primitive_request(
+        _request = build_routes_client_path_parameters_label_expansion_standard_primitive_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -160,7 +160,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_label_expansion_standard_array_request(
+        _request = build_routes_client_path_parameters_label_expansion_standard_array_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -207,7 +207,7 @@ class PathParametersLabelExpansionStandardOperations:  # pylint: disable=name-to
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_label_expansion_standard_record_request(
+        _request = build_routes_client_path_parameters_label_expansion_standard_record_request(
             param=param,
             headers=_headers,
             params=_params,

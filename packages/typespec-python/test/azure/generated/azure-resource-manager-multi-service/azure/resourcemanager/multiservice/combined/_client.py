@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import CombinedClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import DisksOperations, VirtualMachinesOperations
+from .operations import CombinedDisksOperations, CombinedVirtualMachinesOperations
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -29,11 +29,12 @@ if TYPE_CHECKING:
 class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
     """CombinedClient.
 
-    :ivar virtual_machines: VirtualMachinesOperations operations
-    :vartype virtual_machines:
-     azure.resourcemanager.multiservice.combined.operations.VirtualMachinesOperations
-    :ivar disks: DisksOperations operations
-    :vartype disks: azure.resourcemanager.multiservice.combined.operations.DisksOperations
+    :ivar combined_virtual_machines: CombinedVirtualMachinesOperations operations
+    :vartype combined_virtual_machines:
+     azure.resourcemanager.multiservice.combined.operations.CombinedVirtualMachinesOperations
+    :ivar combined_disks: CombinedDisksOperations operations
+    :vartype combined_disks:
+     azure.resourcemanager.multiservice.combined.operations.CombinedDisksOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -94,10 +95,10 @@ class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.virtual_machines = VirtualMachinesOperations(
+        self.combined_virtual_machines = CombinedVirtualMachinesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.disks = DisksOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.combined_disks = CombinedDisksOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

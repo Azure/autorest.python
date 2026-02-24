@@ -22,11 +22,11 @@ from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import SpreadClientConfiguration
 from ...operations._operations import (
-    build_model_spread_as_request_body_request,
-    build_model_spread_composite_request_mix_request,
-    build_model_spread_composite_request_only_with_body_request,
-    build_model_spread_composite_request_request,
-    build_model_spread_composite_request_without_body_request,
+    build_spread_client_model_spread_as_request_body_request,
+    build_spread_client_model_spread_composite_request_mix_request,
+    build_spread_client_model_spread_composite_request_only_with_body_request,
+    build_spread_client_model_spread_composite_request_request,
+    build_spread_client_model_spread_composite_request_without_body_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -35,14 +35,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ModelOperations:
+class SpreadClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.spread.aio.SpreadClient`'s
-        :attr:`model` attribute.
+        :attr:`spread_client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -137,7 +137,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_as_request_body_request(
+        _request = build_spread_client_model_spread_as_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -240,7 +240,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_only_with_body_request(
+        _request = build_spread_client_model_spread_composite_request_only_with_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -287,7 +287,7 @@ class ModelOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_model_spread_composite_request_without_body_request(
+        _request = build_spread_client_model_spread_composite_request_without_body_request(
             name=name,
             test_header=test_header,
             headers=_headers,
@@ -412,7 +412,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_request(
+        _request = build_spread_client_model_spread_composite_request_request(
             name=name,
             test_header=test_header,
             content_type=content_type,
@@ -540,7 +540,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_mix_request(
+        _request = build_spread_client_model_spread_composite_request_mix_request(
             name=name,
             test_header=test_header,
             content_type=content_type,

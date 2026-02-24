@@ -9,17 +9,19 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import BasicClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .explicitbody.operations import ExplicitBodyOperations
-from .implicitbody.operations import ImplicitBodyOperations
+from .explicitbody.operations import BasicClientExplicitBodyOperations
+from .implicitbody.operations import BasicClientImplicitBodyOperations
 
 
 class BasicClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for basic parameters cases.
 
-    :ivar explicit_body: ExplicitBodyOperations operations
-    :vartype explicit_body: parameters.basic.operations.ExplicitBodyOperations
-    :ivar implicit_body: ImplicitBodyOperations operations
-    :vartype implicit_body: parameters.basic.operations.ImplicitBodyOperations
+    :ivar basic_client_explicit_body: BasicClientExplicitBodyOperations operations
+    :vartype basic_client_explicit_body:
+     parameters.basic.operations.BasicClientExplicitBodyOperations
+    :ivar basic_client_implicit_body: BasicClientImplicitBodyOperations operations
+    :vartype basic_client_implicit_body:
+     parameters.basic.operations.BasicClientImplicitBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -46,8 +48,12 @@ class BasicClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.explicit_body = ExplicitBodyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.implicit_body = ImplicitBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.basic_client_explicit_body = BasicClientExplicitBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.basic_client_implicit_body = BasicClientImplicitBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

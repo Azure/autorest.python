@@ -40,7 +40,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_first_operations_first_request(**kwargs: Any) -> HttpRequest:
+def build_enum_conflict_client_first_operations_first_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -57,7 +59,9 @@ def build_first_operations_first_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_second_operations_second_request(**kwargs: Any) -> HttpRequest:
+def build_enum_conflict_client_second_operations_second_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -74,14 +78,14 @@ def build_second_operations_second_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FirstOperationsOperations:
+class EnumConflictClientFirstOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.enumconflict.EnumConflictClient`'s
-        :attr:`first_operations` attribute.
+        :attr:`enum_conflict_client_first_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -172,7 +176,7 @@ class FirstOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_first_operations_first_request(
+        _request = build_enum_conflict_client_first_operations_first_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -210,14 +214,14 @@ class FirstOperationsOperations:
         return deserialized  # type: ignore
 
 
-class SecondOperationsOperations:
+class EnumConflictClientSecondOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.enumconflict.EnumConflictClient`'s
-        :attr:`second_operations` attribute.
+        :attr:`enum_conflict_client_second_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -308,7 +312,7 @@ class SecondOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_second_operations_second_request(
+        _request = build_enum_conflict_client_second_operations_second_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

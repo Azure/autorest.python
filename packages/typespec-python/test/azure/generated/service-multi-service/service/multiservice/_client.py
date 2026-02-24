@@ -16,16 +16,16 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import CombinedClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import BarOperations, FooOperations
+from .operations import CombinedBarOperations, CombinedFooOperations
 
 
 class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
     """CombinedClient.
 
-    :ivar foo: FooOperations operations
-    :vartype foo: service.multiservice.operations.FooOperations
-    :ivar bar: BarOperations operations
-    :vartype bar: service.multiservice.operations.BarOperations
+    :ivar combined_foo: CombinedFooOperations operations
+    :vartype combined_foo: service.multiservice.operations.CombinedFooOperations
+    :ivar combined_bar: CombinedBarOperations operations
+    :vartype combined_bar: service.multiservice.operations.CombinedBarOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -58,8 +58,8 @@ class CombinedClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.combined_foo = CombinedFooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.combined_bar = CombinedBarOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

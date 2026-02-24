@@ -27,7 +27,10 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_explicit_body_simple_request, build_implicit_body_simple_request
+from ...operations._operations import (
+    build_basic_client_explicit_body_simple_request,
+    build_basic_client_implicit_body_simple_request,
+)
 from .._configuration import BasicClientConfiguration
 
 JSON = MutableMapping[str, Any]
@@ -36,14 +39,14 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 _Unset: Any = object()
 
 
-class ExplicitBodyOperations:
+class BasicClientExplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.aio.BasicClient`'s
-        :attr:`explicit_body` attribute.
+        :attr:`basic_client_explicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -126,7 +129,7 @@ class ExplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_explicit_body_simple_request(
+        _request = build_basic_client_explicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -152,14 +155,14 @@ class ExplicitBodyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ImplicitBodyOperations:
+class BasicClientImplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.aio.BasicClient`'s
-        :attr:`implicit_body` attribute.
+        :attr:`basic_client_implicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -249,7 +252,7 @@ class ImplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_implicit_body_simple_request(
+        _request = build_basic_client_implicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -16,26 +16,26 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import BytesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .header.operations import HeaderOperations
-from .property.operations import PropertyOperations
-from .query.operations import QueryOperations
-from .requestbody.operations import RequestBodyOperations
-from .responsebody.operations import ResponseBodyOperations
+from .header.operations import BytesClientHeaderOperations
+from .property.operations import BytesClientPropertyOperations
+from .query.operations import BytesClientQueryOperations
+from .requestbody.operations import BytesClientRequestBodyOperations
+from .responsebody.operations import BytesClientResponseBodyOperations
 
 
 class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on bytes.
 
-    :ivar query: QueryOperations operations
-    :vartype query: encode.bytes.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.bytes.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.bytes.operations.HeaderOperations
-    :ivar request_body: RequestBodyOperations operations
-    :vartype request_body: encode.bytes.operations.RequestBodyOperations
-    :ivar response_body: ResponseBodyOperations operations
-    :vartype response_body: encode.bytes.operations.ResponseBodyOperations
+    :ivar bytes_client_query: BytesClientQueryOperations operations
+    :vartype bytes_client_query: encode.bytes.operations.BytesClientQueryOperations
+    :ivar bytes_client_property: BytesClientPropertyOperations operations
+    :vartype bytes_client_property: encode.bytes.operations.BytesClientPropertyOperations
+    :ivar bytes_client_header: BytesClientHeaderOperations operations
+    :vartype bytes_client_header: encode.bytes.operations.BytesClientHeaderOperations
+    :ivar bytes_client_request_body: BytesClientRequestBodyOperations operations
+    :vartype bytes_client_request_body: encode.bytes.operations.BytesClientRequestBodyOperations
+    :ivar bytes_client_response_body: BytesClientResponseBodyOperations operations
+    :vartype bytes_client_response_body: encode.bytes.operations.BytesClientResponseBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -68,11 +68,21 @@ class BytesClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.request_body = RequestBodyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.response_body = ResponseBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.bytes_client_query = BytesClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_property = BytesClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_header = BytesClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_request_body = BytesClientRequestBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.bytes_client_response_body = BytesClientResponseBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

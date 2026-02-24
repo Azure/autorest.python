@@ -30,17 +30,17 @@ from ..._utils.model_base import SdkJSONEncoder
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
-    build_model_client_client_request,
-    build_model_client_language_request,
+    build_naming_client_model_client_client_request,
+    build_naming_client_model_client_language_request,
     build_naming_client_name_request,
     build_naming_client_request,
+    build_naming_client_union_enum_union_enum_member_name_request,
+    build_naming_client_union_enum_union_enum_name_request,
     build_naming_compatible_with_encoded_name_request,
     build_naming_language_request,
     build_naming_parameter_request,
     build_naming_request_request,
     build_naming_response_request,
-    build_union_enum_union_enum_member_name_request,
-    build_union_enum_union_enum_name_request,
 )
 from .._configuration import NamingClientConfiguration
 
@@ -49,14 +49,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ModelClientOperations:
+class NamingClientModelClientOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.main.aio.NamingClient`'s
-        :attr:`model_client` attribute.
+        :attr:`naming_client_model_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -139,7 +139,7 @@ class ModelClientOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_client_request(
+        _request = build_naming_client_model_client_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -239,7 +239,7 @@ class ModelClientOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_language_request(
+        _request = build_naming_client_model_client_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -265,14 +265,14 @@ class ModelClientOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionEnumOperations:
+class NamingClientUnionEnumOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.main.aio.NamingClient`'s
-        :attr:`union_enum` attribute.
+        :attr:`naming_client_union_enum` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -308,7 +308,7 @@ class UnionEnumOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_enum_union_enum_name_request(
+        _request = build_naming_client_union_enum_union_enum_name_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -359,7 +359,7 @@ class UnionEnumOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_enum_union_enum_member_name_request(
+        _request = build_naming_client_union_enum_union_enum_member_name_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

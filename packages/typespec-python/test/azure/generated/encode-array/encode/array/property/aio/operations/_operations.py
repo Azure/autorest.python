@@ -32,18 +32,18 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ArrayClientConfiguration
 from ...operations._operations import (
-    build_property_comma_delimited_request,
-    build_property_enum_comma_delimited_request,
-    build_property_enum_newline_delimited_request,
-    build_property_enum_pipe_delimited_request,
-    build_property_enum_space_delimited_request,
-    build_property_extensible_enum_comma_delimited_request,
-    build_property_extensible_enum_newline_delimited_request,
-    build_property_extensible_enum_pipe_delimited_request,
-    build_property_extensible_enum_space_delimited_request,
-    build_property_newline_delimited_request,
-    build_property_pipe_delimited_request,
-    build_property_space_delimited_request,
+    build_array_client_property_comma_delimited_request,
+    build_array_client_property_enum_comma_delimited_request,
+    build_array_client_property_enum_newline_delimited_request,
+    build_array_client_property_enum_pipe_delimited_request,
+    build_array_client_property_enum_space_delimited_request,
+    build_array_client_property_extensible_enum_comma_delimited_request,
+    build_array_client_property_extensible_enum_newline_delimited_request,
+    build_array_client_property_extensible_enum_pipe_delimited_request,
+    build_array_client_property_extensible_enum_space_delimited_request,
+    build_array_client_property_newline_delimited_request,
+    build_array_client_property_pipe_delimited_request,
+    build_array_client_property_space_delimited_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -51,14 +51,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class ArrayClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.array.aio.ArrayClient`'s
-        :attr:`property` attribute.
+        :attr:`array_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -154,7 +154,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_comma_delimited_request(
+        _request = build_array_client_property_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -277,7 +277,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_space_delimited_request(
+        _request = build_array_client_property_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -400,7 +400,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_pipe_delimited_request(
+        _request = build_array_client_property_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -523,7 +523,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_newline_delimited_request(
+        _request = build_array_client_property_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -646,7 +646,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_comma_delimited_request(
+        _request = build_array_client_property_enum_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -769,7 +769,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_space_delimited_request(
+        _request = build_array_client_property_enum_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -892,7 +892,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_pipe_delimited_request(
+        _request = build_array_client_property_enum_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1015,7 +1015,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_newline_delimited_request(
+        _request = build_array_client_property_enum_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1142,7 +1142,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_comma_delimited_request(
+        _request = build_array_client_property_extensible_enum_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1269,7 +1269,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_space_delimited_request(
+        _request = build_array_client_property_extensible_enum_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1396,7 +1396,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_pipe_delimited_request(
+        _request = build_array_client_property_extensible_enum_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1524,7 +1524,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_newline_delimited_request(
+        _request = build_array_client_property_extensible_enum_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

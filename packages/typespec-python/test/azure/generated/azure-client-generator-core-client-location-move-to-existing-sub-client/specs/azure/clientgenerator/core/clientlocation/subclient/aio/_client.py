@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,18 +17,23 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MoveToExistingSubClientConfiguration
-from .operations import AdminOperationsOperations, UserOperationsOperations
+from .operations import (
+    MoveToExistingSubClientAdminOperationsOperations,
+    MoveToExistingSubClientUserOperationsOperations,
+)
 
 
 class MoveToExistingSubClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for @clientLocation decorator - moving operations between clients.
 
-    :ivar admin_operations: AdminOperationsOperations operations
-    :vartype admin_operations:
-     specs.azure.clientgenerator.core.clientlocation.subclient.aio.operations.AdminOperationsOperations
-    :ivar user_operations: UserOperationsOperations operations
-    :vartype user_operations:
-     specs.azure.clientgenerator.core.clientlocation.subclient.aio.operations.UserOperationsOperations
+    :ivar move_to_existing_sub_client_admin_operations:
+     MoveToExistingSubClientAdminOperationsOperations operations
+    :vartype move_to_existing_sub_client_admin_operations:
+     specs.azure.clientgenerator.core.clientlocation.subclient.aio.operations.MoveToExistingSubClientAdminOperationsOperations
+    :ivar move_to_existing_sub_client_user_operations:
+     MoveToExistingSubClientUserOperationsOperations operations
+    :vartype move_to_existing_sub_client_user_operations:
+     specs.azure.clientgenerator.core.clientlocation.subclient.aio.operations.MoveToExistingSubClientUserOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -60,10 +66,12 @@ class MoveToExistingSubClient:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.admin_operations = AdminOperationsOperations(
+        self.move_to_existing_sub_client_admin_operations = MoveToExistingSubClientAdminOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.user_operations = UserOperationsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.move_to_existing_sub_client_user_operations = MoveToExistingSubClientUserOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

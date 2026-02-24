@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_parameters_query_continuation_standard_primitive_request(  # pylint: disable=name-too-long
+def build_routes_client_query_parameters_query_continuation_standard_primitive_request(  # pylint: disable=name-too-long
     *, param: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -46,7 +46,7 @@ def build_query_parameters_query_continuation_standard_primitive_request(  # pyl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_parameters_query_continuation_standard_array_request(  # pylint: disable=name-too-long
+def build_routes_client_query_parameters_query_continuation_standard_array_request(  # pylint: disable=name-too-long
     *, param: list[str], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -60,7 +60,7 @@ def build_query_parameters_query_continuation_standard_array_request(  # pylint:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_parameters_query_continuation_standard_record_request(  # pylint: disable=name-too-long
+def build_routes_client_query_parameters_query_continuation_standard_record_request(  # pylint: disable=name-too-long
     *, param: dict[str, int], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -74,14 +74,14 @@ def build_query_parameters_query_continuation_standard_record_request(  # pylint
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=name-too-long
+class RoutesClientQueryParametersQueryContinuationStandardOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`standard` attribute.
+        :attr:`routes_client_query_parameters_query_continuation_standard` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -114,7 +114,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_primitive_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_primitive_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -161,7 +161,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_array_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_array_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -208,7 +208,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_record_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_record_request(
             param=param,
             headers=_headers,
             params=_params,

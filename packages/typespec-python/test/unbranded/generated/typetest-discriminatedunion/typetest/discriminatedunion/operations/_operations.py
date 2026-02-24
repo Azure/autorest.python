@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_no_envelope_default_get_request(*, kind: Optional[str] = None, **kwargs: Any) -> HttpRequest:
+def build_discriminated_client_no_envelope_default_get_request(  # pylint: disable=name-too-long
+    *, kind: Optional[str] = None, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -51,7 +53,9 @@ def build_no_envelope_default_get_request(*, kind: Optional[str] = None, **kwarg
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_no_envelope_default_put_request(**kwargs: Any) -> HttpRequest:
+def build_discriminated_client_no_envelope_default_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -68,7 +72,7 @@ def build_no_envelope_default_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_no_envelope_custom_discriminator_get_request(  # pylint: disable=name-too-long
+def build_discriminated_client_no_envelope_custom_discriminator_get_request(  # pylint: disable=name-too-long
     *, type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -89,7 +93,9 @@ def build_no_envelope_custom_discriminator_get_request(  # pylint: disable=name-
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_no_envelope_custom_discriminator_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_discriminated_client_no_envelope_custom_discriminator_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -106,7 +112,7 @@ def build_no_envelope_custom_discriminator_put_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_envelope_object_default_get_request(  # pylint: disable=name-too-long
+def build_discriminated_client_envelope_object_default_get_request(  # pylint: disable=name-too-long
     *, kind: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -127,7 +133,9 @@ def build_envelope_object_default_get_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_envelope_object_default_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_discriminated_client_envelope_object_default_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -144,7 +152,7 @@ def build_envelope_object_default_put_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_envelope_object_custom_properties_get_request(  # pylint: disable=name-too-long
+def build_discriminated_client_envelope_object_custom_properties_get_request(  # pylint: disable=name-too-long
     *, pet_type: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -165,7 +173,9 @@ def build_envelope_object_custom_properties_get_request(  # pylint: disable=name
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_envelope_object_custom_properties_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_discriminated_client_envelope_object_custom_properties_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -182,14 +192,14 @@ def build_envelope_object_custom_properties_put_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class EnvelopeOperations:
+class DiscriminatedClientEnvelopeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`envelope` attribute.
+        :attr:`discriminated_client_envelope` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -199,40 +209,19 @@ class EnvelopeOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.object = EnvelopeObjectOperations(self._client, self._config, self._serialize, self._deserialize)
-
-
-class NoEnvelopeOperations:
-    """
-    .. warning::
-        **DO NOT** instantiate this class directly.
-
-        Instead, you should access the following operations through
-        :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`no_envelope` attribute.
-    """
-
-    def __init__(self, *args, **kwargs) -> None:
-        input_args = list(args)
-        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
-        self._config: DiscriminatedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
-        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
-        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
-
-        self.default = NoEnvelopeDefaultOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.custom_discriminator = NoEnvelopeCustomDiscriminatorOperations(
+        self.discriminated_client_envelope_object = DiscriminatedClientEnvelopeObjectOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
 
-class EnvelopeObjectOperations:
+class DiscriminatedClientNoEnvelopeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`object` attribute.
+        :attr:`discriminated_client_no_envelope` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -242,20 +231,51 @@ class EnvelopeObjectOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.default = EnvelopeObjectDefaultOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.custom_properties = EnvelopeObjectCustomPropertiesOperations(
+        self.discriminated_client_no_envelope_default = DiscriminatedClientNoEnvelopeDefaultOperations(
             self._client, self._config, self._serialize, self._deserialize
+        )
+        self.discriminated_client_no_envelope_custom_discriminator = (
+            DiscriminatedClientNoEnvelopeCustomDiscriminatorOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
 
 
-class NoEnvelopeDefaultOperations:
+class DiscriminatedClientEnvelopeObjectOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`default` attribute.
+        :attr:`discriminated_client_envelope_object` attribute.
+    """
+
+    def __init__(self, *args, **kwargs) -> None:
+        input_args = list(args)
+        self._client: PipelineClient = input_args.pop(0) if input_args else kwargs.pop("client")
+        self._config: DiscriminatedClientConfiguration = input_args.pop(0) if input_args else kwargs.pop("config")
+        self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
+        self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
+
+        self.discriminated_client_envelope_object_default = DiscriminatedClientEnvelopeObjectDefaultOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.discriminated_client_envelope_object_custom_properties = (
+            DiscriminatedClientEnvelopeObjectCustomPropertiesOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+
+
+class DiscriminatedClientNoEnvelopeDefaultOperations:  # pylint: disable=name-too-long
+    """
+    .. warning::
+        **DO NOT** instantiate this class directly.
+
+        Instead, you should access the following operations through
+        :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
+        :attr:`discriminated_client_no_envelope_default` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -287,7 +307,7 @@ class NoEnvelopeDefaultOperations:
 
         cls: ClsType["_types.PetInline"] = kwargs.pop("cls", None)
 
-        _request = build_no_envelope_default_get_request(
+        _request = build_discriminated_client_no_envelope_default_get_request(
             kind=kind,
             headers=_headers,
             params=_params,
@@ -375,7 +395,7 @@ class NoEnvelopeDefaultOperations:
         content_type = content_type or "application/json"
         _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_no_envelope_default_put_request(
+        _request = build_discriminated_client_no_envelope_default_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -411,14 +431,14 @@ class NoEnvelopeDefaultOperations:
         return deserialized  # type: ignore
 
 
-class NoEnvelopeCustomDiscriminatorOperations:
+class DiscriminatedClientNoEnvelopeCustomDiscriminatorOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`custom_discriminator` attribute.
+        :attr:`discriminated_client_no_envelope_custom_discriminator` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -450,7 +470,7 @@ class NoEnvelopeCustomDiscriminatorOperations:
 
         cls: ClsType["_types.PetInlineWithCustomDiscriminator"] = kwargs.pop("cls", None)
 
-        _request = build_no_envelope_custom_discriminator_get_request(
+        _request = build_discriminated_client_no_envelope_custom_discriminator_get_request(
             type=type,
             headers=_headers,
             params=_params,
@@ -544,7 +564,7 @@ class NoEnvelopeCustomDiscriminatorOperations:
         content_type = content_type or "application/json"
         _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_no_envelope_custom_discriminator_put_request(
+        _request = build_discriminated_client_no_envelope_custom_discriminator_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -580,14 +600,14 @@ class NoEnvelopeCustomDiscriminatorOperations:
         return deserialized  # type: ignore
 
 
-class EnvelopeObjectDefaultOperations:
+class DiscriminatedClientEnvelopeObjectDefaultOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`default` attribute.
+        :attr:`discriminated_client_envelope_object_default` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -619,7 +639,7 @@ class EnvelopeObjectDefaultOperations:
 
         cls: ClsType["_types.PetWithEnvelope"] = kwargs.pop("cls", None)
 
-        _request = build_envelope_object_default_get_request(
+        _request = build_discriminated_client_envelope_object_default_get_request(
             kind=kind,
             headers=_headers,
             params=_params,
@@ -711,7 +731,7 @@ class EnvelopeObjectDefaultOperations:
         content_type = content_type or "application/json"
         _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_envelope_object_default_put_request(
+        _request = build_discriminated_client_envelope_object_default_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -747,14 +767,14 @@ class EnvelopeObjectDefaultOperations:
         return deserialized  # type: ignore
 
 
-class EnvelopeObjectCustomPropertiesOperations:
+class DiscriminatedClientEnvelopeObjectCustomPropertiesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.discriminatedunion.DiscriminatedClient`'s
-        :attr:`custom_properties` attribute.
+        :attr:`discriminated_client_envelope_object_custom_properties` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -786,7 +806,7 @@ class EnvelopeObjectCustomPropertiesOperations:
 
         cls: ClsType["_types.PetWithCustomNames"] = kwargs.pop("cls", None)
 
-        _request = build_envelope_object_custom_properties_get_request(
+        _request = build_discriminated_client_envelope_object_custom_properties_get_request(
             pet_type=pet_type,
             headers=_headers,
             params=_params,
@@ -878,7 +898,7 @@ class EnvelopeObjectCustomPropertiesOperations:
         content_type = content_type or "application/json"
         _content = json.dumps(input, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_envelope_object_custom_properties_put_request(
+        _request = build_discriminated_client_envelope_object_custom_properties_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

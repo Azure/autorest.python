@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import LargeHeaderClientConfiguration
-from .operations import LargeHeadersOperations
+from .operations import LargeHeaderClientLargeHeadersOperations
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -29,8 +29,9 @@ if TYPE_CHECKING:
 class LargeHeaderClient:
     """Arm Resource Provider management API.
 
-    :ivar large_headers: LargeHeadersOperations operations
-    :vartype large_headers: azure.resourcemanager.largeheader.aio.operations.LargeHeadersOperations
+    :ivar large_header_client_large_headers: LargeHeaderClientLargeHeadersOperations operations
+    :vartype large_header_client_large_headers:
+     azure.resourcemanager.largeheader.aio.operations.LargeHeaderClientLargeHeadersOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -97,7 +98,9 @@ class LargeHeaderClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.large_headers = LargeHeadersOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.large_header_client_large_headers = LargeHeaderClientLargeHeadersOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

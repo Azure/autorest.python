@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_large_headers_two6_k_request(
+def build_large_header_client_large_headers_two6_k_request(  # pylint: disable=name-too-long
     resource_group_name: str, large_header_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -68,14 +68,14 @@ def build_large_headers_two6_k_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class LargeHeadersOperations:
+class LargeHeaderClientLargeHeadersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.largeheader.LargeHeaderClient`'s
-        :attr:`large_headers` attribute.
+        :attr:`large_header_client_large_headers` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -99,7 +99,7 @@ class LargeHeadersOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_large_headers_two6_k_request(
+        _request = build_large_header_client_large_headers_two6_k_request(
             resource_group_name=resource_group_name,
             large_header_name=large_header_name,
             subscription_id=self._config.subscription_id,

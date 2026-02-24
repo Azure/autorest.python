@@ -25,7 +25,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_multi_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_client_query_multi_request(  # pylint: disable=name-too-long
+    *, colors: list[str], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -37,7 +39,9 @@ def build_query_multi_request(*, colors: list[str], **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_ssv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_client_query_ssv_request(  # pylint: disable=name-too-long
+    *, colors: list[str], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -49,7 +53,9 @@ def build_query_ssv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_pipes_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_client_query_pipes_request(  # pylint: disable=name-too-long
+    *, colors: list[str], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -61,7 +67,9 @@ def build_query_pipes_request(*, colors: list[str], **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_csv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_client_query_csv_request(  # pylint: disable=name-too-long
+    *, colors: list[str], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -73,14 +81,14 @@ def build_query_csv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryOperations:
+class CollectionFormatClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.collectionformat.CollectionFormatClient`'s
-        :attr:`query` attribute.
+        :attr:`collection_format_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,7 +120,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_multi_request(
+        _request = build_collection_format_client_query_multi_request(
             colors=colors,
             headers=_headers,
             params=_params,
@@ -156,7 +164,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_ssv_request(
+        _request = build_collection_format_client_query_ssv_request(
             colors=colors,
             headers=_headers,
             params=_params,
@@ -200,7 +208,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_pipes_request(
+        _request = build_collection_format_client_query_pipes_request(
             colors=colors,
             headers=_headers,
             params=_params,
@@ -244,7 +252,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_csv_request(
+        _request = build_collection_format_client_query_csv_request(
             colors=colors,
             headers=_headers,
             params=_params,

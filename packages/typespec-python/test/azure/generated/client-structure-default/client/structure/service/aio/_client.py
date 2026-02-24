@@ -17,7 +17,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ServiceClientConfiguration
-from .operations import BarOperations, BazOperations, FooOperations, QuxOperations, _ServiceClientOperationsMixin
+from .operations import (
+    ServiceClientBarOperations,
+    ServiceClientBazOperations,
+    ServiceClientFooOperations,
+    ServiceClientQuxOperations,
+    _ServiceClientOperationsMixin,
+)
 
 
 class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
@@ -31,14 +37,14 @@ class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-ac
     5. have two clients with operations come from different interfaces
     6. have two clients with a hierarchy relation.
 
-    :ivar baz: BazOperations operations
-    :vartype baz: client.structure.service.aio.operations.BazOperations
-    :ivar qux: QuxOperations operations
-    :vartype qux: client.structure.service.aio.operations.QuxOperations
-    :ivar foo: FooOperations operations
-    :vartype foo: client.structure.service.aio.operations.FooOperations
-    :ivar bar: BarOperations operations
-    :vartype bar: client.structure.service.aio.operations.BarOperations
+    :ivar service_client_baz: ServiceClientBazOperations operations
+    :vartype service_client_baz: client.structure.service.aio.operations.ServiceClientBazOperations
+    :ivar service_client_qux: ServiceClientQuxOperations operations
+    :vartype service_client_qux: client.structure.service.aio.operations.ServiceClientQuxOperations
+    :ivar service_client_foo: ServiceClientFooOperations operations
+    :vartype service_client_foo: client.structure.service.aio.operations.ServiceClientFooOperations
+    :ivar service_client_bar: ServiceClientBarOperations operations
+    :vartype service_client_bar: client.structure.service.aio.operations.ServiceClientBarOperations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -76,10 +82,18 @@ class ServiceClient(_ServiceClientOperationsMixin):  # pylint: disable=client-ac
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.baz = BazOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.qux = QuxOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.foo = FooOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bar = BarOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.service_client_baz = ServiceClientBazOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.service_client_qux = ServiceClientQuxOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.service_client_foo = ServiceClientFooOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.service_client_bar = ServiceClientBarOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

@@ -12,70 +12,70 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import BooleanOperations  # type: ignore
-from ._operations import StringOperations  # type: ignore
-from ._operations import BytesOperations  # type: ignore
-from ._operations import IntOperations  # type: ignore
-from ._operations import FloatOperations  # type: ignore
-from ._operations import DecimalOperations  # type: ignore
-from ._operations import Decimal128Operations  # type: ignore
-from ._operations import DatetimeOperations  # type: ignore
-from ._operations import DurationOperations  # type: ignore
-from ._operations import EnumOperations  # type: ignore
-from ._operations import ExtensibleEnumOperations  # type: ignore
-from ._operations import ModelOperations  # type: ignore
-from ._operations import CollectionsStringOperations  # type: ignore
-from ._operations import CollectionsIntOperations  # type: ignore
-from ._operations import CollectionsModelOperations  # type: ignore
-from ._operations import DictionaryStringOperations  # type: ignore
-from ._operations import NeverOperations  # type: ignore
-from ._operations import UnknownStringOperations  # type: ignore
-from ._operations import UnknownIntOperations  # type: ignore
-from ._operations import UnknownDictOperations  # type: ignore
-from ._operations import UnknownArrayOperations  # type: ignore
-from ._operations import StringLiteralOperations  # type: ignore
-from ._operations import IntLiteralOperations  # type: ignore
-from ._operations import FloatLiteralOperations  # type: ignore
-from ._operations import BooleanLiteralOperations  # type: ignore
-from ._operations import UnionStringLiteralOperations  # type: ignore
-from ._operations import UnionIntLiteralOperations  # type: ignore
-from ._operations import UnionFloatLiteralOperations  # type: ignore
-from ._operations import UnionEnumValueOperations  # type: ignore
+from ._operations import ValueTypesClientBooleanOperations  # type: ignore
+from ._operations import ValueTypesClientStringOperations  # type: ignore
+from ._operations import ValueTypesClientBytesOperations  # type: ignore
+from ._operations import ValueTypesClientIntOperations  # type: ignore
+from ._operations import ValueTypesClientFloatOperations  # type: ignore
+from ._operations import ValueTypesClientDecimalOperations  # type: ignore
+from ._operations import ValueTypesClientDecimal128Operations  # type: ignore
+from ._operations import ValueTypesClientDatetimeOperations  # type: ignore
+from ._operations import ValueTypesClientDurationOperations  # type: ignore
+from ._operations import ValueTypesClientEnumOperations  # type: ignore
+from ._operations import ValueTypesClientExtensibleEnumOperations  # type: ignore
+from ._operations import ValueTypesClientModelOperations  # type: ignore
+from ._operations import ValueTypesClientCollectionsStringOperations  # type: ignore
+from ._operations import ValueTypesClientCollectionsIntOperations  # type: ignore
+from ._operations import ValueTypesClientCollectionsModelOperations  # type: ignore
+from ._operations import ValueTypesClientDictionaryStringOperations  # type: ignore
+from ._operations import ValueTypesClientNeverOperations  # type: ignore
+from ._operations import ValueTypesClientUnknownStringOperations  # type: ignore
+from ._operations import ValueTypesClientUnknownIntOperations  # type: ignore
+from ._operations import ValueTypesClientUnknownDictOperations  # type: ignore
+from ._operations import ValueTypesClientUnknownArrayOperations  # type: ignore
+from ._operations import ValueTypesClientStringLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientIntLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientFloatLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientBooleanLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientUnionStringLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientUnionIntLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientUnionFloatLiteralOperations  # type: ignore
+from ._operations import ValueTypesClientUnionEnumValueOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "BooleanOperations",
-    "StringOperations",
-    "BytesOperations",
-    "IntOperations",
-    "FloatOperations",
-    "DecimalOperations",
-    "Decimal128Operations",
-    "DatetimeOperations",
-    "DurationOperations",
-    "EnumOperations",
-    "ExtensibleEnumOperations",
-    "ModelOperations",
-    "CollectionsStringOperations",
-    "CollectionsIntOperations",
-    "CollectionsModelOperations",
-    "DictionaryStringOperations",
-    "NeverOperations",
-    "UnknownStringOperations",
-    "UnknownIntOperations",
-    "UnknownDictOperations",
-    "UnknownArrayOperations",
-    "StringLiteralOperations",
-    "IntLiteralOperations",
-    "FloatLiteralOperations",
-    "BooleanLiteralOperations",
-    "UnionStringLiteralOperations",
-    "UnionIntLiteralOperations",
-    "UnionFloatLiteralOperations",
-    "UnionEnumValueOperations",
+    "ValueTypesClientBooleanOperations",
+    "ValueTypesClientStringOperations",
+    "ValueTypesClientBytesOperations",
+    "ValueTypesClientIntOperations",
+    "ValueTypesClientFloatOperations",
+    "ValueTypesClientDecimalOperations",
+    "ValueTypesClientDecimal128Operations",
+    "ValueTypesClientDatetimeOperations",
+    "ValueTypesClientDurationOperations",
+    "ValueTypesClientEnumOperations",
+    "ValueTypesClientExtensibleEnumOperations",
+    "ValueTypesClientModelOperations",
+    "ValueTypesClientCollectionsStringOperations",
+    "ValueTypesClientCollectionsIntOperations",
+    "ValueTypesClientCollectionsModelOperations",
+    "ValueTypesClientDictionaryStringOperations",
+    "ValueTypesClientNeverOperations",
+    "ValueTypesClientUnknownStringOperations",
+    "ValueTypesClientUnknownIntOperations",
+    "ValueTypesClientUnknownDictOperations",
+    "ValueTypesClientUnknownArrayOperations",
+    "ValueTypesClientStringLiteralOperations",
+    "ValueTypesClientIntLiteralOperations",
+    "ValueTypesClientFloatLiteralOperations",
+    "ValueTypesClientBooleanLiteralOperations",
+    "ValueTypesClientUnionStringLiteralOperations",
+    "ValueTypesClientUnionIntLiteralOperations",
+    "ValueTypesClientUnionFloatLiteralOperations",
+    "ValueTypesClientUnionEnumValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

@@ -24,10 +24,10 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
-    build_property_base64_request,
-    build_property_base64_url_array_request,
-    build_property_base64_url_request,
-    build_property_default_request,
+    build_bytes_client_property_base64_request,
+    build_bytes_client_property_base64_url_array_request,
+    build_bytes_client_property_base64_url_request,
+    build_bytes_client_property_default_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -35,14 +35,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class BytesClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.aio.BytesClient`'s
-        :attr:`property` attribute.
+        :attr:`bytes_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -132,7 +132,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_bytes_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -247,7 +247,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_request(
+        _request = build_bytes_client_property_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -362,7 +362,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_url_request(
+        _request = build_bytes_client_property_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -482,7 +482,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_url_array_request(
+        _request = build_bytes_client_property_base64_url_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

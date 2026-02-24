@@ -22,10 +22,10 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_string_get_known_value_request,
-    build_string_get_unknown_value_request,
-    build_string_put_known_value_request,
-    build_string_put_unknown_value_request,
+    build_extensible_client_string_get_known_value_request,
+    build_extensible_client_string_get_unknown_value_request,
+    build_extensible_client_string_put_known_value_request,
+    build_extensible_client_string_put_unknown_value_request,
 )
 from .._configuration import ExtensibleClientConfiguration
 
@@ -33,14 +33,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class StringOperations:
+class ExtensibleClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.enum.extensible.aio.ExtensibleClient`'s
-        :attr:`string` attribute.
+        :attr:`extensible_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -70,7 +70,7 @@ class StringOperations:
 
         cls: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]] = kwargs.pop("cls", None)
 
-        _request = build_string_get_known_value_request(
+        _request = build_extensible_client_string_get_known_value_request(
             headers=_headers,
             params=_params,
         )
@@ -126,7 +126,7 @@ class StringOperations:
 
         cls: ClsType[Union[str, _models.DaysOfWeekExtensibleEnum]] = kwargs.pop("cls", None)
 
-        _request = build_string_get_unknown_value_request(
+        _request = build_extensible_client_string_get_unknown_value_request(
             headers=_headers,
             params=_params,
         )
@@ -188,7 +188,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_known_value_request(
+        _request = build_extensible_client_string_put_known_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -237,7 +237,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_unknown_value_request(
+        _request = build_extensible_client_string_put_unknown_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

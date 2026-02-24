@@ -19,7 +19,7 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from ._configuration import NonResourceClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import NonResourceOperationsOperations
+from .operations import NonResourceClientNonResourceOperationsOperations
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -29,9 +29,10 @@ if TYPE_CHECKING:
 class NonResourceClient:
     """Arm Resource Provider management API.
 
-    :ivar non_resource_operations: NonResourceOperationsOperations operations
-    :vartype non_resource_operations:
-     azure.resourcemanager.nonresource.operations.NonResourceOperationsOperations
+    :ivar non_resource_client_non_resource_operations:
+     NonResourceClientNonResourceOperationsOperations operations
+    :vartype non_resource_client_non_resource_operations:
+     azure.resourcemanager.nonresource.operations.NonResourceClientNonResourceOperationsOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -94,7 +95,7 @@ class NonResourceClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.non_resource_operations = NonResourceOperationsOperations(
+        self.non_resource_client_non_resource_operations = NonResourceClientNonResourceOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

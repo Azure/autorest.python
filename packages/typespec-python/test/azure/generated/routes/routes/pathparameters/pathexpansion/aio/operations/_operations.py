@@ -9,18 +9,18 @@ from azure.core import AsyncPipelineClient
 
 from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import RoutesClientConfiguration
-from ...explode.aio.operations._operations import PathParametersPathExpansionExplodeOperations
-from ...standard.aio.operations._operations import PathParametersPathExpansionStandardOperations
+from ...explode.aio.operations._operations import RoutesClientPathParametersPathExpansionExplodeOperations
+from ...standard.aio.operations._operations import RoutesClientPathParametersPathExpansionStandardOperations
 
 
-class PathParametersPathExpansionOperations:
+class RoutesClientPathParametersPathExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`path_expansion` attribute.
+        :attr:`routes_client_path_parameters_path_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -30,9 +30,13 @@ class PathParametersPathExpansionOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.standard = PathParametersPathExpansionStandardOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_path_expansion_standard = (
+            RoutesClientPathParametersPathExpansionStandardOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.explode = PathParametersPathExpansionExplodeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_path_expansion_explode = (
+            RoutesClientPathParametersPathExpansionExplodeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )

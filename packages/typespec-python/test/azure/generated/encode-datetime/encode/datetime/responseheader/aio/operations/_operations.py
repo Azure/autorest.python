@@ -24,24 +24,24 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
 from ...operations._operations import (
-    build_response_header_default_request,
-    build_response_header_rfc3339_request,
-    build_response_header_rfc7231_request,
-    build_response_header_unix_timestamp_request,
+    build_datetime_client_response_header_default_request,
+    build_datetime_client_response_header_rfc3339_request,
+    build_datetime_client_response_header_rfc7231_request,
+    build_datetime_client_response_header_unix_timestamp_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ResponseHeaderOperations:
+class DatetimeClientResponseHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.aio.DatetimeClient`'s
-        :attr:`response_header` attribute.
+        :attr:`datetime_client_response_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -72,7 +72,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_default_request(
+        _request = build_datetime_client_response_header_default_request(
             headers=_headers,
             params=_params,
         )
@@ -119,7 +119,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_rfc3339_request(
+        _request = build_datetime_client_response_header_rfc3339_request(
             headers=_headers,
             params=_params,
         )
@@ -166,7 +166,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_rfc7231_request(
+        _request = build_datetime_client_response_header_rfc7231_request(
             headers=_headers,
             params=_params,
         )
@@ -213,7 +213,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_unix_timestamp_request(
+        _request = build_datetime_client_response_header_unix_timestamp_request(
             headers=_headers,
             params=_params,
         )

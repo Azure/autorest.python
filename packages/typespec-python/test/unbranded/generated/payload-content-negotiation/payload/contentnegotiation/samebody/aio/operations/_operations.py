@@ -20,22 +20,22 @@ from corehttp.utils import case_insensitive_dict
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ContentNegotiationClientConfiguration
 from ...operations._operations import (
-    build_same_body_get_avatar_as_jpeg_request,
-    build_same_body_get_avatar_as_png_request,
+    build_content_negotiation_client_same_body_get_avatar_as_jpeg_request,
+    build_content_negotiation_client_same_body_get_avatar_as_png_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class SameBodyOperations:
+class ContentNegotiationClientSameBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.contentnegotiation.aio.ContentNegotiationClient`'s
-        :attr:`same_body` attribute.
+        :attr:`content_negotiation_client_same_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -66,7 +66,7 @@ class SameBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_same_body_get_avatar_as_png_request(
+        _request = build_content_negotiation_client_same_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
@@ -121,7 +121,7 @@ class SameBodyOperations:
         accept: Literal["image/jpeg"] = kwargs.pop("accept", _headers.pop("accept", "image/jpeg"))
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_same_body_get_avatar_as_jpeg_request(
+        _request = build_content_negotiation_client_same_body_get_avatar_as_jpeg_request(
             accept=accept,
             headers=_headers,
             params=_params,

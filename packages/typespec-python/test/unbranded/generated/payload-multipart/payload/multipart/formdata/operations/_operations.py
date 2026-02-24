@@ -21,8 +21,8 @@ from ..._configuration import MultiPartClientConfiguration
 from ..._utils.model_base import Model as _Model
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import prepare_multipart_form_data
-from ..file.operations._operations import FormDataFileOperations
-from ..httpparts.operations._operations import FormDataHttpPartsOperations
+from ..file.operations._operations import MultiPartClientFormDataFileOperations
+from ..httpparts.operations._operations import MultiPartClientFormDataHttpPartsOperations
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_basic_request(**kwargs: Any) -> HttpRequest:
+def build_multi_part_client_form_data_basic_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -41,7 +41,9 @@ def build_form_data_basic_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_with_wire_name_request(**kwargs: Any) -> HttpRequest:
+def build_multi_part_client_form_data_with_wire_name_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -50,7 +52,9 @@ def build_form_data_with_wire_name_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_optional_parts_request(**kwargs: Any) -> HttpRequest:
+def build_multi_part_client_form_data_optional_parts_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -59,7 +63,9 @@ def build_form_data_optional_parts_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_array_and_basic_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_file_array_and_basic_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -68,7 +74,7 @@ def build_form_data_file_array_and_basic_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_json_part_request(**kwargs: Any) -> HttpRequest:
+def build_multi_part_client_form_data_json_part_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -77,7 +83,9 @@ def build_form_data_json_part_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_binary_array_parts_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -86,7 +94,9 @@ def build_form_data_binary_array_parts_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_multi_binary_parts_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -95,7 +105,7 @@ def build_form_data_multi_binary_parts_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_check_file_name_and_content_type_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_check_file_name_and_content_type_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -106,7 +116,9 @@ def build_form_data_check_file_name_and_content_type_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_anonymous_model_request(**kwargs: Any) -> HttpRequest:
+def build_multi_part_client_form_data_anonymous_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -115,14 +127,14 @@ def build_form_data_anonymous_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FormDataOperations:
+class MultiPartClientFormDataOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.MultiPartClient`'s
-        :attr:`form_data` attribute.
+        :attr:`multi_part_client_form_data` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -132,8 +144,12 @@ class FormDataOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.file = FormDataFileOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.multi_part_client_form_data_http_parts = MultiPartClientFormDataHttpPartsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.multi_part_client_form_data_file = MultiPartClientFormDataFileOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     @overload
     def basic(self, body: _models2.MultiPartRequest, **kwargs: Any) -> None:
@@ -186,7 +202,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_basic_request(
+        _request = build_multi_part_client_form_data_basic_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -259,7 +275,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_with_wire_name_request(
+        _request = build_multi_part_client_form_data_with_wire_name_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -332,7 +348,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_optional_parts_request(
+        _request = build_multi_part_client_form_data_optional_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -405,7 +421,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id", "address"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_array_and_basic_request(
+        _request = build_multi_part_client_form_data_file_array_and_basic_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -478,7 +494,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["address"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_json_part_request(
+        _request = build_multi_part_client_form_data_json_part_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -551,7 +567,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_binary_array_parts_request(
+        _request = build_multi_part_client_form_data_binary_array_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -624,7 +640,7 @@ class FormDataOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_multi_binary_parts_request(
+        _request = build_multi_part_client_form_data_multi_binary_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -697,7 +713,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_check_file_name_and_content_type_request(
+        _request = build_multi_part_client_form_data_check_file_name_and_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -770,7 +786,7 @@ class FormDataOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_anonymous_model_request(
+        _request = build_multi_part_client_form_data_anonymous_model_request(
             files=_files,
             headers=_headers,
             params=_params,

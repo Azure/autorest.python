@@ -16,16 +16,19 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import DocumentationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ListsOperations, TextFormattingOperations
+from .operations import DocumentationClientListsOperations, DocumentationClientTextFormattingOperations
 
 
 class DocumentationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates documentation generation and formatting features.
 
-    :ivar lists: ListsOperations operations
-    :vartype lists: specs.documentation.operations.ListsOperations
-    :ivar text_formatting: TextFormattingOperations operations
-    :vartype text_formatting: specs.documentation.operations.TextFormattingOperations
+    :ivar documentation_client_lists: DocumentationClientListsOperations operations
+    :vartype documentation_client_lists:
+     specs.documentation.operations.DocumentationClientListsOperations
+    :ivar documentation_client_text_formatting: DocumentationClientTextFormattingOperations
+     operations
+    :vartype documentation_client_text_formatting:
+     specs.documentation.operations.DocumentationClientTextFormattingOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -58,8 +61,12 @@ class DocumentationClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.lists = ListsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.text_formatting = TextFormattingOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.documentation_client_lists = DocumentationClientListsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.documentation_client_text_formatting = DocumentationClientTextFormattingOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

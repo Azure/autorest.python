@@ -24,8 +24,8 @@ from azure.core.utils import case_insensitive_dict
 
 from ..._configuration import RoutesClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
-from ..querycontinuation.operations._operations import QueryParametersQueryContinuationOperations
-from ..queryexpansion.operations._operations import QueryParametersQueryExpansionOperations
+from ..querycontinuation.operations._operations import RoutesClientQueryParametersQueryContinuationOperations
+from ..queryexpansion.operations._operations import RoutesClientQueryParametersQueryExpansionOperations
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
@@ -34,7 +34,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_parameters_template_only_request(  # pylint: disable=name-too-long
+def build_routes_client_query_parameters_template_only_request(  # pylint: disable=name-too-long
     *, param: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -48,7 +48,9 @@ def build_query_parameters_template_only_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_parameters_explicit_request(*, param: str, **kwargs: Any) -> HttpRequest:
+def build_routes_client_query_parameters_explicit_request(  # pylint: disable=name-too-long
+    *, param: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -60,7 +62,7 @@ def build_query_parameters_explicit_request(*, param: str, **kwargs: Any) -> Htt
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_parameters_annotation_only_request(  # pylint: disable=name-too-long
+def build_routes_client_query_parameters_annotation_only_request(  # pylint: disable=name-too-long
     *, param: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -74,14 +76,14 @@ def build_query_parameters_annotation_only_request(  # pylint: disable=name-too-
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryParametersOperations:
+class RoutesClientQueryParametersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`query_parameters` attribute.
+        :attr:`routes_client_query_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -91,10 +93,10 @@ class QueryParametersOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.query_expansion = QueryParametersQueryExpansionOperations(
+        self.routes_client_query_parameters_query_expansion = RoutesClientQueryParametersQueryExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.query_continuation = QueryParametersQueryContinuationOperations(
+        self.routes_client_query_parameters_query_continuation = RoutesClientQueryParametersQueryContinuationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -121,7 +123,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_template_only_request(
+        _request = build_routes_client_query_parameters_template_only_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -168,7 +170,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_explicit_request(
+        _request = build_routes_client_query_parameters_explicit_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -215,7 +217,7 @@ class QueryParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_annotation_only_request(
+        _request = build_routes_client_query_parameters_annotation_only_request(
             param=param,
             headers=_headers,
             params=_params,

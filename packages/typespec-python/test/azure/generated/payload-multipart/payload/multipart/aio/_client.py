@@ -16,14 +16,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MultiPartClientConfiguration
-from .operations import FormDataOperations
+from .operations import MultiPartClientFormDataOperations
 
 
 class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for multipart.
 
-    :ivar form_data: FormDataOperations operations
-    :vartype form_data: payload.multipart.aio.operations.FormDataOperations
+    :ivar multi_part_client_form_data: MultiPartClientFormDataOperations operations
+    :vartype multi_part_client_form_data:
+     payload.multipart.aio.operations.MultiPartClientFormDataOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -56,7 +57,9 @@ class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.form_data = FormDataOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.multi_part_client_form_data = MultiPartClientFormDataOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

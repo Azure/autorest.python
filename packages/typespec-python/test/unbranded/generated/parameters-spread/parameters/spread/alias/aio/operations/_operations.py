@@ -21,11 +21,11 @@ from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import SpreadClientConfiguration
 from ...operations._operations import (
-    build_alias_spread_as_request_body_request,
-    build_alias_spread_as_request_parameter_request,
-    build_alias_spread_parameter_with_inner_alias_request,
-    build_alias_spread_parameter_with_inner_model_request,
-    build_alias_spread_with_multiple_parameters_request,
+    build_spread_client_alias_spread_as_request_body_request,
+    build_spread_client_alias_spread_as_request_parameter_request,
+    build_spread_client_alias_spread_parameter_with_inner_alias_request,
+    build_spread_client_alias_spread_parameter_with_inner_model_request,
+    build_spread_client_alias_spread_with_multiple_parameters_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -34,14 +34,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class AliasOperations:
+class SpreadClientAliasOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.spread.aio.SpreadClient`'s
-        :attr:`alias` attribute.
+        :attr:`spread_client_alias` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -136,7 +136,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_body_request(
+        _request = build_spread_client_alias_spread_as_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -268,7 +268,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_model_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_model_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -402,7 +402,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_parameter_request(
+        _request = build_spread_client_alias_spread_as_request_parameter_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -567,7 +567,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_with_multiple_parameters_request(
+        _request = build_spread_client_alias_spread_with_multiple_parameters_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -715,7 +715,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_alias_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_alias_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,

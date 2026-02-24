@@ -37,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_individually_parent_nested_with_path_client_with_query_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_path_client_with_query_request(  # pylint: disable=name-too-long
     blob_name: str, *, format: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -57,7 +57,7 @@ def build_individually_parent_nested_with_path_client_with_query_request(  # pyl
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_individually_parent_nested_with_path_client_get_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_path_client_get_standalone_request(  # pylint: disable=name-too-long
     blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -78,7 +78,7 @@ def build_individually_parent_nested_with_path_client_get_standalone_request(  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_path_client_delete_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_path_client_delete_standalone_request(  # pylint: disable=name-too-long
     blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -92,7 +92,7 @@ def build_individually_parent_nested_with_path_client_delete_standalone_request(
     return HttpRequest(method="DELETE", url=_url, **kwargs)
 
 
-def build_individually_parent_nested_with_query_client_with_query_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_query_client_with_query_request(  # pylint: disable=name-too-long
     *, blob_name: str, format: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -108,7 +108,7 @@ def build_individually_parent_nested_with_query_client_with_query_request(  # py
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_individually_parent_nested_with_query_client_get_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_query_client_get_standalone_request(  # pylint: disable=name-too-long
     *, blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -128,7 +128,7 @@ def build_individually_parent_nested_with_query_client_get_standalone_request(  
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_query_client_delete_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_query_client_delete_standalone_request(  # pylint: disable=name-too-long
     *, blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -142,7 +142,7 @@ def build_individually_parent_nested_with_query_client_delete_standalone_request
     return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
-def build_individually_parent_nested_with_header_client_with_query_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_header_client_with_query_request(  # pylint: disable=name-too-long
     *, name: str, format: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -161,7 +161,7 @@ def build_individually_parent_nested_with_header_client_with_query_request(  # p
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_header_client_get_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_header_client_get_standalone_request(  # pylint: disable=name-too-long
     *, name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -175,7 +175,7 @@ def build_individually_parent_nested_with_header_client_get_standalone_request( 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_header_client_delete_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_header_client_delete_standalone_request(  # pylint: disable=name-too-long
     *, name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -189,7 +189,7 @@ def build_individually_parent_nested_with_header_client_delete_standalone_reques
     return HttpRequest(method="DELETE", url=_url, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_multiple_client_with_query_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_multiple_client_with_query_request(  # pylint: disable=name-too-long
     *, name: str, region: str, format: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -209,7 +209,7 @@ def build_individually_parent_nested_with_multiple_client_with_query_request(  #
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_multiple_client_get_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_multiple_client_get_standalone_request(  # pylint: disable=name-too-long
     *, name: str, region: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -227,7 +227,7 @@ def build_individually_parent_nested_with_multiple_client_get_standalone_request
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_multiple_client_delete_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_multiple_client_delete_standalone_request(  # pylint: disable=name-too-long
     *, name: str, region: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -245,7 +245,7 @@ def build_individually_parent_nested_with_multiple_client_delete_standalone_requ
     return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_mixed_client_with_query_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_mixed_client_with_query_request(  # pylint: disable=name-too-long
     *, region: str, name: str, format: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -265,7 +265,7 @@ def build_individually_parent_nested_with_mixed_client_with_query_request(  # py
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_mixed_client_get_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_mixed_client_get_standalone_request(  # pylint: disable=name-too-long
     *, region: str, name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -283,7 +283,7 @@ def build_individually_parent_nested_with_mixed_client_get_standalone_request(  
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_mixed_client_delete_standalone_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_mixed_client_delete_standalone_request(  # pylint: disable=name-too-long
     *, region: str, name: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -301,7 +301,7 @@ def build_individually_parent_nested_with_mixed_client_delete_standalone_request
     return HttpRequest(method="DELETE", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_individually_parent_nested_with_param_alias_client_with_aliased_name_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_param_alias_client_with_aliased_name_request(  # pylint: disable=name-too-long
     blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -315,7 +315,7 @@ def build_individually_parent_nested_with_param_alias_client_with_aliased_name_r
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_individually_parent_nested_with_param_alias_client_with_original_name_request(  # pylint: disable=name-too-long
+def build_individually_parent_client_individually_parent_nested_with_param_alias_client_with_original_name_request(  # pylint: disable=name-too-long
     blob_name: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -329,14 +329,14 @@ def build_individually_parent_nested_with_param_alias_client_with_original_name_
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class IndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_path_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_path_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -371,7 +371,7 @@ class IndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_path_client_with_query_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_path_client_with_query_request(
             blob_name=self._config.blob_name,
             format=format,
             headers=_headers,
@@ -418,7 +418,7 @@ class IndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-
 
         cls: ClsType[_models.BlobProperties] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_path_client_get_standalone_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_path_client_get_standalone_request(
             blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,
@@ -475,10 +475,12 @@ class IndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_path_client_delete_standalone_request(
-            blob_name=self._config.blob_name,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_path_client_delete_standalone_request(
+                blob_name=self._config.blob_name,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -500,14 +502,14 @@ class IndividuallyParentNestedWithPathClientOperations:  # pylint: disable=name-
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_query_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_query_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -542,7 +544,7 @@ class IndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_query_client_with_query_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_query_client_with_query_request(
             blob_name=self._config.blob_name,
             format=format,
             headers=_headers,
@@ -589,7 +591,7 @@ class IndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name
 
         cls: ClsType[_models.BlobProperties] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_query_client_get_standalone_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_query_client_get_standalone_request(
             blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,
@@ -646,10 +648,12 @@ class IndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_query_client_delete_standalone_request(
-            blob_name=self._config.blob_name,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_query_client_delete_standalone_request(
+                blob_name=self._config.blob_name,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -671,14 +675,14 @@ class IndividuallyParentNestedWithQueryClientOperations:  # pylint: disable=name
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_header_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_header_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -713,7 +717,7 @@ class IndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_header_client_with_query_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_header_client_with_query_request(
             name=self._config.name,
             format=format,
             headers=_headers,
@@ -759,10 +763,12 @@ class IndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_header_client_get_standalone_request(
-            name=self._config.name,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_header_client_get_standalone_request(
+                name=self._config.name,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -804,10 +810,12 @@ class IndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_header_client_delete_standalone_request(
-            name=self._config.name,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_header_client_delete_standalone_request(
+                name=self._config.name,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -829,14 +837,14 @@ class IndividuallyParentNestedWithHeaderClientOperations:  # pylint: disable=nam
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_multiple_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_multiple_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -871,7 +879,7 @@ class IndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=n
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_multiple_client_with_query_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_multiple_client_with_query_request(
             name=self._config.name,
             region=self._config.region,
             format=format,
@@ -918,11 +926,13 @@ class IndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=n
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_multiple_client_get_standalone_request(
-            name=self._config.name,
-            region=self._config.region,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_multiple_client_get_standalone_request(
+                name=self._config.name,
+                region=self._config.region,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -964,11 +974,13 @@ class IndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=n
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_multiple_client_delete_standalone_request(
-            name=self._config.name,
-            region=self._config.region,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_multiple_client_delete_standalone_request(
+                name=self._config.name,
+                region=self._config.region,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -990,14 +1002,14 @@ class IndividuallyParentNestedWithMultipleClientOperations:  # pylint: disable=n
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_mixed_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_mixed_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1034,7 +1046,7 @@ class IndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_mixed_client_with_query_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_mixed_client_with_query_request(
             region=region,
             name=self._config.name,
             format=format,
@@ -1083,7 +1095,7 @@ class IndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_mixed_client_get_standalone_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_mixed_client_get_standalone_request(
             region=region,
             name=self._config.name,
             headers=_headers,
@@ -1133,11 +1145,13 @@ class IndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_mixed_client_delete_standalone_request(
-            region=region,
-            name=self._config.name,
-            headers=_headers,
-            params=_params,
+        _request = (
+            build_individually_parent_client_individually_parent_nested_with_mixed_client_delete_standalone_request(
+                region=region,
+                name=self._config.name,
+                headers=_headers,
+                params=_params,
+            )
         )
         path_format_arguments = {
             "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -1159,14 +1173,14 @@ class IndividuallyParentNestedWithMixedClientOperations:  # pylint: disable=name
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IndividuallyParentNestedWithParamAliasClientOperations:  # pylint: disable=name-too-long
+class IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientinitialization.individuallyparent.IndividuallyParentClient`'s
-        :attr:`individually_parent_nested_with_param_alias_client` attribute.
+        :attr:`individually_parent_client_individually_parent_nested_with_param_alias_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1197,7 +1211,7 @@ class IndividuallyParentNestedWithParamAliasClientOperations:  # pylint: disable
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_param_alias_client_with_aliased_name_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_param_alias_client_with_aliased_name_request(
             blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,
@@ -1242,7 +1256,7 @@ class IndividuallyParentNestedWithParamAliasClientOperations:  # pylint: disable
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_individually_parent_nested_with_param_alias_client_with_original_name_request(
+        _request = build_individually_parent_client_individually_parent_nested_with_param_alias_client_with_original_name_request(
             blob_name=self._config.blob_name,
             headers=_headers,
             params=_params,

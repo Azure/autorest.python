@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_in_operation_input_to_input_output_request(  # pylint: disable=name-too-long
+def build_usage_client_model_in_operation_input_to_input_output_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -55,7 +55,7 @@ def build_model_in_operation_input_to_input_output_request(  # pylint: disable=n
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_in_operation_output_to_input_output_request(  # pylint: disable=name-too-long
+def build_usage_client_model_in_operation_output_to_input_output_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -71,7 +71,7 @@ def build_model_in_operation_output_to_input_output_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_in_operation_model_in_read_only_property_request(  # pylint: disable=name-too-long
+def build_usage_client_model_in_operation_model_in_read_only_property_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -90,7 +90,7 @@ def build_model_in_operation_model_in_read_only_property_request(  # pylint: dis
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_in_operation_orphan_model_serializable_request(  # pylint: disable=name-too-long
+def build_usage_client_model_in_operation_orphan_model_serializable_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -105,14 +105,14 @@ def build_model_in_operation_orphan_model_serializable_request(  # pylint: disab
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class ModelInOperationOperations:
+class UsageClientModelInOperationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.usage.UsageClient`'s
-        :attr:`model_in_operation` attribute.
+        :attr:`usage_client_model_in_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -223,7 +223,7 @@ class ModelInOperationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_input_to_input_output_request(
+        _request = build_usage_client_model_in_operation_input_to_input_output_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -275,7 +275,7 @@ class ModelInOperationOperations:
 
         cls: ClsType[_models.OutputModel] = kwargs.pop("cls", None)
 
-        _request = build_model_in_operation_output_to_input_output_request(
+        _request = build_usage_client_model_in_operation_output_to_input_output_request(
             headers=_headers,
             params=_params,
         )
@@ -459,7 +459,7 @@ class ModelInOperationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_model_in_read_only_property_request(
+        _request = build_usage_client_model_in_operation_model_in_read_only_property_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -533,7 +533,7 @@ class ModelInOperationOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_orphan_model_serializable_request(
+        _request = build_usage_client_model_in_operation_orphan_model_serializable_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

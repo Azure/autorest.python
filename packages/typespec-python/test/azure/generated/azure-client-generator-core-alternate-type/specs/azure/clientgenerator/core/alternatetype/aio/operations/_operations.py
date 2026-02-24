@@ -32,10 +32,10 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_external_type_get_model_request,
-    build_external_type_get_property_request,
-    build_external_type_put_model_request,
-    build_external_type_put_property_request,
+    build_alternate_type_client_external_type_get_model_request,
+    build_alternate_type_client_external_type_get_property_request,
+    build_alternate_type_client_external_type_put_model_request,
+    build_alternate_type_client_external_type_put_property_request,
 )
 from .._configuration import AlternateTypeClientConfiguration
 
@@ -44,14 +44,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ExternalTypeOperations:
+class AlternateTypeClientExternalTypeOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.alternatetype.aio.AlternateTypeClient`'s
-        :attr:`external_type` attribute.
+        :attr:`alternate_type_client_external_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -82,7 +82,7 @@ class ExternalTypeOperations:
 
         cls: ClsType[geojson.Feature] = kwargs.pop("cls", None)
 
-        _request = build_external_type_get_model_request(
+        _request = build_alternate_type_client_external_type_get_model_request(
             headers=_headers,
             params=_params,
         )
@@ -143,7 +143,7 @@ class ExternalTypeOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_external_type_put_model_request(
+        _request = build_alternate_type_client_external_type_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -190,7 +190,7 @@ class ExternalTypeOperations:
 
         cls: ClsType[_models.ModelWithFeatureProperty] = kwargs.pop("cls", None)
 
-        _request = build_external_type_get_property_request(
+        _request = build_alternate_type_client_external_type_get_property_request(
             headers=_headers,
             params=_params,
         )
@@ -301,7 +301,7 @@ class ExternalTypeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_external_type_put_property_request(
+        _request = build_alternate_type_client_external_type_put_property_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

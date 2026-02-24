@@ -22,24 +22,24 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import MediaTypeClientConfiguration
 from ...operations._operations import (
-    build_string_body_get_as_json_request,
-    build_string_body_get_as_text_request,
-    build_string_body_send_as_json_request,
-    build_string_body_send_as_text_request,
+    build_media_type_client_string_body_get_as_json_request,
+    build_media_type_client_string_body_get_as_text_request,
+    build_media_type_client_string_body_send_as_json_request,
+    build_media_type_client_string_body_send_as_text_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class StringBodyOperations:
+class MediaTypeClientStringBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.mediatype.aio.MediaTypeClient`'s
-        :attr:`string_body` attribute.
+        :attr:`media_type_client_string_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -74,7 +74,7 @@ class StringBodyOperations:
 
         _content = text
 
-        _request = build_string_body_send_as_text_request(
+        _request = build_media_type_client_string_body_send_as_text_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -117,7 +117,7 @@ class StringBodyOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_string_body_get_as_text_request(
+        _request = build_media_type_client_string_body_get_as_text_request(
             headers=_headers,
             params=_params,
         )
@@ -178,7 +178,7 @@ class StringBodyOperations:
 
         _content = json.dumps(text, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_body_send_as_json_request(
+        _request = build_media_type_client_string_body_send_as_json_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -221,7 +221,7 @@ class StringBodyOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_string_body_get_as_json_request(
+        _request = build_media_type_client_string_body_get_as_json_request(
             headers=_headers,
             params=_params,
         )

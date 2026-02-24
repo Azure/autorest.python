@@ -29,7 +29,7 @@ from azure.core.utils import case_insensitive_dict
 from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_property_get_request, build_property_send_request
+from ...operations._operations import build_json_client_property_get_request, build_json_client_property_send_request
 from .._configuration import JsonClientConfiguration
 
 JSON = MutableMapping[str, Any]
@@ -37,14 +37,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class JsonClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~serialization.encodedname.json.aio.JsonClient`'s
-        :attr:`property` attribute.
+        :attr:`json_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -129,7 +129,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_send_request(
+        _request = build_json_client_property_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -175,7 +175,7 @@ class PropertyOperations:
 
         cls: ClsType[_models.JsonEncodedNameModel] = kwargs.pop("cls", None)
 
-        _request = build_property_get_request(
+        _request = build_json_client_property_get_request(
             headers=_headers,
             params=_params,
         )

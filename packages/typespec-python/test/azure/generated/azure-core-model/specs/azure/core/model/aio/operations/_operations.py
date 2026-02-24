@@ -30,9 +30,9 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_azure_core_embedding_vector_get_request,
-    build_azure_core_embedding_vector_post_request,
-    build_azure_core_embedding_vector_put_request,
+    build_model_client_azure_core_embedding_vector_get_request,
+    build_model_client_azure_core_embedding_vector_post_request,
+    build_model_client_azure_core_embedding_vector_put_request,
 )
 from .._configuration import ModelClientConfiguration
 
@@ -41,14 +41,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class AzureCoreEmbeddingVectorOperations:
+class ModelClientAzureCoreEmbeddingVectorOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.core.model.aio.ModelClient`'s
-        :attr:`azure_core_embedding_vector` attribute.
+        :attr:`model_client_azure_core_embedding_vector` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -79,7 +79,7 @@ class AzureCoreEmbeddingVectorOperations:
 
         cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
-        _request = build_azure_core_embedding_vector_get_request(
+        _request = build_model_client_azure_core_embedding_vector_get_request(
             headers=_headers,
             params=_params,
         )
@@ -173,7 +173,7 @@ class AzureCoreEmbeddingVectorOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_core_embedding_vector_put_request(
+        _request = build_model_client_azure_core_embedding_vector_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -279,7 +279,7 @@ class AzureCoreEmbeddingVectorOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_core_embedding_vector_post_request(
+        _request = build_model_client_azure_core_embedding_vector_post_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

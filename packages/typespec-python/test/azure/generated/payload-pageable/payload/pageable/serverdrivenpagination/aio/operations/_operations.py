@@ -26,25 +26,27 @@ from .... import models as _models3
 from ...._utils.model_base import _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
-from ...continuationtoken.aio.operations._operations import ServerDrivenPaginationContinuationTokenOperations
+from ...continuationtoken.aio.operations._operations import (
+    PageableClientServerDrivenPaginationContinuationTokenOperations,
+)
 from ...operations._operations import (
-    build_server_driven_pagination_link_request,
-    build_server_driven_pagination_link_string_request,
-    build_server_driven_pagination_nested_link_request,
+    build_pageable_client_server_driven_pagination_link_request,
+    build_pageable_client_server_driven_pagination_link_string_request,
+    build_pageable_client_server_driven_pagination_nested_link_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ServerDrivenPaginationOperations:
+class PageableClientServerDrivenPaginationOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.aio.PageableClient`'s
-        :attr:`server_driven_pagination` attribute.
+        :attr:`pageable_client_server_driven_pagination` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -54,8 +56,10 @@ class ServerDrivenPaginationOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.continuation_token = ServerDrivenPaginationContinuationTokenOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.pageable_client_server_driven_pagination_continuation_token = (
+            PageableClientServerDrivenPaginationContinuationTokenOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
 
     @distributed_trace
@@ -82,7 +86,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_link_request(
+                _request = build_pageable_client_server_driven_pagination_link_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -152,7 +156,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_link_string_request(
+                _request = build_pageable_client_server_driven_pagination_link_string_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -222,7 +226,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_nested_link_request(
+                _request = build_pageable_client_server_driven_pagination_nested_link_request(
                     headers=_headers,
                     params=_params,
                 )

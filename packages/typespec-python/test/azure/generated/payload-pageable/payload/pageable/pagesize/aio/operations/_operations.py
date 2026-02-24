@@ -27,22 +27,22 @@ from ...._utils.model_base import _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
 from ...operations._operations import (
-    build_page_size_list_with_page_size_request,
-    build_page_size_list_without_continuation_request,
+    build_pageable_client_page_size_list_with_page_size_request,
+    build_pageable_client_page_size_list_without_continuation_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PageSizeOperations:
+class PageableClientPageSizeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.aio.PageableClient`'s
-        :attr:`page_size` attribute.
+        :attr:`pageable_client_page_size` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,7 +76,7 @@ class PageSizeOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_page_size_list_without_continuation_request(
+                _request = build_pageable_client_page_size_list_without_continuation_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -148,7 +148,7 @@ class PageSizeOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_page_size_list_with_page_size_request(
+                _request = build_pageable_client_page_size_list_with_page_size_request(
                     page_size=page_size,
                     headers=_headers,
                     params=_params,

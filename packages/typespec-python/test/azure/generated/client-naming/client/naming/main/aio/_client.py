@@ -16,16 +16,18 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ModelClientOperations, UnionEnumOperations, _NamingClientOperationsMixin
+from .operations import NamingClientModelClientOperations, NamingClientUnionEnumOperations, _NamingClientOperationsMixin
 
 
 class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
 
-    :ivar model_client: ModelClientOperations operations
-    :vartype model_client: client.naming.main.aio.operations.ModelClientOperations
-    :ivar union_enum: UnionEnumOperations operations
-    :vartype union_enum: client.naming.main.aio.operations.UnionEnumOperations
+    :ivar naming_client_model_client: NamingClientModelClientOperations operations
+    :vartype naming_client_model_client:
+     client.naming.main.aio.operations.NamingClientModelClientOperations
+    :ivar naming_client_union_enum: NamingClientUnionEnumOperations operations
+    :vartype naming_client_union_enum:
+     client.naming.main.aio.operations.NamingClientUnionEnumOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -58,8 +60,12 @@ class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.model_client = ModelClientOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.union_enum = UnionEnumOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.naming_client_model_client = NamingClientModelClientOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.naming_client_union_enum = NamingClientUnionEnumOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

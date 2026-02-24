@@ -26,7 +26,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_default_request(*, input: datetime.timedelta, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_default_request(  # pylint: disable=name-too-long
+    *, input: datetime.timedelta, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -38,7 +40,9 @@ def build_query_default_request(*, input: datetime.timedelta, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_iso8601_request(*, input: datetime.timedelta, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_iso8601_request(  # pylint: disable=name-too-long
+    *, input: datetime.timedelta, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -50,7 +54,9 @@ def build_query_iso8601_request(*, input: datetime.timedelta, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_seconds_request(*, input: int, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_int32_seconds_request(  # pylint: disable=name-too-long
+    *, input: int, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -62,7 +68,7 @@ def build_query_int32_seconds_request(*, input: int, **kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_seconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_query_int32_seconds_larger_unit_request(  # pylint: disable=name-too-long
     *, input: int, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -76,7 +82,9 @@ def build_query_int32_seconds_larger_unit_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float_seconds_request(*, input: float, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_float_seconds_request(  # pylint: disable=name-too-long
+    *, input: float, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -88,7 +96,7 @@ def build_query_float_seconds_request(*, input: float, **kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float_seconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_query_float_seconds_larger_unit_request(  # pylint: disable=name-too-long
     *, input: float, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -102,7 +110,9 @@ def build_query_float_seconds_larger_unit_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float64_seconds_request(*, input: float, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_float64_seconds_request(  # pylint: disable=name-too-long
+    *, input: float, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -114,7 +124,9 @@ def build_query_float64_seconds_request(*, input: float, **kwargs: Any) -> HttpR
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_milliseconds_request(*, input: int, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_int32_milliseconds_request(  # pylint: disable=name-too-long
+    *, input: int, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -126,7 +138,7 @@ def build_query_int32_milliseconds_request(*, input: int, **kwargs: Any) -> Http
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_query_int32_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
     *, input: int, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -140,7 +152,9 @@ def build_query_int32_milliseconds_larger_unit_request(  # pylint: disable=name-
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float_milliseconds_request(*, input: float, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_float_milliseconds_request(  # pylint: disable=name-too-long
+    *, input: float, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -152,7 +166,7 @@ def build_query_float_milliseconds_request(*, input: float, **kwargs: Any) -> Ht
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_query_float_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
     *, input: float, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -166,7 +180,9 @@ def build_query_float_milliseconds_larger_unit_request(  # pylint: disable=name-
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_float64_milliseconds_request(*, input: float, **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_float64_milliseconds_request(  # pylint: disable=name-too-long
+    *, input: float, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -178,7 +194,9 @@ def build_query_float64_milliseconds_request(*, input: float, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_seconds_array_request(*, input: list[int], **kwargs: Any) -> HttpRequest:
+def build_duration_client_query_int32_seconds_array_request(  # pylint: disable=name-too-long
+    *, input: list[int], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -190,7 +208,7 @@ def build_query_int32_seconds_array_request(*, input: list[int], **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_int32_milliseconds_array_request(  # pylint: disable=name-too-long
+def build_duration_client_query_int32_milliseconds_array_request(  # pylint: disable=name-too-long
     *, input: list[int], **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -204,14 +222,14 @@ def build_query_int32_milliseconds_array_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryOperations:
+class DurationClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.DurationClient`'s
-        :attr:`query` attribute.
+        :attr:`duration_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -245,7 +263,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_duration_client_query_default_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -291,7 +309,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_iso8601_request(
+        _request = build_duration_client_query_iso8601_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -335,7 +353,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_request(
+        _request = build_duration_client_query_int32_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -381,7 +399,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_larger_unit_request(
+        _request = build_duration_client_query_int32_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -425,7 +443,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_request(
+        _request = build_duration_client_query_float_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -471,7 +489,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_larger_unit_request(
+        _request = build_duration_client_query_float_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -515,7 +533,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_seconds_request(
+        _request = build_duration_client_query_float64_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -561,7 +579,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_request(
+        _request = build_duration_client_query_int32_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -607,7 +625,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_int32_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -653,7 +671,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_request(
+        _request = build_duration_client_query_float_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -699,7 +717,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_float_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -745,7 +763,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_milliseconds_request(
+        _request = build_duration_client_query_float64_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -791,7 +809,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_array_request(
+        _request = build_duration_client_query_int32_seconds_array_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -837,7 +855,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_array_request(
+        _request = build_duration_client_query_int32_milliseconds_array_request(
             input=input,
             headers=_headers,
             params=_params,

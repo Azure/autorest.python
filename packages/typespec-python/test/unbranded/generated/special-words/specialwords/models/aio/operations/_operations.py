@@ -23,39 +23,39 @@ from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import SpecialWordsClientConfiguration
 from ...operations._operations import (
-    build_models_with_and_request,
-    build_models_with_as_request,
-    build_models_with_assert_request,
-    build_models_with_async_request,
-    build_models_with_await_request,
-    build_models_with_break_request,
-    build_models_with_class_request,
-    build_models_with_constructor_request,
-    build_models_with_continue_request,
-    build_models_with_def_request,
-    build_models_with_del_request,
-    build_models_with_elif_request,
-    build_models_with_else_request,
-    build_models_with_except_request,
-    build_models_with_exec_request,
-    build_models_with_finally_request,
-    build_models_with_for_request,
-    build_models_with_from_request,
-    build_models_with_global_request,
-    build_models_with_if_request,
-    build_models_with_import_request,
-    build_models_with_in_request,
-    build_models_with_is_request,
-    build_models_with_lambda_request,
-    build_models_with_not_request,
-    build_models_with_or_request,
-    build_models_with_pass_request,
-    build_models_with_raise_request,
-    build_models_with_return_request,
-    build_models_with_try_request,
-    build_models_with_while_request,
-    build_models_with_with_request,
-    build_models_with_yield_request,
+    build_special_words_client_models_with_and_request,
+    build_special_words_client_models_with_as_request,
+    build_special_words_client_models_with_assert_request,
+    build_special_words_client_models_with_async_request,
+    build_special_words_client_models_with_await_request,
+    build_special_words_client_models_with_break_request,
+    build_special_words_client_models_with_class_request,
+    build_special_words_client_models_with_constructor_request,
+    build_special_words_client_models_with_continue_request,
+    build_special_words_client_models_with_def_request,
+    build_special_words_client_models_with_del_request,
+    build_special_words_client_models_with_elif_request,
+    build_special_words_client_models_with_else_request,
+    build_special_words_client_models_with_except_request,
+    build_special_words_client_models_with_exec_request,
+    build_special_words_client_models_with_finally_request,
+    build_special_words_client_models_with_for_request,
+    build_special_words_client_models_with_from_request,
+    build_special_words_client_models_with_global_request,
+    build_special_words_client_models_with_if_request,
+    build_special_words_client_models_with_import_request,
+    build_special_words_client_models_with_in_request,
+    build_special_words_client_models_with_is_request,
+    build_special_words_client_models_with_lambda_request,
+    build_special_words_client_models_with_not_request,
+    build_special_words_client_models_with_or_request,
+    build_special_words_client_models_with_pass_request,
+    build_special_words_client_models_with_raise_request,
+    build_special_words_client_models_with_return_request,
+    build_special_words_client_models_with_try_request,
+    build_special_words_client_models_with_while_request,
+    build_special_words_client_models_with_with_request,
+    build_special_words_client_models_with_yield_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -63,14 +63,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ModelsOperations:  # pylint: disable=too-many-public-methods
+class SpecialWordsClientModelsOperations:  # pylint: disable=too-many-public-methods
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.aio.SpecialWordsClient`'s
-        :attr:`models` attribute.
+        :attr:`special_words_client_models` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -152,7 +152,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_and_request(
+        _request = build_special_words_client_models_with_and_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -247,7 +247,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_as_request(
+        _request = build_special_words_client_models_with_as_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -344,7 +344,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_assert_request(
+        _request = build_special_words_client_models_with_assert_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -441,7 +441,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_async_request(
+        _request = build_special_words_client_models_with_async_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -538,7 +538,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_await_request(
+        _request = build_special_words_client_models_with_await_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -635,7 +635,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_break_request(
+        _request = build_special_words_client_models_with_break_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -732,7 +732,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_class_request(
+        _request = build_special_words_client_models_with_class_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -829,7 +829,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_constructor_request(
+        _request = build_special_words_client_models_with_constructor_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -926,7 +926,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_continue_request(
+        _request = build_special_words_client_models_with_continue_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1021,7 +1021,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_def_request(
+        _request = build_special_words_client_models_with_def_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1116,7 +1116,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_del_request(
+        _request = build_special_words_client_models_with_del_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1213,7 +1213,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_elif_request(
+        _request = build_special_words_client_models_with_elif_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1310,7 +1310,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_else_request(
+        _request = build_special_words_client_models_with_else_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1407,7 +1407,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_except_request(
+        _request = build_special_words_client_models_with_except_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1504,7 +1504,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_exec_request(
+        _request = build_special_words_client_models_with_exec_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1601,7 +1601,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_finally_request(
+        _request = build_special_words_client_models_with_finally_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1696,7 +1696,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_for_request(
+        _request = build_special_words_client_models_with_for_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1793,7 +1793,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_from_request(
+        _request = build_special_words_client_models_with_from_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1890,7 +1890,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_global_request(
+        _request = build_special_words_client_models_with_global_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1985,7 +1985,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_if_request(
+        _request = build_special_words_client_models_with_if_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2082,7 +2082,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_import_request(
+        _request = build_special_words_client_models_with_import_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2177,7 +2177,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_in_request(
+        _request = build_special_words_client_models_with_in_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2272,7 +2272,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_is_request(
+        _request = build_special_words_client_models_with_is_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2369,7 +2369,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_lambda_request(
+        _request = build_special_words_client_models_with_lambda_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2464,7 +2464,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_not_request(
+        _request = build_special_words_client_models_with_not_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2559,7 +2559,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_or_request(
+        _request = build_special_words_client_models_with_or_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2656,7 +2656,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_pass_request(
+        _request = build_special_words_client_models_with_pass_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2753,7 +2753,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_raise_request(
+        _request = build_special_words_client_models_with_raise_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2850,7 +2850,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_return_request(
+        _request = build_special_words_client_models_with_return_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2945,7 +2945,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_try_request(
+        _request = build_special_words_client_models_with_try_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3042,7 +3042,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_while_request(
+        _request = build_special_words_client_models_with_while_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3139,7 +3139,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_with_request(
+        _request = build_special_words_client_models_with_with_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3236,7 +3236,7 @@ class ModelsOperations:  # pylint: disable=too-many-public-methods
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_with_yield_request(
+        _request = build_special_words_client_models_with_yield_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

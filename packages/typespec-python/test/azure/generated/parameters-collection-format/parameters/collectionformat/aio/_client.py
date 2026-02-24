@@ -15,18 +15,20 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
-from ..header.aio.operations import HeaderOperations
-from ..query.aio.operations import QueryOperations
+from ..header.aio.operations import CollectionFormatClientHeaderOperations
+from ..query.aio.operations import CollectionFormatClientQueryOperations
 from ._configuration import CollectionFormatClientConfiguration
 
 
 class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for collectionFormat.
 
-    :ivar query: QueryOperations operations
-    :vartype query: parameters.collectionformat.aio.operations.QueryOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: parameters.collectionformat.aio.operations.HeaderOperations
+    :ivar collection_format_client_query: CollectionFormatClientQueryOperations operations
+    :vartype collection_format_client_query:
+     parameters.collectionformat.aio.operations.CollectionFormatClientQueryOperations
+    :ivar collection_format_client_header: CollectionFormatClientHeaderOperations operations
+    :vartype collection_format_client_header:
+     parameters.collectionformat.aio.operations.CollectionFormatClientHeaderOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -59,8 +61,12 @@ class CollectionFormatClient:  # pylint: disable=client-accepts-api-version-keyw
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.collection_format_client_query = CollectionFormatClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.collection_format_client_header = CollectionFormatClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

@@ -23,10 +23,10 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_group_parameters_group_request,
-    build_remove_optional_parameter_remove_optional_request,
-    build_reorder_parameters_reorder_request,
-    build_require_optional_parameter_require_optional_request,
+    build_override_client_group_parameters_group_request,
+    build_override_client_remove_optional_parameter_remove_optional_request,
+    build_override_client_reorder_parameters_reorder_request,
+    build_override_client_require_optional_parameter_require_optional_request,
 )
 from .._configuration import OverrideClientConfiguration
 
@@ -34,14 +34,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ReorderParametersOperations:
+class OverrideClientReorderParametersOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.aio.OverrideClient`'s
-        :attr:`reorder_parameters` attribute.
+        :attr:`override_client_reorder_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,7 +76,7 @@ class ReorderParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_reorder_parameters_reorder_request(
+        _request = build_override_client_reorder_parameters_reorder_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -102,14 +102,14 @@ class ReorderParametersOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class GroupParametersOperations:
+class OverrideClientGroupParametersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.aio.OverrideClient`'s
-        :attr:`group_parameters` attribute.
+        :attr:`override_client_group_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -144,7 +144,7 @@ class GroupParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group_parameters_group_request(
+        _request = build_override_client_group_parameters_group_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -170,14 +170,14 @@ class GroupParametersOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RequireOptionalParameterOperations:
+class OverrideClientRequireOptionalParameterOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.aio.OverrideClient`'s
-        :attr:`require_optional_parameter` attribute.
+        :attr:`override_client_require_optional_parameter` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -212,7 +212,7 @@ class RequireOptionalParameterOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_require_optional_parameter_require_optional_request(
+        _request = build_override_client_require_optional_parameter_require_optional_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -238,14 +238,14 @@ class RequireOptionalParameterOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RemoveOptionalParameterOperations:
+class OverrideClientRemoveOptionalParameterOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.aio.OverrideClient`'s
-        :attr:`remove_optional_parameter` attribute.
+        :attr:`override_client_remove_optional_parameter` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -280,7 +280,7 @@ class RemoveOptionalParameterOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_remove_optional_parameter_remove_optional_request(
+        _request = build_override_client_remove_optional_parameter_remove_optional_request(
             param1=param1,
             param2=param2,
             headers=_headers,

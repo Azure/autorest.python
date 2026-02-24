@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 
 from copy import deepcopy
@@ -10,134 +11,167 @@ from corehttp.runtime import PipelineClient, policies
 from ._configuration import AdditionalPropertiesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    ExtendsDifferentSpreadFloatOperations,
-    ExtendsDifferentSpreadModelArrayOperations,
-    ExtendsDifferentSpreadModelOperations,
-    ExtendsDifferentSpreadStringOperations,
-    ExtendsFloatOperations,
-    ExtendsModelArrayOperations,
-    ExtendsModelOperations,
-    ExtendsStringOperations,
-    ExtendsUnknownDerivedOperations,
-    ExtendsUnknownDiscriminatedOperations,
-    ExtendsUnknownOperations,
-    IsFloatOperations,
-    IsModelArrayOperations,
-    IsModelOperations,
-    IsStringOperations,
-    IsUnknownDerivedOperations,
-    IsUnknownDiscriminatedOperations,
-    IsUnknownOperations,
-    MultipleSpreadOperations,
-    SpreadDifferentFloatOperations,
-    SpreadDifferentModelArrayOperations,
-    SpreadDifferentModelOperations,
-    SpreadDifferentStringOperations,
-    SpreadFloatOperations,
-    SpreadModelArrayOperations,
-    SpreadModelOperations,
-    SpreadRecordNonDiscriminatedUnion2Operations,
-    SpreadRecordNonDiscriminatedUnion3Operations,
-    SpreadRecordNonDiscriminatedUnionOperations,
-    SpreadRecordUnionOperations,
-    SpreadStringOperations,
+    AdditionalPropertiesClientExtendsDifferentSpreadFloatOperations,
+    AdditionalPropertiesClientExtendsDifferentSpreadModelArrayOperations,
+    AdditionalPropertiesClientExtendsDifferentSpreadModelOperations,
+    AdditionalPropertiesClientExtendsDifferentSpreadStringOperations,
+    AdditionalPropertiesClientExtendsFloatOperations,
+    AdditionalPropertiesClientExtendsModelArrayOperations,
+    AdditionalPropertiesClientExtendsModelOperations,
+    AdditionalPropertiesClientExtendsStringOperations,
+    AdditionalPropertiesClientExtendsUnknownDerivedOperations,
+    AdditionalPropertiesClientExtendsUnknownDiscriminatedOperations,
+    AdditionalPropertiesClientExtendsUnknownOperations,
+    AdditionalPropertiesClientIsFloatOperations,
+    AdditionalPropertiesClientIsModelArrayOperations,
+    AdditionalPropertiesClientIsModelOperations,
+    AdditionalPropertiesClientIsStringOperations,
+    AdditionalPropertiesClientIsUnknownDerivedOperations,
+    AdditionalPropertiesClientIsUnknownDiscriminatedOperations,
+    AdditionalPropertiesClientIsUnknownOperations,
+    AdditionalPropertiesClientMultipleSpreadOperations,
+    AdditionalPropertiesClientSpreadDifferentFloatOperations,
+    AdditionalPropertiesClientSpreadDifferentModelArrayOperations,
+    AdditionalPropertiesClientSpreadDifferentModelOperations,
+    AdditionalPropertiesClientSpreadDifferentStringOperations,
+    AdditionalPropertiesClientSpreadFloatOperations,
+    AdditionalPropertiesClientSpreadModelArrayOperations,
+    AdditionalPropertiesClientSpreadModelOperations,
+    AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion2Operations,
+    AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion3Operations,
+    AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnionOperations,
+    AdditionalPropertiesClientSpreadRecordUnionOperations,
+    AdditionalPropertiesClientSpreadStringOperations,
 )
 
 
 class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Tests for additional properties of models.
 
-    :ivar extends_unknown: ExtendsUnknownOperations operations
-    :vartype extends_unknown:
-     typetest.property.additionalproperties.operations.ExtendsUnknownOperations
-    :ivar extends_unknown_derived: ExtendsUnknownDerivedOperations operations
-    :vartype extends_unknown_derived:
-     typetest.property.additionalproperties.operations.ExtendsUnknownDerivedOperations
-    :ivar extends_unknown_discriminated: ExtendsUnknownDiscriminatedOperations operations
-    :vartype extends_unknown_discriminated:
-     typetest.property.additionalproperties.operations.ExtendsUnknownDiscriminatedOperations
-    :ivar is_unknown: IsUnknownOperations operations
-    :vartype is_unknown: typetest.property.additionalproperties.operations.IsUnknownOperations
-    :ivar is_unknown_derived: IsUnknownDerivedOperations operations
-    :vartype is_unknown_derived:
-     typetest.property.additionalproperties.operations.IsUnknownDerivedOperations
-    :ivar is_unknown_discriminated: IsUnknownDiscriminatedOperations operations
-    :vartype is_unknown_discriminated:
-     typetest.property.additionalproperties.operations.IsUnknownDiscriminatedOperations
-    :ivar extends_string: ExtendsStringOperations operations
-    :vartype extends_string:
-     typetest.property.additionalproperties.operations.ExtendsStringOperations
-    :ivar is_string: IsStringOperations operations
-    :vartype is_string: typetest.property.additionalproperties.operations.IsStringOperations
-    :ivar spread_string: SpreadStringOperations operations
-    :vartype spread_string:
-     typetest.property.additionalproperties.operations.SpreadStringOperations
-    :ivar extends_float: ExtendsFloatOperations operations
-    :vartype extends_float:
-     typetest.property.additionalproperties.operations.ExtendsFloatOperations
-    :ivar is_float: IsFloatOperations operations
-    :vartype is_float: typetest.property.additionalproperties.operations.IsFloatOperations
-    :ivar spread_float: SpreadFloatOperations operations
-    :vartype spread_float: typetest.property.additionalproperties.operations.SpreadFloatOperations
-    :ivar extends_model: ExtendsModelOperations operations
-    :vartype extends_model:
-     typetest.property.additionalproperties.operations.ExtendsModelOperations
-    :ivar is_model: IsModelOperations operations
-    :vartype is_model: typetest.property.additionalproperties.operations.IsModelOperations
-    :ivar spread_model: SpreadModelOperations operations
-    :vartype spread_model: typetest.property.additionalproperties.operations.SpreadModelOperations
-    :ivar extends_model_array: ExtendsModelArrayOperations operations
-    :vartype extends_model_array:
-     typetest.property.additionalproperties.operations.ExtendsModelArrayOperations
-    :ivar is_model_array: IsModelArrayOperations operations
-    :vartype is_model_array:
-     typetest.property.additionalproperties.operations.IsModelArrayOperations
-    :ivar spread_model_array: SpreadModelArrayOperations operations
-    :vartype spread_model_array:
-     typetest.property.additionalproperties.operations.SpreadModelArrayOperations
-    :ivar spread_different_string: SpreadDifferentStringOperations operations
-    :vartype spread_different_string:
-     typetest.property.additionalproperties.operations.SpreadDifferentStringOperations
-    :ivar spread_different_float: SpreadDifferentFloatOperations operations
-    :vartype spread_different_float:
-     typetest.property.additionalproperties.operations.SpreadDifferentFloatOperations
-    :ivar spread_different_model: SpreadDifferentModelOperations operations
-    :vartype spread_different_model:
-     typetest.property.additionalproperties.operations.SpreadDifferentModelOperations
-    :ivar spread_different_model_array: SpreadDifferentModelArrayOperations operations
-    :vartype spread_different_model_array:
-     typetest.property.additionalproperties.operations.SpreadDifferentModelArrayOperations
-    :ivar extends_different_spread_string: ExtendsDifferentSpreadStringOperations operations
-    :vartype extends_different_spread_string:
-     typetest.property.additionalproperties.operations.ExtendsDifferentSpreadStringOperations
-    :ivar extends_different_spread_float: ExtendsDifferentSpreadFloatOperations operations
-    :vartype extends_different_spread_float:
-     typetest.property.additionalproperties.operations.ExtendsDifferentSpreadFloatOperations
-    :ivar extends_different_spread_model: ExtendsDifferentSpreadModelOperations operations
-    :vartype extends_different_spread_model:
-     typetest.property.additionalproperties.operations.ExtendsDifferentSpreadModelOperations
-    :ivar extends_different_spread_model_array: ExtendsDifferentSpreadModelArrayOperations
+    :ivar additional_properties_client_extends_unknown:
+     AdditionalPropertiesClientExtendsUnknownOperations operations
+    :vartype additional_properties_client_extends_unknown:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsUnknownOperations
+    :ivar additional_properties_client_extends_unknown_derived:
+     AdditionalPropertiesClientExtendsUnknownDerivedOperations operations
+    :vartype additional_properties_client_extends_unknown_derived:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsUnknownDerivedOperations
+    :ivar additional_properties_client_extends_unknown_discriminated:
+     AdditionalPropertiesClientExtendsUnknownDiscriminatedOperations operations
+    :vartype additional_properties_client_extends_unknown_discriminated:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsUnknownDiscriminatedOperations
+    :ivar additional_properties_client_is_unknown: AdditionalPropertiesClientIsUnknownOperations
      operations
-    :vartype extends_different_spread_model_array:
-     typetest.property.additionalproperties.operations.ExtendsDifferentSpreadModelArrayOperations
-    :ivar multiple_spread: MultipleSpreadOperations operations
-    :vartype multiple_spread:
-     typetest.property.additionalproperties.operations.MultipleSpreadOperations
-    :ivar spread_record_union: SpreadRecordUnionOperations operations
-    :vartype spread_record_union:
-     typetest.property.additionalproperties.operations.SpreadRecordUnionOperations
-    :ivar spread_record_non_discriminated_union: SpreadRecordNonDiscriminatedUnionOperations
+    :vartype additional_properties_client_is_unknown:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsUnknownOperations
+    :ivar additional_properties_client_is_unknown_derived:
+     AdditionalPropertiesClientIsUnknownDerivedOperations operations
+    :vartype additional_properties_client_is_unknown_derived:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsUnknownDerivedOperations
+    :ivar additional_properties_client_is_unknown_discriminated:
+     AdditionalPropertiesClientIsUnknownDiscriminatedOperations operations
+    :vartype additional_properties_client_is_unknown_discriminated:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsUnknownDiscriminatedOperations
+    :ivar additional_properties_client_extends_string:
+     AdditionalPropertiesClientExtendsStringOperations operations
+    :vartype additional_properties_client_extends_string:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsStringOperations
+    :ivar additional_properties_client_is_string: AdditionalPropertiesClientIsStringOperations
      operations
-    :vartype spread_record_non_discriminated_union:
-     typetest.property.additionalproperties.operations.SpreadRecordNonDiscriminatedUnionOperations
-    :ivar spread_record_non_discriminated_union2: SpreadRecordNonDiscriminatedUnion2Operations
+    :vartype additional_properties_client_is_string:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsStringOperations
+    :ivar additional_properties_client_spread_string:
+     AdditionalPropertiesClientSpreadStringOperations operations
+    :vartype additional_properties_client_spread_string:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadStringOperations
+    :ivar additional_properties_client_extends_float:
+     AdditionalPropertiesClientExtendsFloatOperations operations
+    :vartype additional_properties_client_extends_float:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsFloatOperations
+    :ivar additional_properties_client_is_float: AdditionalPropertiesClientIsFloatOperations
      operations
-    :vartype spread_record_non_discriminated_union2:
-     typetest.property.additionalproperties.operations.SpreadRecordNonDiscriminatedUnion2Operations
-    :ivar spread_record_non_discriminated_union3: SpreadRecordNonDiscriminatedUnion3Operations
+    :vartype additional_properties_client_is_float:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsFloatOperations
+    :ivar additional_properties_client_spread_float:
+     AdditionalPropertiesClientSpreadFloatOperations operations
+    :vartype additional_properties_client_spread_float:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadFloatOperations
+    :ivar additional_properties_client_extends_model:
+     AdditionalPropertiesClientExtendsModelOperations operations
+    :vartype additional_properties_client_extends_model:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsModelOperations
+    :ivar additional_properties_client_is_model: AdditionalPropertiesClientIsModelOperations
      operations
-    :vartype spread_record_non_discriminated_union3:
-     typetest.property.additionalproperties.operations.SpreadRecordNonDiscriminatedUnion3Operations
+    :vartype additional_properties_client_is_model:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsModelOperations
+    :ivar additional_properties_client_spread_model:
+     AdditionalPropertiesClientSpreadModelOperations operations
+    :vartype additional_properties_client_spread_model:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadModelOperations
+    :ivar additional_properties_client_extends_model_array:
+     AdditionalPropertiesClientExtendsModelArrayOperations operations
+    :vartype additional_properties_client_extends_model_array:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsModelArrayOperations
+    :ivar additional_properties_client_is_model_array:
+     AdditionalPropertiesClientIsModelArrayOperations operations
+    :vartype additional_properties_client_is_model_array:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientIsModelArrayOperations
+    :ivar additional_properties_client_spread_model_array:
+     AdditionalPropertiesClientSpreadModelArrayOperations operations
+    :vartype additional_properties_client_spread_model_array:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadModelArrayOperations
+    :ivar additional_properties_client_spread_different_string:
+     AdditionalPropertiesClientSpreadDifferentStringOperations operations
+    :vartype additional_properties_client_spread_different_string:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadDifferentStringOperations
+    :ivar additional_properties_client_spread_different_float:
+     AdditionalPropertiesClientSpreadDifferentFloatOperations operations
+    :vartype additional_properties_client_spread_different_float:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadDifferentFloatOperations
+    :ivar additional_properties_client_spread_different_model:
+     AdditionalPropertiesClientSpreadDifferentModelOperations operations
+    :vartype additional_properties_client_spread_different_model:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadDifferentModelOperations
+    :ivar additional_properties_client_spread_different_model_array:
+     AdditionalPropertiesClientSpreadDifferentModelArrayOperations operations
+    :vartype additional_properties_client_spread_different_model_array:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadDifferentModelArrayOperations
+    :ivar additional_properties_client_extends_different_spread_string:
+     AdditionalPropertiesClientExtendsDifferentSpreadStringOperations operations
+    :vartype additional_properties_client_extends_different_spread_string:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsDifferentSpreadStringOperations
+    :ivar additional_properties_client_extends_different_spread_float:
+     AdditionalPropertiesClientExtendsDifferentSpreadFloatOperations operations
+    :vartype additional_properties_client_extends_different_spread_float:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsDifferentSpreadFloatOperations
+    :ivar additional_properties_client_extends_different_spread_model:
+     AdditionalPropertiesClientExtendsDifferentSpreadModelOperations operations
+    :vartype additional_properties_client_extends_different_spread_model:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsDifferentSpreadModelOperations
+    :ivar additional_properties_client_extends_different_spread_model_array:
+     AdditionalPropertiesClientExtendsDifferentSpreadModelArrayOperations operations
+    :vartype additional_properties_client_extends_different_spread_model_array:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientExtendsDifferentSpreadModelArrayOperations
+    :ivar additional_properties_client_multiple_spread:
+     AdditionalPropertiesClientMultipleSpreadOperations operations
+    :vartype additional_properties_client_multiple_spread:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientMultipleSpreadOperations
+    :ivar additional_properties_client_spread_record_union:
+     AdditionalPropertiesClientSpreadRecordUnionOperations operations
+    :vartype additional_properties_client_spread_record_union:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadRecordUnionOperations
+    :ivar additional_properties_client_spread_record_non_discriminated_union:
+     AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnionOperations operations
+    :vartype additional_properties_client_spread_record_non_discriminated_union:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnionOperations
+    :ivar additional_properties_client_spread_record_non_discriminated_union2:
+     AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion2Operations operations
+    :vartype additional_properties_client_spread_record_non_discriminated_union2:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion2Operations
+    :ivar additional_properties_client_spread_record_non_discriminated_union3:
+     AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion3Operations operations
+    :vartype additional_properties_client_spread_record_non_discriminated_union3:
+     typetest.property.additionalproperties.operations.AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion3Operations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -164,72 +198,126 @@ class AdditionalPropertiesClient:  # pylint: disable=client-accepts-api-version-
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.extends_unknown = ExtendsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extends_unknown_derived = ExtendsUnknownDerivedOperations(
+        self.additional_properties_client_extends_unknown = AdditionalPropertiesClientExtendsUnknownOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_unknown_discriminated = ExtendsUnknownDiscriminatedOperations(
+        self.additional_properties_client_extends_unknown_derived = (
+            AdditionalPropertiesClientExtendsUnknownDerivedOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_unknown_discriminated = (
+            AdditionalPropertiesClientExtendsUnknownDiscriminatedOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_is_unknown = AdditionalPropertiesClientIsUnknownOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.is_unknown = IsUnknownOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.is_unknown_derived = IsUnknownDerivedOperations(
+        self.additional_properties_client_is_unknown_derived = AdditionalPropertiesClientIsUnknownDerivedOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.is_unknown_discriminated = IsUnknownDiscriminatedOperations(
+        self.additional_properties_client_is_unknown_discriminated = (
+            AdditionalPropertiesClientIsUnknownDiscriminatedOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_string = AdditionalPropertiesClientExtendsStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_string = ExtendsStringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.is_string = IsStringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.spread_string = SpreadStringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extends_float = ExtendsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.is_float = IsFloatOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.spread_float = SpreadFloatOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extends_model = ExtendsModelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.is_model = IsModelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.spread_model = SpreadModelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extends_model_array = ExtendsModelArrayOperations(
+        self.additional_properties_client_is_string = AdditionalPropertiesClientIsStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.is_model_array = IsModelArrayOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.spread_model_array = SpreadModelArrayOperations(
+        self.additional_properties_client_spread_string = AdditionalPropertiesClientSpreadStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_different_string = SpreadDifferentStringOperations(
+        self.additional_properties_client_extends_float = AdditionalPropertiesClientExtendsFloatOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_different_float = SpreadDifferentFloatOperations(
+        self.additional_properties_client_is_float = AdditionalPropertiesClientIsFloatOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_different_model = SpreadDifferentModelOperations(
+        self.additional_properties_client_spread_float = AdditionalPropertiesClientSpreadFloatOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_different_model_array = SpreadDifferentModelArrayOperations(
+        self.additional_properties_client_extends_model = AdditionalPropertiesClientExtendsModelOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_different_spread_string = ExtendsDifferentSpreadStringOperations(
+        self.additional_properties_client_is_model = AdditionalPropertiesClientIsModelOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_different_spread_float = ExtendsDifferentSpreadFloatOperations(
+        self.additional_properties_client_spread_model = AdditionalPropertiesClientSpreadModelOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_different_spread_model = ExtendsDifferentSpreadModelOperations(
+        self.additional_properties_client_extends_model_array = AdditionalPropertiesClientExtendsModelArrayOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.extends_different_spread_model_array = ExtendsDifferentSpreadModelArrayOperations(
+        self.additional_properties_client_is_model_array = AdditionalPropertiesClientIsModelArrayOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.multiple_spread = MultipleSpreadOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.spread_record_union = SpreadRecordUnionOperations(
+        self.additional_properties_client_spread_model_array = AdditionalPropertiesClientSpreadModelArrayOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_record_non_discriminated_union = SpreadRecordNonDiscriminatedUnionOperations(
+        self.additional_properties_client_spread_different_string = (
+            AdditionalPropertiesClientSpreadDifferentStringOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_spread_different_float = (
+            AdditionalPropertiesClientSpreadDifferentFloatOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_spread_different_model = (
+            AdditionalPropertiesClientSpreadDifferentModelOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_spread_different_model_array = (
+            AdditionalPropertiesClientSpreadDifferentModelArrayOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_different_spread_string = (
+            AdditionalPropertiesClientExtendsDifferentSpreadStringOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_different_spread_float = (
+            AdditionalPropertiesClientExtendsDifferentSpreadFloatOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_different_spread_model = (
+            AdditionalPropertiesClientExtendsDifferentSpreadModelOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_extends_different_spread_model_array = (
+            AdditionalPropertiesClientExtendsDifferentSpreadModelArrayOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_multiple_spread = AdditionalPropertiesClientMultipleSpreadOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_record_non_discriminated_union2 = SpreadRecordNonDiscriminatedUnion2Operations(
+        self.additional_properties_client_spread_record_union = AdditionalPropertiesClientSpreadRecordUnionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.spread_record_non_discriminated_union3 = SpreadRecordNonDiscriminatedUnion3Operations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.additional_properties_client_spread_record_non_discriminated_union = (
+            AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnionOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_spread_record_non_discriminated_union2 = (
+            AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion2Operations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.additional_properties_client_spread_record_non_discriminated_union3 = (
+            AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion3Operations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:

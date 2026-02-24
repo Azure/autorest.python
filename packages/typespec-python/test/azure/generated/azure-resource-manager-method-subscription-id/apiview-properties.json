@@ -22,7 +22,7 @@
         "azure.resourcemanager.methodsubscriptionid.models.ResourceProvisioningState": "Azure.ResourceManager.ResourceProvisioningState",
         "azure.resourcemanager.methodsubscriptionid.models.Origin": "Azure.ResourceManager.CommonTypes.Origin",
         "azure.resourcemanager.methodsubscriptionid.models.ActionType": "Azure.ResourceManager.CommonTypes.ActionType",
-        "azure.resourcemanager.methodsubscriptionid.operations.Operations.list": "Azure.ResourceManager.Operations.list",
-        "azure.resourcemanager.methodsubscriptionid.aio.operations.Operations.list": "Azure.ResourceManager.Operations.list"
+        "azure.resourcemanager.methodsubscriptionid.operations.MethodSubscriptionIdClientOperationsOperations.list": "Azure.ResourceManager.Operations.list",
+        "azure.resourcemanager.methodsubscriptionid.aio.operations.MethodSubscriptionIdClientOperationsOperations.list": "Azure.ResourceManager.Operations.list"
     }
 }

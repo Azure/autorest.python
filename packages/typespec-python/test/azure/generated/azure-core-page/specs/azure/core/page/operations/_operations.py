@@ -40,7 +40,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_two_models_as_page_item_list_first_item_request(  # pylint: disable=name-too-long
+def build_page_client_two_models_as_page_item_list_first_item_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -61,7 +61,7 @@ def build_two_models_as_page_item_list_first_item_request(  # pylint: disable=na
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_two_models_as_page_item_list_second_item_request(  # pylint: disable=name-too-long
+def build_page_client_two_models_as_page_item_list_second_item_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -182,14 +182,14 @@ def build_page_with_relative_next_link_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class TwoModelsAsPageItemOperations:
+class PageClientTwoModelsAsPageItemOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.core.page.PageClient`'s
-        :attr:`two_models_as_page_item` attribute.
+        :attr:`page_client_two_models_as_page_item` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -224,7 +224,7 @@ class TwoModelsAsPageItemOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_two_models_as_page_item_list_first_item_request(
+                _request = build_page_client_two_models_as_page_item_list_first_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -307,7 +307,7 @@ class TwoModelsAsPageItemOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_two_models_as_page_item_list_second_item_request(
+                _request = build_page_client_two_models_as_page_item_list_second_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

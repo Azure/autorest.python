@@ -24,24 +24,24 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
-    build_header_base64_request,
-    build_header_base64_url_array_request,
-    build_header_base64_url_request,
-    build_header_default_request,
+    build_bytes_client_header_base64_request,
+    build_bytes_client_header_base64_url_array_request,
+    build_bytes_client_header_base64_url_request,
+    build_bytes_client_header_default_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class HeaderOperations:
+class BytesClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.aio.BytesClient`'s
-        :attr:`header` attribute.
+        :attr:`bytes_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -74,7 +74,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        _request = build_bytes_client_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -121,7 +121,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_request(
+        _request = build_bytes_client_header_base64_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -168,7 +168,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_url_request(
+        _request = build_bytes_client_header_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -215,7 +215,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_url_array_request(
+        _request = build_bytes_client_header_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,

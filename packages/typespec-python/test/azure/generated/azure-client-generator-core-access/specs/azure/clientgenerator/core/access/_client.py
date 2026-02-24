@@ -17,28 +17,30 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import AccessClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    InternalOperationOperations,
-    PublicOperationOperations,
-    RelativeModelInOperationOperations,
-    SharedModelInOperationOperations,
+    AccessClientInternalOperationOperations,
+    AccessClientPublicOperationOperations,
+    AccessClientRelativeModelInOperationOperations,
+    AccessClientSharedModelInOperationOperations,
 )
 
 
 class AccessClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for internal decorator.
 
-    :ivar public_operation: PublicOperationOperations operations
-    :vartype public_operation:
-     specs.azure.clientgenerator.core.access.operations.PublicOperationOperations
-    :ivar internal_operation: InternalOperationOperations operations
-    :vartype internal_operation:
-     specs.azure.clientgenerator.core.access.operations.InternalOperationOperations
-    :ivar shared_model_in_operation: SharedModelInOperationOperations operations
-    :vartype shared_model_in_operation:
-     specs.azure.clientgenerator.core.access.operations.SharedModelInOperationOperations
-    :ivar relative_model_in_operation: RelativeModelInOperationOperations operations
-    :vartype relative_model_in_operation:
-     specs.azure.clientgenerator.core.access.operations.RelativeModelInOperationOperations
+    :ivar access_client_public_operation: AccessClientPublicOperationOperations operations
+    :vartype access_client_public_operation:
+     specs.azure.clientgenerator.core.access.operations.AccessClientPublicOperationOperations
+    :ivar access_client_internal_operation: AccessClientInternalOperationOperations operations
+    :vartype access_client_internal_operation:
+     specs.azure.clientgenerator.core.access.operations.AccessClientInternalOperationOperations
+    :ivar access_client_shared_model_in_operation: AccessClientSharedModelInOperationOperations
+     operations
+    :vartype access_client_shared_model_in_operation:
+     specs.azure.clientgenerator.core.access.operations.AccessClientSharedModelInOperationOperations
+    :ivar access_client_relative_model_in_operation: AccessClientRelativeModelInOperationOperations
+     operations
+    :vartype access_client_relative_model_in_operation:
+     specs.azure.clientgenerator.core.access.operations.AccessClientRelativeModelInOperationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -71,16 +73,16 @@ class AccessClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.public_operation = PublicOperationOperations(
+        self.access_client_public_operation = AccessClientPublicOperationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.internal_operation = InternalOperationOperations(
+        self.access_client_internal_operation = AccessClientInternalOperationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.shared_model_in_operation = SharedModelInOperationOperations(
+        self.access_client_shared_model_in_operation = AccessClientSharedModelInOperationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.relative_model_in_operation = RelativeModelInOperationOperations(
+        self.access_client_relative_model_in_operation = AccessClientRelativeModelInOperationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

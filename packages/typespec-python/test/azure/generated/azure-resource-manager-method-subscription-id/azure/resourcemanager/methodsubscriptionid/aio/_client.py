@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -19,7 +20,11 @@ from azure.mgmt.core.tools import get_arm_endpoints
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MethodSubscriptionIdClientConfiguration
-from .operations import MixedSubscriptionPlacementOperations, Operations, TwoSubscriptionResourcesMethodLevelOperations
+from .operations import (
+    MethodSubscriptionIdClientMixedSubscriptionPlacementOperations,
+    MethodSubscriptionIdClientOperationsOperations,
+    MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelOperations,
+)
 
 if TYPE_CHECKING:
     from azure.core import AzureClouds
@@ -29,15 +34,18 @@ if TYPE_CHECKING:
 class MethodSubscriptionIdClient:
     """Test for ARM method level subscription ID parameter placement.
 
-    :ivar two_subscription_resources_method_level: TwoSubscriptionResourcesMethodLevelOperations
+    :ivar method_subscription_id_client_two_subscription_resources_method_level:
+     MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelOperations operations
+    :vartype method_subscription_id_client_two_subscription_resources_method_level:
+     azure.resourcemanager.methodsubscriptionid.aio.operations.MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelOperations
+    :ivar method_subscription_id_client_mixed_subscription_placement:
+     MethodSubscriptionIdClientMixedSubscriptionPlacementOperations operations
+    :vartype method_subscription_id_client_mixed_subscription_placement:
+     azure.resourcemanager.methodsubscriptionid.aio.operations.MethodSubscriptionIdClientMixedSubscriptionPlacementOperations
+    :ivar method_subscription_id_client_operations: MethodSubscriptionIdClientOperationsOperations
      operations
-    :vartype two_subscription_resources_method_level:
-     azure.resourcemanager.methodsubscriptionid.aio.operations.TwoSubscriptionResourcesMethodLevelOperations
-    :ivar mixed_subscription_placement: MixedSubscriptionPlacementOperations operations
-    :vartype mixed_subscription_placement:
-     azure.resourcemanager.methodsubscriptionid.aio.operations.MixedSubscriptionPlacementOperations
-    :ivar operations: Operations operations
-    :vartype operations: azure.resourcemanager.methodsubscriptionid.aio.operations.Operations
+    :vartype method_subscription_id_client_operations:
+     azure.resourcemanager.methodsubscriptionid.aio.operations.MethodSubscriptionIdClientOperationsOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials_async.AsyncTokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -102,13 +110,19 @@ class MethodSubscriptionIdClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.two_subscription_resources_method_level = TwoSubscriptionResourcesMethodLevelOperations(
+        self.method_subscription_id_client_two_subscription_resources_method_level = (
+            MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.method_subscription_id_client_mixed_subscription_placement = (
+            MethodSubscriptionIdClientMixedSubscriptionPlacementOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.method_subscription_id_client_operations = MethodSubscriptionIdClientOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.mixed_subscription_placement = MixedSubscriptionPlacementOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

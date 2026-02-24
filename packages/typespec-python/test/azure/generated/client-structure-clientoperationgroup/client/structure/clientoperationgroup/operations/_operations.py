@@ -32,21 +32,21 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_group3_two_request(**kwargs: Any) -> HttpRequest:
+def build_first_client_group3_two_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/two"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group3_three_request(**kwargs: Any) -> HttpRequest:
+def build_first_client_group3_three_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/three"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group4_four_request(**kwargs: Any) -> HttpRequest:
+def build_first_client_group4_four_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/four"
 
@@ -60,7 +60,7 @@ def build_first_one_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group5_six_request(**kwargs: Any) -> HttpRequest:
+def build_second_client_group5_six_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/six"
 
@@ -74,14 +74,14 @@ def build_second_five_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class Group3Operations:
+class FirstClientGroup3Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.FirstClient`'s
-        :attr:`group3` attribute.
+        :attr:`first_client_group3` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,7 +112,7 @@ class Group3Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group3_two_request(
+        _request = build_first_client_group3_two_request(
             headers=_headers,
             params=_params,
         )
@@ -157,7 +157,7 @@ class Group3Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group3_three_request(
+        _request = build_first_client_group3_three_request(
             headers=_headers,
             params=_params,
         )
@@ -182,14 +182,14 @@ class Group3Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group4Operations:
+class FirstClientGroup4Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.FirstClient`'s
-        :attr:`group4` attribute.
+        :attr:`first_client_group4` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -220,7 +220,7 @@ class Group4Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group4_four_request(
+        _request = build_first_client_group4_four_request(
             headers=_headers,
             params=_params,
         )
@@ -293,14 +293,14 @@ class _FirstClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group5Operations:
+class SecondClientGroup5Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.SecondClient`'s
-        :attr:`group5` attribute.
+        :attr:`second_client_group5` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -331,7 +331,7 @@ class Group5Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group5_six_request(
+        _request = build_second_client_group5_six_request(
             headers=_headers,
             params=_params,
         )

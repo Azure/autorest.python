@@ -24,23 +24,23 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ......_utils.serialization import Deserializer, Serializer
 from ......aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
-    build_query_parameters_query_expansion_standard_array_request,
-    build_query_parameters_query_expansion_standard_primitive_request,
-    build_query_parameters_query_expansion_standard_record_request,
+    build_routes_client_query_parameters_query_expansion_standard_array_request,
+    build_routes_client_query_parameters_query_expansion_standard_primitive_request,
+    build_routes_client_query_parameters_query_expansion_standard_record_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-too-long
+class RoutesClientQueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`standard` attribute.
+        :attr:`routes_client_query_parameters_query_expansion_standard` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -73,7 +73,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_expansion_standard_primitive_request(
+        _request = build_routes_client_query_parameters_query_expansion_standard_primitive_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -120,7 +120,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_expansion_standard_array_request(
+        _request = build_routes_client_query_parameters_query_expansion_standard_array_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -167,7 +167,7 @@ class QueryParametersQueryExpansionStandardOperations:  # pylint: disable=name-t
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_expansion_standard_record_request(
+        _request = build_routes_client_query_parameters_query_expansion_standard_record_request(
             param=param,
             headers=_headers,
             params=_params,

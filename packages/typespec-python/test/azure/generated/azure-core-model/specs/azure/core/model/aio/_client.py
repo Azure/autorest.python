@@ -16,15 +16,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ModelClientConfiguration
-from .operations import AzureCoreEmbeddingVectorOperations
+from .operations import ModelClientAzureCoreEmbeddingVectorOperations
 
 
 class ModelClient:  # pylint: disable=client-accepts-api-version-keyword
     """ModelClient.
 
-    :ivar azure_core_embedding_vector: AzureCoreEmbeddingVectorOperations operations
-    :vartype azure_core_embedding_vector:
-     specs.azure.core.model.aio.operations.AzureCoreEmbeddingVectorOperations
+    :ivar model_client_azure_core_embedding_vector: ModelClientAzureCoreEmbeddingVectorOperations
+     operations
+    :vartype model_client_azure_core_embedding_vector:
+     specs.azure.core.model.aio.operations.ModelClientAzureCoreEmbeddingVectorOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -57,7 +58,7 @@ class ModelClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.azure_core_embedding_vector = AzureCoreEmbeddingVectorOperations(
+        self.model_client_azure_core_embedding_vector = ModelClientAzureCoreEmbeddingVectorOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

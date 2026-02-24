@@ -22,22 +22,22 @@ from corehttp.utils import case_insensitive_dict
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_boolean_get_request,
-    build_boolean_put_request,
-    build_decimal128_type_request_body_request,
-    build_decimal128_type_request_parameter_request,
-    build_decimal128_type_response_body_request,
-    build_decimal128_verify_prepare_verify_request,
-    build_decimal128_verify_verify_request,
-    build_decimal_type_request_body_request,
-    build_decimal_type_request_parameter_request,
-    build_decimal_type_response_body_request,
-    build_decimal_verify_prepare_verify_request,
-    build_decimal_verify_verify_request,
-    build_string_get_request,
-    build_string_put_request,
-    build_unknown_get_request,
-    build_unknown_put_request,
+    build_scalar_client_boolean_get_request,
+    build_scalar_client_boolean_put_request,
+    build_scalar_client_decimal128_type_request_body_request,
+    build_scalar_client_decimal128_type_request_parameter_request,
+    build_scalar_client_decimal128_type_response_body_request,
+    build_scalar_client_decimal128_verify_prepare_verify_request,
+    build_scalar_client_decimal128_verify_verify_request,
+    build_scalar_client_decimal_type_request_body_request,
+    build_scalar_client_decimal_type_request_parameter_request,
+    build_scalar_client_decimal_type_response_body_request,
+    build_scalar_client_decimal_verify_prepare_verify_request,
+    build_scalar_client_decimal_verify_verify_request,
+    build_scalar_client_string_get_request,
+    build_scalar_client_string_put_request,
+    build_scalar_client_unknown_get_request,
+    build_scalar_client_unknown_put_request,
 )
 from .._configuration import ScalarClientConfiguration
 
@@ -45,14 +45,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class StringOperations:
+class ScalarClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`string` attribute.
+        :attr:`scalar_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -82,7 +82,7 @@ class StringOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_string_get_request(
+        _request = build_scalar_client_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -143,7 +143,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_request(
+        _request = build_scalar_client_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -167,14 +167,14 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BooleanOperations:
+class ScalarClientBooleanOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`boolean` attribute.
+        :attr:`scalar_client_boolean` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -204,7 +204,7 @@ class BooleanOperations:
 
         cls: ClsType[bool] = kwargs.pop("cls", None)
 
-        _request = build_boolean_get_request(
+        _request = build_scalar_client_boolean_get_request(
             headers=_headers,
             params=_params,
         )
@@ -265,7 +265,7 @@ class BooleanOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_put_request(
+        _request = build_scalar_client_boolean_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -289,14 +289,14 @@ class BooleanOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownOperations:
+class ScalarClientUnknownOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`unknown` attribute.
+        :attr:`scalar_client_unknown` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -326,7 +326,7 @@ class UnknownOperations:
 
         cls: ClsType[Any] = kwargs.pop("cls", None)
 
-        _request = build_unknown_get_request(
+        _request = build_scalar_client_unknown_get_request(
             headers=_headers,
             params=_params,
         )
@@ -387,7 +387,7 @@ class UnknownOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_put_request(
+        _request = build_scalar_client_unknown_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -411,14 +411,14 @@ class UnknownOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DecimalTypeOperations:
+class ScalarClientDecimalTypeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`decimal_type` attribute.
+        :attr:`scalar_client_decimal_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -448,7 +448,7 @@ class DecimalTypeOperations:
 
         cls: ClsType[decimal.Decimal] = kwargs.pop("cls", None)
 
-        _request = build_decimal_type_response_body_request(
+        _request = build_scalar_client_decimal_type_response_body_request(
             headers=_headers,
             params=_params,
         )
@@ -509,7 +509,7 @@ class DecimalTypeOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal_type_request_body_request(
+        _request = build_scalar_client_decimal_type_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -554,7 +554,7 @@ class DecimalTypeOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_decimal_type_request_parameter_request(
+        _request = build_scalar_client_decimal_type_request_parameter_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -577,14 +577,14 @@ class DecimalTypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Decimal128TypeOperations:
+class ScalarClientDecimal128TypeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`decimal128_type` attribute.
+        :attr:`scalar_client_decimal128_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -614,7 +614,7 @@ class Decimal128TypeOperations:
 
         cls: ClsType[decimal.Decimal] = kwargs.pop("cls", None)
 
-        _request = build_decimal128_type_response_body_request(
+        _request = build_scalar_client_decimal128_type_response_body_request(
             headers=_headers,
             params=_params,
         )
@@ -675,7 +675,7 @@ class Decimal128TypeOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal128_type_request_body_request(
+        _request = build_scalar_client_decimal128_type_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -720,7 +720,7 @@ class Decimal128TypeOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_decimal128_type_request_parameter_request(
+        _request = build_scalar_client_decimal128_type_request_parameter_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -743,14 +743,14 @@ class Decimal128TypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DecimalVerifyOperations:
+class ScalarClientDecimalVerifyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`decimal_verify` attribute.
+        :attr:`scalar_client_decimal_verify` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -780,7 +780,7 @@ class DecimalVerifyOperations:
 
         cls: ClsType[list[decimal.Decimal]] = kwargs.pop("cls", None)
 
-        _request = build_decimal_verify_prepare_verify_request(
+        _request = build_scalar_client_decimal_verify_prepare_verify_request(
             headers=_headers,
             params=_params,
         )
@@ -838,7 +838,7 @@ class DecimalVerifyOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal_verify_verify_request(
+        _request = build_scalar_client_decimal_verify_verify_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -862,14 +862,14 @@ class DecimalVerifyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Decimal128VerifyOperations:
+class ScalarClientDecimal128VerifyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.scalar.aio.ScalarClient`'s
-        :attr:`decimal128_verify` attribute.
+        :attr:`scalar_client_decimal128_verify` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -899,7 +899,7 @@ class Decimal128VerifyOperations:
 
         cls: ClsType[list[decimal.Decimal]] = kwargs.pop("cls", None)
 
-        _request = build_decimal128_verify_prepare_verify_request(
+        _request = build_scalar_client_decimal128_verify_prepare_verify_request(
             headers=_headers,
             params=_params,
         )
@@ -957,7 +957,7 @@ class Decimal128VerifyOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal128_verify_verify_request(
+        _request = build_scalar_client_decimal128_verify_verify_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

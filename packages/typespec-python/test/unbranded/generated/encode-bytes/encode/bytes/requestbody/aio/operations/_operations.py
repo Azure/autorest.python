@@ -20,25 +20,25 @@ from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
-    build_request_body_base64_request,
-    build_request_body_base64_url_request,
-    build_request_body_custom_content_type_request,
-    build_request_body_default_request,
-    build_request_body_octet_stream_request,
+    build_bytes_client_request_body_base64_request,
+    build_bytes_client_request_body_base64_url_request,
+    build_bytes_client_request_body_custom_content_type_request,
+    build_bytes_client_request_body_default_request,
+    build_bytes_client_request_body_octet_stream_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class RequestBodyOperations:
+class BytesClientRequestBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.aio.BytesClient`'s
-        :attr:`request_body` attribute.
+        :attr:`bytes_client_request_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -73,7 +73,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_default_request(
+        _request = build_bytes_client_request_body_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -121,7 +121,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_octet_stream_request(
+        _request = build_bytes_client_request_body_octet_stream_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -169,7 +169,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_custom_content_type_request(
+        _request = build_bytes_client_request_body_custom_content_type_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -217,7 +217,7 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
-        _request = build_request_body_base64_request(
+        _request = build_bytes_client_request_body_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -265,7 +265,7 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
 
-        _request = build_request_body_base64_url_request(
+        _request = build_bytes_client_request_body_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

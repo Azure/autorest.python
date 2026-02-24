@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,15 +17,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MoveToRootClientConfiguration
-from .operations import ResourceOperationsOperations, _MoveToRootClientOperationsMixin
+from .operations import MoveToRootClientResourceOperationsOperations, _MoveToRootClientOperationsMixin
 
 
 class MoveToRootClient(_MoveToRootClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for @clientLocation decorator - moving operations between clients.
 
-    :ivar resource_operations: ResourceOperationsOperations operations
-    :vartype resource_operations:
-     specs.azure.clientgenerator.core.clientlocation.rootclient.aio.operations.ResourceOperationsOperations
+    :ivar move_to_root_client_resource_operations: MoveToRootClientResourceOperationsOperations
+     operations
+    :vartype move_to_root_client_resource_operations:
+     specs.azure.clientgenerator.core.clientlocation.rootclient.aio.operations.MoveToRootClientResourceOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -57,7 +59,7 @@ class MoveToRootClient(_MoveToRootClientOperationsMixin):  # pylint: disable=cli
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.resource_operations = ResourceOperationsOperations(
+        self.move_to_root_client_resource_operations = MoveToRootClientResourceOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

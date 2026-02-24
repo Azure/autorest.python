@@ -39,7 +39,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_client_client_request(**kwargs: Any) -> HttpRequest:
+def build_naming_client_model_client_client_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -53,7 +53,7 @@ def build_model_client_client_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_client_language_request(**kwargs: Any) -> HttpRequest:
+def build_naming_client_model_client_language_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -67,7 +67,9 @@ def build_model_client_language_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_enum_union_enum_name_request(**kwargs: Any) -> HttpRequest:
+def build_naming_client_union_enum_union_enum_name_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -80,7 +82,9 @@ def build_union_enum_union_enum_name_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_union_enum_union_enum_member_name_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_naming_client_union_enum_union_enum_member_name_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -173,14 +177,14 @@ def build_naming_response_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ModelClientOperations:
+class NamingClientModelClientOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.main.NamingClient`'s
-        :attr:`model_client` attribute.
+        :attr:`naming_client_model_client` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -265,7 +269,7 @@ class ModelClientOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_client_request(
+        _request = build_naming_client_model_client_client_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -365,7 +369,7 @@ class ModelClientOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_client_language_request(
+        _request = build_naming_client_model_client_language_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -391,14 +395,14 @@ class ModelClientOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionEnumOperations:
+class NamingClientUnionEnumOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.main.NamingClient`'s
-        :attr:`union_enum` attribute.
+        :attr:`naming_client_union_enum` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -436,7 +440,7 @@ class UnionEnumOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_enum_union_enum_name_request(
+        _request = build_naming_client_union_enum_union_enum_name_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -489,7 +493,7 @@ class UnionEnumOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_enum_union_enum_member_name_request(
+        _request = build_naming_client_union_enum_union_enum_member_name_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

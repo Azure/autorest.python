@@ -15,15 +15,15 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
-from ..property.aio.operations import PropertyOperations
+from ..property.aio.operations import ArrayClientPropertyOperations
 from ._configuration import ArrayClientConfiguration
 
 
 class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on array.
 
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.array.aio.operations.PropertyOperations
+    :ivar array_client_property: ArrayClientPropertyOperations operations
+    :vartype array_client_property: encode.array.aio.operations.ArrayClientPropertyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -56,7 +56,9 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array_client_property = ArrayClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

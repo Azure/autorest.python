@@ -37,7 +37,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_optional_explicit_set_request(**kwargs: Any) -> HttpRequest:
+def build_body_optionality_client_optional_explicit_set_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -51,7 +53,9 @@ def build_optional_explicit_set_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_optional_explicit_omit_request(**kwargs: Any) -> HttpRequest:
+def build_body_optionality_client_optional_explicit_omit_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -65,14 +69,14 @@ def build_optional_explicit_omit_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class OptionalExplicitOperations:
+class BodyOptionalityClientOptionalExplicitOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.bodyoptionality.BodyOptionalityClient`'s
-        :attr:`optional_explicit` attribute.
+        :attr:`body_optionality_client_optional_explicit` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -163,7 +167,7 @@ class OptionalExplicitOperations:
             else:
                 _content = None
 
-        _request = build_optional_explicit_set_request(
+        _request = build_body_optionality_client_optional_explicit_set_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -269,7 +273,7 @@ class OptionalExplicitOperations:
             else:
                 _content = None
 
-        _request = build_optional_explicit_omit_request(
+        _request = build_body_optionality_client_optional_explicit_omit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

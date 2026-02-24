@@ -17,67 +17,74 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import XmlClientConfiguration
 from .operations import (
-    ModelWithArrayOfModelValueOperations,
-    ModelWithAttributesValueOperations,
-    ModelWithDatetimeValueOperations,
-    ModelWithDictionaryValueOperations,
-    ModelWithEmptyArrayValueOperations,
-    ModelWithEncodedNamesValueOperations,
-    ModelWithEnumValueOperations,
-    ModelWithOptionalFieldValueOperations,
-    ModelWithRenamedArraysValueOperations,
-    ModelWithRenamedFieldsValueOperations,
-    ModelWithSimpleArraysValueOperations,
-    ModelWithTextValueOperations,
-    ModelWithUnwrappedArrayValueOperations,
-    SimpleModelValueOperations,
-    XmlErrorValueOperations,
+    XmlClientModelWithArrayOfModelValueOperations,
+    XmlClientModelWithAttributesValueOperations,
+    XmlClientModelWithDictionaryValueOperations,
+    XmlClientModelWithEmptyArrayValueOperations,
+    XmlClientModelWithEncodedNamesValueOperations,
+    XmlClientModelWithOptionalFieldValueOperations,
+    XmlClientModelWithRenamedArraysValueOperations,
+    XmlClientModelWithRenamedFieldsValueOperations,
+    XmlClientModelWithSimpleArraysValueOperations,
+    XmlClientModelWithTextValueOperations,
+    XmlClientModelWithUnwrappedArrayValueOperations,
+    XmlClientSimpleModelValueOperations,
+    XmlClientXmlErrorValueOperations,
 )
 
 
 class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Sends and receives bodies in XML format.
 
-    :ivar simple_model_value: SimpleModelValueOperations operations
-    :vartype simple_model_value: payload.xml.aio.operations.SimpleModelValueOperations
-    :ivar model_with_simple_arrays_value: ModelWithSimpleArraysValueOperations operations
-    :vartype model_with_simple_arrays_value:
-     payload.xml.aio.operations.ModelWithSimpleArraysValueOperations
-    :ivar model_with_array_of_model_value: ModelWithArrayOfModelValueOperations operations
-    :vartype model_with_array_of_model_value:
-     payload.xml.aio.operations.ModelWithArrayOfModelValueOperations
-    :ivar model_with_optional_field_value: ModelWithOptionalFieldValueOperations operations
-    :vartype model_with_optional_field_value:
-     payload.xml.aio.operations.ModelWithOptionalFieldValueOperations
-    :ivar model_with_attributes_value: ModelWithAttributesValueOperations operations
-    :vartype model_with_attributes_value:
-     payload.xml.aio.operations.ModelWithAttributesValueOperations
-    :ivar model_with_unwrapped_array_value: ModelWithUnwrappedArrayValueOperations operations
-    :vartype model_with_unwrapped_array_value:
-     payload.xml.aio.operations.ModelWithUnwrappedArrayValueOperations
-    :ivar model_with_renamed_arrays_value: ModelWithRenamedArraysValueOperations operations
-    :vartype model_with_renamed_arrays_value:
-     payload.xml.aio.operations.ModelWithRenamedArraysValueOperations
-    :ivar model_with_renamed_fields_value: ModelWithRenamedFieldsValueOperations operations
-    :vartype model_with_renamed_fields_value:
-     payload.xml.aio.operations.ModelWithRenamedFieldsValueOperations
-    :ivar model_with_empty_array_value: ModelWithEmptyArrayValueOperations operations
-    :vartype model_with_empty_array_value:
-     payload.xml.aio.operations.ModelWithEmptyArrayValueOperations
-    :ivar model_with_text_value: ModelWithTextValueOperations operations
-    :vartype model_with_text_value: payload.xml.aio.operations.ModelWithTextValueOperations
-    :ivar model_with_dictionary_value: ModelWithDictionaryValueOperations operations
-    :vartype model_with_dictionary_value:
-     payload.xml.aio.operations.ModelWithDictionaryValueOperations
-    :ivar model_with_encoded_names_value: ModelWithEncodedNamesValueOperations operations
-    :vartype model_with_encoded_names_value:
-     payload.xml.aio.operations.ModelWithEncodedNamesValueOperations
-    :ivar model_with_enum_value: ModelWithEnumValueOperations operations
-    :vartype model_with_enum_value: payload.xml.aio.operations.ModelWithEnumValueOperations
-    :ivar model_with_datetime_value: ModelWithDatetimeValueOperations operations
-    :vartype model_with_datetime_value: payload.xml.aio.operations.ModelWithDatetimeValueOperations
-    :ivar xml_error_value: XmlErrorValueOperations operations
-    :vartype xml_error_value: payload.xml.aio.operations.XmlErrorValueOperations
+    :ivar xml_client_simple_model_value: XmlClientSimpleModelValueOperations operations
+    :vartype xml_client_simple_model_value:
+     payload.xml.aio.operations.XmlClientSimpleModelValueOperations
+    :ivar xml_client_model_with_simple_arrays_value: XmlClientModelWithSimpleArraysValueOperations
+     operations
+    :vartype xml_client_model_with_simple_arrays_value:
+     payload.xml.aio.operations.XmlClientModelWithSimpleArraysValueOperations
+    :ivar xml_client_model_with_array_of_model_value: XmlClientModelWithArrayOfModelValueOperations
+     operations
+    :vartype xml_client_model_with_array_of_model_value:
+     payload.xml.aio.operations.XmlClientModelWithArrayOfModelValueOperations
+    :ivar xml_client_model_with_optional_field_value:
+     XmlClientModelWithOptionalFieldValueOperations operations
+    :vartype xml_client_model_with_optional_field_value:
+     payload.xml.aio.operations.XmlClientModelWithOptionalFieldValueOperations
+    :ivar xml_client_model_with_attributes_value: XmlClientModelWithAttributesValueOperations
+     operations
+    :vartype xml_client_model_with_attributes_value:
+     payload.xml.aio.operations.XmlClientModelWithAttributesValueOperations
+    :ivar xml_client_model_with_unwrapped_array_value:
+     XmlClientModelWithUnwrappedArrayValueOperations operations
+    :vartype xml_client_model_with_unwrapped_array_value:
+     payload.xml.aio.operations.XmlClientModelWithUnwrappedArrayValueOperations
+    :ivar xml_client_model_with_renamed_arrays_value:
+     XmlClientModelWithRenamedArraysValueOperations operations
+    :vartype xml_client_model_with_renamed_arrays_value:
+     payload.xml.aio.operations.XmlClientModelWithRenamedArraysValueOperations
+    :ivar xml_client_model_with_renamed_fields_value:
+     XmlClientModelWithRenamedFieldsValueOperations operations
+    :vartype xml_client_model_with_renamed_fields_value:
+     payload.xml.aio.operations.XmlClientModelWithRenamedFieldsValueOperations
+    :ivar xml_client_model_with_empty_array_value: XmlClientModelWithEmptyArrayValueOperations
+     operations
+    :vartype xml_client_model_with_empty_array_value:
+     payload.xml.aio.operations.XmlClientModelWithEmptyArrayValueOperations
+    :ivar xml_client_model_with_text_value: XmlClientModelWithTextValueOperations operations
+    :vartype xml_client_model_with_text_value:
+     payload.xml.aio.operations.XmlClientModelWithTextValueOperations
+    :ivar xml_client_model_with_dictionary_value: XmlClientModelWithDictionaryValueOperations
+     operations
+    :vartype xml_client_model_with_dictionary_value:
+     payload.xml.aio.operations.XmlClientModelWithDictionaryValueOperations
+    :ivar xml_client_model_with_encoded_names_value: XmlClientModelWithEncodedNamesValueOperations
+     operations
+    :vartype xml_client_model_with_encoded_names_value:
+     payload.xml.aio.operations.XmlClientModelWithEncodedNamesValueOperations
+    :ivar xml_client_xml_error_value: XmlClientXmlErrorValueOperations operations
+    :vartype xml_client_xml_error_value:
+     payload.xml.aio.operations.XmlClientXmlErrorValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -110,49 +117,45 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.simple_model_value = SimpleModelValueOperations(
+        self.xml_client_simple_model_value = XmlClientSimpleModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_simple_arrays_value = ModelWithSimpleArraysValueOperations(
+        self.xml_client_model_with_simple_arrays_value = XmlClientModelWithSimpleArraysValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_array_of_model_value = ModelWithArrayOfModelValueOperations(
+        self.xml_client_model_with_array_of_model_value = XmlClientModelWithArrayOfModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_optional_field_value = ModelWithOptionalFieldValueOperations(
+        self.xml_client_model_with_optional_field_value = XmlClientModelWithOptionalFieldValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_attributes_value = ModelWithAttributesValueOperations(
+        self.xml_client_model_with_attributes_value = XmlClientModelWithAttributesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_unwrapped_array_value = ModelWithUnwrappedArrayValueOperations(
+        self.xml_client_model_with_unwrapped_array_value = XmlClientModelWithUnwrappedArrayValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_renamed_arrays_value = ModelWithRenamedArraysValueOperations(
+        self.xml_client_model_with_renamed_arrays_value = XmlClientModelWithRenamedArraysValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_renamed_fields_value = ModelWithRenamedFieldsValueOperations(
+        self.xml_client_model_with_renamed_fields_value = XmlClientModelWithRenamedFieldsValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_empty_array_value = ModelWithEmptyArrayValueOperations(
+        self.xml_client_model_with_empty_array_value = XmlClientModelWithEmptyArrayValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_text_value = ModelWithTextValueOperations(
+        self.xml_client_model_with_text_value = XmlClientModelWithTextValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_dictionary_value = ModelWithDictionaryValueOperations(
+        self.xml_client_model_with_dictionary_value = XmlClientModelWithDictionaryValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_encoded_names_value = ModelWithEncodedNamesValueOperations(
+        self.xml_client_model_with_encoded_names_value = XmlClientModelWithEncodedNamesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_enum_value = ModelWithEnumValueOperations(
+        self.xml_client_xml_error_value = XmlClientXmlErrorValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_datetime_value = ModelWithDatetimeValueOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.xml_error_value = XmlErrorValueOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

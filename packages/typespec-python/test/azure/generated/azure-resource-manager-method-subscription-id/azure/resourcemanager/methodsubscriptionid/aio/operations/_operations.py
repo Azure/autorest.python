@@ -1,4 +1,4 @@
-# pylint: disable=too-many-lines
+# pylint: disable=line-too-long,useless-suppression,too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -35,19 +35,19 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_mixed_subscription_placement_resource_group_resource_operations_delete_request,
-    build_mixed_subscription_placement_resource_group_resource_operations_get_request,
-    build_mixed_subscription_placement_resource_group_resource_operations_put_request,
-    build_mixed_subscription_placement_subscription_resource_operations_delete_request,
-    build_mixed_subscription_placement_subscription_resource_operations_get_request,
-    build_mixed_subscription_placement_subscription_resource_operations_put_request,
-    build_operations_list_request,
-    build_two_subscription_resources_method_level_subscription_resource1_operations_delete_request,
-    build_two_subscription_resources_method_level_subscription_resource1_operations_get_request,
-    build_two_subscription_resources_method_level_subscription_resource1_operations_put_request,
-    build_two_subscription_resources_method_level_subscription_resource2_operations_delete_request,
-    build_two_subscription_resources_method_level_subscription_resource2_operations_get_request,
-    build_two_subscription_resources_method_level_subscription_resource2_operations_put_request,
+    build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_delete_request,
+    build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_get_request,
+    build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_put_request,
+    build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_delete_request,
+    build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_get_request,
+    build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_put_request,
+    build_method_subscription_id_client_operations_list_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_delete_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_get_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_put_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_delete_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_get_request,
+    build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_put_request,
 )
 from .._configuration import MethodSubscriptionIdClientConfiguration
 
@@ -57,14 +57,14 @@ JSON = MutableMapping[str, Any]
 List = list
 
 
-class TwoSubscriptionResourcesMethodLevelOperations:  # pylint: disable=name-too-long
+class MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`two_subscription_resources_method_level` attribute.
+        :attr:`method_subscription_id_client_two_subscription_resources_method_level` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,26 +76,26 @@ class TwoSubscriptionResourcesMethodLevelOperations:  # pylint: disable=name-too
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.subscription_resource1_operations = (
-            TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperations(
+        self.method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations = (
+            MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperations(
                 self._client, self._config, self._serialize, self._deserialize
             )
         )
-        self.subscription_resource2_operations = (
-            TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperations(
+        self.method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations = (
+            MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperations(
                 self._client, self._config, self._serialize, self._deserialize
             )
         )
 
 
-class MixedSubscriptionPlacementOperations:
+class MethodSubscriptionIdClientMixedSubscriptionPlacementOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`mixed_subscription_placement` attribute.
+        :attr:`method_subscription_id_client_mixed_subscription_placement` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -107,22 +107,26 @@ class MixedSubscriptionPlacementOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.subscription_resource_operations = MixedSubscriptionPlacementSubscriptionResourceOperationsOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations = (
+            MethodSubscriptionIdClientMixedSubscriptionPlacementSubscriptionResourceOperationsOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.resource_group_resource_operations = MixedSubscriptionPlacementResourceGroupResourceOperationsOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations = (
+            MethodSubscriptionIdClientMixedSubscriptionPlacementResourceGroupResourceOperationsOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
 
 
-class Operations:
+class MethodSubscriptionIdClientOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`operations` attribute.
+        :attr:`method_subscription_id_client_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -159,7 +163,7 @@ class Operations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_operations_list_request(
+                _request = build_method_subscription_id_client_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -222,14 +226,14 @@ class Operations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperations:  # pylint: disable=name-too-long
+class MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`subscription_resource1_operations` attribute.
+        :attr:`method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -268,7 +272,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
 
         cls: ClsType[_models.SubscriptionResource1] = kwargs.pop("cls", None)
 
-        _request = build_two_subscription_resources_method_level_subscription_resource1_operations_get_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_get_request(
             subscription_id=subscription_id,
             subscription_resource1_name=subscription_resource1_name,
             api_version=self._config.api_version,
@@ -431,7 +435,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_two_subscription_resources_method_level_subscription_resource1_operations_put_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_put_request(
             subscription_id=subscription_id,
             subscription_resource1_name=subscription_resource1_name,
             content_type=content_type,
@@ -500,7 +504,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_two_subscription_resources_method_level_subscription_resource1_operations_delete_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource1_operations_delete_request(
             subscription_id=subscription_id,
             subscription_resource1_name=subscription_resource1_name,
             api_version=self._config.api_version,
@@ -531,14 +535,14 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource1OperationsOperatio
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperations:  # pylint: disable=name-too-long
+class MethodSubscriptionIdClientTwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`subscription_resource2_operations` attribute.
+        :attr:`method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -577,7 +581,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
 
         cls: ClsType[_models.SubscriptionResource2] = kwargs.pop("cls", None)
 
-        _request = build_two_subscription_resources_method_level_subscription_resource2_operations_get_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_get_request(
             subscription_id=subscription_id,
             subscription_resource2_name=subscription_resource2_name,
             api_version=self._config.api_version,
@@ -740,7 +744,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_two_subscription_resources_method_level_subscription_resource2_operations_put_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_put_request(
             subscription_id=subscription_id,
             subscription_resource2_name=subscription_resource2_name,
             content_type=content_type,
@@ -809,7 +813,7 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_two_subscription_resources_method_level_subscription_resource2_operations_delete_request(
+        _request = build_method_subscription_id_client_two_subscription_resources_method_level_subscription_resource2_operations_delete_request(
             subscription_id=subscription_id,
             subscription_resource2_name=subscription_resource2_name,
             api_version=self._config.api_version,
@@ -840,14 +844,14 @@ class TwoSubscriptionResourcesMethodLevelSubscriptionResource2OperationsOperatio
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pylint: disable=name-too-long
+class MethodSubscriptionIdClientMixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`subscription_resource_operations` attribute.
+        :attr:`method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -886,7 +890,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
 
         cls: ClsType[_models.SubscriptionResource] = kwargs.pop("cls", None)
 
-        _request = build_mixed_subscription_placement_subscription_resource_operations_get_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_get_request(
             subscription_id=subscription_id,
             subscription_resource_name=subscription_resource_name,
             api_version=self._config.api_version,
@@ -1049,7 +1053,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_mixed_subscription_placement_subscription_resource_operations_put_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_put_request(
             subscription_id=subscription_id,
             subscription_resource_name=subscription_resource_name,
             content_type=content_type,
@@ -1118,7 +1122,7 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_mixed_subscription_placement_subscription_resource_operations_delete_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_subscription_resource_operations_delete_request(
             subscription_id=subscription_id,
             subscription_resource_name=subscription_resource_name,
             api_version=self._config.api_version,
@@ -1149,14 +1153,14 @@ class MixedSubscriptionPlacementSubscriptionResourceOperationsOperations:  # pyl
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # pylint: disable=name-too-long
+class MethodSubscriptionIdClientMixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.methodsubscriptionid.aio.MethodSubscriptionIdClient`'s
-        :attr:`resource_group_resource_operations` attribute.
+        :attr:`method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1196,7 +1200,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
 
         cls: ClsType[_models.ResourceGroupResource] = kwargs.pop("cls", None)
 
-        _request = build_mixed_subscription_placement_resource_group_resource_operations_get_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_get_request(
             resource_group_name=resource_group_name,
             resource_group_resource_name=resource_group_resource_name,
             subscription_id=self._config.subscription_id,
@@ -1364,7 +1368,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_mixed_subscription_placement_resource_group_resource_operations_put_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_put_request(
             resource_group_name=resource_group_name,
             resource_group_resource_name=resource_group_resource_name,
             subscription_id=self._config.subscription_id,
@@ -1435,7 +1439,7 @@ class MixedSubscriptionPlacementResourceGroupResourceOperationsOperations:  # py
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_mixed_subscription_placement_resource_group_resource_operations_delete_request(
+        _request = build_method_subscription_id_client_mixed_subscription_placement_resource_group_resource_operations_delete_request(
             resource_group_name=resource_group_name,
             resource_group_resource_name=resource_group_resource_name,
             subscription_id=self._config.subscription_id,

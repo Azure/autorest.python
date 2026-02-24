@@ -8,18 +8,20 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
-from ..explicitbody.aio.operations import ExplicitBodyOperations
-from ..implicitbody.aio.operations import ImplicitBodyOperations
+from ..explicitbody.aio.operations import BasicClientExplicitBodyOperations
+from ..implicitbody.aio.operations import BasicClientImplicitBodyOperations
 from ._configuration import BasicClientConfiguration
 
 
 class BasicClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for basic parameters cases.
 
-    :ivar explicit_body: ExplicitBodyOperations operations
-    :vartype explicit_body: parameters.basic.aio.operations.ExplicitBodyOperations
-    :ivar implicit_body: ImplicitBodyOperations operations
-    :vartype implicit_body: parameters.basic.aio.operations.ImplicitBodyOperations
+    :ivar basic_client_explicit_body: BasicClientExplicitBodyOperations operations
+    :vartype basic_client_explicit_body:
+     parameters.basic.aio.operations.BasicClientExplicitBodyOperations
+    :ivar basic_client_implicit_body: BasicClientImplicitBodyOperations operations
+    :vartype basic_client_implicit_body:
+     parameters.basic.aio.operations.BasicClientImplicitBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -46,8 +48,12 @@ class BasicClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.explicit_body = ExplicitBodyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.implicit_body = ImplicitBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.basic_client_explicit_body = BasicClientExplicitBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.basic_client_implicit_body = BasicClientImplicitBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

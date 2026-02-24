@@ -30,11 +30,11 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_azure_location_scalar_get_request,
-    build_azure_location_scalar_header_request,
-    build_azure_location_scalar_post_request,
-    build_azure_location_scalar_put_request,
-    build_azure_location_scalar_query_request,
+    build_scalar_client_azure_location_scalar_get_request,
+    build_scalar_client_azure_location_scalar_header_request,
+    build_scalar_client_azure_location_scalar_post_request,
+    build_scalar_client_azure_location_scalar_put_request,
+    build_scalar_client_azure_location_scalar_query_request,
 )
 from .._configuration import ScalarClientConfiguration
 
@@ -43,14 +43,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class AzureLocationScalarOperations:
+class ScalarClientAzureLocationScalarOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.core.scalar.aio.ScalarClient`'s
-        :attr:`azure_location_scalar` attribute.
+        :attr:`scalar_client_azure_location_scalar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -81,7 +81,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_get_request(
+        _request = build_scalar_client_azure_location_scalar_get_request(
             headers=_headers,
             params=_params,
         )
@@ -145,7 +145,7 @@ class AzureLocationScalarOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_location_scalar_put_request(
+        _request = build_scalar_client_azure_location_scalar_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -251,7 +251,7 @@ class AzureLocationScalarOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_location_scalar_post_request(
+        _request = build_scalar_client_azure_location_scalar_post_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -311,7 +311,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_header_request(
+        _request = build_scalar_client_azure_location_scalar_header_request(
             region=region,
             headers=_headers,
             params=_params,
@@ -358,7 +358,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_query_request(
+        _request = build_scalar_client_azure_location_scalar_query_request(
             region=region,
             headers=_headers,
             params=_params,

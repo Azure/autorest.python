@@ -21,22 +21,22 @@ from ...._utils.model_base import _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import PageableClientConfiguration
 from ...operations._operations import (
-    build_xml_pagination_list_with_continuation_request,
-    build_xml_pagination_list_with_next_link_request,
+    build_pageable_client_xml_pagination_list_with_continuation_request,
+    build_pageable_client_xml_pagination_list_with_next_link_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class XmlPaginationOperations:
+class PageableClientXmlPaginationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.aio.PageableClient`'s
-        :attr:`xml_pagination` attribute.
+        :attr:`pageable_client_xml_pagination` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,7 +68,7 @@ class XmlPaginationOperations:
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_xml_pagination_list_with_continuation_request(
+            _request = build_pageable_client_xml_pagination_list_with_continuation_request(
                 marker=_continuation_token,
                 headers=_headers,
                 params=_params,
@@ -125,7 +125,7 @@ class XmlPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_xml_pagination_list_with_next_link_request(
+                _request = build_pageable_client_xml_pagination_list_with_next_link_request(
                     headers=_headers,
                     params=_params,
                 )

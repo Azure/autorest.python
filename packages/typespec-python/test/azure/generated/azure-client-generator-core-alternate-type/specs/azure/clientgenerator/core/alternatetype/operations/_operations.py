@@ -41,7 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_external_type_get_model_request(**kwargs: Any) -> HttpRequest:
+def build_alternate_type_client_external_type_get_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +57,9 @@ def build_external_type_get_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_external_type_put_model_request(**kwargs: Any) -> HttpRequest:
+def build_alternate_type_client_external_type_put_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -68,7 +72,9 @@ def build_external_type_put_model_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_external_type_get_property_request(**kwargs: Any) -> HttpRequest:
+def build_alternate_type_client_external_type_get_property_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -82,7 +88,9 @@ def build_external_type_get_property_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_external_type_put_property_request(**kwargs: Any) -> HttpRequest:
+def build_alternate_type_client_external_type_put_property_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -96,14 +104,14 @@ def build_external_type_put_property_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class ExternalTypeOperations:
+class AlternateTypeClientExternalTypeOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.alternatetype.AlternateTypeClient`'s
-        :attr:`external_type` attribute.
+        :attr:`alternate_type_client_external_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -134,7 +142,7 @@ class ExternalTypeOperations:
 
         cls: ClsType[geojson.Feature] = kwargs.pop("cls", None)
 
-        _request = build_external_type_get_model_request(
+        _request = build_alternate_type_client_external_type_get_model_request(
             headers=_headers,
             params=_params,
         )
@@ -195,7 +203,7 @@ class ExternalTypeOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_external_type_put_model_request(
+        _request = build_alternate_type_client_external_type_put_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -242,7 +250,7 @@ class ExternalTypeOperations:
 
         cls: ClsType[_models.ModelWithFeatureProperty] = kwargs.pop("cls", None)
 
-        _request = build_external_type_get_property_request(
+        _request = build_alternate_type_client_external_type_get_property_request(
             headers=_headers,
             params=_params,
         )
@@ -355,7 +363,7 @@ class ExternalTypeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_external_type_put_property_request(
+        _request = build_alternate_type_client_external_type_put_property_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -6,40 +6,40 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import Int32ValueOperations  # type: ignore
-from ._operations import Int64ValueOperations  # type: ignore
-from ._operations import BooleanValueOperations  # type: ignore
-from ._operations import StringValueOperations  # type: ignore
-from ._operations import Float32ValueOperations  # type: ignore
-from ._operations import DatetimeValueOperations  # type: ignore
-from ._operations import DurationValueOperations  # type: ignore
-from ._operations import UnknownValueOperations  # type: ignore
-from ._operations import ModelValueOperations  # type: ignore
-from ._operations import NullableFloatValueOperations  # type: ignore
-from ._operations import NullableInt32ValueOperations  # type: ignore
-from ._operations import NullableBooleanValueOperations  # type: ignore
-from ._operations import NullableStringValueOperations  # type: ignore
-from ._operations import NullableModelValueOperations  # type: ignore
+from ._operations import ArrayClientInt32ValueOperations  # type: ignore
+from ._operations import ArrayClientInt64ValueOperations  # type: ignore
+from ._operations import ArrayClientBooleanValueOperations  # type: ignore
+from ._operations import ArrayClientStringValueOperations  # type: ignore
+from ._operations import ArrayClientFloat32ValueOperations  # type: ignore
+from ._operations import ArrayClientDatetimeValueOperations  # type: ignore
+from ._operations import ArrayClientDurationValueOperations  # type: ignore
+from ._operations import ArrayClientUnknownValueOperations  # type: ignore
+from ._operations import ArrayClientModelValueOperations  # type: ignore
+from ._operations import ArrayClientNullableFloatValueOperations  # type: ignore
+from ._operations import ArrayClientNullableInt32ValueOperations  # type: ignore
+from ._operations import ArrayClientNullableBooleanValueOperations  # type: ignore
+from ._operations import ArrayClientNullableStringValueOperations  # type: ignore
+from ._operations import ArrayClientNullableModelValueOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "Int32ValueOperations",
-    "Int64ValueOperations",
-    "BooleanValueOperations",
-    "StringValueOperations",
-    "Float32ValueOperations",
-    "DatetimeValueOperations",
-    "DurationValueOperations",
-    "UnknownValueOperations",
-    "ModelValueOperations",
-    "NullableFloatValueOperations",
-    "NullableInt32ValueOperations",
-    "NullableBooleanValueOperations",
-    "NullableStringValueOperations",
-    "NullableModelValueOperations",
+    "ArrayClientInt32ValueOperations",
+    "ArrayClientInt64ValueOperations",
+    "ArrayClientBooleanValueOperations",
+    "ArrayClientStringValueOperations",
+    "ArrayClientFloat32ValueOperations",
+    "ArrayClientDatetimeValueOperations",
+    "ArrayClientDurationValueOperations",
+    "ArrayClientUnknownValueOperations",
+    "ArrayClientModelValueOperations",
+    "ArrayClientNullableFloatValueOperations",
+    "ArrayClientNullableInt32ValueOperations",
+    "ArrayClientNullableBooleanValueOperations",
+    "ArrayClientNullableStringValueOperations",
+    "ArrayClientNullableModelValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

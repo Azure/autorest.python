@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_blob_operations_get_blob_request(
+def build_move_method_parameter_to_client_blob_operations_get_blob_request(  # pylint: disable=name-too-long
     *, container: str, blob: str, storage_account: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -58,14 +58,14 @@ def build_blob_operations_get_blob_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class BlobOperationsOperations:
+class MoveMethodParameterToClientBlobOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.parameter.MoveMethodParameterToClient`'s
-        :attr:`blob_operations` attribute.
+        :attr:`move_method_parameter_to_client_blob_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -102,7 +102,7 @@ class BlobOperationsOperations:
 
         cls: ClsType[_models.Blob] = kwargs.pop("cls", None)
 
-        _request = build_blob_operations_get_blob_request(
+        _request = build_move_method_parameter_to_client_blob_operations_get_blob_request(
             container=container,
             blob=blob,
             storage_account=self._config.storage_account,

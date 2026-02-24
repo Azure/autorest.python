@@ -39,7 +39,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_property_safeint_as_string_request(**kwargs: Any) -> HttpRequest:
+def build_numeric_client_property_safeint_as_string_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -56,7 +58,9 @@ def build_property_safeint_as_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_uint32_as_string_optional_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_numeric_client_property_uint32_as_string_optional_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -73,7 +77,9 @@ def build_property_uint32_as_string_optional_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_uint8_as_string_request(**kwargs: Any) -> HttpRequest:
+def build_numeric_client_property_uint8_as_string_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -90,14 +96,14 @@ def build_property_uint8_as_string_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class PropertyOperations:
+class NumericClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.numeric.NumericClient`'s
-        :attr:`property` attribute.
+        :attr:`numeric_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -188,7 +194,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_safeint_as_string_request(
+        _request = build_numeric_client_property_safeint_as_string_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -306,7 +312,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_uint32_as_string_optional_request(
+        _request = build_numeric_client_property_uint32_as_string_optional_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -424,7 +430,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_uint8_as_string_request(
+        _request = build_numeric_client_property_uint8_as_string_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

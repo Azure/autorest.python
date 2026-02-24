@@ -31,8 +31,8 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_non_resource_operations_create_request,
-    build_non_resource_operations_get_request,
+    build_non_resource_client_non_resource_operations_create_request,
+    build_non_resource_client_non_resource_operations_get_request,
 )
 from .._configuration import NonResourceClientConfiguration
 
@@ -41,14 +41,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class NonResourceOperationsOperations:
+class NonResourceClientNonResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.nonresource.aio.NonResourceClient`'s
-        :attr:`non_resource_operations` attribute.
+        :attr:`non_resource_client_non_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -83,7 +83,7 @@ class NonResourceOperationsOperations:
 
         cls: ClsType[_models.NonResource] = kwargs.pop("cls", None)
 
-        _request = build_non_resource_operations_get_request(
+        _request = build_non_resource_client_non_resource_operations_get_request(
             location=location,
             parameter=parameter,
             subscription_id=self._config.subscription_id,
@@ -230,7 +230,7 @@ class NonResourceOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_non_resource_operations_create_request(
+        _request = build_non_resource_client_non_resource_operations_create_request(
             location=location,
             parameter=parameter,
             subscription_id=self._config.subscription_id,

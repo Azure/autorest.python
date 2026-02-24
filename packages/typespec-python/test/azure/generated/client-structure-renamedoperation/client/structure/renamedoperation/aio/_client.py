@@ -17,7 +17,7 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import RenamedOperationClientConfiguration
-from .operations import GroupOperations, _RenamedOperationClientOperationsMixin
+from .operations import RenamedOperationClientGroupOperations, _RenamedOperationClientOperationsMixin
 
 
 class RenamedOperationClient(
@@ -25,8 +25,9 @@ class RenamedOperationClient(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """RenamedOperationClient.
 
-    :ivar group: GroupOperations operations
-    :vartype group: client.structure.renamedoperation.aio.operations.GroupOperations
+    :ivar renamed_operation_client_group: RenamedOperationClientGroupOperations operations
+    :vartype renamed_operation_client_group:
+     client.structure.renamedoperation.aio.operations.RenamedOperationClientGroupOperations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -64,7 +65,9 @@ class RenamedOperationClient(
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.renamed_operation_client_group = RenamedOperationClientGroupOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

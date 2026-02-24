@@ -17,23 +17,23 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ......_utils.serialization import Deserializer, Serializer
 from ......aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
-    build_query_parameters_query_continuation_standard_array_request,
-    build_query_parameters_query_continuation_standard_primitive_request,
-    build_query_parameters_query_continuation_standard_record_request,
+    build_routes_client_query_parameters_query_continuation_standard_array_request,
+    build_routes_client_query_parameters_query_continuation_standard_primitive_request,
+    build_routes_client_query_parameters_query_continuation_standard_record_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=name-too-long
+class RoutesClientQueryParametersQueryContinuationStandardOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`standard` attribute.
+        :attr:`routes_client_query_parameters_query_continuation_standard` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -65,7 +65,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_primitive_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_primitive_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -109,7 +109,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_array_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_array_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -153,7 +153,7 @@ class QueryParametersQueryContinuationStandardOperations:  # pylint: disable=nam
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_parameters_query_continuation_standard_record_request(
+        _request = build_routes_client_query_parameters_query_continuation_standard_record_request(
             param=param,
             headers=_headers,
             params=_params,

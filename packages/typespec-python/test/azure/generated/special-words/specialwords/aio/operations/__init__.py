@@ -12,20 +12,20 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import ModelsOperations  # type: ignore
-from ._operations import ModelPropertiesOperations  # type: ignore
-from ._operations import Operations  # type: ignore
-from ._operations import ParametersOperations  # type: ignore
+from ._operations import SpecialWordsClientModelsOperations  # type: ignore
+from ._operations import SpecialWordsClientModelPropertiesOperations  # type: ignore
+from ._operations import SpecialWordsClientOperationsOperations  # type: ignore
+from ._operations import SpecialWordsClientParametersOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ModelsOperations",
-    "ModelPropertiesOperations",
-    "Operations",
-    "ParametersOperations",
+    "SpecialWordsClientModelsOperations",
+    "SpecialWordsClientModelPropertiesOperations",
+    "SpecialWordsClientOperationsOperations",
+    "SpecialWordsClientParametersOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

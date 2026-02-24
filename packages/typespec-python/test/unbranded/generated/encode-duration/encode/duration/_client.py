@@ -9,20 +9,20 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import DurationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .header.operations import HeaderOperations
-from .property.operations import PropertyOperations
-from .query.operations import QueryOperations
+from .header.operations import DurationClientHeaderOperations
+from .property.operations import DurationClientPropertyOperations
+from .query.operations import DurationClientQueryOperations
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on duration.
 
-    :ivar query: QueryOperations operations
-    :vartype query: encode.duration.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.duration.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.duration.operations.HeaderOperations
+    :ivar duration_client_query: DurationClientQueryOperations operations
+    :vartype duration_client_query: encode.duration.operations.DurationClientQueryOperations
+    :ivar duration_client_property: DurationClientPropertyOperations operations
+    :vartype duration_client_property: encode.duration.operations.DurationClientPropertyOperations
+    :ivar duration_client_header: DurationClientHeaderOperations operations
+    :vartype duration_client_header: encode.duration.operations.DurationClientHeaderOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -49,9 +49,15 @@ class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.duration_client_query = DurationClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.duration_client_property = DurationClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.duration_client_header = DurationClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

@@ -16,14 +16,15 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import RenamedFromClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import NewInterfaceOperations, _RenamedFromClientOperationsMixin
+from .operations import RenamedFromClientNewInterfaceOperations, _RenamedFromClientOperationsMixin
 
 
 class RenamedFromClient(_RenamedFromClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@renamedFrom`` decorator.
 
-    :ivar new_interface: NewInterfaceOperations operations
-    :vartype new_interface: versioning.renamedfrom.operations.NewInterfaceOperations
+    :ivar renamed_from_client_new_interface: RenamedFromClientNewInterfaceOperations operations
+    :vartype renamed_from_client_new_interface:
+     versioning.renamedfrom.operations.RenamedFromClientNewInterfaceOperations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -61,7 +62,9 @@ class RenamedFromClient(_RenamedFromClientOperationsMixin):  # pylint: disable=c
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.new_interface = NewInterfaceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.renamed_from_client_new_interface = RenamedFromClientNewInterfaceOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

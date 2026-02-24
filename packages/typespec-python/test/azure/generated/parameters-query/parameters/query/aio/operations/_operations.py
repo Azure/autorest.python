@@ -22,21 +22,21 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_constant_post_request
+from ...operations._operations import build_query_client_constant_post_request
 from .._configuration import QueryClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ConstantOperations:
+class QueryClientConstantOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.query.aio.QueryClient`'s
-        :attr:`constant` attribute.
+        :attr:`query_client_constant` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,7 +68,7 @@ class ConstantOperations:
         query_param: Literal["constantValue"] = kwargs.pop("query_param", _params.pop("queryParam", "constantValue"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_constant_post_request(
+        _request = build_query_client_constant_post_request(
             query_param=query_param,
             headers=_headers,
             params=_params,

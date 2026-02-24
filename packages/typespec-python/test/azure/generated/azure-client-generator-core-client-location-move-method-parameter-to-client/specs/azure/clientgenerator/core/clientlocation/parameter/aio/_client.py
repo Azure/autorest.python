@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,15 +17,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MoveMethodParameterToClientConfiguration
-from .operations import BlobOperationsOperations
+from .operations import MoveMethodParameterToClientBlobOperationsOperations
 
 
 class MoveMethodParameterToClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for @clientLocation decorator - moving operations between clients.
 
-    :ivar blob_operations: BlobOperationsOperations operations
-    :vartype blob_operations:
-     specs.azure.clientgenerator.core.clientlocation.parameter.aio.operations.BlobOperationsOperations
+    :ivar move_method_parameter_to_client_blob_operations:
+     MoveMethodParameterToClientBlobOperationsOperations operations
+    :vartype move_method_parameter_to_client_blob_operations:
+     specs.azure.clientgenerator.core.clientlocation.parameter.aio.operations.MoveMethodParameterToClientBlobOperationsOperations
     :param storage_account: Required.
     :type storage_account: str
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
@@ -61,7 +63,9 @@ class MoveMethodParameterToClient:  # pylint: disable=client-accepts-api-version
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.blob_operations = BlobOperationsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.move_method_parameter_to_client_blob_operations = MoveMethodParameterToClientBlobOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

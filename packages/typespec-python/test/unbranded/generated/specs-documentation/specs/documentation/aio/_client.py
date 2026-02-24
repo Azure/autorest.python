@@ -9,16 +9,19 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import DocumentationClientConfiguration
-from .operations import ListsOperations, TextFormattingOperations
+from .operations import DocumentationClientListsOperations, DocumentationClientTextFormattingOperations
 
 
 class DocumentationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Illustrates documentation generation and formatting features.
 
-    :ivar lists: ListsOperations operations
-    :vartype lists: specs.documentation.aio.operations.ListsOperations
-    :ivar text_formatting: TextFormattingOperations operations
-    :vartype text_formatting: specs.documentation.aio.operations.TextFormattingOperations
+    :ivar documentation_client_lists: DocumentationClientListsOperations operations
+    :vartype documentation_client_lists:
+     specs.documentation.aio.operations.DocumentationClientListsOperations
+    :ivar documentation_client_text_formatting: DocumentationClientTextFormattingOperations
+     operations
+    :vartype documentation_client_text_formatting:
+     specs.documentation.aio.operations.DocumentationClientTextFormattingOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -45,8 +48,12 @@ class DocumentationClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.lists = ListsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.text_formatting = TextFormattingOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.documentation_client_lists = DocumentationClientListsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.documentation_client_text_formatting = DocumentationClientTextFormattingOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

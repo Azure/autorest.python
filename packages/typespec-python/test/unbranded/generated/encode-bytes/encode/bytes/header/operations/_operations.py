@@ -25,7 +25,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_header_default_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_header_default_request(  # pylint: disable=name-too-long
+    *, value: bytes, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -37,7 +39,7 @@ def build_header_default_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_header_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -49,7 +51,9 @@ def build_header_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_header_base64_url_request(  # pylint: disable=name-too-long
+    *, value: bytes, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -61,7 +65,9 @@ def build_header_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_base64_url_array_request(*, value: list[bytes], **kwargs: Any) -> HttpRequest:
+def build_bytes_client_header_base64_url_array_request(  # pylint: disable=name-too-long
+    *, value: list[bytes], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -73,14 +79,14 @@ def build_header_base64_url_array_request(*, value: list[bytes], **kwargs: Any) 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HeaderOperations:
+class BytesClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.BytesClient`'s
-        :attr:`header` attribute.
+        :attr:`bytes_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,7 +118,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        _request = build_bytes_client_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -156,7 +162,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_request(
+        _request = build_bytes_client_header_base64_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -200,7 +206,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_url_request(
+        _request = build_bytes_client_header_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -246,7 +252,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_base64_url_array_request(
+        _request = build_bytes_client_header_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,

@@ -12,34 +12,34 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import Int32ValueOperations  # type: ignore
-from ._operations import Int64ValueOperations  # type: ignore
-from ._operations import BooleanValueOperations  # type: ignore
-from ._operations import StringValueOperations  # type: ignore
-from ._operations import Float32ValueOperations  # type: ignore
-from ._operations import DatetimeValueOperations  # type: ignore
-from ._operations import DurationValueOperations  # type: ignore
-from ._operations import UnknownValueOperations  # type: ignore
-from ._operations import ModelValueOperations  # type: ignore
-from ._operations import RecursiveModelValueOperations  # type: ignore
-from ._operations import NullableFloatValueOperations  # type: ignore
+from ._operations import DictionaryClientInt32ValueOperations  # type: ignore
+from ._operations import DictionaryClientInt64ValueOperations  # type: ignore
+from ._operations import DictionaryClientBooleanValueOperations  # type: ignore
+from ._operations import DictionaryClientStringValueOperations  # type: ignore
+from ._operations import DictionaryClientFloat32ValueOperations  # type: ignore
+from ._operations import DictionaryClientDatetimeValueOperations  # type: ignore
+from ._operations import DictionaryClientDurationValueOperations  # type: ignore
+from ._operations import DictionaryClientUnknownValueOperations  # type: ignore
+from ._operations import DictionaryClientModelValueOperations  # type: ignore
+from ._operations import DictionaryClientRecursiveModelValueOperations  # type: ignore
+from ._operations import DictionaryClientNullableFloatValueOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "Int32ValueOperations",
-    "Int64ValueOperations",
-    "BooleanValueOperations",
-    "StringValueOperations",
-    "Float32ValueOperations",
-    "DatetimeValueOperations",
-    "DurationValueOperations",
-    "UnknownValueOperations",
-    "ModelValueOperations",
-    "RecursiveModelValueOperations",
-    "NullableFloatValueOperations",
+    "DictionaryClientInt32ValueOperations",
+    "DictionaryClientInt64ValueOperations",
+    "DictionaryClientBooleanValueOperations",
+    "DictionaryClientStringValueOperations",
+    "DictionaryClientFloat32ValueOperations",
+    "DictionaryClientDatetimeValueOperations",
+    "DictionaryClientDurationValueOperations",
+    "DictionaryClientUnknownValueOperations",
+    "DictionaryClientModelValueOperations",
+    "DictionaryClientRecursiveModelValueOperations",
+    "DictionaryClientNullableFloatValueOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

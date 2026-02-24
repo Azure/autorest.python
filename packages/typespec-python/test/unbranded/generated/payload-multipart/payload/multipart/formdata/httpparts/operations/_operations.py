@@ -20,8 +20,8 @@ from ...._configuration import MultiPartClientConfiguration
 from ...._utils.model_base import Model as _Model
 from ...._utils.serialization import Deserializer, Serializer
 from ...._utils.utils import prepare_multipart_form_data
-from ..contenttype.operations._operations import FormDataHttpPartsContentTypeOperations
-from ..nonstring.operations._operations import FormDataHttpPartsNonStringOperations
+from ..contenttype.operations._operations import MultiPartClientFormDataHttpPartsContentTypeOperations
+from ..nonstring.operations._operations import MultiPartClientFormDataHttpPartsNonStringOperations
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
@@ -31,7 +31,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_http_parts_json_array_and_file_array_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_http_parts_json_array_and_file_array_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -42,14 +42,14 @@ def build_form_data_http_parts_json_array_and_file_array_request(  # pylint: dis
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FormDataHttpPartsOperations:
+class MultiPartClientFormDataHttpPartsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.MultiPartClient`'s
-        :attr:`http_parts` attribute.
+        :attr:`multi_part_client_form_data_http_parts` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -59,10 +59,12 @@ class FormDataHttpPartsOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.content_type = FormDataHttpPartsContentTypeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.multi_part_client_form_data_http_parts_content_type = (
+            MultiPartClientFormDataHttpPartsContentTypeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.non_string = FormDataHttpPartsNonStringOperations(
+        self.multi_part_client_form_data_http_parts_non_string = MultiPartClientFormDataHttpPartsNonStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -117,7 +119,7 @@ class FormDataHttpPartsOperations:
         _data_fields: list[str] = ["id", "address", "previousAddresses"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_json_array_and_file_array_request(
+        _request = build_multi_part_client_form_data_http_parts_json_array_and_file_array_request(
             files=_files,
             headers=_headers,
             params=_params,

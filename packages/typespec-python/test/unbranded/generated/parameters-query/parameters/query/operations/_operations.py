@@ -25,7 +25,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_constant_post_request(**kwargs: Any) -> HttpRequest:
+def build_query_client_constant_post_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     query_param: Literal["constantValue"] = kwargs.pop("query_param", _params.pop("queryParam", "constantValue"))
@@ -38,14 +38,14 @@ def build_constant_post_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
 
-class ConstantOperations:
+class QueryClientConstantOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.query.QueryClient`'s
-        :attr:`constant` attribute.
+        :attr:`query_client_constant` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,7 +76,7 @@ class ConstantOperations:
         query_param: Literal["constantValue"] = kwargs.pop("query_param", _params.pop("queryParam", "constantValue"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_constant_post_request(
+        _request = build_query_client_constant_post_request(
             query_param=query_param,
             headers=_headers,
             params=_params,

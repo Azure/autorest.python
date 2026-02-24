@@ -17,33 +17,40 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import NullableClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    BytesOperations,
-    CollectionsByteOperations,
-    CollectionsModelOperations,
-    CollectionsStringOperations,
-    DatetimeOperations,
-    DurationOperations,
-    StringOperations,
+    NullableClientBytesOperations,
+    NullableClientCollectionsByteOperations,
+    NullableClientCollectionsModelOperations,
+    NullableClientCollectionsStringOperations,
+    NullableClientDatetimeOperations,
+    NullableClientDurationOperations,
+    NullableClientStringOperations,
 )
 
 
 class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates models with nullable properties.
 
-    :ivar string: StringOperations operations
-    :vartype string: typetest.property.nullable.operations.StringOperations
-    :ivar bytes: BytesOperations operations
-    :vartype bytes: typetest.property.nullable.operations.BytesOperations
-    :ivar datetime: DatetimeOperations operations
-    :vartype datetime: typetest.property.nullable.operations.DatetimeOperations
-    :ivar duration: DurationOperations operations
-    :vartype duration: typetest.property.nullable.operations.DurationOperations
-    :ivar collections_byte: CollectionsByteOperations operations
-    :vartype collections_byte: typetest.property.nullable.operations.CollectionsByteOperations
-    :ivar collections_model: CollectionsModelOperations operations
-    :vartype collections_model: typetest.property.nullable.operations.CollectionsModelOperations
-    :ivar collections_string: CollectionsStringOperations operations
-    :vartype collections_string: typetest.property.nullable.operations.CollectionsStringOperations
+    :ivar nullable_client_string: NullableClientStringOperations operations
+    :vartype nullable_client_string:
+     typetest.property.nullable.operations.NullableClientStringOperations
+    :ivar nullable_client_bytes: NullableClientBytesOperations operations
+    :vartype nullable_client_bytes:
+     typetest.property.nullable.operations.NullableClientBytesOperations
+    :ivar nullable_client_datetime: NullableClientDatetimeOperations operations
+    :vartype nullable_client_datetime:
+     typetest.property.nullable.operations.NullableClientDatetimeOperations
+    :ivar nullable_client_duration: NullableClientDurationOperations operations
+    :vartype nullable_client_duration:
+     typetest.property.nullable.operations.NullableClientDurationOperations
+    :ivar nullable_client_collections_byte: NullableClientCollectionsByteOperations operations
+    :vartype nullable_client_collections_byte:
+     typetest.property.nullable.operations.NullableClientCollectionsByteOperations
+    :ivar nullable_client_collections_model: NullableClientCollectionsModelOperations operations
+    :vartype nullable_client_collections_model:
+     typetest.property.nullable.operations.NullableClientCollectionsModelOperations
+    :ivar nullable_client_collections_string: NullableClientCollectionsStringOperations operations
+    :vartype nullable_client_collections_string:
+     typetest.property.nullable.operations.NullableClientCollectionsStringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -76,17 +83,25 @@ class NullableClient:  # pylint: disable=client-accepts-api-version-keyword,too-
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.collections_byte = CollectionsByteOperations(
+        self.nullable_client_string = NullableClientStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.collections_model = CollectionsModelOperations(
+        self.nullable_client_bytes = NullableClientBytesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.collections_string = CollectionsStringOperations(
+        self.nullable_client_datetime = NullableClientDatetimeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_client_duration = NullableClientDurationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_client_collections_byte = NullableClientCollectionsByteOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_client_collections_model = NullableClientCollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.nullable_client_collections_string = NullableClientCollectionsStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

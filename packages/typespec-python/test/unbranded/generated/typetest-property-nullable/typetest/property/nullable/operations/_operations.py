@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_string_get_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_string_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -47,7 +47,7 @@ def build_string_get_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_string_get_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -61,7 +61,7 @@ def build_string_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_patch_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_string_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -75,7 +75,7 @@ def build_string_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_patch_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_string_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -89,7 +89,7 @@ def build_string_patch_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_get_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_bytes_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -103,7 +103,7 @@ def build_bytes_get_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_bytes_get_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -117,7 +117,7 @@ def build_bytes_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_patch_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_bytes_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -131,7 +131,7 @@ def build_bytes_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_bytes_patch_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_bytes_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -145,7 +145,7 @@ def build_bytes_patch_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_get_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_datetime_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -159,7 +159,7 @@ def build_datetime_get_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_datetime_get_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -173,7 +173,9 @@ def build_datetime_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_patch_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_datetime_patch_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -187,7 +189,7 @@ def build_datetime_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_patch_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_datetime_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -201,7 +203,7 @@ def build_datetime_patch_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_get_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_duration_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -215,7 +217,7 @@ def build_duration_get_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_duration_get_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -229,7 +231,9 @@ def build_duration_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_patch_non_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_duration_patch_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -243,7 +247,7 @@ def build_duration_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_patch_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_duration_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -257,7 +261,9 @@ def build_duration_patch_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_byte_get_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -271,7 +277,9 @@ def build_collections_byte_get_non_null_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_collections_byte_get_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -285,7 +293,9 @@ def build_collections_byte_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_byte_patch_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -299,7 +309,9 @@ def build_collections_byte_patch_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_byte_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_byte_patch_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -313,7 +325,9 @@ def build_collections_byte_patch_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_model_get_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -327,7 +341,9 @@ def build_collections_model_get_non_null_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_get_null_request(**kwargs: Any) -> HttpRequest:
+def build_nullable_client_collections_model_get_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -341,7 +357,9 @@ def build_collections_model_get_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_model_patch_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -355,7 +373,9 @@ def build_collections_model_patch_non_null_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_model_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_model_patch_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -369,7 +389,9 @@ def build_collections_model_patch_null_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_string_get_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_string_get_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -383,7 +405,9 @@ def build_collections_string_get_non_null_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_string_get_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_string_get_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -397,7 +421,9 @@ def build_collections_string_get_null_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_string_patch_non_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_string_patch_non_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -411,7 +437,9 @@ def build_collections_string_patch_non_null_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-def build_collections_string_patch_null_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_nullable_client_collections_string_patch_null_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -425,14 +453,14 @@ def build_collections_string_patch_null_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="PATCH", url=_url, headers=_headers, **kwargs)
 
 
-class StringOperations:
+class NullableClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`string` attribute.
+        :attr:`nullable_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -462,7 +490,7 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_get_non_null_request(
+        _request = build_nullable_client_string_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -515,7 +543,7 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_get_null_request(
+        _request = build_nullable_client_string_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -626,7 +654,7 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_patch_non_null_request(
+        _request = build_nullable_client_string_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -725,7 +753,7 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_patch_null_request(
+        _request = build_nullable_client_string_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -749,14 +777,14 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BytesOperations:
+class NullableClientBytesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`bytes` attribute.
+        :attr:`nullable_client_bytes` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -786,7 +814,7 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        _request = build_bytes_get_non_null_request(
+        _request = build_nullable_client_bytes_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -839,7 +867,7 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        _request = build_bytes_get_null_request(
+        _request = build_nullable_client_bytes_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -950,7 +978,7 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_bytes_patch_non_null_request(
+        _request = build_nullable_client_bytes_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1049,7 +1077,7 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_bytes_patch_null_request(
+        _request = build_nullable_client_bytes_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1073,14 +1101,14 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DatetimeOperations:
+class NullableClientDatetimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`datetime` attribute.
+        :attr:`nullable_client_datetime` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1110,7 +1138,7 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_datetime_get_non_null_request(
+        _request = build_nullable_client_datetime_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1163,7 +1191,7 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_datetime_get_null_request(
+        _request = build_nullable_client_datetime_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1274,7 +1302,7 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_datetime_patch_non_null_request(
+        _request = build_nullable_client_datetime_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1373,7 +1401,7 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_datetime_patch_null_request(
+        _request = build_nullable_client_datetime_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1397,14 +1425,14 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DurationOperations:
+class NullableClientDurationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`duration` attribute.
+        :attr:`nullable_client_duration` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1434,7 +1462,7 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        _request = build_duration_get_non_null_request(
+        _request = build_nullable_client_duration_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1487,7 +1515,7 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        _request = build_duration_get_null_request(
+        _request = build_nullable_client_duration_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1598,7 +1626,7 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_patch_non_null_request(
+        _request = build_nullable_client_duration_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1697,7 +1725,7 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_patch_null_request(
+        _request = build_nullable_client_duration_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1721,14 +1749,14 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsByteOperations:
+class NullableClientCollectionsByteOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`collections_byte` attribute.
+        :attr:`nullable_client_collections_byte` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1758,7 +1786,7 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_byte_get_non_null_request(
+        _request = build_nullable_client_collections_byte_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1811,7 +1839,7 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_byte_get_null_request(
+        _request = build_nullable_client_collections_byte_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -1850,7 +1878,7 @@ class CollectionsByteOperations:
         body: _models.CollectionsByteProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with all properties present.
 
@@ -1926,7 +1954,7 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_byte_patch_non_null_request(
+        _request = build_nullable_client_collections_byte_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1955,7 +1983,7 @@ class CollectionsByteOperations:
         body: _models.CollectionsByteProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with default properties.
 
@@ -2029,7 +2057,7 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_byte_patch_null_request(
+        _request = build_nullable_client_collections_byte_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2053,14 +2081,14 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsModelOperations:
+class NullableClientCollectionsModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`collections_model` attribute.
+        :attr:`nullable_client_collections_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2091,7 +2119,7 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_model_get_non_null_request(
+        _request = build_nullable_client_collections_model_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2145,7 +2173,7 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_model_get_null_request(
+        _request = build_nullable_client_collections_model_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2184,7 +2212,7 @@ class CollectionsModelOperations:
         body: _models.CollectionsModelProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with all properties present.
 
@@ -2260,7 +2288,7 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_model_patch_non_null_request(
+        _request = build_nullable_client_collections_model_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2289,7 +2317,7 @@ class CollectionsModelOperations:
         body: _models.CollectionsModelProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with default properties.
 
@@ -2363,7 +2391,7 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_model_patch_null_request(
+        _request = build_nullable_client_collections_model_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2387,14 +2415,14 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsStringOperations:
+class NullableClientCollectionsStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.nullable.NullableClient`'s
-        :attr:`collections_string` attribute.
+        :attr:`nullable_client_collections_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2425,7 +2453,7 @@ class CollectionsStringOperations:
 
         cls: ClsType[_models.CollectionsStringProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_string_get_non_null_request(
+        _request = build_nullable_client_collections_string_get_non_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2479,7 +2507,7 @@ class CollectionsStringOperations:
 
         cls: ClsType[_models.CollectionsStringProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_string_get_null_request(
+        _request = build_nullable_client_collections_string_get_null_request(
             headers=_headers,
             params=_params,
         )
@@ -2518,7 +2546,7 @@ class CollectionsStringOperations:
         body: _models.CollectionsStringProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with all properties present.
 
@@ -2595,7 +2623,7 @@ class CollectionsStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_string_patch_non_null_request(
+        _request = build_nullable_client_collections_string_patch_non_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2624,7 +2652,7 @@ class CollectionsStringOperations:
         body: _models.CollectionsStringProperty,
         *,
         content_type: str = "application/merge-patch+json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """Put a body with default properties.
 
@@ -2699,7 +2727,7 @@ class CollectionsStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_string_patch_null_request(
+        _request = build_nullable_client_collections_string_patch_null_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

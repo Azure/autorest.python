@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_reorder_parameters_reorder_request(param1: str, param2: str, **kwargs: Any) -> HttpRequest:
+def build_override_client_reorder_parameters_reorder_request(  # pylint: disable=name-too-long
+    param1: str, param2: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/azure/client-generator-core/override/reorder/{param2}/{param1}"
     path_format_arguments = {
@@ -45,7 +47,9 @@ def build_reorder_parameters_reorder_request(param1: str, param2: str, **kwargs:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_group_parameters_group_request(*, param1: str, param2: str, **kwargs: Any) -> HttpRequest:
+def build_override_client_group_parameters_group_request(  # pylint: disable=name-too-long
+    *, param1: str, param2: str, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -58,7 +62,7 @@ def build_group_parameters_group_request(*, param1: str, param2: str, **kwargs: 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_require_optional_parameter_require_optional_request(  # pylint: disable=name-too-long
+def build_override_client_require_optional_parameter_require_optional_request(  # pylint: disable=name-too-long
     param1: str, param2: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -73,7 +77,7 @@ def build_require_optional_parameter_require_optional_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_remove_optional_parameter_remove_optional_request(  # pylint: disable=name-too-long
+def build_override_client_remove_optional_parameter_remove_optional_request(  # pylint: disable=name-too-long
     param1: str, *, param2: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -93,14 +97,14 @@ def build_remove_optional_parameter_remove_optional_request(  # pylint: disable=
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class ReorderParametersOperations:
+class OverrideClientReorderParametersOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
-        :attr:`reorder_parameters` attribute.
+        :attr:`override_client_reorder_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -137,7 +141,7 @@ class ReorderParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_reorder_parameters_reorder_request(
+        _request = build_override_client_reorder_parameters_reorder_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -163,14 +167,14 @@ class ReorderParametersOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class GroupParametersOperations:
+class OverrideClientGroupParametersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
-        :attr:`group_parameters` attribute.
+        :attr:`override_client_group_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -207,7 +211,7 @@ class GroupParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group_parameters_group_request(
+        _request = build_override_client_group_parameters_group_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -233,14 +237,14 @@ class GroupParametersOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RequireOptionalParameterOperations:
+class OverrideClientRequireOptionalParameterOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
-        :attr:`require_optional_parameter` attribute.
+        :attr:`override_client_require_optional_parameter` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -277,7 +281,7 @@ class RequireOptionalParameterOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_require_optional_parameter_require_optional_request(
+        _request = build_override_client_require_optional_parameter_require_optional_request(
             param1=param1,
             param2=param2,
             headers=_headers,
@@ -303,14 +307,14 @@ class RequireOptionalParameterOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RemoveOptionalParameterOperations:
+class OverrideClientRemoveOptionalParameterOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.override.OverrideClient`'s
-        :attr:`remove_optional_parameter` attribute.
+        :attr:`override_client_remove_optional_parameter` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -347,7 +351,7 @@ class RemoveOptionalParameterOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_remove_optional_parameter_remove_optional_request(
+        _request = build_override_client_remove_optional_parameter_remove_optional_request(
             param1=param1,
             param2=param2,
             headers=_headers,

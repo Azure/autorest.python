@@ -9,14 +9,15 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import MediaTypeClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .stringbody.operations import StringBodyOperations
+from .stringbody.operations import MediaTypeClientStringBodyOperations
 
 
 class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test the payload with different media types and different types of the payload itself.
 
-    :ivar string_body: StringBodyOperations operations
-    :vartype string_body: payload.mediatype.operations.StringBodyOperations
+    :ivar media_type_client_string_body: MediaTypeClientStringBodyOperations operations
+    :vartype media_type_client_string_body:
+     payload.mediatype.operations.MediaTypeClientStringBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -43,7 +44,9 @@ class MediaTypeClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string_body = StringBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.media_type_client_string_body = MediaTypeClientStringBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

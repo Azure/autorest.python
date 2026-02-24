@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_int32_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -55,7 +55,7 @@ def build_int32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_int32_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -69,7 +69,7 @@ def build_int32_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_int64_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -83,7 +83,7 @@ def build_int64_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_int64_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -97,7 +97,7 @@ def build_int64_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_boolean_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -111,7 +111,7 @@ def build_boolean_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_boolean_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -125,7 +125,7 @@ def build_boolean_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_string_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -139,7 +139,7 @@ def build_string_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_string_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -153,7 +153,7 @@ def build_string_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_float32_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -167,7 +167,7 @@ def build_float32_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_float32_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -181,7 +181,7 @@ def build_float32_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_datetime_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -195,7 +195,7 @@ def build_datetime_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_datetime_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -209,7 +209,7 @@ def build_datetime_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_duration_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -223,7 +223,7 @@ def build_duration_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_duration_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -237,7 +237,7 @@ def build_duration_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_unknown_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -251,7 +251,7 @@ def build_unknown_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_unknown_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -265,7 +265,7 @@ def build_unknown_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_model_value_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -279,7 +279,7 @@ def build_model_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_model_value_put_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -293,7 +293,9 @@ def build_model_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_recursive_model_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_recursive_model_value_get_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -307,7 +309,9 @@ def build_recursive_model_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_recursive_model_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_recursive_model_value_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -321,7 +325,9 @@ def build_recursive_model_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_nullable_float_value_get_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_nullable_float_value_get_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -335,7 +341,9 @@ def build_nullable_float_value_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_nullable_float_value_put_request(**kwargs: Any) -> HttpRequest:
+def build_dictionary_client_nullable_float_value_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -349,14 +357,14 @@ def build_nullable_float_value_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class Int32ValueOperations:
+class DictionaryClientInt32ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`int32_value` attribute.
+        :attr:`dictionary_client_int32_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -387,7 +395,7 @@ class Int32ValueOperations:
 
         cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
-        _request = build_int32_value_get_request(
+        _request = build_dictionary_client_int32_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -483,7 +491,7 @@ class Int32ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int32_value_put_request(
+        _request = build_dictionary_client_int32_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -509,14 +517,14 @@ class Int32ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Int64ValueOperations:
+class DictionaryClientInt64ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`int64_value` attribute.
+        :attr:`dictionary_client_int64_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -547,7 +555,7 @@ class Int64ValueOperations:
 
         cls: ClsType[dict[str, int]] = kwargs.pop("cls", None)
 
-        _request = build_int64_value_get_request(
+        _request = build_dictionary_client_int64_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -643,7 +651,7 @@ class Int64ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int64_value_put_request(
+        _request = build_dictionary_client_int64_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -669,14 +677,14 @@ class Int64ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BooleanValueOperations:
+class DictionaryClientBooleanValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`boolean_value` attribute.
+        :attr:`dictionary_client_boolean_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -707,7 +715,7 @@ class BooleanValueOperations:
 
         cls: ClsType[dict[str, bool]] = kwargs.pop("cls", None)
 
-        _request = build_boolean_value_get_request(
+        _request = build_dictionary_client_boolean_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -803,7 +811,7 @@ class BooleanValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_value_put_request(
+        _request = build_dictionary_client_boolean_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -829,14 +837,14 @@ class BooleanValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringValueOperations:
+class DictionaryClientStringValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`string_value` attribute.
+        :attr:`dictionary_client_string_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -867,7 +875,7 @@ class StringValueOperations:
 
         cls: ClsType[dict[str, str]] = kwargs.pop("cls", None)
 
-        _request = build_string_value_get_request(
+        _request = build_dictionary_client_string_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -963,7 +971,7 @@ class StringValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_value_put_request(
+        _request = build_dictionary_client_string_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -989,14 +997,14 @@ class StringValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Float32ValueOperations:
+class DictionaryClientFloat32ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`float32_value` attribute.
+        :attr:`dictionary_client_float32_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1027,7 +1035,7 @@ class Float32ValueOperations:
 
         cls: ClsType[dict[str, float]] = kwargs.pop("cls", None)
 
-        _request = build_float32_value_get_request(
+        _request = build_dictionary_client_float32_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1123,7 +1131,7 @@ class Float32ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float32_value_put_request(
+        _request = build_dictionary_client_float32_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1149,14 +1157,14 @@ class Float32ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DatetimeValueOperations:
+class DictionaryClientDatetimeValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`datetime_value` attribute.
+        :attr:`dictionary_client_datetime_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1187,7 +1195,7 @@ class DatetimeValueOperations:
 
         cls: ClsType[dict[str, datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_datetime_value_get_request(
+        _request = build_dictionary_client_datetime_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1283,7 +1291,7 @@ class DatetimeValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True, format="rfc3339")  # type: ignore
 
-        _request = build_datetime_value_put_request(
+        _request = build_dictionary_client_datetime_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1309,14 +1317,14 @@ class DatetimeValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DurationValueOperations:
+class DictionaryClientDurationValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`duration_value` attribute.
+        :attr:`dictionary_client_duration_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1347,7 +1355,7 @@ class DurationValueOperations:
 
         cls: ClsType[dict[str, datetime.timedelta]] = kwargs.pop("cls", None)
 
-        _request = build_duration_value_get_request(
+        _request = build_dictionary_client_duration_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1445,7 +1453,7 @@ class DurationValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_value_put_request(
+        _request = build_dictionary_client_duration_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1471,14 +1479,14 @@ class DurationValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownValueOperations:
+class DictionaryClientUnknownValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`unknown_value` attribute.
+        :attr:`dictionary_client_unknown_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1509,7 +1517,7 @@ class UnknownValueOperations:
 
         cls: ClsType[dict[str, Any]] = kwargs.pop("cls", None)
 
-        _request = build_unknown_value_get_request(
+        _request = build_dictionary_client_unknown_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1605,7 +1613,7 @@ class UnknownValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_value_put_request(
+        _request = build_dictionary_client_unknown_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1631,14 +1639,14 @@ class UnknownValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ModelValueOperations:
+class DictionaryClientModelValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`model_value` attribute.
+        :attr:`dictionary_client_model_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1669,7 +1677,7 @@ class ModelValueOperations:
 
         cls: ClsType[dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
 
-        _request = build_model_value_get_request(
+        _request = build_dictionary_client_model_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1781,7 +1789,7 @@ class ModelValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_value_put_request(
+        _request = build_dictionary_client_model_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1807,14 +1815,14 @@ class ModelValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RecursiveModelValueOperations:
+class DictionaryClientRecursiveModelValueOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`recursive_model_value` attribute.
+        :attr:`dictionary_client_recursive_model_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1845,7 +1853,7 @@ class RecursiveModelValueOperations:
 
         cls: ClsType[dict[str, _models.InnerModel]] = kwargs.pop("cls", None)
 
-        _request = build_recursive_model_value_get_request(
+        _request = build_dictionary_client_recursive_model_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1957,7 +1965,7 @@ class RecursiveModelValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_recursive_model_value_put_request(
+        _request = build_dictionary_client_recursive_model_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1983,14 +1991,14 @@ class RecursiveModelValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableFloatValueOperations:
+class DictionaryClientNullableFloatValueOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.dictionary.DictionaryClient`'s
-        :attr:`nullable_float_value` attribute.
+        :attr:`dictionary_client_nullable_float_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2021,7 +2029,7 @@ class NullableFloatValueOperations:
 
         cls: ClsType[dict[str, float]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_float_value_get_request(
+        _request = build_dictionary_client_nullable_float_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2117,7 +2125,7 @@ class NullableFloatValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_float_value_put_request(
+        _request = build_dictionary_client_nullable_float_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

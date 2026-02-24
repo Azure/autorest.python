@@ -18,34 +18,34 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DurationClientConfiguration
 from ...operations._operations import (
-    build_query_default_request,
-    build_query_float64_milliseconds_request,
-    build_query_float64_seconds_request,
-    build_query_float_milliseconds_larger_unit_request,
-    build_query_float_milliseconds_request,
-    build_query_float_seconds_larger_unit_request,
-    build_query_float_seconds_request,
-    build_query_int32_milliseconds_array_request,
-    build_query_int32_milliseconds_larger_unit_request,
-    build_query_int32_milliseconds_request,
-    build_query_int32_seconds_array_request,
-    build_query_int32_seconds_larger_unit_request,
-    build_query_int32_seconds_request,
-    build_query_iso8601_request,
+    build_duration_client_query_default_request,
+    build_duration_client_query_float64_milliseconds_request,
+    build_duration_client_query_float64_seconds_request,
+    build_duration_client_query_float_milliseconds_larger_unit_request,
+    build_duration_client_query_float_milliseconds_request,
+    build_duration_client_query_float_seconds_larger_unit_request,
+    build_duration_client_query_float_seconds_request,
+    build_duration_client_query_int32_milliseconds_array_request,
+    build_duration_client_query_int32_milliseconds_larger_unit_request,
+    build_duration_client_query_int32_milliseconds_request,
+    build_duration_client_query_int32_seconds_array_request,
+    build_duration_client_query_int32_seconds_larger_unit_request,
+    build_duration_client_query_int32_seconds_request,
+    build_duration_client_query_iso8601_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryOperations:
+class DurationClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.aio.DurationClient`'s
-        :attr:`query` attribute.
+        :attr:`duration_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -77,7 +77,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_duration_client_query_default_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -121,7 +121,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_iso8601_request(
+        _request = build_duration_client_query_iso8601_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -165,7 +165,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_request(
+        _request = build_duration_client_query_int32_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -209,7 +209,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_larger_unit_request(
+        _request = build_duration_client_query_int32_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -253,7 +253,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_request(
+        _request = build_duration_client_query_float_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -297,7 +297,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_larger_unit_request(
+        _request = build_duration_client_query_float_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -341,7 +341,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_seconds_request(
+        _request = build_duration_client_query_float64_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -385,7 +385,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_request(
+        _request = build_duration_client_query_int32_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -429,7 +429,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_int32_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -473,7 +473,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_request(
+        _request = build_duration_client_query_float_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -517,7 +517,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_float_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -561,7 +561,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_milliseconds_request(
+        _request = build_duration_client_query_float64_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -605,7 +605,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_array_request(
+        _request = build_duration_client_query_int32_seconds_array_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -649,7 +649,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_array_request(
+        _request = build_duration_client_query_int32_milliseconds_array_request(
             input=input,
             headers=_headers,
             params=_params,

@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_resource_operations_get_resource_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_move_to_root_client_resource_operations_get_resource_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/azure/client-generator-core/client-location/move-to-root-client/resource"
 
@@ -46,14 +48,14 @@ def build_move_to_root_get_health_status_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ResourceOperationsOperations:
+class MoveToRootClientResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.rootclient.MoveToRootClient`'s
-        :attr:`resource_operations` attribute.
+        :attr:`move_to_root_client_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -84,7 +86,7 @@ class ResourceOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_resource_operations_get_resource_request(
+        _request = build_move_to_root_client_resource_operations_get_resource_request(
             headers=_headers,
             params=_params,
         )

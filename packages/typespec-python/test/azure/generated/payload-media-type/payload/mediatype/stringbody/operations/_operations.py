@@ -36,7 +36,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_string_body_send_as_text_request(**kwargs: Any) -> HttpRequest:
+def build_media_type_client_string_body_send_as_text_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -49,7 +51,9 @@ def build_string_body_send_as_text_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_body_get_as_text_request(**kwargs: Any) -> HttpRequest:
+def build_media_type_client_string_body_get_as_text_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "text/plain")
@@ -63,7 +67,9 @@ def build_string_body_get_as_text_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_body_send_as_json_request(**kwargs: Any) -> HttpRequest:
+def build_media_type_client_string_body_send_as_json_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -76,7 +82,9 @@ def build_string_body_send_as_json_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_body_get_as_json_request(**kwargs: Any) -> HttpRequest:
+def build_media_type_client_string_body_get_as_json_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -90,14 +98,14 @@ def build_string_body_get_as_json_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class StringBodyOperations:
+class MediaTypeClientStringBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.mediatype.MediaTypeClient`'s
-        :attr:`string_body` attribute.
+        :attr:`media_type_client_string_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -133,7 +141,7 @@ class StringBodyOperations:
 
         _content = text
 
-        _request = build_string_body_send_as_text_request(
+        _request = build_media_type_client_string_body_send_as_text_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -179,7 +187,7 @@ class StringBodyOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_string_body_get_as_text_request(
+        _request = build_media_type_client_string_body_get_as_text_request(
             headers=_headers,
             params=_params,
         )
@@ -243,7 +251,7 @@ class StringBodyOperations:
 
         _content = json.dumps(text, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_body_send_as_json_request(
+        _request = build_media_type_client_string_body_send_as_json_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -289,7 +297,7 @@ class StringBodyOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_string_body_get_as_json_request(
+        _request = build_media_type_client_string_body_get_as_json_request(
             headers=_headers,
             params=_params,
         )

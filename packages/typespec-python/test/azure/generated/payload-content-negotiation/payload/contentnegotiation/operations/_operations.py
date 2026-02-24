@@ -36,7 +36,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_same_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_content_negotiation_client_same_body_get_avatar_as_png_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
@@ -49,7 +51,9 @@ def build_same_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_same_body_get_avatar_as_jpeg_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_content_negotiation_client_same_body_get_avatar_as_jpeg_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/jpeg"] = kwargs.pop("accept", _headers.pop("accept", "image/jpeg"))
@@ -62,7 +66,9 @@ def build_same_body_get_avatar_as_jpeg_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_different_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_content_negotiation_client_different_body_get_avatar_as_png_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
@@ -75,7 +81,9 @@ def build_different_body_get_avatar_as_png_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_different_body_get_avatar_as_json_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_content_negotiation_client_different_body_get_avatar_as_json_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
@@ -88,14 +96,14 @@ def build_different_body_get_avatar_as_json_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class SameBodyOperations:
+class ContentNegotiationClientSameBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.contentnegotiation.ContentNegotiationClient`'s
-        :attr:`same_body` attribute.
+        :attr:`content_negotiation_client_same_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -127,7 +135,7 @@ class SameBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_same_body_get_avatar_as_png_request(
+        _request = build_content_negotiation_client_same_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
@@ -185,7 +193,7 @@ class SameBodyOperations:
         accept: Literal["image/jpeg"] = kwargs.pop("accept", _headers.pop("accept", "image/jpeg"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_same_body_get_avatar_as_jpeg_request(
+        _request = build_content_negotiation_client_same_body_get_avatar_as_jpeg_request(
             accept=accept,
             headers=_headers,
             params=_params,
@@ -222,14 +230,14 @@ class SameBodyOperations:
         return deserialized  # type: ignore
 
 
-class DifferentBodyOperations:
+class ContentNegotiationClientDifferentBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.contentnegotiation.ContentNegotiationClient`'s
-        :attr:`different_body` attribute.
+        :attr:`content_negotiation_client_different_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -261,7 +269,7 @@ class DifferentBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_different_body_get_avatar_as_png_request(
+        _request = build_content_negotiation_client_different_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
@@ -319,7 +327,7 @@ class DifferentBodyOperations:
         accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
         cls: ClsType[_models.PngImageAsJson] = kwargs.pop("cls", None)
 
-        _request = build_different_body_get_avatar_as_json_request(
+        _request = build_content_negotiation_client_different_body_get_avatar_as_json_request(
             accept=accept,
             headers=_headers,
             params=_params,

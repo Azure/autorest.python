@@ -29,7 +29,10 @@ from azure.core.utils import case_insensitive_dict
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...firstnamespace import models as _firstnamespace_models3
-from ...operations._operations import build_first_operations_first_request, build_second_operations_second_request
+from ...operations._operations import (
+    build_enum_conflict_client_first_operations_first_request,
+    build_enum_conflict_client_second_operations_second_request,
+)
 from ...secondnamespace import models as _secondnamespace_models3
 from .._configuration import EnumConflictClientConfiguration
 
@@ -38,14 +41,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FirstOperationsOperations:
+class EnumConflictClientFirstOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.enumconflict.aio.EnumConflictClient`'s
-        :attr:`first_operations` attribute.
+        :attr:`enum_conflict_client_first_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -136,7 +139,7 @@ class FirstOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_first_operations_first_request(
+        _request = build_enum_conflict_client_first_operations_first_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -174,14 +177,14 @@ class FirstOperationsOperations:
         return deserialized  # type: ignore
 
 
-class SecondOperationsOperations:
+class EnumConflictClientSecondOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.naming.enumconflict.aio.EnumConflictClient`'s
-        :attr:`second_operations` attribute.
+        :attr:`enum_conflict_client_second_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -272,7 +275,7 @@ class SecondOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_second_operations_second_request(
+        _request = build_enum_conflict_client_second_operations_second_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -16,7 +16,12 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import SpecialWordsClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
+from .operations import (
+    SpecialWordsClientModelPropertiesOperations,
+    SpecialWordsClientModelsOperations,
+    SpecialWordsClientOperationsOperations,
+    SpecialWordsClientParametersOperations,
+)
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -62,14 +67,19 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
        with
        yield.
 
-    :ivar models: ModelsOperations operations
-    :vartype models: specialwords.operations.ModelsOperations
-    :ivar model_properties: ModelPropertiesOperations operations
-    :vartype model_properties: specialwords.operations.ModelPropertiesOperations
-    :ivar operations: Operations operations
-    :vartype operations: specialwords.operations.Operations
-    :ivar parameters: ParametersOperations operations
-    :vartype parameters: specialwords.operations.ParametersOperations
+    :ivar special_words_client_models: SpecialWordsClientModelsOperations operations
+    :vartype special_words_client_models:
+     specialwords.operations.SpecialWordsClientModelsOperations
+    :ivar special_words_client_model_properties: SpecialWordsClientModelPropertiesOperations
+     operations
+    :vartype special_words_client_model_properties:
+     specialwords.operations.SpecialWordsClientModelPropertiesOperations
+    :ivar special_words_client_operations: SpecialWordsClientOperationsOperations operations
+    :vartype special_words_client_operations:
+     specialwords.operations.SpecialWordsClientOperationsOperations
+    :ivar special_words_client_parameters: SpecialWordsClientParametersOperations operations
+    :vartype special_words_client_parameters:
+     specialwords.operations.SpecialWordsClientParametersOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -102,12 +112,18 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.models = ModelsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model_properties = ModelPropertiesOperations(
+        self.special_words_client_models = SpecialWordsClientModelsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
-        self.parameters = ParametersOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.special_words_client_model_properties = SpecialWordsClientModelPropertiesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.special_words_client_operations = SpecialWordsClientOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.special_words_client_parameters = SpecialWordsClientParametersOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

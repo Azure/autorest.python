@@ -12,24 +12,24 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import IndividuallyParentNestedWithPathClientOperations  # type: ignore
-from ._operations import IndividuallyParentNestedWithQueryClientOperations  # type: ignore
-from ._operations import IndividuallyParentNestedWithHeaderClientOperations  # type: ignore
-from ._operations import IndividuallyParentNestedWithMultipleClientOperations  # type: ignore
-from ._operations import IndividuallyParentNestedWithMixedClientOperations  # type: ignore
-from ._operations import IndividuallyParentNestedWithParamAliasClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations  # type: ignore
+from ._operations import IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "IndividuallyParentNestedWithPathClientOperations",
-    "IndividuallyParentNestedWithQueryClientOperations",
-    "IndividuallyParentNestedWithHeaderClientOperations",
-    "IndividuallyParentNestedWithMultipleClientOperations",
-    "IndividuallyParentNestedWithMixedClientOperations",
-    "IndividuallyParentNestedWithParamAliasClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations",
+    "IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

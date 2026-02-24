@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_in_interface_fixed_request(**kwargs: Any) -> HttpRequest:
+def build_routes_client_in_interface_fixed_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/routes/in-interface/fixed"
 
@@ -46,14 +46,14 @@ def build_routes_fixed_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class InInterfaceOperations:
+class RoutesClientInInterfaceOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`in_interface` attribute.
+        :attr:`routes_client_in_interface` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -84,7 +84,7 @@ class InInterfaceOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_in_interface_fixed_request(
+        _request = build_routes_client_in_interface_fixed_request(
             headers=_headers,
             params=_params,
         )

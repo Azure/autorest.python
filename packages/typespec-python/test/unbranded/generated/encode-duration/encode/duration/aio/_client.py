@@ -8,21 +8,22 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
-from ..header.aio.operations import HeaderOperations
-from ..property.aio.operations import PropertyOperations
-from ..query.aio.operations import QueryOperations
+from ..header.aio.operations import DurationClientHeaderOperations
+from ..property.aio.operations import DurationClientPropertyOperations
+from ..query.aio.operations import DurationClientQueryOperations
 from ._configuration import DurationClientConfiguration
 
 
 class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on duration.
 
-    :ivar query: QueryOperations operations
-    :vartype query: encode.duration.aio.operations.QueryOperations
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.duration.aio.operations.PropertyOperations
-    :ivar header: HeaderOperations operations
-    :vartype header: encode.duration.aio.operations.HeaderOperations
+    :ivar duration_client_query: DurationClientQueryOperations operations
+    :vartype duration_client_query: encode.duration.aio.operations.DurationClientQueryOperations
+    :ivar duration_client_property: DurationClientPropertyOperations operations
+    :vartype duration_client_property:
+     encode.duration.aio.operations.DurationClientPropertyOperations
+    :ivar duration_client_header: DurationClientHeaderOperations operations
+    :vartype duration_client_header: encode.duration.aio.operations.DurationClientHeaderOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -49,9 +50,15 @@ class DurationClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.query = QueryOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.duration_client_query = DurationClientQueryOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.duration_client_property = DurationClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.duration_client_header = DurationClientHeaderOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

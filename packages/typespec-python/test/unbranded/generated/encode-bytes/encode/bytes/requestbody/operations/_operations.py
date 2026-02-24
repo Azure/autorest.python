@@ -27,7 +27,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_request_body_default_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_request_body_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -40,7 +40,7 @@ def build_request_body_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_request_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_request_body_octet_stream_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -53,7 +53,9 @@ def build_request_body_octet_stream_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_request_body_custom_content_type_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_bytes_client_request_body_custom_content_type_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -66,7 +68,7 @@ def build_request_body_custom_content_type_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_request_body_base64_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_request_body_base64_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -79,7 +81,7 @@ def build_request_body_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -92,14 +94,14 @@ def build_request_body_base64_url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class RequestBodyOperations:
+class BytesClientRequestBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.BytesClient`'s
-        :attr:`request_body` attribute.
+        :attr:`bytes_client_request_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -134,7 +136,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_default_request(
+        _request = build_bytes_client_request_body_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -182,7 +184,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_octet_stream_request(
+        _request = build_bytes_client_request_body_octet_stream_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -232,7 +234,7 @@ class RequestBodyOperations:
 
         _content = value
 
-        _request = build_request_body_custom_content_type_request(
+        _request = build_bytes_client_request_body_custom_content_type_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -280,7 +282,7 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64")  # type: ignore
 
-        _request = build_request_body_base64_request(
+        _request = build_bytes_client_request_body_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -328,7 +330,7 @@ class RequestBodyOperations:
 
         _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True, format="base64url")  # type: ignore
 
-        _request = build_request_body_base64_url_request(
+        _request = build_bytes_client_request_body_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

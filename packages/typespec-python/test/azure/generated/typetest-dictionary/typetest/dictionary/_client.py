@@ -17,45 +17,58 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import DictionaryClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    BooleanValueOperations,
-    DatetimeValueOperations,
-    DurationValueOperations,
-    Float32ValueOperations,
-    Int32ValueOperations,
-    Int64ValueOperations,
-    ModelValueOperations,
-    NullableFloatValueOperations,
-    RecursiveModelValueOperations,
-    StringValueOperations,
-    UnknownValueOperations,
+    DictionaryClientBooleanValueOperations,
+    DictionaryClientDatetimeValueOperations,
+    DictionaryClientDurationValueOperations,
+    DictionaryClientFloat32ValueOperations,
+    DictionaryClientInt32ValueOperations,
+    DictionaryClientInt64ValueOperations,
+    DictionaryClientModelValueOperations,
+    DictionaryClientNullableFloatValueOperations,
+    DictionaryClientRecursiveModelValueOperations,
+    DictionaryClientStringValueOperations,
+    DictionaryClientUnknownValueOperations,
 )
 
 
 class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various of dictionaries.
 
-    :ivar int32_value: Int32ValueOperations operations
-    :vartype int32_value: typetest.dictionary.operations.Int32ValueOperations
-    :ivar int64_value: Int64ValueOperations operations
-    :vartype int64_value: typetest.dictionary.operations.Int64ValueOperations
-    :ivar boolean_value: BooleanValueOperations operations
-    :vartype boolean_value: typetest.dictionary.operations.BooleanValueOperations
-    :ivar string_value: StringValueOperations operations
-    :vartype string_value: typetest.dictionary.operations.StringValueOperations
-    :ivar float32_value: Float32ValueOperations operations
-    :vartype float32_value: typetest.dictionary.operations.Float32ValueOperations
-    :ivar datetime_value: DatetimeValueOperations operations
-    :vartype datetime_value: typetest.dictionary.operations.DatetimeValueOperations
-    :ivar duration_value: DurationValueOperations operations
-    :vartype duration_value: typetest.dictionary.operations.DurationValueOperations
-    :ivar unknown_value: UnknownValueOperations operations
-    :vartype unknown_value: typetest.dictionary.operations.UnknownValueOperations
-    :ivar model_value: ModelValueOperations operations
-    :vartype model_value: typetest.dictionary.operations.ModelValueOperations
-    :ivar recursive_model_value: RecursiveModelValueOperations operations
-    :vartype recursive_model_value: typetest.dictionary.operations.RecursiveModelValueOperations
-    :ivar nullable_float_value: NullableFloatValueOperations operations
-    :vartype nullable_float_value: typetest.dictionary.operations.NullableFloatValueOperations
+    :ivar dictionary_client_int32_value: DictionaryClientInt32ValueOperations operations
+    :vartype dictionary_client_int32_value:
+     typetest.dictionary.operations.DictionaryClientInt32ValueOperations
+    :ivar dictionary_client_int64_value: DictionaryClientInt64ValueOperations operations
+    :vartype dictionary_client_int64_value:
+     typetest.dictionary.operations.DictionaryClientInt64ValueOperations
+    :ivar dictionary_client_boolean_value: DictionaryClientBooleanValueOperations operations
+    :vartype dictionary_client_boolean_value:
+     typetest.dictionary.operations.DictionaryClientBooleanValueOperations
+    :ivar dictionary_client_string_value: DictionaryClientStringValueOperations operations
+    :vartype dictionary_client_string_value:
+     typetest.dictionary.operations.DictionaryClientStringValueOperations
+    :ivar dictionary_client_float32_value: DictionaryClientFloat32ValueOperations operations
+    :vartype dictionary_client_float32_value:
+     typetest.dictionary.operations.DictionaryClientFloat32ValueOperations
+    :ivar dictionary_client_datetime_value: DictionaryClientDatetimeValueOperations operations
+    :vartype dictionary_client_datetime_value:
+     typetest.dictionary.operations.DictionaryClientDatetimeValueOperations
+    :ivar dictionary_client_duration_value: DictionaryClientDurationValueOperations operations
+    :vartype dictionary_client_duration_value:
+     typetest.dictionary.operations.DictionaryClientDurationValueOperations
+    :ivar dictionary_client_unknown_value: DictionaryClientUnknownValueOperations operations
+    :vartype dictionary_client_unknown_value:
+     typetest.dictionary.operations.DictionaryClientUnknownValueOperations
+    :ivar dictionary_client_model_value: DictionaryClientModelValueOperations operations
+    :vartype dictionary_client_model_value:
+     typetest.dictionary.operations.DictionaryClientModelValueOperations
+    :ivar dictionary_client_recursive_model_value: DictionaryClientRecursiveModelValueOperations
+     operations
+    :vartype dictionary_client_recursive_model_value:
+     typetest.dictionary.operations.DictionaryClientRecursiveModelValueOperations
+    :ivar dictionary_client_nullable_float_value: DictionaryClientNullableFloatValueOperations
+     operations
+    :vartype dictionary_client_nullable_float_value:
+     typetest.dictionary.operations.DictionaryClientNullableFloatValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -88,19 +101,37 @@ class DictionaryClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.int32_value = Int32ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int64_value = Int64ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean_value = BooleanValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.string_value = StringValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float32_value = Float32ValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.datetime_value = DatetimeValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.duration_value = DurationValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_value = UnknownValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model_value = ModelValueOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.recursive_model_value = RecursiveModelValueOperations(
+        self.dictionary_client_int32_value = DictionaryClientInt32ValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.nullable_float_value = NullableFloatValueOperations(
+        self.dictionary_client_int64_value = DictionaryClientInt64ValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_boolean_value = DictionaryClientBooleanValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_string_value = DictionaryClientStringValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_float32_value = DictionaryClientFloat32ValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_datetime_value = DictionaryClientDatetimeValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_duration_value = DictionaryClientDurationValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_unknown_value = DictionaryClientUnknownValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_model_value = DictionaryClientModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_recursive_model_value = DictionaryClientRecursiveModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.dictionary_client_nullable_float_value = DictionaryClientNullableFloatValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

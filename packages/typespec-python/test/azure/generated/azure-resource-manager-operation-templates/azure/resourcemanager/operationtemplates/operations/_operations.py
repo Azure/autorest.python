@@ -46,7 +46,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_operations_list_request(**kwargs: Any) -> HttpRequest:
+def build_operation_templates_client_operations_list_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -65,7 +67,7 @@ def build_operations_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_check_name_availability_check_global_request(  # pylint: disable=name-too-long
+def build_operation_templates_client_check_name_availability_check_global_request(  # pylint: disable=name-too-long
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -94,7 +96,7 @@ def build_check_name_availability_check_global_request(  # pylint: disable=name-
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_check_name_availability_check_local_request(  # pylint: disable=name-too-long
+def build_operation_templates_client_check_name_availability_check_local_request(  # pylint: disable=name-too-long
     location: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -124,7 +126,7 @@ def build_check_name_availability_check_local_request(  # pylint: disable=name-t
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_create_or_replace_request(
+def build_operation_templates_client_lro_create_or_replace_request(  # pylint: disable=name-too-long
     resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -155,7 +157,7 @@ def build_lro_create_or_replace_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_export_request(
+def build_operation_templates_client_lro_export_request(  # pylint: disable=name-too-long
     resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -186,7 +188,7 @@ def build_lro_export_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_delete_request(
+def build_operation_templates_client_lro_delete_request(  # pylint: disable=name-too-long
     resource_group_name: str, order_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -208,7 +210,9 @@ def build_lro_delete_request(
     return HttpRequest(method="DELETE", url=_url, params=_params, **kwargs)
 
 
-def build_lro_export_array_request(subscription_id: str, **kwargs: Any) -> HttpRequest:
+def build_operation_templates_client_lro_export_array_request(  # pylint: disable=name-too-long
+    subscription_id: str, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
@@ -235,7 +239,7 @@ def build_lro_export_array_request(subscription_id: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_lro_paging_post_paging_lro_request(
+def build_operation_templates_client_lro_paging_post_paging_lro_request(  # pylint: disable=name-too-long
     resource_group_name: str, product_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -263,7 +267,7 @@ def build_lro_paging_post_paging_lro_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_optional_body_get_request(
+def build_operation_templates_client_optional_body_get_request(  # pylint: disable=name-too-long
     resource_group_name: str, widget_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -291,7 +295,7 @@ def build_optional_body_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_optional_body_patch_request(
+def build_operation_templates_client_optional_body_patch_request(  # pylint: disable=name-too-long
     resource_group_name: str, widget_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -322,7 +326,7 @@ def build_optional_body_patch_request(
     return HttpRequest(method="PATCH", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_optional_body_post_request(
+def build_operation_templates_client_optional_body_post_request(  # pylint: disable=name-too-long
     resource_group_name: str, widget_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -353,7 +357,7 @@ def build_optional_body_post_request(
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_optional_body_provider_post_request(  # pylint: disable=name-too-long
+def build_operation_templates_client_optional_body_provider_post_request(  # pylint: disable=name-too-long
     subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -382,14 +386,14 @@ def build_optional_body_provider_post_request(  # pylint: disable=name-too-long
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class Operations:
+class OperationTemplatesClientOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.OperationTemplatesClient`'s
-        :attr:`operations` attribute.
+        :attr:`operation_templates_client_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -424,7 +428,7 @@ class Operations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_operations_list_request(
+                _request = build_operation_templates_client_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -487,14 +491,14 @@ class Operations:
         return ItemPaged(get_next, extract_data)
 
 
-class CheckNameAvailabilityOperations:
+class OperationTemplatesClientCheckNameAvailabilityOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.OperationTemplatesClient`'s
-        :attr:`check_name_availability` attribute.
+        :attr:`operation_templates_client_check_name_availability` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -591,7 +595,7 @@ class CheckNameAvailabilityOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_check_name_availability_check_global_request(
+        _request = build_operation_templates_client_check_name_availability_check_global_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -641,7 +645,7 @@ class CheckNameAvailabilityOperations:
         body: _models.CheckNameAvailabilityRequest,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.CheckNameAvailabilityResponse:
         """Implements local CheckNameAvailability operations.
 
@@ -734,7 +738,7 @@ class CheckNameAvailabilityOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_check_name_availability_check_local_request(
+        _request = build_operation_templates_client_check_name_availability_check_local_request(
             location=location,
             subscription_id=self._config.subscription_id,
             content_type=content_type,
@@ -779,14 +783,14 @@ class CheckNameAvailabilityOperations:
         return deserialized  # type: ignore
 
 
-class LroOperations:
+class OperationTemplatesClientLroOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.OperationTemplatesClient`'s
-        :attr:`lro` attribute.
+        :attr:`operation_templates_client_lro` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -820,7 +824,7 @@ class LroOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_create_or_replace_request(
+        _request = build_operation_templates_client_lro_create_or_replace_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -876,7 +880,7 @@ class LroOperations:
         resource: _models.Order,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.Order]:
         """Create a Order.
 
@@ -904,7 +908,7 @@ class LroOperations:
         resource: JSON,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.Order]:
         """Create a Order.
 
@@ -932,7 +936,7 @@ class LroOperations:
         resource: IO[bytes],
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.Order]:
         """Create a Order.
 
@@ -988,7 +992,7 @@ class LroOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1028,7 +1032,7 @@ class LroOperations:
         resource_group_name: str,
         order_name: str,
         body: Union[_models.ExportRequest, JSON, IO[bytes]],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> Iterator[bytes]:
         error_map: MutableMapping = {
             401: ClientAuthenticationError,
@@ -1051,7 +1055,7 @@ class LroOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_export_request(
+        _request = build_operation_templates_client_lro_export_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -1108,7 +1112,7 @@ class LroOperations:
         body: _models.ExportRequest,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
@@ -1137,7 +1141,7 @@ class LroOperations:
         body: JSON,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
@@ -1166,7 +1170,7 @@ class LroOperations:
         body: IO[bytes],
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
@@ -1193,7 +1197,7 @@ class LroOperations:
         resource_group_name: str,
         order_name: str,
         body: Union[_models.ExportRequest, JSON, IO[bytes]],
-        **kwargs: Any
+        **kwargs: Any,
     ) -> LROPoller[_models.ExportResult]:
         """A long-running resource action.
 
@@ -1228,7 +1232,7 @@ class LroOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1284,7 +1288,7 @@ class LroOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_lro_delete_request(
+        _request = build_operation_templates_client_lro_delete_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -1355,7 +1359,7 @@ class LroOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1409,7 +1413,7 @@ class LroOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_export_array_request(
+        _request = build_operation_templates_client_lro_export_array_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -1574,14 +1578,14 @@ class LroOperations:
         )
 
 
-class LroPagingOperations:
+class OperationTemplatesClientLroPagingOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.OperationTemplatesClient`'s
-        :attr:`lro_paging` attribute.
+        :attr:`operation_templates_client_lro_paging` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1605,7 +1609,7 @@ class LroPagingOperations:
 
         cls: ClsType[Iterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_lro_paging_post_paging_lro_request(
+        _request = build_operation_templates_client_lro_paging_post_paging_lro_request(
             resource_group_name=resource_group_name,
             product_name=product_name,
             subscription_id=self._config.subscription_id,
@@ -1682,7 +1686,7 @@ class LroPagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_lro_paging_post_paging_lro_request(
+                _request = build_operation_templates_client_lro_paging_post_paging_lro_request(
                     resource_group_name=resource_group_name,
                     product_name=product_name,
                     subscription_id=self._config.subscription_id,
@@ -1755,7 +1759,7 @@ class LroPagingOperations:
                 cls=lambda x, y, z: x,
                 headers=_headers,
                 params=_params,
-                **kwargs
+                **kwargs,
             )
             raw_result.http_response.read()  # type: ignore
         kwargs.pop("error_map", None)
@@ -1792,14 +1796,14 @@ class LroPagingOperations:
         )
 
 
-class OptionalBodyOperations:
+class OperationTemplatesClientOptionalBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.OperationTemplatesClient`'s
-        :attr:`optional_body` attribute.
+        :attr:`operation_templates_client_optional_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1835,7 +1839,7 @@ class OptionalBodyOperations:
 
         cls: ClsType[_models.Widget] = kwargs.pop("cls", None)
 
-        _request = build_optional_body_get_request(
+        _request = build_operation_templates_client_optional_body_get_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -1886,7 +1890,7 @@ class OptionalBodyOperations:
         properties: Optional[_models.Widget] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.Widget:
         """Update a Widget.
 
@@ -1913,7 +1917,7 @@ class OptionalBodyOperations:
         properties: Optional[JSON] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.Widget:
         """Update a Widget.
 
@@ -1940,7 +1944,7 @@ class OptionalBodyOperations:
         properties: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.Widget:
         """Update a Widget.
 
@@ -1965,7 +1969,7 @@ class OptionalBodyOperations:
         resource_group_name: str,
         widget_name: str,
         properties: Optional[Union[_models.Widget, JSON, IO[bytes]]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.Widget:
         """Update a Widget.
 
@@ -2006,7 +2010,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_patch_request(
+        _request = build_operation_templates_client_optional_body_patch_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -2059,7 +2063,7 @@ class OptionalBodyOperations:
         body: Optional[_models.ActionRequest] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.ActionResult:
         """A synchronous resource action.
 
@@ -2086,7 +2090,7 @@ class OptionalBodyOperations:
         body: Optional[JSON] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.ActionResult:
         """A synchronous resource action.
 
@@ -2113,7 +2117,7 @@ class OptionalBodyOperations:
         body: Optional[IO[bytes]] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.ActionResult:
         """A synchronous resource action.
 
@@ -2138,7 +2142,7 @@ class OptionalBodyOperations:
         resource_group_name: str,
         widget_name: str,
         body: Optional[Union[_models.ActionRequest, JSON, IO[bytes]]] = None,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.ActionResult:
         """A synchronous resource action.
 
@@ -2179,7 +2183,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_post_request(
+        _request = build_operation_templates_client_optional_body_post_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -2230,7 +2234,7 @@ class OptionalBodyOperations:
         body: Optional[_models.ChangeAllowanceRequest] = None,
         *,
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> _models.ChangeAllowanceResult:
         """provider_post.
 
@@ -2315,7 +2319,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_provider_post_request(
+        _request = build_operation_templates_client_optional_body_provider_post_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,

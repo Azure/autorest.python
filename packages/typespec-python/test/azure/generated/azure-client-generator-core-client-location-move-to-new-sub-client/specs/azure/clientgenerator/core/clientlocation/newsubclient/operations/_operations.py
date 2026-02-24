@@ -31,28 +31,32 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_product_operations_list_products_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_move_to_new_sub_client_product_operations_list_products_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/azure/client-generator-core/client-location/move-to-new-sub-client/products"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_archive_operations_archive_product_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_move_to_new_sub_client_archive_operations_archive_product_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/azure/client-generator-core/client-location/move-to-new-sub-client/products/archive"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class ProductOperationsOperations:
+class MoveToNewSubClientProductOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.newsubclient.MoveToNewSubClient`'s
-        :attr:`product_operations` attribute.
+        :attr:`move_to_new_sub_client_product_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -83,7 +87,7 @@ class ProductOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_product_operations_list_products_request(
+        _request = build_move_to_new_sub_client_product_operations_list_products_request(
             headers=_headers,
             params=_params,
         )
@@ -107,14 +111,14 @@ class ProductOperationsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ArchiveOperationsOperations:
+class MoveToNewSubClientArchiveOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.newsubclient.MoveToNewSubClient`'s
-        :attr:`archive_operations` attribute.
+        :attr:`move_to_new_sub_client_archive_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -145,7 +149,7 @@ class ArchiveOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_archive_operations_archive_product_request(
+        _request = build_move_to_new_sub_client_archive_operations_archive_product_request(
             headers=_headers,
             params=_params,
         )

@@ -30,11 +30,11 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_animal_operations_update_dog_as_animal_request,
-    build_animal_operations_update_pet_as_animal_request,
-    build_dog_operations_update_dog_as_dog_request,
-    build_pet_operations_update_dog_as_pet_request,
-    build_pet_operations_update_pet_as_pet_request,
+    build_hierarchy_building_client_animal_operations_update_dog_as_animal_request,
+    build_hierarchy_building_client_animal_operations_update_pet_as_animal_request,
+    build_hierarchy_building_client_dog_operations_update_dog_as_dog_request,
+    build_hierarchy_building_client_pet_operations_update_dog_as_pet_request,
+    build_hierarchy_building_client_pet_operations_update_pet_as_pet_request,
 )
 from .._configuration import HierarchyBuildingClientConfiguration
 
@@ -43,14 +43,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class AnimalOperationsOperations:
+class HierarchyBuildingClientAnimalOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.hierarchybuilding.aio.HierarchyBuildingClient`'s
-        :attr:`animal_operations` attribute.
+        :attr:`hierarchy_building_client_animal_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -142,7 +142,7 @@ class AnimalOperationsOperations:
         else:
             _content = json.dumps(animal, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_animal_operations_update_pet_as_animal_request(
+        _request = build_hierarchy_building_client_animal_operations_update_pet_as_animal_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -261,7 +261,7 @@ class AnimalOperationsOperations:
         else:
             _content = json.dumps(animal, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_animal_operations_update_dog_as_animal_request(
+        _request = build_hierarchy_building_client_animal_operations_update_dog_as_animal_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -299,14 +299,14 @@ class AnimalOperationsOperations:
         return deserialized  # type: ignore
 
 
-class PetOperationsOperations:
+class HierarchyBuildingClientPetOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.hierarchybuilding.aio.HierarchyBuildingClient`'s
-        :attr:`pet_operations` attribute.
+        :attr:`hierarchy_building_client_pet_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -395,7 +395,7 @@ class PetOperationsOperations:
         else:
             _content = json.dumps(pet, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_pet_operations_update_pet_as_pet_request(
+        _request = build_hierarchy_building_client_pet_operations_update_pet_as_pet_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -511,7 +511,7 @@ class PetOperationsOperations:
         else:
             _content = json.dumps(pet, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_pet_operations_update_dog_as_pet_request(
+        _request = build_hierarchy_building_client_pet_operations_update_dog_as_pet_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -549,14 +549,14 @@ class PetOperationsOperations:
         return deserialized  # type: ignore
 
 
-class DogOperationsOperations:
+class HierarchyBuildingClientDogOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.hierarchybuilding.aio.HierarchyBuildingClient`'s
-        :attr:`dog_operations` attribute.
+        :attr:`hierarchy_building_client_dog_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -645,7 +645,7 @@ class DogOperationsOperations:
         else:
             _content = json.dumps(dog, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_dog_operations_update_dog_as_dog_request(
+        _request = build_hierarchy_building_client_dog_operations_update_dog_as_dog_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -24,22 +24,22 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import RoutesClientConfiguration
 from ...operations._operations import (
-    build_path_parameters_reserved_expansion_annotation_request,
-    build_path_parameters_reserved_expansion_template_request,
+    build_routes_client_path_parameters_reserved_expansion_annotation_request,
+    build_routes_client_path_parameters_reserved_expansion_template_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-long
+class RoutesClientPathParametersReservedExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`reserved_expansion` attribute.
+        :attr:`routes_client_path_parameters_reserved_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -72,7 +72,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_reserved_expansion_template_request(
+        _request = build_routes_client_path_parameters_reserved_expansion_template_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -119,7 +119,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_reserved_expansion_annotation_request(
+        _request = build_routes_client_path_parameters_reserved_expansion_annotation_request(
             param=param,
             headers=_headers,
             params=_params,

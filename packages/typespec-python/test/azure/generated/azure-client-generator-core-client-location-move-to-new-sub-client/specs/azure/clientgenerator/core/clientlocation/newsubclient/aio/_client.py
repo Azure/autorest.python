@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,18 +17,20 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import MoveToNewSubClientConfiguration
-from .operations import ArchiveOperationsOperations, ProductOperationsOperations
+from .operations import MoveToNewSubClientArchiveOperationsOperations, MoveToNewSubClientProductOperationsOperations
 
 
 class MoveToNewSubClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for @clientLocation decorator - moving operations between clients.
 
-    :ivar product_operations: ProductOperationsOperations operations
-    :vartype product_operations:
-     specs.azure.clientgenerator.core.clientlocation.newsubclient.aio.operations.ProductOperationsOperations
-    :ivar archive_operations: ArchiveOperationsOperations operations
-    :vartype archive_operations:
-     specs.azure.clientgenerator.core.clientlocation.newsubclient.aio.operations.ArchiveOperationsOperations
+    :ivar move_to_new_sub_client_product_operations: MoveToNewSubClientProductOperationsOperations
+     operations
+    :vartype move_to_new_sub_client_product_operations:
+     specs.azure.clientgenerator.core.clientlocation.newsubclient.aio.operations.MoveToNewSubClientProductOperationsOperations
+    :ivar move_to_new_sub_client_archive_operations: MoveToNewSubClientArchiveOperationsOperations
+     operations
+    :vartype move_to_new_sub_client_archive_operations:
+     specs.azure.clientgenerator.core.clientlocation.newsubclient.aio.operations.MoveToNewSubClientArchiveOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -60,10 +63,10 @@ class MoveToNewSubClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.product_operations = ProductOperationsOperations(
+        self.move_to_new_sub_client_product_operations = MoveToNewSubClientProductOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.archive_operations = ArchiveOperationsOperations(
+        self.move_to_new_sub_client_archive_operations = MoveToNewSubClientArchiveOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

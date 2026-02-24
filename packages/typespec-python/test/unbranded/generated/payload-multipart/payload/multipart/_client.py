@@ -9,14 +9,15 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import MultiPartClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .formdata.operations import FormDataOperations
+from .formdata.operations import MultiPartClientFormDataOperations
 
 
 class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for multipart.
 
-    :ivar form_data: FormDataOperations operations
-    :vartype form_data: payload.multipart.operations.FormDataOperations
+    :ivar multi_part_client_form_data: MultiPartClientFormDataOperations operations
+    :vartype multi_part_client_form_data:
+     payload.multipart.operations.MultiPartClientFormDataOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -43,7 +44,9 @@ class MultiPartClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.form_data = FormDataOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.multi_part_client_form_data = MultiPartClientFormDataOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

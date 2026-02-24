@@ -23,21 +23,21 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from azure.core.utils import case_insensitive_dict
 
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_bar_test_request, build_foo_test_request
+from ...operations._operations import build_combined_bar_test_request, build_combined_foo_test_request
 from .._configuration import CombinedClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FooOperations:
+class CombinedFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~service.multiservice.aio.CombinedClient`'s
-        :attr:`foo` attribute.
+        :attr:`combined_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -69,7 +69,7 @@ class FooOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "av2"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_test_request(
+        _request = build_combined_foo_test_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
@@ -94,14 +94,14 @@ class FooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BarOperations:
+class CombinedBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~service.multiservice.aio.CombinedClient`'s
-        :attr:`bar` attribute.
+        :attr:`combined_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -133,7 +133,7 @@ class BarOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "bv2"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_test_request(
+        _request = build_combined_bar_test_request(
             api_version=api_version,
             headers=_headers,
             params=_params,

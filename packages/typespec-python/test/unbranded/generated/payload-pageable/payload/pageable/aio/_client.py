@@ -8,22 +8,25 @@ from corehttp.rest import AsyncHttpResponse, HttpRequest
 from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
-from ..pagesize.aio.operations import PageSizeOperations
-from ..serverdrivenpagination.aio.operations import ServerDrivenPaginationOperations
-from ..xmlpagination.aio.operations import XmlPaginationOperations
+from ..pagesize.aio.operations import PageableClientPageSizeOperations
+from ..serverdrivenpagination.aio.operations import PageableClientServerDrivenPaginationOperations
+from ..xmlpagination.aio.operations import PageableClientXmlPaginationOperations
 from ._configuration import PageableClientConfiguration
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for pageable payload.
 
-    :ivar server_driven_pagination: ServerDrivenPaginationOperations operations
-    :vartype server_driven_pagination:
-     payload.pageable.aio.operations.ServerDrivenPaginationOperations
-    :ivar page_size: PageSizeOperations operations
-    :vartype page_size: payload.pageable.aio.operations.PageSizeOperations
-    :ivar xml_pagination: XmlPaginationOperations operations
-    :vartype xml_pagination: payload.pageable.aio.operations.XmlPaginationOperations
+    :ivar pageable_client_server_driven_pagination: PageableClientServerDrivenPaginationOperations
+     operations
+    :vartype pageable_client_server_driven_pagination:
+     payload.pageable.aio.operations.PageableClientServerDrivenPaginationOperations
+    :ivar pageable_client_page_size: PageableClientPageSizeOperations operations
+    :vartype pageable_client_page_size:
+     payload.pageable.aio.operations.PageableClientPageSizeOperations
+    :ivar pageable_client_xml_pagination: PageableClientXmlPaginationOperations operations
+    :vartype pageable_client_xml_pagination:
+     payload.pageable.aio.operations.PageableClientXmlPaginationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -50,11 +53,15 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.server_driven_pagination = ServerDrivenPaginationOperations(
+        self.pageable_client_server_driven_pagination = PageableClientServerDrivenPaginationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.page_size = PageSizeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.xml_pagination = XmlPaginationOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pageable_client_page_size = PageableClientPageSizeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.pageable_client_xml_pagination = PageableClientXmlPaginationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

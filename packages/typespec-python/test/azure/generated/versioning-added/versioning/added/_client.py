@@ -16,14 +16,15 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import AddedClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import InterfaceV2Operations, _AddedClientOperationsMixin
+from .operations import AddedClientInterfaceV2Operations, _AddedClientOperationsMixin
 
 
 class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Test for the ``@added`` decorator.
 
-    :ivar interface_v2: InterfaceV2Operations operations
-    :vartype interface_v2: versioning.added.operations.InterfaceV2Operations
+    :ivar added_client_interface_v2: AddedClientInterfaceV2Operations operations
+    :vartype added_client_interface_v2:
+     versioning.added.operations.AddedClientInterfaceV2Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -61,7 +62,9 @@ class AddedClient(_AddedClientOperationsMixin):  # pylint: disable=client-accept
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.interface_v2 = InterfaceV2Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.added_client_interface_v2 = AddedClientInterfaceV2Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

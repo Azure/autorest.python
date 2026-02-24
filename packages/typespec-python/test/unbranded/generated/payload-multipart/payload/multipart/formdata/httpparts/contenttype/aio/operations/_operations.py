@@ -20,9 +20,9 @@ from ......_utils.serialization import Deserializer, Serializer
 from ......_utils.utils import prepare_multipart_form_data
 from ......aio._configuration import MultiPartClientConfiguration
 from ...operations._operations import (
-    build_form_data_http_parts_content_type_image_jpeg_content_type_request,
-    build_form_data_http_parts_content_type_optional_content_type_request,
-    build_form_data_http_parts_content_type_required_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_required_content_type_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -30,14 +30,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FormDataHttpPartsContentTypeOperations:
+class MultiPartClientFormDataHttpPartsContentTypeOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`content_type` attribute.
+        :attr:`multi_part_client_form_data_http_parts_content_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -101,7 +101,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_image_jpeg_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -177,7 +177,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_required_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_required_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -253,7 +253,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_optional_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,

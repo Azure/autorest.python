@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_property_default_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_property_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -49,7 +49,7 @@ def build_property_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_base64_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_property_base64_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -66,7 +66,7 @@ def build_property_base64_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_base64_url_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_property_base64_url_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -83,7 +83,7 @@ def build_property_base64_url_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_base64_url_array_request(**kwargs: Any) -> HttpRequest:
+def build_bytes_client_property_base64_url_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -100,14 +100,14 @@ def build_property_base64_url_array_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class PropertyOperations:
+class BytesClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.BytesClient`'s
-        :attr:`property` attribute.
+        :attr:`bytes_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -197,7 +197,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_bytes_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -312,7 +312,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_request(
+        _request = build_bytes_client_property_base64_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -427,7 +427,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_url_request(
+        _request = build_bytes_client_property_base64_url_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -547,7 +547,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_base64_url_array_request(
+        _request = build_bytes_client_property_base64_url_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

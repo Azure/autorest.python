@@ -16,11 +16,11 @@ from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._configuration import RoutesClientConfiguration
 from ..._utils.serialization import Deserializer, Serializer
-from ..labelexpansion.operations._operations import PathParametersLabelExpansionOperations
-from ..matrixexpansion.operations._operations import PathParametersMatrixExpansionOperations
-from ..pathexpansion.operations._operations import PathParametersPathExpansionOperations
-from ..reservedexpansion.operations._operations import PathParametersReservedExpansionOperations
-from ..simpleexpansion.operations._operations import PathParametersSimpleExpansionOperations
+from ..labelexpansion.operations._operations import RoutesClientPathParametersLabelExpansionOperations
+from ..matrixexpansion.operations._operations import RoutesClientPathParametersMatrixExpansionOperations
+from ..pathexpansion.operations._operations import RoutesClientPathParametersPathExpansionOperations
+from ..reservedexpansion.operations._operations import RoutesClientPathParametersReservedExpansionOperations
+from ..simpleexpansion.operations._operations import RoutesClientPathParametersSimpleExpansionOperations
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
@@ -29,7 +29,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_path_parameters_template_only_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_template_only_request(  # pylint: disable=name-too-long
     param: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -43,7 +43,9 @@ def build_path_parameters_template_only_request(  # pylint: disable=name-too-lon
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_parameters_explicit_request(param: str, **kwargs: Any) -> HttpRequest:
+def build_routes_client_path_parameters_explicit_request(  # pylint: disable=name-too-long
+    param: str, **kwargs: Any
+) -> HttpRequest:
     # Construct URL
     _url = "/routes/path/explicit/{param}"
     path_format_arguments = {
@@ -55,7 +57,7 @@ def build_path_parameters_explicit_request(param: str, **kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_parameters_annotation_only_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_annotation_only_request(  # pylint: disable=name-too-long
     param: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -69,14 +71,14 @@ def build_path_parameters_annotation_only_request(  # pylint: disable=name-too-l
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class PathParametersOperations:
+class RoutesClientPathParametersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`path_parameters` attribute.
+        :attr:`routes_client_path_parameters` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -86,19 +88,19 @@ class PathParametersOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.reserved_expansion = PathParametersReservedExpansionOperations(
+        self.routes_client_path_parameters_reserved_expansion = RoutesClientPathParametersReservedExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.simple_expansion = PathParametersSimpleExpansionOperations(
+        self.routes_client_path_parameters_simple_expansion = RoutesClientPathParametersSimpleExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.path_expansion = PathParametersPathExpansionOperations(
+        self.routes_client_path_parameters_path_expansion = RoutesClientPathParametersPathExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.label_expansion = PathParametersLabelExpansionOperations(
+        self.routes_client_path_parameters_label_expansion = RoutesClientPathParametersLabelExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.matrix_expansion = PathParametersMatrixExpansionOperations(
+        self.routes_client_path_parameters_matrix_expansion = RoutesClientPathParametersMatrixExpansionOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -124,7 +126,7 @@ class PathParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_template_only_request(
+        _request = build_routes_client_path_parameters_template_only_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -168,7 +170,7 @@ class PathParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_explicit_request(
+        _request = build_routes_client_path_parameters_explicit_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -212,7 +214,7 @@ class PathParametersOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_annotation_only_request(
+        _request = build_routes_client_path_parameters_annotation_only_request(
             param=param,
             headers=_headers,
             params=_params,

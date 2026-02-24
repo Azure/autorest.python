@@ -31,68 +31,68 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_extends_different_spread_float_get_request,
-    build_extends_different_spread_float_put_request,
-    build_extends_different_spread_model_array_get_request,
-    build_extends_different_spread_model_array_put_request,
-    build_extends_different_spread_model_get_request,
-    build_extends_different_spread_model_put_request,
-    build_extends_different_spread_string_get_request,
-    build_extends_different_spread_string_put_request,
-    build_extends_float_get_request,
-    build_extends_float_put_request,
-    build_extends_model_array_get_request,
-    build_extends_model_array_put_request,
-    build_extends_model_get_request,
-    build_extends_model_put_request,
-    build_extends_string_get_request,
-    build_extends_string_put_request,
-    build_extends_unknown_derived_get_request,
-    build_extends_unknown_derived_put_request,
-    build_extends_unknown_discriminated_get_request,
-    build_extends_unknown_discriminated_put_request,
-    build_extends_unknown_get_request,
-    build_extends_unknown_put_request,
-    build_is_float_get_request,
-    build_is_float_put_request,
-    build_is_model_array_get_request,
-    build_is_model_array_put_request,
-    build_is_model_get_request,
-    build_is_model_put_request,
-    build_is_string_get_request,
-    build_is_string_put_request,
-    build_is_unknown_derived_get_request,
-    build_is_unknown_derived_put_request,
-    build_is_unknown_discriminated_get_request,
-    build_is_unknown_discriminated_put_request,
-    build_is_unknown_get_request,
-    build_is_unknown_put_request,
-    build_multiple_spread_get_request,
-    build_multiple_spread_put_request,
-    build_spread_different_float_get_request,
-    build_spread_different_float_put_request,
-    build_spread_different_model_array_get_request,
-    build_spread_different_model_array_put_request,
-    build_spread_different_model_get_request,
-    build_spread_different_model_put_request,
-    build_spread_different_string_get_request,
-    build_spread_different_string_put_request,
-    build_spread_float_get_request,
-    build_spread_float_put_request,
-    build_spread_model_array_get_request,
-    build_spread_model_array_put_request,
-    build_spread_model_get_request,
-    build_spread_model_put_request,
-    build_spread_record_non_discriminated_union2_get_request,
-    build_spread_record_non_discriminated_union2_put_request,
-    build_spread_record_non_discriminated_union3_get_request,
-    build_spread_record_non_discriminated_union3_put_request,
-    build_spread_record_non_discriminated_union_get_request,
-    build_spread_record_non_discriminated_union_put_request,
-    build_spread_record_union_get_request,
-    build_spread_record_union_put_request,
-    build_spread_string_get_request,
-    build_spread_string_put_request,
+    build_additional_properties_client_extends_different_spread_float_get_request,
+    build_additional_properties_client_extends_different_spread_float_put_request,
+    build_additional_properties_client_extends_different_spread_model_array_get_request,
+    build_additional_properties_client_extends_different_spread_model_array_put_request,
+    build_additional_properties_client_extends_different_spread_model_get_request,
+    build_additional_properties_client_extends_different_spread_model_put_request,
+    build_additional_properties_client_extends_different_spread_string_get_request,
+    build_additional_properties_client_extends_different_spread_string_put_request,
+    build_additional_properties_client_extends_float_get_request,
+    build_additional_properties_client_extends_float_put_request,
+    build_additional_properties_client_extends_model_array_get_request,
+    build_additional_properties_client_extends_model_array_put_request,
+    build_additional_properties_client_extends_model_get_request,
+    build_additional_properties_client_extends_model_put_request,
+    build_additional_properties_client_extends_string_get_request,
+    build_additional_properties_client_extends_string_put_request,
+    build_additional_properties_client_extends_unknown_derived_get_request,
+    build_additional_properties_client_extends_unknown_derived_put_request,
+    build_additional_properties_client_extends_unknown_discriminated_get_request,
+    build_additional_properties_client_extends_unknown_discriminated_put_request,
+    build_additional_properties_client_extends_unknown_get_request,
+    build_additional_properties_client_extends_unknown_put_request,
+    build_additional_properties_client_is_float_get_request,
+    build_additional_properties_client_is_float_put_request,
+    build_additional_properties_client_is_model_array_get_request,
+    build_additional_properties_client_is_model_array_put_request,
+    build_additional_properties_client_is_model_get_request,
+    build_additional_properties_client_is_model_put_request,
+    build_additional_properties_client_is_string_get_request,
+    build_additional_properties_client_is_string_put_request,
+    build_additional_properties_client_is_unknown_derived_get_request,
+    build_additional_properties_client_is_unknown_derived_put_request,
+    build_additional_properties_client_is_unknown_discriminated_get_request,
+    build_additional_properties_client_is_unknown_discriminated_put_request,
+    build_additional_properties_client_is_unknown_get_request,
+    build_additional_properties_client_is_unknown_put_request,
+    build_additional_properties_client_multiple_spread_get_request,
+    build_additional_properties_client_multiple_spread_put_request,
+    build_additional_properties_client_spread_different_float_get_request,
+    build_additional_properties_client_spread_different_float_put_request,
+    build_additional_properties_client_spread_different_model_array_get_request,
+    build_additional_properties_client_spread_different_model_array_put_request,
+    build_additional_properties_client_spread_different_model_get_request,
+    build_additional_properties_client_spread_different_model_put_request,
+    build_additional_properties_client_spread_different_string_get_request,
+    build_additional_properties_client_spread_different_string_put_request,
+    build_additional_properties_client_spread_float_get_request,
+    build_additional_properties_client_spread_float_put_request,
+    build_additional_properties_client_spread_model_array_get_request,
+    build_additional_properties_client_spread_model_array_put_request,
+    build_additional_properties_client_spread_model_get_request,
+    build_additional_properties_client_spread_model_put_request,
+    build_additional_properties_client_spread_record_non_discriminated_union2_get_request,
+    build_additional_properties_client_spread_record_non_discriminated_union2_put_request,
+    build_additional_properties_client_spread_record_non_discriminated_union3_get_request,
+    build_additional_properties_client_spread_record_non_discriminated_union3_put_request,
+    build_additional_properties_client_spread_record_non_discriminated_union_get_request,
+    build_additional_properties_client_spread_record_non_discriminated_union_put_request,
+    build_additional_properties_client_spread_record_union_get_request,
+    build_additional_properties_client_spread_record_union_put_request,
+    build_additional_properties_client_spread_string_get_request,
+    build_additional_properties_client_spread_string_put_request,
 )
 from .._configuration import AdditionalPropertiesClientConfiguration
 
@@ -101,14 +101,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ExtendsUnknownOperations:
+class AdditionalPropertiesClientExtendsUnknownOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_unknown` attribute.
+        :attr:`additional_properties_client_extends_unknown` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -142,7 +142,7 @@ class ExtendsUnknownOperations:
 
         cls: ClsType[_models.ExtendsUnknownAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_extends_unknown_get_request(
+        _request = build_additional_properties_client_extends_unknown_get_request(
             headers=_headers,
             params=_params,
         )
@@ -256,7 +256,7 @@ class ExtendsUnknownOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_unknown_put_request(
+        _request = build_additional_properties_client_extends_unknown_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -282,14 +282,14 @@ class ExtendsUnknownOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsUnknownDerivedOperations:
+class AdditionalPropertiesClientExtendsUnknownDerivedOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_unknown_derived` attribute.
+        :attr:`additional_properties_client_extends_unknown_derived` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -324,7 +324,7 @@ class ExtendsUnknownDerivedOperations:
 
         cls: ClsType[_models.ExtendsUnknownAdditionalPropertiesDerived] = kwargs.pop("cls", None)
 
-        _request = build_extends_unknown_derived_get_request(
+        _request = build_additional_properties_client_extends_unknown_derived_get_request(
             headers=_headers,
             params=_params,
         )
@@ -444,7 +444,7 @@ class ExtendsUnknownDerivedOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_unknown_derived_put_request(
+        _request = build_additional_properties_client_extends_unknown_derived_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -470,14 +470,14 @@ class ExtendsUnknownDerivedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsUnknownDiscriminatedOperations:
+class AdditionalPropertiesClientExtendsUnknownDiscriminatedOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_unknown_discriminated` attribute.
+        :attr:`additional_properties_client_extends_unknown_discriminated` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -512,7 +512,7 @@ class ExtendsUnknownDiscriminatedOperations:
 
         cls: ClsType[_models.ExtendsUnknownAdditionalPropertiesDiscriminated] = kwargs.pop("cls", None)
 
-        _request = build_extends_unknown_discriminated_get_request(
+        _request = build_additional_properties_client_extends_unknown_discriminated_get_request(
             headers=_headers,
             params=_params,
         )
@@ -632,7 +632,7 @@ class ExtendsUnknownDiscriminatedOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_unknown_discriminated_put_request(
+        _request = build_additional_properties_client_extends_unknown_discriminated_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -658,14 +658,14 @@ class ExtendsUnknownDiscriminatedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsUnknownOperations:
+class AdditionalPropertiesClientIsUnknownOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_unknown` attribute.
+        :attr:`additional_properties_client_is_unknown` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -699,7 +699,7 @@ class IsUnknownOperations:
 
         cls: ClsType[_models.IsUnknownAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_is_unknown_get_request(
+        _request = build_additional_properties_client_is_unknown_get_request(
             headers=_headers,
             params=_params,
         )
@@ -811,7 +811,7 @@ class IsUnknownOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_unknown_put_request(
+        _request = build_additional_properties_client_is_unknown_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -837,14 +837,14 @@ class IsUnknownOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsUnknownDerivedOperations:
+class AdditionalPropertiesClientIsUnknownDerivedOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_unknown_derived` attribute.
+        :attr:`additional_properties_client_is_unknown_derived` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -878,7 +878,7 @@ class IsUnknownDerivedOperations:
 
         cls: ClsType[_models.IsUnknownAdditionalPropertiesDerived] = kwargs.pop("cls", None)
 
-        _request = build_is_unknown_derived_get_request(
+        _request = build_additional_properties_client_is_unknown_derived_get_request(
             headers=_headers,
             params=_params,
         )
@@ -996,7 +996,7 @@ class IsUnknownDerivedOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_unknown_derived_put_request(
+        _request = build_additional_properties_client_is_unknown_derived_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1022,14 +1022,14 @@ class IsUnknownDerivedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsUnknownDiscriminatedOperations:
+class AdditionalPropertiesClientIsUnknownDiscriminatedOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_unknown_discriminated` attribute.
+        :attr:`additional_properties_client_is_unknown_discriminated` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1064,7 +1064,7 @@ class IsUnknownDiscriminatedOperations:
 
         cls: ClsType[_models.IsUnknownAdditionalPropertiesDiscriminated] = kwargs.pop("cls", None)
 
-        _request = build_is_unknown_discriminated_get_request(
+        _request = build_additional_properties_client_is_unknown_discriminated_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1184,7 +1184,7 @@ class IsUnknownDiscriminatedOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_unknown_discriminated_put_request(
+        _request = build_additional_properties_client_is_unknown_discriminated_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1210,14 +1210,14 @@ class IsUnknownDiscriminatedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsStringOperations:
+class AdditionalPropertiesClientExtendsStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_string` attribute.
+        :attr:`additional_properties_client_extends_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1251,7 +1251,7 @@ class ExtendsStringOperations:
 
         cls: ClsType[_models.ExtendsStringAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_extends_string_get_request(
+        _request = build_additional_properties_client_extends_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1363,7 +1363,7 @@ class ExtendsStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_string_put_request(
+        _request = build_additional_properties_client_extends_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1389,14 +1389,14 @@ class ExtendsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsStringOperations:
+class AdditionalPropertiesClientIsStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_string` attribute.
+        :attr:`additional_properties_client_is_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1430,7 +1430,7 @@ class IsStringOperations:
 
         cls: ClsType[_models.IsStringAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_is_string_get_request(
+        _request = build_additional_properties_client_is_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1542,7 +1542,7 @@ class IsStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_string_put_request(
+        _request = build_additional_properties_client_is_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1568,14 +1568,14 @@ class IsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadStringOperations:
+class AdditionalPropertiesClientSpreadStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_string` attribute.
+        :attr:`additional_properties_client_spread_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1608,7 +1608,7 @@ class SpreadStringOperations:
 
         cls: ClsType[_models.SpreadStringRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_string_get_request(
+        _request = build_additional_properties_client_spread_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1719,7 +1719,7 @@ class SpreadStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_string_put_request(
+        _request = build_additional_properties_client_spread_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1745,14 +1745,14 @@ class SpreadStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsFloatOperations:
+class AdditionalPropertiesClientExtendsFloatOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_float` attribute.
+        :attr:`additional_properties_client_extends_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1786,7 +1786,7 @@ class ExtendsFloatOperations:
 
         cls: ClsType[_models.ExtendsFloatAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_extends_float_get_request(
+        _request = build_additional_properties_client_extends_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1898,7 +1898,7 @@ class ExtendsFloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_float_put_request(
+        _request = build_additional_properties_client_extends_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1924,14 +1924,14 @@ class ExtendsFloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsFloatOperations:
+class AdditionalPropertiesClientIsFloatOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_float` attribute.
+        :attr:`additional_properties_client_is_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1965,7 +1965,7 @@ class IsFloatOperations:
 
         cls: ClsType[_models.IsFloatAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_is_float_get_request(
+        _request = build_additional_properties_client_is_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2077,7 +2077,7 @@ class IsFloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_float_put_request(
+        _request = build_additional_properties_client_is_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2103,14 +2103,14 @@ class IsFloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadFloatOperations:
+class AdditionalPropertiesClientSpreadFloatOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_float` attribute.
+        :attr:`additional_properties_client_spread_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2143,7 +2143,7 @@ class SpreadFloatOperations:
 
         cls: ClsType[_models.SpreadFloatRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_float_get_request(
+        _request = build_additional_properties_client_spread_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2254,7 +2254,7 @@ class SpreadFloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_float_put_request(
+        _request = build_additional_properties_client_spread_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2280,14 +2280,14 @@ class SpreadFloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsModelOperations:
+class AdditionalPropertiesClientExtendsModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_model` attribute.
+        :attr:`additional_properties_client_extends_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2321,7 +2321,7 @@ class ExtendsModelOperations:
 
         cls: ClsType[_models.ExtendsModelAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_extends_model_get_request(
+        _request = build_additional_properties_client_extends_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2433,7 +2433,7 @@ class ExtendsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_model_put_request(
+        _request = build_additional_properties_client_extends_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2459,14 +2459,14 @@ class ExtendsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsModelOperations:
+class AdditionalPropertiesClientIsModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_model` attribute.
+        :attr:`additional_properties_client_is_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2500,7 +2500,7 @@ class IsModelOperations:
 
         cls: ClsType[_models.IsModelAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_is_model_get_request(
+        _request = build_additional_properties_client_is_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2612,7 +2612,7 @@ class IsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_model_put_request(
+        _request = build_additional_properties_client_is_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2638,14 +2638,14 @@ class IsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadModelOperations:
+class AdditionalPropertiesClientSpreadModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_model` attribute.
+        :attr:`additional_properties_client_spread_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2678,7 +2678,7 @@ class SpreadModelOperations:
 
         cls: ClsType[_models.SpreadModelRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_model_get_request(
+        _request = build_additional_properties_client_spread_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2789,7 +2789,7 @@ class SpreadModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_model_put_request(
+        _request = build_additional_properties_client_spread_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2815,14 +2815,14 @@ class SpreadModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsModelArrayOperations:
+class AdditionalPropertiesClientExtendsModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_model_array` attribute.
+        :attr:`additional_properties_client_extends_model_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2856,7 +2856,7 @@ class ExtendsModelArrayOperations:
 
         cls: ClsType[_models.ExtendsModelArrayAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_extends_model_array_get_request(
+        _request = build_additional_properties_client_extends_model_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2976,7 +2976,7 @@ class ExtendsModelArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_model_array_put_request(
+        _request = build_additional_properties_client_extends_model_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3002,14 +3002,14 @@ class ExtendsModelArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IsModelArrayOperations:
+class AdditionalPropertiesClientIsModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`is_model_array` attribute.
+        :attr:`additional_properties_client_is_model_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3043,7 +3043,7 @@ class IsModelArrayOperations:
 
         cls: ClsType[_models.IsModelArrayAdditionalProperties] = kwargs.pop("cls", None)
 
-        _request = build_is_model_array_get_request(
+        _request = build_additional_properties_client_is_model_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3155,7 +3155,7 @@ class IsModelArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_is_model_array_put_request(
+        _request = build_additional_properties_client_is_model_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3181,14 +3181,14 @@ class IsModelArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadModelArrayOperations:
+class AdditionalPropertiesClientSpreadModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_model_array` attribute.
+        :attr:`additional_properties_client_spread_model_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3221,7 +3221,7 @@ class SpreadModelArrayOperations:
 
         cls: ClsType[_models.SpreadModelArrayRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_model_array_get_request(
+        _request = build_additional_properties_client_spread_model_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3333,7 +3333,7 @@ class SpreadModelArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_model_array_put_request(
+        _request = build_additional_properties_client_spread_model_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3359,14 +3359,14 @@ class SpreadModelArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadDifferentStringOperations:
+class AdditionalPropertiesClientSpreadDifferentStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_different_string` attribute.
+        :attr:`additional_properties_client_spread_different_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3400,7 +3400,7 @@ class SpreadDifferentStringOperations:
 
         cls: ClsType[_models.DifferentSpreadStringRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_different_string_get_request(
+        _request = build_additional_properties_client_spread_different_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3512,7 +3512,7 @@ class SpreadDifferentStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_different_string_put_request(
+        _request = build_additional_properties_client_spread_different_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3538,14 +3538,14 @@ class SpreadDifferentStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadDifferentFloatOperations:
+class AdditionalPropertiesClientSpreadDifferentFloatOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_different_float` attribute.
+        :attr:`additional_properties_client_spread_different_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3579,7 +3579,7 @@ class SpreadDifferentFloatOperations:
 
         cls: ClsType[_models.DifferentSpreadFloatRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_different_float_get_request(
+        _request = build_additional_properties_client_spread_different_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3691,7 +3691,7 @@ class SpreadDifferentFloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_different_float_put_request(
+        _request = build_additional_properties_client_spread_different_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3717,14 +3717,14 @@ class SpreadDifferentFloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadDifferentModelOperations:
+class AdditionalPropertiesClientSpreadDifferentModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_different_model` attribute.
+        :attr:`additional_properties_client_spread_different_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3758,7 +3758,7 @@ class SpreadDifferentModelOperations:
 
         cls: ClsType[_models.DifferentSpreadModelRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_different_model_get_request(
+        _request = build_additional_properties_client_spread_different_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3870,7 +3870,7 @@ class SpreadDifferentModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_different_model_put_request(
+        _request = build_additional_properties_client_spread_different_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3896,14 +3896,14 @@ class SpreadDifferentModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadDifferentModelArrayOperations:
+class AdditionalPropertiesClientSpreadDifferentModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_different_model_array` attribute.
+        :attr:`additional_properties_client_spread_different_model_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3937,7 +3937,7 @@ class SpreadDifferentModelArrayOperations:
 
         cls: ClsType[_models.DifferentSpreadModelArrayRecord] = kwargs.pop("cls", None)
 
-        _request = build_spread_different_model_array_get_request(
+        _request = build_additional_properties_client_spread_different_model_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4049,7 +4049,7 @@ class SpreadDifferentModelArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_different_model_array_put_request(
+        _request = build_additional_properties_client_spread_different_model_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4075,14 +4075,14 @@ class SpreadDifferentModelArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadStringOperations:
+class AdditionalPropertiesClientExtendsDifferentSpreadStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_different_spread_string` attribute.
+        :attr:`additional_properties_client_extends_different_spread_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4116,7 +4116,7 @@ class ExtendsDifferentSpreadStringOperations:
 
         cls: ClsType[_models.DifferentSpreadStringDerived] = kwargs.pop("cls", None)
 
-        _request = build_extends_different_spread_string_get_request(
+        _request = build_additional_properties_client_extends_different_spread_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4228,7 +4228,7 @@ class ExtendsDifferentSpreadStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_different_spread_string_put_request(
+        _request = build_additional_properties_client_extends_different_spread_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4254,14 +4254,14 @@ class ExtendsDifferentSpreadStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadFloatOperations:
+class AdditionalPropertiesClientExtendsDifferentSpreadFloatOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_different_spread_float` attribute.
+        :attr:`additional_properties_client_extends_different_spread_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4295,7 +4295,7 @@ class ExtendsDifferentSpreadFloatOperations:
 
         cls: ClsType[_models.DifferentSpreadFloatDerived] = kwargs.pop("cls", None)
 
-        _request = build_extends_different_spread_float_get_request(
+        _request = build_additional_properties_client_extends_different_spread_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4407,7 +4407,7 @@ class ExtendsDifferentSpreadFloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_different_spread_float_put_request(
+        _request = build_additional_properties_client_extends_different_spread_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4433,14 +4433,14 @@ class ExtendsDifferentSpreadFloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadModelOperations:
+class AdditionalPropertiesClientExtendsDifferentSpreadModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_different_spread_model` attribute.
+        :attr:`additional_properties_client_extends_different_spread_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4474,7 +4474,7 @@ class ExtendsDifferentSpreadModelOperations:
 
         cls: ClsType[_models.DifferentSpreadModelDerived] = kwargs.pop("cls", None)
 
-        _request = build_extends_different_spread_model_get_request(
+        _request = build_additional_properties_client_extends_different_spread_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4586,7 +4586,7 @@ class ExtendsDifferentSpreadModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_different_spread_model_put_request(
+        _request = build_additional_properties_client_extends_different_spread_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4612,14 +4612,14 @@ class ExtendsDifferentSpreadModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-long
+class AdditionalPropertiesClientExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`extends_different_spread_model_array` attribute.
+        :attr:`additional_properties_client_extends_different_spread_model_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4653,7 +4653,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
 
         cls: ClsType[_models.DifferentSpreadModelArrayDerived] = kwargs.pop("cls", None)
 
-        _request = build_extends_different_spread_model_array_get_request(
+        _request = build_additional_properties_client_extends_different_spread_model_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4765,7 +4765,7 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extends_different_spread_model_array_put_request(
+        _request = build_additional_properties_client_extends_different_spread_model_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4791,14 +4791,14 @@ class ExtendsDifferentSpreadModelArrayOperations:  # pylint: disable=name-too-lo
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MultipleSpreadOperations:
+class AdditionalPropertiesClientMultipleSpreadOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`multiple_spread` attribute.
+        :attr:`additional_properties_client_multiple_spread` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4831,7 +4831,7 @@ class MultipleSpreadOperations:
 
         cls: ClsType[_models.MultipleSpreadRecord] = kwargs.pop("cls", None)
 
-        _request = build_multiple_spread_get_request(
+        _request = build_additional_properties_client_multiple_spread_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4943,7 +4943,7 @@ class MultipleSpreadOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_multiple_spread_put_request(
+        _request = build_additional_properties_client_multiple_spread_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4969,14 +4969,14 @@ class MultipleSpreadOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordUnionOperations:
+class AdditionalPropertiesClientSpreadRecordUnionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_record_union` attribute.
+        :attr:`additional_properties_client_spread_record_union` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5009,7 +5009,7 @@ class SpreadRecordUnionOperations:
 
         cls: ClsType[_models.SpreadRecordForUnion] = kwargs.pop("cls", None)
 
-        _request = build_spread_record_union_get_request(
+        _request = build_additional_properties_client_spread_record_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -5121,7 +5121,7 @@ class SpreadRecordUnionOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_record_union_put_request(
+        _request = build_additional_properties_client_spread_record_union_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5147,14 +5147,14 @@ class SpreadRecordUnionOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-long
+class AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_record_non_discriminated_union` attribute.
+        :attr:`additional_properties_client_spread_record_non_discriminated_union` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5188,7 +5188,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
 
         cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion] = kwargs.pop("cls", None)
 
-        _request = build_spread_record_non_discriminated_union_get_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union_get_request(
             headers=_headers,
             params=_params,
         )
@@ -5306,7 +5306,7 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_record_non_discriminated_union_put_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5332,14 +5332,14 @@ class SpreadRecordNonDiscriminatedUnionOperations:  # pylint: disable=name-too-l
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-long
+class AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_record_non_discriminated_union2` attribute.
+        :attr:`additional_properties_client_spread_record_non_discriminated_union2` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5373,7 +5373,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
 
         cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion2] = kwargs.pop("cls", None)
 
-        _request = build_spread_record_non_discriminated_union2_get_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union2_get_request(
             headers=_headers,
             params=_params,
         )
@@ -5493,7 +5493,7 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_record_non_discriminated_union2_put_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union2_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5519,14 +5519,14 @@ class SpreadRecordNonDiscriminatedUnion2Operations:  # pylint: disable=name-too-
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-long
+class AdditionalPropertiesClientSpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.additionalproperties.aio.AdditionalPropertiesClient`'s
-        :attr:`spread_record_non_discriminated_union3` attribute.
+        :attr:`additional_properties_client_spread_record_non_discriminated_union3` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5560,7 +5560,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
 
         cls: ClsType[_models.SpreadRecordForNonDiscriminatedUnion3] = kwargs.pop("cls", None)
 
-        _request = build_spread_record_non_discriminated_union3_get_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union3_get_request(
             headers=_headers,
             params=_params,
         )
@@ -5680,7 +5680,7 @@ class SpreadRecordNonDiscriminatedUnion3Operations:  # pylint: disable=name-too-
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_spread_record_non_discriminated_union3_put_request(
+        _request = build_additional_properties_client_spread_record_non_discriminated_union3_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

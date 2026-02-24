@@ -17,24 +17,24 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
-    build_query_base64_request,
-    build_query_base64_url_array_request,
-    build_query_base64_url_request,
-    build_query_default_request,
+    build_bytes_client_query_base64_request,
+    build_bytes_client_query_base64_url_array_request,
+    build_bytes_client_query_base64_url_request,
+    build_bytes_client_query_default_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class QueryOperations:
+class BytesClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.aio.BytesClient`'s
-        :attr:`query` attribute.
+        :attr:`bytes_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -66,7 +66,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_bytes_client_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -110,7 +110,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_request(
+        _request = build_bytes_client_query_base64_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -154,7 +154,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_url_request(
+        _request = build_bytes_client_query_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -198,7 +198,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_url_array_request(
+        _request = build_bytes_client_query_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,

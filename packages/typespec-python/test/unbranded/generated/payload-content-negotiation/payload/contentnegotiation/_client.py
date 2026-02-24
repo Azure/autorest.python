@@ -9,17 +9,21 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ContentNegotiationClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .differentbody.operations import DifferentBodyOperations
-from .samebody.operations import SameBodyOperations
+from .differentbody.operations import ContentNegotiationClientDifferentBodyOperations
+from .samebody.operations import ContentNegotiationClientSameBodyOperations
 
 
 class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
-    :ivar same_body: SameBodyOperations operations
-    :vartype same_body: payload.contentnegotiation.operations.SameBodyOperations
-    :ivar different_body: DifferentBodyOperations operations
-    :vartype different_body: payload.contentnegotiation.operations.DifferentBodyOperations
+    :ivar content_negotiation_client_same_body: ContentNegotiationClientSameBodyOperations
+     operations
+    :vartype content_negotiation_client_same_body:
+     payload.contentnegotiation.operations.ContentNegotiationClientSameBodyOperations
+    :ivar content_negotiation_client_different_body:
+     ContentNegotiationClientDifferentBodyOperations operations
+    :vartype content_negotiation_client_different_body:
+     payload.contentnegotiation.operations.ContentNegotiationClientDifferentBodyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -46,8 +50,12 @@ class ContentNegotiationClient:  # pylint: disable=client-accepts-api-version-ke
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.same_body = SameBodyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.different_body = DifferentBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.content_negotiation_client_same_body = ContentNegotiationClientSameBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.content_negotiation_client_different_body = ContentNegotiationClientDifferentBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

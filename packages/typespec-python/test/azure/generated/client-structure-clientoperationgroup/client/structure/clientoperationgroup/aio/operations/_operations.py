@@ -25,11 +25,11 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
+    build_first_client_group3_three_request,
+    build_first_client_group3_two_request,
+    build_first_client_group4_four_request,
     build_first_one_request,
-    build_group3_three_request,
-    build_group3_two_request,
-    build_group4_four_request,
-    build_group5_six_request,
+    build_second_client_group5_six_request,
     build_second_five_request,
 )
 from .._configuration import FirstClientConfiguration, SecondClientConfiguration
@@ -38,14 +38,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class Group3Operations:
+class FirstClientGroup3Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.aio.FirstClient`'s
-        :attr:`group3` attribute.
+        :attr:`first_client_group3` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -76,7 +76,7 @@ class Group3Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group3_two_request(
+        _request = build_first_client_group3_two_request(
             headers=_headers,
             params=_params,
         )
@@ -121,7 +121,7 @@ class Group3Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group3_three_request(
+        _request = build_first_client_group3_three_request(
             headers=_headers,
             params=_params,
         )
@@ -146,14 +146,14 @@ class Group3Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group4Operations:
+class FirstClientGroup4Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.aio.FirstClient`'s
-        :attr:`group4` attribute.
+        :attr:`first_client_group4` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -184,7 +184,7 @@ class Group4Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group4_four_request(
+        _request = build_first_client_group4_four_request(
             headers=_headers,
             params=_params,
         )
@@ -259,14 +259,14 @@ class _FirstClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group5Operations:
+class SecondClientGroup5Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.clientoperationgroup.aio.SecondClient`'s
-        :attr:`group5` attribute.
+        :attr:`second_client_group5` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -297,7 +297,7 @@ class Group5Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group5_six_request(
+        _request = build_second_client_group5_six_request(
             headers=_headers,
             params=_params,
         )

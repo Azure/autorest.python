@@ -9,14 +9,14 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import ArrayClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .property.operations import PropertyOperations
+from .property.operations import ArrayClientPropertyOperations
 
 
 class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on array.
 
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.array.operations.PropertyOperations
+    :ivar array_client_property: ArrayClientPropertyOperations operations
+    :vartype array_client_property: encode.array.operations.ArrayClientPropertyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -43,7 +43,9 @@ class ArrayClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.array_client_property = ArrayClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

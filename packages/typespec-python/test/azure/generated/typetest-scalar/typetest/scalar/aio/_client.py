@@ -17,33 +17,37 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ScalarClientConfiguration
 from .operations import (
-    BooleanOperations,
-    Decimal128TypeOperations,
-    Decimal128VerifyOperations,
-    DecimalTypeOperations,
-    DecimalVerifyOperations,
-    StringOperations,
-    UnknownOperations,
+    ScalarClientBooleanOperations,
+    ScalarClientDecimal128TypeOperations,
+    ScalarClientDecimal128VerifyOperations,
+    ScalarClientDecimalTypeOperations,
+    ScalarClientDecimalVerifyOperations,
+    ScalarClientStringOperations,
+    ScalarClientUnknownOperations,
 )
 
 
 class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """ScalarClient.
 
-    :ivar string: StringOperations operations
-    :vartype string: typetest.scalar.aio.operations.StringOperations
-    :ivar boolean: BooleanOperations operations
-    :vartype boolean: typetest.scalar.aio.operations.BooleanOperations
-    :ivar unknown: UnknownOperations operations
-    :vartype unknown: typetest.scalar.aio.operations.UnknownOperations
-    :ivar decimal_type: DecimalTypeOperations operations
-    :vartype decimal_type: typetest.scalar.aio.operations.DecimalTypeOperations
-    :ivar decimal128_type: Decimal128TypeOperations operations
-    :vartype decimal128_type: typetest.scalar.aio.operations.Decimal128TypeOperations
-    :ivar decimal_verify: DecimalVerifyOperations operations
-    :vartype decimal_verify: typetest.scalar.aio.operations.DecimalVerifyOperations
-    :ivar decimal128_verify: Decimal128VerifyOperations operations
-    :vartype decimal128_verify: typetest.scalar.aio.operations.Decimal128VerifyOperations
+    :ivar scalar_client_string: ScalarClientStringOperations operations
+    :vartype scalar_client_string: typetest.scalar.aio.operations.ScalarClientStringOperations
+    :ivar scalar_client_boolean: ScalarClientBooleanOperations operations
+    :vartype scalar_client_boolean: typetest.scalar.aio.operations.ScalarClientBooleanOperations
+    :ivar scalar_client_unknown: ScalarClientUnknownOperations operations
+    :vartype scalar_client_unknown: typetest.scalar.aio.operations.ScalarClientUnknownOperations
+    :ivar scalar_client_decimal_type: ScalarClientDecimalTypeOperations operations
+    :vartype scalar_client_decimal_type:
+     typetest.scalar.aio.operations.ScalarClientDecimalTypeOperations
+    :ivar scalar_client_decimal128_type: ScalarClientDecimal128TypeOperations operations
+    :vartype scalar_client_decimal128_type:
+     typetest.scalar.aio.operations.ScalarClientDecimal128TypeOperations
+    :ivar scalar_client_decimal_verify: ScalarClientDecimalVerifyOperations operations
+    :vartype scalar_client_decimal_verify:
+     typetest.scalar.aio.operations.ScalarClientDecimalVerifyOperations
+    :ivar scalar_client_decimal128_verify: ScalarClientDecimal128VerifyOperations operations
+    :vartype scalar_client_decimal128_verify:
+     typetest.scalar.aio.operations.ScalarClientDecimal128VerifyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -76,13 +80,25 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword,too-ma
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean = BooleanOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown = UnknownOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal_type = DecimalTypeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal128_type = Decimal128TypeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal_verify = DecimalVerifyOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal128_verify = Decimal128VerifyOperations(
+        self.scalar_client_string = ScalarClientStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_boolean = ScalarClientBooleanOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_unknown = ScalarClientUnknownOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_decimal_type = ScalarClientDecimalTypeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_decimal128_type = ScalarClientDecimal128TypeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_decimal_verify = ScalarClientDecimalVerifyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.scalar_client_decimal128_verify = ScalarClientDecimal128VerifyOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

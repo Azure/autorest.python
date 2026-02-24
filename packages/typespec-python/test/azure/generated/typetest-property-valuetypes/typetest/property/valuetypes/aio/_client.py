@@ -17,105 +17,134 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ValueTypesClientConfiguration
 from .operations import (
-    BooleanLiteralOperations,
-    BooleanOperations,
-    BytesOperations,
-    CollectionsIntOperations,
-    CollectionsModelOperations,
-    CollectionsStringOperations,
-    DatetimeOperations,
-    Decimal128Operations,
-    DecimalOperations,
-    DictionaryStringOperations,
-    DurationOperations,
-    EnumOperations,
-    ExtensibleEnumOperations,
-    FloatLiteralOperations,
-    FloatOperations,
-    IntLiteralOperations,
-    IntOperations,
-    ModelOperations,
-    NeverOperations,
-    StringLiteralOperations,
-    StringOperations,
-    UnionEnumValueOperations,
-    UnionFloatLiteralOperations,
-    UnionIntLiteralOperations,
-    UnionStringLiteralOperations,
-    UnknownArrayOperations,
-    UnknownDictOperations,
-    UnknownIntOperations,
-    UnknownStringOperations,
+    ValueTypesClientBooleanLiteralOperations,
+    ValueTypesClientBooleanOperations,
+    ValueTypesClientBytesOperations,
+    ValueTypesClientCollectionsIntOperations,
+    ValueTypesClientCollectionsModelOperations,
+    ValueTypesClientCollectionsStringOperations,
+    ValueTypesClientDatetimeOperations,
+    ValueTypesClientDecimal128Operations,
+    ValueTypesClientDecimalOperations,
+    ValueTypesClientDictionaryStringOperations,
+    ValueTypesClientDurationOperations,
+    ValueTypesClientEnumOperations,
+    ValueTypesClientExtensibleEnumOperations,
+    ValueTypesClientFloatLiteralOperations,
+    ValueTypesClientFloatOperations,
+    ValueTypesClientIntLiteralOperations,
+    ValueTypesClientIntOperations,
+    ValueTypesClientModelOperations,
+    ValueTypesClientNeverOperations,
+    ValueTypesClientStringLiteralOperations,
+    ValueTypesClientStringOperations,
+    ValueTypesClientUnionEnumValueOperations,
+    ValueTypesClientUnionFloatLiteralOperations,
+    ValueTypesClientUnionIntLiteralOperations,
+    ValueTypesClientUnionStringLiteralOperations,
+    ValueTypesClientUnknownArrayOperations,
+    ValueTypesClientUnknownDictOperations,
+    ValueTypesClientUnknownIntOperations,
+    ValueTypesClientUnknownStringOperations,
 )
 
 
 class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates various property types for models.
 
-    :ivar boolean: BooleanOperations operations
-    :vartype boolean: typetest.property.valuetypes.aio.operations.BooleanOperations
-    :ivar string: StringOperations operations
-    :vartype string: typetest.property.valuetypes.aio.operations.StringOperations
-    :ivar bytes: BytesOperations operations
-    :vartype bytes: typetest.property.valuetypes.aio.operations.BytesOperations
-    :ivar int_operations: IntOperations operations
-    :vartype int_operations: typetest.property.valuetypes.aio.operations.IntOperations
-    :ivar float: FloatOperations operations
-    :vartype float: typetest.property.valuetypes.aio.operations.FloatOperations
-    :ivar decimal: DecimalOperations operations
-    :vartype decimal: typetest.property.valuetypes.aio.operations.DecimalOperations
-    :ivar decimal128: Decimal128Operations operations
-    :vartype decimal128: typetest.property.valuetypes.aio.operations.Decimal128Operations
-    :ivar datetime: DatetimeOperations operations
-    :vartype datetime: typetest.property.valuetypes.aio.operations.DatetimeOperations
-    :ivar duration: DurationOperations operations
-    :vartype duration: typetest.property.valuetypes.aio.operations.DurationOperations
-    :ivar enum: EnumOperations operations
-    :vartype enum: typetest.property.valuetypes.aio.operations.EnumOperations
-    :ivar extensible_enum: ExtensibleEnumOperations operations
-    :vartype extensible_enum: typetest.property.valuetypes.aio.operations.ExtensibleEnumOperations
-    :ivar model: ModelOperations operations
-    :vartype model: typetest.property.valuetypes.aio.operations.ModelOperations
-    :ivar collections_string: CollectionsStringOperations operations
-    :vartype collections_string:
-     typetest.property.valuetypes.aio.operations.CollectionsStringOperations
-    :ivar collections_int: CollectionsIntOperations operations
-    :vartype collections_int: typetest.property.valuetypes.aio.operations.CollectionsIntOperations
-    :ivar collections_model: CollectionsModelOperations operations
-    :vartype collections_model:
-     typetest.property.valuetypes.aio.operations.CollectionsModelOperations
-    :ivar dictionary_string: DictionaryStringOperations operations
-    :vartype dictionary_string:
-     typetest.property.valuetypes.aio.operations.DictionaryStringOperations
-    :ivar never: NeverOperations operations
-    :vartype never: typetest.property.valuetypes.aio.operations.NeverOperations
-    :ivar unknown_string: UnknownStringOperations operations
-    :vartype unknown_string: typetest.property.valuetypes.aio.operations.UnknownStringOperations
-    :ivar unknown_int: UnknownIntOperations operations
-    :vartype unknown_int: typetest.property.valuetypes.aio.operations.UnknownIntOperations
-    :ivar unknown_dict: UnknownDictOperations operations
-    :vartype unknown_dict: typetest.property.valuetypes.aio.operations.UnknownDictOperations
-    :ivar unknown_array: UnknownArrayOperations operations
-    :vartype unknown_array: typetest.property.valuetypes.aio.operations.UnknownArrayOperations
-    :ivar string_literal: StringLiteralOperations operations
-    :vartype string_literal: typetest.property.valuetypes.aio.operations.StringLiteralOperations
-    :ivar int_literal: IntLiteralOperations operations
-    :vartype int_literal: typetest.property.valuetypes.aio.operations.IntLiteralOperations
-    :ivar float_literal: FloatLiteralOperations operations
-    :vartype float_literal: typetest.property.valuetypes.aio.operations.FloatLiteralOperations
-    :ivar boolean_literal: BooleanLiteralOperations operations
-    :vartype boolean_literal: typetest.property.valuetypes.aio.operations.BooleanLiteralOperations
-    :ivar union_string_literal: UnionStringLiteralOperations operations
-    :vartype union_string_literal:
-     typetest.property.valuetypes.aio.operations.UnionStringLiteralOperations
-    :ivar union_int_literal: UnionIntLiteralOperations operations
-    :vartype union_int_literal:
-     typetest.property.valuetypes.aio.operations.UnionIntLiteralOperations
-    :ivar union_float_literal: UnionFloatLiteralOperations operations
-    :vartype union_float_literal:
-     typetest.property.valuetypes.aio.operations.UnionFloatLiteralOperations
-    :ivar union_enum_value: UnionEnumValueOperations operations
-    :vartype union_enum_value: typetest.property.valuetypes.aio.operations.UnionEnumValueOperations
+    :ivar value_types_client_boolean: ValueTypesClientBooleanOperations operations
+    :vartype value_types_client_boolean:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientBooleanOperations
+    :ivar value_types_client_string: ValueTypesClientStringOperations operations
+    :vartype value_types_client_string:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientStringOperations
+    :ivar value_types_client_bytes: ValueTypesClientBytesOperations operations
+    :vartype value_types_client_bytes:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientBytesOperations
+    :ivar value_types_client_int: ValueTypesClientIntOperations operations
+    :vartype value_types_client_int:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientIntOperations
+    :ivar value_types_client_float: ValueTypesClientFloatOperations operations
+    :vartype value_types_client_float:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientFloatOperations
+    :ivar value_types_client_decimal: ValueTypesClientDecimalOperations operations
+    :vartype value_types_client_decimal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientDecimalOperations
+    :ivar value_types_client_decimal128: ValueTypesClientDecimal128Operations operations
+    :vartype value_types_client_decimal128:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientDecimal128Operations
+    :ivar value_types_client_datetime: ValueTypesClientDatetimeOperations operations
+    :vartype value_types_client_datetime:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientDatetimeOperations
+    :ivar value_types_client_duration: ValueTypesClientDurationOperations operations
+    :vartype value_types_client_duration:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientDurationOperations
+    :ivar value_types_client_enum: ValueTypesClientEnumOperations operations
+    :vartype value_types_client_enum:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientEnumOperations
+    :ivar value_types_client_extensible_enum: ValueTypesClientExtensibleEnumOperations operations
+    :vartype value_types_client_extensible_enum:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientExtensibleEnumOperations
+    :ivar value_types_client_model: ValueTypesClientModelOperations operations
+    :vartype value_types_client_model:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientModelOperations
+    :ivar value_types_client_collections_string: ValueTypesClientCollectionsStringOperations
+     operations
+    :vartype value_types_client_collections_string:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientCollectionsStringOperations
+    :ivar value_types_client_collections_int: ValueTypesClientCollectionsIntOperations operations
+    :vartype value_types_client_collections_int:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientCollectionsIntOperations
+    :ivar value_types_client_collections_model: ValueTypesClientCollectionsModelOperations
+     operations
+    :vartype value_types_client_collections_model:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientCollectionsModelOperations
+    :ivar value_types_client_dictionary_string: ValueTypesClientDictionaryStringOperations
+     operations
+    :vartype value_types_client_dictionary_string:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientDictionaryStringOperations
+    :ivar value_types_client_never: ValueTypesClientNeverOperations operations
+    :vartype value_types_client_never:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientNeverOperations
+    :ivar value_types_client_unknown_string: ValueTypesClientUnknownStringOperations operations
+    :vartype value_types_client_unknown_string:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnknownStringOperations
+    :ivar value_types_client_unknown_int: ValueTypesClientUnknownIntOperations operations
+    :vartype value_types_client_unknown_int:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnknownIntOperations
+    :ivar value_types_client_unknown_dict: ValueTypesClientUnknownDictOperations operations
+    :vartype value_types_client_unknown_dict:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnknownDictOperations
+    :ivar value_types_client_unknown_array: ValueTypesClientUnknownArrayOperations operations
+    :vartype value_types_client_unknown_array:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnknownArrayOperations
+    :ivar value_types_client_string_literal: ValueTypesClientStringLiteralOperations operations
+    :vartype value_types_client_string_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientStringLiteralOperations
+    :ivar value_types_client_int_literal: ValueTypesClientIntLiteralOperations operations
+    :vartype value_types_client_int_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientIntLiteralOperations
+    :ivar value_types_client_float_literal: ValueTypesClientFloatLiteralOperations operations
+    :vartype value_types_client_float_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientFloatLiteralOperations
+    :ivar value_types_client_boolean_literal: ValueTypesClientBooleanLiteralOperations operations
+    :vartype value_types_client_boolean_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientBooleanLiteralOperations
+    :ivar value_types_client_union_string_literal: ValueTypesClientUnionStringLiteralOperations
+     operations
+    :vartype value_types_client_union_string_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnionStringLiteralOperations
+    :ivar value_types_client_union_int_literal: ValueTypesClientUnionIntLiteralOperations
+     operations
+    :vartype value_types_client_union_int_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnionIntLiteralOperations
+    :ivar value_types_client_union_float_literal: ValueTypesClientUnionFloatLiteralOperations
+     operations
+    :vartype value_types_client_union_float_literal:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnionFloatLiteralOperations
+    :ivar value_types_client_union_enum_value: ValueTypesClientUnionEnumValueOperations operations
+    :vartype value_types_client_union_enum_value:
+     typetest.property.valuetypes.aio.operations.ValueTypesClientUnionEnumValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -148,47 +177,93 @@ class ValueTypesClient:  # pylint: disable=client-accepts-api-version-keyword,to
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.boolean = BooleanOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int_operations = IntOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float = FloatOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal = DecimalOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.decimal128 = Decimal128Operations(self._client, self._config, self._serialize, self._deserialize)
-        self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.enum = EnumOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extensible_enum = ExtensibleEnumOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.model = ModelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.collections_string = CollectionsStringOperations(
+        self.value_types_client_boolean = ValueTypesClientBooleanOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.collections_int = CollectionsIntOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.collections_model = CollectionsModelOperations(
+        self.value_types_client_string = ValueTypesClientStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.dictionary_string = DictionaryStringOperations(
+        self.value_types_client_bytes = ValueTypesClientBytesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.never = NeverOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_string = UnknownStringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_int = UnknownIntOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_dict = UnknownDictOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.unknown_array = UnknownArrayOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.string_literal = StringLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int_literal = IntLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float_literal = FloatLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean_literal = BooleanLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.union_string_literal = UnionStringLiteralOperations(
+        self.value_types_client_int = ValueTypesClientIntOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.union_int_literal = UnionIntLiteralOperations(
+        self.value_types_client_float = ValueTypesClientFloatOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.union_float_literal = UnionFloatLiteralOperations(
+        self.value_types_client_decimal = ValueTypesClientDecimalOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.union_enum_value = UnionEnumValueOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.value_types_client_decimal128 = ValueTypesClientDecimal128Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_datetime = ValueTypesClientDatetimeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_duration = ValueTypesClientDurationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_enum = ValueTypesClientEnumOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_extensible_enum = ValueTypesClientExtensibleEnumOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_model = ValueTypesClientModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_collections_string = ValueTypesClientCollectionsStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_collections_int = ValueTypesClientCollectionsIntOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_collections_model = ValueTypesClientCollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_dictionary_string = ValueTypesClientDictionaryStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_never = ValueTypesClientNeverOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_unknown_string = ValueTypesClientUnknownStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_unknown_int = ValueTypesClientUnknownIntOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_unknown_dict = ValueTypesClientUnknownDictOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_unknown_array = ValueTypesClientUnknownArrayOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_string_literal = ValueTypesClientStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_int_literal = ValueTypesClientIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_float_literal = ValueTypesClientFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_boolean_literal = ValueTypesClientBooleanLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_union_string_literal = ValueTypesClientUnionStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_union_int_literal = ValueTypesClientUnionIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_union_float_literal = ValueTypesClientUnionFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.value_types_client_union_enum_value = ValueTypesClientUnionEnumValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

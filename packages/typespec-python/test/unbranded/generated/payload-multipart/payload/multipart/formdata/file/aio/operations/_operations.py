@@ -20,9 +20,9 @@ from ....._utils.serialization import Deserializer, Serializer
 from ....._utils.utils import prepare_multipart_form_data
 from .....aio._configuration import MultiPartClientConfiguration
 from ...operations._operations import (
-    build_form_data_file_upload_file_array_request,
-    build_form_data_file_upload_file_required_filename_request,
-    build_form_data_file_upload_file_specific_content_type_request,
+    build_multi_part_client_form_data_file_upload_file_array_request,
+    build_multi_part_client_form_data_file_upload_file_required_filename_request,
+    build_multi_part_client_form_data_file_upload_file_specific_content_type_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -30,14 +30,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FormDataFileOperations:
+class MultiPartClientFormDataFileOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`file` attribute.
+        :attr:`multi_part_client_form_data_file` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -101,7 +101,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_specific_content_type_request(
+        _request = build_multi_part_client_form_data_file_upload_file_specific_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -176,7 +176,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_required_filename_request(
+        _request = build_multi_part_client_form_data_file_upload_file_required_filename_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -247,7 +247,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_array_request(
+        _request = build_multi_part_client_form_data_file_upload_file_array_request(
             files=_files,
             headers=_headers,
             params=_params,

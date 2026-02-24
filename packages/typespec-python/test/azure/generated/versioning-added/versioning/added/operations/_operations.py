@@ -41,7 +41,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_interface_v2_v2_in_interface_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_added_client_interface_v2_v2_in_interface_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -93,14 +95,14 @@ def build_added_v2_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class InterfaceV2Operations:
+class AddedClientInterfaceV2Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~versioning.added.AddedClient`'s
-        :attr:`interface_v2` attribute.
+        :attr:`added_client_interface_v2` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -192,7 +194,7 @@ class InterfaceV2Operations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_interface_v2_v2_in_interface_request(
+        _request = build_added_client_interface_v2_v2_in_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

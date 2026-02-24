@@ -20,11 +20,11 @@ from azure.mgmt.core.tools import get_arm_endpoints
 from ._configuration import OperationTemplatesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    CheckNameAvailabilityOperations,
-    LroOperations,
-    LroPagingOperations,
-    Operations,
-    OptionalBodyOperations,
+    OperationTemplatesClientCheckNameAvailabilityOperations,
+    OperationTemplatesClientLroOperations,
+    OperationTemplatesClientLroPagingOperations,
+    OperationTemplatesClientOperationsOperations,
+    OperationTemplatesClientOptionalBodyOperations,
 )
 
 if TYPE_CHECKING:
@@ -35,18 +35,25 @@ if TYPE_CHECKING:
 class OperationTemplatesClient:
     """Arm Resource Provider management API.
 
-    :ivar operations: Operations operations
-    :vartype operations: azure.resourcemanager.operationtemplates.operations.Operations
-    :ivar check_name_availability: CheckNameAvailabilityOperations operations
-    :vartype check_name_availability:
-     azure.resourcemanager.operationtemplates.operations.CheckNameAvailabilityOperations
-    :ivar lro: LroOperations operations
-    :vartype lro: azure.resourcemanager.operationtemplates.operations.LroOperations
-    :ivar lro_paging: LroPagingOperations operations
-    :vartype lro_paging: azure.resourcemanager.operationtemplates.operations.LroPagingOperations
-    :ivar optional_body: OptionalBodyOperations operations
-    :vartype optional_body:
-     azure.resourcemanager.operationtemplates.operations.OptionalBodyOperations
+    :ivar operation_templates_client_operations: OperationTemplatesClientOperationsOperations
+     operations
+    :vartype operation_templates_client_operations:
+     azure.resourcemanager.operationtemplates.operations.OperationTemplatesClientOperationsOperations
+    :ivar operation_templates_client_check_name_availability:
+     OperationTemplatesClientCheckNameAvailabilityOperations operations
+    :vartype operation_templates_client_check_name_availability:
+     azure.resourcemanager.operationtemplates.operations.OperationTemplatesClientCheckNameAvailabilityOperations
+    :ivar operation_templates_client_lro: OperationTemplatesClientLroOperations operations
+    :vartype operation_templates_client_lro:
+     azure.resourcemanager.operationtemplates.operations.OperationTemplatesClientLroOperations
+    :ivar operation_templates_client_lro_paging: OperationTemplatesClientLroPagingOperations
+     operations
+    :vartype operation_templates_client_lro_paging:
+     azure.resourcemanager.operationtemplates.operations.OperationTemplatesClientLroPagingOperations
+    :ivar operation_templates_client_optional_body: OperationTemplatesClientOptionalBodyOperations
+     operations
+    :vartype operation_templates_client_optional_body:
+     azure.resourcemanager.operationtemplates.operations.OperationTemplatesClientOptionalBodyOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -111,13 +118,23 @@ class OperationTemplatesClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)
-        self.check_name_availability = CheckNameAvailabilityOperations(
+        self.operation_templates_client_operations = OperationTemplatesClientOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.lro = LroOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.lro_paging = LroPagingOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.optional_body = OptionalBodyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.operation_templates_client_check_name_availability = (
+            OperationTemplatesClientCheckNameAvailabilityOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.operation_templates_client_lro = OperationTemplatesClientLroOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.operation_templates_client_lro_paging = OperationTemplatesClientLroPagingOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.operation_templates_client_optional_body = OperationTemplatesClientOptionalBodyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

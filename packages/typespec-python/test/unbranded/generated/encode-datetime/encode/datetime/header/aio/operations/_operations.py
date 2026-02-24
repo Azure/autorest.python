@@ -18,25 +18,25 @@ from corehttp.runtime.pipeline import PipelineResponse
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
 from ...operations._operations import (
-    build_header_default_request,
-    build_header_rfc3339_request,
-    build_header_rfc7231_request,
-    build_header_unix_timestamp_array_request,
-    build_header_unix_timestamp_request,
+    build_datetime_client_header_default_request,
+    build_datetime_client_header_rfc3339_request,
+    build_datetime_client_header_rfc7231_request,
+    build_datetime_client_header_unix_timestamp_array_request,
+    build_datetime_client_header_unix_timestamp_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class HeaderOperations:
+class DatetimeClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.aio.DatetimeClient`'s
-        :attr:`header` attribute.
+        :attr:`datetime_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,7 +68,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        _request = build_datetime_client_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -112,7 +112,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_rfc3339_request(
+        _request = build_datetime_client_header_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -156,7 +156,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_rfc7231_request(
+        _request = build_datetime_client_header_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -200,7 +200,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_unix_timestamp_request(
+        _request = build_datetime_client_header_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -244,7 +244,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_unix_timestamp_array_request(
+        _request = build_datetime_client_header_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,

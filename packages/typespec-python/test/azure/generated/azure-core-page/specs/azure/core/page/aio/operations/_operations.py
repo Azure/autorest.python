@@ -32,13 +32,13 @@ from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
+    build_page_client_two_models_as_page_item_list_first_item_request,
+    build_page_client_two_models_as_page_item_list_second_item_request,
     build_page_list_with_custom_page_model_request,
     build_page_list_with_page_request,
     build_page_list_with_parameters_request,
     build_page_with_parameterized_next_link_request,
     build_page_with_relative_next_link_request,
-    build_two_models_as_page_item_list_first_item_request,
-    build_two_models_as_page_item_list_second_item_request,
 )
 from .._configuration import PageClientConfiguration
 
@@ -47,14 +47,14 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 JSON = MutableMapping[str, Any]
 
 
-class TwoModelsAsPageItemOperations:
+class PageClientTwoModelsAsPageItemOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.core.page.aio.PageClient`'s
-        :attr:`two_models_as_page_item` attribute.
+        :attr:`page_client_two_models_as_page_item` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -89,7 +89,7 @@ class TwoModelsAsPageItemOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_two_models_as_page_item_list_first_item_request(
+                _request = build_page_client_two_models_as_page_item_list_first_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -172,7 +172,7 @@ class TwoModelsAsPageItemOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_two_models_as_page_item_list_second_item_request(
+                _request = build_page_client_two_models_as_page_item_list_second_item_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,

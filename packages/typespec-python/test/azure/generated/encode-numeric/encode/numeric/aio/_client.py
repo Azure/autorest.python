@@ -16,14 +16,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NumericClientConfiguration
-from .operations import PropertyOperations
+from .operations import NumericClientPropertyOperations
 
 
 class NumericClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for encode decorator on integer.
 
-    :ivar property: PropertyOperations operations
-    :vartype property: encode.numeric.aio.operations.PropertyOperations
+    :ivar numeric_client_property: NumericClientPropertyOperations operations
+    :vartype numeric_client_property: encode.numeric.aio.operations.NumericClientPropertyOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -56,7 +56,9 @@ class NumericClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.numeric_client_property = NumericClientPropertyOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

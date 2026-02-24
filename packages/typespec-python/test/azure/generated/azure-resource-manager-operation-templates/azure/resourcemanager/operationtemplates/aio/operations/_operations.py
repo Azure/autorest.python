@@ -37,18 +37,18 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_check_name_availability_check_global_request,
-    build_check_name_availability_check_local_request,
-    build_lro_create_or_replace_request,
-    build_lro_delete_request,
-    build_lro_export_array_request,
-    build_lro_export_request,
-    build_lro_paging_post_paging_lro_request,
-    build_operations_list_request,
-    build_optional_body_get_request,
-    build_optional_body_patch_request,
-    build_optional_body_post_request,
-    build_optional_body_provider_post_request,
+    build_operation_templates_client_check_name_availability_check_global_request,
+    build_operation_templates_client_check_name_availability_check_local_request,
+    build_operation_templates_client_lro_create_or_replace_request,
+    build_operation_templates_client_lro_delete_request,
+    build_operation_templates_client_lro_export_array_request,
+    build_operation_templates_client_lro_export_request,
+    build_operation_templates_client_lro_paging_post_paging_lro_request,
+    build_operation_templates_client_operations_list_request,
+    build_operation_templates_client_optional_body_get_request,
+    build_operation_templates_client_optional_body_patch_request,
+    build_operation_templates_client_optional_body_post_request,
+    build_operation_templates_client_optional_body_provider_post_request,
 )
 from .._configuration import OperationTemplatesClientConfiguration
 
@@ -58,14 +58,14 @@ JSON = MutableMapping[str, Any]
 List = list
 
 
-class Operations:
+class OperationTemplatesClientOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.aio.OperationTemplatesClient`'s
-        :attr:`operations` attribute.
+        :attr:`operation_templates_client_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -100,7 +100,7 @@ class Operations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_operations_list_request(
+                _request = build_operation_templates_client_operations_list_request(
                     api_version=self._config.api_version,
                     headers=_headers,
                     params=_params,
@@ -163,14 +163,14 @@ class Operations:
         return AsyncItemPaged(get_next, extract_data)
 
 
-class CheckNameAvailabilityOperations:
+class OperationTemplatesClientCheckNameAvailabilityOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.aio.OperationTemplatesClient`'s
-        :attr:`check_name_availability` attribute.
+        :attr:`operation_templates_client_check_name_availability` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -267,7 +267,7 @@ class CheckNameAvailabilityOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_check_name_availability_check_global_request(
+        _request = build_operation_templates_client_check_name_availability_check_global_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -410,7 +410,7 @@ class CheckNameAvailabilityOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_check_name_availability_check_local_request(
+        _request = build_operation_templates_client_check_name_availability_check_local_request(
             location=location,
             subscription_id=self._config.subscription_id,
             content_type=content_type,
@@ -455,14 +455,14 @@ class CheckNameAvailabilityOperations:
         return deserialized  # type: ignore
 
 
-class LroOperations:
+class OperationTemplatesClientLroOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.aio.OperationTemplatesClient`'s
-        :attr:`lro` attribute.
+        :attr:`operation_templates_client_lro` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -496,7 +496,7 @@ class LroOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_create_or_replace_request(
+        _request = build_operation_templates_client_lro_create_or_replace_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -731,7 +731,7 @@ class LroOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_export_request(
+        _request = build_operation_templates_client_lro_export_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -964,7 +964,7 @@ class LroOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_lro_delete_request(
+        _request = build_operation_templates_client_lro_delete_request(
             resource_group_name=resource_group_name,
             order_name=order_name,
             subscription_id=self._config.subscription_id,
@@ -1089,7 +1089,7 @@ class LroOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lro_export_array_request(
+        _request = build_operation_templates_client_lro_export_array_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,
@@ -1254,14 +1254,14 @@ class LroOperations:
         )
 
 
-class LroPagingOperations:
+class OperationTemplatesClientLroPagingOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.aio.OperationTemplatesClient`'s
-        :attr:`lro_paging` attribute.
+        :attr:`operation_templates_client_lro_paging` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1287,7 +1287,7 @@ class LroPagingOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_lro_paging_post_paging_lro_request(
+        _request = build_operation_templates_client_lro_paging_post_paging_lro_request(
             resource_group_name=resource_group_name,
             product_name=product_name,
             subscription_id=self._config.subscription_id,
@@ -1364,7 +1364,7 @@ class LroPagingOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_lro_paging_post_paging_lro_request(
+                _request = build_operation_templates_client_lro_paging_post_paging_lro_request(
                     resource_group_name=resource_group_name,
                     product_name=product_name,
                     subscription_id=self._config.subscription_id,
@@ -1474,14 +1474,14 @@ class LroPagingOperations:
         )
 
 
-class OptionalBodyOperations:
+class OperationTemplatesClientOptionalBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.operationtemplates.aio.OperationTemplatesClient`'s
-        :attr:`optional_body` attribute.
+        :attr:`operation_templates_client_optional_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1517,7 +1517,7 @@ class OptionalBodyOperations:
 
         cls: ClsType[_models.Widget] = kwargs.pop("cls", None)
 
-        _request = build_optional_body_get_request(
+        _request = build_operation_templates_client_optional_body_get_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -1688,7 +1688,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_patch_request(
+        _request = build_operation_templates_client_optional_body_patch_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -1861,7 +1861,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_post_request(
+        _request = build_operation_templates_client_optional_body_post_request(
             resource_group_name=resource_group_name,
             widget_name=widget_name,
             subscription_id=self._config.subscription_id,
@@ -1997,7 +1997,7 @@ class OptionalBodyOperations:
             else:
                 _content = None
 
-        _request = build_optional_body_provider_post_request(
+        _request = build_operation_templates_client_optional_body_provider_post_request(
             subscription_id=self._config.subscription_id,
             content_type=content_type,
             api_version=self._config.api_version,

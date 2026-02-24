@@ -9,16 +9,18 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import DiscriminatedClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import EnvelopeOperations, NoEnvelopeOperations
+from .operations import DiscriminatedClientEnvelopeOperations, DiscriminatedClientNoEnvelopeOperations
 
 
 class DiscriminatedClient:  # pylint: disable=client-accepts-api-version-keyword
     """Describe scenarios for discriminated unions.
 
-    :ivar envelope: EnvelopeOperations operations
-    :vartype envelope: typetest.discriminatedunion.operations.EnvelopeOperations
-    :ivar no_envelope: NoEnvelopeOperations operations
-    :vartype no_envelope: typetest.discriminatedunion.operations.NoEnvelopeOperations
+    :ivar discriminated_client_envelope: DiscriminatedClientEnvelopeOperations operations
+    :vartype discriminated_client_envelope:
+     typetest.discriminatedunion.operations.DiscriminatedClientEnvelopeOperations
+    :ivar discriminated_client_no_envelope: DiscriminatedClientNoEnvelopeOperations operations
+    :vartype discriminated_client_no_envelope:
+     typetest.discriminatedunion.operations.DiscriminatedClientNoEnvelopeOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -45,8 +47,12 @@ class DiscriminatedClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.envelope = EnvelopeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.no_envelope = NoEnvelopeOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.discriminated_client_envelope = DiscriminatedClientEnvelopeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.discriminated_client_no_envelope = DiscriminatedClientNoEnvelopeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

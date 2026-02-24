@@ -34,10 +34,10 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_storage_accounts_create_or_update_request,
-    build_storage_accounts_get_request,
-    build_virtual_machines_create_or_update_request,
-    build_virtual_machines_get_request,
+    build_combined_storage_accounts_create_or_update_request,
+    build_combined_storage_accounts_get_request,
+    build_combined_virtual_machines_create_or_update_request,
+    build_combined_virtual_machines_get_request,
 )
 from .._configuration import CombinedClientConfiguration
 
@@ -46,14 +46,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class VirtualMachinesOperations:
+class CombinedVirtualMachinesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.multiservicesharedmodels.combined.aio.CombinedClient`'s
-        :attr:`virtual_machines` attribute.
+        :attr:`combined_virtual_machines` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -90,7 +90,7 @@ class VirtualMachinesOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2025-05-01"))
         cls: ClsType[_models.VirtualMachine] = kwargs.pop("cls", None)
 
-        _request = build_virtual_machines_get_request(
+        _request = build_combined_virtual_machines_get_request(
             resource_group_name=resource_group_name,
             vm_name=vm_name,
             subscription_id=self._config.subscription_id,
@@ -162,7 +162,7 @@ class VirtualMachinesOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_virtual_machines_create_or_update_request(
+        _request = build_combined_virtual_machines_create_or_update_request(
             resource_group_name=resource_group_name,
             vm_name=vm_name,
             subscription_id=self._config.subscription_id,
@@ -381,14 +381,14 @@ class VirtualMachinesOperations:
         )
 
 
-class StorageAccountsOperations:
+class CombinedStorageAccountsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.multiservicesharedmodels.combined.aio.CombinedClient`'s
-        :attr:`storage_accounts` attribute.
+        :attr:`combined_storage_accounts` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -425,7 +425,7 @@ class StorageAccountsOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2025-02-01"))
         cls: ClsType[_models.StorageAccount] = kwargs.pop("cls", None)
 
-        _request = build_storage_accounts_get_request(
+        _request = build_combined_storage_accounts_get_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,
@@ -497,7 +497,7 @@ class StorageAccountsOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_storage_accounts_create_or_update_request(
+        _request = build_combined_storage_accounts_create_or_update_request(
             resource_group_name=resource_group_name,
             account_name=account_name,
             subscription_id=self._config.subscription_id,

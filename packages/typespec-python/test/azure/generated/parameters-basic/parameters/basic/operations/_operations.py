@@ -38,7 +38,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_explicit_body_simple_request(**kwargs: Any) -> HttpRequest:
+def build_basic_client_explicit_body_simple_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -52,7 +52,7 @@ def build_explicit_body_simple_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_implicit_body_simple_request(**kwargs: Any) -> HttpRequest:
+def build_basic_client_implicit_body_simple_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -66,14 +66,14 @@ def build_implicit_body_simple_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class ExplicitBodyOperations:
+class BasicClientExplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.BasicClient`'s
-        :attr:`explicit_body` attribute.
+        :attr:`basic_client_explicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -158,7 +158,7 @@ class ExplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_explicit_body_simple_request(
+        _request = build_basic_client_explicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -184,14 +184,14 @@ class ExplicitBodyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ImplicitBodyOperations:
+class BasicClientImplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.BasicClient`'s
-        :attr:`implicit_body` attribute.
+        :attr:`basic_client_implicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -283,7 +283,7 @@ class ImplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_implicit_body_simple_request(
+        _request = build_basic_client_implicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

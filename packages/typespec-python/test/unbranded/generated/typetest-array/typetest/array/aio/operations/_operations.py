@@ -25,34 +25,34 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_boolean_value_get_request,
-    build_boolean_value_put_request,
-    build_datetime_value_get_request,
-    build_datetime_value_put_request,
-    build_duration_value_get_request,
-    build_duration_value_put_request,
-    build_float32_value_get_request,
-    build_float32_value_put_request,
-    build_int32_value_get_request,
-    build_int32_value_put_request,
-    build_int64_value_get_request,
-    build_int64_value_put_request,
-    build_model_value_get_request,
-    build_model_value_put_request,
-    build_nullable_boolean_value_get_request,
-    build_nullable_boolean_value_put_request,
-    build_nullable_float_value_get_request,
-    build_nullable_float_value_put_request,
-    build_nullable_int32_value_get_request,
-    build_nullable_int32_value_put_request,
-    build_nullable_model_value_get_request,
-    build_nullable_model_value_put_request,
-    build_nullable_string_value_get_request,
-    build_nullable_string_value_put_request,
-    build_string_value_get_request,
-    build_string_value_put_request,
-    build_unknown_value_get_request,
-    build_unknown_value_put_request,
+    build_array_client_boolean_value_get_request,
+    build_array_client_boolean_value_put_request,
+    build_array_client_datetime_value_get_request,
+    build_array_client_datetime_value_put_request,
+    build_array_client_duration_value_get_request,
+    build_array_client_duration_value_put_request,
+    build_array_client_float32_value_get_request,
+    build_array_client_float32_value_put_request,
+    build_array_client_int32_value_get_request,
+    build_array_client_int32_value_put_request,
+    build_array_client_int64_value_get_request,
+    build_array_client_int64_value_put_request,
+    build_array_client_model_value_get_request,
+    build_array_client_model_value_put_request,
+    build_array_client_nullable_boolean_value_get_request,
+    build_array_client_nullable_boolean_value_put_request,
+    build_array_client_nullable_float_value_get_request,
+    build_array_client_nullable_float_value_put_request,
+    build_array_client_nullable_int32_value_get_request,
+    build_array_client_nullable_int32_value_put_request,
+    build_array_client_nullable_model_value_get_request,
+    build_array_client_nullable_model_value_put_request,
+    build_array_client_nullable_string_value_get_request,
+    build_array_client_nullable_string_value_put_request,
+    build_array_client_string_value_get_request,
+    build_array_client_string_value_put_request,
+    build_array_client_unknown_value_get_request,
+    build_array_client_unknown_value_put_request,
 )
 from .._configuration import ArrayClientConfiguration
 
@@ -61,14 +61,14 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 JSON = MutableMapping[str, Any]
 
 
-class Int32ValueOperations:
+class ArrayClientInt32ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`int32_value` attribute.
+        :attr:`array_client_int32_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -98,7 +98,7 @@ class Int32ValueOperations:
 
         cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
-        _request = build_int32_value_get_request(
+        _request = build_array_client_int32_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -189,7 +189,7 @@ class Int32ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int32_value_put_request(
+        _request = build_array_client_int32_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -213,14 +213,14 @@ class Int32ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Int64ValueOperations:
+class ArrayClientInt64ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`int64_value` attribute.
+        :attr:`array_client_int64_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -250,7 +250,7 @@ class Int64ValueOperations:
 
         cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
-        _request = build_int64_value_get_request(
+        _request = build_array_client_int64_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -341,7 +341,7 @@ class Int64ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int64_value_put_request(
+        _request = build_array_client_int64_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -365,14 +365,14 @@ class Int64ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BooleanValueOperations:
+class ArrayClientBooleanValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`boolean_value` attribute.
+        :attr:`array_client_boolean_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -402,7 +402,7 @@ class BooleanValueOperations:
 
         cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
-        _request = build_boolean_value_get_request(
+        _request = build_array_client_boolean_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -493,7 +493,7 @@ class BooleanValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_value_put_request(
+        _request = build_array_client_boolean_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -517,14 +517,14 @@ class BooleanValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringValueOperations:
+class ArrayClientStringValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`string_value` attribute.
+        :attr:`array_client_string_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -554,7 +554,7 @@ class StringValueOperations:
 
         cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
-        _request = build_string_value_get_request(
+        _request = build_array_client_string_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -645,7 +645,7 @@ class StringValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_value_put_request(
+        _request = build_array_client_string_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -669,14 +669,14 @@ class StringValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Float32ValueOperations:
+class ArrayClientFloat32ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`float32_value` attribute.
+        :attr:`array_client_float32_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -706,7 +706,7 @@ class Float32ValueOperations:
 
         cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
-        _request = build_float32_value_get_request(
+        _request = build_array_client_float32_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -797,7 +797,7 @@ class Float32ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float32_value_put_request(
+        _request = build_array_client_float32_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -821,14 +821,14 @@ class Float32ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DatetimeValueOperations:
+class ArrayClientDatetimeValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`datetime_value` attribute.
+        :attr:`array_client_datetime_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -858,7 +858,7 @@ class DatetimeValueOperations:
 
         cls: ClsType[list[datetime.datetime]] = kwargs.pop("cls", None)
 
-        _request = build_datetime_value_get_request(
+        _request = build_array_client_datetime_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -951,7 +951,7 @@ class DatetimeValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True, format="rfc3339")  # type: ignore
 
-        _request = build_datetime_value_put_request(
+        _request = build_array_client_datetime_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -975,14 +975,14 @@ class DatetimeValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DurationValueOperations:
+class ArrayClientDurationValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`duration_value` attribute.
+        :attr:`array_client_duration_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1012,7 +1012,7 @@ class DurationValueOperations:
 
         cls: ClsType[list[datetime.timedelta]] = kwargs.pop("cls", None)
 
-        _request = build_duration_value_get_request(
+        _request = build_array_client_duration_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1105,7 +1105,7 @@ class DurationValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_value_put_request(
+        _request = build_array_client_duration_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1129,14 +1129,14 @@ class DurationValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownValueOperations:
+class ArrayClientUnknownValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`unknown_value` attribute.
+        :attr:`array_client_unknown_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1166,7 +1166,7 @@ class UnknownValueOperations:
 
         cls: ClsType[list[Any]] = kwargs.pop("cls", None)
 
-        _request = build_unknown_value_get_request(
+        _request = build_array_client_unknown_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1257,7 +1257,7 @@ class UnknownValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_value_put_request(
+        _request = build_array_client_unknown_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1281,14 +1281,14 @@ class UnknownValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ModelValueOperations:
+class ArrayClientModelValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`model_value` attribute.
+        :attr:`array_client_model_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1318,7 +1318,7 @@ class ModelValueOperations:
 
         cls: ClsType[list[_models.InnerModel]] = kwargs.pop("cls", None)
 
-        _request = build_model_value_get_request(
+        _request = build_array_client_model_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1425,7 +1425,7 @@ class ModelValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_value_put_request(
+        _request = build_array_client_model_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1449,14 +1449,14 @@ class ModelValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableFloatValueOperations:
+class ArrayClientNullableFloatValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`nullable_float_value` attribute.
+        :attr:`array_client_nullable_float_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1486,7 +1486,7 @@ class NullableFloatValueOperations:
 
         cls: ClsType[list[float]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_float_value_get_request(
+        _request = build_array_client_nullable_float_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1577,7 +1577,7 @@ class NullableFloatValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_float_value_put_request(
+        _request = build_array_client_nullable_float_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1601,14 +1601,14 @@ class NullableFloatValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableInt32ValueOperations:
+class ArrayClientNullableInt32ValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`nullable_int32_value` attribute.
+        :attr:`array_client_nullable_int32_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1638,7 +1638,7 @@ class NullableInt32ValueOperations:
 
         cls: ClsType[list[int]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_int32_value_get_request(
+        _request = build_array_client_nullable_int32_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1729,7 +1729,7 @@ class NullableInt32ValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_int32_value_put_request(
+        _request = build_array_client_nullable_int32_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1753,14 +1753,14 @@ class NullableInt32ValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableBooleanValueOperations:
+class ArrayClientNullableBooleanValueOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`nullable_boolean_value` attribute.
+        :attr:`array_client_nullable_boolean_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1790,7 +1790,7 @@ class NullableBooleanValueOperations:
 
         cls: ClsType[list[bool]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_boolean_value_get_request(
+        _request = build_array_client_nullable_boolean_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1881,7 +1881,7 @@ class NullableBooleanValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_boolean_value_put_request(
+        _request = build_array_client_nullable_boolean_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1905,14 +1905,14 @@ class NullableBooleanValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableStringValueOperations:
+class ArrayClientNullableStringValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`nullable_string_value` attribute.
+        :attr:`array_client_nullable_string_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1942,7 +1942,7 @@ class NullableStringValueOperations:
 
         cls: ClsType[list[str]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_string_value_get_request(
+        _request = build_array_client_nullable_string_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2033,7 +2033,7 @@ class NullableStringValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_string_value_put_request(
+        _request = build_array_client_nullable_string_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2057,14 +2057,14 @@ class NullableStringValueOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NullableModelValueOperations:
+class ArrayClientNullableModelValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.array.aio.ArrayClient`'s
-        :attr:`nullable_model_value` attribute.
+        :attr:`array_client_nullable_model_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2094,7 +2094,7 @@ class NullableModelValueOperations:
 
         cls: ClsType[list[_models.InnerModel]] = kwargs.pop("cls", None)
 
-        _request = build_nullable_model_value_get_request(
+        _request = build_array_client_nullable_model_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2201,7 +2201,7 @@ class NullableModelValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_nullable_model_value_put_request(
+        _request = build_array_client_nullable_model_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

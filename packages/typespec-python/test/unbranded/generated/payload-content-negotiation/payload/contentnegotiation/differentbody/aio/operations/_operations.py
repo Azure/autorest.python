@@ -22,22 +22,22 @@ from ...._utils.model_base import _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import ContentNegotiationClientConfiguration
 from ...operations._operations import (
-    build_different_body_get_avatar_as_json_request,
-    build_different_body_get_avatar_as_png_request,
+    build_content_negotiation_client_different_body_get_avatar_as_json_request,
+    build_content_negotiation_client_different_body_get_avatar_as_png_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class DifferentBodyOperations:
+class ContentNegotiationClientDifferentBodyOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.contentnegotiation.aio.ContentNegotiationClient`'s
-        :attr:`different_body` attribute.
+        :attr:`content_negotiation_client_different_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,7 +68,7 @@ class DifferentBodyOperations:
         accept: Literal["image/png"] = kwargs.pop("accept", _headers.pop("accept", "image/png"))
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_different_body_get_avatar_as_png_request(
+        _request = build_content_negotiation_client_different_body_get_avatar_as_png_request(
             accept=accept,
             headers=_headers,
             params=_params,
@@ -123,7 +123,7 @@ class DifferentBodyOperations:
         accept: Literal["application/json"] = kwargs.pop("accept", _headers.pop("accept", "application/json"))
         cls: ClsType[_models2.PngImageAsJson] = kwargs.pop("cls", None)
 
-        _request = build_different_body_get_avatar_as_json_request(
+        _request = build_content_negotiation_client_different_body_get_avatar_as_json_request(
             accept=accept,
             headers=_headers,
             params=_params,

@@ -20,7 +20,7 @@ from corehttp.utils import case_insensitive_dict
 from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BasicClientConfiguration
-from ...operations._operations import build_implicit_body_simple_request
+from ...operations._operations import build_basic_client_implicit_body_simple_request
 
 JSON = MutableMapping[str, Any]
 _Unset: Any = object()
@@ -28,14 +28,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ImplicitBodyOperations:
+class BasicClientImplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.aio.BasicClient`'s
-        :attr:`implicit_body` attribute.
+        :attr:`basic_client_implicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -124,7 +124,7 @@ class ImplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_implicit_body_simple_request(
+        _request = build_basic_client_implicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

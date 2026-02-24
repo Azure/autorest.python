@@ -16,14 +16,14 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import JsonlClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .basic.operations import BasicOperations
+from .basic.operations import JsonlClientBasicOperations
 
 
 class JsonlClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test of jsonl streaming.
 
-    :ivar basic: BasicOperations operations
-    :vartype basic: streaming.jsonl.operations.BasicOperations
+    :ivar jsonl_client_basic: JsonlClientBasicOperations operations
+    :vartype jsonl_client_basic: streaming.jsonl.operations.JsonlClientBasicOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -56,7 +56,9 @@ class JsonlClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.basic = BasicOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.jsonl_client_basic = JsonlClientBasicOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

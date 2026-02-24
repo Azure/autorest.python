@@ -17,28 +17,30 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import OverrideClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    GroupParametersOperations,
-    RemoveOptionalParameterOperations,
-    ReorderParametersOperations,
-    RequireOptionalParameterOperations,
+    OverrideClientGroupParametersOperations,
+    OverrideClientRemoveOptionalParameterOperations,
+    OverrideClientReorderParametersOperations,
+    OverrideClientRequireOptionalParameterOperations,
 )
 
 
 class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test scenarios for client override behavior.
 
-    :ivar reorder_parameters: ReorderParametersOperations operations
-    :vartype reorder_parameters:
-     specs.azure.clientgenerator.core.override.operations.ReorderParametersOperations
-    :ivar group_parameters: GroupParametersOperations operations
-    :vartype group_parameters:
-     specs.azure.clientgenerator.core.override.operations.GroupParametersOperations
-    :ivar require_optional_parameter: RequireOptionalParameterOperations operations
-    :vartype require_optional_parameter:
-     specs.azure.clientgenerator.core.override.operations.RequireOptionalParameterOperations
-    :ivar remove_optional_parameter: RemoveOptionalParameterOperations operations
-    :vartype remove_optional_parameter:
-     specs.azure.clientgenerator.core.override.operations.RemoveOptionalParameterOperations
+    :ivar override_client_reorder_parameters: OverrideClientReorderParametersOperations operations
+    :vartype override_client_reorder_parameters:
+     specs.azure.clientgenerator.core.override.operations.OverrideClientReorderParametersOperations
+    :ivar override_client_group_parameters: OverrideClientGroupParametersOperations operations
+    :vartype override_client_group_parameters:
+     specs.azure.clientgenerator.core.override.operations.OverrideClientGroupParametersOperations
+    :ivar override_client_require_optional_parameter:
+     OverrideClientRequireOptionalParameterOperations operations
+    :vartype override_client_require_optional_parameter:
+     specs.azure.clientgenerator.core.override.operations.OverrideClientRequireOptionalParameterOperations
+    :ivar override_client_remove_optional_parameter:
+     OverrideClientRemoveOptionalParameterOperations operations
+    :vartype override_client_remove_optional_parameter:
+     specs.azure.clientgenerator.core.override.operations.OverrideClientRemoveOptionalParameterOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -71,16 +73,16 @@ class OverrideClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.reorder_parameters = ReorderParametersOperations(
+        self.override_client_reorder_parameters = OverrideClientReorderParametersOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.group_parameters = GroupParametersOperations(
+        self.override_client_group_parameters = OverrideClientGroupParametersOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.require_optional_parameter = RequireOptionalParameterOperations(
+        self.override_client_require_optional_parameter = OverrideClientRequireOptionalParameterOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.remove_optional_parameter = RemoveOptionalParameterOperations(
+        self.override_client_remove_optional_parameter = OverrideClientRemoveOptionalParameterOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

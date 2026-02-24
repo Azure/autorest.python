@@ -19,21 +19,21 @@ from ......_utils.model_base import Model as _Model
 from ......_utils.serialization import Deserializer, Serializer
 from ......_utils.utils import prepare_multipart_form_data
 from ......aio._configuration import MultiPartClientConfiguration
-from ...operations._operations import build_form_data_http_parts_non_string_float_request
+from ...operations._operations import build_multi_part_client_form_data_http_parts_non_string_float_request
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FormDataHttpPartsNonStringOperations:
+class MultiPartClientFormDataHttpPartsNonStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`non_string` attribute.
+        :attr:`multi_part_client_form_data_http_parts_non_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -92,7 +92,7 @@ class FormDataHttpPartsNonStringOperations:
         _data_fields: list[str] = ["temperature"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_non_string_float_request(
+        _request = build_multi_part_client_form_data_http_parts_non_string_float_request(
             files=_files,
             headers=_headers,
             params=_params,

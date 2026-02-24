@@ -9,20 +9,21 @@ from corehttp.runtime import PipelineClient, policies
 
 from ._configuration import RoutesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import InInterfaceOperations, _RoutesClientOperationsMixin
-from .pathparameters.operations import PathParametersOperations
-from .queryparameters.operations import QueryParametersOperations
+from .operations import RoutesClientInInterfaceOperations, _RoutesClientOperationsMixin
+from .pathparameters.operations import RoutesClientPathParametersOperations
+from .queryparameters.operations import RoutesClientQueryParametersOperations
 
 
 class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Define scenario in building the http route/uri.
 
-    :ivar path_parameters: PathParametersOperations operations
-    :vartype path_parameters: routes.operations.PathParametersOperations
-    :ivar query_parameters: QueryParametersOperations operations
-    :vartype query_parameters: routes.operations.QueryParametersOperations
-    :ivar in_interface: InInterfaceOperations operations
-    :vartype in_interface: routes.operations.InInterfaceOperations
+    :ivar routes_client_path_parameters: RoutesClientPathParametersOperations operations
+    :vartype routes_client_path_parameters: routes.operations.RoutesClientPathParametersOperations
+    :ivar routes_client_query_parameters: RoutesClientQueryParametersOperations operations
+    :vartype routes_client_query_parameters:
+     routes.operations.RoutesClientQueryParametersOperations
+    :ivar routes_client_in_interface: RoutesClientInInterfaceOperations operations
+    :vartype routes_client_in_interface: routes.operations.RoutesClientInInterfaceOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -49,11 +50,15 @@ class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.path_parameters = PathParametersOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.query_parameters = QueryParametersOperations(
+        self.routes_client_path_parameters = RoutesClientPathParametersOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.in_interface = InInterfaceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.routes_client_query_parameters = RoutesClientQueryParametersOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.routes_client_in_interface = RoutesClientInInterfaceOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

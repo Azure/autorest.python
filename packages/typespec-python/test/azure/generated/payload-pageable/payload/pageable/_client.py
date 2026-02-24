@@ -16,20 +16,24 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageableClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .pagesize.operations import PageSizeOperations
-from .serverdrivenpagination.operations import ServerDrivenPaginationOperations
-from .xmlpagination.operations import XmlPaginationOperations
+from .pagesize.operations import PageableClientPageSizeOperations
+from .serverdrivenpagination.operations import PageableClientServerDrivenPaginationOperations
+from .xmlpagination.operations import PageableClientXmlPaginationOperations
 
 
 class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for pageable payload.
 
-    :ivar server_driven_pagination: ServerDrivenPaginationOperations operations
-    :vartype server_driven_pagination: payload.pageable.operations.ServerDrivenPaginationOperations
-    :ivar page_size: PageSizeOperations operations
-    :vartype page_size: payload.pageable.operations.PageSizeOperations
-    :ivar xml_pagination: XmlPaginationOperations operations
-    :vartype xml_pagination: payload.pageable.operations.XmlPaginationOperations
+    :ivar pageable_client_server_driven_pagination: PageableClientServerDrivenPaginationOperations
+     operations
+    :vartype pageable_client_server_driven_pagination:
+     payload.pageable.operations.PageableClientServerDrivenPaginationOperations
+    :ivar pageable_client_page_size: PageableClientPageSizeOperations operations
+    :vartype pageable_client_page_size:
+     payload.pageable.operations.PageableClientPageSizeOperations
+    :ivar pageable_client_xml_pagination: PageableClientXmlPaginationOperations operations
+    :vartype pageable_client_xml_pagination:
+     payload.pageable.operations.PageableClientXmlPaginationOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -62,11 +66,15 @@ class PageableClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.server_driven_pagination = ServerDrivenPaginationOperations(
+        self.pageable_client_server_driven_pagination = PageableClientServerDrivenPaginationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.page_size = PageSizeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.xml_pagination = XmlPaginationOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.pageable_client_page_size = PageableClientPageSizeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.pageable_client_xml_pagination = PageableClientXmlPaginationOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

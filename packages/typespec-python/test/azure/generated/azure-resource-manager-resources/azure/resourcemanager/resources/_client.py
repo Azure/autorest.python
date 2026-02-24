@@ -20,11 +20,11 @@ from azure.mgmt.core.tools import get_arm_endpoints
 from ._configuration import ResourcesClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import (
-    ExtensionsResourcesOperations,
-    LocationResourcesOperations,
-    NestedOperations,
-    SingletonOperations,
-    TopLevelOperations,
+    ResourcesClientExtensionsResourcesOperations,
+    ResourcesClientLocationResourcesOperations,
+    ResourcesClientNestedOperations,
+    ResourcesClientSingletonOperations,
+    ResourcesClientTopLevelOperations,
 )
 
 if TYPE_CHECKING:
@@ -35,18 +35,23 @@ if TYPE_CHECKING:
 class ResourcesClient:
     """Arm Resource Provider management API.
 
-    :ivar top_level: TopLevelOperations operations
-    :vartype top_level: azure.resourcemanager.resources.operations.TopLevelOperations
-    :ivar nested: NestedOperations operations
-    :vartype nested: azure.resourcemanager.resources.operations.NestedOperations
-    :ivar singleton: SingletonOperations operations
-    :vartype singleton: azure.resourcemanager.resources.operations.SingletonOperations
-    :ivar extensions_resources: ExtensionsResourcesOperations operations
-    :vartype extensions_resources:
-     azure.resourcemanager.resources.operations.ExtensionsResourcesOperations
-    :ivar location_resources: LocationResourcesOperations operations
-    :vartype location_resources:
-     azure.resourcemanager.resources.operations.LocationResourcesOperations
+    :ivar resources_client_top_level: ResourcesClientTopLevelOperations operations
+    :vartype resources_client_top_level:
+     azure.resourcemanager.resources.operations.ResourcesClientTopLevelOperations
+    :ivar resources_client_nested: ResourcesClientNestedOperations operations
+    :vartype resources_client_nested:
+     azure.resourcemanager.resources.operations.ResourcesClientNestedOperations
+    :ivar resources_client_singleton: ResourcesClientSingletonOperations operations
+    :vartype resources_client_singleton:
+     azure.resourcemanager.resources.operations.ResourcesClientSingletonOperations
+    :ivar resources_client_extensions_resources: ResourcesClientExtensionsResourcesOperations
+     operations
+    :vartype resources_client_extensions_resources:
+     azure.resourcemanager.resources.operations.ResourcesClientExtensionsResourcesOperations
+    :ivar resources_client_location_resources: ResourcesClientLocationResourcesOperations
+     operations
+    :vartype resources_client_location_resources:
+     azure.resourcemanager.resources.operations.ResourcesClientLocationResourcesOperations
     :param credential: Credential used to authenticate requests to the service. Required.
     :type credential: ~azure.core.credentials.TokenCredential
     :param subscription_id: The ID of the target subscription. The value must be an UUID. Required.
@@ -111,13 +116,19 @@ class ResourcesClient:
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.top_level = TopLevelOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.nested = NestedOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.singleton = SingletonOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.extensions_resources = ExtensionsResourcesOperations(
+        self.resources_client_top_level = ResourcesClientTopLevelOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.location_resources = LocationResourcesOperations(
+        self.resources_client_nested = ResourcesClientNestedOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.resources_client_singleton = ResourcesClientSingletonOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.resources_client_extensions_resources = ResourcesClientExtensionsResourcesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.resources_client_location_resources = ResourcesClientLocationResourcesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

@@ -29,7 +29,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_file_upload_file_specific_content_type_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_file_upload_file_specific_content_type_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -40,7 +40,7 @@ def build_form_data_file_upload_file_specific_content_type_request(  # pylint: d
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_upload_file_required_filename_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_file_upload_file_required_filename_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -51,7 +51,9 @@ def build_form_data_file_upload_file_required_filename_request(  # pylint: disab
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_file_upload_file_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_file_upload_file_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -60,14 +62,14 @@ def build_form_data_file_upload_file_array_request(**kwargs: Any) -> HttpRequest
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FormDataFileOperations:
+class MultiPartClientFormDataFileOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.MultiPartClient`'s
-        :attr:`file` attribute.
+        :attr:`multi_part_client_form_data_file` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -131,7 +133,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_specific_content_type_request(
+        _request = build_multi_part_client_form_data_file_upload_file_specific_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -204,7 +206,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_required_filename_request(
+        _request = build_multi_part_client_form_data_file_upload_file_required_filename_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -277,7 +279,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_array_request(
+        _request = build_multi_part_client_form_data_file_upload_file_array_request(
             files=_files,
             headers=_headers,
             params=_params,

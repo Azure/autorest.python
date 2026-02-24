@@ -26,20 +26,20 @@ from azure.core.utils import case_insensitive_dict
 
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import JsonlClientConfiguration
-from ...operations._operations import build_basic_receive_request, build_basic_send_request
+from ...operations._operations import build_jsonl_client_basic_receive_request, build_jsonl_client_basic_send_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class BasicOperations:
+class JsonlClientBasicOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~streaming.jsonl.aio.JsonlClient`'s
-        :attr:`basic` attribute.
+        :attr:`jsonl_client_basic` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -75,7 +75,7 @@ class BasicOperations:
 
         _content = body
 
-        _request = build_basic_send_request(
+        _request = build_jsonl_client_basic_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -121,7 +121,7 @@ class BasicOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_basic_receive_request(
+        _request = build_jsonl_client_basic_receive_request(
             headers=_headers,
             params=_params,
         )

@@ -20,7 +20,7 @@ from ... import models as _models2
 from ..._configuration import PageableClientConfiguration
 from ..._utils.model_base import _deserialize
 from ..._utils.serialization import Deserializer, Serializer
-from ..continuationtoken.operations._operations import ServerDrivenPaginationContinuationTokenOperations
+from ..continuationtoken.operations._operations import PageableClientServerDrivenPaginationContinuationTokenOperations
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, HttpResponse], T, dict[str, Any]], Any]]
@@ -29,7 +29,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_server_driven_pagination_link_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_link_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -43,7 +45,9 @@ def build_server_driven_pagination_link_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_link_string_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_link_string_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -57,7 +61,9 @@ def build_server_driven_pagination_link_string_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_nested_link_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_nested_link_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -71,14 +77,14 @@ def build_server_driven_pagination_nested_link_request(**kwargs: Any) -> HttpReq
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class ServerDrivenPaginationOperations:
+class PageableClientServerDrivenPaginationOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.PageableClient`'s
-        :attr:`server_driven_pagination` attribute.
+        :attr:`pageable_client_server_driven_pagination` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -88,8 +94,10 @@ class ServerDrivenPaginationOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.continuation_token = ServerDrivenPaginationContinuationTokenOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.pageable_client_server_driven_pagination_continuation_token = (
+            PageableClientServerDrivenPaginationContinuationTokenOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
 
     def link(self, **kwargs: Any) -> ItemPaged["_models2.Pet"]:
@@ -115,7 +123,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_link_request(
+                _request = build_pageable_client_server_driven_pagination_link_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -182,7 +190,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_link_string_request(
+                _request = build_pageable_client_server_driven_pagination_link_string_request(
                     headers=_headers,
                     params=_params,
                 )
@@ -249,7 +257,7 @@ class ServerDrivenPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_server_driven_pagination_nested_link_request(
+                _request = build_pageable_client_server_driven_pagination_nested_link_request(
                     headers=_headers,
                     params=_params,
                 )

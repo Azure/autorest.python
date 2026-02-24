@@ -37,7 +37,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_string_get_known_value_request(**kwargs: Any) -> HttpRequest:
+def build_fixed_client_string_get_known_value_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -51,7 +51,7 @@ def build_string_get_known_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_known_value_request(**kwargs: Any) -> HttpRequest:
+def build_fixed_client_string_put_known_value_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -64,7 +64,7 @@ def build_string_put_known_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_put_unknown_value_request(**kwargs: Any) -> HttpRequest:
+def build_fixed_client_string_put_unknown_value_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -77,14 +77,14 @@ def build_string_put_unknown_value_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-class StringOperations:
+class FixedClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.enum.fixed.FixedClient`'s
-        :attr:`string` attribute.
+        :attr:`fixed_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -115,7 +115,7 @@ class StringOperations:
 
         cls: ClsType[Union[str, _models.DaysOfWeekEnum]] = kwargs.pop("cls", None)
 
-        _request = build_string_get_known_value_request(
+        _request = build_fixed_client_string_get_known_value_request(
             headers=_headers,
             params=_params,
         )
@@ -182,7 +182,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_known_value_request(
+        _request = build_fixed_client_string_put_known_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -236,7 +236,7 @@ class StringOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_unknown_value_request(
+        _request = build_fixed_client_string_put_unknown_value_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

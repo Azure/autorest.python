@@ -16,21 +16,21 @@ from corehttp.runtime.pipeline import PipelineResponse
 
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
-from ...operations._operations import build_in_interface_fixed_request, build_routes_fixed_request
+from ...operations._operations import build_routes_client_in_interface_fixed_request, build_routes_fixed_request
 from .._configuration import RoutesClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class InInterfaceOperations:
+class RoutesClientInInterfaceOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`in_interface` attribute.
+        :attr:`routes_client_in_interface` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -60,7 +60,7 @@ class InInterfaceOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_in_interface_fixed_request(
+        _request = build_routes_client_in_interface_fixed_request(
             headers=_headers,
             params=_params,
         )

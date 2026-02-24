@@ -23,20 +23,20 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import CollectionFormatClientConfiguration
-from ...operations._operations import build_header_csv_request
+from ...operations._operations import build_collection_format_client_header_csv_request
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class HeaderOperations:
+class CollectionFormatClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.collectionformat.aio.CollectionFormatClient`'s
-        :attr:`header` attribute.
+        :attr:`collection_format_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -69,7 +69,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_csv_request(
+        _request = build_collection_format_client_header_csv_request(
             colors=colors,
             headers=_headers,
             params=_params,

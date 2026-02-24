@@ -25,13 +25,13 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ...operations._operations import (
-    build_bar_five_request,
-    build_bar_six_request,
-    build_baz_foo_seven_request,
-    build_foo_four_request,
-    build_foo_three_request,
-    build_qux_bar_nine_request,
-    build_qux_eight_request,
+    build_service_client_bar_five_request,
+    build_service_client_bar_six_request,
+    build_service_client_baz_foo_seven_request,
+    build_service_client_foo_four_request,
+    build_service_client_foo_three_request,
+    build_service_client_qux_bar_nine_request,
+    build_service_client_qux_eight_request,
     build_service_one_request,
     build_service_two_request,
 )
@@ -41,14 +41,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class BazOperations:
+class ServiceClientBazOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`baz` attribute.
+        :attr:`service_client_baz` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -58,17 +58,19 @@ class BazOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.foo = BazFooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.service_client_baz_foo = ServiceClientBazFooOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
 
-class QuxOperations:
+class ServiceClientQuxOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`qux` attribute.
+        :attr:`service_client_qux` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -78,7 +80,9 @@ class QuxOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.bar = QuxBarOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.service_client_qux_bar = ServiceClientQuxBarOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     @distributed_trace_async
     async def eight(self, **kwargs: Any) -> None:
@@ -101,7 +105,7 @@ class QuxOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_qux_eight_request(
+        _request = build_service_client_qux_eight_request(
             headers=_headers,
             params=_params,
         )
@@ -126,14 +130,14 @@ class QuxOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FooOperations:
+class ServiceClientFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`foo` attribute.
+        :attr:`service_client_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -164,7 +168,7 @@ class FooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_three_request(
+        _request = build_service_client_foo_three_request(
             headers=_headers,
             params=_params,
         )
@@ -209,7 +213,7 @@ class FooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_four_request(
+        _request = build_service_client_foo_four_request(
             headers=_headers,
             params=_params,
         )
@@ -234,14 +238,14 @@ class FooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BarOperations:
+class ServiceClientBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`bar` attribute.
+        :attr:`service_client_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -272,7 +276,7 @@ class BarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_five_request(
+        _request = build_service_client_bar_five_request(
             headers=_headers,
             params=_params,
         )
@@ -317,7 +321,7 @@ class BarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_six_request(
+        _request = build_service_client_bar_six_request(
             headers=_headers,
             params=_params,
         )
@@ -437,14 +441,14 @@ class _ServiceClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BazFooOperations:
+class ServiceClientBazFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`foo` attribute.
+        :attr:`service_client_baz_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -475,7 +479,7 @@ class BazFooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_baz_foo_seven_request(
+        _request = build_service_client_baz_foo_seven_request(
             headers=_headers,
             params=_params,
         )
@@ -500,14 +504,14 @@ class BazFooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class QuxBarOperations:
+class ServiceClientQuxBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.aio.ServiceClient`'s
-        :attr:`bar` attribute.
+        :attr:`service_client_qux_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -538,7 +542,7 @@ class QuxBarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_qux_bar_nine_request(
+        _request = build_service_client_qux_bar_nine_request(
             headers=_headers,
             params=_params,
         )

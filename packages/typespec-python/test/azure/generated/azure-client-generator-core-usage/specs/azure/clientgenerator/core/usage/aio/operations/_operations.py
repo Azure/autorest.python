@@ -30,10 +30,10 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_model_in_operation_input_to_input_output_request,
-    build_model_in_operation_model_in_read_only_property_request,
-    build_model_in_operation_orphan_model_serializable_request,
-    build_model_in_operation_output_to_input_output_request,
+    build_usage_client_model_in_operation_input_to_input_output_request,
+    build_usage_client_model_in_operation_model_in_read_only_property_request,
+    build_usage_client_model_in_operation_orphan_model_serializable_request,
+    build_usage_client_model_in_operation_output_to_input_output_request,
 )
 from .._configuration import UsageClientConfiguration
 
@@ -42,14 +42,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ModelInOperationOperations:
+class UsageClientModelInOperationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.usage.aio.UsageClient`'s
-        :attr:`model_in_operation` attribute.
+        :attr:`usage_client_model_in_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -160,7 +160,7 @@ class ModelInOperationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_input_to_input_output_request(
+        _request = build_usage_client_model_in_operation_input_to_input_output_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -212,7 +212,7 @@ class ModelInOperationOperations:
 
         cls: ClsType[_models.OutputModel] = kwargs.pop("cls", None)
 
-        _request = build_model_in_operation_output_to_input_output_request(
+        _request = build_usage_client_model_in_operation_output_to_input_output_request(
             headers=_headers,
             params=_params,
         )
@@ -396,7 +396,7 @@ class ModelInOperationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_model_in_read_only_property_request(
+        _request = build_usage_client_model_in_operation_model_in_read_only_property_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -468,7 +468,7 @@ class ModelInOperationOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_in_operation_orphan_model_serializable_request(
+        _request = build_usage_client_model_in_operation_orphan_model_serializable_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

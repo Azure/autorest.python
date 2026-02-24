@@ -29,21 +29,21 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 from ... import models as _models
 from ..._utils.model_base import _deserialize, _failsafe_deserialize
 from ..._utils.serialization import Deserializer, Serializer
-from ...operations._operations import build_large_headers_two6_k_request
+from ...operations._operations import build_large_header_client_large_headers_two6_k_request
 from .._configuration import LargeHeaderClientConfiguration
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class LargeHeadersOperations:
+class LargeHeaderClientLargeHeadersOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.largeheader.aio.LargeHeaderClient`'s
-        :attr:`large_headers` attribute.
+        :attr:`large_header_client_large_headers` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -69,7 +69,7 @@ class LargeHeadersOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_large_headers_two6_k_request(
+        _request = build_large_header_client_large_headers_two6_k_request(
             resource_group_name=resource_group_name,
             large_header_name=large_header_name,
             subscription_id=self._config.subscription_id,

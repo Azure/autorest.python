@@ -27,23 +27,23 @@ from ..._utils.model_base import Model as _Model
 from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import prepare_multipart_form_data
 from ...operations._operations import (
-    build_form_data_anonymous_model_request,
-    build_form_data_basic_request,
-    build_form_data_binary_array_parts_request,
-    build_form_data_check_file_name_and_content_type_request,
-    build_form_data_file_array_and_basic_request,
-    build_form_data_file_upload_file_array_request,
-    build_form_data_file_upload_file_required_filename_request,
-    build_form_data_file_upload_file_specific_content_type_request,
-    build_form_data_http_parts_content_type_image_jpeg_content_type_request,
-    build_form_data_http_parts_content_type_optional_content_type_request,
-    build_form_data_http_parts_content_type_required_content_type_request,
-    build_form_data_http_parts_json_array_and_file_array_request,
-    build_form_data_http_parts_non_string_float_request,
-    build_form_data_json_part_request,
-    build_form_data_multi_binary_parts_request,
-    build_form_data_optional_parts_request,
-    build_form_data_with_wire_name_request,
+    build_multi_part_client_form_data_anonymous_model_request,
+    build_multi_part_client_form_data_basic_request,
+    build_multi_part_client_form_data_binary_array_parts_request,
+    build_multi_part_client_form_data_check_file_name_and_content_type_request,
+    build_multi_part_client_form_data_file_array_and_basic_request,
+    build_multi_part_client_form_data_file_upload_file_array_request,
+    build_multi_part_client_form_data_file_upload_file_required_filename_request,
+    build_multi_part_client_form_data_file_upload_file_specific_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request,
+    build_multi_part_client_form_data_http_parts_content_type_required_content_type_request,
+    build_multi_part_client_form_data_http_parts_json_array_and_file_array_request,
+    build_multi_part_client_form_data_http_parts_non_string_float_request,
+    build_multi_part_client_form_data_json_part_request,
+    build_multi_part_client_form_data_multi_binary_parts_request,
+    build_multi_part_client_form_data_optional_parts_request,
+    build_multi_part_client_form_data_with_wire_name_request,
 )
 from .._configuration import MultiPartClientConfiguration
 
@@ -52,14 +52,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class FormDataOperations:
+class MultiPartClientFormDataOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`form_data` attribute.
+        :attr:`multi_part_client_form_data` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -69,8 +69,12 @@ class FormDataOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.http_parts = FormDataHttpPartsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.file = FormDataFileOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.multi_part_client_form_data_http_parts = MultiPartClientFormDataHttpPartsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.multi_part_client_form_data_file = MultiPartClientFormDataFileOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     @overload
     async def basic(self, body: _models.MultiPartRequest, **kwargs: Any) -> None:
@@ -122,7 +126,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_basic_request(
+        _request = build_multi_part_client_form_data_basic_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -196,7 +200,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_with_wire_name_request(
+        _request = build_multi_part_client_form_data_with_wire_name_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -270,7 +274,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_optional_parts_request(
+        _request = build_multi_part_client_form_data_optional_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -344,7 +348,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id", "address"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_array_and_basic_request(
+        _request = build_multi_part_client_form_data_file_array_and_basic_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -418,7 +422,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["address"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_json_part_request(
+        _request = build_multi_part_client_form_data_json_part_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -492,7 +496,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_binary_array_parts_request(
+        _request = build_multi_part_client_form_data_binary_array_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -566,7 +570,7 @@ class FormDataOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_multi_binary_parts_request(
+        _request = build_multi_part_client_form_data_multi_binary_parts_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -642,7 +646,7 @@ class FormDataOperations:
         _data_fields: list[str] = ["id"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_check_file_name_and_content_type_request(
+        _request = build_multi_part_client_form_data_check_file_name_and_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -716,7 +720,7 @@ class FormDataOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_anonymous_model_request(
+        _request = build_multi_part_client_form_data_anonymous_model_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -741,14 +745,14 @@ class FormDataOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsOperations:
+class MultiPartClientFormDataHttpPartsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`http_parts` attribute.
+        :attr:`multi_part_client_form_data_http_parts` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -758,10 +762,12 @@ class FormDataHttpPartsOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.content_type = FormDataHttpPartsContentTypeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.multi_part_client_form_data_http_parts_content_type = (
+            MultiPartClientFormDataHttpPartsContentTypeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.non_string = FormDataHttpPartsNonStringOperations(
+        self.multi_part_client_form_data_http_parts_non_string = MultiPartClientFormDataHttpPartsNonStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 
@@ -817,7 +823,7 @@ class FormDataHttpPartsOperations:
         _data_fields: list[str] = ["id", "address", "previousAddresses"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_json_array_and_file_array_request(
+        _request = build_multi_part_client_form_data_http_parts_json_array_and_file_array_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -842,14 +848,14 @@ class FormDataHttpPartsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataFileOperations:
+class MultiPartClientFormDataFileOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`file` attribute.
+        :attr:`multi_part_client_form_data_file` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -913,7 +919,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_specific_content_type_request(
+        _request = build_multi_part_client_form_data_file_upload_file_specific_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -991,7 +997,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_required_filename_request(
+        _request = build_multi_part_client_form_data_file_upload_file_required_filename_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -1065,7 +1071,7 @@ class FormDataFileOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_file_upload_file_array_request(
+        _request = build_multi_part_client_form_data_file_upload_file_array_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -1090,14 +1096,14 @@ class FormDataFileOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsContentTypeOperations:
+class MultiPartClientFormDataHttpPartsContentTypeOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`content_type` attribute.
+        :attr:`multi_part_client_form_data_http_parts_content_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1162,7 +1168,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_image_jpeg_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -1241,7 +1247,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_required_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_required_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -1320,7 +1326,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_optional_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -1345,14 +1351,14 @@ class FormDataHttpPartsContentTypeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FormDataHttpPartsNonStringOperations:
+class MultiPartClientFormDataHttpPartsNonStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.aio.MultiPartClient`'s
-        :attr:`non_string` attribute.
+        :attr:`multi_part_client_form_data_http_parts_non_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1412,7 +1418,7 @@ class FormDataHttpPartsNonStringOperations:
         _data_fields: list[str] = ["temperature"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_non_string_float_request(
+        _request = build_multi_part_client_form_data_http_parts_non_string_float_request(
             files=_files,
             headers=_headers,
             params=_params,

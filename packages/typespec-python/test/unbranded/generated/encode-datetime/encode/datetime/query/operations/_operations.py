@@ -26,7 +26,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_default_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_query_default_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -38,7 +40,9 @@ def build_query_default_request(*, value: datetime.datetime, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_query_rfc3339_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -50,7 +54,9 @@ def build_query_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_query_rfc7231_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -62,7 +68,9 @@ def build_query_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> H
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_unix_timestamp_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_query_unix_timestamp_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -74,7 +82,9 @@ def build_query_unix_timestamp_request(*, value: datetime.datetime, **kwargs: An
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_unix_timestamp_array_request(*, value: list[datetime.datetime], **kwargs: Any) -> HttpRequest:
+def build_datetime_client_query_unix_timestamp_array_request(  # pylint: disable=name-too-long
+    *, value: list[datetime.datetime], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -86,14 +96,14 @@ def build_query_unix_timestamp_array_request(*, value: list[datetime.datetime], 
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryOperations:
+class DatetimeClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.DatetimeClient`'s
-        :attr:`query` attribute.
+        :attr:`datetime_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -127,7 +137,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_datetime_client_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -173,7 +183,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_rfc3339_request(
+        _request = build_datetime_client_query_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -219,7 +229,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_rfc7231_request(
+        _request = build_datetime_client_query_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -265,7 +275,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_unix_timestamp_request(
+        _request = build_datetime_client_query_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -311,7 +321,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_unix_timestamp_array_request(
+        _request = build_datetime_client_query_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,

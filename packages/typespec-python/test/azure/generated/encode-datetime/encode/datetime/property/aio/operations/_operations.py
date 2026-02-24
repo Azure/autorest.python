@@ -31,11 +31,11 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import DatetimeClientConfiguration
 from ...operations._operations import (
-    build_property_default_request,
-    build_property_rfc3339_request,
-    build_property_rfc7231_request,
-    build_property_unix_timestamp_array_request,
-    build_property_unix_timestamp_request,
+    build_datetime_client_property_default_request,
+    build_datetime_client_property_rfc3339_request,
+    build_datetime_client_property_rfc7231_request,
+    build_datetime_client_property_unix_timestamp_array_request,
+    build_datetime_client_property_unix_timestamp_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -43,14 +43,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class DatetimeClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.aio.DatetimeClient`'s
-        :attr:`property` attribute.
+        :attr:`datetime_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -141,7 +141,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_datetime_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -259,7 +259,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_rfc3339_request(
+        _request = build_datetime_client_property_rfc3339_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -377,7 +377,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_rfc7231_request(
+        _request = build_datetime_client_property_rfc7231_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -500,7 +500,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_unix_timestamp_request(
+        _request = build_datetime_client_property_unix_timestamp_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -627,7 +627,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_unix_timestamp_array_request(
+        _request = build_datetime_client_property_unix_timestamp_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

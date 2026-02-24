@@ -1,3 +1,4 @@
+# pylint: disable=line-too-long,useless-suppression
 # coding=utf-8
 from collections.abc import MutableMapping
 from typing import Any, Callable, Optional, TypeVar, Union, overload
@@ -29,7 +30,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_http_parts_content_type_image_jpeg_content_type_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -40,7 +41,7 @@ def build_form_data_http_parts_content_type_image_jpeg_content_type_request(  # 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_http_parts_content_type_required_content_type_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_http_parts_content_type_required_content_type_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -51,7 +52,7 @@ def build_form_data_http_parts_content_type_required_content_type_request(  # py
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_form_data_http_parts_content_type_optional_content_type_request(  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -62,14 +63,14 @@ def build_form_data_http_parts_content_type_optional_content_type_request(  # py
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FormDataHttpPartsContentTypeOperations:
+class MultiPartClientFormDataHttpPartsContentTypeOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.MultiPartClient`'s
-        :attr:`content_type` attribute.
+        :attr:`multi_part_client_form_data_http_parts_content_type` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -131,7 +132,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_image_jpeg_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_image_jpeg_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -205,7 +206,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_required_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_required_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,
@@ -279,7 +280,7 @@ class FormDataHttpPartsContentTypeOperations:
         _data_fields: list[str] = []
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_content_type_optional_content_type_request(
+        _request = build_multi_part_client_form_data_http_parts_content_type_optional_content_type_request(
             files=_files,
             headers=_headers,
             params=_params,

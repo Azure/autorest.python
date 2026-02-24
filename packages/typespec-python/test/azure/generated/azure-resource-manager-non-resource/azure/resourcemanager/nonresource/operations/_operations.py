@@ -41,7 +41,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_non_resource_operations_get_request(  # pylint: disable=name-too-long
+def build_non_resource_client_non_resource_operations_get_request(  # pylint: disable=name-too-long
     location: str, parameter: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -69,7 +69,7 @@ def build_non_resource_operations_get_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_non_resource_operations_create_request(  # pylint: disable=name-too-long
+def build_non_resource_client_non_resource_operations_create_request(  # pylint: disable=name-too-long
     location: str, parameter: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -100,14 +100,14 @@ def build_non_resource_operations_create_request(  # pylint: disable=name-too-lo
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class NonResourceOperationsOperations:
+class NonResourceClientNonResourceOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.nonresource.NonResourceClient`'s
-        :attr:`non_resource_operations` attribute.
+        :attr:`non_resource_client_non_resource_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -142,7 +142,7 @@ class NonResourceOperationsOperations:
 
         cls: ClsType[_models.NonResource] = kwargs.pop("cls", None)
 
-        _request = build_non_resource_operations_get_request(
+        _request = build_non_resource_client_non_resource_operations_get_request(
             location=location,
             parameter=parameter,
             subscription_id=self._config.subscription_id,
@@ -289,7 +289,7 @@ class NonResourceOperationsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_non_resource_operations_create_request(
+        _request = build_non_resource_client_non_resource_operations_create_request(
             location=location,
             parameter=parameter,
             subscription_id=self._config.subscription_id,

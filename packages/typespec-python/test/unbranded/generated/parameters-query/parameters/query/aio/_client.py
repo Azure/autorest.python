@@ -9,14 +9,14 @@ from corehttp.runtime import AsyncPipelineClient, policies
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import QueryClientConfiguration
-from .operations import ConstantOperations
+from .operations import QueryClientConstantOperations
 
 
 class QueryClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for query parameter cases.
 
-    :ivar constant: ConstantOperations operations
-    :vartype constant: parameters.query.aio.operations.ConstantOperations
+    :ivar query_client_constant: QueryClientConstantOperations operations
+    :vartype query_client_constant: parameters.query.aio.operations.QueryClientConstantOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -43,7 +43,9 @@ class QueryClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.constant = ConstantOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.query_client_constant = QueryClientConstantOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

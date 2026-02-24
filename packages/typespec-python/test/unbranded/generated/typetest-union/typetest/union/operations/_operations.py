@@ -34,7 +34,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_strings_only_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_strings_only_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -48,7 +48,7 @@ def build_strings_only_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_strings_only_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_strings_only_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -62,7 +62,7 @@ def build_strings_only_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_extensible_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_string_extensible_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -76,7 +76,7 @@ def build_string_extensible_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_extensible_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_string_extensible_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -90,7 +90,9 @@ def build_string_extensible_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_extensible_named_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_client_string_extensible_named_get_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -104,7 +106,9 @@ def build_string_extensible_named_get_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_extensible_named_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_union_client_string_extensible_named_send_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -118,7 +122,7 @@ def build_string_extensible_named_send_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_ints_only_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_ints_only_get_request(**kwargs: Any) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -132,7 +136,7 @@ def build_ints_only_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_ints_only_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_ints_only_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -146,7 +150,7 @@ def build_ints_only_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_floats_only_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_floats_only_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -160,7 +164,7 @@ def build_floats_only_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_floats_only_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_floats_only_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -174,7 +178,7 @@ def build_floats_only_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_only_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_models_only_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -188,7 +192,7 @@ def build_models_only_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_models_only_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_models_only_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -202,7 +206,7 @@ def build_models_only_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_enums_only_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_enums_only_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -216,7 +220,7 @@ def build_enums_only_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_enums_only_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_enums_only_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -230,7 +234,7 @@ def build_enums_only_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_and_array_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_string_and_array_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -244,7 +248,7 @@ def build_string_and_array_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_string_and_array_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_string_and_array_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -258,7 +262,7 @@ def build_string_and_array_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_mixed_literals_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_mixed_literals_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -272,7 +276,7 @@ def build_mixed_literals_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_mixed_literals_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_mixed_literals_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -286,7 +290,7 @@ def build_mixed_literals_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_mixed_types_get_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_mixed_types_get_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -300,7 +304,7 @@ def build_mixed_types_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_mixed_types_send_request(**kwargs: Any) -> HttpRequest:
+def build_union_client_mixed_types_send_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -314,14 +318,14 @@ def build_mixed_types_send_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class StringsOnlyOperations:
+class UnionClientStringsOnlyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`strings_only` attribute.
+        :attr:`union_client_strings_only` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -351,7 +355,7 @@ class StringsOnlyOperations:
 
         cls: ClsType[_models.GetResponse] = kwargs.pop("cls", None)
 
-        _request = build_strings_only_get_request(
+        _request = build_union_client_strings_only_get_request(
             headers=_headers,
             params=_params,
         )
@@ -467,7 +471,7 @@ class StringsOnlyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_strings_only_send_request(
+        _request = build_union_client_strings_only_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -491,14 +495,14 @@ class StringsOnlyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringExtensibleOperations:
+class UnionClientStringExtensibleOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`string_extensible` attribute.
+        :attr:`union_client_string_extensible` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -528,7 +532,7 @@ class StringExtensibleOperations:
 
         cls: ClsType[_models.GetResponse1] = kwargs.pop("cls", None)
 
-        _request = build_string_extensible_get_request(
+        _request = build_union_client_string_extensible_get_request(
             headers=_headers,
             params=_params,
         )
@@ -610,7 +614,7 @@ class StringExtensibleOperations:
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
         prop: Union[Literal["b"], Literal["c"], str] = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """send.
 
@@ -648,7 +652,7 @@ class StringExtensibleOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_extensible_send_request(
+        _request = build_union_client_string_extensible_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -672,14 +676,14 @@ class StringExtensibleOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringExtensibleNamedOperations:
+class UnionClientStringExtensibleNamedOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`string_extensible_named` attribute.
+        :attr:`union_client_string_extensible_named` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -709,7 +713,7 @@ class StringExtensibleNamedOperations:
 
         cls: ClsType[_models.GetResponse2] = kwargs.pop("cls", None)
 
-        _request = build_string_extensible_named_get_request(
+        _request = build_union_client_string_extensible_named_get_request(
             headers=_headers,
             params=_params,
         )
@@ -748,7 +752,7 @@ class StringExtensibleNamedOperations:
         *,
         prop: Union[str, _models.StringExtensibleNamedUnion],
         content_type: str = "application/json",
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """send.
 
@@ -795,7 +799,7 @@ class StringExtensibleNamedOperations:
         body: Union[JSON, IO[bytes]] = _Unset,
         *,
         prop: Union[str, _models.StringExtensibleNamedUnion] = _Unset,
-        **kwargs: Any
+        **kwargs: Any,
     ) -> None:
         """send.
 
@@ -833,7 +837,7 @@ class StringExtensibleNamedOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_extensible_named_send_request(
+        _request = build_union_client_string_extensible_named_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -857,14 +861,14 @@ class StringExtensibleNamedOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IntsOnlyOperations:
+class UnionClientIntsOnlyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`ints_only` attribute.
+        :attr:`union_client_ints_only` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -894,7 +898,7 @@ class IntsOnlyOperations:
 
         cls: ClsType[_models.GetResponse3] = kwargs.pop("cls", None)
 
-        _request = build_ints_only_get_request(
+        _request = build_union_client_ints_only_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1008,7 +1012,7 @@ class IntsOnlyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_ints_only_send_request(
+        _request = build_union_client_ints_only_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1032,14 +1036,14 @@ class IntsOnlyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FloatsOnlyOperations:
+class UnionClientFloatsOnlyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`floats_only` attribute.
+        :attr:`union_client_floats_only` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1069,7 +1073,7 @@ class FloatsOnlyOperations:
 
         cls: ClsType[_models.GetResponse4] = kwargs.pop("cls", None)
 
-        _request = build_floats_only_get_request(
+        _request = build_union_client_floats_only_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1183,7 +1187,7 @@ class FloatsOnlyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_floats_only_send_request(
+        _request = build_union_client_floats_only_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1207,14 +1211,14 @@ class FloatsOnlyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ModelsOnlyOperations:
+class UnionClientModelsOnlyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`models_only` attribute.
+        :attr:`union_client_models_only` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1244,7 +1248,7 @@ class ModelsOnlyOperations:
 
         cls: ClsType[_models.GetResponse5] = kwargs.pop("cls", None)
 
-        _request = build_models_only_get_request(
+        _request = build_union_client_models_only_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1360,7 +1364,7 @@ class ModelsOnlyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_models_only_send_request(
+        _request = build_union_client_models_only_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1384,14 +1388,14 @@ class ModelsOnlyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class EnumsOnlyOperations:
+class UnionClientEnumsOnlyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`enums_only` attribute.
+        :attr:`union_client_enums_only` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1421,7 +1425,7 @@ class EnumsOnlyOperations:
 
         cls: ClsType[_models.GetResponse6] = kwargs.pop("cls", None)
 
-        _request = build_enums_only_get_request(
+        _request = build_union_client_enums_only_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1535,7 +1539,7 @@ class EnumsOnlyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_enums_only_send_request(
+        _request = build_union_client_enums_only_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1559,14 +1563,14 @@ class EnumsOnlyOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringAndArrayOperations:
+class UnionClientStringAndArrayOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`string_and_array` attribute.
+        :attr:`union_client_string_and_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1596,7 +1600,7 @@ class StringAndArrayOperations:
 
         cls: ClsType[_models.GetResponse7] = kwargs.pop("cls", None)
 
-        _request = build_string_and_array_get_request(
+        _request = build_union_client_string_and_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1710,7 +1714,7 @@ class StringAndArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_and_array_send_request(
+        _request = build_union_client_string_and_array_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1734,14 +1738,14 @@ class StringAndArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedLiteralsOperations:
+class UnionClientMixedLiteralsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`mixed_literals` attribute.
+        :attr:`union_client_mixed_literals` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1771,7 +1775,7 @@ class MixedLiteralsOperations:
 
         cls: ClsType[_models.GetResponse8] = kwargs.pop("cls", None)
 
-        _request = build_mixed_literals_get_request(
+        _request = build_union_client_mixed_literals_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1885,7 +1889,7 @@ class MixedLiteralsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_mixed_literals_send_request(
+        _request = build_union_client_mixed_literals_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1909,14 +1913,14 @@ class MixedLiteralsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class MixedTypesOperations:
+class UnionClientMixedTypesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.union.UnionClient`'s
-        :attr:`mixed_types` attribute.
+        :attr:`union_client_mixed_types` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1946,7 +1950,7 @@ class MixedTypesOperations:
 
         cls: ClsType[_models.GetResponse9] = kwargs.pop("cls", None)
 
-        _request = build_mixed_types_get_request(
+        _request = build_union_client_mixed_types_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2060,7 +2064,7 @@ class MixedTypesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_mixed_types_send_request(
+        _request = build_union_client_mixed_types_send_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

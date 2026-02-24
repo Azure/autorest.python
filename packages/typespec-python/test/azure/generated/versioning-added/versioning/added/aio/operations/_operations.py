@@ -33,9 +33,9 @@ from ..._utils.serialization import Deserializer, Serializer
 from ..._utils.utils import ClientMixinABC
 from ..._validation import api_version_validation
 from ...operations._operations import (
+    build_added_client_interface_v2_v2_in_interface_request,
     build_added_v1_request,
     build_added_v2_request,
-    build_interface_v2_v2_in_interface_request,
 )
 from .._configuration import AddedClientConfiguration
 
@@ -44,14 +44,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class InterfaceV2Operations:
+class AddedClientInterfaceV2Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~versioning.added.aio.AddedClient`'s
-        :attr:`interface_v2` attribute.
+        :attr:`added_client_interface_v2` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -145,7 +145,7 @@ class InterfaceV2Operations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_interface_v2_v2_in_interface_request(
+        _request = build_added_client_interface_v2_v2_in_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

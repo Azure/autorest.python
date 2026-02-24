@@ -24,64 +24,64 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_boolean_get_request,
-    build_boolean_literal_get_request,
-    build_boolean_literal_put_request,
-    build_boolean_put_request,
-    build_bytes_get_request,
-    build_bytes_put_request,
-    build_collections_int_get_request,
-    build_collections_int_put_request,
-    build_collections_model_get_request,
-    build_collections_model_put_request,
-    build_collections_string_get_request,
-    build_collections_string_put_request,
-    build_datetime_get_request,
-    build_datetime_put_request,
-    build_decimal128_get_request,
-    build_decimal128_put_request,
-    build_decimal_get_request,
-    build_decimal_put_request,
-    build_dictionary_string_get_request,
-    build_dictionary_string_put_request,
-    build_duration_get_request,
-    build_duration_put_request,
-    build_enum_get_request,
-    build_enum_put_request,
-    build_extensible_enum_get_request,
-    build_extensible_enum_put_request,
-    build_float_get_request,
-    build_float_literal_get_request,
-    build_float_literal_put_request,
-    build_float_put_request,
-    build_int_literal_get_request,
-    build_int_literal_put_request,
-    build_int_operations_get_request,
-    build_int_operations_put_request,
-    build_model_get_request,
-    build_model_put_request,
-    build_never_get_request,
-    build_never_put_request,
-    build_string_get_request,
-    build_string_literal_get_request,
-    build_string_literal_put_request,
-    build_string_put_request,
-    build_union_enum_value_get_request,
-    build_union_enum_value_put_request,
-    build_union_float_literal_get_request,
-    build_union_float_literal_put_request,
-    build_union_int_literal_get_request,
-    build_union_int_literal_put_request,
-    build_union_string_literal_get_request,
-    build_union_string_literal_put_request,
-    build_unknown_array_get_request,
-    build_unknown_array_put_request,
-    build_unknown_dict_get_request,
-    build_unknown_dict_put_request,
-    build_unknown_int_get_request,
-    build_unknown_int_put_request,
-    build_unknown_string_get_request,
-    build_unknown_string_put_request,
+    build_value_types_client_boolean_get_request,
+    build_value_types_client_boolean_literal_get_request,
+    build_value_types_client_boolean_literal_put_request,
+    build_value_types_client_boolean_put_request,
+    build_value_types_client_bytes_get_request,
+    build_value_types_client_bytes_put_request,
+    build_value_types_client_collections_int_get_request,
+    build_value_types_client_collections_int_put_request,
+    build_value_types_client_collections_model_get_request,
+    build_value_types_client_collections_model_put_request,
+    build_value_types_client_collections_string_get_request,
+    build_value_types_client_collections_string_put_request,
+    build_value_types_client_datetime_get_request,
+    build_value_types_client_datetime_put_request,
+    build_value_types_client_decimal128_get_request,
+    build_value_types_client_decimal128_put_request,
+    build_value_types_client_decimal_get_request,
+    build_value_types_client_decimal_put_request,
+    build_value_types_client_dictionary_string_get_request,
+    build_value_types_client_dictionary_string_put_request,
+    build_value_types_client_duration_get_request,
+    build_value_types_client_duration_put_request,
+    build_value_types_client_enum_get_request,
+    build_value_types_client_enum_put_request,
+    build_value_types_client_extensible_enum_get_request,
+    build_value_types_client_extensible_enum_put_request,
+    build_value_types_client_float_get_request,
+    build_value_types_client_float_literal_get_request,
+    build_value_types_client_float_literal_put_request,
+    build_value_types_client_float_put_request,
+    build_value_types_client_int_get_request,
+    build_value_types_client_int_literal_get_request,
+    build_value_types_client_int_literal_put_request,
+    build_value_types_client_int_put_request,
+    build_value_types_client_model_get_request,
+    build_value_types_client_model_put_request,
+    build_value_types_client_never_get_request,
+    build_value_types_client_never_put_request,
+    build_value_types_client_string_get_request,
+    build_value_types_client_string_literal_get_request,
+    build_value_types_client_string_literal_put_request,
+    build_value_types_client_string_put_request,
+    build_value_types_client_union_enum_value_get_request,
+    build_value_types_client_union_enum_value_put_request,
+    build_value_types_client_union_float_literal_get_request,
+    build_value_types_client_union_float_literal_put_request,
+    build_value_types_client_union_int_literal_get_request,
+    build_value_types_client_union_int_literal_put_request,
+    build_value_types_client_union_string_literal_get_request,
+    build_value_types_client_union_string_literal_put_request,
+    build_value_types_client_unknown_array_get_request,
+    build_value_types_client_unknown_array_put_request,
+    build_value_types_client_unknown_dict_get_request,
+    build_value_types_client_unknown_dict_put_request,
+    build_value_types_client_unknown_int_get_request,
+    build_value_types_client_unknown_int_put_request,
+    build_value_types_client_unknown_string_get_request,
+    build_value_types_client_unknown_string_put_request,
 )
 from .._configuration import ValueTypesClientConfiguration
 
@@ -90,14 +90,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class BooleanOperations:
+class ValueTypesClientBooleanOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`boolean` attribute.
+        :attr:`value_types_client_boolean` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -127,7 +127,7 @@ class BooleanOperations:
 
         cls: ClsType[_models.BooleanProperty] = kwargs.pop("cls", None)
 
-        _request = build_boolean_get_request(
+        _request = build_value_types_client_boolean_get_request(
             headers=_headers,
             params=_params,
         )
@@ -234,7 +234,7 @@ class BooleanOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_put_request(
+        _request = build_value_types_client_boolean_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -258,14 +258,14 @@ class BooleanOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringOperations:
+class ValueTypesClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`string` attribute.
+        :attr:`value_types_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -295,7 +295,7 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_get_request(
+        _request = build_value_types_client_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -400,7 +400,7 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_request(
+        _request = build_value_types_client_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -424,14 +424,14 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BytesOperations:
+class ValueTypesClientBytesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`bytes` attribute.
+        :attr:`value_types_client_bytes` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -461,7 +461,7 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        _request = build_bytes_get_request(
+        _request = build_value_types_client_bytes_get_request(
             headers=_headers,
             params=_params,
         )
@@ -566,7 +566,7 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_bytes_put_request(
+        _request = build_value_types_client_bytes_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -590,14 +590,14 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IntOperations:
+class ValueTypesClientIntOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`int_operations` attribute.
+        :attr:`value_types_client_int` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -627,7 +627,7 @@ class IntOperations:
 
         cls: ClsType[_models.IntProperty] = kwargs.pop("cls", None)
 
-        _request = build_int_operations_get_request(
+        _request = build_value_types_client_int_get_request(
             headers=_headers,
             params=_params,
         )
@@ -732,7 +732,7 @@ class IntOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int_operations_put_request(
+        _request = build_value_types_client_int_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -756,14 +756,14 @@ class IntOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FloatOperations:
+class ValueTypesClientFloatOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`float` attribute.
+        :attr:`value_types_client_float` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -793,7 +793,7 @@ class FloatOperations:
 
         cls: ClsType[_models.FloatProperty] = kwargs.pop("cls", None)
 
-        _request = build_float_get_request(
+        _request = build_value_types_client_float_get_request(
             headers=_headers,
             params=_params,
         )
@@ -898,7 +898,7 @@ class FloatOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float_put_request(
+        _request = build_value_types_client_float_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -922,14 +922,14 @@ class FloatOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DecimalOperations:
+class ValueTypesClientDecimalOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`decimal` attribute.
+        :attr:`value_types_client_decimal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -959,7 +959,7 @@ class DecimalOperations:
 
         cls: ClsType[_models.DecimalProperty] = kwargs.pop("cls", None)
 
-        _request = build_decimal_get_request(
+        _request = build_value_types_client_decimal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1066,7 +1066,7 @@ class DecimalOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal_put_request(
+        _request = build_value_types_client_decimal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1090,14 +1090,14 @@ class DecimalOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Decimal128Operations:
+class ValueTypesClientDecimal128Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`decimal128` attribute.
+        :attr:`value_types_client_decimal128` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1127,7 +1127,7 @@ class Decimal128Operations:
 
         cls: ClsType[_models.Decimal128Property] = kwargs.pop("cls", None)
 
-        _request = build_decimal128_get_request(
+        _request = build_value_types_client_decimal128_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1234,7 +1234,7 @@ class Decimal128Operations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_decimal128_put_request(
+        _request = build_value_types_client_decimal128_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1258,14 +1258,14 @@ class Decimal128Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DatetimeOperations:
+class ValueTypesClientDatetimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`datetime` attribute.
+        :attr:`value_types_client_datetime` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1295,7 +1295,7 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_datetime_get_request(
+        _request = build_value_types_client_datetime_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1402,7 +1402,7 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_datetime_put_request(
+        _request = build_value_types_client_datetime_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1426,14 +1426,14 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DurationOperations:
+class ValueTypesClientDurationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`duration` attribute.
+        :attr:`value_types_client_duration` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1463,7 +1463,7 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        _request = build_duration_get_request(
+        _request = build_value_types_client_duration_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1570,7 +1570,7 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_put_request(
+        _request = build_value_types_client_duration_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1594,14 +1594,14 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class EnumOperations:
+class ValueTypesClientEnumOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`enum` attribute.
+        :attr:`value_types_client_enum` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1631,7 +1631,7 @@ class EnumOperations:
 
         cls: ClsType[_models.EnumProperty] = kwargs.pop("cls", None)
 
-        _request = build_enum_get_request(
+        _request = build_value_types_client_enum_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1736,7 +1736,7 @@ class EnumOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_enum_put_request(
+        _request = build_value_types_client_enum_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1760,14 +1760,14 @@ class EnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ExtensibleEnumOperations:
+class ValueTypesClientExtensibleEnumOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`extensible_enum` attribute.
+        :attr:`value_types_client_extensible_enum` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1797,7 +1797,7 @@ class ExtensibleEnumOperations:
 
         cls: ClsType[_models.ExtensibleEnumProperty] = kwargs.pop("cls", None)
 
-        _request = build_extensible_enum_get_request(
+        _request = build_value_types_client_extensible_enum_get_request(
             headers=_headers,
             params=_params,
         )
@@ -1905,7 +1905,7 @@ class ExtensibleEnumOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_extensible_enum_put_request(
+        _request = build_value_types_client_extensible_enum_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1929,14 +1929,14 @@ class ExtensibleEnumOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class ModelOperations:
+class ValueTypesClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`model` attribute.
+        :attr:`value_types_client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1966,7 +1966,7 @@ class ModelOperations:
 
         cls: ClsType[_models.ModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_model_get_request(
+        _request = build_value_types_client_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2071,7 +2071,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_put_request(
+        _request = build_value_types_client_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2095,14 +2095,14 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsStringOperations:
+class ValueTypesClientCollectionsStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`collections_string` attribute.
+        :attr:`value_types_client_collections_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2133,7 +2133,7 @@ class CollectionsStringOperations:
 
         cls: ClsType[_models.CollectionsStringProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_string_get_request(
+        _request = build_value_types_client_collections_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2241,7 +2241,7 @@ class CollectionsStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_string_put_request(
+        _request = build_value_types_client_collections_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2265,14 +2265,14 @@ class CollectionsStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsIntOperations:
+class ValueTypesClientCollectionsIntOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`collections_int` attribute.
+        :attr:`value_types_client_collections_int` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2302,7 +2302,7 @@ class CollectionsIntOperations:
 
         cls: ClsType[_models.CollectionsIntProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_int_get_request(
+        _request = build_value_types_client_collections_int_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2410,7 +2410,7 @@ class CollectionsIntOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_int_put_request(
+        _request = build_value_types_client_collections_int_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2434,14 +2434,14 @@ class CollectionsIntOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsModelOperations:
+class ValueTypesClientCollectionsModelOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`collections_model` attribute.
+        :attr:`value_types_client_collections_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2472,7 +2472,7 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_model_get_request(
+        _request = build_value_types_client_collections_model_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2580,7 +2580,7 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_model_put_request(
+        _request = build_value_types_client_collections_model_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2604,14 +2604,14 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DictionaryStringOperations:
+class ValueTypesClientDictionaryStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`dictionary_string` attribute.
+        :attr:`value_types_client_dictionary_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2642,7 +2642,7 @@ class DictionaryStringOperations:
 
         cls: ClsType[_models.DictionaryStringProperty] = kwargs.pop("cls", None)
 
-        _request = build_dictionary_string_get_request(
+        _request = build_value_types_client_dictionary_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2750,7 +2750,7 @@ class DictionaryStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_dictionary_string_put_request(
+        _request = build_value_types_client_dictionary_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2774,14 +2774,14 @@ class DictionaryStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class NeverOperations:
+class ValueTypesClientNeverOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`never` attribute.
+        :attr:`value_types_client_never` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2811,7 +2811,7 @@ class NeverOperations:
 
         cls: ClsType[_models.NeverProperty] = kwargs.pop("cls", None)
 
-        _request = build_never_get_request(
+        _request = build_value_types_client_never_get_request(
             headers=_headers,
             params=_params,
         )
@@ -2916,7 +2916,7 @@ class NeverOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_never_put_request(
+        _request = build_value_types_client_never_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2940,14 +2940,14 @@ class NeverOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownStringOperations:
+class ValueTypesClientUnknownStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`unknown_string` attribute.
+        :attr:`value_types_client_unknown_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2977,7 +2977,7 @@ class UnknownStringOperations:
 
         cls: ClsType[_models.UnknownStringProperty] = kwargs.pop("cls", None)
 
-        _request = build_unknown_string_get_request(
+        _request = build_value_types_client_unknown_string_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3085,7 +3085,7 @@ class UnknownStringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_string_put_request(
+        _request = build_value_types_client_unknown_string_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3109,14 +3109,14 @@ class UnknownStringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownIntOperations:
+class ValueTypesClientUnknownIntOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`unknown_int` attribute.
+        :attr:`value_types_client_unknown_int` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3146,7 +3146,7 @@ class UnknownIntOperations:
 
         cls: ClsType[_models.UnknownIntProperty] = kwargs.pop("cls", None)
 
-        _request = build_unknown_int_get_request(
+        _request = build_value_types_client_unknown_int_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3253,7 +3253,7 @@ class UnknownIntOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_int_put_request(
+        _request = build_value_types_client_unknown_int_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3277,14 +3277,14 @@ class UnknownIntOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownDictOperations:
+class ValueTypesClientUnknownDictOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`unknown_dict` attribute.
+        :attr:`value_types_client_unknown_dict` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3314,7 +3314,7 @@ class UnknownDictOperations:
 
         cls: ClsType[_models.UnknownDictProperty] = kwargs.pop("cls", None)
 
-        _request = build_unknown_dict_get_request(
+        _request = build_value_types_client_unknown_dict_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3422,7 +3422,7 @@ class UnknownDictOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_dict_put_request(
+        _request = build_value_types_client_unknown_dict_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3446,14 +3446,14 @@ class UnknownDictOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnknownArrayOperations:
+class ValueTypesClientUnknownArrayOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`unknown_array` attribute.
+        :attr:`value_types_client_unknown_array` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3483,7 +3483,7 @@ class UnknownArrayOperations:
 
         cls: ClsType[_models.UnknownArrayProperty] = kwargs.pop("cls", None)
 
-        _request = build_unknown_array_get_request(
+        _request = build_value_types_client_unknown_array_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3591,7 +3591,7 @@ class UnknownArrayOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_unknown_array_put_request(
+        _request = build_value_types_client_unknown_array_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3615,14 +3615,14 @@ class UnknownArrayOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringLiteralOperations:
+class ValueTypesClientStringLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`string_literal` attribute.
+        :attr:`value_types_client_string_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3652,7 +3652,7 @@ class StringLiteralOperations:
 
         cls: ClsType[_models.StringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_literal_get_request(
+        _request = build_value_types_client_string_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3760,7 +3760,7 @@ class StringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_literal_put_request(
+        _request = build_value_types_client_string_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3784,14 +3784,14 @@ class StringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IntLiteralOperations:
+class ValueTypesClientIntLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`int_literal` attribute.
+        :attr:`value_types_client_int_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3821,7 +3821,7 @@ class IntLiteralOperations:
 
         cls: ClsType[_models.IntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_int_literal_get_request(
+        _request = build_value_types_client_int_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -3928,7 +3928,7 @@ class IntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int_literal_put_request(
+        _request = build_value_types_client_int_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3952,14 +3952,14 @@ class IntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FloatLiteralOperations:
+class ValueTypesClientFloatLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`float_literal` attribute.
+        :attr:`value_types_client_float_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3989,7 +3989,7 @@ class FloatLiteralOperations:
 
         cls: ClsType[_models.FloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_float_literal_get_request(
+        _request = build_value_types_client_float_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4097,7 +4097,7 @@ class FloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float_literal_put_request(
+        _request = build_value_types_client_float_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4121,14 +4121,14 @@ class FloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BooleanLiteralOperations:
+class ValueTypesClientBooleanLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`boolean_literal` attribute.
+        :attr:`value_types_client_boolean_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4158,7 +4158,7 @@ class BooleanLiteralOperations:
 
         cls: ClsType[_models.BooleanLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_boolean_literal_get_request(
+        _request = build_value_types_client_boolean_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4266,7 +4266,7 @@ class BooleanLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_literal_put_request(
+        _request = build_value_types_client_boolean_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4290,14 +4290,14 @@ class BooleanLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionStringLiteralOperations:
+class ValueTypesClientUnionStringLiteralOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`union_string_literal` attribute.
+        :attr:`value_types_client_union_string_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4328,7 +4328,7 @@ class UnionStringLiteralOperations:
 
         cls: ClsType[_models.UnionStringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_string_literal_get_request(
+        _request = build_value_types_client_union_string_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4437,7 +4437,7 @@ class UnionStringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_string_literal_put_request(
+        _request = build_value_types_client_union_string_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4461,14 +4461,14 @@ class UnionStringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionIntLiteralOperations:
+class ValueTypesClientUnionIntLiteralOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`union_int_literal` attribute.
+        :attr:`value_types_client_union_int_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4498,7 +4498,7 @@ class UnionIntLiteralOperations:
 
         cls: ClsType[_models.UnionIntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_int_literal_get_request(
+        _request = build_value_types_client_union_int_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4606,7 +4606,7 @@ class UnionIntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_int_literal_put_request(
+        _request = build_value_types_client_union_int_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4630,14 +4630,14 @@ class UnionIntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionFloatLiteralOperations:
+class ValueTypesClientUnionFloatLiteralOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`union_float_literal` attribute.
+        :attr:`value_types_client_union_float_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4668,7 +4668,7 @@ class UnionFloatLiteralOperations:
 
         cls: ClsType[_models.UnionFloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_float_literal_get_request(
+        _request = build_value_types_client_union_float_literal_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4776,7 +4776,7 @@ class UnionFloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_float_literal_put_request(
+        _request = build_value_types_client_union_float_literal_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4800,14 +4800,14 @@ class UnionFloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionEnumValueOperations:
+class ValueTypesClientUnionEnumValueOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.valuetypes.aio.ValueTypesClient`'s
-        :attr:`union_enum_value` attribute.
+        :attr:`value_types_client_union_enum_value` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4837,7 +4837,7 @@ class UnionEnumValueOperations:
 
         cls: ClsType[_models.UnionEnumValueProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_enum_value_get_request(
+        _request = build_value_types_client_union_enum_value_get_request(
             headers=_headers,
             params=_params,
         )
@@ -4945,7 +4945,7 @@ class UnionEnumValueOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_enum_value_put_request(
+        _request = build_value_types_client_union_enum_value_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

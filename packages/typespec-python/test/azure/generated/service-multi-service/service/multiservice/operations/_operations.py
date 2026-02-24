@@ -32,7 +32,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_foo_test_request(**kwargs: Any) -> HttpRequest:
+def build_combined_foo_test_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "av2"))
@@ -45,7 +45,7 @@ def build_foo_test_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_bar_test_request(**kwargs: Any) -> HttpRequest:
+def build_combined_bar_test_request(**kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     api_version: str = kwargs.pop("api_version", _params.pop("api-version", "bv2"))
@@ -58,14 +58,14 @@ def build_bar_test_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class FooOperations:
+class CombinedFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~service.multiservice.CombinedClient`'s
-        :attr:`foo` attribute.
+        :attr:`combined_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -97,7 +97,7 @@ class FooOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "av2"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_test_request(
+        _request = build_combined_foo_test_request(
             api_version=api_version,
             headers=_headers,
             params=_params,
@@ -122,14 +122,14 @@ class FooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BarOperations:
+class CombinedBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~service.multiservice.CombinedClient`'s
-        :attr:`bar` attribute.
+        :attr:`combined_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -161,7 +161,7 @@ class BarOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "bv2"))
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_test_request(
+        _request = build_combined_bar_test_request(
             api_version=api_version,
             headers=_headers,
             params=_params,

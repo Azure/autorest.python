@@ -3,18 +3,18 @@ from corehttp.runtime import PipelineClient
 
 from ...._configuration import RoutesClientConfiguration
 from ...._utils.serialization import Deserializer, Serializer
-from ..explode.operations._operations import PathParametersSimpleExpansionExplodeOperations
-from ..standard.operations._operations import PathParametersSimpleExpansionStandardOperations
+from ..explode.operations._operations import RoutesClientPathParametersSimpleExpansionExplodeOperations
+from ..standard.operations._operations import RoutesClientPathParametersSimpleExpansionStandardOperations
 
 
-class PathParametersSimpleExpansionOperations:
+class RoutesClientPathParametersSimpleExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`simple_expansion` attribute.
+        :attr:`routes_client_path_parameters_simple_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -24,9 +24,13 @@ class PathParametersSimpleExpansionOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.standard = PathParametersSimpleExpansionStandardOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_simple_expansion_standard = (
+            RoutesClientPathParametersSimpleExpansionStandardOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.explode = PathParametersSimpleExpansionExplodeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_simple_expansion_explode = (
+            RoutesClientPathParametersSimpleExpansionExplodeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )

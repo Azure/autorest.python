@@ -32,21 +32,27 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_group_renamed_two_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_client_group_renamed_two_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/two"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group_renamed_four_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_client_group_renamed_four_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/four"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group_renamed_six_request(**kwargs: Any) -> HttpRequest:
+def build_renamed_operation_client_group_renamed_six_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/six"
 
@@ -74,14 +80,14 @@ def build_renamed_operation_renamed_five_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class GroupOperations:
+class RenamedOperationClientGroupOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.renamedoperation.RenamedOperationClient`'s
-        :attr:`group` attribute.
+        :attr:`renamed_operation_client_group` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,7 +118,7 @@ class GroupOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group_renamed_two_request(
+        _request = build_renamed_operation_client_group_renamed_two_request(
             headers=_headers,
             params=_params,
         )
@@ -157,7 +163,7 @@ class GroupOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group_renamed_four_request(
+        _request = build_renamed_operation_client_group_renamed_four_request(
             headers=_headers,
             params=_params,
         )
@@ -202,7 +208,7 @@ class GroupOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group_renamed_six_request(
+        _request = build_renamed_operation_client_group_renamed_six_request(
             headers=_headers,
             params=_params,
         )

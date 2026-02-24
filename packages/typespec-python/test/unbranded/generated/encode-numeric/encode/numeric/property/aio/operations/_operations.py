@@ -24,9 +24,9 @@ from ...._utils.model_base import SdkJSONEncoder, _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import NumericClientConfiguration
 from ...operations._operations import (
-    build_property_safeint_as_string_request,
-    build_property_uint32_as_string_optional_request,
-    build_property_uint8_as_string_request,
+    build_numeric_client_property_safeint_as_string_request,
+    build_numeric_client_property_uint32_as_string_optional_request,
+    build_numeric_client_property_uint8_as_string_request,
 )
 
 JSON = MutableMapping[str, Any]
@@ -34,14 +34,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PropertyOperations:
+class NumericClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.numeric.aio.NumericClient`'s
-        :attr:`property` attribute.
+        :attr:`numeric_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -131,7 +131,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_safeint_as_string_request(
+        _request = build_numeric_client_property_safeint_as_string_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -246,7 +246,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_uint32_as_string_optional_request(
+        _request = build_numeric_client_property_uint32_as_string_optional_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -361,7 +361,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(value, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_uint8_as_string_request(
+        _request = build_numeric_client_property_uint8_as_string_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

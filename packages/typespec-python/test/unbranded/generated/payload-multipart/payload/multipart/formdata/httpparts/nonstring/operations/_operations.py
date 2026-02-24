@@ -29,7 +29,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_form_data_http_parts_non_string_float_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_multi_part_client_form_data_http_parts_non_string_float_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -38,14 +40,14 @@ def build_form_data_http_parts_non_string_float_request(**kwargs: Any) -> HttpRe
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class FormDataHttpPartsNonStringOperations:
+class MultiPartClientFormDataHttpPartsNonStringOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.multipart.MultiPartClient`'s
-        :attr:`non_string` attribute.
+        :attr:`multi_part_client_form_data_http_parts_non_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -106,7 +108,7 @@ class FormDataHttpPartsNonStringOperations:
         _data_fields: list[str] = ["temperature"]
         _files = prepare_multipart_form_data(_body, _file_fields, _data_fields)
 
-        _request = build_form_data_http_parts_non_string_float_request(
+        _request = build_multi_part_client_form_data_http_parts_non_string_float_request(
             files=_files,
             headers=_headers,
             params=_params,

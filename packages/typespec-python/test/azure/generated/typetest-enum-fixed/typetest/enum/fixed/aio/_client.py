@@ -16,14 +16,14 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import FixedClientConfiguration
-from .operations import StringOperations
+from .operations import FixedClientStringOperations
 
 
 class FixedClient:  # pylint: disable=client-accepts-api-version-keyword
     """FixedClient.
 
-    :ivar string: StringOperations operations
-    :vartype string: typetest.enum.fixed.aio.operations.StringOperations
+    :ivar fixed_client_string: FixedClientStringOperations operations
+    :vartype fixed_client_string: typetest.enum.fixed.aio.operations.FixedClientStringOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -56,7 +56,9 @@ class FixedClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.fixed_client_string = FixedClientStringOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

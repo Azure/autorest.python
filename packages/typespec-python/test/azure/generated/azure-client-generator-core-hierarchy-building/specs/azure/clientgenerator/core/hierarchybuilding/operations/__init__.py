@@ -12,18 +12,18 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._operations import AnimalOperationsOperations  # type: ignore
-from ._operations import PetOperationsOperations  # type: ignore
-from ._operations import DogOperationsOperations  # type: ignore
+from ._operations import HierarchyBuildingClientAnimalOperationsOperations  # type: ignore
+from ._operations import HierarchyBuildingClientPetOperationsOperations  # type: ignore
+from ._operations import HierarchyBuildingClientDogOperationsOperations  # type: ignore
 
 from ._patch import __all__ as _patch_all
 from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "AnimalOperationsOperations",
-    "PetOperationsOperations",
-    "DogOperationsOperations",
+    "HierarchyBuildingClientAnimalOperationsOperations",
+    "HierarchyBuildingClientPetOperationsOperations",
+    "HierarchyBuildingClientDogOperationsOperations",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()

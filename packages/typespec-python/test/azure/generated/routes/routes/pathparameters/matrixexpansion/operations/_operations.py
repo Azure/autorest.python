@@ -9,18 +9,18 @@ from azure.core import PipelineClient
 
 from ...._configuration import RoutesClientConfiguration
 from ...._utils.serialization import Deserializer, Serializer
-from ..explode.operations._operations import PathParametersMatrixExpansionExplodeOperations
-from ..standard.operations._operations import PathParametersMatrixExpansionStandardOperations
+from ..explode.operations._operations import RoutesClientPathParametersMatrixExpansionExplodeOperations
+from ..standard.operations._operations import RoutesClientPathParametersMatrixExpansionStandardOperations
 
 
-class PathParametersMatrixExpansionOperations:
+class RoutesClientPathParametersMatrixExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`matrix_expansion` attribute.
+        :attr:`routes_client_path_parameters_matrix_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -30,9 +30,13 @@ class PathParametersMatrixExpansionOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.standard = PathParametersMatrixExpansionStandardOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_matrix_expansion_standard = (
+            RoutesClientPathParametersMatrixExpansionStandardOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.explode = PathParametersMatrixExpansionExplodeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_path_parameters_matrix_expansion_explode = (
+            RoutesClientPathParametersMatrixExpansionExplodeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )

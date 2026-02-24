@@ -39,7 +39,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_azure_location_scalar_get_request(**kwargs: Any) -> HttpRequest:
+def build_scalar_client_azure_location_scalar_get_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/json")
@@ -53,7 +55,9 @@ def build_azure_location_scalar_get_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_put_request(**kwargs: Any) -> HttpRequest:
+def build_scalar_client_azure_location_scalar_put_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: str = kwargs.pop("content_type")
@@ -66,7 +70,9 @@ def build_azure_location_scalar_put_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="PUT", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_post_request(**kwargs: Any) -> HttpRequest:
+def build_scalar_client_azure_location_scalar_post_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("content-type", None))
@@ -83,7 +89,7 @@ def build_azure_location_scalar_post_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_header_request(  # pylint: disable=name-too-long
+def build_scalar_client_azure_location_scalar_header_request(  # pylint: disable=name-too-long
     *, region: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -97,7 +103,7 @@ def build_azure_location_scalar_header_request(  # pylint: disable=name-too-long
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_azure_location_scalar_query_request(  # pylint: disable=name-too-long
+def build_scalar_client_azure_location_scalar_query_request(  # pylint: disable=name-too-long
     *, region: str, **kwargs: Any
 ) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
@@ -111,14 +117,14 @@ def build_azure_location_scalar_query_request(  # pylint: disable=name-too-long
     return HttpRequest(method="POST", url=_url, params=_params, **kwargs)
 
 
-class AzureLocationScalarOperations:
+class ScalarClientAzureLocationScalarOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.core.scalar.ScalarClient`'s
-        :attr:`azure_location_scalar` attribute.
+        :attr:`scalar_client_azure_location_scalar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -149,7 +155,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[str] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_get_request(
+        _request = build_scalar_client_azure_location_scalar_get_request(
             headers=_headers,
             params=_params,
         )
@@ -213,7 +219,7 @@ class AzureLocationScalarOperations:
 
         _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_location_scalar_put_request(
+        _request = build_scalar_client_azure_location_scalar_put_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -317,7 +323,7 @@ class AzureLocationScalarOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_azure_location_scalar_post_request(
+        _request = build_scalar_client_azure_location_scalar_post_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -377,7 +383,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_header_request(
+        _request = build_scalar_client_azure_location_scalar_header_request(
             region=region,
             headers=_headers,
             params=_params,
@@ -424,7 +430,7 @@ class AzureLocationScalarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_azure_location_scalar_query_request(
+        _request = build_scalar_client_azure_location_scalar_query_request(
             region=region,
             headers=_headers,
             params=_params,

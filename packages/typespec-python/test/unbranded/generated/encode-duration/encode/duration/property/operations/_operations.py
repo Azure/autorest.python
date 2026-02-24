@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_property_default_request(**kwargs: Any) -> HttpRequest:
+def build_duration_client_property_default_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -50,7 +50,7 @@ def build_property_default_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_iso8601_request(**kwargs: Any) -> HttpRequest:
+def build_duration_client_property_iso8601_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -67,7 +67,7 @@ def build_property_iso8601_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_int32_seconds_request(**kwargs: Any) -> HttpRequest:
+def build_duration_client_property_int32_seconds_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -84,7 +84,7 @@ def build_property_int32_seconds_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_seconds_request(**kwargs: Any) -> HttpRequest:
+def build_duration_client_property_float_seconds_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -101,7 +101,9 @@ def build_property_float_seconds_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float64_seconds_request(**kwargs: Any) -> HttpRequest:
+def build_duration_client_property_float64_seconds_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -118,7 +120,9 @@ def build_property_float64_seconds_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_int32_milliseconds_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_int32_milliseconds_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -135,7 +139,9 @@ def build_property_int32_milliseconds_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_milliseconds_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_float_milliseconds_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -152,7 +158,9 @@ def build_property_float_milliseconds_request(**kwargs: Any) -> HttpRequest:  # 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float64_milliseconds_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_float64_milliseconds_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -169,7 +177,9 @@ def build_property_float64_milliseconds_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_seconds_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_float_seconds_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -186,7 +196,9 @@ def build_property_float_seconds_array_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_milliseconds_array_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_float_milliseconds_array_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -203,7 +215,9 @@ def build_property_float_milliseconds_array_request(**kwargs: Any) -> HttpReques
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_int32_seconds_larger_unit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_int32_seconds_larger_unit_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -220,7 +234,9 @@ def build_property_int32_seconds_larger_unit_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_seconds_larger_unit_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_duration_client_property_float_seconds_larger_unit_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -237,7 +253,7 @@ def build_property_float_seconds_larger_unit_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_int32_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_property_int32_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -256,7 +272,7 @@ def build_property_int32_milliseconds_larger_unit_request(  # pylint: disable=na
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_float_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
+def build_duration_client_property_float_milliseconds_larger_unit_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -275,14 +291,14 @@ def build_property_float_milliseconds_larger_unit_request(  # pylint: disable=na
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class PropertyOperations:
+class DurationClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.DurationClient`'s
-        :attr:`property` attribute.
+        :attr:`duration_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -372,7 +388,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_duration_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -487,7 +503,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_iso8601_request(
+        _request = build_duration_client_property_iso8601_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -607,7 +623,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_request(
+        _request = build_duration_client_property_int32_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -727,7 +743,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_request(
+        _request = build_duration_client_property_float_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -848,7 +864,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_seconds_request(
+        _request = build_duration_client_property_float64_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -969,7 +985,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_request(
+        _request = build_duration_client_property_int32_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1090,7 +1106,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_request(
+        _request = build_duration_client_property_float_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1215,7 +1231,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_milliseconds_request(
+        _request = build_duration_client_property_float64_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1336,7 +1352,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_array_request(
+        _request = build_duration_client_property_float_seconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1461,7 +1477,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_array_request(
+        _request = build_duration_client_property_float_milliseconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1586,7 +1602,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_larger_unit_request(
+        _request = build_duration_client_property_int32_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1711,7 +1727,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_larger_unit_request(
+        _request = build_duration_client_property_float_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1836,7 +1852,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_int32_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1961,7 +1977,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_float_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

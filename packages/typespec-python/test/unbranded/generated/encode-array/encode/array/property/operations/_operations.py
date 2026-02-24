@@ -33,7 +33,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_property_comma_delimited_request(**kwargs: Any) -> HttpRequest:
+def build_array_client_property_comma_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -50,7 +50,7 @@ def build_property_comma_delimited_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_space_delimited_request(**kwargs: Any) -> HttpRequest:
+def build_array_client_property_space_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -67,7 +67,7 @@ def build_property_space_delimited_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_pipe_delimited_request(**kwargs: Any) -> HttpRequest:
+def build_array_client_property_pipe_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -84,7 +84,9 @@ def build_property_pipe_delimited_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_newline_delimited_request(**kwargs: Any) -> HttpRequest:
+def build_array_client_property_newline_delimited_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -101,7 +103,9 @@ def build_property_newline_delimited_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_enum_comma_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_array_client_property_enum_comma_delimited_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -118,7 +122,9 @@ def build_property_enum_comma_delimited_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_enum_space_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_array_client_property_enum_space_delimited_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -135,7 +141,9 @@ def build_property_enum_space_delimited_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_enum_pipe_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_array_client_property_enum_pipe_delimited_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -152,7 +160,9 @@ def build_property_enum_pipe_delimited_request(**kwargs: Any) -> HttpRequest:  #
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_enum_newline_delimited_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_array_client_property_enum_newline_delimited_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -169,7 +179,7 @@ def build_property_enum_newline_delimited_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_extensible_enum_comma_delimited_request(  # pylint: disable=name-too-long
+def build_array_client_property_extensible_enum_comma_delimited_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -188,7 +198,7 @@ def build_property_extensible_enum_comma_delimited_request(  # pylint: disable=n
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_extensible_enum_space_delimited_request(  # pylint: disable=name-too-long
+def build_array_client_property_extensible_enum_space_delimited_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -207,7 +217,7 @@ def build_property_extensible_enum_space_delimited_request(  # pylint: disable=n
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_extensible_enum_pipe_delimited_request(  # pylint: disable=name-too-long
+def build_array_client_property_extensible_enum_pipe_delimited_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -226,7 +236,7 @@ def build_property_extensible_enum_pipe_delimited_request(  # pylint: disable=na
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_property_extensible_enum_newline_delimited_request(  # pylint: disable=name-too-long
+def build_array_client_property_extensible_enum_newline_delimited_request(  # pylint: disable=name-too-long
     **kwargs: Any,
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -245,14 +255,14 @@ def build_property_extensible_enum_newline_delimited_request(  # pylint: disable
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class PropertyOperations:
+class ArrayClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.array.ArrayClient`'s
-        :attr:`property` attribute.
+        :attr:`array_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -347,7 +357,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_comma_delimited_request(
+        _request = build_array_client_property_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -467,7 +477,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_space_delimited_request(
+        _request = build_array_client_property_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -587,7 +597,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_pipe_delimited_request(
+        _request = build_array_client_property_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -707,7 +717,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_newline_delimited_request(
+        _request = build_array_client_property_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -827,7 +837,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_comma_delimited_request(
+        _request = build_array_client_property_enum_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -947,7 +957,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_space_delimited_request(
+        _request = build_array_client_property_enum_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1067,7 +1077,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_pipe_delimited_request(
+        _request = build_array_client_property_enum_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1187,7 +1197,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_enum_newline_delimited_request(
+        _request = build_array_client_property_enum_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1311,7 +1321,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_comma_delimited_request(
+        _request = build_array_client_property_extensible_enum_comma_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1435,7 +1445,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_space_delimited_request(
+        _request = build_array_client_property_extensible_enum_space_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1559,7 +1569,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_pipe_delimited_request(
+        _request = build_array_client_property_extensible_enum_pipe_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1684,7 +1694,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_extensible_enum_newline_delimited_request(
+        _request = build_array_client_property_extensible_enum_newline_delimited_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

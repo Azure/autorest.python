@@ -32,7 +32,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_header_csv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest:
+def build_collection_format_client_header_csv_request(  # pylint: disable=name-too-long
+    *, colors: list[str], **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -44,14 +46,14 @@ def build_header_csv_request(*, colors: list[str], **kwargs: Any) -> HttpRequest
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HeaderOperations:
+class CollectionFormatClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.collectionformat.CollectionFormatClient`'s
-        :attr:`header` attribute.
+        :attr:`collection_format_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -84,7 +86,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_csv_request(
+        _request = build_collection_format_client_header_csv_request(
             colors=colors,
             headers=_headers,
             params=_params,

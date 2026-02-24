@@ -36,7 +36,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_server_driven_pagination_continuation_token_request_query_response_body_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_query_response_body_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -61,7 +61,7 @@ def build_server_driven_pagination_continuation_token_request_query_response_bod
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_continuation_token_request_header_response_body_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_header_response_body_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -86,7 +86,7 @@ def build_server_driven_pagination_continuation_token_request_header_response_bo
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_continuation_token_request_query_response_header_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_query_response_header_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -111,7 +111,7 @@ def build_server_driven_pagination_continuation_token_request_query_response_hea
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_continuation_token_request_header_response_header_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_header_response_header_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -136,7 +136,7 @@ def build_server_driven_pagination_continuation_token_request_header_response_he
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_continuation_token_request_query_nested_response_body_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_query_nested_response_body_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -161,7 +161,7 @@ def build_server_driven_pagination_continuation_token_request_query_nested_respo
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_server_driven_pagination_continuation_token_request_header_nested_response_body_request(  # pylint: disable=name-too-long
+def build_pageable_client_server_driven_pagination_continuation_token_request_header_nested_response_body_request(  # pylint: disable=name-too-long
     *, token: Optional[str] = None, foo: Optional[str] = None, bar: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -186,14 +186,14 @@ def build_server_driven_pagination_continuation_token_request_header_nested_resp
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name-too-long
+class PageableClientServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.PageableClient`'s
-        :attr:`continuation_token` attribute.
+        :attr:`pageable_client_server_driven_pagination_continuation_token` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -232,12 +232,14 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_query_response_body_request(
-                token=_continuation_token,
-                foo=foo,
-                bar=bar,
-                headers=_headers,
-                params=_params,
+            _request = (
+                build_pageable_client_server_driven_pagination_continuation_token_request_query_response_body_request(
+                    token=_continuation_token,
+                    foo=foo,
+                    bar=bar,
+                    headers=_headers,
+                    params=_params,
+                )
             )
             path_format_arguments = {
                 "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -298,12 +300,14 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_header_response_body_request(
-                token=_continuation_token,
-                foo=foo,
-                bar=bar,
-                headers=_headers,
-                params=_params,
+            _request = (
+                build_pageable_client_server_driven_pagination_continuation_token_request_header_response_body_request(
+                    token=_continuation_token,
+                    foo=foo,
+                    bar=bar,
+                    headers=_headers,
+                    params=_params,
+                )
             )
             path_format_arguments = {
                 "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -364,12 +368,14 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_query_response_header_request(
-                token=_continuation_token,
-                foo=foo,
-                bar=bar,
-                headers=_headers,
-                params=_params,
+            _request = (
+                build_pageable_client_server_driven_pagination_continuation_token_request_query_response_header_request(
+                    token=_continuation_token,
+                    foo=foo,
+                    bar=bar,
+                    headers=_headers,
+                    params=_params,
+                )
             )
             path_format_arguments = {
                 "endpoint": self._serialize.url("self._config.endpoint", self._config.endpoint, "str", skip_quote=True),
@@ -430,7 +436,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_header_response_header_request(
+            _request = build_pageable_client_server_driven_pagination_continuation_token_request_header_response_header_request(
                 token=_continuation_token,
                 foo=foo,
                 bar=bar,
@@ -496,7 +502,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_query_nested_response_body_request(
+            _request = build_pageable_client_server_driven_pagination_continuation_token_request_query_nested_response_body_request(
                 token=_continuation_token,
                 foo=foo,
                 bar=bar,
@@ -562,7 +568,7 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_server_driven_pagination_continuation_token_request_header_nested_response_body_request(
+            _request = build_pageable_client_server_driven_pagination_continuation_token_request_header_nested_response_body_request(
                 token=_continuation_token,
                 foo=foo,
                 bar=bar,

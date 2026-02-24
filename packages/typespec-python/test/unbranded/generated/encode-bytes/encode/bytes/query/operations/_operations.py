@@ -25,7 +25,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_query_default_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_query_default_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -37,7 +37,7 @@ def build_query_default_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_query_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -49,7 +49,9 @@ def build_query_base64_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpRequest:
+def build_bytes_client_query_base64_url_request(  # pylint: disable=name-too-long
+    *, value: bytes, **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -61,7 +63,9 @@ def build_query_base64_url_request(*, value: bytes, **kwargs: Any) -> HttpReques
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-def build_query_base64_url_array_request(*, value: list[bytes], **kwargs: Any) -> HttpRequest:
+def build_bytes_client_query_base64_url_array_request(  # pylint: disable=name-too-long
+    *, value: list[bytes], **kwargs: Any
+) -> HttpRequest:
     _params = case_insensitive_dict(kwargs.pop("params", {}) or {})
 
     # Construct URL
@@ -73,14 +77,14 @@ def build_query_base64_url_array_request(*, value: list[bytes], **kwargs: Any) -
     return HttpRequest(method="GET", url=_url, params=_params, **kwargs)
 
 
-class QueryOperations:
+class BytesClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.BytesClient`'s
-        :attr:`query` attribute.
+        :attr:`bytes_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,7 +116,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_bytes_client_query_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -156,7 +160,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_request(
+        _request = build_bytes_client_query_base64_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -200,7 +204,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_url_request(
+        _request = build_bytes_client_query_base64_url_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -246,7 +250,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_base64_url_array_request(
+        _request = build_bytes_client_query_base64_url_array_request(
             value=value,
             headers=_headers,
             params=_params,

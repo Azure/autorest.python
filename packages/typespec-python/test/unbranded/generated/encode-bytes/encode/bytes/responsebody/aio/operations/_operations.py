@@ -20,25 +20,25 @@ from ...._utils.model_base import _deserialize
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BytesClientConfiguration
 from ...operations._operations import (
-    build_response_body_base64_request,
-    build_response_body_base64_url_request,
-    build_response_body_custom_content_type_request,
-    build_response_body_default_request,
-    build_response_body_octet_stream_request,
+    build_bytes_client_response_body_base64_request,
+    build_bytes_client_response_body_base64_url_request,
+    build_bytes_client_response_body_custom_content_type_request,
+    build_bytes_client_response_body_default_request,
+    build_bytes_client_response_body_octet_stream_request,
 )
 
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ResponseBodyOperations:
+class BytesClientResponseBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.bytes.aio.BytesClient`'s
-        :attr:`response_body` attribute.
+        :attr:`bytes_client_response_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -68,7 +68,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_default_request(
+        _request = build_bytes_client_response_body_default_request(
             headers=_headers,
             params=_params,
         )
@@ -118,7 +118,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_octet_stream_request(
+        _request = build_bytes_client_response_body_octet_stream_request(
             headers=_headers,
             params=_params,
         )
@@ -171,7 +171,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[AsyncIterator[bytes]] = kwargs.pop("cls", None)
 
-        _request = build_response_body_custom_content_type_request(
+        _request = build_bytes_client_response_body_custom_content_type_request(
             headers=_headers,
             params=_params,
         )
@@ -224,7 +224,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64_request(
+        _request = build_bytes_client_response_body_base64_request(
             headers=_headers,
             params=_params,
         )
@@ -280,7 +280,7 @@ class ResponseBodyOperations:
 
         cls: ClsType[bytes] = kwargs.pop("cls", None)
 
-        _request = build_response_body_base64_url_request(
+        _request = build_bytes_client_response_body_base64_url_request(
             headers=_headers,
             params=_params,
         )

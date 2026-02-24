@@ -29,16 +29,16 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_alias_spread_as_request_body_request,
-    build_alias_spread_as_request_parameter_request,
-    build_alias_spread_parameter_with_inner_alias_request,
-    build_alias_spread_parameter_with_inner_model_request,
-    build_alias_spread_with_multiple_parameters_request,
-    build_model_spread_as_request_body_request,
-    build_model_spread_composite_request_mix_request,
-    build_model_spread_composite_request_only_with_body_request,
-    build_model_spread_composite_request_request,
-    build_model_spread_composite_request_without_body_request,
+    build_spread_client_alias_spread_as_request_body_request,
+    build_spread_client_alias_spread_as_request_parameter_request,
+    build_spread_client_alias_spread_parameter_with_inner_alias_request,
+    build_spread_client_alias_spread_parameter_with_inner_model_request,
+    build_spread_client_alias_spread_with_multiple_parameters_request,
+    build_spread_client_model_spread_as_request_body_request,
+    build_spread_client_model_spread_composite_request_mix_request,
+    build_spread_client_model_spread_composite_request_only_with_body_request,
+    build_spread_client_model_spread_composite_request_request,
+    build_spread_client_model_spread_composite_request_without_body_request,
 )
 from .._configuration import SpreadClientConfiguration
 
@@ -48,14 +48,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ModelOperations:
+class SpreadClientModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.spread.aio.SpreadClient`'s
-        :attr:`model` attribute.
+        :attr:`spread_client_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -151,7 +151,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_as_request_body_request(
+        _request = build_spread_client_model_spread_as_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -257,7 +257,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_only_with_body_request(
+        _request = build_spread_client_model_spread_composite_request_only_with_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -307,7 +307,7 @@ class ModelOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_model_spread_composite_request_without_body_request(
+        _request = build_spread_client_model_spread_composite_request_without_body_request(
             name=name,
             test_header=test_header,
             headers=_headers,
@@ -435,7 +435,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_request(
+        _request = build_spread_client_model_spread_composite_request_request(
             name=name,
             test_header=test_header,
             content_type=content_type,
@@ -566,7 +566,7 @@ class ModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_spread_composite_request_mix_request(
+        _request = build_spread_client_model_spread_composite_request_mix_request(
             name=name,
             test_header=test_header,
             content_type=content_type,
@@ -594,14 +594,14 @@ class ModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class AliasOperations:
+class SpreadClientAliasOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.spread.aio.SpreadClient`'s
-        :attr:`alias` attribute.
+        :attr:`spread_client_alias` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -697,7 +697,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_body_request(
+        _request = build_spread_client_alias_spread_as_request_body_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -832,7 +832,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_model_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_model_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -969,7 +969,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_as_request_parameter_request(
+        _request = build_spread_client_alias_spread_as_request_parameter_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -1137,7 +1137,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_with_multiple_parameters_request(
+        _request = build_spread_client_alias_spread_with_multiple_parameters_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,
@@ -1288,7 +1288,7 @@ class AliasOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_alias_spread_parameter_with_inner_alias_request(
+        _request = build_spread_client_alias_spread_parameter_with_inner_alias_request(
             id=id,
             x_ms_test_header=x_ms_test_header,
             content_type=content_type,

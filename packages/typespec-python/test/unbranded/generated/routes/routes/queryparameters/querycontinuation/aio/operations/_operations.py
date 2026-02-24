@@ -3,18 +3,18 @@ from corehttp.runtime import AsyncPipelineClient
 
 from ....._utils.serialization import Deserializer, Serializer
 from .....aio._configuration import RoutesClientConfiguration
-from ...explode.aio.operations._operations import QueryParametersQueryContinuationExplodeOperations
-from ...standard.aio.operations._operations import QueryParametersQueryContinuationStandardOperations
+from ...explode.aio.operations._operations import RoutesClientQueryParametersQueryContinuationExplodeOperations
+from ...standard.aio.operations._operations import RoutesClientQueryParametersQueryContinuationStandardOperations
 
 
-class QueryParametersQueryContinuationOperations:  # pylint: disable=name-too-long
+class RoutesClientQueryParametersQueryContinuationOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.aio.RoutesClient`'s
-        :attr:`query_continuation` attribute.
+        :attr:`routes_client_query_parameters_query_continuation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -24,9 +24,13 @@ class QueryParametersQueryContinuationOperations:  # pylint: disable=name-too-lo
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.standard = QueryParametersQueryContinuationStandardOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_query_parameters_query_continuation_standard = (
+            RoutesClientQueryParametersQueryContinuationStandardOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.explode = QueryParametersQueryContinuationExplodeOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.routes_client_query_parameters_query_continuation_explode = (
+            RoutesClientQueryParametersQueryContinuationExplodeOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )

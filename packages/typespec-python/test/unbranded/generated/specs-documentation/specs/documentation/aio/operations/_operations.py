@@ -21,12 +21,12 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_lists_bullet_points_model_request,
-    build_lists_bullet_points_op_request,
-    build_lists_numbered_request,
-    build_text_formatting_bold_text_request,
-    build_text_formatting_combined_formatting_request,
-    build_text_formatting_italic_text_request,
+    build_documentation_client_lists_bullet_points_model_request,
+    build_documentation_client_lists_bullet_points_op_request,
+    build_documentation_client_lists_numbered_request,
+    build_documentation_client_text_formatting_bold_text_request,
+    build_documentation_client_text_formatting_combined_formatting_request,
+    build_documentation_client_text_formatting_italic_text_request,
 )
 from .._configuration import DocumentationClientConfiguration
 
@@ -36,14 +36,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ListsOperations:
+class DocumentationClientListsOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.documentation.aio.DocumentationClient`'s
-        :attr:`lists` attribute.
+        :attr:`documentation_client_lists` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -89,7 +89,7 @@ class ListsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_lists_bullet_points_op_request(
+        _request = build_documentation_client_lists_bullet_points_op_request(
             headers=_headers,
             params=_params,
         )
@@ -195,7 +195,7 @@ class ListsOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_lists_bullet_points_model_request(
+        _request = build_documentation_client_lists_bullet_points_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -243,7 +243,7 @@ class ListsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_lists_numbered_request(
+        _request = build_documentation_client_lists_numbered_request(
             headers=_headers,
             params=_params,
         )
@@ -265,14 +265,14 @@ class ListsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class TextFormattingOperations:
+class DocumentationClientTextFormattingOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.documentation.aio.DocumentationClient`'s
-        :attr:`text_formatting` attribute.
+        :attr:`documentation_client_text_formatting` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -303,7 +303,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_bold_text_request(
+        _request = build_documentation_client_text_formatting_bold_text_request(
             headers=_headers,
             params=_params,
         )
@@ -345,7 +345,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_italic_text_request(
+        _request = build_documentation_client_text_formatting_italic_text_request(
             headers=_headers,
             params=_params,
         )
@@ -388,7 +388,7 @@ class TextFormattingOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_text_formatting_combined_formatting_request(
+        _request = build_documentation_client_text_formatting_combined_formatting_request(
             headers=_headers,
             params=_params,
         )

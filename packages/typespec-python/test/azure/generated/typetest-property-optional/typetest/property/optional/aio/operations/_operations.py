@@ -31,70 +31,70 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_boolean_literal_get_all_request,
-    build_boolean_literal_get_default_request,
-    build_boolean_literal_put_all_request,
-    build_boolean_literal_put_default_request,
-    build_bytes_get_all_request,
-    build_bytes_get_default_request,
-    build_bytes_put_all_request,
-    build_bytes_put_default_request,
-    build_collections_byte_get_all_request,
-    build_collections_byte_get_default_request,
-    build_collections_byte_put_all_request,
-    build_collections_byte_put_default_request,
-    build_collections_model_get_all_request,
-    build_collections_model_get_default_request,
-    build_collections_model_put_all_request,
-    build_collections_model_put_default_request,
-    build_datetime_get_all_request,
-    build_datetime_get_default_request,
-    build_datetime_put_all_request,
-    build_datetime_put_default_request,
-    build_duration_get_all_request,
-    build_duration_get_default_request,
-    build_duration_put_all_request,
-    build_duration_put_default_request,
-    build_float_literal_get_all_request,
-    build_float_literal_get_default_request,
-    build_float_literal_put_all_request,
-    build_float_literal_put_default_request,
-    build_int_literal_get_all_request,
-    build_int_literal_get_default_request,
-    build_int_literal_put_all_request,
-    build_int_literal_put_default_request,
-    build_plain_date_get_all_request,
-    build_plain_date_get_default_request,
-    build_plain_date_put_all_request,
-    build_plain_date_put_default_request,
-    build_plain_time_get_all_request,
-    build_plain_time_get_default_request,
-    build_plain_time_put_all_request,
-    build_plain_time_put_default_request,
-    build_required_and_optional_get_all_request,
-    build_required_and_optional_get_required_only_request,
-    build_required_and_optional_put_all_request,
-    build_required_and_optional_put_required_only_request,
-    build_string_get_all_request,
-    build_string_get_default_request,
-    build_string_literal_get_all_request,
-    build_string_literal_get_default_request,
-    build_string_literal_put_all_request,
-    build_string_literal_put_default_request,
-    build_string_put_all_request,
-    build_string_put_default_request,
-    build_union_float_literal_get_all_request,
-    build_union_float_literal_get_default_request,
-    build_union_float_literal_put_all_request,
-    build_union_float_literal_put_default_request,
-    build_union_int_literal_get_all_request,
-    build_union_int_literal_get_default_request,
-    build_union_int_literal_put_all_request,
-    build_union_int_literal_put_default_request,
-    build_union_string_literal_get_all_request,
-    build_union_string_literal_get_default_request,
-    build_union_string_literal_put_all_request,
-    build_union_string_literal_put_default_request,
+    build_optional_client_boolean_literal_get_all_request,
+    build_optional_client_boolean_literal_get_default_request,
+    build_optional_client_boolean_literal_put_all_request,
+    build_optional_client_boolean_literal_put_default_request,
+    build_optional_client_bytes_get_all_request,
+    build_optional_client_bytes_get_default_request,
+    build_optional_client_bytes_put_all_request,
+    build_optional_client_bytes_put_default_request,
+    build_optional_client_collections_byte_get_all_request,
+    build_optional_client_collections_byte_get_default_request,
+    build_optional_client_collections_byte_put_all_request,
+    build_optional_client_collections_byte_put_default_request,
+    build_optional_client_collections_model_get_all_request,
+    build_optional_client_collections_model_get_default_request,
+    build_optional_client_collections_model_put_all_request,
+    build_optional_client_collections_model_put_default_request,
+    build_optional_client_datetime_get_all_request,
+    build_optional_client_datetime_get_default_request,
+    build_optional_client_datetime_put_all_request,
+    build_optional_client_datetime_put_default_request,
+    build_optional_client_duration_get_all_request,
+    build_optional_client_duration_get_default_request,
+    build_optional_client_duration_put_all_request,
+    build_optional_client_duration_put_default_request,
+    build_optional_client_float_literal_get_all_request,
+    build_optional_client_float_literal_get_default_request,
+    build_optional_client_float_literal_put_all_request,
+    build_optional_client_float_literal_put_default_request,
+    build_optional_client_int_literal_get_all_request,
+    build_optional_client_int_literal_get_default_request,
+    build_optional_client_int_literal_put_all_request,
+    build_optional_client_int_literal_put_default_request,
+    build_optional_client_plain_date_get_all_request,
+    build_optional_client_plain_date_get_default_request,
+    build_optional_client_plain_date_put_all_request,
+    build_optional_client_plain_date_put_default_request,
+    build_optional_client_plain_time_get_all_request,
+    build_optional_client_plain_time_get_default_request,
+    build_optional_client_plain_time_put_all_request,
+    build_optional_client_plain_time_put_default_request,
+    build_optional_client_required_and_optional_get_all_request,
+    build_optional_client_required_and_optional_get_required_only_request,
+    build_optional_client_required_and_optional_put_all_request,
+    build_optional_client_required_and_optional_put_required_only_request,
+    build_optional_client_string_get_all_request,
+    build_optional_client_string_get_default_request,
+    build_optional_client_string_literal_get_all_request,
+    build_optional_client_string_literal_get_default_request,
+    build_optional_client_string_literal_put_all_request,
+    build_optional_client_string_literal_put_default_request,
+    build_optional_client_string_put_all_request,
+    build_optional_client_string_put_default_request,
+    build_optional_client_union_float_literal_get_all_request,
+    build_optional_client_union_float_literal_get_default_request,
+    build_optional_client_union_float_literal_put_all_request,
+    build_optional_client_union_float_literal_put_default_request,
+    build_optional_client_union_int_literal_get_all_request,
+    build_optional_client_union_int_literal_get_default_request,
+    build_optional_client_union_int_literal_put_all_request,
+    build_optional_client_union_int_literal_put_default_request,
+    build_optional_client_union_string_literal_get_all_request,
+    build_optional_client_union_string_literal_get_default_request,
+    build_optional_client_union_string_literal_put_all_request,
+    build_optional_client_union_string_literal_put_default_request,
 )
 from .._configuration import OptionalClientConfiguration
 
@@ -103,14 +103,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class StringOperations:
+class OptionalClientStringOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`string` attribute.
+        :attr:`optional_client_string` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -141,7 +141,7 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_get_all_request(
+        _request = build_optional_client_string_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -197,7 +197,7 @@ class StringOperations:
 
         cls: ClsType[_models.StringProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_get_default_request(
+        _request = build_optional_client_string_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -307,7 +307,7 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_all_request(
+        _request = build_optional_client_string_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -407,7 +407,7 @@ class StringOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_put_default_request(
+        _request = build_optional_client_string_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -433,14 +433,14 @@ class StringOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BytesOperations:
+class OptionalClientBytesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`bytes` attribute.
+        :attr:`optional_client_bytes` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -471,7 +471,7 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        _request = build_bytes_get_all_request(
+        _request = build_optional_client_bytes_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -527,7 +527,7 @@ class BytesOperations:
 
         cls: ClsType[_models.BytesProperty] = kwargs.pop("cls", None)
 
-        _request = build_bytes_get_default_request(
+        _request = build_optional_client_bytes_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -637,7 +637,7 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_bytes_put_all_request(
+        _request = build_optional_client_bytes_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -737,7 +737,7 @@ class BytesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_bytes_put_default_request(
+        _request = build_optional_client_bytes_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -763,14 +763,14 @@ class BytesOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DatetimeOperations:
+class OptionalClientDatetimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`datetime` attribute.
+        :attr:`optional_client_datetime` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -801,7 +801,7 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_datetime_get_all_request(
+        _request = build_optional_client_datetime_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -857,7 +857,7 @@ class DatetimeOperations:
 
         cls: ClsType[_models.DatetimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_datetime_get_default_request(
+        _request = build_optional_client_datetime_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -967,7 +967,7 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_datetime_put_all_request(
+        _request = build_optional_client_datetime_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1067,7 +1067,7 @@ class DatetimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_datetime_put_default_request(
+        _request = build_optional_client_datetime_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1093,14 +1093,14 @@ class DatetimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class DurationOperations:
+class OptionalClientDurationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`duration` attribute.
+        :attr:`optional_client_duration` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1131,7 +1131,7 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        _request = build_duration_get_all_request(
+        _request = build_optional_client_duration_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -1187,7 +1187,7 @@ class DurationOperations:
 
         cls: ClsType[_models.DurationProperty] = kwargs.pop("cls", None)
 
-        _request = build_duration_get_default_request(
+        _request = build_optional_client_duration_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1297,7 +1297,7 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_put_all_request(
+        _request = build_optional_client_duration_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1397,7 +1397,7 @@ class DurationOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_duration_put_default_request(
+        _request = build_optional_client_duration_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1423,14 +1423,14 @@ class DurationOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlainDateOperations:
+class OptionalClientPlainDateOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plain_date` attribute.
+        :attr:`optional_client_plain_date` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1461,7 +1461,7 @@ class PlainDateOperations:
 
         cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plain_date_get_all_request(
+        _request = build_optional_client_plain_date_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -1517,7 +1517,7 @@ class PlainDateOperations:
 
         cls: ClsType[_models.PlainDateProperty] = kwargs.pop("cls", None)
 
-        _request = build_plain_date_get_default_request(
+        _request = build_optional_client_plain_date_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1627,7 +1627,7 @@ class PlainDateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plain_date_put_all_request(
+        _request = build_optional_client_plain_date_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1727,7 +1727,7 @@ class PlainDateOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plain_date_put_default_request(
+        _request = build_optional_client_plain_date_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1753,14 +1753,14 @@ class PlainDateOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PlainTimeOperations:
+class OptionalClientPlainTimeOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`plain_time` attribute.
+        :attr:`optional_client_plain_time` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -1791,7 +1791,7 @@ class PlainTimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plain_time_get_all_request(
+        _request = build_optional_client_plain_time_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -1847,7 +1847,7 @@ class PlainTimeOperations:
 
         cls: ClsType[_models.PlainTimeProperty] = kwargs.pop("cls", None)
 
-        _request = build_plain_time_get_default_request(
+        _request = build_optional_client_plain_time_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -1957,7 +1957,7 @@ class PlainTimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plain_time_put_all_request(
+        _request = build_optional_client_plain_time_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2057,7 +2057,7 @@ class PlainTimeOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_plain_time_put_default_request(
+        _request = build_optional_client_plain_time_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2083,14 +2083,14 @@ class PlainTimeOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsByteOperations:
+class OptionalClientCollectionsByteOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`collections_byte` attribute.
+        :attr:`optional_client_collections_byte` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2121,7 +2121,7 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_byte_get_all_request(
+        _request = build_optional_client_collections_byte_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -2177,7 +2177,7 @@ class CollectionsByteOperations:
 
         cls: ClsType[_models.CollectionsByteProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_byte_get_default_request(
+        _request = build_optional_client_collections_byte_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -2287,7 +2287,7 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_byte_put_all_request(
+        _request = build_optional_client_collections_byte_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2387,7 +2387,7 @@ class CollectionsByteOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_byte_put_default_request(
+        _request = build_optional_client_collections_byte_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2413,14 +2413,14 @@ class CollectionsByteOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class CollectionsModelOperations:
+class OptionalClientCollectionsModelOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`collections_model` attribute.
+        :attr:`optional_client_collections_model` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2452,7 +2452,7 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_model_get_all_request(
+        _request = build_optional_client_collections_model_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -2509,7 +2509,7 @@ class CollectionsModelOperations:
 
         cls: ClsType[_models.CollectionsModelProperty] = kwargs.pop("cls", None)
 
-        _request = build_collections_model_get_default_request(
+        _request = build_optional_client_collections_model_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -2619,7 +2619,7 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_model_put_all_request(
+        _request = build_optional_client_collections_model_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2719,7 +2719,7 @@ class CollectionsModelOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_collections_model_put_default_request(
+        _request = build_optional_client_collections_model_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2745,14 +2745,14 @@ class CollectionsModelOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class StringLiteralOperations:
+class OptionalClientStringLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`string_literal` attribute.
+        :attr:`optional_client_string_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2783,7 +2783,7 @@ class StringLiteralOperations:
 
         cls: ClsType[_models.StringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_literal_get_all_request(
+        _request = build_optional_client_string_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -2839,7 +2839,7 @@ class StringLiteralOperations:
 
         cls: ClsType[_models.StringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_string_literal_get_default_request(
+        _request = build_optional_client_string_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -2949,7 +2949,7 @@ class StringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_literal_put_all_request(
+        _request = build_optional_client_string_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3049,7 +3049,7 @@ class StringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_string_literal_put_default_request(
+        _request = build_optional_client_string_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3075,14 +3075,14 @@ class StringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class IntLiteralOperations:
+class OptionalClientIntLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`int_literal` attribute.
+        :attr:`optional_client_int_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3113,7 +3113,7 @@ class IntLiteralOperations:
 
         cls: ClsType[_models.IntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_int_literal_get_all_request(
+        _request = build_optional_client_int_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -3169,7 +3169,7 @@ class IntLiteralOperations:
 
         cls: ClsType[_models.IntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_int_literal_get_default_request(
+        _request = build_optional_client_int_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -3279,7 +3279,7 @@ class IntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int_literal_put_all_request(
+        _request = build_optional_client_int_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3379,7 +3379,7 @@ class IntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_int_literal_put_default_request(
+        _request = build_optional_client_int_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3405,14 +3405,14 @@ class IntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FloatLiteralOperations:
+class OptionalClientFloatLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`float_literal` attribute.
+        :attr:`optional_client_float_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3443,7 +3443,7 @@ class FloatLiteralOperations:
 
         cls: ClsType[_models.FloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_float_literal_get_all_request(
+        _request = build_optional_client_float_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -3499,7 +3499,7 @@ class FloatLiteralOperations:
 
         cls: ClsType[_models.FloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_float_literal_get_default_request(
+        _request = build_optional_client_float_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -3609,7 +3609,7 @@ class FloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float_literal_put_all_request(
+        _request = build_optional_client_float_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3709,7 +3709,7 @@ class FloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_float_literal_put_default_request(
+        _request = build_optional_client_float_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -3735,14 +3735,14 @@ class FloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BooleanLiteralOperations:
+class OptionalClientBooleanLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`boolean_literal` attribute.
+        :attr:`optional_client_boolean_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -3773,7 +3773,7 @@ class BooleanLiteralOperations:
 
         cls: ClsType[_models.BooleanLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_boolean_literal_get_all_request(
+        _request = build_optional_client_boolean_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -3829,7 +3829,7 @@ class BooleanLiteralOperations:
 
         cls: ClsType[_models.BooleanLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_boolean_literal_get_default_request(
+        _request = build_optional_client_boolean_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -3939,7 +3939,7 @@ class BooleanLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_literal_put_all_request(
+        _request = build_optional_client_boolean_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4039,7 +4039,7 @@ class BooleanLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_boolean_literal_put_default_request(
+        _request = build_optional_client_boolean_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4065,14 +4065,14 @@ class BooleanLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionStringLiteralOperations:
+class OptionalClientUnionStringLiteralOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`union_string_literal` attribute.
+        :attr:`optional_client_union_string_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4104,7 +4104,7 @@ class UnionStringLiteralOperations:
 
         cls: ClsType[_models.UnionStringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_string_literal_get_all_request(
+        _request = build_optional_client_union_string_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -4161,7 +4161,7 @@ class UnionStringLiteralOperations:
 
         cls: ClsType[_models.UnionStringLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_string_literal_get_default_request(
+        _request = build_optional_client_union_string_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -4272,7 +4272,7 @@ class UnionStringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_string_literal_put_all_request(
+        _request = build_optional_client_union_string_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4375,7 +4375,7 @@ class UnionStringLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_string_literal_put_default_request(
+        _request = build_optional_client_union_string_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4401,14 +4401,14 @@ class UnionStringLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionIntLiteralOperations:
+class OptionalClientUnionIntLiteralOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`union_int_literal` attribute.
+        :attr:`optional_client_union_int_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4439,7 +4439,7 @@ class UnionIntLiteralOperations:
 
         cls: ClsType[_models.UnionIntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_int_literal_get_all_request(
+        _request = build_optional_client_union_int_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -4495,7 +4495,7 @@ class UnionIntLiteralOperations:
 
         cls: ClsType[_models.UnionIntLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_int_literal_get_default_request(
+        _request = build_optional_client_union_int_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -4605,7 +4605,7 @@ class UnionIntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_int_literal_put_all_request(
+        _request = build_optional_client_union_int_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4705,7 +4705,7 @@ class UnionIntLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_int_literal_put_default_request(
+        _request = build_optional_client_union_int_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -4731,14 +4731,14 @@ class UnionIntLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UnionFloatLiteralOperations:
+class OptionalClientUnionFloatLiteralOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`union_float_literal` attribute.
+        :attr:`optional_client_union_float_literal` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -4770,7 +4770,7 @@ class UnionFloatLiteralOperations:
 
         cls: ClsType[_models.UnionFloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_float_literal_get_all_request(
+        _request = build_optional_client_union_float_literal_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -4827,7 +4827,7 @@ class UnionFloatLiteralOperations:
 
         cls: ClsType[_models.UnionFloatLiteralProperty] = kwargs.pop("cls", None)
 
-        _request = build_union_float_literal_get_default_request(
+        _request = build_optional_client_union_float_literal_get_default_request(
             headers=_headers,
             params=_params,
         )
@@ -4938,7 +4938,7 @@ class UnionFloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_float_literal_put_all_request(
+        _request = build_optional_client_union_float_literal_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5039,7 +5039,7 @@ class UnionFloatLiteralOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_union_float_literal_put_default_request(
+        _request = build_optional_client_union_float_literal_put_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5065,14 +5065,14 @@ class UnionFloatLiteralOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class RequiredAndOptionalOperations:
+class OptionalClientRequiredAndOptionalOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~typetest.property.optional.aio.OptionalClient`'s
-        :attr:`required_and_optional` attribute.
+        :attr:`optional_client_required_and_optional` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -5104,7 +5104,7 @@ class RequiredAndOptionalOperations:
 
         cls: ClsType[_models.RequiredAndOptionalProperty] = kwargs.pop("cls", None)
 
-        _request = build_required_and_optional_get_all_request(
+        _request = build_optional_client_required_and_optional_get_all_request(
             headers=_headers,
             params=_params,
         )
@@ -5161,7 +5161,7 @@ class RequiredAndOptionalOperations:
 
         cls: ClsType[_models.RequiredAndOptionalProperty] = kwargs.pop("cls", None)
 
-        _request = build_required_and_optional_get_required_only_request(
+        _request = build_optional_client_required_and_optional_get_required_only_request(
             headers=_headers,
             params=_params,
         )
@@ -5272,7 +5272,7 @@ class RequiredAndOptionalOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_required_and_optional_put_all_request(
+        _request = build_optional_client_required_and_optional_put_all_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -5377,7 +5377,7 @@ class RequiredAndOptionalOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_required_and_optional_put_required_only_request(
+        _request = build_optional_client_required_and_optional_put_required_only_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

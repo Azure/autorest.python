@@ -17,16 +17,18 @@ from azure.core.rest import HttpRequest, HttpResponse
 from . import models as _models
 from ._configuration import TwoOperationGroupClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import Group1Operations, Group2Operations
+from .operations import TwoOperationGroupClientGroup1Operations, TwoOperationGroupClientGroup2Operations
 
 
 class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-keyword
     """TwoOperationGroupClient.
 
-    :ivar group1: Group1Operations operations
-    :vartype group1: client.structure.twooperationgroup.operations.Group1Operations
-    :ivar group2: Group2Operations operations
-    :vartype group2: client.structure.twooperationgroup.operations.Group2Operations
+    :ivar two_operation_group_client_group1: TwoOperationGroupClientGroup1Operations operations
+    :vartype two_operation_group_client_group1:
+     client.structure.twooperationgroup.operations.TwoOperationGroupClientGroup1Operations
+    :ivar two_operation_group_client_group2: TwoOperationGroupClientGroup2Operations operations
+    :vartype two_operation_group_client_group2:
+     client.structure.twooperationgroup.operations.TwoOperationGroupClientGroup2Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -64,8 +66,12 @@ class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.group1 = Group1Operations(self._client, self._config, self._serialize, self._deserialize)
-        self.group2 = Group2Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.two_operation_group_client_group1 = TwoOperationGroupClientGroup1Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.two_operation_group_client_group2 = TwoOperationGroupClientGroup2Operations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

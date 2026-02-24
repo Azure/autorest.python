@@ -16,15 +16,15 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import ScalarClientConfiguration
-from .operations import AzureLocationScalarOperations
+from .operations import ScalarClientAzureLocationScalarOperations
 
 
 class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
     """ScalarClient.
 
-    :ivar azure_location_scalar: AzureLocationScalarOperations operations
-    :vartype azure_location_scalar:
-     specs.azure.core.scalar.aio.operations.AzureLocationScalarOperations
+    :ivar scalar_client_azure_location_scalar: ScalarClientAzureLocationScalarOperations operations
+    :vartype scalar_client_azure_location_scalar:
+     specs.azure.core.scalar.aio.operations.ScalarClientAzureLocationScalarOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -57,7 +57,7 @@ class ScalarClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.azure_location_scalar = AzureLocationScalarOperations(
+        self.scalar_client_azure_location_scalar = ScalarClientAzureLocationScalarOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

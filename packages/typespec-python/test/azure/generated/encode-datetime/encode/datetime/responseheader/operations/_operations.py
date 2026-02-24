@@ -31,42 +31,50 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_response_header_default_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_client_response_header_default_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/encode/datetime/responseheader/default"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_response_header_rfc3339_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_client_response_header_rfc3339_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/encode/datetime/responseheader/rfc3339"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_response_header_rfc7231_request(**kwargs: Any) -> HttpRequest:
+def build_datetime_client_response_header_rfc7231_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/encode/datetime/responseheader/rfc7231"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_response_header_unix_timestamp_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_datetime_client_response_header_unix_timestamp_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/encode/datetime/responseheader/unix-timestamp"
 
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class ResponseHeaderOperations:
+class DatetimeClientResponseHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.DatetimeClient`'s
-        :attr:`response_header` attribute.
+        :attr:`datetime_client_response_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -97,7 +105,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_default_request(
+        _request = build_datetime_client_response_header_default_request(
             headers=_headers,
             params=_params,
         )
@@ -144,7 +152,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_rfc3339_request(
+        _request = build_datetime_client_response_header_rfc3339_request(
             headers=_headers,
             params=_params,
         )
@@ -191,7 +199,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_rfc7231_request(
+        _request = build_datetime_client_response_header_rfc7231_request(
             headers=_headers,
             params=_params,
         )
@@ -238,7 +246,7 @@ class ResponseHeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_response_header_unix_timestamp_request(
+        _request = build_datetime_client_response_header_unix_timestamp_request(
             headers=_headers,
             params=_params,
         )

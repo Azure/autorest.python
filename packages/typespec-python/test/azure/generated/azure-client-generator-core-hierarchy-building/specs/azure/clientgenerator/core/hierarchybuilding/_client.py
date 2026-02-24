@@ -16,21 +16,28 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import HierarchyBuildingClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import AnimalOperationsOperations, DogOperationsOperations, PetOperationsOperations
+from .operations import (
+    HierarchyBuildingClientAnimalOperationsOperations,
+    HierarchyBuildingClientDogOperationsOperations,
+    HierarchyBuildingClientPetOperationsOperations,
+)
 
 
 class HierarchyBuildingClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for @hierarchyBuilding decorator.
 
-    :ivar animal_operations: AnimalOperationsOperations operations
-    :vartype animal_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.operations.AnimalOperationsOperations
-    :ivar pet_operations: PetOperationsOperations operations
-    :vartype pet_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.operations.PetOperationsOperations
-    :ivar dog_operations: DogOperationsOperations operations
-    :vartype dog_operations:
-     specs.azure.clientgenerator.core.hierarchybuilding.operations.DogOperationsOperations
+    :ivar hierarchy_building_client_animal_operations:
+     HierarchyBuildingClientAnimalOperationsOperations operations
+    :vartype hierarchy_building_client_animal_operations:
+     specs.azure.clientgenerator.core.hierarchybuilding.operations.HierarchyBuildingClientAnimalOperationsOperations
+    :ivar hierarchy_building_client_pet_operations: HierarchyBuildingClientPetOperationsOperations
+     operations
+    :vartype hierarchy_building_client_pet_operations:
+     specs.azure.clientgenerator.core.hierarchybuilding.operations.HierarchyBuildingClientPetOperationsOperations
+    :ivar hierarchy_building_client_dog_operations: HierarchyBuildingClientDogOperationsOperations
+     operations
+    :vartype hierarchy_building_client_dog_operations:
+     specs.azure.clientgenerator.core.hierarchybuilding.operations.HierarchyBuildingClientDogOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -63,11 +70,15 @@ class HierarchyBuildingClient:  # pylint: disable=client-accepts-api-version-key
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.animal_operations = AnimalOperationsOperations(
+        self.hierarchy_building_client_animal_operations = HierarchyBuildingClientAnimalOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.pet_operations = PetOperationsOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.dog_operations = DogOperationsOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.hierarchy_building_client_pet_operations = HierarchyBuildingClientPetOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.hierarchy_building_client_dog_operations = HierarchyBuildingClientDogOperationsOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

@@ -18,42 +18,42 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import IndividuallyParentClientConfiguration
 from .operations import (
-    IndividuallyParentNestedWithHeaderClientOperations,
-    IndividuallyParentNestedWithMixedClientOperations,
-    IndividuallyParentNestedWithMultipleClientOperations,
-    IndividuallyParentNestedWithParamAliasClientOperations,
-    IndividuallyParentNestedWithPathClientOperations,
-    IndividuallyParentNestedWithQueryClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations,
+    IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations,
 )
 
 
 class IndividuallyParentClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for client initialization decorator - moving parameters from method to client level.
 
-    :ivar individually_parent_nested_with_path_client:
-     IndividuallyParentNestedWithPathClientOperations operations
-    :vartype individually_parent_nested_with_path_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithPathClientOperations
-    :ivar individually_parent_nested_with_query_client:
-     IndividuallyParentNestedWithQueryClientOperations operations
-    :vartype individually_parent_nested_with_query_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithQueryClientOperations
-    :ivar individually_parent_nested_with_header_client:
-     IndividuallyParentNestedWithHeaderClientOperations operations
-    :vartype individually_parent_nested_with_header_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithHeaderClientOperations
-    :ivar individually_parent_nested_with_multiple_client:
-     IndividuallyParentNestedWithMultipleClientOperations operations
-    :vartype individually_parent_nested_with_multiple_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithMultipleClientOperations
-    :ivar individually_parent_nested_with_mixed_client:
-     IndividuallyParentNestedWithMixedClientOperations operations
-    :vartype individually_parent_nested_with_mixed_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithMixedClientOperations
-    :ivar individually_parent_nested_with_param_alias_client:
-     IndividuallyParentNestedWithParamAliasClientOperations operations
-    :vartype individually_parent_nested_with_param_alias_client:
-     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentNestedWithParamAliasClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_path_client:
+     IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_path_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_query_client:
+     IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_query_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_header_client:
+     IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_header_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_multiple_client:
+     IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_multiple_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_mixed_client:
+     IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_mixed_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations
+    :ivar individually_parent_client_individually_parent_nested_with_param_alias_client:
+     IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations operations
+    :vartype individually_parent_client_individually_parent_nested_with_param_alias_client:
+     specs.azure.clientgenerator.core.clientinitialization.individuallyparent.aio.operations.IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations
     :param blob_name: The blob name to use for operations. Required.
     :type blob_name: str
     :param name: The name to use for operations. Required.
@@ -94,23 +94,33 @@ class IndividuallyParentClient:  # pylint: disable=client-accepts-api-version-ke
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.individually_parent_nested_with_path_client = IndividuallyParentNestedWithPathClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.individually_parent_client_individually_parent_nested_with_path_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithPathClientOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.individually_parent_nested_with_query_client = IndividuallyParentNestedWithQueryClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.individually_parent_client_individually_parent_nested_with_query_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithQueryClientOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.individually_parent_nested_with_header_client = IndividuallyParentNestedWithHeaderClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.individually_parent_client_individually_parent_nested_with_header_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithHeaderClientOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.individually_parent_nested_with_multiple_client = IndividuallyParentNestedWithMultipleClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.individually_parent_client_individually_parent_nested_with_multiple_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithMultipleClientOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.individually_parent_nested_with_mixed_client = IndividuallyParentNestedWithMixedClientOperations(
-            self._client, self._config, self._serialize, self._deserialize
+        self.individually_parent_client_individually_parent_nested_with_mixed_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithMixedClientOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
         )
-        self.individually_parent_nested_with_param_alias_client = (
-            IndividuallyParentNestedWithParamAliasClientOperations(
+        self.individually_parent_client_individually_parent_nested_with_param_alias_client = (
+            IndividuallyParentClientIndividuallyParentNestedWithParamAliasClientOperations(
                 self._client, self._config, self._serialize, self._deserialize
             )
         )

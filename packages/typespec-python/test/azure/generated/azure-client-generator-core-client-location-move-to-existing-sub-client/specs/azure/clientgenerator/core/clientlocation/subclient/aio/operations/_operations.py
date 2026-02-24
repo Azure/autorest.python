@@ -23,9 +23,9 @@ from azure.core.tracing.decorator_async import distributed_trace_async
 
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_admin_operations_delete_user_request,
-    build_admin_operations_get_admin_info_request,
-    build_user_operations_get_user_request,
+    build_move_to_existing_sub_client_admin_operations_delete_user_request,
+    build_move_to_existing_sub_client_admin_operations_get_admin_info_request,
+    build_move_to_existing_sub_client_user_operations_get_user_request,
 )
 from .._configuration import MoveToExistingSubClientConfiguration
 
@@ -33,14 +33,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class AdminOperationsOperations:
+class MoveToExistingSubClientAdminOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.subclient.aio.MoveToExistingSubClient`'s
-        :attr:`admin_operations` attribute.
+        :attr:`move_to_existing_sub_client_admin_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -71,7 +71,7 @@ class AdminOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_admin_operations_get_admin_info_request(
+        _request = build_move_to_existing_sub_client_admin_operations_get_admin_info_request(
             headers=_headers,
             params=_params,
         )
@@ -115,7 +115,7 @@ class AdminOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_admin_operations_delete_user_request(
+        _request = build_move_to_existing_sub_client_admin_operations_delete_user_request(
             headers=_headers,
             params=_params,
         )
@@ -139,14 +139,14 @@ class AdminOperationsOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class UserOperationsOperations:
+class MoveToExistingSubClientUserOperationsOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.clientlocation.subclient.aio.MoveToExistingSubClient`'s
-        :attr:`user_operations` attribute.
+        :attr:`move_to_existing_sub_client_user_operations` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -177,7 +177,7 @@ class UserOperationsOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_user_operations_get_user_request(
+        _request = build_move_to_existing_sub_client_user_operations_get_user_request(
             headers=_headers,
             params=_params,
         )

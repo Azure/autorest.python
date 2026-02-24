@@ -15,21 +15,23 @@ from azure.core.pipeline import policies
 from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
-from ..pathparameters.aio.operations import PathParametersOperations
-from ..queryparameters.aio.operations import QueryParametersOperations
+from ..pathparameters.aio.operations import RoutesClientPathParametersOperations
+from ..queryparameters.aio.operations import RoutesClientQueryParametersOperations
 from ._configuration import RoutesClientConfiguration
-from .operations import InInterfaceOperations, _RoutesClientOperationsMixin
+from .operations import RoutesClientInInterfaceOperations, _RoutesClientOperationsMixin
 
 
 class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Define scenario in building the http route/uri.
 
-    :ivar path_parameters: PathParametersOperations operations
-    :vartype path_parameters: routes.aio.operations.PathParametersOperations
-    :ivar query_parameters: QueryParametersOperations operations
-    :vartype query_parameters: routes.aio.operations.QueryParametersOperations
-    :ivar in_interface: InInterfaceOperations operations
-    :vartype in_interface: routes.aio.operations.InInterfaceOperations
+    :ivar routes_client_path_parameters: RoutesClientPathParametersOperations operations
+    :vartype routes_client_path_parameters:
+     routes.aio.operations.RoutesClientPathParametersOperations
+    :ivar routes_client_query_parameters: RoutesClientQueryParametersOperations operations
+    :vartype routes_client_query_parameters:
+     routes.aio.operations.RoutesClientQueryParametersOperations
+    :ivar routes_client_in_interface: RoutesClientInInterfaceOperations operations
+    :vartype routes_client_in_interface: routes.aio.operations.RoutesClientInInterfaceOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -62,11 +64,15 @@ class RoutesClient(_RoutesClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.path_parameters = PathParametersOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.query_parameters = QueryParametersOperations(
+        self.routes_client_path_parameters = RoutesClientPathParametersOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.in_interface = InInterfaceOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.routes_client_query_parameters = RoutesClientQueryParametersOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.routes_client_in_interface = RoutesClientInInterfaceOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

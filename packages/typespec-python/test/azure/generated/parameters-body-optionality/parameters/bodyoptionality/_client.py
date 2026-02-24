@@ -17,7 +17,7 @@ from azure.core.rest import HttpRequest, HttpResponse
 from ._configuration import BodyOptionalityClientConfiguration
 from ._operations import _BodyOptionalityClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
-from .optionalexplicit.operations import OptionalExplicitOperations
+from .optionalexplicit.operations import BodyOptionalityClientOptionalExplicitOperations
 
 
 class BodyOptionalityClient(
@@ -25,8 +25,10 @@ class BodyOptionalityClient(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """Test describing optionality of the request body.
 
-    :ivar optional_explicit: OptionalExplicitOperations operations
-    :vartype optional_explicit: parameters.bodyoptionality.operations.OptionalExplicitOperations
+    :ivar body_optionality_client_optional_explicit:
+     BodyOptionalityClientOptionalExplicitOperations operations
+    :vartype body_optionality_client_optional_explicit:
+     parameters.bodyoptionality.operations.BodyOptionalityClientOptionalExplicitOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -59,7 +61,7 @@ class BodyOptionalityClient(
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.optional_explicit = OptionalExplicitOperations(
+        self.body_optionality_client_optional_explicit = BodyOptionalityClientOptionalExplicitOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

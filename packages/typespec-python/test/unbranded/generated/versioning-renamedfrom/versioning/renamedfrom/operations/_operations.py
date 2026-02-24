@@ -33,7 +33,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_new_interface_new_op_in_new_interface_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_renamed_from_client_new_interface_new_op_in_new_interface_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -71,14 +73,14 @@ def build_renamed_from_new_op_request(*, new_query: str, **kwargs: Any) -> HttpR
     return HttpRequest(method="POST", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class NewInterfaceOperations:
+class RenamedFromClientNewInterfaceOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~versioning.renamedfrom.RenamedFromClient`'s
-        :attr:`new_interface` attribute.
+        :attr:`renamed_from_client_new_interface` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -168,7 +170,7 @@ class NewInterfaceOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_new_interface_new_op_in_new_interface_request(
+        _request = build_renamed_from_client_new_interface_new_op_in_new_interface_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

@@ -16,17 +16,20 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import EnumConflictClientConfiguration
-from .operations import FirstOperationsOperations, SecondOperationsOperations
+from .operations import EnumConflictClientFirstOperationsOperations, EnumConflictClientSecondOperationsOperations
 
 
 class EnumConflictClient:  # pylint: disable=client-accepts-api-version-keyword
     """Test for enum with same name in different namespace.
 
-    :ivar first_operations: FirstOperationsOperations operations
-    :vartype first_operations: client.naming.enumconflict.aio.operations.FirstOperationsOperations
-    :ivar second_operations: SecondOperationsOperations operations
-    :vartype second_operations:
-     client.naming.enumconflict.aio.operations.SecondOperationsOperations
+    :ivar enum_conflict_client_first_operations: EnumConflictClientFirstOperationsOperations
+     operations
+    :vartype enum_conflict_client_first_operations:
+     client.naming.enumconflict.aio.operations.EnumConflictClientFirstOperationsOperations
+    :ivar enum_conflict_client_second_operations: EnumConflictClientSecondOperationsOperations
+     operations
+    :vartype enum_conflict_client_second_operations:
+     client.naming.enumconflict.aio.operations.EnumConflictClientSecondOperationsOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -59,10 +62,10 @@ class EnumConflictClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.first_operations = FirstOperationsOperations(
+        self.enum_conflict_client_first_operations = EnumConflictClientFirstOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.second_operations = SecondOperationsOperations(
+        self.enum_conflict_client_second_operations = EnumConflictClientSecondOperationsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

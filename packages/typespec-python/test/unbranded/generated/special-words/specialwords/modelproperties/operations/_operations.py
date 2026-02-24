@@ -30,7 +30,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_model_properties_same_as_model_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_special_words_client_model_properties_same_as_model_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -44,7 +46,9 @@ def build_model_properties_same_as_model_request(**kwargs: Any) -> HttpRequest: 
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_properties_dict_methods_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_special_words_client_model_properties_dict_methods_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -58,7 +62,9 @@ def build_model_properties_dict_methods_request(**kwargs: Any) -> HttpRequest:  
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-def build_model_properties_with_list_request(**kwargs: Any) -> HttpRequest:
+def build_special_words_client_model_properties_with_list_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     content_type: Optional[str] = kwargs.pop("content_type", _headers.pop("Content-Type", None))
@@ -72,14 +78,14 @@ def build_model_properties_with_list_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, headers=_headers, **kwargs)
 
 
-class ModelPropertiesOperations:
+class SpecialWordsClientModelPropertiesOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specialwords.SpecialWordsClient`'s
-        :attr:`model_properties` attribute.
+        :attr:`special_words_client_model_properties` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -165,7 +171,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_same_as_model_request(
+        _request = build_special_words_client_model_properties_same_as_model_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -264,7 +270,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_dict_methods_request(
+        _request = build_special_words_client_model_properties_dict_methods_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -361,7 +367,7 @@ class ModelPropertiesOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_model_properties_with_list_request(
+        _request = build_special_words_client_model_properties_with_list_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

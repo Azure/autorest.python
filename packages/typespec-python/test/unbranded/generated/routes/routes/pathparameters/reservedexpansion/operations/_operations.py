@@ -24,7 +24,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_path_parameters_reserved_expansion_template_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_reserved_expansion_template_request(  # pylint: disable=name-too-long
     param: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -38,7 +38,7 @@ def build_path_parameters_reserved_expansion_template_request(  # pylint: disabl
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-def build_path_parameters_reserved_expansion_annotation_request(  # pylint: disable=name-too-long
+def build_routes_client_path_parameters_reserved_expansion_annotation_request(  # pylint: disable=name-too-long
     param: str, **kwargs: Any
 ) -> HttpRequest:
     # Construct URL
@@ -52,14 +52,14 @@ def build_path_parameters_reserved_expansion_annotation_request(  # pylint: disa
     return HttpRequest(method="GET", url=_url, **kwargs)
 
 
-class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-long
+class RoutesClientPathParametersReservedExpansionOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~routes.RoutesClient`'s
-        :attr:`reserved_expansion` attribute.
+        :attr:`routes_client_path_parameters_reserved_expansion` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -91,7 +91,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_reserved_expansion_template_request(
+        _request = build_routes_client_path_parameters_reserved_expansion_template_request(
             param=param,
             headers=_headers,
             params=_params,
@@ -135,7 +135,7 @@ class PathParametersReservedExpansionOperations:  # pylint: disable=name-too-lon
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_path_parameters_reserved_expansion_annotation_request(
+        _request = build_routes_client_path_parameters_reserved_expansion_annotation_request(
             param=param,
             headers=_headers,
             params=_params,

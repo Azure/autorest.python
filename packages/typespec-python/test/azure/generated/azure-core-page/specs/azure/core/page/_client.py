@@ -16,15 +16,15 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from ._configuration import PageClientConfiguration
 from ._utils.serialization import Deserializer, Serializer
-from .operations import TwoModelsAsPageItemOperations, _PageClientOperationsMixin
+from .operations import PageClientTwoModelsAsPageItemOperations, _PageClientOperationsMixin
 
 
 class PageClient(_PageClientOperationsMixin):
     """Illustrates bodies templated with Azure Core with paging support.
 
-    :ivar two_models_as_page_item: TwoModelsAsPageItemOperations operations
-    :vartype two_models_as_page_item:
-     specs.azure.core.page.operations.TwoModelsAsPageItemOperations
+    :ivar page_client_two_models_as_page_item: PageClientTwoModelsAsPageItemOperations operations
+    :vartype page_client_two_models_as_page_item:
+     specs.azure.core.page.operations.PageClientTwoModelsAsPageItemOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Known values are
@@ -61,7 +61,7 @@ class PageClient(_PageClientOperationsMixin):
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.two_models_as_page_item = TwoModelsAsPageItemOperations(
+        self.page_client_two_models_as_page_item = PageClientTwoModelsAsPageItemOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

@@ -29,7 +29,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_xml_pagination_list_with_continuation_request(  # pylint: disable=name-too-long
+def build_pageable_client_xml_pagination_list_with_continuation_request(  # pylint: disable=name-too-long
     *, marker: Optional[str] = None, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -50,7 +50,9 @@ def build_xml_pagination_list_with_continuation_request(  # pylint: disable=name
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_xml_pagination_list_with_next_link_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
+def build_pageable_client_xml_pagination_list_with_next_link_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     accept = _headers.pop("Accept", "application/xml")
@@ -64,14 +66,14 @@ def build_xml_pagination_list_with_next_link_request(**kwargs: Any) -> HttpReque
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class XmlPaginationOperations:
+class PageableClientXmlPaginationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~payload.pageable.PageableClient`'s
-        :attr:`xml_pagination` attribute.
+        :attr:`pageable_client_xml_pagination` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -103,7 +105,7 @@ class XmlPaginationOperations:
 
         def prepare_request(_continuation_token=None):
 
-            _request = build_xml_pagination_list_with_continuation_request(
+            _request = build_pageable_client_xml_pagination_list_with_continuation_request(
                 marker=_continuation_token,
                 headers=_headers,
                 params=_params,
@@ -160,7 +162,7 @@ class XmlPaginationOperations:
         def prepare_request(next_link=None):
             if not next_link:
 
-                _request = build_xml_pagination_list_with_next_link_request(
+                _request = build_pageable_client_xml_pagination_list_with_next_link_request(
                     headers=_headers,
                     params=_params,
                 )

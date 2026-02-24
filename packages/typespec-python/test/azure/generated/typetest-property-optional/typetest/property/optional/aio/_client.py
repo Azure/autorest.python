@@ -17,64 +17,78 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import OptionalClientConfiguration
 from .operations import (
-    BooleanLiteralOperations,
-    BytesOperations,
-    CollectionsByteOperations,
-    CollectionsModelOperations,
-    DatetimeOperations,
-    DurationOperations,
-    FloatLiteralOperations,
-    IntLiteralOperations,
-    PlainDateOperations,
-    PlainTimeOperations,
-    RequiredAndOptionalOperations,
-    StringLiteralOperations,
-    StringOperations,
-    UnionFloatLiteralOperations,
-    UnionIntLiteralOperations,
-    UnionStringLiteralOperations,
+    OptionalClientBooleanLiteralOperations,
+    OptionalClientBytesOperations,
+    OptionalClientCollectionsByteOperations,
+    OptionalClientCollectionsModelOperations,
+    OptionalClientDatetimeOperations,
+    OptionalClientDurationOperations,
+    OptionalClientFloatLiteralOperations,
+    OptionalClientIntLiteralOperations,
+    OptionalClientPlainDateOperations,
+    OptionalClientPlainTimeOperations,
+    OptionalClientRequiredAndOptionalOperations,
+    OptionalClientStringLiteralOperations,
+    OptionalClientStringOperations,
+    OptionalClientUnionFloatLiteralOperations,
+    OptionalClientUnionIntLiteralOperations,
+    OptionalClientUnionStringLiteralOperations,
 )
 
 
 class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-instance-attributes
     """Illustrates models with optional properties.
 
-    :ivar string: StringOperations operations
-    :vartype string: typetest.property.optional.aio.operations.StringOperations
-    :ivar bytes: BytesOperations operations
-    :vartype bytes: typetest.property.optional.aio.operations.BytesOperations
-    :ivar datetime: DatetimeOperations operations
-    :vartype datetime: typetest.property.optional.aio.operations.DatetimeOperations
-    :ivar duration: DurationOperations operations
-    :vartype duration: typetest.property.optional.aio.operations.DurationOperations
-    :ivar plain_date: PlainDateOperations operations
-    :vartype plain_date: typetest.property.optional.aio.operations.PlainDateOperations
-    :ivar plain_time: PlainTimeOperations operations
-    :vartype plain_time: typetest.property.optional.aio.operations.PlainTimeOperations
-    :ivar collections_byte: CollectionsByteOperations operations
-    :vartype collections_byte: typetest.property.optional.aio.operations.CollectionsByteOperations
-    :ivar collections_model: CollectionsModelOperations operations
-    :vartype collections_model:
-     typetest.property.optional.aio.operations.CollectionsModelOperations
-    :ivar string_literal: StringLiteralOperations operations
-    :vartype string_literal: typetest.property.optional.aio.operations.StringLiteralOperations
-    :ivar int_literal: IntLiteralOperations operations
-    :vartype int_literal: typetest.property.optional.aio.operations.IntLiteralOperations
-    :ivar float_literal: FloatLiteralOperations operations
-    :vartype float_literal: typetest.property.optional.aio.operations.FloatLiteralOperations
-    :ivar boolean_literal: BooleanLiteralOperations operations
-    :vartype boolean_literal: typetest.property.optional.aio.operations.BooleanLiteralOperations
-    :ivar union_string_literal: UnionStringLiteralOperations operations
-    :vartype union_string_literal:
-     typetest.property.optional.aio.operations.UnionStringLiteralOperations
-    :ivar union_int_literal: UnionIntLiteralOperations operations
-    :vartype union_int_literal: typetest.property.optional.aio.operations.UnionIntLiteralOperations
-    :ivar union_float_literal: UnionFloatLiteralOperations operations
-    :vartype union_float_literal:
-     typetest.property.optional.aio.operations.UnionFloatLiteralOperations
-    :ivar required_and_optional: RequiredAndOptionalOperations operations
-    :vartype required_and_optional:
-     typetest.property.optional.aio.operations.RequiredAndOptionalOperations
+    :ivar optional_client_string: OptionalClientStringOperations operations
+    :vartype optional_client_string:
+     typetest.property.optional.aio.operations.OptionalClientStringOperations
+    :ivar optional_client_bytes: OptionalClientBytesOperations operations
+    :vartype optional_client_bytes:
+     typetest.property.optional.aio.operations.OptionalClientBytesOperations
+    :ivar optional_client_datetime: OptionalClientDatetimeOperations operations
+    :vartype optional_client_datetime:
+     typetest.property.optional.aio.operations.OptionalClientDatetimeOperations
+    :ivar optional_client_duration: OptionalClientDurationOperations operations
+    :vartype optional_client_duration:
+     typetest.property.optional.aio.operations.OptionalClientDurationOperations
+    :ivar optional_client_plain_date: OptionalClientPlainDateOperations operations
+    :vartype optional_client_plain_date:
+     typetest.property.optional.aio.operations.OptionalClientPlainDateOperations
+    :ivar optional_client_plain_time: OptionalClientPlainTimeOperations operations
+    :vartype optional_client_plain_time:
+     typetest.property.optional.aio.operations.OptionalClientPlainTimeOperations
+    :ivar optional_client_collections_byte: OptionalClientCollectionsByteOperations operations
+    :vartype optional_client_collections_byte:
+     typetest.property.optional.aio.operations.OptionalClientCollectionsByteOperations
+    :ivar optional_client_collections_model: OptionalClientCollectionsModelOperations operations
+    :vartype optional_client_collections_model:
+     typetest.property.optional.aio.operations.OptionalClientCollectionsModelOperations
+    :ivar optional_client_string_literal: OptionalClientStringLiteralOperations operations
+    :vartype optional_client_string_literal:
+     typetest.property.optional.aio.operations.OptionalClientStringLiteralOperations
+    :ivar optional_client_int_literal: OptionalClientIntLiteralOperations operations
+    :vartype optional_client_int_literal:
+     typetest.property.optional.aio.operations.OptionalClientIntLiteralOperations
+    :ivar optional_client_float_literal: OptionalClientFloatLiteralOperations operations
+    :vartype optional_client_float_literal:
+     typetest.property.optional.aio.operations.OptionalClientFloatLiteralOperations
+    :ivar optional_client_boolean_literal: OptionalClientBooleanLiteralOperations operations
+    :vartype optional_client_boolean_literal:
+     typetest.property.optional.aio.operations.OptionalClientBooleanLiteralOperations
+    :ivar optional_client_union_string_literal: OptionalClientUnionStringLiteralOperations
+     operations
+    :vartype optional_client_union_string_literal:
+     typetest.property.optional.aio.operations.OptionalClientUnionStringLiteralOperations
+    :ivar optional_client_union_int_literal: OptionalClientUnionIntLiteralOperations operations
+    :vartype optional_client_union_int_literal:
+     typetest.property.optional.aio.operations.OptionalClientUnionIntLiteralOperations
+    :ivar optional_client_union_float_literal: OptionalClientUnionFloatLiteralOperations operations
+    :vartype optional_client_union_float_literal:
+     typetest.property.optional.aio.operations.OptionalClientUnionFloatLiteralOperations
+    :ivar optional_client_required_and_optional: OptionalClientRequiredAndOptionalOperations
+     operations
+    :vartype optional_client_required_and_optional:
+     typetest.property.optional.aio.operations.OptionalClientRequiredAndOptionalOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     """
@@ -107,32 +121,52 @@ class OptionalClient:  # pylint: disable=client-accepts-api-version-keyword,too-
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.string = StringOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.bytes = BytesOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.datetime = DatetimeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.duration = DurationOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.plain_date = PlainDateOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.plain_time = PlainTimeOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.collections_byte = CollectionsByteOperations(
+        self.optional_client_string = OptionalClientStringOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.collections_model = CollectionsModelOperations(
+        self.optional_client_bytes = OptionalClientBytesOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.string_literal = StringLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.int_literal = IntLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.float_literal = FloatLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.boolean_literal = BooleanLiteralOperations(self._client, self._config, self._serialize, self._deserialize)
-        self.union_string_literal = UnionStringLiteralOperations(
+        self.optional_client_datetime = OptionalClientDatetimeOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.union_int_literal = UnionIntLiteralOperations(
+        self.optional_client_duration = OptionalClientDurationOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.union_float_literal = UnionFloatLiteralOperations(
+        self.optional_client_plain_date = OptionalClientPlainDateOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.required_and_optional = RequiredAndOptionalOperations(
+        self.optional_client_plain_time = OptionalClientPlainTimeOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_collections_byte = OptionalClientCollectionsByteOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_collections_model = OptionalClientCollectionsModelOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_string_literal = OptionalClientStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_int_literal = OptionalClientIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_float_literal = OptionalClientFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_boolean_literal = OptionalClientBooleanLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_union_string_literal = OptionalClientUnionStringLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_union_int_literal = OptionalClientUnionIntLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_union_float_literal = OptionalClientUnionFloatLiteralOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.optional_client_required_and_optional = OptionalClientRequiredAndOptionalOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
 

@@ -31,56 +31,58 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_group1_one_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group1_one_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/one"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group1_three_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group1_three_request(  # pylint: disable=name-too-long
+    **kwargs: Any,
+) -> HttpRequest:
     # Construct URL
     _url = "/three"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group1_four_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group1_four_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/four"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group2_two_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group2_two_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/two"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group2_five_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group2_five_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/five"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_group2_six_request(**kwargs: Any) -> HttpRequest:
+def build_two_operation_group_client_group2_six_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/six"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class Group1Operations:
+class TwoOperationGroupClientGroup1Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.twooperationgroup.TwoOperationGroupClient`'s
-        :attr:`group1` attribute.
+        :attr:`two_operation_group_client_group1` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -111,7 +113,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_one_request(
+        _request = build_two_operation_group_client_group1_one_request(
             headers=_headers,
             params=_params,
         )
@@ -156,7 +158,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_three_request(
+        _request = build_two_operation_group_client_group1_three_request(
             headers=_headers,
             params=_params,
         )
@@ -201,7 +203,7 @@ class Group1Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group1_four_request(
+        _request = build_two_operation_group_client_group1_four_request(
             headers=_headers,
             params=_params,
         )
@@ -226,14 +228,14 @@ class Group1Operations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class Group2Operations:
+class TwoOperationGroupClientGroup2Operations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.twooperationgroup.TwoOperationGroupClient`'s
-        :attr:`group2` attribute.
+        :attr:`two_operation_group_client_group2` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -264,7 +266,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_two_request(
+        _request = build_two_operation_group_client_group2_two_request(
             headers=_headers,
             params=_params,
         )
@@ -309,7 +311,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_five_request(
+        _request = build_two_operation_group_client_group2_five_request(
             headers=_headers,
             params=_params,
         )
@@ -354,7 +356,7 @@ class Group2Operations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_group2_six_request(
+        _request = build_two_operation_group_client_group2_six_request(
             headers=_headers,
             params=_params,
         )

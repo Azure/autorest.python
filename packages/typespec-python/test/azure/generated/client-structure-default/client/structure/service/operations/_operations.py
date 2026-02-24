@@ -32,35 +32,35 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_qux_eight_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_qux_eight_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/eight"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_foo_three_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_foo_three_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/three"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_foo_four_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_foo_four_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/four"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_bar_five_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_bar_five_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/five"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_bar_six_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_bar_six_request(**kwargs: Any) -> HttpRequest:
     # Construct URL
     _url = "/six"
 
@@ -81,28 +81,28 @@ def build_service_two_request(**kwargs: Any) -> HttpRequest:
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_baz_foo_seven_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_baz_foo_seven_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/seven"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-def build_qux_bar_nine_request(**kwargs: Any) -> HttpRequest:
+def build_service_client_qux_bar_nine_request(**kwargs: Any) -> HttpRequest:  # pylint: disable=name-too-long
     # Construct URL
     _url = "/nine"
 
     return HttpRequest(method="POST", url=_url, **kwargs)
 
 
-class BazOperations:
+class ServiceClientBazOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`baz` attribute.
+        :attr:`service_client_baz` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -112,17 +112,19 @@ class BazOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.foo = BazFooOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.service_client_baz_foo = ServiceClientBazFooOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
 
-class QuxOperations:
+class ServiceClientQuxOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`qux` attribute.
+        :attr:`service_client_qux` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -132,7 +134,9 @@ class QuxOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
-        self.bar = QuxBarOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.service_client_qux_bar = ServiceClientQuxBarOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
 
     @distributed_trace
     def eight(self, **kwargs: Any) -> None:  # pylint: disable=inconsistent-return-statements
@@ -155,7 +159,7 @@ class QuxOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_qux_eight_request(
+        _request = build_service_client_qux_eight_request(
             headers=_headers,
             params=_params,
         )
@@ -180,14 +184,14 @@ class QuxOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class FooOperations:
+class ServiceClientFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`foo` attribute.
+        :attr:`service_client_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -218,7 +222,7 @@ class FooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_three_request(
+        _request = build_service_client_foo_three_request(
             headers=_headers,
             params=_params,
         )
@@ -263,7 +267,7 @@ class FooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_foo_four_request(
+        _request = build_service_client_foo_four_request(
             headers=_headers,
             params=_params,
         )
@@ -288,14 +292,14 @@ class FooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BarOperations:
+class ServiceClientBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`bar` attribute.
+        :attr:`service_client_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -326,7 +330,7 @@ class BarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_five_request(
+        _request = build_service_client_bar_five_request(
             headers=_headers,
             params=_params,
         )
@@ -371,7 +375,7 @@ class BarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_bar_six_request(
+        _request = build_service_client_bar_six_request(
             headers=_headers,
             params=_params,
         )
@@ -491,14 +495,14 @@ class _ServiceClientOperationsMixin(
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class BazFooOperations:
+class ServiceClientBazFooOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`foo` attribute.
+        :attr:`service_client_baz_foo` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -529,7 +533,7 @@ class BazFooOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_baz_foo_seven_request(
+        _request = build_service_client_baz_foo_seven_request(
             headers=_headers,
             params=_params,
         )
@@ -554,14 +558,14 @@ class BazFooOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class QuxBarOperations:
+class ServiceClientQuxBarOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~client.structure.service.ServiceClient`'s
-        :attr:`bar` attribute.
+        :attr:`service_client_qux_bar` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -592,7 +596,7 @@ class QuxBarOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_qux_bar_nine_request(
+        _request = build_service_client_qux_bar_nine_request(
             headers=_headers,
             params=_params,
         )

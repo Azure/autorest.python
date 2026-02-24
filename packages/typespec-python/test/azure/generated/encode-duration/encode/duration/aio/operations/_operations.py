@@ -32,48 +32,48 @@ from ... import models as _models
 from ..._utils.model_base import SdkJSONEncoder, _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_header_default_request,
-    build_header_float64_milliseconds_request,
-    build_header_float64_seconds_request,
-    build_header_float_milliseconds_larger_unit_request,
-    build_header_float_milliseconds_request,
-    build_header_float_seconds_larger_unit_request,
-    build_header_float_seconds_request,
-    build_header_int32_milliseconds_array_request,
-    build_header_int32_milliseconds_larger_unit_request,
-    build_header_int32_milliseconds_request,
-    build_header_int32_seconds_larger_unit_request,
-    build_header_int32_seconds_request,
-    build_header_iso8601_array_request,
-    build_header_iso8601_request,
-    build_property_default_request,
-    build_property_float64_milliseconds_request,
-    build_property_float64_seconds_request,
-    build_property_float_milliseconds_array_request,
-    build_property_float_milliseconds_larger_unit_request,
-    build_property_float_milliseconds_request,
-    build_property_float_seconds_array_request,
-    build_property_float_seconds_larger_unit_request,
-    build_property_float_seconds_request,
-    build_property_int32_milliseconds_larger_unit_request,
-    build_property_int32_milliseconds_request,
-    build_property_int32_seconds_larger_unit_request,
-    build_property_int32_seconds_request,
-    build_property_iso8601_request,
-    build_query_default_request,
-    build_query_float64_milliseconds_request,
-    build_query_float64_seconds_request,
-    build_query_float_milliseconds_larger_unit_request,
-    build_query_float_milliseconds_request,
-    build_query_float_seconds_larger_unit_request,
-    build_query_float_seconds_request,
-    build_query_int32_milliseconds_array_request,
-    build_query_int32_milliseconds_larger_unit_request,
-    build_query_int32_milliseconds_request,
-    build_query_int32_seconds_array_request,
-    build_query_int32_seconds_larger_unit_request,
-    build_query_int32_seconds_request,
-    build_query_iso8601_request,
+    build_duration_client_header_default_request,
+    build_duration_client_header_float64_milliseconds_request,
+    build_duration_client_header_float64_seconds_request,
+    build_duration_client_header_float_milliseconds_larger_unit_request,
+    build_duration_client_header_float_milliseconds_request,
+    build_duration_client_header_float_seconds_larger_unit_request,
+    build_duration_client_header_float_seconds_request,
+    build_duration_client_header_int32_milliseconds_array_request,
+    build_duration_client_header_int32_milliseconds_larger_unit_request,
+    build_duration_client_header_int32_milliseconds_request,
+    build_duration_client_header_int32_seconds_larger_unit_request,
+    build_duration_client_header_int32_seconds_request,
+    build_duration_client_header_iso8601_array_request,
+    build_duration_client_header_iso8601_request,
+    build_duration_client_property_default_request,
+    build_duration_client_property_float64_milliseconds_request,
+    build_duration_client_property_float64_seconds_request,
+    build_duration_client_property_float_milliseconds_array_request,
+    build_duration_client_property_float_milliseconds_larger_unit_request,
+    build_duration_client_property_float_milliseconds_request,
+    build_duration_client_property_float_seconds_array_request,
+    build_duration_client_property_float_seconds_larger_unit_request,
+    build_duration_client_property_float_seconds_request,
+    build_duration_client_property_int32_milliseconds_larger_unit_request,
+    build_duration_client_property_int32_milliseconds_request,
+    build_duration_client_property_int32_seconds_larger_unit_request,
+    build_duration_client_property_int32_seconds_request,
+    build_duration_client_property_iso8601_request,
+    build_duration_client_query_default_request,
+    build_duration_client_query_float64_milliseconds_request,
+    build_duration_client_query_float64_seconds_request,
+    build_duration_client_query_float_milliseconds_larger_unit_request,
+    build_duration_client_query_float_milliseconds_request,
+    build_duration_client_query_float_seconds_larger_unit_request,
+    build_duration_client_query_float_seconds_request,
+    build_duration_client_query_int32_milliseconds_array_request,
+    build_duration_client_query_int32_milliseconds_larger_unit_request,
+    build_duration_client_query_int32_milliseconds_request,
+    build_duration_client_query_int32_seconds_array_request,
+    build_duration_client_query_int32_seconds_larger_unit_request,
+    build_duration_client_query_int32_seconds_request,
+    build_duration_client_query_iso8601_request,
 )
 from .._configuration import DurationClientConfiguration
 
@@ -82,14 +82,14 @@ ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T
 JSON = MutableMapping[str, Any]
 
 
-class QueryOperations:
+class DurationClientQueryOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.aio.DurationClient`'s
-        :attr:`query` attribute.
+        :attr:`duration_client_query` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -122,7 +122,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_default_request(
+        _request = build_duration_client_query_default_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -169,7 +169,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_iso8601_request(
+        _request = build_duration_client_query_iso8601_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -216,7 +216,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_request(
+        _request = build_duration_client_query_int32_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -263,7 +263,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_larger_unit_request(
+        _request = build_duration_client_query_int32_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -310,7 +310,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_request(
+        _request = build_duration_client_query_float_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -357,7 +357,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_seconds_larger_unit_request(
+        _request = build_duration_client_query_float_seconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -404,7 +404,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_seconds_request(
+        _request = build_duration_client_query_float64_seconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -451,7 +451,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_request(
+        _request = build_duration_client_query_int32_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -498,7 +498,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_int32_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -545,7 +545,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_request(
+        _request = build_duration_client_query_float_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -592,7 +592,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_query_float_milliseconds_larger_unit_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -639,7 +639,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_float64_milliseconds_request(
+        _request = build_duration_client_query_float64_milliseconds_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -686,7 +686,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_seconds_array_request(
+        _request = build_duration_client_query_int32_seconds_array_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -733,7 +733,7 @@ class QueryOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_query_int32_milliseconds_array_request(
+        _request = build_duration_client_query_int32_milliseconds_array_request(
             input=input,
             headers=_headers,
             params=_params,
@@ -758,14 +758,14 @@ class QueryOperations:
             return cls(pipeline_response, None, {})  # type: ignore
 
 
-class PropertyOperations:
+class DurationClientPropertyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.aio.DurationClient`'s
-        :attr:`property` attribute.
+        :attr:`duration_client_property` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -856,7 +856,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_default_request(
+        _request = build_duration_client_property_default_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -974,7 +974,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_iso8601_request(
+        _request = build_duration_client_property_iso8601_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1097,7 +1097,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_request(
+        _request = build_duration_client_property_int32_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1220,7 +1220,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_request(
+        _request = build_duration_client_property_float_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1343,7 +1343,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_seconds_request(
+        _request = build_duration_client_property_float64_seconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1466,7 +1466,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_request(
+        _request = build_duration_client_property_int32_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1589,7 +1589,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_request(
+        _request = build_duration_client_property_float_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1716,7 +1716,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float64_milliseconds_request(
+        _request = build_duration_client_property_float64_milliseconds_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1839,7 +1839,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_array_request(
+        _request = build_duration_client_property_float_seconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -1966,7 +1966,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_array_request(
+        _request = build_duration_client_property_float_milliseconds_array_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2093,7 +2093,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_seconds_larger_unit_request(
+        _request = build_duration_client_property_int32_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2220,7 +2220,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_seconds_larger_unit_request(
+        _request = build_duration_client_property_float_seconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2348,7 +2348,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_int32_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2476,7 +2476,7 @@ class PropertyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_property_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_property_float_milliseconds_larger_unit_request(
             content_type=content_type,
             content=_content,
             headers=_headers,
@@ -2514,14 +2514,14 @@ class PropertyOperations:
         return deserialized  # type: ignore
 
 
-class HeaderOperations:
+class DurationClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.duration.aio.DurationClient`'s
-        :attr:`header` attribute.
+        :attr:`duration_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -2554,7 +2554,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        _request = build_duration_client_header_default_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2601,7 +2601,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_iso8601_request(
+        _request = build_duration_client_header_iso8601_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2648,7 +2648,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_iso8601_array_request(
+        _request = build_duration_client_header_iso8601_array_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2695,7 +2695,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_int32_seconds_request(
+        _request = build_duration_client_header_int32_seconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2742,7 +2742,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_int32_seconds_larger_unit_request(
+        _request = build_duration_client_header_int32_seconds_larger_unit_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2789,7 +2789,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float_seconds_request(
+        _request = build_duration_client_header_float_seconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2836,7 +2836,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float_seconds_larger_unit_request(
+        _request = build_duration_client_header_float_seconds_larger_unit_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2883,7 +2883,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float64_seconds_request(
+        _request = build_duration_client_header_float64_seconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2930,7 +2930,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_int32_milliseconds_request(
+        _request = build_duration_client_header_int32_milliseconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -2977,7 +2977,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_int32_milliseconds_larger_unit_request(
+        _request = build_duration_client_header_int32_milliseconds_larger_unit_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -3024,7 +3024,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float_milliseconds_request(
+        _request = build_duration_client_header_float_milliseconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -3071,7 +3071,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float_milliseconds_larger_unit_request(
+        _request = build_duration_client_header_float_milliseconds_larger_unit_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -3118,7 +3118,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_float64_milliseconds_request(
+        _request = build_duration_client_header_float64_milliseconds_request(
             duration=duration,
             headers=_headers,
             params=_params,
@@ -3165,7 +3165,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_int32_milliseconds_array_request(
+        _request = build_duration_client_header_int32_milliseconds_array_request(
             duration=duration,
             headers=_headers,
             params=_params,

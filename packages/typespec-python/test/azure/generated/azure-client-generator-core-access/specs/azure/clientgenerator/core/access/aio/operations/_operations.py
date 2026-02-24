@@ -27,15 +27,15 @@ from ... import models as _models
 from ..._utils.model_base import _deserialize
 from ..._utils.serialization import Deserializer, Serializer
 from ...operations._operations import (
-    build_internal_operation_internal_decorator_in_internal_request,
-    build_internal_operation_no_decorator_in_internal_request,
-    build_internal_operation_public_decorator_in_internal_request,
-    build_public_operation_no_decorator_in_public_request,
-    build_public_operation_public_decorator_in_public_request,
-    build_relative_model_in_operation_discriminator_request,
-    build_relative_model_in_operation_operation_request,
-    build_shared_model_in_operation_internal_request,
-    build_shared_model_in_operation_public_request,
+    build_access_client_internal_operation_internal_decorator_in_internal_request,
+    build_access_client_internal_operation_no_decorator_in_internal_request,
+    build_access_client_internal_operation_public_decorator_in_internal_request,
+    build_access_client_public_operation_no_decorator_in_public_request,
+    build_access_client_public_operation_public_decorator_in_public_request,
+    build_access_client_relative_model_in_operation_discriminator_request,
+    build_access_client_relative_model_in_operation_operation_request,
+    build_access_client_shared_model_in_operation_internal_request,
+    build_access_client_shared_model_in_operation_public_request,
 )
 from .._configuration import AccessClientConfiguration
 
@@ -43,14 +43,14 @@ T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class PublicOperationOperations:
+class AccessClientPublicOperationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.access.aio.AccessClient`'s
-        :attr:`public_operation` attribute.
+        :attr:`access_client_public_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -84,7 +84,7 @@ class PublicOperationOperations:
 
         cls: ClsType[_models.NoDecoratorModelInPublic] = kwargs.pop("cls", None)
 
-        _request = build_public_operation_no_decorator_in_public_request(
+        _request = build_access_client_public_operation_no_decorator_in_public_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -144,7 +144,7 @@ class PublicOperationOperations:
 
         cls: ClsType[_models.PublicDecoratorModelInPublic] = kwargs.pop("cls", None)
 
-        _request = build_public_operation_public_decorator_in_public_request(
+        _request = build_access_client_public_operation_public_decorator_in_public_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -181,14 +181,14 @@ class PublicOperationOperations:
         return deserialized  # type: ignore
 
 
-class InternalOperationOperations:
+class AccessClientInternalOperationOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.access.aio.AccessClient`'s
-        :attr:`internal_operation` attribute.
+        :attr:`access_client_internal_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -224,7 +224,7 @@ class InternalOperationOperations:
 
         cls: ClsType[_models._models.NoDecoratorModelInInternal] = kwargs.pop("cls", None)
 
-        _request = build_internal_operation_no_decorator_in_internal_request(
+        _request = build_access_client_internal_operation_no_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -289,7 +289,7 @@ class InternalOperationOperations:
 
         cls: ClsType[_models._models.InternalDecoratorModelInInternal] = kwargs.pop("cls", None)
 
-        _request = build_internal_operation_internal_decorator_in_internal_request(
+        _request = build_access_client_internal_operation_internal_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -353,7 +353,7 @@ class InternalOperationOperations:
 
         cls: ClsType[_models.PublicDecoratorModelInInternal] = kwargs.pop("cls", None)
 
-        _request = build_internal_operation_public_decorator_in_internal_request(
+        _request = build_access_client_internal_operation_public_decorator_in_internal_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -390,14 +390,14 @@ class InternalOperationOperations:
         return deserialized  # type: ignore
 
 
-class SharedModelInOperationOperations:
+class AccessClientSharedModelInOperationOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.access.aio.AccessClient`'s
-        :attr:`shared_model_in_operation` attribute.
+        :attr:`access_client_shared_model_in_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -430,7 +430,7 @@ class SharedModelInOperationOperations:
 
         cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
 
-        _request = build_shared_model_in_operation_public_request(
+        _request = build_access_client_shared_model_in_operation_public_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -489,7 +489,7 @@ class SharedModelInOperationOperations:
 
         cls: ClsType[_models.SharedModel] = kwargs.pop("cls", None)
 
-        _request = build_shared_model_in_operation_internal_request(
+        _request = build_access_client_shared_model_in_operation_internal_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -526,14 +526,14 @@ class SharedModelInOperationOperations:
         return deserialized  # type: ignore
 
 
-class RelativeModelInOperationOperations:
+class AccessClientRelativeModelInOperationOperations:  # pylint: disable=name-too-long
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~specs.azure.clientgenerator.core.access.aio.AccessClient`'s
-        :attr:`relative_model_in_operation` attribute.
+        :attr:`access_client_relative_model_in_operation` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -576,7 +576,7 @@ class RelativeModelInOperationOperations:
 
         cls: ClsType[_models._models.OuterModel] = kwargs.pop("cls", None)
 
-        _request = build_relative_model_in_operation_operation_request(
+        _request = build_access_client_relative_model_in_operation_operation_request(
             name=name,
             headers=_headers,
             params=_params,
@@ -642,7 +642,7 @@ class RelativeModelInOperationOperations:
 
         cls: ClsType[_models._models.AbstractModel] = kwargs.pop("cls", None)
 
-        _request = build_relative_model_in_operation_discriminator_request(
+        _request = build_access_client_relative_model_in_operation_discriminator_request(
             kind=kind,
             headers=_headers,
             params=_params,

@@ -26,7 +26,9 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_header_default_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_header_default_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -38,7 +40,9 @@ def build_header_default_request(*, value: datetime.datetime, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_header_rfc3339_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -50,7 +54,9 @@ def build_header_rfc3339_request(*, value: datetime.datetime, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_header_rfc7231_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -62,7 +68,9 @@ def build_header_rfc7231_request(*, value: datetime.datetime, **kwargs: Any) -> 
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_unix_timestamp_request(*, value: datetime.datetime, **kwargs: Any) -> HttpRequest:
+def build_datetime_client_header_unix_timestamp_request(  # pylint: disable=name-too-long
+    *, value: datetime.datetime, **kwargs: Any
+) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
 
     # Construct URL
@@ -74,7 +82,7 @@ def build_header_unix_timestamp_request(*, value: datetime.datetime, **kwargs: A
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-def build_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
+def build_datetime_client_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
     *, value: list[datetime.datetime], **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -88,14 +96,14 @@ def build_header_unix_timestamp_array_request(  # pylint: disable=name-too-long
     return HttpRequest(method="GET", url=_url, headers=_headers, **kwargs)
 
 
-class HeaderOperations:
+class DatetimeClientHeaderOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~encode.datetime.DatetimeClient`'s
-        :attr:`header` attribute.
+        :attr:`datetime_client_header` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -129,7 +137,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_default_request(
+        _request = build_datetime_client_header_default_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -175,7 +183,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_rfc3339_request(
+        _request = build_datetime_client_header_rfc3339_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -221,7 +229,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_rfc7231_request(
+        _request = build_datetime_client_header_rfc7231_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -267,7 +275,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_unix_timestamp_request(
+        _request = build_datetime_client_header_unix_timestamp_request(
             value=value,
             headers=_headers,
             params=_params,
@@ -313,7 +321,7 @@ class HeaderOperations:
 
         cls: ClsType[None] = kwargs.pop("cls", None)
 
-        _request = build_header_unix_timestamp_array_request(
+        _request = build_datetime_client_header_unix_timestamp_array_request(
             value=value,
             headers=_headers,
             params=_params,

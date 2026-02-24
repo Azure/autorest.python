@@ -21,21 +21,21 @@ from ... import models as _models2
 from ...._utils.model_base import SdkJSONEncoder
 from ...._utils.serialization import Deserializer, Serializer
 from ....aio._configuration import BasicClientConfiguration
-from ...operations._operations import build_explicit_body_simple_request
+from ...operations._operations import build_basic_client_explicit_body_simple_request
 
 JSON = MutableMapping[str, Any]
 T = TypeVar("T")
 ClsType = Optional[Callable[[PipelineResponse[HttpRequest, AsyncHttpResponse], T, dict[str, Any]], Any]]
 
 
-class ExplicitBodyOperations:
+class BasicClientExplicitBodyOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~parameters.basic.aio.BasicClient`'s
-        :attr:`explicit_body` attribute.
+        :attr:`basic_client_explicit_body` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -117,7 +117,7 @@ class ExplicitBodyOperations:
         else:
             _content = json.dumps(body, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_explicit_body_simple_request(
+        _request = build_basic_client_explicit_body_simple_request(
             content_type=content_type,
             content=_content,
             headers=_headers,

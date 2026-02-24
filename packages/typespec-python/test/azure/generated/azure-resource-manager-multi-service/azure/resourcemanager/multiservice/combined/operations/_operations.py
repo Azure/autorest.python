@@ -43,7 +43,7 @@ _SERIALIZER = Serializer()
 _SERIALIZER.client_side_validation = False
 
 
-def build_virtual_machines_get_request(
+def build_combined_virtual_machines_get_request(  # pylint: disable=name-too-long
     resource_group_name: str, vm_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -71,7 +71,7 @@ def build_virtual_machines_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_virtual_machines_create_or_update_request(  # pylint: disable=name-too-long
+def build_combined_virtual_machines_create_or_update_request(  # pylint: disable=name-too-long
     resource_group_name: str, vm_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -102,7 +102,7 @@ def build_virtual_machines_create_or_update_request(  # pylint: disable=name-too
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_disks_get_request(
+def build_combined_disks_get_request(
     resource_group_name: str, disk_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -130,7 +130,7 @@ def build_disks_get_request(
     return HttpRequest(method="GET", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-def build_disks_create_or_update_request(
+def build_combined_disks_create_or_update_request(  # pylint: disable=name-too-long
     resource_group_name: str, disk_name: str, subscription_id: str, **kwargs: Any
 ) -> HttpRequest:
     _headers = case_insensitive_dict(kwargs.pop("headers", {}) or {})
@@ -161,14 +161,14 @@ def build_disks_create_or_update_request(
     return HttpRequest(method="PUT", url=_url, params=_params, headers=_headers, **kwargs)
 
 
-class VirtualMachinesOperations:
+class CombinedVirtualMachinesOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.multiservice.combined.CombinedClient`'s
-        :attr:`virtual_machines` attribute.
+        :attr:`combined_virtual_machines` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -205,7 +205,7 @@ class VirtualMachinesOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2025-04-01"))
         cls: ClsType[_models.VirtualMachine] = kwargs.pop("cls", None)
 
-        _request = build_virtual_machines_get_request(
+        _request = build_combined_virtual_machines_get_request(
             resource_group_name=resource_group_name,
             vm_name=vm_name,
             subscription_id=self._config.subscription_id,
@@ -277,7 +277,7 @@ class VirtualMachinesOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_virtual_machines_create_or_update_request(
+        _request = build_combined_virtual_machines_create_or_update_request(
             resource_group_name=resource_group_name,
             vm_name=vm_name,
             subscription_id=self._config.subscription_id,
@@ -496,14 +496,14 @@ class VirtualMachinesOperations:
         )
 
 
-class DisksOperations:
+class CombinedDisksOperations:
     """
     .. warning::
         **DO NOT** instantiate this class directly.
 
         Instead, you should access the following operations through
         :class:`~azure.resourcemanager.multiservice.combined.CombinedClient`'s
-        :attr:`disks` attribute.
+        :attr:`combined_disks` attribute.
     """
 
     def __init__(self, *args, **kwargs) -> None:
@@ -540,7 +540,7 @@ class DisksOperations:
         api_version: str = kwargs.pop("api_version", _params.pop("api-version", "2025-01-02"))
         cls: ClsType[_models.Disk] = kwargs.pop("cls", None)
 
-        _request = build_disks_get_request(
+        _request = build_combined_disks_get_request(
             resource_group_name=resource_group_name,
             disk_name=disk_name,
             subscription_id=self._config.subscription_id,
@@ -608,7 +608,7 @@ class DisksOperations:
         else:
             _content = json.dumps(resource, cls=SdkJSONEncoder, exclude_readonly=True)  # type: ignore
 
-        _request = build_disks_create_or_update_request(
+        _request = build_combined_disks_create_or_update_request(
             resource_group_name=resource_group_name,
             disk_name=disk_name,
             subscription_id=self._config.subscription_id,
