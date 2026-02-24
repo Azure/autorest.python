@@ -135,7 +135,10 @@ class PageSizeOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models2.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models2.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)
@@ -208,7 +211,10 @@ class PageSizeOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models2.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models2.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, iter(list_of_elem)

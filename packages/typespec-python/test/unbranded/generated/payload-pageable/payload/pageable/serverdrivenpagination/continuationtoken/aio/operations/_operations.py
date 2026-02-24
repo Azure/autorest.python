@@ -92,7 +92,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
@@ -155,7 +158,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextToken") or None, AsyncList(list_of_elem)
@@ -218,7 +224,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
@@ -281,7 +290,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return pipeline_response.http_response.headers.get("next-token") or None, AsyncList(list_of_elem)
@@ -344,7 +356,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("nestedItems", {}).get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("nestedItems", {}).get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nestedNext", {}).get("nextToken") or None, AsyncList(list_of_elem)
@@ -407,7 +422,10 @@ class ServerDrivenPaginationContinuationTokenOperations:  # pylint: disable=name
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models4.Pet], deserialized.get("nestedItems", {}).get("pets", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models4.Pet],
+                deserialized.get("nestedItems", {}).get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nestedNext", {}).get("nextToken") or None, AsyncList(list_of_elem)

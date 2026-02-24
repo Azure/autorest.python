@@ -88,7 +88,10 @@ class _PageableClientOperationsMixin(
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                List[_models.User],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)

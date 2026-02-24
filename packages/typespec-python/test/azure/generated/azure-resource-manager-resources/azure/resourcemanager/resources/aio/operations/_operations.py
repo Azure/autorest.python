@@ -824,7 +824,10 @@ class TopLevelOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.TopLevelTrackedResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.TopLevelTrackedResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -912,7 +915,10 @@ class TopLevelOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.TopLevelTrackedResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.TopLevelTrackedResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -1901,7 +1907,10 @@ class NestedOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.NestedProxyResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.NestedProxyResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -2446,7 +2455,10 @@ class SingletonOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.SingletonTrackedResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.SingletonTrackedResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -3086,7 +3098,10 @@ class ExtensionsResourcesOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.ExtensionsResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.ExtensionsResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
@@ -3649,7 +3664,10 @@ class LocationResourcesOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.LocationResource], deserialized.get("value", []))
+            list_of_elem = _deserialize(  # pylint: disable=protected-access
+                list[_models.LocationResource],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, AsyncList(list_of_elem)
