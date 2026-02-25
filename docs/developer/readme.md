@@ -12,7 +12,3 @@ To test an unpublished branded emitter tarball, please follow these steps:
 6. Paste the url as the version for the `"@azure-tools/typespec-python"` package
 7. Run `tsp-client generate-lock-file` from the `azure-sdk-for-python/eng` folder
 8. Go to the sdk you'd like to regenerate with the tarball, then run `tsp-client update` how you normally would
-
-## Design Notes
-
-- [`Http.File` compatibility for Python](./http_file_body_compatibility.md)
