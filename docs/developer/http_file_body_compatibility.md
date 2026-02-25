@@ -37,4 +37,5 @@ def upload(self, body: IO | bytes, **kwargs) -> None:
 
 ## Backward Compatibility
 
-Swagger `type: file` generated `bytes`-only input. After migrating to TypeSpec, the input type widens to `IO | bytes`. Since `bytes` is still accepted, existing callers require **no code changes**, making this migration **non-breaking**.
+Swagger `type: file`(e.g. [`operationId: "WebApps_GetWebSiteContainerLogs"`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/web/resource-manager/Microsoft.Web/AppService/stable/2024-11-01/WebApps.json#L2675)) generated `bytes`-only input (e.g. [`WebAppsOperations.get_web_site_container_logs(...)`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/appservice/azure-mgmt-web/azure/mgmt/web/operations/_web_apps_operations.py#L22070)). After migrating to TypeSpec, the input type widens to `IO | bytes`. Since `bytes` is still accepted, existing callers require **no code changes**, making this migration **non-breaking**.
+
