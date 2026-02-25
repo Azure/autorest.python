@@ -1,14 +1,10 @@
-# `Http.File` request body compatibility for Python
+# `Http.File` as Python Request Body
 
 ## Overview
 
-When a TypeSpec operation uses `Http.File` as the request body type, the Python emitter generates an SDK method input type of `IO | bytes`.
+TypeSpec `Http.File` maps to `IO | bytes` in generated Python SDK methods. This widens the Swagger `type: file` signature (previously `bytes` only) while keeping full backward compatibility.
 
-For migrated Swagger APIs, this must remain compatible with previous SDKs where Swagger `type: file` was represented as `bytes`.
-
-## Compact example
-
-TypeSpec:
+## TypeSpec Definition
 
 ```typespec
 import "@typespec/http";
@@ -22,7 +18,7 @@ namespace Files;
 op upload(@body body: Http.File): void;
 ```
 
-Python SDK (generated shape):
+## Generated Python SDK
 
 ```python
 from typing import IO, overload
@@ -39,10 +35,6 @@ def upload(self, body: IO | bytes, **kwargs) -> None:
     ...
 ```
 
-## Compatibility statement
+## Backward Compatibility
 
-- Swagger `type: file` callers pass `bytes`.
-- `bytes` is still accepted by `IO | bytes`.
-- Existing `bytes`-based callsites continue to work without code changes.
-
-Therefore, migrating this shape from Swagger to TypeSpec is **non-breaking** for existing Python SDK consumers.
+Swagger `type: file` generated `bytes`-only input. After migrating to TypeSpec, the input type widens to `IO | bytes`. Since `bytes` is still accepted, existing callers require **no code changes**, making this migration **non-breaking**.
