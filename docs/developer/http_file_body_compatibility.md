@@ -1,4 +1,4 @@
-# Python SDK design for `Http.File` when it appears in non-multipart request body and response body.
+# Python SDK design for `Http.File` when it appears in non-multipart request body and response body
 
 ## Overview
 
@@ -14,13 +14,6 @@ Since `type: file` was not used in non-multipart request bodies, the request bod
 ### TypeSpec Definition
 
 ```typespec
-import "@typespec/http";
-
-using TypeSpec.Http;
-
-@route("/files")
-namespace Files;
-
 @post
 op upload(@body body: Http.File): void;
 ```
@@ -47,9 +40,6 @@ def upload(self, body: IO | bytes, **kwargs) -> None:
 ### TypeSpec Definition
 
 ```typespec
-@route("/files")
-namespace Files;
-
 @get
 op download(): Http.File;
 ```
