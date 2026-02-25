@@ -196,6 +196,7 @@ class InterfaceV2Operations:
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
@@ -211,7 +212,7 @@ class InterfaceV2Operations:
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.ModelV2, response.json())
 
@@ -326,6 +327,7 @@ class _AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
@@ -341,7 +343,7 @@ class _AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.ModelV1, response.json())
 
@@ -439,6 +441,7 @@ class _AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client.pipeline.run(_request, stream=_stream, **kwargs)
 
@@ -454,7 +457,7 @@ class _AddedClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.ModelV2, response.json())
 
