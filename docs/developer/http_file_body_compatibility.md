@@ -65,3 +65,8 @@ def download(self, **kwargs) -> bytes:
 
 Swagger `type: file` (e.g. [`operationId: "WebApps_GetWebSiteContainerLogs"`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/web/resource-manager/Microsoft.Web/AppService/stable/2024-11-01/WebApps.json#L2675)) responses also generated `bytes` (e.g. [`WebAppsOperations.get_web_site_container_logs(...)`](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/appservice/azure-mgmt-web/azure/mgmt/web/operations/_web_apps_operations.py#L22070)). The TypeSpec `Http.File` response emits the same `bytes` return type, so existing callers are **completely unaffected**.
 
+## References
+
+- [TypeSpec `Http.File` documentation](https://typespec.io/docs/libraries/http/files/#using-httpfile-in-operations) — explains how `Http.File` works in operations (uploading, downloading, multipart payloads, custom file models, and when a model is effectively a `File`).
+- [Spector test cases for `Http.File`](https://github.com/microsoft/typespec/blob/main/packages/http-specs/specs/type/file/main.tsp) — conformance tests covering file upload/download with specific, JSON, multiple, and default content types.
+
