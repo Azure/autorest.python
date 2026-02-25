@@ -15,4 +15,4 @@ To test an unpublished branded emitter tarball, please follow these steps:
 
 ## Design Notes
 
-- [`Http.File` request body compatibility for Python](./http_file_body_compatibility.md)
+- [`Http.File` compatibility for Python](./http_file_body_compatibility.md)
