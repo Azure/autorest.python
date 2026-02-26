@@ -260,7 +260,10 @@ class TwoModelsAsPageItemOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.FirstItem], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                list[_models.FirstItem],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -343,7 +346,10 @@ class TwoModelsAsPageItemOperations:
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.SecondItem], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                list[_models.SecondItem],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -428,7 +434,10 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                list[_models.User],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -604,7 +613,10 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                list[_models.User],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -686,7 +698,10 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("items", []))
+            list_of_elem = _deserialize(
+                list[_models.User],
+                deserialized.get("items", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -779,7 +794,10 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("values", []))
+            list_of_elem = _deserialize(
+                list[_models.User],
+                deserialized.get("values", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -860,7 +878,10 @@ class _PageClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Http
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                list[_models.User],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)

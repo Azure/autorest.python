@@ -124,7 +124,10 @@ class XmlPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = ET.fromstring(pipeline_response.http_response.text())
-            list_of_elem = _deserialize(list[_models2.XmlPet], deserialized.find("Pets"))
+            list_of_elem = _deserialize(
+                list[_models2.XmlPet],
+                deserialized.find("Pets"),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             _cont_token_elem = deserialized.find("NextMarker")
@@ -195,7 +198,10 @@ class XmlPaginationOperations:
 
         def extract_data(pipeline_response):
             deserialized = ET.fromstring(pipeline_response.http_response.text())
-            list_of_elem = _deserialize(list[_models2.XmlPet], deserialized.find("Pets"))
+            list_of_elem = _deserialize(
+                list[_models2.XmlPet],
+                deserialized.find("Pets"),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             _cont_token_elem = deserialized.find("NextLink")

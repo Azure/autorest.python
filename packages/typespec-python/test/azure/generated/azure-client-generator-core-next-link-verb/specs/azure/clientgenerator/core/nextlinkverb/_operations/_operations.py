@@ -103,7 +103,10 @@ class _NextLinkVerbClientOperationsMixin(
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models.Test], deserialized.get("items", []))
+            list_of_elem = _deserialize(
+                list[_models.Test],
+                deserialized.get("items", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
