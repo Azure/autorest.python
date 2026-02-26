@@ -92,7 +92,10 @@ class PageSizeOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(
+                list[_models3.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
@@ -162,7 +165,10 @@ class PageSizeOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(
+                list[_models3.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return None, AsyncList(list_of_elem)
