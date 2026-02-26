@@ -12,8 +12,10 @@ export interface PythonAzureEmitterOptions extends PythonEmitterOptions {
     "generate-test"?: boolean;
 }
 
-export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation>
-    extends SdkContext<PythonAzureEmitterOptions, TServiceOperation> {
+export interface PythonSdkContext<TServiceOperation extends SdkServiceOperation> extends SdkContext<
+    PythonAzureEmitterOptions,
+    TServiceOperation
+> {
     __endpointPathParameters: Record<string, any>[];
 }
 
