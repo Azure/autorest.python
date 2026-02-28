@@ -23,8 +23,10 @@ tell AutoRest during generation time to keep the current version file in the dir
 
 * Type annotations using the standard `typing` library. SDKs are [`mypy`][mypy] ready!
 * This client has stable and official support for async. Look in the `aio` namespace of your generated package to find the async client.
-* The client now natively supports tracing libraries such as [`OpenCensus`][open_census] and [`OpenTelemetry`][open_telemetry]. Use the flag `--trace` to generate
+* The client now natively supports tracing with [`OpenTelemetry`][open_telemetry]. Use the flag `--trace` to generate
 code for this, and you can see our [tracing docs][tracing_docs] for more information.
+
+> **Note:** [`OpenCensus`][open_census] has been deprecated and is no longer supported. Please use [`OpenTelemetry`][open_telemetry] instead.
 
 
 <!-- LINKS -->
