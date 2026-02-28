@@ -134,7 +134,7 @@ print(msrest_model.properties_properties_name) # B, equivalent to `msrest_model.
 dpg_model = Model(...)
 print(dpg_model.properties_name) # A, backwards compatible but not recommended
 print(dpg_model.properties.name) # equivalent to A
-print.dpg_model.properties_properties_name) # no longer works
+print(dpg_model.properties_properties_name) # no longer works
 print(dpg_model.properties.properties.name) # recommended approach after migration
 ```
 
