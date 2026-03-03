@@ -83,7 +83,7 @@ jobs:
         --repo-token=$(Yuchao-GitToken) \
         --typespec-repo-path=$(Build.SourcesDirectory)/typespec \
         $ARTIFACTS_PARAM \
-        --ado-token=$(PIPELINE-TOKEN) \
+        --ado-token=$(System.AccessToken) \
         --pipeline-link="$PIPELINE_LINK"
     workingDirectory: $(Build.SourcesDirectory)/autorest.python
     displayName: create PR
