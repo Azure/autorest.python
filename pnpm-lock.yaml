@@ -60,8 +60,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.27.2
-        version: 0.27.2(sjuqmbhka3ctg7d4p66zqqaix4)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz(sjuqmbhka3ctg7d4p66zqqaix4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -82,8 +82,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.27.2
-        version: 0.27.2(sjuqmbhka3ctg7d4p66zqqaix4)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz(sjuqmbhka3ctg7d4p66zqqaix4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -98,8 +98,8 @@ importers:
         version: 4.21.0
     devDependencies:
       '@azure-tools/azure-http-specs':
-        specifier: 0.1.0-alpha.38-dev.2
-        version: 0.1.0-alpha.38-dev.2(hnj6frj7evimbkzzvgztepttvq)
+        specifier: 0.1.0-alpha.38-dev.4
+        version: 0.1.0-alpha.38-dev.4(hnj6frj7evimbkzzvgztepttvq)
       '@azure-tools/typespec-autorest':
         specifier: ~0.65.0
         version: 0.65.0(pqg7vsrbtnqcusmn36y4aubeqq)
@@ -137,7 +137,7 @@ importers:
         specifier: ~0.79.0
         version: 0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10))
       '@typespec/http':
-        specifier: ^1.9.1
+        specifier: ^1.9.0
         version: 1.9.1(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/streams@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10)))
       '@typespec/http-specs':
         specifier: 0.1.0-alpha.33-dev.2
@@ -212,8 +212,8 @@ packages:
     resolution: {integrity: sha512-T21naRb6JDdjjn2s/zwr9iCIv/9jviL/PRtiWAhi+3UA2WKH2wrId2VqJa4uVD7iEV8BLkuGgFmMkaMBG26hFw==}
     engines: {node: '>=12.0.0'}
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.38-dev.2':
-    resolution: {integrity: sha512-rrxSHv70c5d9ZZQRN1xZ849/vzAFM7uHEkpjSNtKBBkx/6/2J2arSiltk4OP6xE/lqHPVPeANzbYQsL4b4wNZw==}
+  '@azure-tools/azure-http-specs@0.1.0-alpha.38-dev.4':
+    resolution: {integrity: sha512-RcMWlJoH/ZfFXR4X/nZ/L6siNDtYylYERikcF23JbJ1/SrYsFIS3IpdG4E1YlEMwwfgolL31CDM32+d6g+AViQ==}
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-azure-core': ^0.65.0 || >=0.66.0-dev <0.66.0
@@ -1725,8 +1725,9 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.9.0
 
-  '@typespec/http-client-python@0.27.2':
-    resolution: {integrity: sha512-isxYqnflUIla/M8TWRtIajoHLft7pQm0izw+f8aRqtH33/FQ7UeZ6MD4aPu0U8Xsnt8giJ+3zyQOLucBGezsFA==}
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz':
+    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz}
+    version: 0.27.2
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.65.0 <1.0.0'
@@ -5002,7 +5003,7 @@ snapshots:
       command-exists: 1.2.9
       semver: 7.6.3
 
-  '@azure-tools/azure-http-specs@0.1.0-alpha.38-dev.2(hnj6frj7evimbkzzvgztepttvq)':
+  '@azure-tools/azure-http-specs@0.1.0-alpha.38-dev.4(hnj6frj7evimbkzzvgztepttvq)':
     dependencies:
       '@azure-tools/typespec-azure-core': 0.65.0(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/http@1.9.1(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/streams@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10))))(@typespec/rest@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/http@1.9.1(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/streams@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10)))))
       '@typespec/compiler': 1.9.0(@types/node@25.0.10)
@@ -6712,7 +6713,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.9.0(@types/node@25.0.10)
 
-  '@typespec/http-client-python@0.27.2(sjuqmbhka3ctg7d4p66zqqaix4)':
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNTk0NTcxMS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.27.2.tgz(sjuqmbhka3ctg7d4p66zqqaix4)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.65.0(pqg7vsrbtnqcusmn36y4aubeqq)
       '@azure-tools/typespec-azure-core': 0.65.0(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/http@1.9.1(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/streams@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10))))(@typespec/rest@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/http@1.9.1(@typespec/compiler@1.9.0(@types/node@25.0.10))(@typespec/streams@0.79.0(@typespec/compiler@1.9.0(@types/node@25.0.10)))))
