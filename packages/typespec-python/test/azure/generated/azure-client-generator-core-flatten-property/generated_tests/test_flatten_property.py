@@ -33,3 +33,29 @@ class TestFlattenProperty(FlattenPropertyClientTestBase):
 
         # please add some check logic here by yourself
         # ...
+
+    @FlattenPropertyPreparer()
+    @recorded_by_proxy
+    def test_put_flatten_unknown_model(self, flattenproperty_endpoint):
+        client = self.create_client(endpoint=flattenproperty_endpoint)
+        response = client.put_flatten_unknown_model(
+            input={"name": "str", "properties": {}},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @FlattenPropertyPreparer()
+    @recorded_by_proxy
+    def test_put_flatten_read_only_model(self, flattenproperty_endpoint):
+        client = self.create_client(endpoint=flattenproperty_endpoint)
+        response = client.put_flatten_read_only_model(
+            body={
+                "name": "str",
+                "properties": {"content": "str", "solutionId": "str", "title": "str"},
+                "propertiesOptional": {"content": "str", "solutionId": "str", "title": "str"},
+            },
+        )
+
+        # please add some check logic here by yourself
+        # ...
