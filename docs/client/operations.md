@@ -42,9 +42,7 @@ async def get_my_dog():
         async with PetsClient(credential=credential) as client:
             dog = await client.get_dog()
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(get_my_dog())
-loop.close()
+asyncio.run(get_my_dog())
 ```
 
 ## Long Running Operations
@@ -88,9 +86,7 @@ async def basic_polling():
         poller = await client.begin_basic_polling(product=input_product)
         output_product = await poller.result()
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(basic_polling())
-loop.close()
+asyncio.run(basic_polling())
 ```
 
 ## Paging Operations
@@ -131,9 +127,7 @@ async def basic_paging():
         async for page in pages:  # since network calls are only made during iteration, we await the network calls when iterating
             print(page)
 
-loop = asyncio.get_event_loop()
-loop.run_until_complete(basic_paging())
-loop.close()
+asyncio.run(basic_paging())
 ```
 
 
@@ -144,7 +138,7 @@ a pager that pages through the final lists of data.
 
 
 <!-- LINKS -->
-[operation_group_example]: https://github.com/Azure/azure-rest-api-specs/blob/master/specification/batch/data-plane/Microsoft.Batch/stable/2020-09-01.12.0/BatchService.json#L64
+[operation_group_example]: https://github.com/Azure/azure-rest-api-specs/blob/main/specification/batch/data-plane/Azure.Batch/preview/2024-07-01.20.0/BatchService.json
 [mixin_example]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json#L20
 [pets_swagger]: https://github.com/Azure/autorest/blob/master/docs/openapi/examples/pets.json
 [initializing]: https://github.com/Azure/autorest.python/blob/main/docs/client/initializing.md

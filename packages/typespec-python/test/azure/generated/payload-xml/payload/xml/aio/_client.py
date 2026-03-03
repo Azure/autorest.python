@@ -19,9 +19,11 @@ from ._configuration import XmlClientConfiguration
 from .operations import (
     ModelWithArrayOfModelValueOperations,
     ModelWithAttributesValueOperations,
+    ModelWithDatetimeValueOperations,
     ModelWithDictionaryValueOperations,
     ModelWithEmptyArrayValueOperations,
     ModelWithEncodedNamesValueOperations,
+    ModelWithEnumValueOperations,
     ModelWithOptionalFieldValueOperations,
     ModelWithRenamedArraysValueOperations,
     ModelWithRenamedFieldsValueOperations,
@@ -70,6 +72,10 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
     :ivar model_with_encoded_names_value: ModelWithEncodedNamesValueOperations operations
     :vartype model_with_encoded_names_value:
      payload.xml.aio.operations.ModelWithEncodedNamesValueOperations
+    :ivar model_with_enum_value: ModelWithEnumValueOperations operations
+    :vartype model_with_enum_value: payload.xml.aio.operations.ModelWithEnumValueOperations
+    :ivar model_with_datetime_value: ModelWithDatetimeValueOperations operations
+    :vartype model_with_datetime_value: payload.xml.aio.operations.ModelWithDatetimeValueOperations
     :ivar xml_error_value: XmlErrorValueOperations operations
     :vartype xml_error_value: payload.xml.aio.operations.XmlErrorValueOperations
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
@@ -138,6 +144,12 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
             self._client, self._config, self._serialize, self._deserialize
         )
         self.model_with_encoded_names_value = ModelWithEncodedNamesValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_enum_value = ModelWithEnumValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_datetime_value = ModelWithDatetimeValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.xml_error_value = XmlErrorValueOperations(self._client, self._config, self._serialize, self._deserialize)

@@ -106,7 +106,10 @@ class ServerDrivenPaginationOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(
+                list[_models3.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, AsyncList(list_of_elem)
@@ -176,7 +179,10 @@ class ServerDrivenPaginationOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("pets", []))
+            list_of_elem = _deserialize(
+                list[_models3.Pet],
+                deserialized.get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("next") or None, AsyncList(list_of_elem)
@@ -246,7 +252,10 @@ class ServerDrivenPaginationOperations:
 
         async def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(list[_models3.Pet], deserialized.get("nestedItems", {}).get("pets", []))
+            list_of_elem = _deserialize(
+                list[_models3.Pet],
+                deserialized.get("nestedItems", {}).get("pets", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nestedNext", {}).get("next") or None, AsyncList(list_of_elem)

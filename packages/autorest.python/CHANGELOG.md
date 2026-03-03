@@ -1,5 +1,19 @@
 # Release
 
+## 6.49.2
+
+### Bug Fixes
+
+- Fix `__eq__` method in `_MyMutableMapping` to use `isinstance` check instead of attempting to construct a new instance from the other object.
+- Allow client options on child clients to override parent clients
+- Add pylint disable for list of elem deserialization
+- allow decompression in version tolerant
+
+### Bump dependencies
+
+- Upgrade dependencies to match root package.json versions (@types/node, rimraf, tsx, typescript, typescript-eslint, vitest)
+
+
 ## 6.49.1
 
 ### Bug Fixes

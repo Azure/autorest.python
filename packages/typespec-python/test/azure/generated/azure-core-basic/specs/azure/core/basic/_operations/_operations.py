@@ -338,6 +338,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -355,7 +356,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.User, response.json())
 
@@ -473,6 +474,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -490,7 +492,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.User, response.json())
 
@@ -535,6 +537,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -552,7 +555,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.User, response.json())
 
@@ -655,7 +658,10 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
 
         def extract_data(pipeline_response):
             deserialized = pipeline_response.http_response.json()
-            list_of_elem = _deserialize(List[_models.User], deserialized.get("value", []))
+            list_of_elem = _deserialize(
+                List[_models.User],
+                deserialized.get("value", []),
+            )
             if cls:
                 list_of_elem = cls(list_of_elem)  # type: ignore
             return deserialized.get("nextLink") or None, iter(list_of_elem)
@@ -766,6 +772,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -783,7 +790,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.User, response.json())
 
@@ -828,6 +835,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
         }
         _request.url = self._client.format_url(_request.url, **path_format_arguments)
 
+        _decompress = kwargs.pop("decompress", True)
         _stream = kwargs.pop("stream", False)
         pipeline_response: PipelineResponse = self._client._pipeline.run(  # pylint: disable=protected-access
             _request, stream=_stream, **kwargs
@@ -845,7 +853,7 @@ class _BasicClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, Htt
             raise HttpResponseError(response=response)
 
         if _stream:
-            deserialized = response.iter_bytes()
+            deserialized = response.iter_bytes() if _decompress else response.iter_raw()
         else:
             deserialized = _deserialize(_models.UserList, response.json())
 

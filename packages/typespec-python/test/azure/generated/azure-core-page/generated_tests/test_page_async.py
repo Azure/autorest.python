@@ -52,3 +52,12 @@ class TestPageAsync(PageClientTestBaseAsync):
         result = [r async for r in response]
         # please add some check logic here by yourself
         # ...
+
+    @PagePreparer()
+    @recorded_by_proxy_async
+    async def test_with_relative_next_link(self, page_endpoint):
+        client = self.create_async_client(endpoint=page_endpoint)
+        response = client.with_relative_next_link()
+        result = [r async for r in response]
+        # please add some check logic here by yourself
+        # ...
