@@ -15,4 +15,3 @@ class MyEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
 
     IMPORT = "import"
     OTHER = "other"
-    IMPORT_ENUM = "import"
