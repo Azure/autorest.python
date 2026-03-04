@@ -391,7 +391,7 @@ class Repo:
                 title=self.pull_title,
                 body=pr_body,
                 maintainer_can_modify=True,
-                draft=True,
+                draft=False,
             )
 
     @staticmethod
@@ -574,7 +574,7 @@ class Repo:
             title=pr_title,
             body=pr_body,
             maintainer_can_modify=True,
-            draft=True,
+            draft=False,
         )
 
         # Build, regenerate, and push
