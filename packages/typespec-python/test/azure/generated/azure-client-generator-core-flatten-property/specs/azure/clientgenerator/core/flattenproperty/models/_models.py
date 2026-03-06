@@ -7,7 +7,7 @@
 # --------------------------------------------------------------------------
 # pylint: disable=useless-super-delegation
 
-from typing import Any, Mapping, TYPE_CHECKING, overload
+from typing import Any, Mapping, Optional, TYPE_CHECKING, overload
 
 from .._utils.model_base import Model as _Model, rest_field
 
@@ -154,6 +154,58 @@ class FlattenModel(_Model):
             super().__setattr__(key, value)
 
 
+class FlattenUnknownModel(_Model):
+    """This is the model with unknown type properties to be flattened.
+
+    :ivar name: Required.
+    :vartype name: str
+    :ivar properties:
+    :vartype properties: any
+    """
+
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+    properties: Optional[Any] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+
+    __flattened_items = [""]
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+        properties: Optional[Any] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
+        super().__init__(*args, **kwargs)
+        for k, v in _flattened_input.items():
+            setattr(self, k, v)
+
+    def __getattr__(self, name: str) -> Any:
+        if name in self.__flattened_items:
+            if self.properties is None:
+                return None
+            return getattr(self.properties, name)
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key in self.__flattened_items:
+            if self.properties is None:
+                self.properties = self._attr_to_rest_field["properties"]._class_type()
+            setattr(self.properties, key, value)
+        else:
+            super().__setattr__(key, value)
+
+
 class NestedFlattenModel(_Model):
     """This is the model with two levels of flattening.
 
@@ -185,3 +237,74 @@ class NestedFlattenModel(_Model):
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
+
+
+class Solution(_Model):
+    """This is the model with flattened properties that are all read-only.
+
+    :ivar name: Required.
+    :vartype name: str
+    :ivar properties:
+    :vartype properties:
+     ~specs.azure.clientgenerator.core.flattenproperty.models.SolutionProperties
+    """
+
+    name: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    """Required."""
+    properties: Optional["_models.SolutionProperties"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"]
+    )
+
+    __flattened_items = ["solution_id", "title", "content"]
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+        properties: Optional["_models.SolutionProperties"] = None,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        _flattened_input = {k: kwargs.pop(k) for k in kwargs.keys() & self.__flattened_items}
+        super().__init__(*args, **kwargs)
+        for k, v in _flattened_input.items():
+            setattr(self, k, v)
+
+    def __getattr__(self, name: str) -> Any:
+        if name in self.__flattened_items:
+            if self.properties is None:
+                return None
+            return getattr(self.properties, name)
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+
+    def __setattr__(self, key: str, value: Any) -> None:
+        if key in self.__flattened_items:
+            if self.properties is None:
+                self.properties = self._attr_to_rest_field["properties"]._class_type()
+            setattr(self.properties, key, value)
+        else:
+            super().__setattr__(key, value)
+
+
+class SolutionProperties(_Model):
+    """This is the model with all read-only properties to be flattened.
+
+    :ivar solution_id:
+    :vartype solution_id: str
+    :ivar title:
+    :vartype title: str
+    :ivar content:
+    :vartype content: str
+    """
+
+    solution_id: Optional[str] = rest_field(name="solutionId", visibility=["read"])
+    title: Optional[str] = rest_field(visibility=["read"])
+    content: Optional[str] = rest_field(visibility=["read"])

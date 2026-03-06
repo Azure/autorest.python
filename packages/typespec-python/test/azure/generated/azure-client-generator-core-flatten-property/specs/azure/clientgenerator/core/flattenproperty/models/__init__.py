@@ -17,7 +17,10 @@ from ._models import (  # type: ignore
     ChildFlattenModel,
     ChildModel,
     FlattenModel,
+    FlattenUnknownModel,
     NestedFlattenModel,
+    Solution,
+    SolutionProperties,
 )
 from ._patch import __all__ as _patch_all
 from ._patch import *
@@ -27,7 +30,10 @@ __all__ = [
     "ChildFlattenModel",
     "ChildModel",
     "FlattenModel",
+    "FlattenUnknownModel",
     "NestedFlattenModel",
+    "Solution",
+    "SolutionProperties",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
 _patch_sdk()
