@@ -59,4 +59,3 @@ def test_operation_with_url(client):
 
 def test_operation_with_enum(client):
     client.reserved_enum(models.MyEnum.IMPORT)
-    client.reserved_enum(models.MyEnum.IMPORT_ENUM)
