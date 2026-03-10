@@ -20,7 +20,7 @@ schedules:
 
 pool:
   name: "azsdk-pool-mms-ubuntu-2404-general"
-  vmImage: "MMSUbuntu24.04
+  vmImage: "MMSUbuntu24.04"
 
 variables:
   - group: Azure SDK Auto Release Pipeline Secrets
@@ -37,7 +37,7 @@ jobs:
   - task: UsePythonVersion@0
     displayName: "Use Python 3.10"
     inputs:
-        versionSpec: 3.10
+      versionSpec: 3.10
 
   - script: npm install -g pnpm@9.5.0
     displayName: Install pnpm 9.5.0
