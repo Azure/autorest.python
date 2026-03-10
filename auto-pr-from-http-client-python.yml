@@ -19,8 +19,8 @@ schedules:
     always: true
 
 pool:
-  name: "azsdk-pool-mms-ubuntu-2004-general"
-  vmImage: "MMSUbuntu20.04"
+  name: "azsdk-pool-mms-ubuntu-2404-general"
+  vmImage: "MMSUbuntu24.04
 
 variables:
   - group: Azure SDK Auto Release Pipeline Secrets
