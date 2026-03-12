@@ -14,4 +14,3 @@ class EnumEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of Enum."""
 
     ENUM_VALUE1 = "EnumValue1"
-    """ENUM_VALUE1."""

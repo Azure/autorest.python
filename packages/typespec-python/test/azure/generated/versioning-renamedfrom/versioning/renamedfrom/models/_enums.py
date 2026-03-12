@@ -14,7 +14,6 @@ class NewEnum(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of NewEnum."""
 
     NEW_ENUM_MEMBER = "newEnumMember"
-    """NEW_ENUM_MEMBER."""
 
 
 class Versions(str, Enum, metaclass=CaseInsensitiveEnumMeta):
