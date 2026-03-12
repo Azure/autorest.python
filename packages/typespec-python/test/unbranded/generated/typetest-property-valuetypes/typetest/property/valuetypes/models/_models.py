@@ -560,12 +560,12 @@ class UnionEnumValueProperty(_Model):
     """Template type for testing models with specific properties. Pass in the type of the property you
     are looking for.
 
-    :ivar property: Property. Required.
+    :ivar property: Property. Required. ENUM_VALUE2.
     :vartype property: str or ~typetest.property.valuetypes.models.ENUM_VALUE2
     """
 
     property: Literal[ExtendedEnum.ENUM_VALUE2] = rest_field(visibility=["read", "create", "update", "delete", "query"])
-    """Property. Required."""
+    """Property. Required. ENUM_VALUE2."""
 
     @overload
     def __init__(

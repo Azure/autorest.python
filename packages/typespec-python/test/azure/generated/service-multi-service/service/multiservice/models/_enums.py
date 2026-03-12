@@ -14,11 +14,15 @@ class VersionsA(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of VersionsA."""
 
     AV1 = "av1"
+    """AV1."""
     AV2 = "av2"
+    """AV2."""
 
 
 class VersionsB(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of VersionsB."""
 
     BV1 = "bv1"
+    """BV1."""
     BV2 = "bv2"
+    """BV2."""

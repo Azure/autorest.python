@@ -14,7 +14,12 @@ class ClientType(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of ClientType."""
 
     DEFAULT = "default"
+    """DEFAULT."""
     MULTI_CLIENT = "multi-client"
+    """MULTI_CLIENT."""
     RENAMED_OPERATION = "renamed-operation"
+    """RENAMED_OPERATION."""
     TWO_OPERATION_GROUP = "two-operation-group"
+    """TWO_OPERATION_GROUP."""
     CLIENT_OPERATION_GROUP = "client-operation-group"
+    """CLIENT_OPERATION_GROUP."""

@@ -14,6 +14,6 @@ class Status(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Status enum in first namespace."""
 
     ACTIVE = "active"
-    """Active status"""
+    """Active status."""
     INACTIVE = "inactive"
-    """Inactive status"""
+    """Inactive status."""

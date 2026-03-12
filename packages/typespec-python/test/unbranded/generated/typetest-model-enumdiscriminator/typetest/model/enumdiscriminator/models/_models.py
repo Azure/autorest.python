@@ -50,12 +50,12 @@ class Cobra(Snake, discriminator="cobra"):
 
     :ivar length: Length of the snake. Required.
     :vartype length: int
-    :ivar kind: discriminator property. Required. Species cobra
+    :ivar kind: discriminator property. Required. Species cobra.
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.COBRA
     """
 
     kind: Literal[SnakeKind.COBRA] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
-    """discriminator property. Required. Species cobra"""
+    """discriminator property. Required. Species cobra."""
 
     @overload
     def __init__(
@@ -118,12 +118,12 @@ class Golden(Dog, discriminator="golden"):
 
     :ivar weight: Weight of the dog. Required.
     :vartype weight: int
-    :ivar kind: discriminator property. Required. Species golden
+    :ivar kind: discriminator property. Required. Species golden.
     :vartype kind: str or ~typetest.model.enumdiscriminator.models.GOLDEN
     """
 
     kind: Literal[DogKind.GOLDEN] = rest_discriminator(name="kind", visibility=["read", "create", "update", "delete", "query"])  # type: ignore
-    """discriminator property. Required. Species golden"""
+    """discriminator property. Required. Species golden."""
 
     @overload
     def __init__(

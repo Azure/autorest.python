@@ -14,13 +14,16 @@ class EnumV2(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of EnumV2."""
 
     ENUM_MEMBER_V2 = "enumMemberV2"
+    """ENUM_MEMBER_V2."""
 
 
 class EnumV3(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of EnumV3."""
 
     ENUM_MEMBER_V1 = "enumMemberV1"
+    """ENUM_MEMBER_V1."""
     ENUM_MEMBER_V2_PREVIEW = "enumMemberV2Preview"
+    """ENUM_MEMBER_V2_PREVIEW."""
 
 
 class Versions(str, Enum, metaclass=CaseInsensitiveEnumMeta):

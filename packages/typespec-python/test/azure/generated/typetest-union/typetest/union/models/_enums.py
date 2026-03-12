@@ -14,4 +14,6 @@ class StringExtensibleNamedUnion(str, Enum, metaclass=CaseInsensitiveEnumMeta):
     """Type of StringExtensibleNamedUnion."""
 
     OPTION_B = "b"
+    """OPTION_B."""
     C = "c"
+    """C."""
