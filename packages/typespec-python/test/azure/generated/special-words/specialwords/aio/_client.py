@@ -16,7 +16,13 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import SpecialWordsClientConfiguration
-from .operations import ModelPropertiesOperations, ModelsOperations, Operations, ParametersOperations
+from .operations import (
+    ExtensibleStringsOperations,
+    ModelPropertiesOperations,
+    ModelsOperations,
+    Operations,
+    ParametersOperations,
+)
 
 
 class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
@@ -66,6 +72,8 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype models: specialwords.aio.operations.ModelsOperations
     :ivar model_properties: ModelPropertiesOperations operations
     :vartype model_properties: specialwords.aio.operations.ModelPropertiesOperations
+    :ivar extensible_strings: ExtensibleStringsOperations operations
+    :vartype extensible_strings: specialwords.aio.operations.ExtensibleStringsOperations
     :ivar operations: Operations operations
     :vartype operations: specialwords.aio.operations.Operations
     :ivar parameters: ParametersOperations operations
@@ -104,6 +112,9 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize.client_side_validation = False
         self.models = ModelsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_properties = ModelPropertiesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.extensible_strings = ExtensibleStringsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.operations = Operations(self._client, self._config, self._serialize, self._deserialize)

@@ -1,5 +1,17 @@
 # Release
 
+## 6.50.0
+
+### Features
+
+- [#3368](https://github.com/Azure/autorest.python/pull/3368) Remove enum value padding because we generate our enum value names with upper case so there is no need
+
+### Bug Fixes
+
+- [#3368](https://github.com/Azure/autorest.python/pull/3368) Return empty list instead of None for non-optional unwrapped XML list fields during deserialization
+- [#3373](https://github.com/Azure/autorest.python/pull/3373) Remove includeRootSlash client option logic, which should be handled at the TypeSpec core level
+
+
 ## 6.49.2
 
 ### Bug Fixes
