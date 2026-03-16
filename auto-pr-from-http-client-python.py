@@ -527,6 +527,9 @@ class Repo:
         """Sync from the main branch of typespec repo when no PR is given."""
         logger.info("No pull URL provided. Syncing from main branch of typespec repo.")
 
+        # Close existing unmerged auto-microsoft-main-* PRs and delete their branches
+        self.close_existing_main_prs()
+
         # Get artifacts URL from latest main commit
         self._main_commit_sha = self.get_latest_http_client_python_commit_sha()
         if not self.artifacts_url:
@@ -545,9 +548,6 @@ class Repo:
                 "Artifacts URL is already up to date on main branch. Skipping branch creation, regenerate, and PR creation."
             )
             return
-
-        # Close existing unmerged auto-microsoft-main-* PRs and delete their branches
-        self.close_existing_main_prs()
 
         # Generate branch name: auto-microsoft-main-YYYY-MM-DD-NNNNNN
         date_str = datetime.now().strftime("%Y-%m-%d")
