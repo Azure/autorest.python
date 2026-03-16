@@ -587,14 +587,22 @@ class Repo:
         pr_body = f"Auto PR syncing from typespec main branch\n\nSource commit: https://github.com/microsoft/typespec/commit/{self._main_commit_sha}"
         if self.pipeline_link:
             pr_body += f"\n\nThis PR is generated from the [pipeline]({self.pipeline_link}) triggered manually."
-        self.autorest_repo.create_pull(
-            base="main",
-            head=self.new_branch_name,
-            title=pr_title,
-            body=pr_body,
-            maintainer_can_modify=True,
-            draft=False,
+        existing_pr = list(
+            self.autorest_repo.get_pulls(state="open", head=f"Azure:{self.new_branch_name}", base="main")
         )
+        if len(existing_pr) > 0:
+            logger.info(f"PR already exists for branch {self.new_branch_name}")
+            for item in existing_pr:
+                logger.info(f"Existing PR: {item.html_url}")
+        else:
+            self.autorest_repo.create_pull(
+                base="main",
+                head=self.new_branch_name,
+                title=pr_title,
+                body=pr_body,
+                maintainer_can_modify=True,
+                draft=False,
+            )
 
         # Build, regenerate, and push
         self.prepare_pr()
