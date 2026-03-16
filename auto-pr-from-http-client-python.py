@@ -507,6 +507,22 @@ class Repo:
         build_id = self.get_ado_pipeline_build_id(commit_sha=commit_sha)
         self.artifacts_url = self.get_artifacts_url_from_ado_pipeline(build_id, commit_sha=commit_sha)
 
+    def close_existing_main_prs(self):
+        """Close existing unmerged PRs based on main whose branch starts with auto-microsoft-main- and delete their source branches."""
+        logger.info("Searching for existing unmerged auto-microsoft-main-* PRs based on main...")
+        open_prs = list(self.autorest_repo.get_pulls(state="open", base="main"))
+        for pr in open_prs:
+            if pr.head.ref.startswith("auto-microsoft-main-"):
+                logger.info(f"Closing PR #{pr.number}: {pr.title} (branch: {pr.head.ref})")
+                pr.edit(state="closed")
+                try:
+                    branch_ref = self.autorest_repo.get_git_ref(f"heads/{pr.head.ref}")
+                    branch_ref.delete()
+                    logger.info(f"Deleted branch: {pr.head.ref}")
+                except Exception as e:
+                    logger.warning(f"Failed to delete branch {pr.head.ref}: {e}")
+        logger.info("Finished cleaning up existing auto-microsoft-main-* PRs.")
+
     def run_from_main(self):
         """Sync from the main branch of typespec repo when no PR is given."""
         logger.info("No pull URL provided. Syncing from main branch of typespec repo.")
@@ -529,6 +545,9 @@ class Repo:
                 "Artifacts URL is already up to date on main branch. Skipping branch creation, regenerate, and PR creation."
             )
             return
+
+        # Close existing unmerged auto-microsoft-main-* PRs and delete their branches
+        self.close_existing_main_prs()
 
         # Generate branch name: auto-microsoft-main-YYYY-MM-DD-NNNNNN
         date_str = datetime.now().strftime("%Y-%m-%d")
