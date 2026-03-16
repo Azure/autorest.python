@@ -60,8 +60,8 @@ importers:
         specifier: ~1.0.2
         version: 1.0.2
       '@typespec/http-client-python':
-        specifier: ~0.28.0
-        version: 0.28.0(cwqsfn7fm5tkg3lp77e4anpqz4)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz(cwqsfn7fm5tkg3lp77e4anpqz4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -82,8 +82,8 @@ importers:
   packages/typespec-python:
     dependencies:
       '@typespec/http-client-python':
-        specifier: ~0.28.0
-        version: 0.28.0(cwqsfn7fm5tkg3lp77e4anpqz4)
+        specifier: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz
+        version: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz(cwqsfn7fm5tkg3lp77e4anpqz4)
       fs-extra:
         specifier: ~11.2.0
         version: 11.2.0
@@ -140,8 +140,8 @@ importers:
         specifier: ^1.10.0
         version: 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/http-specs':
-        specifier: 0.1.0-alpha.34
-        version: 0.1.0-alpha.34(@types/node@25.0.10)(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))(@typespec/rest@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/versioning@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/xml@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
+        specifier: 0.1.0-alpha.35-dev.1
+        version: 0.1.0-alpha.35-dev.1(@types/node@25.0.10)(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))(@typespec/rest@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/versioning@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/xml@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/openapi':
         specifier: ^1.10.0
         version: 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))
@@ -149,8 +149,8 @@ importers:
         specifier: ~0.80.0
         version: 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))
       '@typespec/spec-api':
-        specifier: 0.1.0-alpha.13
-        version: 0.1.0-alpha.13
+        specifier: 0.1.0-alpha.14-dev.1
+        version: 0.1.0-alpha.14-dev.1
       '@typespec/spector':
         specifier: 0.1.0-alpha.24
         version: 0.1.0-alpha.24(@types/node@25.0.10)(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
@@ -1721,8 +1721,9 @@ packages:
     peerDependencies:
       '@typespec/compiler': ^1.10.0
 
-  '@typespec/http-client-python@0.28.0':
-    resolution: {integrity: sha512-dYjFDepbAom/QfdZ0uT9sYiMRt2oDJH+vCbVstMNBHb4XpkdqBl5xrXTGZp6aqrOLt7BvpsDirgyEbK83O5GcQ==}
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz':
+    resolution: {tarball: https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz}
+    version: 0.28.0
     engines: {node: '>=20.0.0'}
     peerDependencies:
       '@azure-tools/typespec-autorest': '>=0.66.0 <1.0.0'
@@ -1740,15 +1741,15 @@ packages:
       '@typespec/versioning': '>=0.80.0 <1.0.0'
       '@typespec/xml': '>=0.80.0 <1.0.0'
 
-  '@typespec/http-specs@0.1.0-alpha.34':
-    resolution: {integrity: sha512-xyOOFVUjBgZLYeDaoaZ6Mj6DoLjvDhhUvSRZIpWroAUHL+P30XR2wZ6dKLtOgF9uPn7S2MvpSvAAs4Z+mYh9YQ==}
+  '@typespec/http-specs@0.1.0-alpha.35-dev.1':
+    resolution: {integrity: sha512-sL3Q9Nmgim1YdHiKTaO1bdaUdPIV+1o1HIT8VbTfgEPresdgxJSp2Mll5uehIoiDzGZ3M11Ka/Lrdijr5VRYiA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
-      '@typespec/compiler': ^1.10.0
-      '@typespec/http': ^1.10.0
-      '@typespec/rest': ^0.80.0
-      '@typespec/versioning': ^0.80.0
-      '@typespec/xml': ^0.80.0
+      '@typespec/compiler': ^1.10.0 || >= 1.11.0-dev.0
+      '@typespec/http': ^1.10.0 || >= 1.11.0-dev.0
+      '@typespec/rest': ^0.80.0 || >= 0.81.0-dev.0
+      '@typespec/versioning': ^0.80.0 || >= 0.81.0-dev.0
+      '@typespec/xml': ^0.80.0 || >= 0.81.0-dev.0
 
   '@typespec/http@1.10.0':
     resolution: {integrity: sha512-/fj55fmUj4m/FmNdfH0V52menVrmS2r5Xj9d1H+pnjQbxvvaxS906RSRcoF8kbg3PvlibP/Py5u82TAk53AyqA==}
@@ -1774,8 +1775,8 @@ packages:
       '@typespec/compiler': ^1.10.0
       '@typespec/http': ^1.10.0
 
-  '@typespec/spec-api@0.1.0-alpha.13':
-    resolution: {integrity: sha512-ed0qqGM92vKuangmENUYMeDQZpSlsEMYdeH7+wMl+bIgXzfZ7yv07fNwcmROzSEJd0CzdCTgz+Hp+ifmR4USNQ==}
+  '@typespec/spec-api@0.1.0-alpha.14-dev.1':
+    resolution: {integrity: sha512-rRgTovGml78TbfHdpphzQDiZOyhgfCZE7U3GXF4PjFl3MXG5WWVGhL6s8gSGvfuwaOVO+lbMp5YKuNtJhy3zHw==}
     engines: {node: '>=20.0.0'}
 
   '@typespec/spec-coverage-sdk@0.1.0-alpha.5-dev.0':
@@ -4996,7 +4997,7 @@ snapshots:
       '@typespec/compiler': 1.10.0(@types/node@25.0.10)
       '@typespec/http': 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/rest': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))
-      '@typespec/spec-api': 0.1.0-alpha.13
+      '@typespec/spec-api': 0.1.0-alpha.14-dev.1
       '@typespec/spector': 0.1.0-alpha.24(@types/node@25.0.10)(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/versioning': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))
       '@typespec/xml': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))
@@ -6698,7 +6699,7 @@ snapshots:
     dependencies:
       '@typespec/compiler': 1.10.0(@types/node@25.0.10)
 
-  '@typespec/http-client-python@0.28.0(cwqsfn7fm5tkg3lp77e4anpqz4)':
+  '@typespec/http-client-python@https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjAxNDA3NC9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.0.tgz(cwqsfn7fm5tkg3lp77e4anpqz4)':
     dependencies:
       '@azure-tools/typespec-autorest': 0.66.0(3lynfktgeabz5vvk7tfr76nhnu)
       '@azure-tools/typespec-azure-core': 0.66.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))(@typespec/rest@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))))
@@ -6723,12 +6724,12 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@typespec/http-specs@0.1.0-alpha.34(@types/node@25.0.10)(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))(@typespec/rest@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/versioning@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/xml@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))':
+  '@typespec/http-specs@0.1.0-alpha.35-dev.1(@types/node@25.0.10)(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))(@typespec/rest@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/versioning@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))(@typespec/xml@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))':
     dependencies:
       '@typespec/compiler': 1.10.0(@types/node@25.0.10)
       '@typespec/http': 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/rest': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))
-      '@typespec/spec-api': 0.1.0-alpha.13
+      '@typespec/spec-api': 0.1.0-alpha.14-dev.1
       '@typespec/spector': 0.1.0-alpha.24(@types/node@25.0.10)(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/versioning': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))
       '@typespec/xml': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))
@@ -6754,7 +6755,7 @@ snapshots:
       '@typespec/compiler': 1.10.0(@types/node@25.0.10)
       '@typespec/http': 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
 
-  '@typespec/spec-api@0.1.0-alpha.13':
+  '@typespec/spec-api@0.1.0-alpha.14-dev.1':
     dependencies:
       deep-equal: 2.2.3
       express: 5.2.1
@@ -6776,7 +6777,7 @@ snapshots:
       '@typespec/compiler': 1.10.0(@types/node@25.0.10)
       '@typespec/http': 1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10)))
       '@typespec/rest': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/http@1.10.0(@typespec/compiler@1.10.0(@types/node@25.0.10))(@typespec/streams@0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))))
-      '@typespec/spec-api': 0.1.0-alpha.13
+      '@typespec/spec-api': 0.1.0-alpha.14-dev.1
       '@typespec/spec-coverage-sdk': 0.1.0-alpha.5-dev.0
       '@typespec/versioning': 0.80.0(@typespec/compiler@1.10.0(@types/node@25.0.10))
       ajv: 8.18.0
