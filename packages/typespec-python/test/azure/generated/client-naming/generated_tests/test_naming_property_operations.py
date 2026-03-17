@@ -7,43 +7,40 @@
 # --------------------------------------------------------------------------
 import pytest
 from devtools_testutils import recorded_by_proxy
-from testpreparer import FirstClientTestBase, FirstPreparer
+from testpreparer import NamingClientTestBase, NamingPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestFirst(FirstClientTestBase):
-    @FirstPreparer()
+class TestNamingPropertyOperations(NamingClientTestBase):
+    @NamingPreparer()
     @recorded_by_proxy
-    def test_one(self, first_endpoint):
-        client = self.create_client(endpoint=first_endpoint)
-        response = client.one()
+    def test_property_client(self, naming_endpoint):
+        client = self.create_client(endpoint=naming_endpoint)
+        response = client.property.client(
+            body={"defaultName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @FirstPreparer()
+    @NamingPreparer()
     @recorded_by_proxy
-    def test_two(self, first_endpoint):
-        client = self.create_client(endpoint=first_endpoint)
-        response = client.two()
+    def test_property_language(self, naming_endpoint):
+        client = self.create_client(endpoint=naming_endpoint)
+        response = client.property.language(
+            body={"defaultName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
-    @FirstPreparer()
+    @NamingPreparer()
     @recorded_by_proxy
-    def test_three(self, first_endpoint):
-        client = self.create_client(endpoint=first_endpoint)
-        response = client.three()
-
-        # please add some check logic here by yourself
-        # ...
-
-    @FirstPreparer()
-    @recorded_by_proxy
-    def test_four(self, first_endpoint):
-        client = self.create_client(endpoint=first_endpoint)
-        response = client.four()
+    def test_property_compatible_with_encoded_name(self, naming_endpoint):
+        client = self.create_client(endpoint=naming_endpoint)
+        response = client.property.compatible_with_encoded_name(
+            body={"wireName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...

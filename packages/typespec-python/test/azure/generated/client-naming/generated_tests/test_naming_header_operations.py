@@ -11,23 +11,23 @@ from testpreparer import NamingClientTestBase, NamingPreparer
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestNaming(NamingClientTestBase):
+class TestNamingHeaderOperations(NamingClientTestBase):
     @NamingPreparer()
     @recorded_by_proxy
-    def test_client_name(self, naming_endpoint):
+    def test_header_request(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
-        response = client.client_name()
+        response = client.header.request(
+            client_name="str",
+        )
 
         # please add some check logic here by yourself
         # ...
 
     @NamingPreparer()
     @recorded_by_proxy
-    def test_parameter(self, naming_endpoint):
+    def test_header_response(self, naming_endpoint):
         client = self.create_client(endpoint=naming_endpoint)
-        response = client.parameter(
-            client_name="str",
-        )
+        response = client.header.response()
 
         # please add some check logic here by yourself
         # ...

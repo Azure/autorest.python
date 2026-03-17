@@ -12,22 +12,35 @@ from testpreparer_async import NamingClientTestBaseAsync
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestNamingAsync(NamingClientTestBaseAsync):
+class TestNamingPropertyOperationsAsync(NamingClientTestBaseAsync):
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_client_name(self, naming_endpoint):
+    async def test_property_client(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
-        response = await client.client_name()
+        response = await client.property.client(
+            body={"defaultName": bool},
+        )
 
         # please add some check logic here by yourself
         # ...
 
     @NamingPreparer()
     @recorded_by_proxy_async
-    async def test_parameter(self, naming_endpoint):
+    async def test_property_language(self, naming_endpoint):
         client = self.create_async_client(endpoint=naming_endpoint)
-        response = await client.parameter(
-            client_name="str",
+        response = await client.property.language(
+            body={"defaultName": bool},
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @NamingPreparer()
+    @recorded_by_proxy_async
+    async def test_property_compatible_with_encoded_name(self, naming_endpoint):
+        client = self.create_async_client(endpoint=naming_endpoint)
+        response = await client.property.compatible_with_encoded_name(
+            body={"wireName": bool},
         )
 
         # please add some check logic here by yourself

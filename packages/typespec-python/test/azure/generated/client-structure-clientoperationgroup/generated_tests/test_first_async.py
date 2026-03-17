@@ -21,3 +21,30 @@ class TestFirstAsync(FirstClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @FirstPreparer()
+    @recorded_by_proxy_async
+    async def test_two(self, first_endpoint):
+        client = self.create_async_client(endpoint=first_endpoint)
+        response = await client.two()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @FirstPreparer()
+    @recorded_by_proxy_async
+    async def test_three(self, first_endpoint):
+        client = self.create_async_client(endpoint=first_endpoint)
+        response = await client.three()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @FirstPreparer()
+    @recorded_by_proxy_async
+    async def test_four(self, first_endpoint):
+        client = self.create_async_client(endpoint=first_endpoint)
+        response = await client.four()
+
+        # please add some check logic here by yourself
+        # ...

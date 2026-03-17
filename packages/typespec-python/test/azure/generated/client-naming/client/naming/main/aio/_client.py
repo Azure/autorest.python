@@ -16,12 +16,22 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import NamingClientConfiguration
-from .operations import ModelClientOperations, UnionEnumOperations, _NamingClientOperationsMixin
+from .operations import (
+    HeaderOperations,
+    ModelClientOperations,
+    PropertyOperations,
+    UnionEnumOperations,
+    _NamingClientOperationsMixin,
+)
 
 
 class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """Describe changing names of types in a client with ``@clientName``.
 
+    :ivar property: PropertyOperations operations
+    :vartype property: client.naming.main.aio.operations.PropertyOperations
+    :ivar header: HeaderOperations operations
+    :vartype header: client.naming.main.aio.operations.HeaderOperations
     :ivar model_client: ModelClientOperations operations
     :vartype model_client: client.naming.main.aio.operations.ModelClientOperations
     :ivar union_enum: UnionEnumOperations operations
@@ -58,6 +68,8 @@ class NamingClient(_NamingClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.property = PropertyOperations(self._client, self._config, self._serialize, self._deserialize)
+        self.header = HeaderOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_client = ModelClientOperations(self._client, self._config, self._serialize, self._deserialize)
         self.union_enum = UnionEnumOperations(self._client, self._config, self._serialize, self._deserialize)
 
