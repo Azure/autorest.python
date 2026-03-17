@@ -16,8 +16,8 @@ from azure.core.rest import HttpRequest, HttpResponse
 
 from . import models as _models
 from ._configuration import RenamedOperationClientConfiguration
+from ._operations import _RenamedOperationClientOperationsMixin
 from ._utils.serialization import Deserializer, Serializer
-from .operations import GroupOperations, _RenamedOperationClientOperationsMixin
 
 
 class RenamedOperationClient(
@@ -25,8 +25,6 @@ class RenamedOperationClient(
 ):  # pylint: disable=client-accepts-api-version-keyword
     """RenamedOperationClient.
 
-    :ivar group: GroupOperations operations
-    :vartype group: client.structure.renamedoperation.operations.GroupOperations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -64,7 +62,6 @@ class RenamedOperationClient(
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
-        self.group = GroupOperations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(self, request: HttpRequest, *, stream: bool = False, **kwargs: Any) -> HttpResponse:
         """Runs the network request through the client's chained policies.

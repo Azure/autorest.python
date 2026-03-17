@@ -39,3 +39,30 @@ class TestRenamedOperationAsync(RenamedOperationClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
+
+    @RenamedOperationPreparer()
+    @recorded_by_proxy_async
+    async def test_renamed_two(self, renamedoperation_endpoint):
+        client = self.create_async_client(endpoint=renamedoperation_endpoint)
+        response = await client.renamed_two()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @RenamedOperationPreparer()
+    @recorded_by_proxy_async
+    async def test_renamed_four(self, renamedoperation_endpoint):
+        client = self.create_async_client(endpoint=renamedoperation_endpoint)
+        response = await client.renamed_four()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @RenamedOperationPreparer()
+    @recorded_by_proxy_async
+    async def test_renamed_six(self, renamedoperation_endpoint):
+        client = self.create_async_client(endpoint=renamedoperation_endpoint)
+        response = await client.renamed_six()
+
+        # please add some check logic here by yourself
+        # ...

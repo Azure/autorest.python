@@ -6,28 +6,29 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 import pytest
-from devtools_testutils import recorded_by_proxy
-from testpreparer import NamingClientTestBase, NamingPreparer
+from devtools_testutils.aio import recorded_by_proxy_async
+from testpreparer import NamingPreparer
+from testpreparer_async import NamingClientTestBaseAsync
 
 
 @pytest.mark.skip("you may need to update the auto-generated test case before run it")
-class TestNaming(NamingClientTestBase):
+class TestNamingHeaderOperationsAsync(NamingClientTestBaseAsync):
     @NamingPreparer()
-    @recorded_by_proxy
-    def test_client_name(self, naming_endpoint):
-        client = self.create_client(endpoint=naming_endpoint)
-        response = client.client_name()
+    @recorded_by_proxy_async
+    async def test_header_request(self, naming_endpoint):
+        client = self.create_async_client(endpoint=naming_endpoint)
+        response = await client.header.request(
+            client_name="str",
+        )
 
         # please add some check logic here by yourself
         # ...
 
     @NamingPreparer()
-    @recorded_by_proxy
-    def test_parameter(self, naming_endpoint):
-        client = self.create_client(endpoint=naming_endpoint)
-        response = client.parameter(
-            client_name="str",
-        )
+    @recorded_by_proxy_async
+    async def test_header_response(self, naming_endpoint):
+        client = self.create_async_client(endpoint=naming_endpoint)
+        response = await client.header.response()
 
         # please add some check logic here by yourself
         # ...
