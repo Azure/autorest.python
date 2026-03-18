@@ -21,3 +21,32 @@ class TestResiliencyServiceDrivenAsync(ResiliencyServiceDrivenClientTestBaseAsyn
 
         # please add some check logic here by yourself
         # ...
+
+    @ResiliencyServiceDrivenPreparer()
+    @recorded_by_proxy_async
+    async def test_from_none(self, resiliencyservicedriven_endpoint):
+        client = self.create_async_client(endpoint=resiliencyservicedriven_endpoint)
+        response = await client.from_none()
+
+        # please add some check logic here by yourself
+        # ...
+
+    @ResiliencyServiceDrivenPreparer()
+    @recorded_by_proxy_async
+    async def test_from_one_required(self, resiliencyservicedriven_endpoint):
+        client = self.create_async_client(endpoint=resiliencyservicedriven_endpoint)
+        response = await client.from_one_required(
+            parameter="str",
+        )
+
+        # please add some check logic here by yourself
+        # ...
+
+    @ResiliencyServiceDrivenPreparer()
+    @recorded_by_proxy_async
+    async def test_from_one_optional(self, resiliencyservicedriven_endpoint):
+        client = self.create_async_client(endpoint=resiliencyservicedriven_endpoint)
+        response = await client.from_one_optional()
+
+        # please add some check logic here by yourself
+        # ...
