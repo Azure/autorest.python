@@ -41,6 +41,17 @@ class TestPageableServerDrivenPaginationOperations(PageableClientTestBase):
 
     @PageablePreparer()
     @recorded_by_proxy
+    def test_server_driven_pagination_alternate_initial_verb_post(self, pageable_endpoint):
+        client = self.create_client(endpoint=pageable_endpoint)
+        response = client.server_driven_pagination.alternate_initial_verb.post(
+            body={"filter": "str"},
+        )
+        result = [r for r in response]
+        # please add some check logic here by yourself
+        # ...
+
+    @PageablePreparer()
+    @recorded_by_proxy
     def test_server_driven_pagination_continuation_token_request_query_response_body(self, pageable_endpoint):
         client = self.create_client(endpoint=pageable_endpoint)
         response = client.server_driven_pagination.continuation_token.request_query_response_body()
