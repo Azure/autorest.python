@@ -27,6 +27,7 @@ from ... import models as _models2
 from ..._configuration import PageableClientConfiguration
 from ..._utils.model_base import _deserialize
 from ..._utils.serialization import Deserializer, Serializer
+from ..alternateinitialverb.operations._operations import ServerDrivenPaginationAlternateInitialVerbOperations
 from ..continuationtoken.operations._operations import ServerDrivenPaginationContinuationTokenOperations
 
 T = TypeVar("T")
@@ -95,6 +96,9 @@ class ServerDrivenPaginationOperations:
         self._serialize: Serializer = input_args.pop(0) if input_args else kwargs.pop("serializer")
         self._deserialize: Deserializer = input_args.pop(0) if input_args else kwargs.pop("deserializer")
 
+        self.alternate_initial_verb = ServerDrivenPaginationAlternateInitialVerbOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.continuation_token = ServerDrivenPaginationContinuationTokenOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
