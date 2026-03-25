@@ -1,5 +1,14 @@
 # Release
 
+## 0.61.1
+
+### Bug Fixes
+
+- [#3396](https://github.com/Azure/autorest.python/pull/3396) Fix PermissionError when detecting package manager on WSL
+- [#3396](https://github.com/Azure/autorest.python/pull/3396) Remove `None` from "Known values" in `api_version` parameter docstring since the parameter is typed as `str` and `None` is not a valid API version value.
+- [#3396](https://github.com/Azure/autorest.python/pull/3396) Fix model usage which is referred both in request and response
+
+
 ## 0.61.0
 
 ### Features
