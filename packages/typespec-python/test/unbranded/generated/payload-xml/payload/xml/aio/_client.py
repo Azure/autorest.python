@@ -17,12 +17,23 @@ from .operations import (
     ModelWithEmptyArrayValueOperations,
     ModelWithEncodedNamesValueOperations,
     ModelWithEnumValueOperations,
+    ModelWithNamespaceOnPropertiesValueOperations,
+    ModelWithNamespaceValueOperations,
+    ModelWithNestedModelValueOperations,
     ModelWithOptionalFieldValueOperations,
     ModelWithRenamedArraysValueOperations,
+    ModelWithRenamedAttributeValueOperations,
     ModelWithRenamedFieldsValueOperations,
+    ModelWithRenamedNestedModelValueOperations,
+    ModelWithRenamedPropertyValueOperations,
+    ModelWithRenamedUnwrappedModelArrayValueOperations,
+    ModelWithRenamedWrappedAndItemModelArrayValueOperations,
+    ModelWithRenamedWrappedModelArrayValueOperations,
     ModelWithSimpleArraysValueOperations,
     ModelWithTextValueOperations,
     ModelWithUnwrappedArrayValueOperations,
+    ModelWithUnwrappedModelArrayValueOperations,
+    ModelWithWrappedPrimitiveCustomItemNamesValueOperations,
     SimpleModelValueOperations,
     XmlErrorValueOperations,
 )
@@ -33,32 +44,72 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
 
     :ivar simple_model_value: SimpleModelValueOperations operations
     :vartype simple_model_value: payload.xml.aio.operations.SimpleModelValueOperations
+    :ivar model_with_renamed_property_value: ModelWithRenamedPropertyValueOperations operations
+    :vartype model_with_renamed_property_value:
+     payload.xml.aio.operations.ModelWithRenamedPropertyValueOperations
+    :ivar model_with_renamed_fields_value: ModelWithRenamedFieldsValueOperations operations
+    :vartype model_with_renamed_fields_value:
+     payload.xml.aio.operations.ModelWithRenamedFieldsValueOperations
+    :ivar model_with_nested_model_value: ModelWithNestedModelValueOperations operations
+    :vartype model_with_nested_model_value:
+     payload.xml.aio.operations.ModelWithNestedModelValueOperations
+    :ivar model_with_renamed_nested_model_value: ModelWithRenamedNestedModelValueOperations
+     operations
+    :vartype model_with_renamed_nested_model_value:
+     payload.xml.aio.operations.ModelWithRenamedNestedModelValueOperations
     :ivar model_with_simple_arrays_value: ModelWithSimpleArraysValueOperations operations
     :vartype model_with_simple_arrays_value:
      payload.xml.aio.operations.ModelWithSimpleArraysValueOperations
-    :ivar model_with_array_of_model_value: ModelWithArrayOfModelValueOperations operations
-    :vartype model_with_array_of_model_value:
-     payload.xml.aio.operations.ModelWithArrayOfModelValueOperations
-    :ivar model_with_optional_field_value: ModelWithOptionalFieldValueOperations operations
-    :vartype model_with_optional_field_value:
-     payload.xml.aio.operations.ModelWithOptionalFieldValueOperations
-    :ivar model_with_attributes_value: ModelWithAttributesValueOperations operations
-    :vartype model_with_attributes_value:
-     payload.xml.aio.operations.ModelWithAttributesValueOperations
     :ivar model_with_unwrapped_array_value: ModelWithUnwrappedArrayValueOperations operations
     :vartype model_with_unwrapped_array_value:
      payload.xml.aio.operations.ModelWithUnwrappedArrayValueOperations
     :ivar model_with_renamed_arrays_value: ModelWithRenamedArraysValueOperations operations
     :vartype model_with_renamed_arrays_value:
      payload.xml.aio.operations.ModelWithRenamedArraysValueOperations
-    :ivar model_with_renamed_fields_value: ModelWithRenamedFieldsValueOperations operations
-    :vartype model_with_renamed_fields_value:
-     payload.xml.aio.operations.ModelWithRenamedFieldsValueOperations
+    :ivar model_with_wrapped_primitive_custom_item_names_value:
+     ModelWithWrappedPrimitiveCustomItemNamesValueOperations operations
+    :vartype model_with_wrapped_primitive_custom_item_names_value:
+     payload.xml.aio.operations.ModelWithWrappedPrimitiveCustomItemNamesValueOperations
+    :ivar model_with_array_of_model_value: ModelWithArrayOfModelValueOperations operations
+    :vartype model_with_array_of_model_value:
+     payload.xml.aio.operations.ModelWithArrayOfModelValueOperations
+    :ivar model_with_unwrapped_model_array_value: ModelWithUnwrappedModelArrayValueOperations
+     operations
+    :vartype model_with_unwrapped_model_array_value:
+     payload.xml.aio.operations.ModelWithUnwrappedModelArrayValueOperations
+    :ivar model_with_renamed_wrapped_model_array_value:
+     ModelWithRenamedWrappedModelArrayValueOperations operations
+    :vartype model_with_renamed_wrapped_model_array_value:
+     payload.xml.aio.operations.ModelWithRenamedWrappedModelArrayValueOperations
+    :ivar model_with_renamed_unwrapped_model_array_value:
+     ModelWithRenamedUnwrappedModelArrayValueOperations operations
+    :vartype model_with_renamed_unwrapped_model_array_value:
+     payload.xml.aio.operations.ModelWithRenamedUnwrappedModelArrayValueOperations
+    :ivar model_with_renamed_wrapped_and_item_model_array_value:
+     ModelWithRenamedWrappedAndItemModelArrayValueOperations operations
+    :vartype model_with_renamed_wrapped_and_item_model_array_value:
+     payload.xml.aio.operations.ModelWithRenamedWrappedAndItemModelArrayValueOperations
+    :ivar model_with_attributes_value: ModelWithAttributesValueOperations operations
+    :vartype model_with_attributes_value:
+     payload.xml.aio.operations.ModelWithAttributesValueOperations
+    :ivar model_with_renamed_attribute_value: ModelWithRenamedAttributeValueOperations operations
+    :vartype model_with_renamed_attribute_value:
+     payload.xml.aio.operations.ModelWithRenamedAttributeValueOperations
+    :ivar model_with_namespace_value: ModelWithNamespaceValueOperations operations
+    :vartype model_with_namespace_value:
+     payload.xml.aio.operations.ModelWithNamespaceValueOperations
+    :ivar model_with_namespace_on_properties_value: ModelWithNamespaceOnPropertiesValueOperations
+     operations
+    :vartype model_with_namespace_on_properties_value:
+     payload.xml.aio.operations.ModelWithNamespaceOnPropertiesValueOperations
+    :ivar model_with_text_value: ModelWithTextValueOperations operations
+    :vartype model_with_text_value: payload.xml.aio.operations.ModelWithTextValueOperations
+    :ivar model_with_optional_field_value: ModelWithOptionalFieldValueOperations operations
+    :vartype model_with_optional_field_value:
+     payload.xml.aio.operations.ModelWithOptionalFieldValueOperations
     :ivar model_with_empty_array_value: ModelWithEmptyArrayValueOperations operations
     :vartype model_with_empty_array_value:
      payload.xml.aio.operations.ModelWithEmptyArrayValueOperations
-    :ivar model_with_text_value: ModelWithTextValueOperations operations
-    :vartype model_with_text_value: payload.xml.aio.operations.ModelWithTextValueOperations
     :ivar model_with_dictionary_value: ModelWithDictionaryValueOperations operations
     :vartype model_with_dictionary_value:
      payload.xml.aio.operations.ModelWithDictionaryValueOperations
@@ -100,16 +151,19 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
         self.simple_model_value = SimpleModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
+        self.model_with_renamed_property_value = ModelWithRenamedPropertyValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_fields_value = ModelWithRenamedFieldsValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_nested_model_value = ModelWithNestedModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_nested_model_value = ModelWithRenamedNestedModelValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
         self.model_with_simple_arrays_value = ModelWithSimpleArraysValueOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.model_with_array_of_model_value = ModelWithArrayOfModelValueOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.model_with_optional_field_value = ModelWithOptionalFieldValueOperations(
-            self._client, self._config, self._serialize, self._deserialize
-        )
-        self.model_with_attributes_value = ModelWithAttributesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.model_with_unwrapped_array_value = ModelWithUnwrappedArrayValueOperations(
@@ -118,13 +172,47 @@ class XmlClient:  # pylint: disable=client-accepts-api-version-keyword,too-many-
         self.model_with_renamed_arrays_value = ModelWithRenamedArraysValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_renamed_fields_value = ModelWithRenamedFieldsValueOperations(
+        self.model_with_wrapped_primitive_custom_item_names_value = (
+            ModelWithWrappedPrimitiveCustomItemNamesValueOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.model_with_array_of_model_value = ModelWithArrayOfModelValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
-        self.model_with_empty_array_value = ModelWithEmptyArrayValueOperations(
+        self.model_with_unwrapped_model_array_value = ModelWithUnwrappedModelArrayValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_wrapped_model_array_value = ModelWithRenamedWrappedModelArrayValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_unwrapped_model_array_value = ModelWithRenamedUnwrappedModelArrayValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_wrapped_and_item_model_array_value = (
+            ModelWithRenamedWrappedAndItemModelArrayValueOperations(
+                self._client, self._config, self._serialize, self._deserialize
+            )
+        )
+        self.model_with_attributes_value = ModelWithAttributesValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_renamed_attribute_value = ModelWithRenamedAttributeValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_namespace_value = ModelWithNamespaceValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_namespace_on_properties_value = ModelWithNamespaceOnPropertiesValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.model_with_text_value = ModelWithTextValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_optional_field_value = ModelWithOptionalFieldValueOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.model_with_empty_array_value = ModelWithEmptyArrayValueOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.model_with_dictionary_value = ModelWithDictionaryValueOperations(
