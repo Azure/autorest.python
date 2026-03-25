@@ -57,8 +57,8 @@ class OperationTemplatesClient:
      None.
     :paramtype cloud_setting: ~azure.core.AzureClouds
     :keyword api_version: The API version to use for this operation. Known values are
-     "2023-12-01-preview" and None. Default value is "2023-12-01-preview". Note that overriding this
-     default value may result in unsupported behavior.
+     "2023-12-01-preview". Default value is "2023-12-01-preview". Note that overriding this default
+     value may result in unsupported behavior.
     :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
      Retry-After header is present.
