@@ -1,3 +1,4 @@
+# pylint: disable=too-many-lines
 # coding=utf-8
 # --------------------------------------------------------------------------
 # Copyright (c) Microsoft Corporation. All rights reserved.
@@ -16,8 +17,74 @@ if TYPE_CHECKING:
     from .. import models as _models
 
 
+class Author(_Model):
+    """Author model with a custom XML name.
+
+    :ivar name: Required.
+    :vartype name: str
+    """
+
+    name: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "name", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "XmlAuthor", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        name: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class Book(_Model):
+    """Book model with a custom XML name.
+
+    :ivar title: Required.
+    :vartype title: str
+    """
+
+    title: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "XmlBook", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        title: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ModelWithArrayOfModel(_Model):
-    """Contains an array of models.
+    """§4.1 — Contains an array of models.
 
     :ivar items_property: Required.
     :vartype items_property: ~payload.xml.models.SimpleModel
@@ -52,7 +119,7 @@ class ModelWithArrayOfModel(_Model):
 
 
 class ModelWithAttributes(_Model):
-    """Contains fields that are XML attributes.
+    """§5.1 — Contains fields that are XML attributes.
 
     :ivar id1: Required.
     :vartype id1: int
@@ -286,6 +353,157 @@ class ModelWithEnum(_Model):
         super().__init__(*args, **kwargs)
 
 
+class ModelWithNamespace(_Model):
+    """§6.1, §7.1 — Contains fields with XML namespace on the model.
+
+    :ivar id: Required.
+    :vartype id: int
+    :ivar title: Required.
+    :vartype title: str
+    """
+
+    id: int = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "id", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    title: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {
+        "attribute": False,
+        "name": "ModelWithNamespace",
+        "namespace": "http://example.com/schema",
+        "prefix": "smp",
+        "text": False,
+        "unwrapped": False,
+    }
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        title: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithNamespaceOnProperties(_Model):
+    """§6.2, §7.2 — Contains fields with different XML namespaces on individual properties.
+
+    :ivar id: Required.
+    :vartype id: int
+    :ivar title: Required.
+    :vartype title: str
+    :ivar author: Required.
+    :vartype author: str
+    """
+
+    id: int = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "id", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    title: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={
+            "attribute": False,
+            "name": "title",
+            "namespace": "http://example.com/schema",
+            "prefix": "smp",
+            "text": False,
+            "unwrapped": False,
+        },
+    )
+    """Required."""
+    author: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={
+            "attribute": False,
+            "name": "author",
+            "namespace": "http://example.com/ns2",
+            "prefix": "ns2",
+            "text": False,
+            "unwrapped": False,
+        },
+    )
+    """Required."""
+
+    _xml = {
+        "attribute": False,
+        "name": "ModelWithNamespaceOnProperties",
+        "namespace": "http://example.com/schema",
+        "prefix": "smp",
+        "text": False,
+        "unwrapped": False,
+    }
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        title: str,
+        author: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithNestedModel(_Model):
+    """§2.1 — Contains a property that references another model.
+
+    :ivar nested: Required.
+    :vartype nested: ~payload.xml.models.SimpleModel
+    """
+
+    nested: "_models.SimpleModel" = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "nested", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithNestedModel", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        nested: "_models.SimpleModel",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ModelWithOptionalField(_Model):
     """Contains an optional field.
 
@@ -327,8 +545,8 @@ class ModelWithOptionalField(_Model):
 
 
 class ModelWithRenamedArrays(_Model):
-    """Contains fields of wrapped and unwrapped arrays of primitive types that have different XML
-    representations.
+    """§3.3, §3.4 — Contains fields of wrapped and unwrapped arrays of primitive types that have
+    different XML representations.
 
     :ivar colors: Required.
     :vartype colors: list[str]
@@ -368,8 +586,57 @@ class ModelWithRenamedArrays(_Model):
         super().__init__(*args, **kwargs)
 
 
+class ModelWithRenamedAttribute(_Model):
+    """§5.2 — Contains a renamed XML attribute.
+
+    :ivar id: Required.
+    :vartype id: int
+    :ivar title: Required.
+    :vartype title: str
+    :ivar author: Required.
+    :vartype author: str
+    """
+
+    id: int = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": True, "name": "xml-id", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    title: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    author: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "author", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedAttribute", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        id: int,  # pylint: disable=redefined-builtin
+        title: str,
+        author: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ModelWithRenamedFields(_Model):
-    """Contains fields of the same type that have different XML representation.
+    """§1.3, §2.3 — Contains fields of the same type that have different XML representation.
 
     :ivar input_data: Required.
     :vartype input_data: ~payload.xml.models.SimpleModel
@@ -411,8 +678,185 @@ class ModelWithRenamedFields(_Model):
         super().__init__(*args, **kwargs)
 
 
+class ModelWithRenamedNestedModel(_Model):
+    """§2.2 — Contains a property whose type has.
+
+    :ivar author: Required.
+    :vartype author: ~payload.xml.models.Author
+    """
+
+    author: "_models.Author" = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "author", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedNestedModel", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        author: "_models.Author",
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithRenamedProperty(_Model):
+    """§1.2 — Contains a scalar property with a custom XML name.
+
+    :ivar title: Required.
+    :vartype title: str
+    :ivar author: Required.
+    :vartype author: str
+    """
+
+    title: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "renamedTitle", "text": False, "unwrapped": False},
+    )
+    """Required."""
+    author: str = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "name": "author", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedProperty", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        title: str,
+        author: str,
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithRenamedUnwrappedModelArray(_Model):
+    """§4.4 — Contains an unwrapped array of models with a custom item name.
+
+    :ivar items_property: Required.
+    :vartype items_property: ~payload.xml.models.SimpleModel
+    """
+
+    items_property: list["_models.SimpleModel"] = rest_field(
+        name="items",
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "itemsName": "ModelItem", "name": "ModelItem", "text": False, "unwrapped": True},
+        original_tsp_name="items",
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedUnwrappedModelArray", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        items_property: list["_models.SimpleModel"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithRenamedWrappedAndItemModelArray(_Model):
+    """§4.5 — Contains a wrapped array of models with custom wrapper and item names.
+
+    :ivar books: Required.
+    :vartype books: ~payload.xml.models.Book
+    """
+
+    books: list["_models.Book"] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "itemsName": "XmlBook", "name": "AllBooks", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedWrappedAndItemModelArray", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        books: list["_models.Book"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithRenamedWrappedModelArray(_Model):
+    """§4.3 — Contains a wrapped array of models with a custom wrapper name.
+
+    :ivar items_property: Required.
+    :vartype items_property: ~payload.xml.models.SimpleModel
+    """
+
+    items_property: list["_models.SimpleModel"] = rest_field(
+        name="items",
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "itemsName": "SimpleModel", "name": "AllItems", "text": False, "unwrapped": False},
+        original_tsp_name="items",
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithRenamedWrappedModelArray", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        items_property: list["_models.SimpleModel"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class ModelWithSimpleArrays(_Model):
-    """Contains fields of arrays of primitive types.
+    """§3.1 — Contains fields of arrays of primitive types.
 
     :ivar colors: Required.
     :vartype colors: list[str]
@@ -453,7 +897,7 @@ class ModelWithSimpleArrays(_Model):
 
 
 class ModelWithText(_Model):
-    """Contains an attribute and text.
+    """§8.1 — Contains an attribute and text.
 
     :ivar language: Required.
     :vartype language: str
@@ -494,7 +938,7 @@ class ModelWithText(_Model):
 
 
 class ModelWithUnwrappedArray(_Model):
-    """Contains fields of wrapped and unwrapped arrays of primitive types.
+    """§3.2 — Contains fields of wrapped and unwrapped arrays of primitive types.
 
     :ivar colors: Required.
     :vartype colors: list[str]
@@ -534,8 +978,76 @@ class ModelWithUnwrappedArray(_Model):
         super().__init__(*args, **kwargs)
 
 
+class ModelWithUnwrappedModelArray(_Model):
+    """§4.2 — Contains an unwrapped array of models.
+
+    :ivar items_property: Required.
+    :vartype items_property: ~payload.xml.models.SimpleModel
+    """
+
+    items_property: list["_models.SimpleModel"] = rest_field(
+        name="items",
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "itemsName": "items", "name": "items", "text": False, "unwrapped": True},
+        original_tsp_name="items",
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithUnwrappedModelArray", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        items_property: list["_models.SimpleModel"],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
+class ModelWithWrappedPrimitiveCustomItemNames(_Model):
+    """§3.5 — Contains a wrapped primitive array with custom wrapper and item names.
+
+    :ivar tags: Required.
+    :vartype tags: list[str]
+    """
+
+    tags: list[str] = rest_field(
+        visibility=["read", "create", "update", "delete", "query"],
+        xml={"attribute": False, "itemsName": "ItemName", "name": "ItemsTags", "text": False, "unwrapped": False},
+    )
+    """Required."""
+
+    _xml = {"attribute": False, "name": "ModelWithWrappedPrimitiveCustomItemNames", "text": False, "unwrapped": False}
+
+    @overload
+    def __init__(
+        self,
+        *,
+        tags: list[str],
+    ) -> None: ...
+
+    @overload
+    def __init__(self, mapping: Mapping[str, Any]) -> None:
+        """
+        :param mapping: raw JSON to initialize the model.
+        :type mapping: Mapping[str, Any]
+        """
+
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
+        super().__init__(*args, **kwargs)
+
+
 class SimpleModel(_Model):
-    """Contains fields of primitive types.
+    """§1.1 — Contains fields of primitive types.
 
     :ivar name: Required.
     :vartype name: str
