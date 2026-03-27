@@ -1,5 +1,12 @@
 # Release
 
+## 0.61.2
+
+### Bug Fixes
+
+- [#3404](https://github.com/Azure/autorest.python/pull/3404) Fix import of `_deserialize` in mix of xml and non-xml models
+
+
 ## 0.61.1
 
 ### Bug Fixes
