@@ -4,4 +4,4 @@ packages:
   - "@autorest/python"
 ---
 
-remove useless dependency in azure test requirements.txt
+Remove useless dependency in azure test requirements.txt
