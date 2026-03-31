@@ -137,15 +137,15 @@ class Repo:
     def pull_title(self):
         return self.pull.title
 
-    def checkout_branch(self, prefix: str = "auto-"):
+    def checkout_branch(self, prefix: str = "auto-", is_autorest_pr: bool = False):
         if prefix:
             self.new_branch_name = f"{prefix}{self.source_branch_name.replace(':', '-')}"
         else:
             self.new_branch_name = self.source_branch_name.split(":")[-1]
         try:
             log_call(f"git checkout {self.new_branch_name}")
-            if not prefix:
-                # for autorest.python PR, just pull the source branch to get the latest changes, for typespec PR, we will 
+            if not is_autorest_pr:
+                # for autorest.python PR, just pull the source branch to get the latest changes, for typespec PR, we will
                 # create branch from the source branch but won't pull because we want to keep the branch in sync with main as much as possible
                 log_call(f"git pull origin main:{self.new_branch_name} --force")
                 log_call(f"git push origin HEAD:{self.new_branch_name} --force")
@@ -495,7 +495,7 @@ class Repo:
             self.prepare_pr()
         elif "https://github.com/Azure/autorest.python" in self.pull_url:
             # regenerate for autorest.python PR then commit and push
-            self.checkout_branch(prefix="")
+            self.checkout_branch(prefix="", is_autorest_pr=True)
             self.prepare_pr()
 
     def get_latest_http_client_python_commit_sha(self) -> str:
