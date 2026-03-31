@@ -144,6 +144,11 @@ class Repo:
             self.new_branch_name = self.source_branch_name.split(":")[-1]
         try:
             log_call(f"git checkout {self.new_branch_name}")
+            if not prefix:
+                # for autorest.python PR, just pull the source branch to get the latest changes, for typespec PR, we will 
+                # create branch from the source branch but won't pull because we want to keep the branch in sync with main as much as possible
+                log_call(f"git pull origin main:{self.new_branch_name} --force")
+                log_call(f"git push origin HEAD:{self.new_branch_name} --force")
         except CalledProcessError:
             logger.info(f"Branch {self.new_branch_name} does not exist. Creating a new branch.")
             log_call(f"git checkout -b {self.new_branch_name}")
