@@ -87,6 +87,7 @@ words:
   - npmjs
   - odata
   - overriden
+  - pkgs
   - psscriptanalyzer
   - ptvsd
   - pylint

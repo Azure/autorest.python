@@ -12,8 +12,12 @@ const execute = (command: string, cmdlineargs: Array<string>, options: MoreOptio
             options.onCreate(cp);
         }
 
-        options.onStdOutData ? cp.stdout.on("data", options.onStdOutData) : cp;
-        options.onStdErrData ? cp.stderr.on("data", options.onStdErrData) : cp;
+        if (options.onStdOutData) {
+            cp.stdout.on("data", options.onStdOutData);
+        }
+        if (options.onStdErrData) {
+            cp.stderr.on("data", options.onStdErrData);
+        }
 
         let err = "";
         let out = "";
