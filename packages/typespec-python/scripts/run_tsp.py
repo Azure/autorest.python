@@ -8,7 +8,6 @@ import logging
 from pathlib import Path
 from pygen import preprocess, codegen
 from pygen.utils import parse_args
-from package_manager import create_venv_with_package_manager
 
 _ROOT_DIR = Path(__file__).parent.parent
 
@@ -20,20 +19,21 @@ if __name__ == "__main__":
 
     assert venv_preexists  # Otherwise install was not done
 
-    venv_context = create_venv_with_package_manager(venv_path)
+    # Don't use EnvBuilder.ensure_directories() - it causes race conditions
+    # when multiple processes run in parallel. The venv already exists.
 
     if "--debug" in sys.argv or "--debug=true" in sys.argv:
         try:
             import debugpy  # pylint: disable=import-outside-toplevel
-        except ImportError:
-            raise SystemExit("Please install ptvsd in order to use VSCode debugging")
+        except (ImportError, ModuleNotFoundError):
+            raise SystemExit("Please pip install ptvsd in order to use VSCode debugging")
 
         # 5678 is the default attach port in the VS Code debug configurations
         debugpy.listen(("localhost", 5678))
         debugpy.wait_for_client()
         breakpoint()  # pylint: disable=undefined-variable
 
-    # run
+    # pre-process
     args, unknown_args = parse_args()
-    preprocess.PreProcessPlugin(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()
-    codegen.CodeGenerator(output_folder=args.output_folder, cadl_file=args.cadl_file, **unknown_args).process()
+    preprocess.PreProcessPlugin(output_folder=args.output_folder, tsp_file=args.tsp_file, **unknown_args).process()
+    codegen.CodeGenerator(output_folder=args.output_folder, tsp_file=args.tsp_file, **unknown_args).process()

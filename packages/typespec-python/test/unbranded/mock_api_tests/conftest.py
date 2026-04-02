@@ -6,12 +6,32 @@
 import os
 import subprocess
 import signal
+import time
+import urllib.request
+import urllib.error
 import pytest
 import re
 from pathlib import Path
 from typing import List
 
 FILE_FOLDER = Path(__file__).parent
+
+# Server configuration
+SERVER_HOST = "localhost"
+SERVER_PORT = 3000
+SERVER_URL = f"http://{SERVER_HOST}:{SERVER_PORT}"
+
+
+def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
+    """Wait for the server to be ready by polling the URL."""
+    start_time = time.time()
+    while time.time() - start_time < timeout:
+        try:
+            urllib.request.urlopen(url, timeout=1)
+            return True
+        except (urllib.error.URLError, urllib.error.HTTPError, OSError):
+            time.sleep(interval)
+    return False
 
 
 def start_server_process():
@@ -27,13 +47,22 @@ def terminate_server_process(process):
     if os.name == "nt":
         process.kill()
     else:
-        os.killpg(os.getpgid(process.pid), signal.SIGTERM)  # Send the signal to all the process groups
+        try:
+            os.killpg(os.getpgid(process.pid), signal.SIGTERM)
+        except ProcessLookupError:
+            pass  # Process already terminated
 
 
 @pytest.fixture(scope="session", autouse=True)
 def testserver():
-    """Start cadl ranch mock api tests"""
+    """Start spector mock api tests."""
     server = start_server_process()
+
+    # Wait for server to be ready
+    if not wait_for_server(SERVER_URL, timeout=60):
+        terminate_server_process(server)
+        pytest.fail(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
+
     yield
     terminate_server_process(server)
 
