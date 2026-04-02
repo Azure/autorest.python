@@ -15,6 +15,8 @@ from pathlib import Path
 from typing import List
 
 FILE_FOLDER = Path(__file__).parent
+# Root of the typespec-python package
+PACKAGE_ROOT = FILE_FOLDER.parent.parent.parent
 
 # Server configuration
 SERVER_HOST = "localhost"
@@ -35,12 +37,19 @@ def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
 
 
 def start_server_process():
-    http_path = Path(os.path.dirname(__file__)) / Path("../../../node_modules/@typespec/http-specs")
-    os.chdir(http_path.resolve())
+    """Start the tsp-spector mock API server."""
+    http_path = PACKAGE_ROOT / "node_modules/@typespec/http-specs"
+    cwd = http_path.resolve()
     cmd = "npx tsp-spector serve ./specs"
+
+    # Add node_modules/.bin to PATH
+    env = os.environ.copy()
+    node_bin = str(PACKAGE_ROOT / "node_modules" / ".bin")
+    env["PATH"] = f"{node_bin}{os.pathsep}{env.get('PATH', '')}"
+
     if os.name == "nt":
-        return subprocess.Popen(cmd, shell=True)
-    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
+        return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env)
+    return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env, preexec_fn=os.setsid)
 
 
 def terminate_server_process(process):

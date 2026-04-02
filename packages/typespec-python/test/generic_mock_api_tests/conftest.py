@@ -14,6 +14,8 @@ import importlib
 from pathlib import Path
 
 FILE_FOLDER = Path(__file__).parent
+# Root of the typespec-python package
+PACKAGE_ROOT = FILE_FOLDER.parent.parent
 
 # Server configuration
 SERVER_HOST = "localhost"
@@ -34,17 +36,30 @@ def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
 
 
 def start_server_process():
-    azure_http_path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@azure-tools/azure-http-specs")
-    http_path = Path(os.path.dirname(__file__)) / Path("../../node_modules/@typespec/http-specs")
+    """Start the tsp-spector mock API server."""
+    azure_http_path = PACKAGE_ROOT / "node_modules/@azure-tools/azure-http-specs"
+    http_path = PACKAGE_ROOT / "node_modules/@typespec/http-specs"
+
+    # Determine flavor from environment or current directory
+    flavor = os.environ.get("FOLDER", "azure")
     if "unbranded" in Path(os.getcwd()).parts:
-        os.chdir(http_path.resolve())
+        flavor = "unbranded"
+
+    if flavor == "unbranded":
+        cwd = http_path.resolve()
         cmd = "npx tsp-spector serve ./specs"
     else:
-        os.chdir(azure_http_path.resolve())
+        cwd = azure_http_path.resolve()
         cmd = f"npx tsp-spector serve ./specs {(http_path / 'specs').resolve()}"
+
+    # Add node_modules/.bin to PATH
+    env = os.environ.copy()
+    node_bin = str(PACKAGE_ROOT / "node_modules" / ".bin")
+    env["PATH"] = f"{node_bin}{os.pathsep}{env.get('PATH', '')}"
+
     if os.name == "nt":
-        return subprocess.Popen(cmd, shell=True)
-    return subprocess.Popen(cmd, shell=True, preexec_fn=os.setsid)
+        return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env)
+    return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env, preexec_fn=os.setsid)
 
 
 def terminate_server_process(process):

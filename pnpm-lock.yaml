@@ -115,6 +115,9 @@ importers:
       '@azure-tools/typespec-client-generator-core':
         specifier: ~0.66.4
         version: 0.66.4(wr52kicjzeccstae7uejun2ysq)
+      '@eslint/js':
+        specifier: ^9.22.0
+        version: 9.26.0
       '@types/fs-extra':
         specifier: 11.0.4
         version: 11.0.4
@@ -172,9 +175,15 @@ importers:
       c8:
         specifier: ^10.1.3
         version: 10.1.3
+      eslint:
+        specifier: ^9.22.0
+        version: 9.26.0(hono@4.11.7)
       picocolors:
         specifier: ^1.1.1
         version: 1.1.1
+      prettier:
+        specifier: ^3.5.3
+        version: 3.8.1
       rimraf:
         specifier: ~6.1.2
         version: 6.1.2
