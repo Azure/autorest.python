@@ -10,27 +10,27 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "../../../");
 
 // Get Python venv path
 function getVenvPython(): string {
-  const venvPath = join(root, "venv");
-  if (fs.existsSync(join(venvPath, "bin"))) {
-    return join(venvPath, "bin", "python");
-  } else if (fs.existsSync(join(venvPath, "Scripts"))) {
-    return join(venvPath, "Scripts", "python.exe");
-  }
-  throw new Error("Virtual environment not found. Run 'npm run install' first.");
+    const venvPath = join(root, "venv");
+    if (fs.existsSync(join(venvPath, "bin"))) {
+        return join(venvPath, "bin", "python");
+    } else if (fs.existsSync(join(venvPath, "Scripts"))) {
+        return join(venvPath, "Scripts", "python.exe");
+    }
+    throw new Error("Virtual environment not found. Run 'npm run install' first.");
 }
 
 const argv = parseArgs({
-  args: process.argv.slice(2),
-  options: {
-    typescript: { type: "boolean", short: "t" },
-    python: { type: "boolean", short: "p" },
-    check: { type: "boolean", short: "c" },
-    help: { type: "boolean", short: "h" },
-  },
+    args: process.argv.slice(2),
+    options: {
+        typescript: { type: "boolean", short: "t" },
+        python: { type: "boolean", short: "p" },
+        check: { type: "boolean", short: "c" },
+        help: { type: "boolean", short: "h" },
+    },
 });
 
 if (argv.values.help) {
-  console.log(`
+    console.log(`
 ${pc.bold("Usage:")} tsx format.ts [options]
 
 ${pc.bold("Description:")}
@@ -59,100 +59,98 @@ ${pc.bold("Examples:")}
   ${pc.dim("# Check formatting without making changes")}
   tsx format.ts --check
 `);
-  process.exit(0);
+    process.exit(0);
 }
 
 function runCommand(command: string, args: string[]): Promise<boolean> {
-  // Add node_modules/.bin to PATH
-  const pathSep = process.platform === "win32" ? ";" : ":";
-  const binPath = join(root, "node_modules", ".bin");
-  const env = {
-    ...process.env,
-    PATH: `${binPath}${pathSep}${process.env.PATH}`,
-  };
+    // Add node_modules/.bin to PATH
+    const pathSep = process.platform === "win32" ? ";" : ":";
+    const binPath = join(root, "node_modules", ".bin");
+    const env = {
+        ...process.env,
+        PATH: `${binPath}${pathSep}${process.env.PATH}`,
+    };
 
-  return new Promise((resolve) => {
-    console.log(`${pc.cyan("[RUN]")} ${command} ${args.join(" ")}`);
-    const proc = spawn(command, args, {
-      cwd: root,
-      stdio: "inherit",
-      shell: true,
-      env,
-    });
+    return new Promise((resolve) => {
+        console.log(`${pc.cyan("[RUN]")} ${command} ${args.join(" ")}`);
+        const proc = spawn(command, args, {
+            cwd: root,
+            stdio: "inherit",
+            shell: true,
+            env,
+        });
 
-    proc.on("close", (code) => {
-      if (code === 0) {
-        console.log(`${pc.green("[PASS]")} ${command} completed successfully`);
-        resolve(true);
-      } else {
-        console.log(`${pc.red("[FAIL]")} ${command} failed with code ${code}`);
-        resolve(false);
-      }
-    });
+        proc.on("close", (code) => {
+            if (code === 0) {
+                console.log(`${pc.green("[PASS]")} ${command} completed successfully`);
+                resolve(true);
+            } else {
+                console.log(`${pc.red("[FAIL]")} ${command} failed with code ${code}`);
+                resolve(false);
+            }
+        });
 
-    proc.on("error", (err) => {
-      console.log(`${pc.red("[ERROR]")} ${command}: ${err.message}`);
-      resolve(false);
+        proc.on("error", (err) => {
+            console.log(`${pc.red("[ERROR]")} ${command}: ${err.message}`);
+            resolve(false);
+        });
     });
-  });
 }
 
 async function formatTypeScript(check: boolean): Promise<boolean> {
-  console.log(`\n${pc.bold("=== Formatting TypeScript ===")}\n`);
-  const args = check
-    ? ["--check", "src/", "eng/", "scripts/", "*.json", "*.md"]
-    : ["--write", "src/", "eng/", "scripts/", "*.json", "*.md"];
-  return runCommand("prettier", args);
+    console.log(`\n${pc.bold("=== Formatting TypeScript ===")}\n`);
+    const args = check
+        ? ["--check", "src/", "eng/", "scripts/", "*.json", "*.md"]
+        : ["--write", "src/", "eng/", "scripts/", "*.json", "*.md"];
+    return runCommand("prettier", args);
 }
 
 async function formatPython(check: boolean): Promise<boolean> {
-  console.log(`\n${pc.bold("=== Formatting Python Scripts ===")}\n`);
+    console.log(`\n${pc.bold("=== Formatting Python Scripts ===")}\n`);
 
-  let pythonPath: string;
-  try {
-    pythonPath = getVenvPython();
-  } catch (error) {
-    console.error(pc.red((error as Error).message));
-    return false;
-  }
+    let pythonPath: string;
+    try {
+        pythonPath = getVenvPython();
+    } catch (error) {
+        console.error(pc.red((error as Error).message));
+        return false;
+    }
 
-  const args = ["-m", "black", "scripts/"];
-  if (check) {
-    args.push("--check");
-  }
-  return runCommand(pythonPath, args);
+    const args = ["-m", "black", "scripts/"];
+    if (check) {
+        args.push("--check");
+    }
+    return runCommand(pythonPath, args);
 }
 
 async function main(): Promise<void> {
-  const runTypeScript = argv.values.typescript;
-  const runPython = argv.values.python;
-  const check = argv.values.check || false;
+    const runTypeScript = argv.values.typescript;
+    const runPython = argv.values.python;
+    const check = argv.values.check || false;
 
-  // Default: format both
-  const runBoth = !runTypeScript && !runPython;
+    // Default: format both
+    const runBoth = !runTypeScript && !runPython;
 
-  let success = true;
+    let success = true;
 
-  if (runTypeScript || runBoth) {
-    const result = await formatTypeScript(check);
-    if (!result) success = false;
-  }
+    if (runTypeScript || runBoth) {
+        const result = await formatTypeScript(check);
+        if (!result) success = false;
+    }
 
-  if (runPython || runBoth) {
-    const result = await formatPython(check);
-    if (!result) success = false;
-  }
+    if (runPython || runBoth) {
+        const result = await formatPython(check);
+        if (!result) success = false;
+    }
 
-  if (!success) {
-    process.exit(1);
-  }
+    if (!success) {
+        process.exit(1);
+    }
 
-  console.log(
-    `\n${pc.green(pc.bold(`All formatting ${check ? "checks passed" : "complete"}!`))}\n`,
-  );
+    console.log(`\n${pc.green(pc.bold(`All formatting ${check ? "checks passed" : "complete"}!`))}\n`);
 }
 
 main().catch((error) => {
-  console.error(`${pc.red("Unexpected error:")}`, error);
-  process.exit(1);
+    console.error(`${pc.red("Unexpected error:")}`, error);
+    process.exit(1);
 });

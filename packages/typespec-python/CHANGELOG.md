@@ -6,7 +6,6 @@
 
 - [#3404](https://github.com/Azure/autorest.python/pull/3404) Fix import of `_deserialize` in mix of xml and non-xml models
 
-
 ## 0.61.1
 
 ### Bug Fixes
@@ -14,7 +13,6 @@
 - [#3396](https://github.com/Azure/autorest.python/pull/3396) Fix PermissionError when detecting package manager on WSL
 - [#3396](https://github.com/Azure/autorest.python/pull/3396) Remove `None` from "Known values" in `api_version` parameter docstring since the parameter is typed as `str` and `None` is not a valid API version value.
 - [#3396](https://github.com/Azure/autorest.python/pull/3396) Fix model usage which is referred both in request and response
-
 
 ## 0.61.0
 
@@ -26,7 +24,6 @@
 
 - [#3368](https://github.com/Azure/autorest.python/pull/3368) Return empty list instead of None for non-optional unwrapped XML list fields during deserialization
 - [#3373](https://github.com/Azure/autorest.python/pull/3373) Remove includeRootSlash client option logic, which should be handled at the TypeSpec core level
-
 
 ## 0.60.2
 
@@ -41,7 +38,6 @@
 
 - Upgrade dependencies to match root package.json versions (@types/node, rimraf, tsx, typescript, typescript-eslint, vitest)
 
-
 ## 0.60.1
 
 ### Bug Fixes
@@ -49,13 +45,11 @@
 - [#3337](https://github.com/Azure/autorest.python/pull/3337) Fall back to wire type for unknown or unsupported encode
 - [#3330](https://github.com/Azure/autorest.python/pull/3330) Fix import for xml paging
 
-
 ## 0.60.0
 
 ### Features
 
 - [#3332](https://github.com/Azure/autorest.python/pull/3332) Add support for `@clientOption("includeRootSlash")` to control stripping of the slash after the root url
-
 
 ## 0.59.3
 
@@ -63,13 +57,11 @@
 
 - [#3328](https://github.com/Azure/autorest.python/pull/3328) Catch all deserialization errors when deserializing error response models
 
-
 ## 0.59.2
 
 ### Bug Fixes
 
 - [#3322](https://github.com/Azure/autorest.python/pull/3322) Properly cache enum values
-
 
 ## 0.59.1
 
@@ -78,7 +70,6 @@
 - [#3315](https://github.com/Azure/autorest.python/pull/3315) Don't remove azure-sdk tool definitions from pyproject.toml
 - [#3316](https://github.com/Azure/autorest.python/pull/3316) Fix additional indentation issues
 - [#3316](https://github.com/Azure/autorest.python/pull/3316) `_failsafe_deserialize_xml` xml errors
-
 
 ## 0.59.0
 
@@ -90,7 +81,6 @@
 
 - [#3310](https://github.com/Azure/autorest.python/pull/3310) Bump TCGC 0.64.3
 
-
 ## 0.58.0
 
 ### Features
@@ -101,13 +91,11 @@
 
 - [#3304](https://github.com/Azure/autorest.python/pull/3304) support "apiVersions" of TCGC metadata
 
-
 ## 0.57.1
 
 ### Bug Fixes
 
 - [#3300](https://github.com/Azure/autorest.python/pull/3300) Fix clients with `NoAuth` credentials to have optional generated `credential` parameters
-
 
 ## 0.57.0
 
@@ -126,13 +114,11 @@
 - [#3291](https://github.com/Azure/autorest.python/pull/3291) Fix import error about apiversion validation for nested operation groups
 - [#3265](https://github.com/Azure/autorest.python/pull/3265) Fix import when body parameter is union of models
 
-
 ## 0.56.1
 
 ### Bug Fixes
 
 - [#3284](https://github.com/Azure/autorest.python/pull/3284) Persist mutations to mutable properties when accessed via attribute syntax
-
 
 ## 0.56.0
 
@@ -143,7 +129,6 @@
 ### Bug Fixes
 
 - [#3279](https://github.com/Azure/autorest.python/pull/3279) Fix bad indent
-
 
 ## 0.55.0
 
@@ -158,7 +143,6 @@
 - [#3276](https://github.com/Azure/autorest.python/pull/3276) Fix multipart when files part is optional
 - [#3274](https://github.com/Azure/autorest.python/pull/3274) Fix serialization name for multipart
 
-
 ## 0.54.0
 
 ### Features
@@ -170,7 +154,6 @@
 - [#3267](https://github.com/Azure/autorest.python/pull/3267) fix logic about which scenario to add msrest as dependency
 - [#3266](https://github.com/Azure/autorest.python/pull/3266) Fix @override to avoid duplicated subscriptionId or api-version signatures
 
-
 ## 0.53.2
 
 ### Bump dependencies
@@ -181,13 +164,11 @@
 
 - [#3259](https://github.com/Azure/autorest.python/pull/3259) Fix subscriptionId missing for override
 
-
 ## 0.53.1
 
 ### Bug Fixes
 
 - [#3257](https://github.com/Azure/autorest.python/pull/3257) add flag for clear output folder and set default to false
-
 
 ## 0.53.0
 
@@ -200,7 +181,6 @@
 - [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix bad indent
 - [#3256](https://github.com/Azure/autorest.python/pull/3256) Fix setting attribute of flattened property when flattened property's name is not `properties`
 
-
 ## 0.52.2
 
 ### Bug Fixes
@@ -209,7 +189,6 @@
 - [#3240](https://github.com/Azure/autorest.python/pull/3240) Fix api-version for @override
 - [#3251](https://github.com/Azure/autorest.python/pull/3251) Fix runtime error for constant query parameter
 
-
 ## 0.52.1
 
 ### Bug Fixes
@@ -217,7 +196,6 @@
 - [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix outputted bullet-point documentation to pass sphinx
 - [#3237](https://github.com/Azure/autorest.python/pull/3237) Fix indentation issue when deserializing internal error model
 - [#3237](https://github.com/Azure/autorest.python/pull/3237) Exclude `generated_samples` and `generated_tests` from wheel
-
 
 ## 0.52.0
 
@@ -234,7 +212,6 @@
 - [#3226](https://github.com/Azure/autorest.python/pull/3226) [python] ensure first line in param description wrap around is a space
 - [#3226](https://github.com/Azure/autorest.python/pull/3226) Fix bugs related to import and pylint for libraries with only internal models
 
-
 ## 0.51.2
 
 ### Bump dependencies
@@ -247,7 +224,6 @@
 
 - [#3220](https://github.com/Azure/autorest.python/pull/3220) Fix dependency bump from `@azure-tools/typespec` libraries
 
-
 ## 0.51.0
 
 ### Features
@@ -257,7 +233,6 @@
 ### Bug Fixes
 
 - [#3216](https://github.com/Azure/autorest.python/pull/3216) Add overload for operation when body type is array of model
-
 
 ## 0.50.0
 
@@ -273,7 +248,6 @@
 ### Bug Fixes
 
 - [#3194](https://github.com/Azure/autorest.python/pull/3194) Fix dependencies of pyproject.toml for ARM SDK
-
 
 ## 0.49.0
 
@@ -292,14 +266,12 @@
 - [#3174](https://github.com/Azure/autorest.python/pull/3174) fix to keep some existing parts of pyproject.toml
 - [#3181](https://github.com/Azure/autorest.python/pull/3181) don't send content-type when no request body
 
-
 ## 0.48.2
 
 ### Bug Fixes
 
 - [#3173](https://github.com/Azure/autorest.python/pull/3173) fix generated output folder for packaging files
 - [#3173](https://github.com/Azure/autorest.python/pull/3173) keep declaration of pyproject.toml same with existing setup.py of ARM SDK
-
 
 ## 0.48.1
 
@@ -313,7 +285,6 @@
 - [#3168](https://github.com/Azure/autorest.python/pull/3168) Exclude doc folder in pyproject.toml and update license as per PEP 639
 - [#3163](https://github.com/Azure/autorest.python/pull/3163) Don't throw when deserializing error model responses
 
-
 ## 0.48.0
 
 ### Features
@@ -325,14 +296,12 @@
 
 - [#3157](https://github.com/Azure/autorest.python/pull/3157) Don't hardcode `emit-cross-language-definition-file` as `true` for azure generations
 
-
 ## 0.47.2
 
 ### Bug Fixes
 
 - [#3154](https://github.com/Azure/autorest.python/pull/3154) fix outputfolder of packaging files for arm sdk
 - [#3154](https://github.com/Azure/autorest.python/pull/3154) Ensure necessary typing imports for internal models
-
 
 ## 0.47.1
 
@@ -341,7 +310,6 @@
 - [#3135](https://github.com/Azure/autorest.python/pull/3135) Import mixins from operations init file to get patch changes
 - [#3135](https://github.com/Azure/autorest.python/pull/3135) Don't hardcode client in sample to first client in list
 - [#3134](https://github.com/Azure/autorest.python/pull/3134) Fix regression that ignored patches to mixin operation groups when patched in the `operations` folder
-
 
 ## 0.47.0
 
@@ -353,13 +321,11 @@
 
 - [#3128](https://github.com/Azure/autorest.python/pull/3128) Bump typespec
 
-
 ## 0.46.0
 
 ### Features
 
 - Make mixin operations classes private to remove from documentation
-
 
 ## 0.45.5
 
@@ -367,13 +333,11 @@
 
 - [#3116](https://github.com/Azure/autorest.python/pull/3116) [typespec-python] Add support for uv package manager alongside pip
 
-
 ## 0.45.4
 
 ### Bump dependencies
 
 - [#3108](https://github.com/Azure/autorest.python/pull/3108) Bump dependency TCGC 0.57.2
-
 
 ## 0.45.3
 
@@ -381,7 +345,6 @@
 
 - [#3103](https://github.com/Azure/autorest.python/pull/3103) Add support for `validate-versioning` flag, so users can toggle whether they get api versioning validation
 - [#3103](https://github.com/Azure/autorest.python/pull/3103) Validate api versions by looking at ordering of api versions from spec
-
 
 ## 0.45.2
 
@@ -393,7 +356,6 @@ No changes, version bump only.
 
 - Bump typespec
 
-
 ## 0.45.0
 
 ### Features
@@ -403,7 +365,6 @@ No changes, version bump only.
 ### Bug Fixes
 
 - [#3088](https://github.com/Azure/autorest.python/pull/3088) Fix response type of paging operations from `Iterable` to `ItemPaged`
-
 
 ## 0.44.2
 
@@ -416,13 +377,11 @@ No changes, version bump only.
 
 - [#3085](https://github.com/Azure/autorest.python/pull/3085) Bump typespec 1.0.0
 
-
 ## 0.44.1
 
 ### Bump dependencies
 
 - Bump to latest typespec version
-
 
 ## 0.44.0
 
@@ -435,14 +394,12 @@ No changes, version bump only.
 
 - [#3078](https://github.com/Azure/autorest.python/pull/3078) Bump to http-client-python 0.11.0.
 
-
 ## 0.43.0
 
 ### Features
 
 - [#3076](https://github.com/Azure/autorest.python/pull/3076) Improve user experience in multi clouds scenario
 - [#3073](https://github.com/Azure/autorest.python/pull/3073) add more hooks into setup.py template for users with custom templates
-
 
 ## 0.42.3
 
@@ -465,7 +422,6 @@ No changes, version bump only.
 - [#3067](https://github.com/Azure/autorest.python/pull/3067) Fix crash when configure `license` in tspconfig.yaml`
 - [#3067](https://github.com/Azure/autorest.python/pull/3067) Keep license header for legacy SDK
 
-
 ## 0.42.0
 
 ### Features
@@ -473,14 +429,12 @@ No changes, version bump only.
 - [#3062](https://github.com/Azure/autorest.python/pull/3062) Pass authentication flows info into credential policy for unbranded
 - [#3061](https://github.com/Azure/autorest.python/pull/3061) support typespec license config
 
-
 ## 0.41.0
 
 ### Features
 
 - [#3057](https://github.com/Azure/autorest.python/pull/3057) Always respect namespace from TCGC
 - [#3060](https://github.com/Azure/autorest.python/pull/3060) Refine emitter options
-
 
 ## 0.40.0
 
@@ -491,7 +445,6 @@ No changes, version bump only.
 ### Features
 
 - [#3050](https://github.com/Azure/autorest.python/pull/3050) Support continuation token for paging
-
 
 ## 0.39.1
 
@@ -512,7 +465,6 @@ No changes, version bump only.
 
 - [#3051](https://github.com/Azure/autorest.python/pull/3051) Report TCGC diagnostics after create SDK context.
 
-
 ## 0.38.4
 
 No changes, version bump only.
@@ -529,10 +481,9 @@ No changes, version bump only.
 - [#3029](https://github.com/Azure/autorest.python/pull/3029) Fix for scenario that output folder is different with namespace
 - [#3029](https://github.com/Azure/autorest.python/pull/3029) Improve XML serialization information in generated models
 - [#3025](https://github.com/Azure/autorest.python/pull/3025) Fix sphinx typing for raising documentation
-- [#3025](https://github.com/Azure/autorest.python/pull/3025) fix typing for class methods in _serialization.py
+- [#3025](https://github.com/Azure/autorest.python/pull/3025) fix typing for class methods in \_serialization.py
 - [#3015](https://github.com/Azure/autorest.python/pull/3015) Order keyword-only args overload first in generated operations
 - [#3030](https://github.com/Azure/autorest.python/pull/3030) Fix output folder of models when output folder is different with namespace in configuration
-
 
 ## 0.38.1
 
@@ -545,19 +496,17 @@ No changes, version bump only.
 - [#3007](https://github.com/Azure/autorest.python/pull/3007) Add mypy typing to operation group inits
 - [#3007](https://github.com/Azure/autorest.python/pull/3007) Remove Python2 specific datetime logic from internal serialization.
 
-
 ## 0.38.0
 
 ### Bug Fixes
 
 - [#3000](https://github.com/Azure/autorest.python/pull/3000) Only add linting disables for a file with too many lines if the file doesn't already disable this linter rule
 - [#3000](https://github.com/Azure/autorest.python/pull/3000) Don't automatically overwrite version in `_version.py` file and `setup.py` file if the existing version is newer
-- [#3000](https://github.com/Azure/autorest.python/pull/3000) Generate __init__ for internal models to allow for discriminator needs
+- [#3000](https://github.com/Azure/autorest.python/pull/3000) Generate **init** for internal models to allow for discriminator needs
 
 ### Features
 
 - [#2968](https://github.com/Azure/autorest.python/pull/2968) Support typespec namespace
-
 
 ## 0.37.3
 
@@ -569,20 +518,17 @@ No changes, version bump only.
 
 - [#2988](https://github.com/Azure/autorest.python/pull/2988) set flavor to azure if not set
 
-
 ## 0.37.2
 
 ### Bug Fixes
 
 - [#2973](https://github.com/Azure/autorest.python/pull/2973) `:code:` in docstring should always be preceded by `\`
 
-
 ## 0.37.1
 
 ### Bump dependencies
 
 - [#2965](https://github.com/Azure/autorest.python/pull/2965) Bump `@typespec/*` 0.63.0 and `@azure-tools/*` 0.49.0
-
 
 ## 0.37.0
 
@@ -595,13 +541,11 @@ No changes, version bump only.
 
 - [#2959](https://github.com/Azure/autorest.python/pull/2959) Refine exception handling logic and support exception with ranged status code
 
-
 ## 0.36.7
 
 ### Bug Fixes
 
 - [#2943](https://github.com/Azure/autorest.python/pull/2943) Fix pylint `useless-object-inheritance` in generated code
-
 
 ## 0.36.6
 
@@ -610,20 +554,17 @@ No changes, version bump only.
 - [#2935](https://github.com/Azure/autorest.python/pull/2935) Fix crash if no valid client define in typespec file
 - [#2935](https://github.com/Azure/autorest.python/pull/2935) Pad special property name in model to avoid conflict
 
-
 ## 0.36.5
 
 ### Bump dependencies
 
 - [#2928](https://github.com/Azure/autorest.python/pull/2928) bump `@typespec/http-client-python` to `0.3.10`
 
-
 ## 0.36.4
 
 ### Bug Fixes
 
 - [#2918](https://github.com/Azure/autorest.python/pull/2918) Fix quote for string type
-
 
 ## 0.36.3
 
@@ -635,7 +576,6 @@ No changes, version bump only.
 
 - [#2906](https://github.com/Azure/autorest.python/pull/2906) Bump http-client-python 0.3.7
 
-
 ## 0.36.2
 
 ### Bump dependencies
@@ -643,7 +583,6 @@ No changes, version bump only.
 - [#2902](https://github.com/Azure/autorest.python/pull/2902) Bump typespec 0.62.0 and http-client-python 0.3.6
 - [#2896](https://github.com/Azure/autorest.python/pull/2896) Add devDependency `@azure-tools/cadl-ranch`
 - [#2901](https://github.com/Azure/autorest.python/pull/2901) Bump http-client-python to 0.3.5 and tcgc to 0.47.4
-
 
 ## 0.36.1
 
@@ -654,13 +593,11 @@ No changes, version bump only.
 - [#2877](https://github.com/Azure/autorest.python/pull/2877) Added ignore comment in `__init__.py` to avoid mypy error
 - [#2430](https://github.com/Azure/autorest.python/pull/2430) Avoid change original data when deserialize for polymorphic model
 
-
 ## 0.36.0
 
 ### Bump dependencies
 
 - [#2867](https://github.com/Azure/autorest.python/pull/2867) Bump to typespec 0.61.0
-
 
 ## 0.35.1
 
@@ -668,13 +605,11 @@ No changes, version bump only.
 
 - [#2864](https://github.com/Azure/autorest.python/pull/2864) Await call to http-client-python onEmit
 
-
 ## 0.35.0
 
 ### Bug Fixes
 
 - [#2861](https://github.com/Azure/autorest.python/pull/2861) Fix install issue
-
 
 ## 0.34.0
 
@@ -687,7 +622,6 @@ No changes, version bump only.
 
 - [#2856](https://github.com/Azure/autorest.python/pull/2856) Depend completely on `@typespec/http-client-python`
 
-
 ## 0.33.0
 
 ### Bump dependencies
@@ -695,14 +629,12 @@ No changes, version bump only.
 - [#2845](https://github.com/Azure/autorest.python/pull/2845) bump dependencies
 - [#2847](https://github.com/Azure/autorest.python/pull/2847) bump to tcgc 0.46.1
 
-
 ## 0.32.1
 
 ### Bug Fixes
 
 - [#2842](https://github.com/Azure/autorest.python/pull/2842) Map `Foundations.Error` -> `core.OdataV4Format`
 - [#2839](https://github.com/Azure/autorest.python/pull/2839) Fix wrong word in generated test
-
 
 ## 0.32.0
 
@@ -715,7 +647,6 @@ No changes, version bump only.
 
 - [#2834](https://github.com/Azure/autorest.python/pull/2834) Bump typespec 0.60.0
 
-
 ## 0.31.1
 
 ### Bug Fixes
@@ -723,7 +654,6 @@ No changes, version bump only.
 - [#2830](https://github.com/Azure/autorest.python/pull/2830) Add pylint disable for "line-too-long" and "too-many-locals"
 - [#2831](https://github.com/Azure/autorest.python/pull/2831) Add pylint disable for "unsubscriptable-object"
 - [#2829](https://github.com/Azure/autorest.python/pull/2829) Fix bandit error in serialization
-
 
 ## 0.31.0
 
@@ -738,7 +668,6 @@ No changes, version bump only.
 - [#2810](https://github.com/Azure/autorest.python/pull/2810) Optimize snake-case naming rule
 - [#2806](https://github.com/Azure/autorest.python/pull/2806) dpg model support xml
 
-
 ## 0.30.0
 
 ### Features
@@ -746,7 +675,6 @@ No changes, version bump only.
 - [#2775](https://github.com/Azure/autorest.python/pull/2775) support query `explode` and path `allowReserved`, also change the logic of generating spread body parameter
 - [#2771](https://github.com/Azure/autorest.python/pull/2771) Support encode int as string
 - [#2805](https://github.com/Azure/autorest.python/pull/2805) Add `x-ms-original-file` in generated sample to declare original sample file of typespec
-
 
 ## 0.29.0
 
@@ -766,7 +694,6 @@ No changes, version bump only.
 - [#2750](https://github.com/Azure/autorest.python/pull/2750) optimize performance of dpg model
 - [#2774](https://github.com/Azure/autorest.python/pull/2774) Remove samples from docstring of operation
 
-
 ## 0.28.0
 
 ### Bug Fixes
@@ -777,7 +704,6 @@ No changes, version bump only.
 ### Features
 
 - [#2731](https://github.com/Azure/autorest.python/pull/2731) Support generate samples from Typespec
-
 
 ## 0.27.1
 
@@ -791,7 +717,6 @@ No changes, version bump only.
 
 - [#2723](https://github.com/Azure/autorest.python/pull/2723) upgrade to tcgc 0.44.2
 
-
 ## 0.27.0
 
 ### Bug Fixes
@@ -801,7 +726,6 @@ No changes, version bump only.
 ### Features
 
 - [#2706](https://github.com/Azure/autorest.python/pull/2706) Generate API for multi content types of internal operation
-
 
 ## 0.26.0
 
@@ -822,7 +746,6 @@ No changes, version bump only.
 - [#2692](https://github.com/Azure/autorest.python/pull/2692) Optimize test generation for multiapi package
 - [#2676](https://github.com/Azure/autorest.python/pull/2676) spread object when it is spread in TypeSpec
 
-
 ## 0.25.0
 
 ### Bug Fixes
@@ -834,13 +757,11 @@ No changes, version bump only.
 - [#2588](https://github.com/Azure/autorest.python/pull/2588) add package pygen that both autorest.python and typespec-python will rely on
 - [#2677](https://github.com/Azure/autorest.python/pull/2677) Enable test generation for ARM SDK
 
-
 ## 0.24.3
 
 ### Bug Fixes
 
 - [#2649](https://github.com/Azure/autorest.python/pull/2649) fix deserialization from vendored msrest code for text plain responses
-
 
 ## 0.24.2
 
@@ -848,13 +769,11 @@ No changes, version bump only.
 
 - [#2650](https://github.com/Azure/autorest.python/pull/2650) fix sphinx rendering of json docs by removing comments
 
-
 ## 0.24.1
 
 ### Bug Fixes
 
 - [#2645](https://github.com/Azure/autorest.python/pull/2645) add visibility support to discriminator rest field
-
 
 ## 0.24.0
 
@@ -865,7 +784,6 @@ No changes, version bump only.
 ### Bump dependencies
 
 - [#2640](https://github.com/Azure/autorest.python/pull/2640) bump typespec version to 0.57
-
 
 ## 0.23.14
 
@@ -878,13 +796,11 @@ No changes, version bump only.
 - [#2607](https://github.com/Azure/autorest.python/pull/2607) Fix serialization error when setting model property with `azure.core.serialization.NULL`.
 - [#2608](https://github.com/Azure/autorest.python/pull/2608) don't lowercase serialized names when building a body from splatted arguments
 
-
 ## 0.23.12
 
 ### Bug Fixes
 
 - [#2601](https://github.com/Azure/autorest.python/pull/2601) Remove unused model for paging operation
-
 
 ## 0.23.11
 
@@ -892,43 +808,41 @@ No changes, version bump only.
 
 - [#2590](https://github.com/Azure/autorest.python/pull/2590) bump tcgc to 0.41.3
 
-
 ## 2023-05-11 - 0.23.10
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.56.0`      |
-| `@typespec/http`                                                        | `0.56.0`      |
-| `@typespec/rest`                                                        | `0.56.0`      |
-| `@typespec/versioning`                                                  | `0.56.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.42.0`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.42.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.56.0`    |
+| `@typespec/http`                                                        | `0.56.0`    |
+| `@typespec/rest`                                                        | `0.56.0`    |
+| `@typespec/versioning`                                                  | `0.56.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.42.0`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.42.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 ### Bump dependencies
 
 - [#2581](https://github.com/Azure/autorest.python/pull/2581) bump tcgc to 0.42.2
 
-
 ## 2023-04-30 - 0.23.9
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.8`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.8`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Bug Fixes**
 
@@ -940,19 +854,19 @@ No changes, version bump only.
 
 ## 2023-04-26 - 0.23.8
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.7`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.7`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Bug Fixes**
 
@@ -960,19 +874,19 @@ No changes, version bump only.
 
 ## 2023-04-25 - 0.23.7
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.6`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.6`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Other Changes**
 
@@ -980,19 +894,19 @@ No changes, version bump only.
 
 ## 2023-04-25 - 0.23.6
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.5`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.5`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Other Changes**
 
@@ -1000,19 +914,19 @@ No changes, version bump only.
 
 ## 2023-04-23 - 0.23.5
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.4`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.4`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Bug Fixes**
 
@@ -1020,19 +934,19 @@ No changes, version bump only.
 
 ## 2023-04-22 - 0.23.4
 
-| Library                                                                 | Min Version   |
-| ----------------------------------------------------------------------- | ------------- |
-| `@typespec/compiler`                                                    | `0.55.0`      |
-| `@typespec/http`                                                        | `0.55.0`      |
-| `@typespec/rest`                                                        | `0.55.0`      |
-| `@typespec/versioning`                                                  | `0.55.0`      |
-| `@azure-tools/typespec-azure-core`                                      | `0.41.4`      |
-| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`      |
-| `azure-core` dep of generated code                                      | `1.30.0`      |
-| `corehttp` dep of generated code                                        | `1.0.0b3`     |
-| `isodate` dep of generated code                                         | `0.6.1`       |
-| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`       |
-| `typing-extensions` dep of generated code                               | `4.6.0`       |
+| Library                                                                 | Min Version |
+| ----------------------------------------------------------------------- | ----------- |
+| `@typespec/compiler`                                                    | `0.55.0`    |
+| `@typespec/http`                                                        | `0.55.0`    |
+| `@typespec/rest`                                                        | `0.55.0`    |
+| `@typespec/versioning`                                                  | `0.55.0`    |
+| `@azure-tools/typespec-azure-core`                                      | `0.41.4`    |
+| `@azure-tools/typespec-client-generator-core`                           | `0.41.2`    |
+| `azure-core` dep of generated code                                      | `1.30.0`    |
+| `corehttp` dep of generated code                                        | `1.0.0b3`   |
+| `isodate` dep of generated code                                         | `0.6.1`     |
+| `azure-mgmt-core` dep of generated code (If generating mgmt plane code) | `1.3.2`     |
+| `typing-extensions` dep of generated code                               | `4.6.0`     |
 
 **Other Changes**
 
