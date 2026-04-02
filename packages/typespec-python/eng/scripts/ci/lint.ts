@@ -11,6 +11,8 @@ const argv = parseArgs({
   args: process.argv.slice(2),
   options: {
     help: { type: "boolean", short: "h" },
+    command: { type: "string" },
+    skipWarning: { type: "string" },
   },
 });
 
@@ -24,10 +26,17 @@ ${pc.bold("Description:")}
 ${pc.bold("Options:")}
   ${pc.cyan("-h, --help")}
       Show this help message.
+  ${pc.cyan("--command <eslint|pylint>")}
+      Specify which linter to run (default: eslint).
+  ${pc.cyan("--skipWarning <true|false>")}
+      Skip warnings in output (default: false).
 
 ${pc.bold("Examples:")}
   ${pc.dim("# Lint TypeScript code")}
   tsx lint.ts
+
+  ${pc.dim("# Run eslint only")}
+  tsx lint.ts --command eslint
 `);
   process.exit(0);
 }
@@ -74,12 +83,26 @@ function runCommand(
 }
 
 async function main(): Promise<void> {
+  const command = argv.values.command || "eslint";
+  const skipWarning = argv.values.skipWarning === "true";
+
+  // Only run eslint for now (pylint is handled by tox)
+  if (command !== "eslint") {
+    console.log(`${pc.yellow("[SKIP]")} ${command} is handled by tox, skipping...`);
+    process.exit(0);
+  }
+
   console.log(`\n${pc.bold("=== Linting TypeScript ===")}\n`);
+
+  const eslintArgs = [".", "--config", "eng/scripts/ci/config/eslint-ci.config.mjs"];
+  if (!skipWarning) {
+    eslintArgs.push("--max-warnings=0");
+  }
 
   const success = await runCommand(
     "eslint",
-    [".", "--config", "eng/scripts/ci/config/eslint-ci.config.mjs", "--max-warnings=0"],
-    "eslint . --max-warnings=0",
+    eslintArgs,
+    `eslint .${skipWarning ? "" : " --max-warnings=0"}`,
   );
 
   if (!success) {

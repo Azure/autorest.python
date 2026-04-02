@@ -1,0 +1,4 @@
+# Base test dependencies
+aiohttp>=3.5.2
+pytest
+pytest-asyncio>=0.21.0

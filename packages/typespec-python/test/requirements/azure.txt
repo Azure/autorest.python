@@ -1,0 +1,3 @@
+# Azure SDK dependencies
+azure-core>=1.30.0
+azure-mgmt-core>=1.6.0

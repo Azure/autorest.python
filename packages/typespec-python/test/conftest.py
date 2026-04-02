@@ -13,9 +13,9 @@ import pytest
 import importlib
 from pathlib import Path
 
-FILE_FOLDER = Path(__file__).parent
 # Root of the typespec-python package
-PACKAGE_ROOT = FILE_FOLDER.parent.parent
+ROOT = Path(__file__).parent.parent
+DATA_FOLDER = Path(__file__).parent / "data"
 
 # Server configuration
 SERVER_HOST = "localhost"
@@ -37,13 +37,11 @@ def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
 
 def start_server_process():
     """Start the tsp-spector mock API server."""
-    azure_http_path = PACKAGE_ROOT / "node_modules/@azure-tools/azure-http-specs"
-    http_path = PACKAGE_ROOT / "node_modules/@typespec/http-specs"
+    azure_http_path = ROOT / "node_modules/@azure-tools/azure-http-specs"
+    http_path = ROOT / "node_modules/@typespec/http-specs"
 
     # Determine flavor from environment or current directory
-    flavor = os.environ.get("FOLDER", "azure")
-    if "unbranded" in Path(os.getcwd()).parts:
-        flavor = "unbranded"
+    flavor = os.environ.get("FLAVOR", "azure")
 
     if flavor == "unbranded":
         cwd = http_path.resolve()
@@ -54,7 +52,7 @@ def start_server_process():
 
     # Add node_modules/.bin to PATH
     env = os.environ.copy()
-    node_bin = str(PACKAGE_ROOT / "node_modules" / ".bin")
+    node_bin = str(ROOT / "node_modules" / ".bin")
     env["PATH"] = f"{node_bin}{os.pathsep}{env.get('PATH', '')}"
 
     if os.name == "nt":
@@ -63,6 +61,7 @@ def start_server_process():
 
 
 def terminate_server_process(process):
+    """Terminate the mock API server process."""
     if os.name == "nt":
         process.kill()
     else:
@@ -86,13 +85,9 @@ def testserver():
     terminate_server_process(server)
 
 
-"""
-Use to disambiguate the core library we use
-"""
-
-
 @pytest.fixture
 def core_library():
+    """Import the appropriate core library (azure.core or corehttp)."""
     try:
         return importlib.import_module("azure.core")
     except ModuleNotFoundError:
@@ -101,6 +96,7 @@ def core_library():
 
 @pytest.fixture
 def key_credential(core_library):
+    """Get the appropriate credential class."""
     try:
         return core_library.credentials.AzureKeyCredential
     except AttributeError:
@@ -109,11 +105,13 @@ def key_credential(core_library):
 
 @pytest.fixture
 def png_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.png"), "rb") as file_in:
+    """Load PNG test data."""
+    with open(str(DATA_FOLDER / "image.png"), "rb") as file_in:
         return file_in.read()
 
 
 @pytest.fixture
 def jpg_data() -> bytes:
-    with open(str(FILE_FOLDER / "data/image.jpg"), "rb") as file_in:
+    """Load JPG test data."""
+    with open(str(DATA_FOLDER / "image.jpg"), "rb") as file_in:
         return file_in.read()

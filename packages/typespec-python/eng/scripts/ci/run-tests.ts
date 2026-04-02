@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 import { ChildProcess, spawn } from "child_process";
-import { readFileSync } from "fs";
 import { cpus } from "os";
 import { dirname, join } from "path";
 import pc from "picocolors";
@@ -8,6 +7,7 @@ import { fileURLToPath } from "url";
 import { parseArgs } from "util";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "../../../");
+const testsDir = join(root, "tests");
 
 const argv = parseArgs({
   args: process.argv.slice(2),
@@ -29,22 +29,22 @@ ${pc.bold("Options:")}
   -f, --flavor <azure|unbranded>  SDK flavor to test
                                   If not specified, tests both flavors
   -e, --env <env1,env2,...>       Specific tox environments to run
-                                  Available: ci, lint, mypy, pyright, apiview
+                                  Available: test, lint, mypy, pyright, ci
   -n, --name <pattern>            Filter tests by name pattern
   -j, --jobs <n>                  Number of parallel jobs (default: CPU cores - 2)
   -q, --quiet                     Suppress test output (only show pass/fail summary)
   -h, --help                      Show this help message
 
 ${pc.bold("Environments:")}
-  ci         Run all checks (test + lint + mypy + pyright)
+  test       Run pytest tests for generated packages
   lint       Run pylint on generated packages
   mypy       Run mypy type checking on generated packages
   pyright    Run pyright type checking on generated packages
-  apiview    Run API view validation
+  ci         Run all checks (test + lint + mypy + pyright)
 
 ${pc.bold("Examples:")}
-  run-tests.ts                           # Run ci for all flavors
-  run-tests.ts --flavor=azure            # Run ci for azure only
+  run-tests.ts                           # Run test for all flavors
+  run-tests.ts --flavor=azure            # Run test for azure only
   run-tests.ts -f azure -e lint          # Run lint for azure only
   run-tests.ts -e mypy,pyright           # Run mypy and pyright for all flavors
 `);
@@ -58,51 +58,27 @@ interface ToxResult {
   error?: string;
 }
 
-function sectionExistsInToxIni(command: string, folder: string): boolean {
-  const toxIniPath = join(root, `test/${folder}/tox.ini`);
-  try {
-    const toxIniContent = readFileSync(toxIniPath, "utf-8");
-    const sectionHeader = `[testenv:${command}]`;
-    return toxIniContent.includes(sectionHeader);
-  } catch {
-    return false;
-  }
-}
-
-async function runToxEnv(
-  env: string,
-  folder: string,
-  name?: string,
-): Promise<ToxResult> {
+async function runToxEnv(env: string, name?: string): Promise<ToxResult> {
   const startTime = Date.now();
-  const displayName = `${env}-${folder}`;
 
-  if (!sectionExistsInToxIni(env, folder)) {
-    console.log(`${pc.yellow("[SKIP]")} ${displayName} (no tox section)`);
-    return {
-      env: displayName,
-      success: true,
-      duration: 0,
-    };
-  }
+  console.log(`${pc.blue("[START]")} ${env}`);
 
-  console.log(`${pc.blue("[START]")} ${displayName}`);
-
-  const toxIniPath = join(root, `test/${folder}/tox.ini`);
-  const args = ["tox", "-c", toxIniPath, "-e", env];
+  const toxIniPath = join(testsDir, "tox.ini");
+  const args = ["-m", "tox", "-c", toxIniPath, "-e", env];
   if (name) {
-    args.push("--", "-f", name);
+    args.push("--", "-k", name);
   }
 
-  // Set FOLDER environment variable for tox
+  // Set FLAVOR environment variable
+  const flavor = env.split("-")[1] || "azure";
   const envVars = {
     ...process.env,
-    FOLDER: folder,
+    FLAVOR: flavor,
   };
 
   return new Promise((resolve) => {
-    const proc: ChildProcess = spawn("python", ["-m", ...args], {
-      cwd: root,
+    const proc: ChildProcess = spawn("python", args, {
+      cwd: testsDir,
       stdio: !argv.values.quiet ? "inherit" : "pipe",
       env: envVars,
     });
@@ -119,13 +95,13 @@ async function runToxEnv(
       const success = code === 0;
 
       if (success) {
-        console.log(`${pc.green("[PASS]")} ${displayName} (${duration.toFixed(1)}s)`);
+        console.log(`${pc.green("[PASS]")} ${env} (${duration.toFixed(1)}s)`);
       } else {
-        console.log(`${pc.red("[FAIL]")} ${displayName} (${duration.toFixed(1)}s)`);
+        console.log(`${pc.red("[FAIL]")} ${env} (${duration.toFixed(1)}s)`);
       }
 
       resolve({
-        env: displayName,
+        env,
         success,
         duration,
         error: success ? undefined : stderr || `Exit code: ${code}`,
@@ -134,9 +110,9 @@ async function runToxEnv(
 
     proc.on("error", (err) => {
       const duration = (Date.now() - startTime) / 1000;
-      console.log(`${pc.red("[ERROR]")} ${displayName}: ${err.message}`);
+      console.log(`${pc.red("[ERROR]")} ${env}: ${err.message}`);
       resolve({
-        env: displayName,
+        env,
         success: false,
         duration,
         error: err.message,
@@ -145,17 +121,11 @@ async function runToxEnv(
   });
 }
 
-async function runParallel(
-  tasks: Array<{ env: string; folder: string }>,
-  maxJobs: number,
-  name?: string,
-): Promise<ToxResult[]> {
+async function runParallel(envs: string[], maxJobs: number, name?: string): Promise<ToxResult[]> {
   const results: ToxResult[] = [];
   const running: Map<string, Promise<ToxResult>> = new Map();
 
-  for (const { env, folder } of tasks) {
-    const key = `${env}-${folder}`;
-
+  for (const env of envs) {
     // Wait if we're at max capacity
     if (running.size >= maxJobs) {
       const completed = await Promise.race(running.values());
@@ -164,8 +134,8 @@ async function runParallel(
     }
 
     // Start new task
-    const task = runToxEnv(env, folder, name);
-    running.set(key, task);
+    const task = runToxEnv(env, name);
+    running.set(env, task);
   }
 
   // Wait for remaining tasks
@@ -223,37 +193,43 @@ async function main(): Promise<void> {
   const flavors = argv.values.flavor === "all" ? ["azure", "unbranded"] : [argv.values.flavor!];
 
   // Determine environments
-  let envs: string[];
+  let baseEnvs: string[];
   if (argv.values.env) {
-    envs = argv.values.env.split(",").map((e) => e.trim());
+    baseEnvs = argv.values.env.split(",").map((e) => e.trim());
   } else {
-    // Default: run ci
-    envs = ["ci"];
+    // Default: run test environments
+    baseEnvs = ["test"];
   }
 
-  // Build task list
-  const tasks: Array<{ env: string; folder: string }> = [];
-  for (const env of envs) {
-    for (const folder of flavors) {
-      tasks.push({ env, folder });
+  // Build full environment list (env-flavor format)
+  const envs: string[] = [];
+  for (const env of baseEnvs) {
+    for (const flavor of flavors) {
+      envs.push(`${env}-${flavor}`);
     }
   }
 
   // Determine parallelism
+  // Test environments must run sequentially because they each start a mock server on port 3000
+  const hasTestEnvs = envs.some((e) => e.startsWith("test-"));
   const maxJobs = argv.values.jobs
     ? parseInt(argv.values.jobs, 10)
-    : Math.max(2, cpus().length - 2);
+    : hasTestEnvs
+      ? 1
+      : Math.max(2, cpus().length - 2);
 
   console.log(`  Flavors:      ${flavors.join(", ")}`);
   console.log(`  Environments: ${envs.join(", ")}`);
-  console.log(`  Jobs:         ${maxJobs}`);
+  console.log(
+    `  Jobs:         ${maxJobs}${hasTestEnvs && !argv.values.jobs ? " (sequential for test envs)" : ""}`,
+  );
   if (argv.values.name) {
     console.log(`  Filter:       ${argv.values.name}`);
   }
   console.log();
 
   // Run tests
-  const results = await runParallel(tasks, maxJobs, argv.values.name);
+  const results = await runParallel(envs, maxJobs, argv.values.name);
 
   // Print summary
   printSummary(results);

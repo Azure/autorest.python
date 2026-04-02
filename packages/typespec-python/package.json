@@ -44,7 +44,7 @@
   },
   "files": [
     "dist/**",
-    "!dist/test/**",
+    "!dist/tests/**",
     "scripts/**",
     "generator/**"
   ],
