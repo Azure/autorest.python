@@ -99,9 +99,7 @@ function runCommand(command: string, args: string[]): Promise<boolean> {
 
 async function formatTypeScript(check: boolean): Promise<boolean> {
     console.log(`\n${pc.bold("=== Formatting TypeScript ===")}\n`);
-    const args = check
-        ? ["--check", "src/", "eng/", "*.json", "*.md"]
-        : ["--write", "src/", "eng/", "*.json", "*.md"];
+    const args = check ? ["--check", "src/", "eng/", "*.json", "*.md"] : ["--write", "src/", "eng/", "*.json", "*.md"];
     return runCommand("prettier", args);
 }
 
