@@ -32,20 +32,20 @@
     "clean": "rimraf ./dist ./temp ./venv ./node_modules",
     "build": "tsc -p .",
     "watch": "tsc -p . --watch",
-    "install": "tsx ./scripts/run-python3.ts ./scripts/install.py",
-    "prepare": "tsx ./scripts/run-python3.ts ./scripts/prepare.py",
+    "install": "tsx ./eng/scripts/setup/run-python3.ts ./eng/scripts/setup/install.py",
+    "prepare": "tsx ./eng/scripts/setup/run-python3.ts ./eng/scripts/setup/prepare.py",
     "lint": "tsx ./eng/scripts/ci/lint.ts",
     "lint:fix": "eslint . --fix --ext .ts",
     "format": "tsx ./eng/scripts/ci/format.ts",
     "format:check": "tsx ./eng/scripts/ci/format.ts --check",
-    "regenerate": "tsx ./scripts/eng/regenerate.ts",
+    "regenerate": "tsx ./eng/scripts/regenerate.ts",
     "test": "tsx ./eng/scripts/ci/run-tests.ts",
     "regen-docs": "npm run build && tspd doc . --enable-experimental --output-dir ./website/src/content/docs/docs/emitters/clients/typespec-python/reference --skip-js"
   },
   "files": [
     "dist/**",
     "!dist/tests/**",
-    "scripts/**",
+    "eng/scripts/setup/**",
     "generator/**"
   ],
   "peerDependencies": {

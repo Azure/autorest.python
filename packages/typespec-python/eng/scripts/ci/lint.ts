@@ -90,7 +90,7 @@ async function main(): Promise<void> {
 
     console.log(`\n${pc.bold("=== Linting TypeScript ===")}\n`);
 
-    const eslintArgs = [".", "--config", "eng/scripts/ci/config/eslint-ci.config.mjs"];
+    const eslintArgs = ["."];
     if (!skipWarning) {
         eslintArgs.push("--max-warnings=0");
     }
