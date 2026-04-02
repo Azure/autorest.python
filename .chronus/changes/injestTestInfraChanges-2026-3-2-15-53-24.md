@@ -5,4 +5,4 @@ packages:
   - "@azure-tools/typespec-python"
 ---
 
-Injest test infrastructure changes in `@typespec/http-client-python`
+Ingest test infrastructure changes in `@typespec/http-client-python`
