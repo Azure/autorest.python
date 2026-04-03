@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { exec as execCallback } from "child_process";
+import { platform } from "os";
 import { promisify } from "util";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
@@ -151,9 +152,33 @@ const argv = yargs(hideBin(process.argv))
         alias: "n",
         type: "string",
         description: "Specify filename if you only want to generate a subset",
+    })
+    .option("pyodide", {
+        type: "boolean",
+        description: "Use Pyodide (WebAssembly Python) instead of native Python",
+    })
+    .option("jobs", {
+        alias: "j",
+        type: "number",
+        description: "Number of parallel jobs (default: 30, or 50 on Windows with Pyodide)",
     }).argv;
 
+// On Windows, default to Pyodide to avoid slow process spawning overhead
+const isWindows = platform() === "win32";
+const resolvedArgv = argv as RegenerateFlags & { pyodide?: boolean; jobs?: number };
+const usePyodide = resolvedArgv.pyodide ?? isWindows;
+
+// On Windows with Pyodide, we can use more parallelism since we're not spawning Python processes
+// Default: 30 jobs on Linux/macOS, 50 jobs on Windows with Pyodide
+const defaultJobs = isWindows && usePyodide ? 50 : 30;
+const jobs = resolvedArgv.jobs ?? defaultJobs;
+
+console.log(`\nRegeneration config:`);
+console.log(`  Platform: ${isWindows ? "Windows" : "Unix"}`);
+console.log(`  Pyodide:  ${usePyodide}`);
+console.log(`  Jobs:     ${jobs}\n`);
+
 const start = performance.now();
-regenerate(argv as RegenerateFlags, config)
+regenerate({ ...resolvedArgv, pyodide: usePyodide, jobs }, config)
     .then(() => console.log(`Regeneration successful, time taken: ${Math.round((performance.now() - start) / 1000)} s`))
     .catch((error) => console.error(`Regeneration failed: ${error.message}`));
