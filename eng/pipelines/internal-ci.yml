@@ -23,9 +23,9 @@ steps:
           regenerate: true
 
     - script: |
-            tox run -e ci
+            tox run -e ci-unbranded
       displayName: Mock Api Tests for Unbranded
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/unbranded
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/tests
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest for unbranded
@@ -37,9 +37,9 @@ steps:
         workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/node_modules/@typespec/http-specs
 
     - script: |
-            tox run -e ci
+            tox run -e ci-azure
       displayName: Mock Api Tests for Azure
-      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test/azure
+      workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/tests
 
     - task: AzureCLI@2
       displayName: Upload scenario manifest for azure

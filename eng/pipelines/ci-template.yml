@@ -128,7 +128,7 @@ steps:
 
   - script: node ../../../eng/scripts/check-for-changed-files.js
     displayName: Fail on regeneration diff in Typespec
-    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/test
+    workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/typespec-python/tests
     condition: and(succeeded(), ${{ parameters.regenerate }}, ${{ parameters.checkChange }}, eq(variables['Agent.OS'], 'Linux'))
 
   - script: node ../../../eng/scripts/check-for-changed-files.js
