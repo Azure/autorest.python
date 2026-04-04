@@ -104,7 +104,6 @@
     "rimraf": "~6.1.2",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.49.0",
-    "vitest": "^4.0.15",
-    "yargs": "~17.7.2"
+    "vitest": "^4.0.15"
   }
 }
