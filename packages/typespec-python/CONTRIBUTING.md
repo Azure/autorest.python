@@ -16,7 +16,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 Make sure to run the following commands:
 
-- `pnpm format`
+-   `pnpm format`
 
 ## Trademarks
 
