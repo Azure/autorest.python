@@ -30,7 +30,7 @@ ${pc.bold("Options:")}
   -f, --flavor <azure|unbranded>  SDK flavor to test
                                   If not specified, tests both flavors
   -e, --env <env1,env2,...>       Specific tox environments to run
-                                  Available: test, lint, mypy, pyright, ci
+                                  Available: test, lint, mypy, pyright, docs, ci
   -n, --name <pattern>            Filter tests by name pattern
   -j, --jobs <n>                  Number of parallel jobs (default: CPU cores - 2)
   -q, --quiet                     Suppress test output (only show pass/fail summary)
@@ -41,6 +41,7 @@ ${pc.bold("Environments:")}
   lint       Run pylint on generated packages
   mypy       Run mypy type checking on generated packages
   pyright    Run pyright type checking on generated packages
+  docs       Run documentation validation (apiview, sphinx)
   ci         Run all checks (test + lint + mypy + pyright)
 
 ${pc.bold("Examples:")}
@@ -48,6 +49,7 @@ ${pc.bold("Examples:")}
   run-tests.ts --flavor=azure            # Run test for azure only
   run-tests.ts -f azure -e lint          # Run lint for azure only
   run-tests.ts -e mypy,pyright           # Run mypy and pyright for all flavors
+  run-tests.ts -e docs -f azure          # Run docs validation for azure
 `);
     process.exit(0);
 }
