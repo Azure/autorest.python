@@ -29,9 +29,10 @@ def install_packages(flavor: str, tests_dir: str) -> None:
 
     print(f"Installing {len(packages)} packages from {generated_dir}")
 
-    # Install packages using uv pip
+    # Install packages using pip from current Python environment
     # Use --no-deps to avoid dependency resolution overhead
-    cmd = ["uv", "pip", "install", "--no-deps"] + packages
+    # Using sys.executable ensures we install to the correct tox environment
+    cmd = [sys.executable, "-m", "pip", "install", "--no-deps"] + packages
 
     try:
         subprocess.run(cmd, check=True)
@@ -39,11 +40,6 @@ def install_packages(flavor: str, tests_dir: str) -> None:
     except subprocess.CalledProcessError as e:
         print(f"Error installing packages: {e}")
         sys.exit(1)
-    except FileNotFoundError:
-        # uv not found, try pip
-        print("uv not found, falling back to pip")
-        cmd = [sys.executable, "-m", "pip", "install", "--no-deps"] + packages
-        subprocess.run(cmd, check=True)
 
 
 def main():
