@@ -1,0 +1,3 @@
+# Type checking dependencies
+mypy>=1.0.0
+pyright>=1.1.300

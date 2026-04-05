@@ -3,26 +3,26 @@ parameters:
     package: "autorest.python"
 
 steps:
-    - script: npm run test -- --command=ci --folder=${{ parameters.folderName }}
+    - script: npm run test -- --env=ci --flavor=${{ parameters.folderName }}
       displayName: Execute ${{ parameters.folderName }} tests - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
 
-    - script: npm run test -- --command=lint --folder=${{ parameters.folderName }}
+    - script: npm run test -- --env=lint --flavor=${{ parameters.folderName }}
       displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion) --folder=${{ parameters.folderName }}
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.9'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run test -- --command=mypy --folder=${{ parameters.folderName }}
+    - script: npm run test -- --env=mypy --flavor=${{ parameters.folderName }}
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.11'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run test -- --command=pyright --folder=${{ parameters.folderName }}
+    - script: npm run test -- --env=pyright --flavor=${{ parameters.folderName }}
       displayName: Pyright ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
-    - script: npm run test -- --command=apiview --folder=${{ parameters.folderName }}
+    - script: npm run test -- --env=docs --flavor=${{ parameters.folderName }}
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: eq(variables['PythonVersion'], '3.11')
