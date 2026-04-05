@@ -22,6 +22,9 @@ SERVER_HOST = "localhost"
 SERVER_PORT = 3000
 SERVER_URL = f"http://{SERVER_HOST}:{SERVER_PORT}"
 
+# Global server process reference (used by hooks)
+_server_process = None
+
 
 def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
     """Wait for the server to be ready by polling the URL."""
@@ -30,7 +33,11 @@ def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
         try:
             urllib.request.urlopen(url, timeout=1)
             return True
-        except (urllib.error.URLError, urllib.error.HTTPError, OSError):
+        except urllib.error.HTTPError:
+            # Server is up but returned an error (e.g., 404) - that's fine
+            return True
+        except (urllib.error.URLError, OSError):
+            # Server not reachable yet
             time.sleep(interval)
     return False
 
@@ -43,12 +50,16 @@ def start_server_process():
     # Determine flavor from environment or current directory
     flavor = os.environ.get("FLAVOR", "azure")
 
+    # Use absolute paths with forward slashes (works on all platforms including Windows)
     if flavor == "unbranded":
         cwd = http_path.resolve()
-        cmd = "npx tsp-spector serve ./specs"
+        specs_path = str(cwd / "specs").replace("\\", "/")
+        cmd = f"npx tsp-spector serve {specs_path}"
     else:
         cwd = azure_http_path.resolve()
-        cmd = f"npx tsp-spector serve ./specs {(http_path / 'specs').resolve()}"
+        azure_specs = str(cwd / "specs").replace("\\", "/")
+        http_specs = str((http_path / "specs").resolve()).replace("\\", "/")
+        cmd = f"npx tsp-spector serve {azure_specs} {http_specs}"
 
     # Add node_modules/.bin to PATH
     env = os.environ.copy()
@@ -56,12 +67,14 @@ def start_server_process():
     env["PATH"] = f"{node_bin}{os.pathsep}{env.get('PATH', '')}"
 
     if os.name == "nt":
-        return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env)
-    return subprocess.Popen(cmd, shell=True, cwd=cwd, env=env, preexec_fn=os.setsid)
+        return subprocess.Popen(cmd, shell=True, cwd=str(cwd), env=env)
+    return subprocess.Popen(cmd, shell=True, cwd=str(cwd), env=env, preexec_fn=os.setsid)
 
 
 def terminate_server_process(process):
     """Terminate the mock API server process."""
+    if process is None:
+        return
     if os.name == "nt":
         process.kill()
     else:
@@ -71,18 +84,55 @@ def terminate_server_process(process):
             pass  # Process already terminated
 
 
-@pytest.fixture(scope="session", autouse=True)
-def testserver():
-    """Start spector mock api tests."""
-    server = start_server_process()
+def pytest_configure(config):
+    """Start the mock server before any tests run.
+
+    This hook runs in the controller process before xdist workers are spawned,
+    ensuring the server is ready for all workers.
+    """
+    global _server_process
+
+    # Only start server in the controller process (not in workers)
+    # xdist workers have workerinput attribute
+    if hasattr(config, "workerinput"):
+        return
+
+    # Check if server is already running (e.g., from a previous run)
+    if wait_for_server(SERVER_URL, timeout=1, interval=0.1):
+        return
+
+    # Start the server
+    _server_process = start_server_process()
 
     # Wait for server to be ready
     if not wait_for_server(SERVER_URL, timeout=60):
-        terminate_server_process(server)
-        pytest.fail(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
+        terminate_server_process(_server_process)
+        _server_process = None
+        pytest.exit(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
 
+
+def pytest_unconfigure(config):
+    """Stop the mock server after all tests complete."""
+    global _server_process
+
+    # Only stop server in the controller process
+    if hasattr(config, "workerinput"):
+        return
+
+    terminate_server_process(_server_process)
+    _server_process = None
+
+
+@pytest.fixture(scope="session", autouse=True)
+def testserver(request):
+    """Ensure the mock server is ready before tests run.
+
+    The server is started in pytest_configure (controller process).
+    This fixture just verifies the server is accessible from workers.
+    """
+    if not wait_for_server(SERVER_URL, timeout=30):
+        pytest.fail(f"Mock API server not available at {SERVER_URL}")
     yield
-    terminate_server_process(server)
 
 
 @pytest.fixture

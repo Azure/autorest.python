@@ -53,7 +53,7 @@ ${pc.bold("Options:")}
       Enable debug output during regeneration.
 
   ${pc.cyan("-j, --jobs <n>")}
-      Number of parallel compilation tasks (default: 30).
+      Number of parallel compilation tasks (default: 30 on Linux/Mac, 10 on Windows).
 
   ${pc.cyan("-h, --help")}
       Show this help message.
@@ -88,30 +88,30 @@ const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, st
     "type/model/inheritance/recursive": [
         {
             "package-name": "typetest-model-recursive",
-            namespace: "typetest.model.recursive",
+            "namespace": "typetest.model.recursive",
         },
         {
             "package-name": "generation-subdir",
-            namespace: "generation.subdir",
+            "namespace": "generation.subdir",
             "generation-subdir": "_generated",
             "clear-output-folder": "true",
         },
     ],
     "client/structure/client-operation-group": {
         "package-name": "client-structure-clientoperationgroup",
-        namespace: "client.structure.clientoperationgroup",
+        "namespace": "client.structure.clientoperationgroup",
     },
     "client/structure/multi-client": {
         "package-name": "client-structure-multiclient",
-        namespace: "client.structure.multiclient",
+        "namespace": "client.structure.multiclient",
     },
     "client/structure/renamed-operation": {
         "package-name": "client-structure-renamedoperation",
-        namespace: "client.structure.renamedoperation",
+        "namespace": "client.structure.renamedoperation",
     },
     "client/structure/two-operation-group": {
         "package-name": "client-structure-twooperationgroup",
-        namespace: "client.structure.twooperationgroup",
+        "namespace": "client.structure.twooperationgroup",
     },
 };
 
@@ -137,11 +137,8 @@ function defaultPackageName(spec: string): string {
 function getEmitterOptions(spec: string, flavor: string): Record<string, string>[] {
     const specDir = spec.includes("azure") ? AZURE_HTTP_SPECS : HTTP_SPECS;
     const relativeSpec = toPosix(relative(specDir, spec));
-    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp")
-        ? relativeSpec
-        : dirname(relativeSpec);
-    const emitterOpts =
-        EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
+    const key = relativeSpec.includes("resiliency/srv-driven/old.tsp") ? relativeSpec : dirname(relativeSpec);
+    const emitterOpts = EMITTER_OPTIONS[key] || (flavor === "azure" ? AZURE_EMITTER_OPTIONS[key] : [{}]) || [{}];
     return Array.isArray(emitterOpts) ? emitterOpts : [emitterOpts];
 }
 
@@ -343,7 +340,10 @@ async function main() {
     const flavor = argv.values.flavor;
     const name = argv.values.name;
     const debug = argv.values.debug ?? false;
-    const jobs = argv.values.jobs ? parseInt(argv.values.jobs, 10) : 30;
+    // Windows has slower file system operations and process spawning,
+    // so use fewer parallel jobs to avoid I/O contention and memory pressure
+    const defaultJobs = isWindows ? 10 : 30;
+    const jobs = argv.values.jobs ? parseInt(argv.values.jobs, 10) : defaultJobs;
 
     console.log(pc.cyan(`\nRegeneration config:`));
     console.log(pc.cyan(`  Platform: ${isWindows ? "Windows" : "Unix"}`));
