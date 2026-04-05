@@ -8,9 +8,9 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
 
     - script: npm run test -- --env=lint --flavor=${{ parameters.folderName }}
-      displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion) --folder=${{ parameters.folderName }}
+      displayName: Lint ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
-      condition: and(eq(variables['PythonVersion'], '3.9'), or(contains( '${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
+      condition: and(eq(variables['PythonVersion'], '3.9'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
     - script: npm run test -- --env=mypy --flavor=${{ parameters.folderName }}
       displayName: Mypy ${{ parameters.folderName }} - Python $(PythonVersion)
@@ -22,7 +22,8 @@ steps:
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
       condition: and(eq(variables['PythonVersion'], '3.10'), or(contains('${{ parameters.folderName }}', 'version-tolerant'), eq('${{parameters.package}}', 'typespec-python')))
 
+    # docs/apiview only for typespec-python (removed from autorest.python to reduce CI time)
     - script: npm run test -- --env=docs --flavor=${{ parameters.folderName }}
       displayName: ApiView ${{ parameters.folderName }} - Python $(PythonVersion)
       workingDirectory: $(Build.SourcesDirectory)/autorest.python/packages/${{parameters.package}}
-      condition: eq(variables['PythonVersion'], '3.11')
+      condition: and(eq(variables['PythonVersion'], '3.11'), eq('${{parameters.package}}', 'typespec-python'))

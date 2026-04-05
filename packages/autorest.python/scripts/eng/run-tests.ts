@@ -8,12 +8,13 @@ import { fileURLToPath } from "url";
 
 interface Arguments {
     validFolders: string[];
-    folder?: string;
-    command?: string;
+    flavor?: string;
+    env?: string;
     name?: string;
 }
 
-const validCommands = ["ci", "lint", "mypy", "pyright", "apiview"];
+// Note: apiview removed to reduce CI time - it was causing timeouts
+const validEnvs = ["ci", "lint", "mypy", "pyright"];
 
 // Parse command-line arguments using yargs
 const argv = yargs(hideBin(process.argv))
@@ -23,15 +24,15 @@ const argv = yargs(hideBin(process.argv))
         type: "array",
         default: ["azure", "unbranded"],
     })
-    .option("folder", {
-        alias: "f",
-        describe: "Specify the folder to use",
+    .option("flavor", {
+        alias: ["f", "folder"],
+        describe: "Specify the flavor/folder to use",
         type: "string",
     })
-    .option("command", {
-        alias: "c",
-        describe: "Specify the command to run",
-        choices: validCommands,
+    .option("env", {
+        alias: ["e", "command"],
+        describe: "Specify the environment/command to run",
+        choices: validEnvs,
         type: "string",
     })
     .option("name", {
@@ -40,16 +41,16 @@ const argv = yargs(hideBin(process.argv))
         type: "string",
     }).argv as Arguments;
 
-const foldersToProcess = argv.folder ? [argv.folder] : argv.validFolders;
+const foldersToProcess = argv.flavor ? [argv.flavor] : argv.validFolders;
 
-const commandToRun = argv.command || "all";
+const envToRun = argv.env || "all";
 
-function getCommand(command: string, folder: string, name?: string): string {
-    if (!validCommands.includes(command)) throw new Error(`Unknown command '${command}'.`);
+function getCommand(env: string, folder: string, name?: string): string {
+    if (!validEnvs.includes(env)) throw new Error(`Unknown env '${env}'.`);
 
     // Check if running on Windows
     const isWindows = process.platform === "win32";
-    const baseCommand = `tox -c ./test/${folder}/tox.ini -e ${command}`;
+    const baseCommand = `tox -c ./test/${folder}/tox.ini -e ${env}`;
 
     let retval: string;
     if (isWindows) {
@@ -66,33 +67,33 @@ function getCommand(command: string, folder: string, name?: string): string {
     return retval;
 }
 
-function sectionExistsInToxIni(command: string, folder: string): boolean {
+function sectionExistsInToxIni(env: string, folder: string): boolean {
     const toxIniPath = join(fileURLToPath(import.meta.url), `../../../test/${folder}/tox.ini`);
     const toxIniContent = readFileSync(toxIniPath, "utf-8");
-    const sectionHeader = `[testenv:${command}]`;
+    const sectionHeader = `[testenv:${env}]`;
     return toxIniContent.includes(sectionHeader);
 }
 
-function myExecSync(command: string, folder: string, name?: string): void {
-    if (!sectionExistsInToxIni(command, folder)) {
-        console.log(`No section for ${command} in tox.ini for folder ${folder}. Skipping...`);
+function myExecSync(env: string, folder: string, name?: string): void {
+    if (!sectionExistsInToxIni(env, folder)) {
+        console.log(`No section for ${env} in tox.ini for folder ${folder}. Skipping...`);
         return;
     }
-    execSync(getCommand(command, folder, name), { stdio: "inherit" });
+    execSync(getCommand(env, folder, name), { stdio: "inherit" });
 }
 
 foldersToProcess.forEach((folder) => {
     try {
-        if (commandToRun === "all") {
-            for (const key of validCommands) {
+        if (envToRun === "all") {
+            for (const key of validEnvs) {
                 console.log(`Running ${key} for folder ${folder}...`);
                 myExecSync(key, folder, argv.name);
             }
-        } else if (getCommand(commandToRun, folder, argv.name)) {
-            console.log(`Running ${commandToRun} for folder ${folder}...`);
-            myExecSync(commandToRun, folder, argv.name);
+        } else if (getCommand(envToRun, folder, argv.name)) {
+            console.log(`Running ${envToRun} for folder ${folder}...`);
+            myExecSync(envToRun, folder, argv.name);
         } else {
-            console.error(`Error: Unknown command '${commandToRun}'.`);
+            console.error(`Error: Unknown env '${envToRun}'.`);
             process.exit(1);
         }
     } catch (error) {

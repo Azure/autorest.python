@@ -262,7 +262,7 @@ async function runParallel(groups: TaskGroup[], maxJobs: number): Promise<Map<st
 // Preprocess: create files that should be deleted after regeneration (for testing)
 async function preprocess(flavor: string): Promise<void> {
     if (flavor === "azure") {
-        const generalParts = [PLUGIN_DIR, "test", "azure", "generated"];
+        const generalParts = [PLUGIN_DIR, "tests", "generated", "azure"];
         await promises.writeFile(
             join(
                 ...generalParts,
