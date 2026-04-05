@@ -99,16 +99,27 @@ def pytest_configure(config):
 
     # Check if server is already running (e.g., from a previous run)
     if wait_for_server(SERVER_URL, timeout=1, interval=0.1):
+        print(f"Mock API server already running at {SERVER_URL}")
         return
 
     # Start the server
+    print(f"Starting mock API server...")
     _server_process = start_server_process()
+
+    # Check if process started successfully
+    if _server_process.poll() is not None:
+        pytest.exit(f"Mock API server process exited immediately with code {_server_process.returncode}")
 
     # Wait for server to be ready
     if not wait_for_server(SERVER_URL, timeout=60):
+        # Check if process is still running
+        if _server_process.poll() is not None:
+            pytest.exit(f"Mock API server process died with code {_server_process.returncode}")
         terminate_server_process(_server_process)
         _server_process = None
         pytest.exit(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
+
+    print(f"Mock API server ready at {SERVER_URL}")
 
 
 def pytest_unconfigure(config):
