@@ -1,3 +1,5 @@
 # Type checking dependencies
-mypy>=1.0.0
-pyright>=1.1.300
+-r base.txt
+pyright==1.1.407
+mypy==1.19.1
+types-PyYAML==6.0.12.8

@@ -1,4 +1,5 @@
 # Azure SDK dependencies
+-r base.txt
 azure-core>=1.30.0
 azure-mgmt-core>=1.6.0
 geojson>=3.0.0

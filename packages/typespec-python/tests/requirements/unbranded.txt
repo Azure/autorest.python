@@ -1,2 +1,3 @@
 # Unbranded SDK dependencies
+-r base.txt
 corehttp>=1.0.0b5
