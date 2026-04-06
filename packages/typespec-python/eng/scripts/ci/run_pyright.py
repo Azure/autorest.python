@@ -28,7 +28,7 @@ def get_pyright_config_file_location():
 
 
 def _single_dir_pyright(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info"))
+    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info") and d.name != "build")
     retries = 3
     while retries:
         try:
