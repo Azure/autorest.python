@@ -20,17 +20,17 @@ tsp compile . --emit=@azure-tools/typespec-python
 
 ```yaml
 emit:
-  - "@azure-tools/typespec-python"
+    - "@azure-tools/typespec-python"
 ```
 
 The config can be extended with options as follows:
 
 ```yaml
 emit:
-  - "@azure-tools/typespec-python"
+    - "@azure-tools/typespec-python"
 options:
-  "@azure-tools/typespec-python":
-    option: value
+    "@azure-tools/typespec-python":
+        option: value
 ```
 
 ## Emitter options
