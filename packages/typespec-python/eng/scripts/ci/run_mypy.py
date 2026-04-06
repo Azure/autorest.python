@@ -32,14 +32,14 @@ def _has_python_files(directory):
 
 
 def _single_dir_mypy(mod):
-    inner_class = next(
-        (d for d in mod.iterdir() if d.is_dir() and d.name not in ("build", "generated_tests") and not str(d).endswith("egg-info") and _has_python_files(d)),
-        None
-    )
-    if inner_class is None:
-        logging.warning("No valid source directory found in %s, skipping", mod)
-        return True
     try:
+        inner_class = next(
+            (d for d in mod.iterdir() if d.is_dir() and d.name not in ("build", "generated_tests", "specs") and not str(d).endswith("egg-info") and _has_python_files(d)),
+            None
+        )
+        if inner_class is None:
+            logging.warning("No valid source directory found in %s, skipping", mod)
+            return True
         check_call(
             [
                 sys.executable,
@@ -55,7 +55,10 @@ def _single_dir_mypy(mod):
         )
         return True
     except CalledProcessError as e:
-        logging.error("{} exited with mypy error {}".format(inner_class.stem, e.returncode))
+        logging.error("{} exited with mypy error {}".format(mod.stem, e.returncode))
+        return False
+    except Exception as e:
+        logging.error("Unexpected error processing %s: %s", mod, e)
         return False
 
 

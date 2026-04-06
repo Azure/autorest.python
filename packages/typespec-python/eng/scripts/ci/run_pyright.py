@@ -33,41 +33,45 @@ def _has_python_files(directory):
 
 
 def _single_dir_pyright(mod):
-    inner_class = next(
-        (d for d in mod.iterdir() if d.is_dir() and d.name not in ("build", "generated_tests") and not str(d).endswith("egg-info") and _has_python_files(d)),
-        None
-    )
-    if inner_class is None:
-        logging.warning("No valid source directory found in %s, skipping", mod)
-        return True
-    retries = 3
-    while retries:
-        try:
-            # After fully support client hierarchy, we can remove this check
-            if "azure-client-generator-core-client-initialization" in str(inner_class.absolute()):
-                return True
-
-            check_output(
-                [
-                    sys.executable,
-                    "-m",
-                    "pyright",
-                    "-p",
-                    get_pyright_config_file_location(),
-                    str(inner_class.absolute()),
-                ],
-                text=True,
-            )
+    try:
+        inner_class = next(
+            (d for d in mod.iterdir() if d.is_dir() and d.name not in ("build", "generated_tests", "specs") and not str(d).endswith("egg-info") and _has_python_files(d)),
+            None
+        )
+        if inner_class is None:
+            logging.warning("No valid source directory found in %s, skipping", mod)
             return True
-        except CalledProcessError as e:
-            logging.exception("{} exited with pyright error {}".format(inner_class.stem, e.returncode))
-            logging.error(f"PyRight stdout:\n{e.stdout}\n===========")
-            logging.error(f"PyRight stderr:\n{e.stderr}\n===========")
-            # PyRight has shown to randomly failed with a 217, retry the same folder 3 times should help
-            retries -= 1
-            time.sleep(5)
+        retries = 3
+        while retries:
+            try:
+                # After fully support client hierarchy, we can remove this check
+                if "azure-client-generator-core-client-initialization" in str(inner_class.absolute()):
+                    return True
 
-    return False
+                check_output(
+                    [
+                        sys.executable,
+                        "-m",
+                        "pyright",
+                        "-p",
+                        get_pyright_config_file_location(),
+                        str(inner_class.absolute()),
+                    ],
+                    text=True,
+                )
+                return True
+            except CalledProcessError as e:
+                logging.exception("{} exited with pyright error {}".format(inner_class.stem, e.returncode))
+                logging.error(f"PyRight stdout:\n{e.stdout}\n===========")
+                logging.error(f"PyRight stderr:\n{e.stderr}\n===========")
+                # PyRight has shown to randomly failed with a 217, retry the same folder 3 times should help
+                retries -= 1
+                time.sleep(5)
+
+        return False
+    except Exception as e:
+        logging.error("Unexpected error processing %s: %s", mod, e)
+        return False
 
 
 if __name__ == "__main__":
