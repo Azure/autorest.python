@@ -26,8 +26,19 @@ def get_rfc_file_location():
     return os.path.join(os.path.dirname(__file__), "config/pylintrc")
 
 
+def _has_python_files(directory):
+    """Check if a directory contains any .py files recursively."""
+    return any(directory.rglob("*.py"))
+
+
 def _single_dir_pylint(mod):
-    inner_class = next(d for d in mod.iterdir() if d.is_dir() and not str(d).endswith("egg-info") and d.name not in ("build", "generated_tests"))
+    inner_class = next(
+        (d for d in mod.iterdir() if d.is_dir() and d.name != "build" and not str(d).endswith("egg-info") and _has_python_files(d)),
+        None
+    )
+    if inner_class is None:
+        logging.warning("No valid source directory found in %s, skipping", mod)
+        return True
     try:
         check_call(
             [
