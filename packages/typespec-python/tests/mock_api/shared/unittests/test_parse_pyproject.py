@@ -77,7 +77,7 @@ def test_azure_sdk_build():
     """Test that authentication-union packages have pyproject.toml with [tool.azure-sdk-build] pyright = false."""
 
     # Need to check the file directly, since installed distribution metadata won't include custom sections.
-    test_paths = ["../../azure/generated/authentication-union"]
+    test_paths = ["../../../generated/azure/authentication-union"]
 
     for package_path in test_paths:
         # First check that setup.py doesn't exist
