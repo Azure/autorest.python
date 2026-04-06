@@ -37,6 +37,8 @@ def _single_dir_mypy(mod):
                 "--config-file",
                 get_config_file_location(),
                 "--ignore-missing",
+                "--exclude",
+                "build",
                 str(inner_class.absolute()),
             ]
         )

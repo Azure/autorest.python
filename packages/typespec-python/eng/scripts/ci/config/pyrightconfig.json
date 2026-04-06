@@ -3,5 +3,6 @@
   "reportTypeCommentUsage": true,
   "reportMissingImports": false,
   "reportAttributeAccessIssue": false,
-  "pythonVersion": "3.9"
+  "pythonVersion": "3.9",
+  "exclude": ["**/build/**"]
 }
