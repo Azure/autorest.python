@@ -75,13 +75,25 @@ def terminate_server_process(process):
     """Terminate the mock API server process."""
     if process is None:
         return
-    if os.name == "nt":
-        process.kill()
-    else:
-        try:
+    try:
+        if os.name == "nt":
+            # On Windows, use taskkill to kill the entire process tree
+            # process.kill() only kills the shell, not the child node process
+            subprocess.run(
+                ["taskkill", "/F", "/T", "/PID", str(process.pid)],
+                capture_output=True,
+                check=False,
+            )
+        else:
             os.killpg(os.getpgid(process.pid), signal.SIGTERM)
-        except ProcessLookupError:
-            pass  # Process already terminated
+    except ProcessLookupError:
+        pass  # Process already terminated
+    except Exception:
+        # Fallback: try basic kill
+        try:
+            process.kill()
+        except Exception:
+            pass
 
 
 def pytest_configure(config):

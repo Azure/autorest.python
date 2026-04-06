@@ -39,6 +39,7 @@ def _single_dir_pylint(mod):
                 "--load-plugins=pylint_guidelines_checker",
                 "--output-format=parseable",
                 "--recursive=y",
+                "--ignore=build",
                 "--py-version=3.9",
                 str(inner_class.absolute()),
             ]
