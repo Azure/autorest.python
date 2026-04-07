@@ -51,6 +51,15 @@ def check_sensitive_word(folder: Path, word: str) -> str:
 
 
 def test_sensitive_word():
-    """Verify unbranded generated code doesn't contain Azure-specific branding."""
     check_folder = (Path(os.path.dirname(__file__)) / "../../generated/unbranded").resolve()
     assert [] == check_sensitive_word(check_folder, "azure")
+    # after update spector, it shall also equal to []
+    expected = [
+        "authentication-oauth2",
+        "authentication-noauth-union",
+        "authentication-union",
+        "setuppy-authentication-union",
+    ]
+    if (check_folder / "generation-subdir").exists():
+        expected.append("generation-subdir")
+    assert sorted(expected) == sorted(check_sensitive_word(check_folder, "microsoft"))
