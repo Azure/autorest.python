@@ -126,7 +126,7 @@ if __name__ == "__main__":
             package_versions,
         )
 
-    feedUrl = "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js-test-autorest@local/npm/registry"
+    feedUrl = "https://pkgs.dev.azure.com/azure-sdk/public/_packaging/azure-sdk-for-js/npm/registry"
     overrides = {}
 
     if "autorest.python" in package_versions:

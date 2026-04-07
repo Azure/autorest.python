@@ -82,7 +82,6 @@ export default tsEslint.config(
     ignores: [
       "**/dist/**/*",
       "**/venv/**/*", // Ignore python virtual env
-      "**/scripts/**/*",
     ],
   },
   ...TypeSpecCommonEslintConfigs,
