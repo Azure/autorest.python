@@ -33,12 +33,23 @@ AUTOREST_COMMON_TS = Path("packages/typespec-python/eng/scripts/regenerate-commo
 TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
 AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
 
-# --- Marker patterns for requirements sync (legacy, kept for forward compatibility) ---
+# --- Marker patterns for requirements sync ---
+#
+# Convention in requirements files (e.g. azure.txt, unbranded.txt):
+#   # === common azure dependencies across repos ===
+#   azure-core>=1.37.0
+#   ...
+#   # === end common azure dependencies across repos ===
 
 _MARKER_PATTERN = re.compile(r"^# === (common .+ across repos) ===$")
 _END_MARKER_PATTERN = re.compile(r"^# === end (common .+ across repos) ===$")
 
-# --- Test file sync configuration ---
+_REQUIREMENTS_FILES = ["azure.txt", "unbranded.txt"]
+
+
+# ---------------------------------------------------------------------------
+# Test file sync
+# ---------------------------------------------------------------------------
 
 _SKIP_DIRS: Set[str] = {"__pycache__", "generated", ".venv", "node_modules", ".tox"}
 
@@ -60,7 +71,7 @@ _SKIP_FILENAMES: Set[str] = {"tox.ini", "requirements.txt", "dev_requirements.tx
 
 
 # ---------------------------------------------------------------------------
-# Requirements marker-based sync (syncs marker-delimited sections if present)
+# Requirements sync
 # ---------------------------------------------------------------------------
 
 
@@ -117,14 +128,30 @@ def _replace_marker_sections(filepath: Path, source_sections: Dict[str, List[str
     filepath.write_text("\n".join(result) + "\n", encoding="utf-8", newline="\n")
 
 
-def sync_requirements(source: Path, target: Path) -> None:
-    """Sync common marker sections from source to target requirements.txt."""
-    source_sections = _extract_marker_sections(source)
-    if not source_sections:
-        print(f"  WARNING: no marker sections found in {source}, skipping")
-        return
-    _replace_marker_sections(target, source_sections)
-    print(f"  Synced requirements: {source.name} ({source.parent.name}/)")
+def sync_requirements(source_dir: Path, target_dir: Path) -> None:
+    """Copy requirements files from typespec to autorest.
+
+    If marker sections are present, only the marker-delimited sections are
+    replaced in the target (preserving repo-specific dependencies outside
+    markers). Otherwise the file is copied directly.
+    """
+    for filename in _REQUIREMENTS_FILES:
+        src = source_dir / filename
+        dst = target_dir / filename
+        if not src.is_file():
+            print(f"  WARNING: {src} not found, skipping")
+            continue
+
+        source_sections = _extract_marker_sections(src)
+        if source_sections and dst.is_file():
+            _replace_marker_sections(dst, source_sections)
+            print(f"  Synced markers: requirements/{filename}")
+        else:
+            if dst.is_file() and src.read_bytes() == dst.read_bytes():
+                continue
+            dst.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(src, dst)
+            print(f"  Copied: requirements/{filename}")
 
 
 # ---------------------------------------------------------------------------
@@ -212,14 +239,12 @@ def main() -> int:
     shutil.copy2(src_ts, dst_ts)
     print(f"Synced regenerate-common.ts")
 
-    # 2. Sync requirements (marker sections if present)
-    for flavor in ("azure", "unbranded"):
-        src_req = typespec_repo / TYPESPEC_TEST_DIR / "requirements" / f"{flavor}.txt"
-        dst_req = autorest_repo / AUTOREST_TEST_DIR / "requirements" / f"{flavor}.txt"
-        if src_req.is_file() and dst_req.is_file():
-            sync_requirements(src_req, dst_req)
-        else:
-            print(f"  WARNING: requirements/{flavor}.txt not found, skipping")
+    # 2. Sync requirements files
+    print("Syncing requirements...")
+    sync_requirements(
+        typespec_repo / TYPESPEC_TEST_DIR / "requirements",
+        autorest_repo / AUTOREST_TEST_DIR / "requirements",
+    )
 
     # 3. Sync test files
     print("Syncing test files...")
