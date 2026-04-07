@@ -9,16 +9,8 @@
 
 The typespec repo is the source of truth for:
   1. regenerate-common.ts — shared regeneration logic
-  2. requirements.txt — common test dependencies (delimited by marker comments)
-  3. Test files — mock API tests and test data
-
-Marker convention in requirements.txt:
-  # === common azure dependencies across repos ===
-  ...
-  # === end common azure dependencies across repos ===
-  # === common test dependencies across repos ===
-  ...
-  # === end common test dependencies across repos ===
+  2. requirements — test dependency files (azure.txt, unbranded.txt under tests/requirements/)
+  3. Test files — mock API tests under tests/mock_api/{shared,azure,unbranded}
 
 Usage:
     python sync_from_typespec.py <local-typespec-repo-path>
@@ -36,12 +28,12 @@ from typing import Dict, List, Set
 # --- Path configuration (relative to each repo root) ---
 
 TYPESPEC_COMMON_TS = Path("packages/http-client-python/eng/scripts/ci/regenerate-common.ts")
-AUTOREST_COMMON_TS = Path("packages/typespec-python/scripts/eng/regenerate-common.ts")
+AUTOREST_COMMON_TS = Path("packages/typespec-python/eng/scripts/regenerate-common.ts")
 
 TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
 AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
 
-# --- Marker patterns for requirements.txt sync ---
+# --- Marker patterns for requirements sync (legacy, kept for forward compatibility) ---
 
 _MARKER_PATTERN = re.compile(r"^# === (common .+ across repos) ===$")
 _END_MARKER_PATTERN = re.compile(r"^# === end (common .+ across repos) ===$")
@@ -56,7 +48,7 @@ _TEST_SUBDIRS = [
     os.path.join("mock_api", "unbranded"),
 ]
 
-# Files that remain repo-specific (different relative paths between repo layouts)
+# Files that remain repo-specific (e.g. conftest.py differs between repos)
 _SKIP_FILES: Set[str] = {
     os.path.join("mock_api", "shared", "conftest.py"),
     os.path.join("mock_api", "azure", "conftest.py"),
@@ -68,7 +60,7 @@ _SKIP_FILENAMES: Set[str] = {"tox.ini", "requirements.txt", "dev_requirements.tx
 
 
 # ---------------------------------------------------------------------------
-# Requirements.txt marker-based sync
+# Requirements marker-based sync (syncs marker-delimited sections if present)
 # ---------------------------------------------------------------------------
 
 
@@ -220,7 +212,7 @@ def main() -> int:
     shutil.copy2(src_ts, dst_ts)
     print(f"Synced regenerate-common.ts")
 
-    # 2. Sync requirements marker sections
+    # 2. Sync requirements (marker sections if present)
     for flavor in ("azure", "unbranded"):
         src_req = typespec_repo / TYPESPEC_TEST_DIR / "requirements" / f"{flavor}.txt"
         dst_req = autorest_repo / AUTOREST_TEST_DIR / "requirements" / f"{flavor}.txt"
