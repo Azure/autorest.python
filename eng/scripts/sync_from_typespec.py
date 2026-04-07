@@ -38,8 +38,8 @@ from typing import Dict, List, Set
 TYPESPEC_COMMON_TS = Path("packages/http-client-python/eng/scripts/ci/regenerate-common.ts")
 AUTOREST_COMMON_TS = Path("packages/typespec-python/scripts/eng/regenerate-common.ts")
 
-TYPESPEC_TEST_DIR = Path("packages/http-client-python/generator/test")
-AUTOREST_TEST_DIR = Path("packages/typespec-python/test")
+TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
+AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
 
 # --- Marker patterns for requirements.txt sync ---
 
@@ -51,16 +51,16 @@ _END_MARKER_PATTERN = re.compile(r"^# === end (common .+ across repos) ===$")
 _SKIP_DIRS: Set[str] = {"__pycache__", "generated", ".venv", "node_modules", ".tox"}
 
 _TEST_SUBDIRS = [
-    "generic_mock_api_tests",
-    os.path.join("azure", "mock_api_tests"),
-    os.path.join("unbranded", "mock_api_tests"),
+    os.path.join("mock_api", "shared"),
+    os.path.join("mock_api", "azure"),
+    os.path.join("mock_api", "unbranded"),
 ]
 
 # Files that remain repo-specific (different relative paths between repo layouts)
 _SKIP_FILES: Set[str] = {
-    os.path.join("generic_mock_api_tests", "conftest.py"),
-    os.path.join("azure", "mock_api_tests", "conftest.py"),
-    os.path.join("unbranded", "mock_api_tests", "conftest.py"),
+    os.path.join("mock_api", "shared", "conftest.py"),
+    os.path.join("mock_api", "azure", "conftest.py"),
+    os.path.join("mock_api", "unbranded", "conftest.py"),
 }
 
 _SKIP_EXTENSIONS: Set[str] = {".pyc"}
@@ -220,14 +220,14 @@ def main() -> int:
     shutil.copy2(src_ts, dst_ts)
     print(f"Synced regenerate-common.ts")
 
-    # 2. Sync requirements.txt marker sections
+    # 2. Sync requirements marker sections
     for flavor in ("azure", "unbranded"):
-        src_req = typespec_repo / TYPESPEC_TEST_DIR / flavor / "requirements.txt"
-        dst_req = autorest_repo / AUTOREST_TEST_DIR / flavor / "requirements.txt"
+        src_req = typespec_repo / TYPESPEC_TEST_DIR / "requirements" / f"{flavor}.txt"
+        dst_req = autorest_repo / AUTOREST_TEST_DIR / "requirements" / f"{flavor}.txt"
         if src_req.is_file() and dst_req.is_file():
             sync_requirements(src_req, dst_req)
         else:
-            print(f"  WARNING: requirements.txt not found for {flavor}, skipping")
+            print(f"  WARNING: requirements/{flavor}.txt not found, skipping")
 
     # 3. Sync test files
     print("Syncing test files...")
