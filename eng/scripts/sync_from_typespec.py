@@ -36,7 +36,7 @@ from typing import Dict, List, Set
 # --- Path configuration (relative to each repo root) ---
 
 TYPESPEC_COMMON_TS = Path("packages/http-client-python/eng/scripts/ci/regenerate-common.ts")
-AUTOREST_COMMON_TS = Path("packages/typespec-python/scripts/eng/regenerate-common.ts")
+AUTOREST_COMMON_TS = Path("packages/typespec-python/eng/scripts/regenerate-common.ts")
 
 TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
 AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
