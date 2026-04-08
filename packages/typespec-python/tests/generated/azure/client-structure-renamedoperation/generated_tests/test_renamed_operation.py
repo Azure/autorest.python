@@ -38,30 +38,3 @@ class TestRenamedOperation(RenamedOperationClientTestBase):
 
         # please add some check logic here by yourself
         # ...
-
-    @RenamedOperationPreparer()
-    @recorded_by_proxy
-    def test_renamed_two(self, renamedoperation_endpoint):
-        client = self.create_client(endpoint=renamedoperation_endpoint)
-        response = client.renamed_two()
-
-        # please add some check logic here by yourself
-        # ...
-
-    @RenamedOperationPreparer()
-    @recorded_by_proxy
-    def test_renamed_four(self, renamedoperation_endpoint):
-        client = self.create_client(endpoint=renamedoperation_endpoint)
-        response = client.renamed_four()
-
-        # please add some check logic here by yourself
-        # ...
-
-    @RenamedOperationPreparer()
-    @recorded_by_proxy
-    def test_renamed_six(self, renamedoperation_endpoint):
-        client = self.create_client(endpoint=renamedoperation_endpoint)
-        response = client.renamed_six()
-
-        # please add some check logic here by yourself
-        # ...

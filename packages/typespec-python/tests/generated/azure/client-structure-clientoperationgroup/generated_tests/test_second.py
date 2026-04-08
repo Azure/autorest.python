@@ -20,12 +20,3 @@ class TestSecond(SecondClientTestBase):
 
         # please add some check logic here by yourself
         # ...
-
-    @SecondPreparer()
-    @recorded_by_proxy
-    def test_six(self, second_endpoint):
-        client = self.create_client(endpoint=second_endpoint)
-        response = client.six()
-
-        # please add some check logic here by yourself
-        # ...
