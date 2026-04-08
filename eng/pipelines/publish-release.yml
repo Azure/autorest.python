@@ -87,13 +87,13 @@ extends:
                   displayName: Execute Autorest DPG Version Tolerant Tests
                   workingDirectory: $(Build.SourcesDirectory)/packages/autorest.python/
                 - script: |
-                      cd test/azure
-                      tox run -e ci
+                      cd tests
+                      tox run -e ci-azure
                   displayName: Execute Typespec Azure Tests
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
                 - script: |
-                      cd test/unbranded
-                      tox run -e ci
+                      cd tests
+                      tox run -e ci-unbranded
                   displayName: Execute Typespec Unbranded Tests
                   workingDirectory: $(Build.SourcesDirectory)/packages/typespec-python/
 
