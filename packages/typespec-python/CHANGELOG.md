@@ -2,7 +2,9 @@
 
 ## 0.61.3
 
-No changes, version bump only.
+### Bump dependencies
+
+- [#10297](https://github.com/microsoft/typespec/pull/10297) Bump dependencies of `@typespec/*` and `@azure-tools/*` to latest versions
 
 ## 0.61.2
 
