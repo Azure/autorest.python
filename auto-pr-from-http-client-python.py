@@ -46,7 +46,7 @@ def install_and_build():
     log_call("pnpm run build")
     log_call("pnpm format")
     log_call(
-        "cd packages/typespec-python && . venv/bin/activate && black tests/mock_api -l 120"
+        "cd packages/typespec-python && pnpm run format && . venv/bin/activate && black tests/mock_api -l 120"
     )
 
     log_call("git add .")
