@@ -1,5 +1,9 @@
 # Release
 
+## 0.61.3
+
+No changes, version bump only.
+
 ## 0.61.2
 
 ### Bug Fixes
