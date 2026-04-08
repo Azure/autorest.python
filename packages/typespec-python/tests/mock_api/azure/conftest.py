@@ -53,6 +53,7 @@ def check_client_request_id_header():
 
 # ================== after azure-core fix, the following code can be removed (begin) ==================
 
+
 def update_api_version_of_status_link(status_link: str):
     request_params = {}
     parsed_status_link = urllib.parse.urlparse(status_link)
