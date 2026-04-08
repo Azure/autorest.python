@@ -17,12 +17,22 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import FirstClientConfiguration, SecondClientConfiguration
-from ._operations import _FirstClientOperationsMixin, _SecondClientOperationsMixin
+from .operations import (
+    Group3Operations,
+    Group4Operations,
+    Group5Operations,
+    _FirstClientOperationsMixin,
+    _SecondClientOperationsMixin,
+)
 
 
 class FirstClient(_FirstClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """FirstClient.
 
+    :ivar group3: Group3Operations operations
+    :vartype group3: client.structure.clientoperationgroup.aio.operations.Group3Operations
+    :ivar group4: Group4Operations operations
+    :vartype group4: client.structure.clientoperationgroup.aio.operations.Group4Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -60,6 +70,8 @@ class FirstClient(_FirstClientOperationsMixin):  # pylint: disable=client-accept
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.group3 = Group3Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.group4 = Group4Operations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
@@ -104,6 +116,8 @@ class FirstClient(_FirstClientOperationsMixin):  # pylint: disable=client-accept
 class SecondClient(_SecondClientOperationsMixin):  # pylint: disable=client-accepts-api-version-keyword
     """SecondClient.
 
+    :ivar group5: Group5Operations operations
+    :vartype group5: client.structure.clientoperationgroup.aio.operations.Group5Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -141,6 +155,7 @@ class SecondClient(_SecondClientOperationsMixin):  # pylint: disable=client-acce
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.group5 = Group5Operations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any
