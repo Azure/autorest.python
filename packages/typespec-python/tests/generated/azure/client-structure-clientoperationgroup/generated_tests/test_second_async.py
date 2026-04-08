@@ -21,12 +21,3 @@ class TestSecondAsync(SecondClientTestBaseAsync):
 
         # please add some check logic here by yourself
         # ...
-
-    @SecondPreparer()
-    @recorded_by_proxy_async
-    async def test_six(self, second_endpoint):
-        client = self.create_async_client(endpoint=second_endpoint)
-        response = await client.six()
-
-        # please add some check logic here by yourself
-        # ...

@@ -17,14 +17,16 @@ from azure.core.rest import AsyncHttpResponse, HttpRequest
 from .. import models as _models
 from .._utils.serialization import Deserializer, Serializer
 from ._configuration import TwoOperationGroupClientConfiguration
-from ._operations import _TwoOperationGroupClientOperationsMixin
+from .operations import Group1Operations, Group2Operations
 
 
-class TwoOperationGroupClient(
-    _TwoOperationGroupClientOperationsMixin
-):  # pylint: disable=client-accepts-api-version-keyword
+class TwoOperationGroupClient:  # pylint: disable=client-accepts-api-version-keyword
     """TwoOperationGroupClient.
 
+    :ivar group1: Group1Operations operations
+    :vartype group1: client.structure.twooperationgroup.aio.operations.Group1Operations
+    :ivar group2: Group2Operations operations
+    :vartype group2: client.structure.twooperationgroup.aio.operations.Group2Operations
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
@@ -62,6 +64,8 @@ class TwoOperationGroupClient(
         self._serialize = Serializer()
         self._deserialize = Deserializer()
         self._serialize.client_side_validation = False
+        self.group1 = Group1Operations(self._client, self._config, self._serialize, self._deserialize)
+        self.group2 = Group2Operations(self._client, self._config, self._serialize, self._deserialize)
 
     def send_request(
         self, request: HttpRequest, *, stream: bool = False, **kwargs: Any

@@ -389,8 +389,9 @@ export function buildOptions(
         }
         if (options["emitter-output-dir"] === undefined) {
             const packageName = options["package-name"] || defaultPackageName(spec, config);
+            // Output to new tests/generated/<flavor>/<package> structure
             options["emitter-output-dir"] = toPosix(
-                `${generatedFolder}/tests/generated/${flags.flavor}/${packageName}`,
+                `${generatedFolder}/../tests/generated/${flags.flavor}/${packageName}`,
             );
         }
         if (flags.debug) {
