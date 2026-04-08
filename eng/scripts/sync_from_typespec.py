@@ -9,7 +9,7 @@
 
 The typespec repo is the source of truth for:
   1. regenerate-common.ts — shared regeneration logic
-  2. requirements — test dependency files (azure.txt, unbranded.txt under tests/requirements/)
+  2. requirements — test dependency files (tests/requirements/)
   3. Test files — mock API tests under tests/mock_api/{shared,azure,unbranded}
 
 Usage:
@@ -44,7 +44,7 @@ AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
 _MARKER_PATTERN = re.compile(r"^# === (common .+ across repos) ===$")
 _END_MARKER_PATTERN = re.compile(r"^# === end (common .+ across repos) ===$")
 
-_REQUIREMENTS_FILES = ["azure.txt", "unbranded.txt"]
+_REQUIREMENTS_FILES = ["azure.txt", "base.txt", "docs.txt", "lint.txt", "typecheck.txt", "unbranded.txt"]
 
 
 # ---------------------------------------------------------------------------
