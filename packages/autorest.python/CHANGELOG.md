@@ -4,7 +4,7 @@
 
 ### Bump dependencies
 
-- [#10297](https://github.com/microsoft/typespec/pull/10297) Bump dependencies of `@typespec/*` and `@azure-tools/*` to latest versions
+- [#3425](https://github.com/Azure/autorest.python/pull/3425) Bump dependencies of `@typespec/*` and `@azure-tools/*` to latest versions
 
 ## 6.50.2
 
