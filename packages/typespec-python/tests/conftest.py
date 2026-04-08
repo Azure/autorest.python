@@ -9,9 +9,11 @@ import signal
 import time
 import urllib.request
 import urllib.error
+import tempfile
 import pytest
 import importlib
 from pathlib import Path
+from filelock import FileLock
 
 # Root of the typespec-python package
 ROOT = Path(__file__).parent.parent
@@ -22,8 +24,13 @@ SERVER_HOST = "localhost"
 SERVER_PORT = 3000
 SERVER_URL = f"http://{SERVER_HOST}:{SERVER_PORT}"
 
+# Lock file for coordinating server startup across xdist workers
+LOCK_FILE = Path(tempfile.gettempdir()) / "typespec_python_test_server.lock"
+PID_FILE = Path(tempfile.gettempdir()) / "typespec_python_test_server.pid"
+
 # Global server process reference (used by hooks)
 _server_process = None
+_owns_server = False  # Track if this process started the server
 
 
 def wait_for_server(url: str, timeout: int = 60, interval: float = 0.5) -> bool:
@@ -99,51 +106,77 @@ def terminate_server_process(process):
 def pytest_configure(config):
     """Start the mock server before any tests run.
 
-    This hook runs in the controller process before xdist workers are spawned,
-    ensuring the server is ready for all workers.
+    Uses file locking to ensure only one process starts the server,
+    even when running with pytest-xdist. The controller process starts
+    the server and workers wait for it to be ready.
     """
-    global _server_process
+    global _server_process, _owns_server
 
-    # Only start server in the controller process (not in workers)
-    # xdist workers have workerinput attribute
-    if hasattr(config, "workerinput"):
-        return
-
-    # Check if server is already running (e.g., from a previous run)
+    # Check if server is already running (e.g., from a previous run or external process)
     if wait_for_server(SERVER_URL, timeout=1, interval=0.1):
         print(f"Mock API server already running at {SERVER_URL}")
         return
 
-    # Start the server
-    print(f"Starting mock API server...")
-    _server_process = start_server_process()
+    # Use file lock to ensure only one process starts the server
+    # This handles both xdist workers and multiple test runs
+    lock = FileLock(str(LOCK_FILE), timeout=120)
 
-    # Check if process started successfully
-    if _server_process.poll() is not None:
-        pytest.exit(f"Mock API server process exited immediately with code {_server_process.returncode}")
+    try:
+        with lock:
+            # Double-check after acquiring lock (another process may have started it)
+            if wait_for_server(SERVER_URL, timeout=1, interval=0.1):
+                print(f"Mock API server already running at {SERVER_URL}")
+                return
 
-    # Wait for server to be ready
-    if not wait_for_server(SERVER_URL, timeout=60):
-        # Check if process is still running
-        if _server_process.poll() is not None:
-            pytest.exit(f"Mock API server process died with code {_server_process.returncode}")
-        terminate_server_process(_server_process)
-        _server_process = None
-        pytest.exit(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
+            # We're the first process - start the server
+            print(f"Starting mock API server...")
+            _server_process = start_server_process()
+            _owns_server = True
 
-    print(f"Mock API server ready at {SERVER_URL}")
+            # Check if process started successfully
+            if _server_process.poll() is not None:
+                pytest.exit(f"Mock API server process exited immediately with code {_server_process.returncode}")
+
+            # Write PID file so other processes know who owns the server
+            PID_FILE.write_text(str(_server_process.pid))
+
+            # Wait for server to be ready
+            if not wait_for_server(SERVER_URL, timeout=60):
+                if _server_process.poll() is not None:
+                    pytest.exit(f"Mock API server process died with code {_server_process.returncode}")
+                terminate_server_process(_server_process)
+                _server_process = None
+                _owns_server = False
+                pytest.exit(f"Mock API server failed to start within 60 seconds at {SERVER_URL}")
+
+            print(f"Mock API server ready at {SERVER_URL}")
+
+    except TimeoutError:
+        # Another process is holding the lock for too long
+        # Check if server is available anyway
+        if wait_for_server(SERVER_URL, timeout=5):
+            print(f"Mock API server available at {SERVER_URL} (started by another process)")
+        else:
+            pytest.exit("Timeout waiting for server lock - another process may be stuck")
 
 
 def pytest_unconfigure(config):
     """Stop the mock server after all tests complete."""
-    global _server_process
+    global _server_process, _owns_server
 
-    # Only stop server in the controller process
-    if hasattr(config, "workerinput"):
+    # Only stop the server if this process started it
+    if not _owns_server:
         return
 
     terminate_server_process(_server_process)
     _server_process = None
+    _owns_server = False
+
+    # Clean up PID file
+    try:
+        PID_FILE.unlink(missing_ok=True)
+    except Exception:
+        pass
 
 
 @pytest.fixture(scope="session", autouse=True)
