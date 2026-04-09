@@ -3,9 +3,8 @@
 # Licensed under the MIT License. See License.txt in the project root for
 # license information.
 # --------------------------------------------------------------------------
+from .._generated.aio._client import AddedClient as _GeneratedAddedClient
 
-from ._client import AddedClient
 
-__all__ = [
-    "AddedClient",
-]
+class AddedClient(_GeneratedAddedClient):  # pylint: disable=client-accepts-api-version-keyword
+    """Public async wrapper around the generated AddedClient implementation."""

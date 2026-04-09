@@ -5,7 +5,8 @@
 # --------------------------------------------------------------------------
 import pytest
 import pytest_asyncio
-from generation.subdir2.aio import AddedClient, ModelV1, ModelV2, EnumV1, EnumV2
+from generation.subdir2.aio import AddedClient
+from generation.subdir2 import ModelV1, ModelV2, EnumV1, EnumV2
 
 
 @pytest_asyncio.fixture
