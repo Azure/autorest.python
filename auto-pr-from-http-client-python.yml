@@ -31,9 +31,9 @@ jobs:
 
   steps:
   - task: NodeTool@0
-    displayName: 'Install Node.js 20.x'
+    displayName: 'Install Node.js 22.x'
     inputs:
-      versionSpec: '20.x'
+      versionSpec: '22.x'
 
   - task: UsePythonVersion@0
     displayName: "Use Python 3.10"
