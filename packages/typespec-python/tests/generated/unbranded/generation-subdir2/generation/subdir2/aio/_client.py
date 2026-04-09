@@ -6,5 +6,5 @@
 from .._generated.aio._client import AddedClient as _GeneratedAddedClient
 
 
-class AddedClient(_GeneratedAddedClient):  # pylint: disable=client-accepts-api-version-keyword
+class AddedClient(_GeneratedAddedClient):
     """Public async wrapper around the generated AddedClient implementation."""
