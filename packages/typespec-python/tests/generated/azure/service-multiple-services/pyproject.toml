@@ -10,11 +10,11 @@ requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "service-multipleservices-servicea"
+name = "service-multipleservices"
 authors = [
   { name = "Microsoft Corporation", email = "azpysdkhelp@microsoft.com" },
 ]
-description = "Microsoft Corporation Azure Service Multipleservices Servicea Client Library for Python"
+description = "Microsoft Corporation Azure Service Multipleservices Client Library for Python"
 license = "MIT"
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -43,7 +43,7 @@ dynamic = [
 repository = "https://github.com/Azure/azure-sdk-for-python"
 
 [tool.setuptools.dynamic]
-version = {attr = "service.multipleservices.servicea._version.VERSION"}
+version = {attr = "service.multipleservices._version.VERSION"}
 readme = {file = ["README.md", "CHANGELOG.md"], content-type = "text/markdown"}
 
 [tool.setuptools.packages.find]
@@ -54,7 +54,6 @@ exclude = [
     "generated_samples*",
     "doc*",
     "service",
-    "service.multipleservices",
 ]
 
 [tool.setuptools.package-data]
