@@ -4,7 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 import pytest
-from generation.subdir2 import AddedClient,  ModelV1, ModelV2, EnumV1, EnumV2
+from generation.subdir2 import AddedClient, ModelV1, ModelV2, EnumV1, EnumV2
 
 
 @pytest.fixture
