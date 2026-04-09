@@ -7,8 +7,7 @@
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase, PowerShellPreparer
 import functools
-from service.multipleservices.servicea import ServiceAClient
-from service.multipleservices.serviceb import ServiceBClient
+from service.multipleservices import ServiceAClient, ServiceBClient
 
 
 class ServiceAClientTestBase(AzureRecordedTestCase):

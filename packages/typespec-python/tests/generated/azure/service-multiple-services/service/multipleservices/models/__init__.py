@@ -12,23 +12,18 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from ._patch import *  # pylint: disable=unused-wildcard-import
 
-from ._client import ServiceAClient  # type: ignore
-from ._client import ServiceBClient  # type: ignore
-from ._version import VERSION
 
-__version__ = VERSION
-
-try:
-    from ._patch import __all__ as _patch_all
-    from ._patch import *
-except ImportError:
-    _patch_all = []
+from ._enums import (  # type: ignore
+    VersionsA,
+    VersionsB,
+)
+from ._patch import __all__ as _patch_all
+from ._patch import *
 from ._patch import patch_sdk as _patch_sdk
 
 __all__ = [
-    "ServiceAClient",
-    "ServiceBClient",
+    "VersionsA",
+    "VersionsB",
 ]
 __all__.extend([p for p in _patch_all if p not in __all__])  # pyright: ignore
-
 _patch_sdk()
