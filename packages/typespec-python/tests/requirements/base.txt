@@ -9,3 +9,4 @@ isodate>=0.6.1
 typing-extensions>=4.6.0
 tox>=4.16.0
 tox-uv>=1.0.0
+filelock>=3.12.0
