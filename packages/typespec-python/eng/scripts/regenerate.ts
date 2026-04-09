@@ -7,7 +7,7 @@
  */
 
 import { compile, NodeHost } from "@typespec/compiler";
-import { promises, rmSync } from "fs";
+import { rmSync } from "fs";
 import { platform } from "os";
 import { dirname, join, relative, resolve } from "path";
 import pc from "picocolors";
@@ -17,6 +17,7 @@ import {
     BASE_AZURE_EMITTER_OPTIONS,
     BASE_EMITTER_OPTIONS,
     getSubdirectories,
+    preprocess,
     SpecialFlags,
     toPosix,
     type RegenerateFlags,
@@ -76,6 +77,7 @@ const SCRIPT_DIR = dirname(fileURLToPath(import.meta.url));
 const PLUGIN_DIR = resolve(SCRIPT_DIR, "../../");
 const AZURE_HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@azure-tools/azure-http-specs/specs");
 const HTTP_SPECS = resolve(PLUGIN_DIR, "node_modules/@typespec/http-specs/specs");
+const GENERATED_FOLDER = resolve(PLUGIN_DIR, "generator");
 const EMITTER_NAME = "@azure-tools/typespec-python";
 
 // Emitter options
@@ -85,18 +87,6 @@ const AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> | Record<stri
 
 const EMITTER_OPTIONS: Record<string, Record<string, string> | Record<string, string>[]> = {
     ...BASE_EMITTER_OPTIONS,
-    "type/model/inheritance/recursive": [
-        {
-            "package-name": "typetest-model-recursive",
-            "namespace": "typetest.model.recursive",
-        },
-        {
-            "package-name": "generation-subdir",
-            "namespace": "generation.subdir",
-            "generation-subdir": "_generated",
-            "clear-output-folder": "true",
-        },
-    ],
     "client/structure/client-operation-group": {
         "package-name": "client-structure-clientoperationgroup",
         "namespace": "client.structure.clientoperationgroup",
@@ -259,38 +249,6 @@ async function runParallel(groups: TaskGroup[], maxJobs: number): Promise<Map<st
     return results;
 }
 
-// Preprocess: create files that should be deleted after regeneration (for testing)
-async function preprocess(flavor: string): Promise<void> {
-    if (flavor === "azure") {
-        const generalParts = [PLUGIN_DIR, "tests", "generated", "azure"];
-        await promises.writeFile(
-            join(
-                ...generalParts,
-                "authentication-api-key",
-                "authentication",
-                "apikey",
-                "_operations",
-                "to_be_deleted.py",
-            ),
-            "# This file is to be deleted after regeneration",
-        );
-
-        const folderParts = [...generalParts, "generation-subdir"];
-        await promises.writeFile(
-            join(...folderParts, "generation", "subdir", "_generated", "to_be_deleted.py"),
-            "# This file is to be deleted after regeneration",
-        );
-        await promises.writeFile(
-            join(...folderParts, "generated_tests", "to_be_deleted.py"),
-            "# This file is to be kept after regeneration",
-        );
-        await promises.writeFile(
-            join(...folderParts, "generation", "subdir", "to_be_kept.py"),
-            "# This file is to be kept after regeneration",
-        );
-    }
-}
-
 async function regenerateFlavor(
     flavor: string,
     name: string | undefined,
@@ -304,7 +262,7 @@ async function regenerateFlavor(
     const flags: RegenerateFlags = { flavor, debug, name };
 
     // Preprocess
-    await preprocess(flavor);
+    await preprocess(flavor, GENERATED_FOLDER);
 
     // Collect specs
     const azureSpecs = flavor === "azure" ? await getSubdirectories(AZURE_HTTP_SPECS, flags) : [];
