@@ -6,8 +6,7 @@
 # Changes may cause incorrect behavior and will be lost if the code is regenerated.
 # --------------------------------------------------------------------------
 from devtools_testutils import AzureRecordedTestCase
-from service.multipleservices.servicea.aio import ServiceAClient
-from service.multipleservices.serviceb.aio import ServiceBClient
+from service.multipleservices.aio import ServiceAClient, ServiceBClient
 
 
 class ServiceAClientTestBaseAsync(AzureRecordedTestCase):

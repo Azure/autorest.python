@@ -14,9 +14,6 @@ if TYPE_CHECKING:
 
 from ._client import ServiceAClient  # type: ignore
 from ._client import ServiceBClient  # type: ignore
-from ._version import VERSION
-
-__version__ = VERSION
 
 try:
     from ._patch import __all__ as _patch_all

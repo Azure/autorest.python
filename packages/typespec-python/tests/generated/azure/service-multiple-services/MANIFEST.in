@@ -1,7 +1,6 @@
 include *.md
 include LICENSE
-include service/multipleservices/servicea/py.typed
+include service/multipleservices/py.typed
 recursive-include tests *.py
 recursive-include samples *.py *.md
 include service/__init__.py
-include service/multipleservices/__init__.py
