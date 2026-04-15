@@ -9,7 +9,6 @@
 
 from setuptools import setup, find_packages
 
-
 PACKAGE_NAME = "anythingclient"
 version = "0.1.0"
 

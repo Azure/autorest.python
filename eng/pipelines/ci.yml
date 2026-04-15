@@ -149,11 +149,6 @@ jobs:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
-          PythonVersion: "3.10"
-        Linux_Python311:
-          OSName: "Linux"
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.11"
         Linux_Python313:
           OSName: "Linux"
