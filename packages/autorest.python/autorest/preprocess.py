@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 """The preprocessing autorest plugin."""
+
 from typing import Dict, Any
 from pygen.preprocess import PreProcessPlugin
 from . import YamlUpdatePluginAutorest

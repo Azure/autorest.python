@@ -14,7 +14,6 @@ from jsonrpc.jsonrpc2 import JSONRPC20Response
 
 from .stdstream import read_message, write_message
 
-
 _LOGGER = logging.getLogger(__name__)
 
 

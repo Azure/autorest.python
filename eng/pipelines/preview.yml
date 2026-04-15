@@ -76,9 +76,9 @@ extends:
           versionSpec: 3.11
     SdkInitializationSteps:
     - task: UsePythonVersion@0
-      displayName: "Use Python 3.9"
+      displayName: "Use Python 3.10"
       inputs:
-          versionSpec: 3.9
+          versionSpec: 3.10
     - script: |
         echo "npm install -g @azure-tools/typespec-client-generator-cli"
         npm install -g @azure-tools/typespec-client-generator-cli

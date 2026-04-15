@@ -34,7 +34,6 @@ from azure.mgmt.core.polling.async_arm_polling import AsyncARMPolling
 
 from lroversiontolerant.aio import AutoRestLongRunningOperationTestService
 
-
 try:
     from urlparse import urlparse
 except ImportError:

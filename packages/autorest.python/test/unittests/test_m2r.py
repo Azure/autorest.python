@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------
 from autorest import m2r as m2r_autorest
 
-
 _MD_LINK = "[inline link](https://github.com/Azure/autorest.python)"
 _RST_LINK = "`inline link <https://github.com/Azure/autorest.python>`_"
 

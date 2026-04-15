@@ -12,7 +12,6 @@ import re
 
 from setuptools import setup, find_packages
 
-
 # Version extraction inspired from 'requests'
 with open(os.path.join("autorest", "_version.py"), "r") as fd:
     version = re.search(r'^VERSION\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
