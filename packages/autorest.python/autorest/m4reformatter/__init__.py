@@ -748,7 +748,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         param["language"]["default"]["description"] = description
         return param
 
-    def _update_parameters_helper(
+    def _update_parameters_helper(  # pylint: disable=too-many-positional-arguments
         self,
         parameters: List[Dict[str, Any]],
         body_parameter: Optional[Dict[str, Any]],
