@@ -369,7 +369,7 @@ class _DPGClientOperationsMixin(ClientMixinABC[PipelineClient[HttpRequest, HttpR
                 _request.url = self._client.format_url(_request.url)
 
             else:
-                _request = HttpRequest("GET", next_link)
+                _request = HttpRequest("GET", next_link, headers=_headers)
                 _request.url = self._client.format_url(_request.url)
 
             return _request
