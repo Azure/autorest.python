@@ -19,7 +19,8 @@ class AutoRestComplexTestServiceConfiguration:  # pylint: disable=too-many-insta
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :keyword api_version: Api Version. Default value is "2016-02-29". Note that overriding this
+    :keyword api_version: Api Version. Known values are "2016-02-29" and None. Default value is
+     None. If not set, the operation's default API version will be used. Note that overriding this
      default value may result in unsupported behavior.
     :paramtype api_version: str
     """
