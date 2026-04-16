@@ -16,8 +16,9 @@ class MadeOptionalClientConfiguration:
     :param endpoint: Need to be set as '`http://localhost:3000 <http://localhost:3000>`_' in
      client. Required.
     :type endpoint: str
-    :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2". Default
-     value is "v2". Note that overriding this default value may result in unsupported behavior.
+    :keyword version: Need to be set as 'v1' or 'v2' in client. Known values are "v2" and None.
+     Default value is None. If not set, the operation's default API version will be used. Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype version: str or ~versioning.madeoptional.models.Versions
     """
 

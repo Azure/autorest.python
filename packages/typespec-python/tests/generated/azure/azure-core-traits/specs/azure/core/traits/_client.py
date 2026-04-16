@@ -25,8 +25,9 @@ class TraitsClient(_TraitsClientOperationsMixin):
     :keyword endpoint: Service host. Default value is "http://localhost:3000".
     :paramtype endpoint: str
     :keyword api_version: The API version to use for this operation. Known values are
-     "2022-12-01-preview". Default value is "2022-12-01-preview". Note that overriding this default
-     value may result in unsupported behavior.
+     "2022-12-01-preview" and None. Default value is None. If not set, the operation's default API
+     version will be used. Note that overriding this default value may result in unsupported
+     behavior.
     :paramtype api_version: str
     """
 
