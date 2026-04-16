@@ -19,7 +19,8 @@ class AutoRestPagingTestServiceConfiguration:  # pylint: disable=too-many-instan
     Note that all parameters used to create this instance are saved as instance
     attributes.
 
-    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+    :keyword api_version: Api Version. Known values are "1.0.0" and None. Default value is None. If
+     not set, the operation's default API version will be used. Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """

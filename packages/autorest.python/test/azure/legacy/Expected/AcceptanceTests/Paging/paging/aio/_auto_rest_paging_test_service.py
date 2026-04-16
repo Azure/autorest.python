@@ -27,7 +27,8 @@ class AutoRestPagingTestService:
     :vartype paging: paging.aio.operations.PagingOperations
     :param base_url: Service URL. Default value is "http://localhost:3000".
     :type base_url: str
-    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+    :keyword api_version: Api Version. Known values are "1.0.0" and None. Default value is None. If
+     not set, the operation's default API version will be used. Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     :keyword int polling_interval: Default waiting time between two polls for LRO operations if no
