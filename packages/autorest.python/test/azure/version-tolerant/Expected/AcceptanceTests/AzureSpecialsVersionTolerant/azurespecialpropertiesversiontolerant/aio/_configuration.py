@@ -33,8 +33,9 @@ class AutoRestAzureSpecialParametersTestClientConfiguration:  # pylint: disable=
     :param cloud_setting: The cloud setting for which to get the ARM endpoint. Default value is
      None.
     :type cloud_setting: ~azure.core.AzureClouds
-    :keyword api_version: Api Version. Default value is "2015-07-01-preview". Note that overriding
-     this default value may result in unsupported behavior.
+    :keyword api_version: Api Version. Known values are "2015-07-01-preview" and None. Default
+     value is None. If not set, the operation's default API version will be used. Note that
+     overriding this default value may result in unsupported behavior.
     :paramtype api_version: str
     """
 

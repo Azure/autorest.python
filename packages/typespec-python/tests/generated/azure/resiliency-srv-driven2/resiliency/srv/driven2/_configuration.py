@@ -27,8 +27,9 @@ class ResiliencyServiceDrivenClientConfiguration:  # pylint: disable=too-many-in
      version. 'v2' is for the deployment when the service had api-versions 'v1' and 'v2'. Required.
     :type service_deployment_version: str
     :keyword api_version: Pass in either 'v1' or 'v2'. This represents the API version of a
-     service. Known values are "v2". Default value is "v2". Note that overriding this default value
-     may result in unsupported behavior.
+     service. Known values are "v2" and None. Default value is None. If not set, the operation's
+     default API version will be used. Note that overriding this default value may result in
+     unsupported behavior.
     :paramtype api_version: str
     """
 

@@ -21,7 +21,8 @@ class AutoRestValidationTestConfiguration:  # pylint: disable=too-many-instance-
 
     :param subscription_id: Subscription ID. Required.
     :type subscription_id: str
-    :keyword api_version: Api Version. Default value is "1.0.0". Note that overriding this default
+    :keyword api_version: Api Version. Known values are "1.0.0" and None. Default value is None. If
+     not set, the operation's default API version will be used. Note that overriding this default
      value may result in unsupported behavior.
     :paramtype api_version: str
     """

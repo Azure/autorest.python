@@ -3,7 +3,7 @@ import { dirname, join, relative, resolve } from "path";
 
 // ---- Shared constants ----
 
-export const SKIP_SPECS: string[] = ["type/file"];
+export const SKIP_SPECS: string[] = ["type/file", "service/multiple-services"];
 
 export const SpecialFlags: Record<string, Record<string, any>> = {
     azure: {
@@ -44,6 +44,9 @@ export const BASE_AZURE_EMITTER_OPTIONS: Record<string, Record<string, string> |
     },
     "azure/client-generator-core/usage": {
         namespace: "specs.azure.clientgenerator.core.usage",
+    },
+    "azure/client-generator-core/client-doc": {
+        namespace: "specs.azure.clientgenerator.core.clientdoc",
     },
     "azure/client-generator-core/override": {
         namespace: "specs.azure.clientgenerator.core.override",
@@ -202,10 +205,20 @@ export const BASE_EMITTER_OPTIONS: Record<string, Record<string, string> | Recor
         "package-name": "typetest-model-singlediscriminator",
         "namespace": "typetest.model.singlediscriminator",
     },
-    "type/model/inheritance/recursive": {
-        "package-name": "typetest-model-recursive",
-        "namespace": "typetest.model.recursive",
-    },
+    "type/model/inheritance/recursive": [
+        {
+            "package-name": "typetest-model-recursive",
+            "namespace": "typetest.model.recursive",
+        },
+        {
+            // basic test for configuration "generation-subdir"
+            "package-name": "generation-subdir",
+            "namespace": "generation.subdir",
+            "generation-subdir": "_generated",
+            "generate-test": "false",
+            "clear-output-folder": "true",
+        },
+    ],
     "type/model/usage": {
         "package-name": "typetest-model-usage",
         "namespace": "typetest.model.usage",
@@ -262,6 +275,19 @@ export const BASE_EMITTER_OPTIONS: Record<string, Record<string, string> | Recor
         "package-name": "specs-documentation",
         "namespace": "specs.documentation",
     },
+    "versioning/added": [
+        {
+            "package-name": "versioning-added",
+            "namespace": "versioning.added",
+        },
+        // check whether import of _validation.py/_types.py works when "generation-subdir" is configured
+        {
+            "package-name": "generation-subdir2",
+            "namespace": "generation.subdir2",
+            "generate-test": "false",
+            "generation-subdir": "_generated",
+        },
+    ],
 };
 
 // ---- Shared interfaces ----
@@ -284,11 +310,6 @@ export interface RegenerateFlags {
     debug: boolean;
     name?: string;
     pyodide?: boolean;
-}
-
-export interface ProcessedEmitterOption {
-    options: Record<string, string>;
-    outputDir: string;
 }
 
 export interface RegenerateConfig {
@@ -364,48 +385,6 @@ export async function getSubdirectories(baseDir: string, flags: RegenerateFlags)
     return subdirectories;
 }
 
-export function defaultPackageName(spec: string, config: RegenerateConfig): string {
-    const specDir = spec.includes("azure") ? config.azureHttpSpecs : config.httpSpecs;
-    return toPosix(relative(specDir, dirname(spec)))
-        .replace(/\//g, "-")
-        .toLowerCase();
-}
-
-export function buildOptions(
-    spec: string,
-    generatedFolder: string,
-    flags: RegenerateFlags,
-    config: RegenerateConfig,
-): ProcessedEmitterOption[] {
-    const results: ProcessedEmitterOption[] = [];
-    for (const emitterConfig of getEmitterOption(spec, flags.flavor, config)) {
-        const options: Record<string, string> = { ...emitterConfig };
-        if (flags.pyodide) {
-            options["use-pyodide"] = "true";
-        }
-        options["flavor"] = flags.flavor;
-        for (const [k, v] of Object.entries(SpecialFlags[flags.flavor] ?? {})) {
-            options[k] = v;
-        }
-        if (options["emitter-output-dir"] === undefined) {
-            const packageName = options["package-name"] || defaultPackageName(spec, config);
-            // Output to new tests/generated/<flavor>/<package> structure
-            options["emitter-output-dir"] = toPosix(
-                `${generatedFolder}/../tests/generated/${flags.flavor}/${packageName}`,
-            );
-        }
-        if (flags.debug) {
-            options["debug"] = "true";
-        }
-        options["examples-dir"] = toPosix(join(dirname(spec), "examples"));
-        results.push({
-            options,
-            outputDir: options["emitter-output-dir"],
-        });
-    }
-    return results;
-}
-
 export async function runTaskPool(tasks: Array<() => Promise<void>>, poolLimit: number): Promise<void> {
     const executing: Set<Promise<void>> = new Set();
 
@@ -451,5 +430,46 @@ export async function regenerate(flags: RegenerateFlagsInput, config: Regenerate
         // Default: 30 jobs, or use provided value
         const poolLimit = flags.jobs ?? 30;
         await runTaskPool(tasks, poolLimit);
+    }
+}
+
+// Preprocess: create files that should be deleted after regeneration (for testing)
+export async function preprocess(flavor: string, generatedFolder: string): Promise<void> {
+    if (flavor === "azure") {
+        // Use tests/generated/<flavor>/<package> structure (same as output)
+        const testsGeneratedDir = resolve(generatedFolder, "../tests/generated/azure");
+
+        const DELETE_CONTENT = "# This file is to be deleted after regeneration";
+        const DELETE_FILE = "to_be_deleted.py";
+        const entries: { folder: string[]; file: string; content: string }[] = [
+            {
+                folder: ["authentication-api-key", "authentication", "apikey", "_operations"],
+                file: DELETE_FILE,
+                content: DELETE_CONTENT,
+            },
+            {
+                folder: ["generation-subdir", "generation", "subdir", "_generated"],
+                file: DELETE_FILE,
+                content: DELETE_CONTENT,
+            },
+            {
+                folder: ["generation-subdir", "generated_tests"],
+                file: DELETE_FILE,
+                content: DELETE_CONTENT,
+            },
+            {
+                folder: ["generation-subdir", "generation", "subdir"],
+                file: "to_be_kept.py",
+                content: "# This file is to be kept after regeneration",
+            },
+        ];
+
+        await Promise.all(
+            entries.map(async ({ folder, file, content }) => {
+                const targetFolder = join(testsGeneratedDir, ...folder);
+                await promises.mkdir(targetFolder, { recursive: true });
+                await promises.writeFile(join(targetFolder, file), content);
+            }),
+        );
     }
 }
