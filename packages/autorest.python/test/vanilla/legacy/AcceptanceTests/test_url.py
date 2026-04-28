@@ -67,7 +67,7 @@ class TestUrl(object):
             client.paths.byte_null(None)
 
     def test_byte_multi_byte(self, client):
-        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
+        u_bytes = bytearray("\u554a\u9f44\u4e02\u72db\u72dc\uf9f1\uf92c\uf9f1\ufa0c\ufa29", encoding="utf-8")
         client.paths.byte_multi_byte(u_bytes)
 
     def test_date_null(self, client):
@@ -138,7 +138,7 @@ class TestUrl(object):
 
     def test_queries_byte(self, client):
         client.queries.byte_empty()
-        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
+        u_bytes = bytearray("\u554a\u9f44\u4e02\u72db\u72dc\uf9f1\uf92c\uf9f1\ufa0c\ufa29", encoding="utf-8")
         client.queries.byte_multi_byte(u_bytes)
         client.queries.byte_null()
 

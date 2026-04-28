@@ -8,7 +8,6 @@
 
 from setuptools import setup, find_packages
 
-
 PACKAGE_NAME = "objecttypeclient"
 version = "0.1.0"
 

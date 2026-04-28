@@ -44,7 +44,6 @@ from azure.mgmt.core.polling.arm_polling import ARMPolling
 from lro import AutoRestLongRunningOperationTestService
 from lro.models import *  # pylint: disable=W0614
 
-
 try:
     from urlparse import urlparse
 except ImportError:

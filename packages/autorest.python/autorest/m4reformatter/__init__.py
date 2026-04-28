@@ -5,6 +5,7 @@
 # license information.
 # --------------------------------------------------------------------------
 """The modelerfour reformatter autorest plugin."""
+
 import re
 import copy
 import logging
@@ -18,7 +19,6 @@ from pygen.utils import (
     update_enum_value,
 )
 from .. import YamlUpdatePluginAutorest
-
 
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 OAUTH_TYPE = "OAuth2"
