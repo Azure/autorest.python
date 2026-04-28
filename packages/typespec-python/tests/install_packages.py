@@ -19,9 +19,21 @@ def install_packages(flavor: str, tests_dir: str) -> None:
         print(f"Warning: Generated directory does not exist: {generated_dir}")
         return
 
-    # Find all package directories
-    packages = glob.glob(os.path.join(generated_dir, "*"))
-    packages = [p for p in packages if os.path.isdir(p)]
+    # Find all package directories that have pyproject.toml or setup.py
+    all_dirs = glob.glob(os.path.join(generated_dir, "*"))
+    packages = [
+        p
+        for p in all_dirs
+        if os.path.isdir(p)
+        and (os.path.exists(os.path.join(p, "pyproject.toml")) or os.path.exists(os.path.join(p, "setup.py")))
+    ]
+
+    # Log skipped directories for debugging
+    skipped = [os.path.basename(p) for p in all_dirs if os.path.isdir(p) and p not in packages]
+    if skipped:
+        print(
+            f"Skipping {len(skipped)} directories without packaging files: {', '.join(skipped[:5])}{'...' if len(skipped) > 5 else ''}"
+        )
 
     if not packages:
         print(f"Warning: No packages found in {generated_dir}")
@@ -29,22 +41,42 @@ def install_packages(flavor: str, tests_dir: str) -> None:
 
     print(f"Installing {len(packages)} packages from {generated_dir}")
 
-    # Install packages using uv pip with explicit python target
-    # Use --no-deps to avoid dependency resolution overhead
-    # Use --python to target the current tox environment
-    cmd = ["uv", "pip", "install", "--no-deps", "--python", sys.executable] + packages
+    # Install packages in batches to avoid command line length limits on Windows
+    batch_size = 20  # Conservative batch size for Windows command line limits
+    use_uv = True
 
-    try:
-        subprocess.run(cmd, check=True)
-        print(f"Successfully installed {len(packages)} packages")
-    except subprocess.CalledProcessError as e:
-        print(f"Error installing packages: {e}")
-        sys.exit(1)
-    except FileNotFoundError:
-        # uv not found, try pip (for local dev without uv)
-        print("uv not found, falling back to pip")
-        cmd = [sys.executable, "-m", "pip", "install", "--no-deps"] + packages
-        subprocess.run(cmd, check=True)
+    for i in range(0, len(packages), batch_size):
+        batch = packages[i : i + batch_size]
+        batch_num = i // batch_size + 1
+        total_batches = (len(packages) + batch_size - 1) // batch_size
+
+        if total_batches > 1:
+            print(f"  Batch {batch_num}/{total_batches}: {len(batch)} packages")
+
+        if use_uv:
+            # Use a per-flavor cache dir to prevent cross-flavor contamination when
+            # azure and unbranded tox envs run in parallel: both build e.g.
+            # typetest-array==1.0.0b1 but from different source dirs with different
+            # imports (azure.core vs corehttp).
+            cache_dir = os.path.join(tests_dir, ".uv-cache", flavor)
+            cmd = ["uv", "pip", "install", "--no-deps", "--cache-dir", cache_dir] + batch
+        else:
+            cmd = [sys.executable, "-m", "pip", "install", "--no-deps"] + batch
+
+        try:
+            subprocess.run(cmd, check=True)
+        except subprocess.CalledProcessError as e:
+            print(f"Error installing packages: {e}")
+            sys.exit(1)
+        except FileNotFoundError:
+            if use_uv:
+                # uv not found, fall back to pip for this and subsequent batches
+                print("uv not found, falling back to pip")
+                use_uv = False
+                cmd = [sys.executable, "-m", "pip", "install", "--no-deps"] + batch
+                subprocess.run(cmd, check=True)
+
+    print(f"Successfully installed {len(packages)} packages")
 
 
 def main():

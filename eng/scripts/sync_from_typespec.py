@@ -33,6 +33,15 @@ AUTOREST_COMMON_TS = Path("packages/typespec-python/eng/scripts/regenerate-commo
 TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
 AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
 
+TYPESPEC_DEV_REQUIREMENTS = Path("packages/http-client-python/eng/scripts/ci/dev_requirements.txt")
+AUTOREST_DEV_REQUIREMENTS = Path("packages/typespec-python/dev_requirements.txt")
+
+# Marker indicating where repo-specific content begins in dev_requirements.txt.
+# Everything from this line onward in the autorest file is preserved; everything
+# above is replaced with the upstream content (prefixed by a header comment).
+_DEV_REQUIREMENTS_HEADER = "# shall keep aligned with dev_requirements.txt of @typespec/http-client-python"
+_DEV_REQUIREMENTS_TAIL_MARKER = "# additional dependency needed for development"
+
 # --- Marker patterns for requirements sync ---
 #
 # Convention in requirements files (e.g. azure.txt, unbranded.txt):
@@ -155,6 +164,46 @@ def sync_requirements(source_dir: Path, target_dir: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
+# dev_requirements.txt sync
+# ---------------------------------------------------------------------------
+
+
+def sync_dev_requirements(source_file: Path, target_file: Path) -> None:
+    """Sync upstream dev_requirements.txt, preserving repo-specific tail.
+
+    The target file layout is:
+        <header>
+        <upstream content>
+
+        # additional dependency needed for development
+        <repo-specific deps>     <-- preserved from existing target
+
+    Content from the tail marker onward in the existing target is kept;
+    everything above is replaced with header + upstream.
+    """
+    if not source_file.is_file():
+        print(f"  WARNING: {source_file} not found, skipping")
+        return
+
+    upstream = source_file.read_text(encoding="utf-8").strip()
+
+    tail = ""
+    if target_file.is_file():
+        existing = target_file.read_text(encoding="utf-8")
+        idx = existing.find(_DEV_REQUIREMENTS_TAIL_MARKER)
+        if idx >= 0:
+            tail = existing[idx:].strip()
+
+    content = f"{_DEV_REQUIREMENTS_HEADER}\n{upstream}\n"
+    if tail:
+        content += f"\n{tail}\n"
+
+    target_file.parent.mkdir(parents=True, exist_ok=True)
+    target_file.write_text(content, encoding="utf-8", newline="\n")
+    print(f"  Synced: {target_file.name}")
+
+
+# ---------------------------------------------------------------------------
 # Test file sync
 # ---------------------------------------------------------------------------
 
@@ -246,14 +295,21 @@ def main() -> int:
         autorest_repo / AUTOREST_TEST_DIR / "requirements",
     )
 
-    # 3. Sync test files
+    # 3. Sync dev_requirements.txt
+    print("Syncing dev_requirements.txt...")
+    sync_dev_requirements(
+        typespec_repo / TYPESPEC_DEV_REQUIREMENTS,
+        autorest_repo / AUTOREST_DEV_REQUIREMENTS,
+    )
+
+    # 4. Sync test files
     print("Syncing test files...")
     sync_test_files(
         typespec_repo / TYPESPEC_TEST_DIR,
         autorest_repo / AUTOREST_TEST_DIR,
     )
 
-    # 4. Format TypeScript files
+    # 5. Format TypeScript files
     ts_python_dir = autorest_repo / "packages" / "typespec-python"
     print("Running pnpm format...")
     result = subprocess.run(
