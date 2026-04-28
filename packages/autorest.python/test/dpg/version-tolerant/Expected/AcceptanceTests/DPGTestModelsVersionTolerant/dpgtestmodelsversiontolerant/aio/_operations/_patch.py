@@ -7,6 +7,7 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
+
 from typing import List, Any
 from ...models import Product
 from ._operations import _DPGClientOperationsMixin as _DPGClientOperationsMixinGenerated

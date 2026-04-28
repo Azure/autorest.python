@@ -22,17 +22,18 @@ def install_packages(flavor: str, tests_dir: str) -> None:
     # Find all package directories that have pyproject.toml or setup.py
     all_dirs = glob.glob(os.path.join(generated_dir, "*"))
     packages = [
-        p for p in all_dirs
-        if os.path.isdir(p) and (
-            os.path.exists(os.path.join(p, "pyproject.toml")) or
-            os.path.exists(os.path.join(p, "setup.py"))
-        )
+        p
+        for p in all_dirs
+        if os.path.isdir(p)
+        and (os.path.exists(os.path.join(p, "pyproject.toml")) or os.path.exists(os.path.join(p, "setup.py")))
     ]
 
     # Log skipped directories for debugging
     skipped = [os.path.basename(p) for p in all_dirs if os.path.isdir(p) and p not in packages]
     if skipped:
-        print(f"Skipping {len(skipped)} directories without packaging files: {', '.join(skipped[:5])}{'...' if len(skipped) > 5 else ''}")
+        print(
+            f"Skipping {len(skipped)} directories without packaging files: {', '.join(skipped[:5])}{'...' if len(skipped) > 5 else ''}"
+        )
 
     if not packages:
         print(f"Warning: No packages found in {generated_dir}")
@@ -45,7 +46,7 @@ def install_packages(flavor: str, tests_dir: str) -> None:
     use_uv = True
 
     for i in range(0, len(packages), batch_size):
-        batch = packages[i:i + batch_size]
+        batch = packages[i : i + batch_size]
         batch_num = i // batch_size + 1
         total_batches = (len(packages) + batch_size - 1) // batch_size
 
