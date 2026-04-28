@@ -10,7 +10,6 @@
 import pytest
 from typing import List
 
-
 SPECIAL_WORDS = [
     "and",
     "as",
