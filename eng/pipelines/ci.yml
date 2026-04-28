@@ -49,20 +49,15 @@ jobs:
 
     strategy:
       matrix:
-        Linux_Python3.9:
-          OSName: "Linux"
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
-          PythonVersion: "3.9"
-        Windows_Python3.9:
-          OSName: "Windows"
-          Pool: ${{ variables.WINDOWSPOOL }}
-          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.9"
         Linux_Python3.10:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          PythonVersion: "3.10"
+        Windows_Python3.10:
+          OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python3.11:
           OSName: "Linux"
@@ -140,20 +135,15 @@ jobs:
 
     strategy:
       matrix:
-        Linux_Python3.9:
-          OSName: "Linux"
-          Pool: ${{ variables.LINUXPOOL }}
-          OSVmImage: ${{ variables.LINUXVMIMAGE}}
-          PythonVersion: "3.9"
-        Windows_Python3.9:
-          OSName: "Windows"
-          Pool: ${{ variables.WINDOWSPOOL }}
-          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.9"
         Linux_Python310:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
+          PythonVersion: "3.10"
+        Windows_Python310:
+          OSName: "Windows"
+          Pool: ${{ variables.WINDOWSPOOL }}
+          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
           PythonVersion: "3.10"
         Linux_Python311:
           OSName: "Linux"
