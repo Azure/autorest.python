@@ -140,11 +140,6 @@ jobs:
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.10"
-        Windows_Python310:
-          OSName: "Windows"
-          Pool: ${{ variables.WINDOWSPOOL }}
-          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.10"
         Linux_Python311:
           OSName: "Linux"
           Pool: ${{ variables.LINUXPOOL }}
@@ -155,11 +150,16 @@ jobs:
           Pool: ${{ variables.LINUXPOOL }}
           OSVmImage: ${{ variables.LINUXVMIMAGE}}
           PythonVersion: "3.13"
-        Windows_Python313:
-          OSName: "Windows"
-          Pool: ${{ variables.WINDOWSPOOL }}
-          OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
-          PythonVersion: "3.13"
+        # Windows_Python310:
+        #   OSName: "Windows"
+        #   Pool: ${{ variables.WINDOWSPOOL }}
+        #   OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
+        #   PythonVersion: "3.10"
+        # Windows_Python313:
+        #   OSName: "Windows"
+        #   Pool: ${{ variables.WINDOWSPOOL }}
+        #   OSVmImage: ${{ variables.WINDOWSVMIMAGE}}
+        #   PythonVersion: "3.13"
 
     pool:
       name: $(Pool)
