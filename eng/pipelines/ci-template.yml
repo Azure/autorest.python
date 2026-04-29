@@ -16,6 +16,20 @@ steps:
     parameters:
       TestProxy: true
       templateRoot: azure-sdk-tools
+
+  # Enable Windows long-path support so the deeply nested pnpm node_modules
+  # directory (e.g. node_modules/.pnpm/@typespec+http-client-python@https+++.../venv/Scripts/python.exe)
+  # does not exceed the legacy 260-char MAX_PATH limit, which causes
+  # "DLL load failed while importing black: The filename or extension is too long"
+  # when the emitter invokes `python -m black` on Windows agents.
+  - powershell: |
+      New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+        -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force | Out-Null
+      git config --system core.longpaths true
+      Write-Host "Windows long path support enabled."
+    displayName: Enable Windows long paths
+    condition: and(succeeded(), eq(variables['Agent.OS'], 'Windows_NT'))
+
   - task: NodeTool@0
     displayName: "Install Node.js 20.x"
     inputs:
