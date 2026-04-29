@@ -7,8 +7,8 @@
 # --------------------------------------------------------------------------
 
 from copy import deepcopy
+import sys
 from typing import Any
-from typing_extensions import Self
 
 from azure.core.credentials import AzureKeyCredential
 from azure.core.pipeline import policies
@@ -19,6 +19,11 @@ from azure.mgmt.core.policies import ARMAutoResourceProviderRegistrationPolicy
 from ._configuration import AutoRestHeadTestServiceConfiguration
 from ._utils.serialization import Deserializer, Serializer
 from .operations import HttpSuccessOperations
+
+if sys.version_info >= (3, 11):
+    from typing import Self
+else:
+    from typing_extensions import Self  # type: ignore
 
 
 class AutoRestHeadTestService:  # pylint: disable=client-accepts-api-version-keyword

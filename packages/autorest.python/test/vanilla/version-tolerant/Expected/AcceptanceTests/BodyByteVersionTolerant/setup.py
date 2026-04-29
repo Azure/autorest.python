@@ -8,7 +8,6 @@
 
 from setuptools import setup, find_packages
 
-
 PACKAGE_NAME = "autorestswaggerbatbyteservice"
 version = "0.1.0"
 

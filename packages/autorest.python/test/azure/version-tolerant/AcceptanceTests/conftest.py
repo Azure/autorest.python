@@ -35,7 +35,6 @@ from azure.core.pipeline.policies import SansIOHTTPPolicy
 
 import pytest
 
-
 cwd = dirname(realpath(__file__))
 
 
