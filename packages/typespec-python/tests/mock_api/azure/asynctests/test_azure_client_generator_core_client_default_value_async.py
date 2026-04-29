@@ -18,7 +18,7 @@ async def client():
 @pytest.mark.asyncio
 async def test_put_model_property(client: ClientDefaultValueClient):
     """Test case 1: @clientDefaultValue for model property."""
-    body = ModelWithDefaultValues(name="test")
+    body = ModelWithDefaultValues(name="test", timeout=30, tier="standard", retry=True)
     result = await client.put_model_property(body=body)
     assert result.name == "test"
     assert result.timeout == 30
