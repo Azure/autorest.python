@@ -7,6 +7,7 @@
 
 Follow our quickstart for examples: https://aka.ms/azsdk/python/dpcodegen/python/customize
 """
+
 from typing import Type
 import geojson
 from .._utils.model_base import TYPE_HANDLER_REGISTRY
