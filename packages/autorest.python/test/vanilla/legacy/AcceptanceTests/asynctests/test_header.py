@@ -185,7 +185,7 @@ class TestHeader(object):
 
     @pytest.mark.asyncio
     async def test_byte(self, client, value_header):
-        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
+        u_bytes = bytearray("\u554a\u9f44\u4e02\u72db\u72dc\uf9f1\uf92c\uf9f1\ufa0c\ufa29", encoding="utf-8")
         await client.header.param_byte("valid", u_bytes)
 
         response = await client.header.response_byte("valid", cls=value_header)

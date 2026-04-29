@@ -13,7 +13,6 @@ import yaml
 from pygen import ReaderAndWriter, Plugin, YamlUpdatePlugin, OptionsDict
 from .jsonrpc import AutorestAPI
 
-
 _LOGGER = logging.getLogger(__name__)
 
 

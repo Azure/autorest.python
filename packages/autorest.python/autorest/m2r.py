@@ -4,6 +4,7 @@
 # license information.
 # --------------------------------------------------------------------------
 """An autorest MD to RST plugin."""
+
 import logging
 from typing import Any, Dict, Set, Union
 
@@ -11,7 +12,6 @@ import m2r2
 from pygen import YamlUpdatePlugin
 
 from . import YamlUpdatePluginAutorest
-
 
 _LOGGER = logging.getLogger(__name__)
 
