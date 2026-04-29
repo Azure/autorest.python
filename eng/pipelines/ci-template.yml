@@ -17,9 +17,9 @@ steps:
       TestProxy: true
       templateRoot: azure-sdk-tools
   - task: NodeTool@0
-    displayName: "Install Node.js 20.x"
+    displayName: "Install Node.js 24.x"
     inputs:
-      versionSpec: "20.x"
+      versionSpec: "24.x"
 
   - task: UsePythonVersion@0
     displayName: "Use Python $(PythonVersion)"
