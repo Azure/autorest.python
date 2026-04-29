@@ -5,6 +5,7 @@
 # license information.
 # --------------------------------------------------------------------------
 """The modelerfour reformatter autorest plugin."""
+
 import re
 import copy
 import logging
@@ -18,7 +19,6 @@ from pygen.utils import (
     update_enum_value,
 )
 from .. import YamlUpdatePluginAutorest
-
 
 ORIGINAL_ID_TO_UPDATED_TYPE: Dict[int, Dict[str, Any]] = {}
 OAUTH_TYPE = "OAuth2"
@@ -748,7 +748,7 @@ class M4Reformatter(YamlUpdatePluginAutorest):  # pylint: disable=too-many-publi
         param["language"]["default"]["description"] = description
         return param
 
-    def _update_parameters_helper(
+    def _update_parameters_helper(  # pylint: disable=too-many-positional-arguments
         self,
         parameters: List[Dict[str, Any]],
         body_parameter: Optional[Dict[str, Any]],

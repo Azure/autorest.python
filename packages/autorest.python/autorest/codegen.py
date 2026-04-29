@@ -16,7 +16,6 @@ from . import ReaderAndWriterAutorest
 from .jsonrpc import AutorestAPI
 from . import PluginAutorest
 
-
 _LOGGER = logging.getLogger(__name__)
 
 

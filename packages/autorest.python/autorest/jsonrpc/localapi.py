@@ -9,7 +9,6 @@ from typing import Dict, List, Optional, Union
 
 from . import AutorestAPI, Channel
 
-
 _LOGGER = logging.getLogger(__name__)
 
 

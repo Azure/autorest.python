@@ -73,7 +73,7 @@ class TestUrl(object):
 
     @pytest.mark.asyncio
     async def test_byte_multi_byte(self, client):
-        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
+        u_bytes = bytearray("\u554a\u9f44\u4e02\u72db\u72dc\uf9f1\uf92c\uf9f1\ufa0c\ufa29", encoding="utf-8")
         await client.paths.byte_multi_byte(u_bytes)
 
     @pytest.mark.asyncio
@@ -163,7 +163,7 @@ class TestUrl(object):
     @pytest.mark.asyncio
     async def test_queries_byte(self, client):
         await client.queries.byte_empty()
-        u_bytes = bytearray("\u554A\u9F44\u4E02\u72DB\u72DC\uF9F1\uF92C\uF9F1\uFA0C\uFA29", encoding="utf-8")
+        u_bytes = bytearray("\u554a\u9f44\u4e02\u72db\u72dc\uf9f1\uf92c\uf9f1\ufa0c\ufa29", encoding="utf-8")
         await client.queries.byte_multi_byte(u_bytes)
         await client.queries.byte_null()
 

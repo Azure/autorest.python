@@ -8,7 +8,6 @@
 
 from setuptools import setup, find_packages
 
-
 PACKAGE_NAME = "custompollerpagerversiontolerant"
 version = "0.1.0"
 
