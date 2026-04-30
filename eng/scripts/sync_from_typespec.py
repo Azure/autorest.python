@@ -8,9 +8,8 @@
 """Sync shared files from the typespec repo (http-client-python) into this repo.
 
 The typespec repo is the source of truth for:
-  1. regenerate-common.ts — shared regeneration logic
-  2. requirements — test dependency files (tests/requirements/)
-  3. Test files — mock API tests under tests/mock_api/{shared,azure,unbranded}
+  1. requirements — test dependency files (tests/requirements/)
+  2. Test files — mock API tests under tests/mock_api/{shared,azure,unbranded}
 
 Usage:
     python sync_from_typespec.py <local-typespec-repo-path>
@@ -26,9 +25,6 @@ from pathlib import Path
 from typing import Dict, List, Set
 
 # --- Path configuration (relative to each repo root) ---
-
-TYPESPEC_COMMON_TS = Path("packages/http-client-python/eng/scripts/ci/regenerate-common.ts")
-AUTOREST_COMMON_TS = Path("packages/typespec-python/eng/scripts/regenerate-common.ts")
 
 TYPESPEC_TEST_DIR = Path("packages/http-client-python/tests")
 AUTOREST_TEST_DIR = Path("packages/typespec-python/tests")
@@ -279,37 +275,28 @@ def main() -> int:
         print(f"ERROR: typespec repo not found: {typespec_repo}", file=sys.stderr)
         return 1
 
-    # 1. Sync regenerate-common.ts
-    src_ts = typespec_repo / TYPESPEC_COMMON_TS
-    dst_ts = autorest_repo / AUTOREST_COMMON_TS
-    if not src_ts.is_file():
-        print(f"ERROR: {src_ts} not found", file=sys.stderr)
-        return 1
-    shutil.copy2(src_ts, dst_ts)
-    print(f"Synced regenerate-common.ts")
-
-    # 2. Sync requirements files
+    # 1. Sync requirements files
     print("Syncing requirements...")
     sync_requirements(
         typespec_repo / TYPESPEC_TEST_DIR / "requirements",
         autorest_repo / AUTOREST_TEST_DIR / "requirements",
     )
 
-    # 3. Sync dev_requirements.txt
+    # 2. Sync dev_requirements.txt
     print("Syncing dev_requirements.txt...")
     sync_dev_requirements(
         typespec_repo / TYPESPEC_DEV_REQUIREMENTS,
         autorest_repo / AUTOREST_DEV_REQUIREMENTS,
     )
 
-    # 4. Sync test files
+    # 3. Sync test files
     print("Syncing test files...")
     sync_test_files(
         typespec_repo / TYPESPEC_TEST_DIR,
         autorest_repo / AUTOREST_TEST_DIR,
     )
 
-    # 5. Format TypeScript files
+    # 4. Format TypeScript files
     ts_python_dir = autorest_repo / "packages" / "typespec-python"
     print("Running pnpm format...")
     result = subprocess.run(
