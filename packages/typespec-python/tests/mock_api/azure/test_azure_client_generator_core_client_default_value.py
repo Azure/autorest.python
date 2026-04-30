@@ -13,15 +13,15 @@ def client():
     with ClientDefaultValueClient() as client:
         yield client
 
-# will reopen after bug fixed
-# def test_put_model_property(client: ClientDefaultValueClient):
-#     """Test case 1: @clientDefaultValue for model property."""
-#     body = ModelWithDefaultValues(name="test")
-#     result = client.put_model_property(body=body)
-#     assert result.name == "test"
-#     assert result.timeout == 30
-#     assert result.tier == "standard"
-#     assert result.retry is True
+
+def test_put_model_property(client: ClientDefaultValueClient):
+    """Test case 1: @clientDefaultValue for model property."""
+    body = ModelWithDefaultValues(name="test")
+    result = client.put_model_property(body=body)
+    assert result.name == "test"
+    assert result.timeout == 30
+    assert result.tier == "standard"
+    assert result.retry is True
 
 
 def test_get_operation_parameter(client: ClientDefaultValueClient):
