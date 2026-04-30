@@ -12,7 +12,7 @@ from subprocess import check_call, CalledProcessError
 import os
 import logging
 import sys
-from util import run_check
+from util import run_check, get_package_namespace_dir
 
 logging.getLogger().setLevel(logging.INFO)
 
@@ -26,47 +26,37 @@ def get_config_file_location():
     return os.path.join(os.path.dirname(__file__), "config/mypy.ini")
 
 
-def _has_python_files(directory):
-    """Check if a directory contains any .py files recursively."""
-    return any(directory.rglob("*.py"))
-
-
-def _single_dir_mypy(mod):
-    try:
-        inner_class = next(
-            (
-                d
-                for d in mod.iterdir()
-                if d.is_dir()
-                and d.name not in ("build", "generated_tests", "specs", "generated_samples")
-                and not str(d).endswith("egg-info")
-                and _has_python_files(d)
-            ),
-            None,
-        )
-        if inner_class is None:
-            logging.warning("No valid source directory found in %s, skipping", mod)
-            return True
-        check_call(
-            [
-                sys.executable,
-                "-m",
-                "mypy",
-                "--config-file",
-                get_config_file_location(),
-                "--ignore-missing",
-                "--exclude",
-                "build",
-                str(inner_class.absolute()),
-            ]
-        )
+def _single_dir_mypy(mod, retries=2):
+    inner_class = get_package_namespace_dir(mod)
+    if not inner_class:
+        logging.info(f"No package directory found in {mod}, skipping")
         return True
-    except CalledProcessError as e:
-        logging.error("{} exited with mypy error {}".format(mod.stem, e.returncode))
-        return False
-    except Exception as e:
-        logging.error("Unexpected error processing %s: %s", mod, e)
-        return False
+    for attempt in range(1, retries + 2):
+        try:
+            check_call(
+                [
+                    sys.executable,
+                    "-m",
+                    "mypy",
+                    "--config-file",
+                    get_config_file_location(),
+                    "--ignore-missing",
+                    str(inner_class.absolute()),
+                ]
+            )
+            return True
+        except CalledProcessError as e:
+            if attempt <= retries:
+                logging.warning(
+                    "{} mypy attempt {} failed (exit {}), retrying...".format(inner_class.stem, attempt, e.returncode)
+                )
+            else:
+                logging.error("{} exited with mypy error {}".format(inner_class.stem, e.returncode))
+                return False
+        except Exception as e:
+            logging.error("Unexpected error processing %s: %s", mod, e)
+            return False
+    return False
 
 
 if __name__ == "__main__":

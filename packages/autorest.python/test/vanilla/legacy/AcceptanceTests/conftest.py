@@ -36,7 +36,6 @@ from azure.core.credentials import AccessToken
 
 import pytest
 
-
 cwd = dirname(realpath(__file__))
 
 

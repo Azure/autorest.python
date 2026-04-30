@@ -14,7 +14,6 @@ from jsonrpc.jsonrpc2 import JSONRPC20Request
 
 from . import AutorestAPI, Channel
 
-
 _LOGGER = logging.getLogger(__name__)
 
 
