@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "parameterizedendpoint.ParmaterizedEndpointClient.get": null,
         "parameterizedendpoint.aio.ParmaterizedEndpointClient.get": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

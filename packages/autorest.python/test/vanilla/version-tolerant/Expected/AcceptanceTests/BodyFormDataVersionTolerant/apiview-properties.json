@@ -7,5 +7,6 @@
         "bodyformdataversiontolerant.aio.operations.FormdataOperations.upload_file_via_body": null,
         "bodyformdataversiontolerant.operations.FormdataOperations.upload_files": null,
         "bodyformdataversiontolerant.aio.operations.FormdataOperations.upload_files": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

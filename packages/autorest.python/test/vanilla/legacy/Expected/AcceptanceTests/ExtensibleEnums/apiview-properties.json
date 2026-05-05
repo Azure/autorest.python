@@ -8,5 +8,6 @@
         "extensibleenumsswagger.aio.operations.PetOperations.get_by_pet_id": null,
         "extensibleenumsswagger.operations.PetOperations.add_pet": null,
         "extensibleenumsswagger.aio.operations.PetOperations.add_pet": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

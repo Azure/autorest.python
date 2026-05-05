@@ -18,5 +18,6 @@
         "bodydate.aio.operations.DateOperations.put_min_date": null,
         "bodydate.operations.DateOperations.get_min_date": null,
         "bodydate.aio.operations.DateOperations.get_min_date": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

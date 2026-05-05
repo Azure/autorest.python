@@ -9,5 +9,6 @@
         "custombaseurlpaging.aio.operations.PagingOperations.get_pages_partial_url": null,
         "custombaseurlpaging.operations.PagingOperations.get_pages_partial_url_operation": null,
         "custombaseurlpaging.aio.operations.PagingOperations.get_pages_partial_url_operation": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

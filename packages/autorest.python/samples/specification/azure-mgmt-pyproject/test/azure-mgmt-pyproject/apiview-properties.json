@@ -11,5 +11,6 @@
         "azure.mgmt.pyproject.aio.operations.Operations.list": null,
         "azure.mgmt.pyproject.operations.SelfDefineOperations.post": null,
         "azure.mgmt.pyproject.aio.operations.SelfDefineOperations.post": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -4,5 +4,6 @@
         "incorrecterrorresponse.models.Error": null,
         "incorrecterrorresponse.IncorrectReturnedErrorModel.get_incorrect_error_from_server": null,
         "incorrecterrorresponse.aio.IncorrectReturnedErrorModel.get_incorrect_error_from_server": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

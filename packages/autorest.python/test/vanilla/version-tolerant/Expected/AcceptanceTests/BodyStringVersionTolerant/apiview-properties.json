@@ -40,5 +40,6 @@
         "bodystringversiontolerant.aio.operations.EnumOperations.get_referenced_constant": null,
         "bodystringversiontolerant.operations.EnumOperations.put_referenced_constant": null,
         "bodystringversiontolerant.aio.operations.EnumOperations.put_referenced_constant": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -7,5 +7,6 @@
         "xmserrorresponseversiontolerant.aio.operations.PetOperations.do_something": null,
         "xmserrorresponseversiontolerant.operations.PetOperations.has_models_param": null,
         "xmserrorresponseversiontolerant.aio.operations.PetOperations.has_models_param": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

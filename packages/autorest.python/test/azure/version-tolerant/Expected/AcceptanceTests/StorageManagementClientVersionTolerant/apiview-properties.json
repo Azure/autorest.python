@@ -27,5 +27,6 @@
         "storageversiontolerant.aio.operations.StorageAccountsOperations.regenerate_key": null,
         "storageversiontolerant.operations.UsageOperations.list": null,
         "storageversiontolerant.aio.operations.UsageOperations.list": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -12,5 +12,6 @@
         "bodybytewithpackagename.aio.operations.ByteOperations.put_non_ascii": null,
         "bodybytewithpackagename.operations.ByteOperations.get_invalid": null,
         "bodybytewithpackagename.aio.operations.ByteOperations.get_invalid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

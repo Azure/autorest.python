@@ -13,5 +13,6 @@
         "packagemode.aio.AnythingClient.get_array": null,
         "packagemode.AnythingClient.put_array": null,
         "packagemode.aio.AnythingClient.put_array": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

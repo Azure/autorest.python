@@ -19,5 +19,6 @@
         "bodydatetimerfc1123versiontolerant.aio.operations.Datetimerfc1123Operations.put_utc_min_date_time": null,
         "bodydatetimerfc1123versiontolerant.operations.Datetimerfc1123Operations.get_utc_min_date_time": null,
         "bodydatetimerfc1123versiontolerant.aio.operations.Datetimerfc1123Operations.get_utc_min_date_time": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

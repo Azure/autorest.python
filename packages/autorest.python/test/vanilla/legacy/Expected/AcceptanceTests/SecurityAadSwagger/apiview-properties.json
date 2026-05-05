@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "securityaadswagger.AutorestSecurityAad.head": null,
         "securityaadswagger.aio.AutorestSecurityAad.head": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

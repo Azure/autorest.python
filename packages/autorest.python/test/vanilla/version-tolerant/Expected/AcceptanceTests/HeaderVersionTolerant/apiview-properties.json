@@ -60,5 +60,6 @@
         "headerversiontolerant.aio.operations.HeaderOperations.response_enum": null,
         "headerversiontolerant.operations.HeaderOperations.custom_request_id": null,
         "headerversiontolerant.aio.operations.HeaderOperations.custom_request_id": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

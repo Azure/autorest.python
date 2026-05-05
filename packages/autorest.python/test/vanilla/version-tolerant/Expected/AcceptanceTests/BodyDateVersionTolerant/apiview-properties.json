@@ -17,5 +17,6 @@
         "bodydateversiontolerant.aio.operations.DateOperations.put_min_date": null,
         "bodydateversiontolerant.operations.DateOperations.get_min_date": null,
         "bodydateversiontolerant.aio.operations.DateOperations.get_min_date": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

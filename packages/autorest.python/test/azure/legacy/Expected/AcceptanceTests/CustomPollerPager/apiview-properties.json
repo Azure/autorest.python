@@ -61,5 +61,6 @@
         "custompollerpager.aio.operations.PagingOperations.replace_api_version": null,
         "custompollerpager.operations.PagingOperations.get_paging_model_with_item_name_with_xms_client_name": null,
         "custompollerpager.aio.operations.PagingOperations.get_paging_model_with_item_name_with_xms_client_name": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

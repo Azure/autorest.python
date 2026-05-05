@@ -13,5 +13,6 @@
         "bodybooleanversiontolerant.aio.operations.BoolOperations.get_null": null,
         "bodybooleanversiontolerant.operations.BoolOperations.get_invalid": null,
         "bodybooleanversiontolerant.aio.operations.BoolOperations.get_invalid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

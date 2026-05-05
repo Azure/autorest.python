@@ -44,5 +44,6 @@
         "storage.aio.operations.StorageAccountsOperations.regenerate_key": null,
         "storage.operations.UsageOperations.list": null,
         "storage.aio.operations.UsageOperations.list": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

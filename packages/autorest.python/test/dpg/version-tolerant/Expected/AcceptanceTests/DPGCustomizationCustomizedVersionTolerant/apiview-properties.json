@@ -10,5 +10,6 @@
         "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.get_pages": null,
         "dpgcustomizationcustomizedversiontolerant.DPGClient.begin_lro": null,
         "dpgcustomizationcustomizedversiontolerant.aio.DPGClient.begin_lro": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

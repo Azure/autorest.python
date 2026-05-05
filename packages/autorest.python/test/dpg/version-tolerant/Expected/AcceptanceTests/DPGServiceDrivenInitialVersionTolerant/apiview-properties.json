@@ -11,5 +11,6 @@
         "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.post_parameters": null,
         "dpgservicedriveninitialversiontolerant.operations.ParamsOperations.get_optional": null,
         "dpgservicedriveninitialversiontolerant.aio.operations.ParamsOperations.get_optional": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

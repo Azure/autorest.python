@@ -59,5 +59,6 @@
         "constantsversiontolerant.aio.operations.ContantsOperations.put_model_as_string_required_one_value_default": null,
         "constantsversiontolerant.operations.ContantsOperations.put_client_constants": null,
         "constantsversiontolerant.aio.operations.ContantsOperations.put_client_constants": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -49,5 +49,6 @@
         "bodynumberversiontolerant.aio.operations.NumberOperations.put_small_decimal": null,
         "bodynumberversiontolerant.operations.NumberOperations.get_small_decimal": null,
         "bodynumberversiontolerant.aio.operations.NumberOperations.get_small_decimal": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

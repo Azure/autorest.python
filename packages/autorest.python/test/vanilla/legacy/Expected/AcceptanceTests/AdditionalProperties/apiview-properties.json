@@ -20,5 +20,6 @@
         "additionalproperties.aio.operations.PetsOperations.create_ap_in_properties": null,
         "additionalproperties.operations.PetsOperations.create_ap_in_properties_with_ap_string": null,
         "additionalproperties.aio.operations.PetsOperations.create_ap_in_properties_with_ap_string": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

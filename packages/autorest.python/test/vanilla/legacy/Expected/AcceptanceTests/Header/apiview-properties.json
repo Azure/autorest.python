@@ -61,5 +61,6 @@
         "header.aio.operations.HeaderOperations.response_enum": null,
         "header.operations.HeaderOperations.custom_request_id": null,
         "header.aio.operations.HeaderOperations.custom_request_id": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

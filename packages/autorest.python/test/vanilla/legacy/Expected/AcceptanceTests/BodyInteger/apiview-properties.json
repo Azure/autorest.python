@@ -30,5 +30,6 @@
         "bodyinteger.aio.operations.IntOperations.get_invalid_unix_time": null,
         "bodyinteger.operations.IntOperations.get_null_unix_time": null,
         "bodyinteger.aio.operations.IntOperations.get_null_unix_time": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

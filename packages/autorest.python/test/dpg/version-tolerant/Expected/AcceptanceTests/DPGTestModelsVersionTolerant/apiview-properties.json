@@ -13,5 +13,6 @@
         "dpgtestmodelsversiontolerant.aio.DPGClient.get_pages": null,
         "dpgtestmodelsversiontolerant.DPGClient.begin_lro": null,
         "dpgtestmodelsversiontolerant.aio.DPGClient.begin_lro": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

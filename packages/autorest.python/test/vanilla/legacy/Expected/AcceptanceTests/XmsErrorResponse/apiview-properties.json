@@ -17,5 +17,6 @@
         "xmserrorresponse.aio.operations.PetOperations.do_something": null,
         "xmserrorresponse.operations.PetOperations.has_models_param": null,
         "xmserrorresponse.aio.operations.PetOperations.has_models_param": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -7,5 +7,6 @@
         "headexceptions.aio.operations.HeadExceptionOperations.head204": null,
         "headexceptions.operations.HeadExceptionOperations.head404": null,
         "headexceptions.aio.operations.HeadExceptionOperations.head404": null
-    }
+    },
+    "CrossLanguageVersion": null
 }
