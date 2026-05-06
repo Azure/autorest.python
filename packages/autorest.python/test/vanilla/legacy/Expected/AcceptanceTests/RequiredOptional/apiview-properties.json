@@ -75,5 +75,6 @@
         "requiredoptional.aio.operations.ExplicitOperations.post_required_array_header": null,
         "requiredoptional.operations.ExplicitOperations.post_optional_array_header": null,
         "requiredoptional.aio.operations.ExplicitOperations.post_optional_array_header": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

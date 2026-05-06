@@ -4,5 +4,6 @@
         "custombaseurlmoreoptions.models.Error": null,
         "custombaseurlmoreoptions.operations.PathsOperations.get_empty": null,
         "custombaseurlmoreoptions.aio.operations.PathsOperations.get_empty": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

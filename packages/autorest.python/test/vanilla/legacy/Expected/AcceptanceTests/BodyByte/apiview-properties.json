@@ -12,5 +12,6 @@
         "bodybyte.aio.operations.ByteOperations.put_non_ascii": null,
         "bodybyte.operations.ByteOperations.get_invalid": null,
         "bodybyte.aio.operations.ByteOperations.get_invalid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

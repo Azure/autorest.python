@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "mergepatchjson.MergePatchJsonClient.patch_single": null,
         "mergepatchjson.aio.MergePatchJsonClient.patch_single": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

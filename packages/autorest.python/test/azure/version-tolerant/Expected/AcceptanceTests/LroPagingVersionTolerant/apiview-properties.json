@@ -13,5 +13,6 @@
         "lropagingversiontolerant.aio.operations.QuestionAnsweringProjectsOperations.get_qnas": null,
         "lropagingversiontolerant.operations.QuestionAnsweringProjectsOperations.begin_update_qnas": null,
         "lropagingversiontolerant.aio.operations.QuestionAnsweringProjectsOperations.begin_update_qnas": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

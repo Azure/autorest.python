@@ -13,5 +13,6 @@
         "anything_client.aio.AnythingClient.get_array": null,
         "anything_client.AnythingClient.put_array": null,
         "anything_client.aio.AnythingClient.put_array": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

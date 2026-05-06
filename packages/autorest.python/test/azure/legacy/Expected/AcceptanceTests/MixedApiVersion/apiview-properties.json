@@ -70,5 +70,6 @@
         "mixedapiversion.aio.operations.HeaderOperations.custom_named_request_id_param_grouping": null,
         "mixedapiversion.operations.HeaderOperations.custom_named_request_id_head": null,
         "mixedapiversion.aio.operations.HeaderOperations.custom_named_request_id_head": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

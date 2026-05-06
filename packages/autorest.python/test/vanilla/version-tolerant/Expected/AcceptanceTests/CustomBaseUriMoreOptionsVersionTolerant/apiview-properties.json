@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "custombaseurlmoreoptionsversiontolerant.operations.PathsOperations.get_empty": null,
         "custombaseurlmoreoptionsversiontolerant.aio.operations.PathsOperations.get_empty": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

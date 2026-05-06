@@ -135,5 +135,6 @@
         "url.aio.operations.PathItemsOperations.get_global_and_local_query_null": null,
         "url.operations.PathItemsOperations.get_local_path_item_query_null": null,
         "url.aio.operations.PathItemsOperations.get_local_path_item_query_null": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -65,5 +65,6 @@
         "requiredoptionalversiontolerant.aio.operations.ExplicitOperations.post_required_array_header": null,
         "requiredoptionalversiontolerant.operations.ExplicitOperations.post_optional_array_header": null,
         "requiredoptionalversiontolerant.aio.operations.ExplicitOperations.post_optional_array_header": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

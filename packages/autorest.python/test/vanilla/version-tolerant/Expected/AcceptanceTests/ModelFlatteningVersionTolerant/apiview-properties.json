@@ -24,5 +24,6 @@
         "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.post_flattened_simple_product": null,
         "modelflatteningversiontolerant.AutoRestResourceFlatteningTestService.put_simple_product_with_grouping": null,
         "modelflatteningversiontolerant.aio.AutoRestResourceFlatteningTestService.put_simple_product_with_grouping": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

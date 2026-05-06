@@ -9,5 +9,6 @@
         "bodydurationversiontolerant.aio.operations.DurationOperations.get_positive_duration": null,
         "bodydurationversiontolerant.operations.DurationOperations.get_invalid": null,
         "bodydurationversiontolerant.aio.operations.DurationOperations.get_invalid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

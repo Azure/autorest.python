@@ -228,5 +228,6 @@
         "httpinfrastructure.aio.operations.MultipleResponsesOperations.get200_model_a400_invalid": null,
         "httpinfrastructure.operations.MultipleResponsesOperations.get200_model_a202_valid": null,
         "httpinfrastructure.aio.operations.MultipleResponsesOperations.get200_model_a202_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

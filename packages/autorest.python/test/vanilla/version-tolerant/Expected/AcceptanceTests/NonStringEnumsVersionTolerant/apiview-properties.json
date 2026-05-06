@@ -11,5 +11,6 @@
         "nonstringenumsversiontolerant.aio.operations.FloatOperations.put": null,
         "nonstringenumsversiontolerant.operations.FloatOperations.get": null,
         "nonstringenumsversiontolerant.aio.operations.FloatOperations.get": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

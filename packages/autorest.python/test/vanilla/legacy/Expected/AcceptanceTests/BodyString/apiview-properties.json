@@ -42,5 +42,6 @@
         "bodystring.aio.operations.EnumOperations.get_referenced_constant": null,
         "bodystring.operations.EnumOperations.put_referenced_constant": null,
         "bodystring.aio.operations.EnumOperations.put_referenced_constant": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

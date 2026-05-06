@@ -106,5 +106,6 @@
         "xmlserviceversiontolerant.aio.operations.XmlOperations.get_uri": null,
         "xmlserviceversiontolerant.operations.XmlOperations.put_uri": null,
         "xmlserviceversiontolerant.aio.operations.XmlOperations.put_uri": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

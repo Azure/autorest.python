@@ -15,5 +15,6 @@
         "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.get_optional": null,
         "dpgservicedrivenupdateoneversiontolerant.operations.ParamsOperations.get_new_operation": null,
         "dpgservicedrivenupdateoneversiontolerant.aio.operations.ParamsOperations.get_new_operation": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

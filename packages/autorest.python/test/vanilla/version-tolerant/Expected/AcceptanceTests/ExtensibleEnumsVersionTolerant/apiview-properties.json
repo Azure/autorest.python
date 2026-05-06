@@ -7,5 +7,6 @@
         "extensibleenumsswaggerversiontolerant.aio.operations.PetOperations.get_by_pet_id": null,
         "extensibleenumsswaggerversiontolerant.operations.PetOperations.add_pet": null,
         "extensibleenumsswaggerversiontolerant.aio.operations.PetOperations.add_pet": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

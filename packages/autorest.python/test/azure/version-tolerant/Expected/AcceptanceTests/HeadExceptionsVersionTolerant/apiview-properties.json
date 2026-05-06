@@ -7,5 +7,6 @@
         "headexceptionsversiontolerant.aio.operations.HeadExceptionOperations.head204": null,
         "headexceptionsversiontolerant.operations.HeadExceptionOperations.head404": null,
         "headexceptionsversiontolerant.aio.operations.HeadExceptionOperations.head404": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

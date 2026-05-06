@@ -19,5 +19,6 @@
         "mediatypesversiontolerant.aio.MediaTypesClient.body_three_types": null,
         "mediatypesversiontolerant.MediaTypesClient.put_text_and_json_body": null,
         "mediatypesversiontolerant.aio.MediaTypesClient.put_text_and_json_body": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

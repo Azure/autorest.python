@@ -9,5 +9,6 @@
         "validationversiontolerant.aio.AutoRestValidationTest.get_with_constant_in_path": null,
         "validationversiontolerant.AutoRestValidationTest.post_with_constant_in_body": null,
         "validationversiontolerant.aio.AutoRestValidationTest.post_with_constant_in_body": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

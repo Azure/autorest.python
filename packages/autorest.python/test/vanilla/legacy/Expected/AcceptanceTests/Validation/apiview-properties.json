@@ -13,5 +13,6 @@
         "validation.aio.AutoRestValidationTest.get_with_constant_in_path": null,
         "validation.AutoRestValidationTest.post_with_constant_in_body": null,
         "validation.aio.AutoRestValidationTest.post_with_constant_in_body": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

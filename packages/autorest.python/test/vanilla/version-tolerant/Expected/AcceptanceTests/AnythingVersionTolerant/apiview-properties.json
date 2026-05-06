@@ -13,5 +13,6 @@
         "anythingversiontolerant.aio.AnythingClient.get_array": null,
         "anythingversiontolerant.AnythingClient.put_array": null,
         "anythingversiontolerant.aio.AnythingClient.put_array": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

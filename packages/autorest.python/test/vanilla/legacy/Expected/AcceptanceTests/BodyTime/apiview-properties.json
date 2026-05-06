@@ -6,5 +6,6 @@
         "bodytime.aio.operations.TimeOperations.get": null,
         "bodytime.operations.TimeOperations.put": null,
         "bodytime.aio.operations.TimeOperations.put": null
-    }
+    },
+    "CrossLanguageVersion": null
 }
