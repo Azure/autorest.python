@@ -8,5 +8,6 @@
         "bodybinary.aio.operations.UploadOperations.binary": null,
         "bodybinary.operations.DownloadOperations.error_stream": null,
         "bodybinary.aio.operations.DownloadOperations.error_stream": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

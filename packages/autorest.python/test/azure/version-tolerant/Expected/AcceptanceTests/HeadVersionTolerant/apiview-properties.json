@@ -7,5 +7,6 @@
         "headversiontolerant.aio.operations.HttpSuccessOperations.head204": null,
         "headversiontolerant.operations.HttpSuccessOperations.head404": null,
         "headversiontolerant.aio.operations.HttpSuccessOperations.head404": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

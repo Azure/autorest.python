@@ -9,5 +9,6 @@
         "bodyformurlencodeddata.aio.operations.FormdataurlencodedOperations.update_pet_with_form": null,
         "bodyformurlencodeddata.operations.FormdataurlencodedOperations.partial_constant_body": null,
         "bodyformurlencodeddata.aio.operations.FormdataurlencodedOperations.partial_constant_body": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

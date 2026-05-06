@@ -5,5 +5,6 @@
         "reportversiontolerant.aio.AutoRestReportService.get_report": null,
         "reportversiontolerant.AutoRestReportService.get_optional_report": null,
         "reportversiontolerant.aio.AutoRestReportService.get_optional_report": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

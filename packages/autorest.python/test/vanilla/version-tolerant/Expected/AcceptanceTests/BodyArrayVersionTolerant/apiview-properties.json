@@ -142,5 +142,6 @@
         "bodyarrayversiontolerant.aio.operations.ArrayOperations.get_dictionary_valid": null,
         "bodyarrayversiontolerant.operations.ArrayOperations.put_dictionary_valid": null,
         "bodyarrayversiontolerant.aio.operations.ArrayOperations.put_dictionary_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

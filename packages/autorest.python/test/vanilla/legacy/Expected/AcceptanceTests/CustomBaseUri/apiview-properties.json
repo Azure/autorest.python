@@ -4,5 +4,6 @@
         "custombaseurl.models.Error": null,
         "custombaseurl.operations.PathsOperations.get_empty": null,
         "custombaseurl.aio.operations.PathsOperations.get_empty": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

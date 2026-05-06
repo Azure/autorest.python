@@ -13,6 +13,7 @@ def client():
     with ClientDefaultValueClient() as client:
         yield client
 
+
 # will reopen after bug fixed
 # def test_put_model_property(client: ClientDefaultValueClient):
 #     """Test case 1: @clientDefaultValue for model property."""

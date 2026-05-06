@@ -133,5 +133,6 @@
         "bodydictionary.aio.operations.DictionaryOperations.get_dictionary_valid": null,
         "bodydictionary.operations.DictionaryOperations.put_dictionary_valid": null,
         "bodydictionary.aio.operations.DictionaryOperations.put_dictionary_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

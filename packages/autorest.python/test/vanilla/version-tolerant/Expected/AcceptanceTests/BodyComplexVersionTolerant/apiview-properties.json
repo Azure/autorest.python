@@ -114,5 +114,6 @@
         "bodycomplexversiontolerant.aio.operations.ReadonlypropertyOperations.put_valid": null,
         "bodycomplexversiontolerant.operations.FlattencomplexOperations.get_valid": null,
         "bodycomplexversiontolerant.aio.operations.FlattencomplexOperations.get_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

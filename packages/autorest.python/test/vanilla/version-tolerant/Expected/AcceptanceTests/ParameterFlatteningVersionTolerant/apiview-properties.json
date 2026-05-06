@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "parameterflatteningversiontolerant.operations.AvailabilitySetsOperations.update": null,
         "parameterflatteningversiontolerant.aio.operations.AvailabilitySetsOperations.update": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

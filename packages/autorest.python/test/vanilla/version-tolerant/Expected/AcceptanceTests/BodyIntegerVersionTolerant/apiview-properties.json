@@ -29,5 +29,6 @@
         "bodyintegerversiontolerant.aio.operations.IntOperations.get_invalid_unix_time": null,
         "bodyintegerversiontolerant.operations.IntOperations.get_null_unix_time": null,
         "bodyintegerversiontolerant.aio.operations.IntOperations.get_null_unix_time": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

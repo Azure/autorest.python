@@ -173,5 +173,6 @@
         "lro.aio.operations.LROsCustomHeaderOperations.begin_post202_retry200": null,
         "lro.operations.LROsCustomHeaderOperations.begin_post_async_retry_succeeded": null,
         "lro.aio.operations.LROsCustomHeaderOperations.begin_post_async_retry_succeeded": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

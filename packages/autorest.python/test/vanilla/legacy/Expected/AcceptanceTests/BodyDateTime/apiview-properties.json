@@ -46,5 +46,6 @@
         "bodydatetime.aio.operations.DatetimeOperations.get_local_negative_offset_min_date_time": null,
         "bodydatetime.operations.DatetimeOperations.get_local_no_offset_min_date_time": null,
         "bodydatetime.aio.operations.DatetimeOperations.get_local_no_offset_min_date_time": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

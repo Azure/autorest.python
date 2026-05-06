@@ -144,5 +144,6 @@
         "vanilla.body.array.aio.operations.ArrayOperations.get_dictionary_valid": null,
         "vanilla.body.array.operations.ArrayOperations.put_dictionary_valid": null,
         "vanilla.body.array.aio.operations.ArrayOperations.put_dictionary_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

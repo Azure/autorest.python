@@ -18,5 +18,6 @@
         "reservedwords.aio.ReservedWordsClient.operation_with_url": null,
         "reservedwords.ReservedWordsClient.reserved_enum": null,
         "reservedwords.aio.ReservedWordsClient.reserved_enum": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

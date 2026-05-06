@@ -21,5 +21,6 @@
         "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.get_kitten": null,
         "multipleinheritanceversiontolerant.MultipleInheritanceServiceClient.put_kitten": null,
         "multipleinheritanceversiontolerant.aio.MultipleInheritanceServiceClient.put_kitten": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

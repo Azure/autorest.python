@@ -14,5 +14,6 @@
         "bodyboolean.aio.operations.BoolOperations.get_null": null,
         "bodyboolean.operations.BoolOperations.get_invalid": null,
         "bodyboolean.aio.operations.BoolOperations.get_invalid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -223,5 +223,6 @@
         "httpinfrastructureversiontolerant.aio.operations.MultipleResponsesOperations.get200_model_a400_invalid": null,
         "httpinfrastructureversiontolerant.operations.MultipleResponsesOperations.get200_model_a202_valid": null,
         "httpinfrastructureversiontolerant.aio.operations.MultipleResponsesOperations.get200_model_a202_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

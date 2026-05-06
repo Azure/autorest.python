@@ -144,5 +144,6 @@
         "azure.test.aio.operations.ArrayOperations.get_dictionary_valid": null,
         "azure.test.operations.ArrayOperations.put_dictionary_valid": null,
         "azure.test.aio.operations.ArrayOperations.put_dictionary_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

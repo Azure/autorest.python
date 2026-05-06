@@ -7,5 +7,6 @@
         "headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations.head204": null,
         "headwithazurekeycredentialpolicy.operations.HttpSuccessOperations.head404": null,
         "headwithazurekeycredentialpolicy.aio.operations.HttpSuccessOperations.head404": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

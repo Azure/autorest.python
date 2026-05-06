@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "securitykeyswagger.AutorestSecurityKey.head": null,
         "securitykeyswagger.aio.AutorestSecurityKey.head": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

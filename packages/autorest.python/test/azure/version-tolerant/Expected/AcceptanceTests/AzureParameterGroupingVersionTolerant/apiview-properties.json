@@ -13,5 +13,6 @@
         "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.post_shared_parameter_group_object": null,
         "azureparametergroupingversiontolerant.operations.ParameterGroupingOperations.group_with_constant": null,
         "azureparametergroupingversiontolerant.aio.operations.ParameterGroupingOperations.group_with_constant": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

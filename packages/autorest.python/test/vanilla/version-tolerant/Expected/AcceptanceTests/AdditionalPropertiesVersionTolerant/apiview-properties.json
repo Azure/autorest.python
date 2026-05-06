@@ -13,5 +13,6 @@
         "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_in_properties": null,
         "additionalpropertiesversiontolerant.operations.PetsOperations.create_ap_in_properties_with_ap_string": null,
         "additionalpropertiesversiontolerant.aio.operations.PetsOperations.create_ap_in_properties_with_ap_string": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

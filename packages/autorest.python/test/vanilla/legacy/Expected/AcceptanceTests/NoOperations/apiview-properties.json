@@ -2,5 +2,6 @@
     "CrossLanguagePackageId": null,
     "CrossLanguageDefinitionId": {
         "nooperations.models.Error": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

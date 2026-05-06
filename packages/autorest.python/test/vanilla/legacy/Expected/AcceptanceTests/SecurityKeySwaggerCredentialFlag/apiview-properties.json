@@ -3,5 +3,6 @@
     "CrossLanguageDefinitionId": {
         "securitykeyswaggercredentialflag.SecurityKeySwaggerCredentialFlag.head": null,
         "securitykeyswaggercredentialflag.aio.SecurityKeySwaggerCredentialFlag.head": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

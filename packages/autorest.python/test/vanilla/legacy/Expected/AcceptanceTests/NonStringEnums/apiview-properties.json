@@ -11,5 +11,6 @@
         "nonstringenums.aio.operations.FloatOperations.put": null,
         "nonstringenums.operations.FloatOperations.get": null,
         "nonstringenums.aio.operations.FloatOperations.get": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -50,5 +50,6 @@
         "bodynumber.aio.operations.NumberOperations.put_small_decimal": null,
         "bodynumber.operations.NumberOperations.get_small_decimal": null,
         "bodynumber.aio.operations.NumberOperations.get_small_decimal": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

@@ -61,5 +61,6 @@
         "azurespecialpropertiesversiontolerant.aio.operations.HeaderOperations.custom_named_request_id_param_grouping": null,
         "azurespecialpropertiesversiontolerant.operations.HeaderOperations.custom_named_request_id_head": null,
         "azurespecialpropertiesversiontolerant.aio.operations.HeaderOperations.custom_named_request_id_head": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

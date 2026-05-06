@@ -5,5 +5,6 @@
         "lrowithparameterizedendpointsversiontolerant.aio.LROWithParamaterizedEndpoints.begin_poll_with_parameterized_endpoints": null,
         "lrowithparameterizedendpointsversiontolerant.LROWithParamaterizedEndpoints.begin_poll_with_constant_parameterized_endpoints": null,
         "lrowithparameterizedendpointsversiontolerant.aio.LROWithParamaterizedEndpoints.begin_poll_with_constant_parameterized_endpoints": null
-    }
+    },
+    "CrossLanguageVersion": null
 }

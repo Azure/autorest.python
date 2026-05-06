@@ -146,5 +146,6 @@
         "bodycomplex.aio.operations.ReadonlypropertyOperations.put_valid": null,
         "bodycomplex.operations.FlattencomplexOperations.get_valid": null,
         "bodycomplex.aio.operations.FlattencomplexOperations.get_valid": null
-    }
+    },
+    "CrossLanguageVersion": null
 }
