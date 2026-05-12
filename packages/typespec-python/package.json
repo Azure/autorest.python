@@ -50,10 +50,10 @@
   ],
   "peerDependencies": {
     "@azure-tools/typespec-autorest": ">=0.67.0 <1.0.0",
-    "@azure-tools/typespec-azure-core": ">=0.67.0 <1.0.0",
-    "@azure-tools/typespec-azure-resource-manager": ">=0.67.0 <1.0.0",
+    "@azure-tools/typespec-azure-core": ">=0.67.1 <1.0.0",
+    "@azure-tools/typespec-azure-resource-manager": ">=0.67.1 <1.0.0",
     "@azure-tools/typespec-azure-rulesets": ">=0.67.0 <1.0.0",
-    "@azure-tools/typespec-client-generator-core": ">=0.67.0 <1.0.0",
+    "@azure-tools/typespec-client-generator-core": ">=0.67.4 <1.0.0",
     "@typespec/compiler": "^1.11.0",
     "@typespec/events": ">=0.81.0 <1.0.0",
     "@typespec/http": "^1.11.0",
@@ -65,7 +65,7 @@
     "@typespec/xml": ">=0.81.0 <1.0.0"
   },
   "dependencies": {
-    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjI4MDE2MS9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.28.3.tgz",
+    "@typespec/http-client-python": "https://artprodcus3.artifacts.visualstudio.com/A0fb41ef4-5012-48a9-bf39-4ee3de03ee35/29ec6040-b234-4e31-b139-33dc4287b756/_apis/artifact/cGlwZWxpbmVhcnRpZmFjdDovL2F6dXJlLXNkay9wcm9qZWN0SWQvMjllYzYwNDAtYjIzNC00ZTMxLWIxMzktMzNkYzQyODdiNzU2L2J1aWxkSWQvNjI4MzU0Ny9hcnRpZmFjdE5hbWUvYnVpbGRfYXJ0aWZhY3RzX3B5dGhvbg2/content?format=file&subPath=%2Fpackages%2Ftypespec-http-client-python-0.29.0.tgz",
     "fs-extra": "~11.2.0",
     "js-yaml": "~4.1.0",
     "semver": "~7.6.2",
@@ -74,10 +74,10 @@
   "devDependencies": {
     "@azure-tools/azure-http-specs": "0.1.0-alpha.40-dev.12",
     "@azure-tools/typespec-autorest": "~0.67.0",
-    "@azure-tools/typespec-azure-core": "~0.67.0",
-    "@azure-tools/typespec-azure-resource-manager": "~0.67.0",
+    "@azure-tools/typespec-azure-core": "~0.67.1",
+    "@azure-tools/typespec-azure-resource-manager": "~0.67.1",
     "@azure-tools/typespec-azure-rulesets": "~0.67.0",
-    "@azure-tools/typespec-client-generator-core": "~0.67.0",
+    "@azure-tools/typespec-client-generator-core": "~0.67.4",
     "@types/fs-extra": "11.0.4",
     "@types/js-yaml": "~4.0.5",
     "@types/node": "~25.0.2",
