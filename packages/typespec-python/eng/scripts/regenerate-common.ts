@@ -3,7 +3,11 @@ import { dirname, join, relative, resolve } from "path";
 
 // ---- Shared constants ----
 
-export const SKIP_SPECS: string[] = ["type/file", "service/multiple-services"];
+export const SKIP_SPECS: string[] = [
+    "type/file",
+    "service/multiple-services",
+    "azure/client-generator-core/response-as-bool",
+];
 
 export const SpecialFlags: Record<string, Record<string, any>> = {
     azure: {
