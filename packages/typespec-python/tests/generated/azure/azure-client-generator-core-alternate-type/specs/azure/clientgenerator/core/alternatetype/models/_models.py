@@ -20,12 +20,12 @@ class Geometry(_Model):
     :ivar type: Required.
     :vartype type: str
     :ivar coordinates: Required.
-    :vartype coordinates: list[int]
+    :vartype coordinates: list[float]
     """
 
     type: str = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
-    coordinates: list[int] = rest_field(visibility=["read", "create", "update", "delete", "query"])
+    coordinates: list[float] = rest_field(visibility=["read", "create", "update", "delete", "query"])
     """Required."""
 
     @overload
@@ -33,7 +33,7 @@ class Geometry(_Model):
         self,
         *,
         type: str,
-        coordinates: list[int],
+        coordinates: list[float],
     ) -> None: ...
 
     @overload
