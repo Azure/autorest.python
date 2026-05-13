@@ -22,6 +22,7 @@ from .operations import (
     ModelsOperations,
     Operations,
     ParametersOperations,
+    ReservedOperationBodyParamsOperations,
 )
 
 if sys.version_info >= (3, 11):
@@ -77,6 +78,9 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype models: specialwords.aio.operations.ModelsOperations
     :ivar model_properties: ModelPropertiesOperations operations
     :vartype model_properties: specialwords.aio.operations.ModelPropertiesOperations
+    :ivar reserved_operation_body_params: ReservedOperationBodyParamsOperations operations
+    :vartype reserved_operation_body_params:
+     specialwords.aio.operations.ReservedOperationBodyParamsOperations
     :ivar extensible_strings: ExtensibleStringsOperations operations
     :vartype extensible_strings: specialwords.aio.operations.ExtensibleStringsOperations
     :ivar operations: Operations operations
@@ -117,6 +121,9 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize.client_side_validation = False
         self.models = ModelsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_properties = ModelPropertiesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.reserved_operation_body_params = ReservedOperationBodyParamsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.extensible_strings = ExtensibleStringsOperations(

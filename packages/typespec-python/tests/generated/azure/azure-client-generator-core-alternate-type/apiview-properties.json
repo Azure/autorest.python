@@ -12,5 +12,5 @@
         "specs.azure.clientgenerator.core.alternatetype.operations.ExternalTypeOperations.put_property": "_Specs_.Azure.ClientGenerator.Core.AlternateType.ExternalType.putProperty",
         "specs.azure.clientgenerator.core.alternatetype.aio.operations.ExternalTypeOperations.put_property": "_Specs_.Azure.ClientGenerator.Core.AlternateType.ExternalType.putProperty"
     },
-    "CrossLanguageVersion": "b95575048564"
+    "CrossLanguageVersion": "36ff00a9d907"
 }

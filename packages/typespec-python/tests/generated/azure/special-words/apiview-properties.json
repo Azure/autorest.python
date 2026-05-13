@@ -110,6 +110,8 @@
         "specialwords.aio.operations.ModelPropertiesOperations.dict_methods": "SpecialWords.ModelProperties.dictMethods",
         "specialwords.operations.ModelPropertiesOperations.with_list": "SpecialWords.ModelProperties.withList",
         "specialwords.aio.operations.ModelPropertiesOperations.with_list": "SpecialWords.ModelProperties.withList",
+        "specialwords.operations.ReservedOperationBodyParamsOperations.with_items": "SpecialWords.ReservedOperationBodyParams.withItems",
+        "specialwords.aio.operations.ReservedOperationBodyParamsOperations.with_items": "SpecialWords.ReservedOperationBodyParams.withItems",
         "specialwords.operations.ExtensibleStringsOperations.put_extensible_string_value": "SpecialWords.ExtensibleStrings.putExtensibleStringValue",
         "specialwords.aio.operations.ExtensibleStringsOperations.put_extensible_string_value": "SpecialWords.ExtensibleStrings.putExtensibleStringValue",
         "specialwords.operations.Operations.and_method": "SpecialWords.Operations.and",
@@ -247,5 +249,5 @@
         "specialwords.operations.ParametersOperations.with_cancellation_token": "SpecialWords.Parameters.withCancellationToken",
         "specialwords.aio.operations.ParametersOperations.with_cancellation_token": "SpecialWords.Parameters.withCancellationToken"
     },
-    "CrossLanguageVersion": "c1e750721e35"
+    "CrossLanguageVersion": "e6c06a985f65"
 }
