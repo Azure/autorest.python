@@ -13,6 +13,7 @@ from .extensiblestrings.operations import ExtensibleStringsOperations
 from .modelproperties.operations import ModelPropertiesOperations
 from .models.operations import ModelsOperations
 from .operations import Operations, ParametersOperations
+from .reservedoperationbodyparams.operations import ReservedOperationBodyParamsOperations
 
 if sys.version_info >= (3, 11):
     from typing import Self
@@ -67,6 +68,9 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
     :vartype models: specialwords.operations.ModelsOperations
     :ivar model_properties: ModelPropertiesOperations operations
     :vartype model_properties: specialwords.operations.ModelPropertiesOperations
+    :ivar reserved_operation_body_params: ReservedOperationBodyParamsOperations operations
+    :vartype reserved_operation_body_params:
+     specialwords.operations.ReservedOperationBodyParamsOperations
     :ivar extensible_strings: ExtensibleStringsOperations operations
     :vartype extensible_strings: specialwords.operations.ExtensibleStringsOperations
     :ivar operations: Operations operations
@@ -101,6 +105,9 @@ class SpecialWordsClient:  # pylint: disable=client-accepts-api-version-keyword
         self._serialize.client_side_validation = False
         self.models = ModelsOperations(self._client, self._config, self._serialize, self._deserialize)
         self.model_properties = ModelPropertiesOperations(
+            self._client, self._config, self._serialize, self._deserialize
+        )
+        self.reserved_operation_body_params = ReservedOperationBodyParamsOperations(
             self._client, self._config, self._serialize, self._deserialize
         )
         self.extensible_strings = ExtensibleStringsOperations(

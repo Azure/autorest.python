@@ -17,5 +17,5 @@
         "client.structure.service.ServiceClient.two": "Client.Structure.Service.two",
         "client.structure.service.aio.ServiceClient.two": "Client.Structure.Service.two"
     },
-    "CrossLanguageVersion": "3de3730e9df3"
+    "CrossLanguageVersion": "e6800843d631"
 }
