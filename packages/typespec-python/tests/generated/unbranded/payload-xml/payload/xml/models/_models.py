@@ -3,9 +3,20 @@
 # pylint: disable=useless-super-delegation
 
 import datetime
+import functools
 from typing import Any, Mapping, Optional, TYPE_CHECKING, Union, overload
 
-from .._utils.model_base import Model as _Model, rest_field
+from .._utils.model_base import (
+    Model as _Model,
+    _xml_deser_bool,
+    _xml_deser_datetime,
+    _xml_deser_datetime_rfc7231,
+    _xml_deser_enum_or_str,
+    _xml_deser_int,
+    _xml_deser_str,
+    rest_field,
+)
+from ._enums import Status
 
 if TYPE_CHECKING:
     from .. import models as _models
@@ -21,6 +32,7 @@ class Author(_Model):
     name: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "name", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -54,6 +66,7 @@ class Book(_Model):
     title: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -126,16 +139,19 @@ class ModelWithAttributes(_Model):
     id1: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": True, "name": "id1", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
     id2: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": True, "name": "id2", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     enabled: bool = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "enabled", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_bool,
     )
     """Required."""
 
@@ -174,12 +190,14 @@ class ModelWithDatetime(_Model):
         visibility=["read", "create", "update", "delete", "query"],
         format="rfc3339",
         xml={"attribute": False, "name": "rfc3339", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_datetime,
     )
     """DateTime value with rfc3339 encoding. Required."""
     rfc7231: datetime.datetime = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         format="rfc7231",
         xml={"attribute": False, "name": "rfc7231", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_datetime_rfc7231,
     )
     """DateTime value with rfc7231 encoding. Required."""
 
@@ -324,6 +342,7 @@ class ModelWithEnum(_Model):
     status: Union[str, "_models.Status"] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "status", "text": False, "unwrapped": False},
+        deserializer=functools.partial(_xml_deser_enum_or_str, Status),
     )
     """Required. Known values are: \"pending\", \"success\", and \"error\"."""
 
@@ -359,11 +378,13 @@ class ModelWithNamespace(_Model):
     id: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "id", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
     title: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -409,6 +430,7 @@ class ModelWithNamespaceOnProperties(_Model):
     id: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "id", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
     title: str = rest_field(
@@ -421,6 +443,7 @@ class ModelWithNamespaceOnProperties(_Model):
             "text": False,
             "unwrapped": False,
         },
+        deserializer=_xml_deser_str,
     )
     """Required."""
     author: str = rest_field(
@@ -433,6 +456,7 @@ class ModelWithNamespaceOnProperties(_Model):
             "text": False,
             "unwrapped": False,
         },
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -510,11 +534,13 @@ class ModelWithOptionalField(_Model):
     item: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "item", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     value: Optional[int] = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "value", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
 
     _xml = {"attribute": False, "name": "ModelWithOptionalField", "text": False, "unwrapped": False}
@@ -594,16 +620,19 @@ class ModelWithRenamedAttribute(_Model):
     id: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": True, "name": "xml-id", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
     title: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "title", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     author: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "author", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -717,11 +746,13 @@ class ModelWithRenamedProperty(_Model):
     title: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "renamedTitle", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     author: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "author", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -902,11 +933,13 @@ class ModelWithText(_Model):
     language: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": True, "name": "language", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     content: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "content", "text": True, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
@@ -1052,11 +1085,13 @@ class SimpleModel(_Model):
     name: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "name", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     age: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "age", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
 
@@ -1093,11 +1128,13 @@ class XmlErrorBody(_Model):
     message: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "message", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     code: int = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "code", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_int,
     )
     """Required."""
 
