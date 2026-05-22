@@ -9,7 +9,7 @@
 
 from typing import Any, Mapping, overload
 
-from .._utils.model_base import Model as _Model, rest_field
+from .._utils.model_base import Model as _Model, _xml_deser_str, rest_field
 
 
 class Pet(_Model):
@@ -57,11 +57,13 @@ class XmlPet(_Model):
     id: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "Id", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
     name: str = rest_field(
         visibility=["read", "create", "update", "delete", "query"],
         xml={"attribute": False, "name": "Name", "text": False, "unwrapped": False},
+        deserializer=_xml_deser_str,
     )
     """Required."""
 
