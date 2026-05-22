@@ -1,25 +1,6 @@
 # Generating with Autorest for Python
 
-See [here](https://github.com/Azure/autorest.python/wiki/Generating-with-autorest-for-python-v5.0.0) for Python-specific docs, and [here] for general docs
-
-# Contributing
-
-This project welcomes contributions and suggestions. Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.microsoft.com.
-
-When you submit a pull request, a CLA-bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
-
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
-
-### Autorest plugin configuration
-
-- Please don't edit this section unless you're re-configuring how the powershell extension plugs in to AutoRest
-  AutoRest needs the below config to pick this up as a plug-in - see https://github.com/Azure/autorest/blob/master/docs/developer/architecture/AutoRest-extension.md
+**This emitter is deprecated and will no longer receive support**
 
 #### Python code gen
 
@@ -136,33 +117,6 @@ scope-multiclientscript/emitter:
   output-uri-expr: $key
 
 output-artifact: python-files
-```
-
-# Help
-
-```yaml
-help-content:
-  python: # type: Help as defined in autorest-core/help.ts
-    activationScope: python
-    categoryFriendlyName: Python Generator
-    settings:
-      - key: python-sdks-folder
-        description: The path to the root directory of your azure-sdk-for-python clone. Be sure to note that we include `sdk` in the folder path.
-      - key: black
-        description: Runs black formatting on your generated files. Defaults to `false`.
-        type: string
-      - key: basic-setup-py
-        description: Whether to generate a build script for setuptools to package your SDK.  Defaults to `false`, generally not suggested if you are going to wrap the generated code
-        type: bool
-      - key: no-namespace-folders
-        description: Specify if you don't want pkgutil-style namespace folders. Defaults to `false`.
-        type: bool
-      - key: credential-default-policy-type
-        description: Specify the default credential policy (authentication policy) for your client. Use in conjunction with `--add-credential`. Currently only supports `BearerTokenCredentialPolicy`, `ARMChallengeAuthenticationPolicy` and `AzureKeyCredentialPolicy`. Default value is `BearerTokenCredentialPolicy`(data-plan)/`ARMChallengeAuthenticationPolicy`(mgmt-plan). `--credential-scopes` is tied with `BearerTokenCredentialPolicy` and `ARMChallengeAuthenticationPolicy`, do not pass them in if you want `AzureKeyCredentialPolicy`.
-        type: string
-      - key: credential-key-header-name
-        description: The name of the header which will pass the credential. Use if you have `--credential-default-policy-type` set to `AzureKeyCredentialPolicy`. For example, if generating cognitive services code, you might use `--credential-key-header-name=Ocp-Apim-Subscription-Key`
-        type: string
 ```
 
 <!-- LINKS -->
